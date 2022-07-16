@@ -67,3 +67,8 @@ $ npm run commit
 One of the maintainers will look at the pull request within one week. Feedback on the pull request will be given in writing, in GitHub.
 
 # Release Management
+
+The project's committers will release to the [Adobe organization on npmjs.org](https://www.npmjs.com/org/adobe).
+Please contact the [Adobe Open Source Advisory Board](https://git.corp.adobe.com/OpenSourceAdvisoryBoard/discuss/issues) to get access to the npmjs organization.
+
+The release process is fully automated using `semantic-release`, increasing the version numbers, etc. based on the contents of the commit messages found.
