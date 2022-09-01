@@ -1,0 +1,906 @@
+# Try JavaScript Intl object first before using this config file
+# https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
+# e.g. Intl.NumberFormat()
+# References:
+#   https://www.currency-iso.org/dam/downloads/lists/list_one.xml
+#   Standard vs Adobe Store 
+#   http://or1010050166035.corp.adobe.com/
+Afghanistan:
+  countryCode: AF
+  currency: AFN
+  currencySymbol: Af
+Albania:
+  countryCode: AL
+  currency: ALL
+  currencySymbol: L
+Algeria:
+  countryCode: DZ
+  currency: USD
+  currencySymbol: US$
+American Samoa:
+  countryCode: AS
+  currency: USD
+  currencySymbol: $
+Andorra:
+  countryCode: AD
+  currency: EUR
+  currencySymbol: €
+Angola:
+  countryCode: AO
+  currency: AOA
+  currencySymbol: Kz
+Anguilla:
+  countryCode: AI
+  currency: XCD
+  currencySymbol: $
+Antigua and Barbuda:
+  countryCode: AG
+  currency: XCD
+  currencySymbol: $
+Argentina:
+  countryCode: AR
+  currency: ARS
+  currencySymbol: Ar$
+Armenia:
+  countryCode: AM
+  currency: AMD
+  currencySymbol: US$
+Aruba:
+  countryCode: AW
+  currency: AWG
+  currencySymbol: ƒ
+Ascension Island:
+  countryCode: AC
+  currency: SHP
+  currencySymbol: £
+Australia:
+  countryCode: AU
+  currency: AUD
+  currencySymbol: A$
+Austria:
+  countryCode: AT
+  currency: EUR
+  currencySymbol: €
+Azerbaijan:
+  countryCode: AZ
+  currency: AZN
+  currencySymbol: US$
+Bahamas:
+  countryCode: BS
+  currency: BSD
+  currencySymbol: $
+Bahrain:
+  countryCode: BH
+  currency: BHD
+  currencySymbol: BD
+Bangladesh:
+  countryCode: BD
+  currency: BDT
+  currencySymbol: ৳
+Barbados:
+  countryCode: BB
+  currency: BBD
+  currencySymbol: $
+Belarus:
+  countryCode: BY
+  currency: BYN
+  currencySymbol: US$
+Belgium:
+  countryCode: BE
+  currency: EUR
+  currencySymbol: €
+Belize:
+  countryCode: BZ
+  currency: BZD
+  currencySymbol: $
+Benin:
+  countryCode: BJ
+  currency: XAF
+  currencySymbol: ₣
+Bermuda:
+  countryCode: BM
+  currency: BMD
+  currencySymbol: $
+Bhutan:
+  countryCode: BT
+  currency: INR
+  currencySymbol: ₹
+Bolivia:
+  countryCode: BO
+  currency: USD
+  currencySymbol: US$
+Bosnia and Herzegovina:
+  countryCode: BA
+  currency: BAM
+  currencySymbol: КМ
+Botswana:
+  countryCode: BW
+  currency: BWP
+  currencySymbol: P
+Brazil:
+  countryCode: BR
+  currency: BRL
+  currencySymbol: R$
+British Indian Ocean Territory:
+  countryCode: IO
+  currency: USD
+  currencySymbol: $
+British Virgin Islands:
+  countryCode: VG
+  currency: USD
+  currencySymbol: $
+Brunei:
+  countryCode: BN
+  currency: SGD
+  currencySymbol: $
+Bulgaria:
+  countryCode: BG
+  currency: BGN
+  currencySymbol: €
+Burkina Faso:
+  countryCode: BF
+  currency: XAF
+  currencySymbol: ₣
+Burundi:
+  countryCode: BI
+  currency: BIF
+  currencySymbol: ₣
+Cambodia:
+  countryCode: KH
+  currency: KHR
+  currencySymbol: ៛
+Cameroon:
+  countryCode: CM
+  currency: XAF
+  currencySymbol: ₣
+Canada:
+  countryCode: CA
+  currency: CAD
+  currencySymbol: CAD $
+Cape Verde:
+  countryCode: CV
+  currency: CVE
+  currencySymbol: $
+Cayman Islands:
+  countryCode: KY
+  currency: KYD
+  currencySymbol: $
+Central African Republic:
+  countryCode: CF
+  currency: XAF
+  currencySymbol: ₣
+Chad:
+  countryCode: TD
+  currency: XAF
+  currencySymbol: ₣
+Chile:
+  countryCode: CL
+  currency: CLP
+  currencySymbol: Ch$
+China:
+  countryCode: CN
+  currency: CNY
+  currencySymbol: ¥
+Coconut Islands:
+  countryCode: CC
+  currency: AUD
+  currencySymbol: $
+Colombia:
+  countryCode: CO
+  currency: COP
+  currencySymbol: Col$
+Congo (Brazzaville):
+  countryCode: CG
+  currency: XAF
+  currencySymbol: ₣
+Congo (Kinshasa):
+  countryCode: CD
+  currency: CDF
+  currencySymbol: ₣
+Cook Islands:
+  countryCode: CK
+  currency: NZD
+  currencySymbol: $
+Costa Rica:
+  countryCode: CR
+  currency: CRC
+  currencySymbol: US$
+Croatia:
+  countryCode: HR
+  currency: EUR
+  currencySymbol: €
+Cuba:
+  countryCode: CU
+  currency: CUP
+  currencySymbol: $
+Cyprus:
+  countryCode: CY
+  currency: EUR
+  currencySymbol: €
+Czech Republic:
+  countryCode: CZ
+  currency: CZK
+  currencySymbol: €
+Côte d'Ivoire:
+  countryCode: CI
+  currency: XAF
+  currencySymbol: ₣
+Denmark:
+  countryCode: DK
+  currency: DKK
+  currencySymbol: DKK
+Djibouti:
+  countryCode: DJ
+  currency: DJF
+  currencySymbol: ₣
+Dominica:
+  countryCode: DM
+  currency: XCD
+  currencySymbol: $
+Dominican Republic:
+  countryCode: DO
+  currency: USD
+  currencySymbol: US$
+Egypt:
+  countryCode: EG
+  currency: EGP
+  currencySymbol: LE
+Ecuador:
+  countryCode: EC
+  currency: USD
+  currencySymbol: US$
+El Salvador:
+  countryCode: SV
+  currency: USD
+  currencySymbol: US$
+Equatorial Guinea:
+  countryCode: GQ
+  currency: XAF
+  currencySymbol: ₣
+Eritrea:
+  countryCode: ER
+  currency: ERN
+  currencySymbol: Nfk
+Estonia:
+  countryCode: EE
+  currency: EUR
+  currencySymbol: €
+Ethiopia:
+  countryCode: ET
+  currency: ETB
+  currencySymbol: null
+Falkland Islands:
+  countryCode: FK
+  currency: FKP
+  currencySymbol: £
+Fiji:
+  countryCode: FJ
+  currency: FJD
+  currencySymbol: $
+Finland:
+  countryCode: FI
+  currency: EUR
+  currencySymbol: €
+France:
+  countryCode: FR
+  currency: EUR
+  currencySymbol: €
+French Polynesia:
+  countryCode: PF
+  currency: XPF
+  currencySymbol: ₣
+Gabon:
+  countryCode: GA
+  currency: XAF
+  currencySymbol: ₣
+Gambia:
+  countryCode: GM
+  currency: GMD
+  currencySymbol: D
+Georgia:
+  countryCode: GE
+  currency: GEL
+  currencySymbol: US$
+Germany:
+  countryCode: DE
+  currency: EUR
+  currencySymbol: €
+Ghana:
+  countryCode: GH
+  currency: GHS
+  currencySymbol: ₵
+Gibraltar:
+  countryCode: GI
+  currency: GIP
+  currencySymbol: £
+Great Britain:
+  countryCode: GB
+  currency: GBP
+  currencySymbol: £
+Greece:
+  countryCode: GR
+  currency: EUR
+  currencySymbol: €
+Grenada:
+  countryCode: GD
+  currency: XCD
+  currencySymbol: $
+Guam:
+  countryCode: GU
+  currency: USD
+  currencySymbol: $
+Guatemala:
+  countryCode: GT
+  currency: GTQ
+  currencySymbol: US$
+Guinea:
+  countryCode: GN
+  currency: GNF
+  currencySymbol: ₣
+Guinea-Bissau:
+  countryCode: GW
+  currency: XAF
+  currencySymbol: ₣
+Guyana:
+  countryCode: GY
+  currency: GYD
+  currencySymbol: $
+Haiti:
+  countryCode: HT
+  currency: USD
+  currencySymbol: $
+Honduras:
+  countryCode: HN
+  currency: HNL
+  currencySymbol: L
+Hong Kong:
+  countryCode: HK
+  currency: HKD
+  currencySymbol: HK$
+Hungary:
+  countryCode: HU
+  currency: HUF
+  currencySymbol: €
+Iceland:
+  countryCode: IS
+  currency: ISK
+  currencySymbol: kr.
+India:
+  countryCode: IN
+  currency: INR
+  currencySymbol: ₹
+Indonesia:
+  countryCode: ID
+  currency: IDR
+  currencySymbol: Rp
+Iran:
+  countryCode: IR
+  currency: IRR
+  currencySymbol: ﷼
+Iraq:
+  countryCode: IQ
+  currency: IQD
+  currencySymbol: ع.د
+Ireland:
+  countryCode: IE
+  currency: EUR
+  currencySymbol: €
+Isle of Maine:
+  countryCode: IM
+  currency: GBP
+  currencySymbol: £
+Israel:
+  countryCode: IL
+  currency: ILS
+  currencySymbol: NIS
+Italy:
+  countryCode: IT
+  currency: EUR
+  currencySymbol: €
+Jamaica:
+  countryCode: JM
+  currency: JMD
+  currencySymbol: $
+Japan:
+  countryCode: JP
+  currency: JPY
+  #currencySymbol: ¥
+  currencySymbol: 円
+Jordan:
+  countryCode: JO
+  currency: JOD
+  currencySymbol: JD
+Kazakhstan:
+  countryCode: KZ
+  currency: KZT
+  currencySymbol: US$
+Kenya:
+  countryCode: KE
+  currency: USD
+  currencySymbol: US$
+Kiribati:
+  countryCode: KI
+  currency: AUD
+  currencySymbol: $
+Kosovo:
+  countryCode: XK
+  currency: RSD
+  currencySymbol: din
+Kuwait:
+  countryCode: KW
+  currency: KWD
+  currencySymbol: KD
+Kyrgyzstan:
+  countryCode: KG
+  currency: KGS
+  currencySymbol: US$
+Laos:
+  countryCode: LA
+  currency: LAK
+  currencySymbol: ₭
+Latvia:
+  countryCode: LV
+  currency: EUR
+  currencySymbol: €
+Lebanon:
+  countryCode: LB
+  currency: LBP
+  currencySymbol: LL
+Lesotho:
+  countryCode: LS
+  currency: ZAR
+  currencySymbol: R
+Liberia:
+  countryCode: LR
+  currency: LRD
+  currencySymbol: $
+Libya:
+  countryCode: LY
+  currency: LYD
+  currencySymbol: US$
+Lichtenstein:
+  countryCode: LI
+  currency: CHF
+  currencySymbol: €
+Lithuania:
+  countryCode: LT
+  currency: EUR
+  currencySymbol: €
+Luxembourg:
+  countryCode: LU
+  currency: EUR
+  currencySymbol: €
+Macao:
+  countryCode: MO
+  currency: HKD
+  currencySymbol: HK$
+Macedonia:
+  countryCode: MK
+  currency: MKD
+  currencySymbol: ден
+Madagascar:
+  countryCode: MG
+  currency: MGA
+  currencySymbol: null
+Malawi:
+  countryCode: MW
+  currency: MWK
+  currencySymbol: MK
+Malaysia:
+  countryCode: MY
+  currency: MYR
+  currencySymbol: RM
+Maldives:
+  countryCode: MV
+  currency: MVR
+  currencySymbol: ރ.
+Mali:
+  countryCode: ML
+  currency: XAF
+  currencySymbol: ₣
+Malta:
+  countryCode: MT
+  currency: EUR
+  currencySymbol: €
+Marshall Islands:
+  countryCode: MH
+  currency: USD
+  currencySymbol: $
+Mauritania:
+  countryCode: MR
+  currency: MRU
+  currencySymbol: UM
+Mauritius:
+  countryCode: MU
+  currency: USD
+  currencySymbol: US$
+Mexico:
+  countryCode: MX
+  currency: MXN
+  currencySymbol: MXN $
+Micronesia:
+  countryCode: FM
+  currency: USD
+  currencySymbol: $
+Moldova:
+  countryCode: MD
+  currency: MDL
+  currencySymbol: US$
+Monaco:
+  countryCode: MC
+  currency: EUR
+  currencySymbol: €
+Mongolia:
+  countryCode: MN
+  currency: MNT
+  currencySymbol: ₮
+Montenegro:
+  countryCode: ME
+  currency: EUR
+  currencySymbol: €
+Montserrat:
+  countryCode: MS
+  currency: XCD
+  currencySymbol: $
+Morocco:
+  countryCode: MA
+  currency: MAD
+  currencySymbol: US$
+Mozambique:
+  countryCode: MZ
+  currency: MZN
+  currencySymbol: MTn
+Myanmar (Burma):
+  countryCode: MM
+  currency: MMK
+  currencySymbol: K
+Namibia:
+  countryCode: NA
+  currency: ZAR
+  currencySymbol: R
+Nauru:
+  countryCode: NR
+  currency: AUD
+  currencySymbol: $
+Nepal:
+  countryCode: NP
+  currency: NPR
+  currencySymbol: ₨
+Netherlands:
+  countryCode: NL
+  currency: EUR
+  currencySymbol: €
+New Caledonia:
+  countryCode: NC
+  currency: XPF
+  currencySymbol: ₣
+New Zealand:
+  countryCode: NZ
+  currency: NZD
+  currencySymbol: A$
+Nicaragua:
+  countryCode: NI
+  currency: NIO
+  currencySymbol: C$
+Niger:
+  countryCode: NE
+  currency: XAF
+  currencySymbol: ₣
+Nigeria:
+  countryCode: NG
+  currency: USD
+  currencySymbol: US$
+Niue:
+  countryCode: NU
+  currency: NZD
+  currencySymbol: $
+North Korea:
+  countryCode: KP
+  currency: KPW
+  currencySymbol: ₩
+Northern Mariana Islands:
+  countryCode: MP
+  currency: USD
+  currencySymbol: $
+Norway:
+  countryCode: 'NO'
+  currency: NOK
+  currencySymbol: NOK
+Oman:
+  countryCode: OM
+  currency: OMR
+  currencySymbol: RO
+Pacific Remote islands:
+  countryCode: PU
+  currency: USD
+  currencySymbol: $
+Pakistan:
+  countryCode: PK
+  currency: PKR
+  currencySymbol: ₨
+Palau:
+  countryCode: PW
+  currency: USD
+  currencySymbol: $
+Palestine:
+  countryCode: PS
+  currency: ILS
+  currencySymbol: ₪
+Panama:
+  countryCode: PA
+  currency: USD
+  currencySymbol: US$
+Papua New Guinea:
+  countryCode: PG
+  currency: PGK
+  currencySymbol: K
+Paraguay:
+  countryCode: PY
+  currency: USD
+  currencySymbol: US$
+Peru:
+  countryCode: PE
+  currency: PEN
+  currencySymbol: S/
+Philippines:
+  countryCode: PH
+  currency: PHP
+  currencySymbol: ₱
+Pitcairn Island:
+  countryCode: PN
+  currency: NZD
+  currencySymbol: $
+Poland:
+  countryCode: PL
+  currency: PLN
+  currencySymbol: €
+Portugal:
+  countryCode: PT
+  currency: EUR
+  currencySymbol: €
+Puerto Rico:
+  countryCode: PR
+  currency: USD
+  currencySymbol: US$
+Qatar:
+  countryCode: QA
+  currency: USD
+  currencySymbol: US$
+Romania:
+  countryCode: RO
+  currency: RON
+  currencySymbol: €
+Russia:
+  countryCode: RU
+  currency: RUB
+  currencySymbol: руб.
+Rwanda:
+  countryCode: RW
+  currency: RWF
+  currencySymbol: ₣
+Saint Helena:
+  countryCode: SH
+  currency: SHP
+  currencySymbol: £
+Saint Kitts and Nevis:
+  countryCode: KN
+  currency: XCD
+  currencySymbol: $
+Saint Lucia:
+  countryCode: LC
+  currency: XCD
+  currencySymbol: $
+Saint Vincent and Grenadine:
+  countryCode: ''
+  currency: XCD
+  currencySymbol: $
+Samoa:
+  countryCode: WS
+  currency: WST
+  currencySymbol: T
+San-Marino:
+  countryCode: SM
+  currency: EUR
+  currencySymbol: €
+Sao Tome and Principe:
+  countryCode: ST
+  currency: STN
+  currencySymbol: Db
+Saudi Arabia:
+  countryCode: SA
+  currency: SAR
+  currencySymbol: SR
+Senegal:
+  countryCode: SN
+  currency: XAF
+  currencySymbol: ₣
+Serbia:
+  countryCode: RS
+  currency: RSD
+  currencySymbol: din
+Seychelles:
+  countryCode: SC
+  currency: SCR
+  currencySymbol: ₨
+Sierra Leone:
+  countryCode: SL
+  currency: SLL
+  currencySymbol: Le
+Singapore:
+  countryCode: SG
+  currency: SGD
+  currencySymbol: S$
+Slovakia:
+  countryCode: SK
+  currency: EUR
+  currencySymbol: €
+Slovenia:
+  countryCode: SI
+  currency: EUR
+  currencySymbol: €
+Solomon Islands:
+  countryCode: SB
+  currency: SBD
+  currencySymbol: $
+Somalia:
+  countryCode: SO
+  currency: SOS
+  currencySymbol: Sh
+South Africa:
+  countryCode: ZA
+  currency: ZAR
+  currencySymbol: US$
+South Korea:
+  countryCode: KR
+  currency: KRW
+  currencySymbol: ₩
+South Ossetia:
+  countryCode: GE
+  currency: RUB
+  currencySymbol: 'р. '
+Spain:
+  countryCode: ES
+  currency: EUR
+  currencySymbol: €
+Sri Lanka:
+  countryCode: LK
+  currency: USD
+  currencySymbol: US$
+Sudan:
+  countryCode: SD
+  currency: SDG
+  currencySymbol: £
+Suriname:
+  countryCode: SR
+  currency: SRD
+  currencySymbol: $
+Swaziland:
+  countryCode: SZ
+  currency: SZL
+  currencySymbol: L
+Sweden:
+  countryCode: SE
+  currency: SEK
+  currencySymbol: SEK
+Switzerland:
+  countryCode: CH
+  currency: CHF
+  currencySymbol: CHF
+Syria:
+  countryCode: SY
+  currency: SYP
+  currencySymbol: ل.س
+Taiwan:
+  countryCode: TW
+  currency: TWD
+  currencySymbol: NT$
+Tajikistan:
+  countryCode: TJ
+  currency: TJS
+  currencySymbol: US$
+Tanzania:
+  countryCode: TZ
+  currency: TZS
+  currencySymbol: Sh
+Thailand:
+  countryCode: TH
+  currency: THB
+  currencySymbol: ฿
+Togo:
+  countryCode: TG
+  currency: XAF
+  currencySymbol: ₣
+Tonga:
+  countryCode: TO
+  currency: TOP
+  currencySymbol: T$
+Trinidad and Tobago:
+  countryCode: TT
+  currency: USD
+  currencySymbol: US$
+Tristan da Cunha:
+  countryCode: SH
+  currency: SHP
+  currencySymbol: £
+Tunisia:
+  countryCode: TN
+  currency: TND
+  currencySymbol: د.ت
+Turkey:
+  countryCode: TR
+  currency: TRY
+  currencySymbol: ₺
+Turkmenistan:
+  countryCode: TM
+  currency: TMT
+  currencySymbol: US$
+Turks and Caicos Islands:
+  countryCode: TC
+  currency: USD
+  currencySymbol: $
+Tuvalu:
+  countryCode: TV
+  currency: AUD
+  currencySymbol: $
+United Arab Emirates:
+  countryCode: AE
+  currency: AED
+  currencySymbol: US$
+US Virgin Islands:
+  countryCode: VI
+  currency: USD
+  currencySymbol: $
+Uganda:
+  countryCode: UG
+  currency: UGX
+  currencySymbol: Sh
+Ukraine:
+  countryCode: UA
+  currency: UAH
+  currencySymbol: US$
+United States of America:
+  countryCode: US
+  currency: USD
+  #currencySymbol: $
+  currencySymbol: US$
+Uruguay:
+  countryCode: UY
+  currency: UYU
+  currencySymbol: US$
+Uzbekistan:
+  countryCode: UZ
+  currency: UZS
+  currencySymbol: US$
+Vanuatu:
+  countryCode: VU
+  currency: VUV
+  currencySymbol: Vt
+Vatican:
+  countryCode: VA
+  currency: EUR
+  currencySymbol: €
+Venezuela:
+  countryCode: VE
+  currency: VEF
+  currencySymbol: US$
+Vietnam:
+  countryCode: VN
+  currency: USD
+  currencySymbol: US$
+Wallis and Futuna:
+  countryCode: WF
+  currency: XPF
+  currencySymbol: ₣
+Yemen:
+  countryCode: YE
+  currency: YER
+  currencySymbol: US$
+Zambia:
+  countryCode: ZM
+  currency: ZMW
+  currencySymbol: ZK
+Zimbabwe:
+  countryCode: ZW
+  currency: ZWL
+  currencySymbol: $
+

@@ -1,0 +1,15 @@
+ignores:
+  - status: 200
+    url: .*
+  - status: 204
+    url: .*
+  - status: 206
+    url: .*
+  - status: 302
+    url: .*
+  - status: 304
+    url: .*
+  - status: 201
+    url: .*
+  - status: 207
+    url: https://adobedc.demdex.net

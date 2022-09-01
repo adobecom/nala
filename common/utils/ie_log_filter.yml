@@ -1,0 +1,19 @@
+ignores:
+  - level: Message
+    text: .*
+    url: .*
+  - level: Warning
+    text: .*
+    url: .*
+  - level: Error
+    text: >-
+      SCRIPT7002: XMLHttpRequest: Network Error 0x2eff, Could not complete the operation due to error 00002eff. .*
+    url: .*
+  - level: Error
+    text: >-
+      Unhandled promise rejection TypeError: \[alloy\] \[DataCollector\] An error occurred while executing the sendEvent command. Caused by: Network request failed. Caused by: Network request failed
+    url: .*   
+  - level: Error
+    text: >-
+      Unhandled promise rejection Error: No identity was set on response.
+    url: .*   

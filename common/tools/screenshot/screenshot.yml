@@ -1,0 +1,14 @@
+android:
+  chop: 
+    top: 160
+    bottom: 96
+
+iphone:
+  chop:
+    top: 188
+    bottom: 166
+
+ipad:
+  chop:
+    top: 141
+    bottom: 0    

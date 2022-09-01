@@ -1,0 +1,16 @@
+---
+default: -p account --browser=chrome
+
+account:
+  --tags: "@account"
+  env: prod
+  baseUrl: https://account.adobe.com
+  stepPause: 0
+  scenarioPause: 0
+
+account-stage:
+  --tags: "@account"
+  env: stage
+  baseUrl: https://stage.account.adobe.com
+  stepPause: 0
+  scenarioPause: 0

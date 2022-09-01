@@ -1,0 +1,71 @@
+default: -p prod --browser=chrome
+
+prod:
+  tags: '@prod'
+  env: prod
+  baseUrl: https://milo.adobe.com/
+
+stage:
+  tags: '@stage'
+  env: stage
+  baseUrl: https://main--milo--adobecom.hlx.page/
+
+pacomprod:
+  tags: '@pacomprod'
+  env: prod
+  baseUrl: https://pages.adobe.com/
+
+pacomstage:
+  tags: '@pacomstage'
+  env: stage
+  baseUrl: https://main--pages--adobe.hlx.page/
+
+fedpubprod:
+  tags: '@fedpubprod'
+  env: prod
+  baseUrl: https://www.adobe.com/
+
+fedpubstage:
+  tags: '@fedpubstage'
+  env: stage
+  baseUrl: https://main--fedpub--adobe.hlx.page/
+
+blogprod:
+  tags: '@blogprod'
+  env: prod
+  baseUrl: https://blog.adobe.com/
+
+blogstage:
+  tags: '@blogstage'
+  env: stage
+  baseUrl: https://main--blog--adobe.hlx.page/
+
+bacomprod:
+  tags: '@bacomprod'
+  env: prod
+  baseUrl: https://business.adobe.com/
+
+bacomstage:
+  tags: '@bacomstage'
+  env: stage
+  baseUrl: https://main--business-website--adobe.hlx.page/
+
+bblogprod:
+  tags: '@bblogprod'
+  env: prod
+  baseUrl: https://business.adobe.com/blog/
+
+bblogstage:
+  tags: '@bblogstage'
+  env: stage
+  baseUrl: https://main--business-website--adobe.hlx.page/blog/
+
+stockprod:
+  tags: '@stockprod'
+  env: prod
+  baseUrl: https://stock.adobe.com/
+
+stockstage:
+  tags: '@stockstage'
+  env: stage
+  baseUrl: https://main--stock--adobe.hlx.page/

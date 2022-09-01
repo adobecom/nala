@@ -1,0 +1,21 @@
+default: -p prod --browser=chrome
+
+prod:
+  tags: '@prod'
+  env: prod
+  baseUrl: https://business.adobe.com/
+
+stage:
+  tags: '@stage'
+  env: stage
+  baseUrl: https://main--business-website--adobe.hlx.page/
+
+bblogprod:
+  tags: '@bblogprod'
+  env: prod
+  baseUrl: https://business.adobe.com/blog/
+
+bblogstage:
+  tags: '@bblogstage'
+  env: stage
+  baseUrl: https://main--business-website--adobe.hlx.page/blog/
