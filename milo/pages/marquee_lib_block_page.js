@@ -49,9 +49,9 @@ export class MarqueeBlockPage extends GnavPage {
    * @type {object}
    * @description Get the locator of element where the text passed is equal to the element
    * @param {string} marqueeType marquee class type
-   * @param {string} text marquee text
+   * @param {string} text marquee element text
    */
-  marqueeTextElementEquals(marqueeType, text) {
+  marqueeElementTextEquals(marqueeType, text) {
     return $(`//*[@class='${marqueeType}']`).$(`//*[text()='${text}']`);
   }
 
@@ -59,19 +59,9 @@ export class MarqueeBlockPage extends GnavPage {
    * @type {object}
    * @description Get the locator of element where the text passed is contained in the element.
    * @param {string} marqueeType marquee class type
-   * @param {string} text marquee text
+   * @param {string} text marquee element text
    */
-  marqueeTextElementContains(marqueeType, text) {
+  marqueeElementTextContains(marqueeType, text) {
     return $(`//*[@class='${marqueeType}']`).$(`//*[contains(text(),'${text}')]`);
-  }
-
-  /**
-   * @type {object}
-   * @description Get the locator of button where the name passed is the text of the button
-   * @param {string} marqueeType marquee class type
-   * @param {string} nameButton marquee text
-   */
-  marqueeButton(marqueeType, nameButton) {
-    return $(`//*[@class='${marqueeType}']`).$(`//*[text()='${nameButton}']`);
   }
 }

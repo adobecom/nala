@@ -1,0 +1,20 @@
+{
+  "cSpell.words": [
+    "acom",
+    "bacom",
+    "fedpub",
+    "pacom"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cucumberautocomplete.steps": ["*/steps/**/*.js"],
+  "cucumberautocomplete.syncfeatures": "*/features/**/*feature",
+  "cucumberautocomplete.onTypeFormat": true,
+  "editor.quickSuggestions": {
+    "comments": false,
+    "strings": true,
+    "other": true
+  }
+}
