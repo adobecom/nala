@@ -3,7 +3,7 @@ Feature: Validate Marquee blocks on library document page
   @MWPW-17178 @desc-marquee @milo-block @milo-regression @prod @stage
   Scenario Outline: Validating the Marquee CTAs, text, logos, and image when a style is set on the block
     Given I go to "<url>"
-    When I select the block "<name>"
+    When I select the marquee "<name>"
     Then I should see the text "<marqueeHeading>"
     And I should see "<numberCTA>" buttons
     And I should see "<numberLogo>" icons
