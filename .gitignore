@@ -102,5 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# .DS_Store file
 .DS_Store
+
+#.vscode Local files
 .vscode/launch.json
+
+# Debug Local files
+debug
