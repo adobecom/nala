@@ -5,10 +5,10 @@ Feature: Validate Marquee blocks on library document page
     Given I go to "<url>"
     When I select the marquee "<name>"
     Then I should see the text "<marqueeHeading>"
-    Then I should see "<numberCTA>" buttons
-    Then I should see "<numberLogo>" icons
-    Then I should see "<number>" pictures
-    Then I should see "<amount>" background image present
+    And I should see "<numberCTA>" buttons
+    And I should see "<numberLogo>" icons
+    And I should see "<number>" pictures
+    And I should see "<amount>" background image present
     When I click a cta button
     Then I should see "<destinationUrl>" in the current url
 
@@ -29,12 +29,12 @@ Feature: Validate Marquee blocks on library document page
   @MWPW-17178 @desc-marquee @milo-block-update @milo-block @milo-regression @bblogprod @bblogstage
   Scenario Outline: Validating the Marquee CTAs, text, logos, and image when a style is set on the block
     Given I go to "<url>"
-    When I select the block "<name>"
+    When I select the marquee "<name>"
     Then I should see the text "<marqueeHeading>"
-    Then I should see "<numberCTA>" buttons
-    Then I should see "<numberLogo>" icons
-    Then I should see "<number>" pictures
-    Then I should see "<amount>" background image present
+    And I should see "<numberCTA>" buttons
+    And I should see "<numberLogo>" icons
+    And I should see "<number>" pictures
+    And I should see "<amount>" background image present
     When I click a cta button
     Then I should see "<destinationUrl>" in the current url
 

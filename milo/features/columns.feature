@@ -5,9 +5,9 @@ Feature: Validate Columns blocks on library document page
     Given I go to "<url>"
     When I select the block "<name>"
     Then I should see "<numberColums>" columns
-    Then I should see "<numberRows>" rows
-    Then I should see "<text>" in the "<colNum>" column "<rowNum>" row
-    Then I should see "<number>" pictures in the "<colNum>" column "<rowNum>" row
+    And I should see "<numberRows>" rows
+    And I should see "<text>" in the "<colNum>" column "<rowNum>" row
+    And I should see "<number>" pictures in the "<colNum>" column "<rowNum>" row
 
     Examples: Validating the Columns first, last record text and columns, rows amounts when a style is set on the block
       | url                          | name                     | numberColumns | numberRows | text                 | colNum | rowNum | number |
@@ -27,9 +27,9 @@ Feature: Validate Columns blocks on library document page
     Given I go to "<url>"
     When I select the block "<name>"
     Then I should see "<numberColums>" columns
-    Then I should see "<numberRows>" rows
-    Then I should see "<text>" in the "<colNum>" column "<rowNum>" row
-    Then I should see "<number>" pictures in the "<colNum>" column "<rowNum>" row
+    And I should see "<numberRows>" rows
+    And I should see "<text>" in the "<colNum>" column "<rowNum>" row
+    And I should see "<number>" pictures in the "<colNum>" column "<rowNum>" row
 
     Examples: Validating the Columns first, last record text and columns, rows amounts when a style is set on the block
       | url                                           | name    | numberColumns | numberRows | text            | colNum | rowNum | number |
