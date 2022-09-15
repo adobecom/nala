@@ -5,10 +5,10 @@ Feature: Validate Marquee blocks on library document page
     Given I go to "<url>"
     When I select the marquee "<name>"
     Then I should see the text "<marqueeHeading>"
-    And I should see "<numberCTA>" buttons
-    And I should see "<numberLogo>" icons
-    And I should see "<number>" pictures
-    And I should see "<amount>" background image present
+    Then I should see "<numberCTA>" buttons
+    Then I should see "<numberLogo>" icons
+    Then I should see "<number>" pictures
+    Then I should see "<amount>" background image present
     When I click a cta button
     Then I should see "<destinationUrl>" in the current url
 
@@ -31,10 +31,10 @@ Feature: Validate Marquee blocks on library document page
     Given I go to "<url>"
     When I select the block "<name>"
     Then I should see the text "<marqueeHeading>"
-    And I should see "<numberCTA>" buttons
-    And I should see "<numberLogo>" icons
-    And I should see "<number>" pictures
-    And I should see "<amount>" background image present
+    Then I should see "<numberCTA>" buttons
+    Then I should see "<numberLogo>" icons
+    Then I should see "<number>" pictures
+    Then I should see "<amount>" background image present
     When I click a cta button
     Then I should see "<destinationUrl>" in the current url
 

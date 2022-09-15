@@ -282,7 +282,7 @@ const main = async() => {
     }
 
     let fileContents = fs.readFileSync(profilesPath, 'utf8');
-    let profiles = yaml.safeLoad(fileContents);
+    let profiles = yaml.load(fileContents);
 
     // Command line argv overrides default argv
     let argv_default = yargsOpts.parse(profiles.default.split(' '));
@@ -564,7 +564,6 @@ const main = async() => {
                     config.dockerOptions.image = 'selenium/standalone-chrome';
                 } else {
                     cap['goog:chromeOptions'] = {
-                        w3c: false,
                         args: ['--ignore-certificate-errors', '--incognito']
                     };
                     cap['goog:loggingPrefs'] = {

@@ -2,11 +2,11 @@
 const { Given } = require('@cucumber/cucumber');
 const { When } = require('@cucumber/cucumber');
 const { Then } = require('@cucumber/cucumber');
-import { openWebsite } from '../support/action/open_website';
-import { saveScreenshot } from '../support/action/save_screenshot';
-import { saveFullScreenshot } from '../support/action/save_full_screenshot';
 import { AdobeSignInPage } from '../pages/adobe_signin_page';
 import { GnavPage } from '../pages/gnav_page';
+import { openWebsite } from '../support/action/open_website';
+import { saveFullScreenshot } from '../support/action/save_full_screenshot';
+import { saveScreenshot } from '../support/action/save_screenshot';
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -449,10 +449,10 @@ function iVerifyAllLinks() {
                 httpUrls.map(url =>
                     axios.get(url, config).catch(e => {
                         if (!url.includes("aws.amazon.com")) {
-                            const status = e.response ? .status;
+                            const status = e.response?.status;
                             if (status === 999) return { status, config: { url } };
                             fail = true;
-                            console.log('Broken URL:', e.response ? .status, url);
+                            console.log('Broken URL:', e.response?.status, url);
                             return;
                         }
                     })

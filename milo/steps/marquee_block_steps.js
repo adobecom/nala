@@ -1,32 +1,33 @@
-const { Then } = require('cucumber');
-const { When } = require('cucumber');
-const { And } = require('cucumber');
+const { Then } = require('@cucumber/cucumber');
+const { When } = require('@cucumber/cucumber');
 import { MarqueeBlockPage } from '../pages/marquee_lib_block_page';
 
 When(/^I select the marquee "([^\"]*)$/, iSelectMarqueeBlock);
 
 Then(/^I should see the text "([^\"]*)$/, iSeeText);
 
-And(/^I should see (\d+) buttons$/, iSeeButtonAmount);
+Then(/^I should see (\d+) buttons$/, iSeeButtonAmount);
 
-And(/^I should see (\d+) icons$/, iSeeIconAmount);
+Then(/^I should see (\d+) icons$/, iSeeIconAmount);
 
-And(/^I should see (\d+) pictures$/, iSeePictureAmount);
+Then(/^I should see (\d+) pictures$/, iSeePictureAmount);
 
-And(/^I should see (\d+) background image present$/, iSeeBackgroundPresent);
+Then(/^I should see (\d+) background image present$/, iSeeBackgroundPresent);
 
 When(/^I click a cta button$/, iClickCTA);
 
 /**
  * Step Definition
- * ```
- * /^I select the marquee "([^\"]*)"$/
- * ```
+ * `
+`` *
+/^I select the marquee "([^\"]*)"$/ *
+``
+`
  * @param {String} className marquee element class name to select
  *
  */
 function iSelectMarqueeBlock(className) {
-    let marqueeBlock = $(`//*[@class='${className}']`);
+    let marqueeBlock = $(` //*[@class='${className}']`);
     MarqueeBlockPage.setMarquee(marqueeBlock);
     expect(marqueeBlock.isDisplayed()).toBe(true);
 }

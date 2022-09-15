@@ -1,14 +1,19 @@
-const { Then } = require('cucumber');
-const { And } = require('cucumber');
+const { Then } = require('@cucumber/cucumber');
 import { getElementCount } from '../../common/steps/common_steps';
 
 Then(/^I should see (\d+) columns$/, iSeeColumnAmount);
 
-And(/^I should see (\d+) rows$/, iSeeRowAmount);
+Then(/^I should see (\d+) rows$/, iSeeRowAmount);
 
-And(/^I should see "([^\"]*)" in the (\d+) column (\d+) row$/, iSeeTextInColRow);
+Then(
+    /^I should see "([^\"]*)" in the (\d+) column (\d+) row$/,
+    iSeeTextInColRow
+);
 
-And(/^I should see (\d+) pictures in the (\d+) column (\d+) row$/, iSeePictureAmountInColRow);
+Then(
+    /^I should see (\d+) pictures in the (\d+) column (\d+) row$/,
+    iSeePictureAmountInColRow
+);
 
 /**
  * Step Definition:
@@ -18,7 +23,7 @@ And(/^I should see (\d+) pictures in the (\d+) column (\d+) row$/, iSeePictureAm
  * @param {number} amount number of columns expected to be present
  */
 function iSeeColumnAmount(amount) {
-  getElementCount();
+    getElementCount();
 }
 
 /**
@@ -29,7 +34,7 @@ function iSeeColumnAmount(amount) {
  * @param {number} amount number of rows expected to be present
  */
 function iSeeRowAmount(amount) {
-  getElementCount();
+    getElementCount();
 }
 
 /**
@@ -41,9 +46,7 @@ function iSeeRowAmount(amount) {
  * @param {number} columnNumber number of column
  * @param {number} rowNumber number of row
  */
-function iSeeTextInColRow(text, columnNumber, rowNumber) {
-
-}
+function iSeeTextInColRow(text, columnNumber, rowNumber) {}
 
 /**
  * Step Definition:
@@ -55,5 +58,5 @@ function iSeeTextInColRow(text, columnNumber, rowNumber) {
  * @param {number} rowNumber number of row
  */
 function iSeePictureAmountInColRow(elementCount, columnNumber, rowNumber) {
-  getElementCount();
+    getElementCount();
 }
