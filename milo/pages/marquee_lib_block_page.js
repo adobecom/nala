@@ -8,11 +8,6 @@ export class MarqueeBlockPage extends GnavPage {
     static selectedMarquee;
 
     /**
-     * Constructor for Marquee Block Page
-     */
-    constructor() {}
-
-    /**
      * @type {string}
      * @description URL path
      */
@@ -23,8 +18,10 @@ export class MarqueeBlockPage extends GnavPage {
     /**
      * @type {object}
      * @description Get the selected/desired Marquee from the Marquee page
+     * @param {string} marqueeType marquee class type
      */
-    static get getMarquee() {
+    getMarquee(marqueeType) {
+        this.selectedMarquee = $(`//*[@class='${marqueeType}']`);
         return this.selectedMarquee;
     }
 
@@ -32,7 +29,7 @@ export class MarqueeBlockPage extends GnavPage {
      * @type {object}
      * @description Get the amount of actions of the selected marquee from the Marquee page
      */
-    static get marqueeButtonCount() {
+    getMarqueeButtonCount() {
         return this.selectedMarquee.$('.action-area').childElementCount();
     }
 
@@ -40,7 +37,7 @@ export class MarqueeBlockPage extends GnavPage {
      * @type {object}
      * @description Get the amount of icons present within the selected marquee from the Marquee page
      */
-    static get marqueeIconCount() {
+    getMarqueeIconCount() {
         return this.selectedMarquee.$$('.icon-area picture').length;
     }
 
@@ -48,7 +45,7 @@ export class MarqueeBlockPage extends GnavPage {
      * @type {object}
      * @description Get the amount of pictures present within the selected marquee from the Marquee page
      */
-    static get marqueePicturesCount() {
+    getMarqueePicturesCount() {
         return this.selectedMarquee.$$('.image picture').length;
     }
 
@@ -56,23 +53,17 @@ export class MarqueeBlockPage extends GnavPage {
      * @type {object}
      * @description Get the amount of background images present within the selected marquee from the Marquee page
      */
-    static get marqueeBackgroundImgCount() {
+    getMarqueeBackgroundImgCount() {
         return this.selectedMarquee.$$('div.background div picture').length;
     }
 
     /**
-     * @param {object} element the marquee element that is desired/selected
-     * @description Set the selected/desired Marquee from the Marquee page
+     * @description Click the first action area cta within the selected marquee on the Marquee block page
      */
-    static set setMarquee(element) {
-        this.selectedMarquee = element;
-    }
-
-    /**
-     * Click the first action area cta within the selected marquee on the Marquee block page
-     */
-    static clickCTA() {
-        iFocusAndClickTheElement(this.selectedMarquee.$('.action-area').$$('<a \>')[0]);
+    clickCTA() {
+        iFocusAndClickTheElement(
+            this.selectedMarquee.$('.action-area').$$('<a />')[0]
+        );
     }
 
     /**
@@ -81,7 +72,7 @@ export class MarqueeBlockPage extends GnavPage {
      * @param {string} marqueeType marquee class type
      * @param {string} text marquee element text
      */
-    marqueeElementTextEquals(marqueeType, text) {
+    getMarqueeElementTextEquals(marqueeType, text) {
         return $(`//*[@class='${marqueeType}']`).$(`//*[text()='${text}']`);
     }
 
@@ -91,7 +82,7 @@ export class MarqueeBlockPage extends GnavPage {
      * @param {string} marqueeType marquee class type
      * @param {string} text marquee element text
      */
-    marqueeElementTextContains(marqueeType, text) {
+    getMarqueeElementTextContains(marqueeType, text) {
         return $(`//*[@class='${marqueeType}']`).$(
             `//*[contains(text(),'${text}')]`
         );

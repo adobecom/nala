@@ -1,5 +1,12 @@
+const { Given } = require('@cucumber/cucumber');
 const { Then } = require('@cucumber/cucumber');
+const { When } = require('@cucumber/cucumber');
 import { getElementCount } from '../../common/steps/common_steps';
+import { ColumnsBlockPage } from '../pages/columns_lib_block_page';
+
+Given(/^I go to "([^\"]*)" columns block page$/, iGoToColumnsPage);
+
+When(/^I select the block "([^\"]*)"$/, iSelectMiloBlock);
 
 Then(/^I should see "(.+)" columns$/, iSeeColumnAmount);
 
@@ -14,6 +21,32 @@ Then(
     /^I should see "(.+)" pictures in the "(.+)" column "(.+)" row$/,
     iSeePictureAmountInColRow
 );
+
+/**
+ * Step Definition:
+ * ```
+ * /^I go to "([^\"]*)" columns block page$/
+ * ```
+ * @param {string} path Path to go to
+ */
+function iGoToColumnsPage(path) {
+    this.page = new ColumnsBlockPage();
+    this.page.open(path);
+    console.log(browser.getUrl());
+}
+
+/**
+ * Step Definition
+ * ```
+ * /^I select the block "([^\"]*)"$/
+ * ```
+ * @param {String} className element class name to select
+ *
+ */
+function iSelectMiloBlock(className) {
+    let miloBlock = $('[class="' + className + '"]');
+    expect(miloBlock.isDisplayed()).toBe(true);
+}
 
 /**
  * Step Definition:

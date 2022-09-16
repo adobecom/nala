@@ -24,8 +24,6 @@ Given(/^I go to the page from file "([^"]*)" key as "([^"]*)"$/, iGoToPageFromFi
 
 Given(/^I go to "(.*)" publisher$/, iGoToPublisher);
 
-When(/^I select the block "([^\"]*)"$/, iSelectMiloBlock);
-
 Then(/^I wait for (\d+) second(?:|s)$/, iWaitForSeconds);
 
 Then(/^I click sign in$/, iClickSignIn);
@@ -833,19 +831,6 @@ function iShouldSeeTheCanonicalLink(canonicalLink, pageUrl) {
  */
 function iMouseHoverToElement(element) {
     $(element).moveTo();
-}
-
-/**
- * Step Definition
- * ```
- * /^I select the block "([^\"]*)"$/
- * ```
- * @param {String} className element class name to select
- *
- */
-function iSelectMiloBlock(className) {
-    let miloBlock = $('[class="' + className + '"]');
-    expect(miloBlock.isDisplayed()).toBe(true);
 }
 
 export function getElementCount(element) {

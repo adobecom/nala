@@ -1,6 +1,9 @@
+const { Given } = require('@cucumber/cucumber');
 const { Then } = require('@cucumber/cucumber');
 const { When } = require('@cucumber/cucumber');
 import { MarqueeBlockPage } from '../pages/marquee_lib_block_page';
+
+Given(/^I go to "([^\"]*)" marquee block page$/, iGoToMarqueePage);
 
 When(/^I select the marquee "([^\"]*)"$/, iSelectMarqueeBlock);
 
@@ -14,7 +17,22 @@ Then(/^I should see "(.+)" pictures$/, iSeePictureAmount);
 
 Then(/^I should see "(.+)" background image present$/, iSeeBackgroundPresent);
 
+Then(/^I should see "([^\"]*)" in the current url on the page$/, iSeeUrlInPageUrl);
+
 When(/^I click a cta button$/, iClickCTA);
+
+/**
+ * Step Definition:
+ * ```
+ * /^I go to "([^\"]*)" marquee block page$/
+ * ```
+ * @param {string} path Path to go to
+ */
+function iGoToMarqueePage(path) {
+    this.page = new MarqueeBlockPage();
+    this.page.open(path);
+    console.log(browser.getUrl());
+}
 
 /**
  * Step Definition
@@ -24,9 +42,7 @@ When(/^I click a cta button$/, iClickCTA);
  * @param {String} className marquee element class name to select
  */
 function iSelectMarqueeBlock(className) {
-    let marqueeBlock = $(` //*[@class='${className}']`);
-    MarqueeBlockPage.setMarquee(marqueeBlock);
-    expect(marqueeBlock.isDisplayed()).toBe(true);
+    expect(this.page.getMarquee(className).isDisplayed()).toBe(true);
 }
 
 /**
@@ -37,7 +53,7 @@ function iSelectMarqueeBlock(className) {
  * @param {string} text textual content in block
  */
 function iSeeText(text) {
-    expect(MarqueeBlockPage.getMarquee().getText()).stringContaining(text);
+    expect(this.page.selectedMarquee.getText()).stringContaining(text);
 }
 
 /**
@@ -48,7 +64,7 @@ function iSeeText(text) {
  * @param {number} amount the number of action buttons present in marquee
  */
 function iSeeButtonAmount(amount) {
-    expect(MarqueeBlockPage.marqueeButtonCount()).toEqual(amount);
+    expect(this.page.marqueeButtonCount()).toEqual(amount);
 }
 
 /**
@@ -59,7 +75,7 @@ function iSeeButtonAmount(amount) {
  * @param {number} amount the number of icons present in marquee
  */
 function iSeeIconAmount(amount) {
-    expect(MarqueeBlockPage.marqueeIconCount()).toEqual(amount);
+    expect(this.page.marqueeIconCount()).toEqual(amount);
 }
 
 /**
@@ -70,7 +86,7 @@ function iSeeIconAmount(amount) {
  * @param {number} amount the number of pictures present in marquee
  */
 function iSeePictureAmount(amount) {
-    expect(MarqueeBlockPage.marqueePicturesCount()).toEqual(amount);
+    expect(this.page.marqueePicturesCount()).toEqual(amount);
 }
 
 /**
@@ -81,7 +97,21 @@ function iSeePictureAmount(amount) {
  * @param {number} amount the number of background image renditions present in marquee
  */
 function iSeeBackgroundPresent(amount) {
-    expect(MarqueeBlockPage.marqueeBackgroundImgCount()).toEqual(amount);
+    expect(this.page.marqueeBackgroundImgCount()).toEqual(amount);
+}
+
+/**
+ * Step Definition:
+ * ```
+ * /^I should see "([^\"]*)" in the current url on the page$/
+ * ```
+ * @param {string} url Page URL
+ */
+function iSeeUrlInPageUrl(url) {
+    expect(browser).toHaveUrlContaining(url, {
+        wait: 10000,
+        interval: 1000
+    });
 }
 
 /**
@@ -91,5 +121,5 @@ function iSeeBackgroundPresent(amount) {
  * ```
  */
 function iClickCTA() {
-    MarqueeBlockPage.clickCTA();
+    this.page.clickCTA();
 }
