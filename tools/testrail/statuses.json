@@ -1,0 +1,8 @@
+{
+  "passed": 1,
+  "failed": 5,
+  "blocked": 2,
+  "untested": 3,
+  "retest": 4,
+  "custom_status1": 6
+}

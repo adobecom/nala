@@ -1,0 +1,110 @@
+Feature: [E2E][Author] App Details Component
+
+  Background:
+    Given I sign in as an author
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author an App Details component with enable app banner from XF
+    Then I delete the page "/content/experience-fragments/dexter/us/en/temp/TestAutomation/XFForAppBanner"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/temp/TestAutomation        |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | XFForAppBanner                                                        |
+      | Page Name | XFForAppBanner                                                        |
+    Then I switch to the editor tab
+    And I wait for 8 seconds
+    And I insert a component "Dexter Restricted/App Details"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Enable App Banner       | checked |
+    Then I click Done to close Configuration dialog
+    #Then I open Configuration dialog of "closeCtaInAppBanner" component
+    #Then I configure settings in "General" tab:
+    #  | Button Text *        | closeCta              |   
+    #  | Link To              | https://www.adobe.com |
+    #Then I click Done to close Configuration dialog 
+    #Then I type "appbanner_title" into Text component "appbanner/title"
+    And I refresh the page
+    Then I wait for 2 seconds
+    Then I type "appbanner_publisher" into Text component "appbanner/publisher"
+    And I refresh the page
+    Then I wait for 2 seconds
+    Then I type "appbanner_appstoreprice" into Text component "appbanner/appStorePrice"
+    And I refresh the page
+    Then I wait for 2 seconds
+    Then I type "appbanner_playstoreprice" into Text component "appbanner/playStorePrice"
+    And I refresh the page
+    Then I wait for 2 seconds
+    Then I open Configuration dialog of "visitAppStoreInAppBanner" component
+    Then I configure settings in "General" tab:
+      | Button Text *        | visitAppStore         |   
+      | Link To              | https://www.adobe.com |
+    Then I click Done to close Configuration dialog 
+    Then I open Configuration dialog of "visitPlayStoreInAppBanner" component
+    Then I configure settings in "General" tab:
+      | Button Text *        | visitPlayStore        |   
+      | Link To              | https://www.adobe.com |
+    Then I click Done to close Configuration dialog
+    Then I open Assets tab on the side panel
+    Then I open Configuration dialog of "imageInAppBanner" component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |
+    Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text          | image test    |
+    Then I click Done in Configuration dialog
+    And I have the page "Test-AppDetails-${DateTime}" in the test folder
+    And I edit the test page in the test folder
+    Then I open page properties
+    Then I wait for 5 seconds
+    Then I configure settings in "SEO & Apps" tab:
+      | App Banner        | /content/experience-fragments/dexter/us/en/temp/TestAutomation/XFForAppBanner/master   |
+    Then I click Save in page properties Configuration dialog
+    And I edit the test page in the test folder
+    Then I open the edited page on preview mode
+    Then I wait for 2 seconds
+    Then I should not see "appbanner_title"
+    Then I should not see "appbanner_publisher"
+    Then I should not see "appbanner_appstoreprice"
+    Then I should not see "appbanner_playstoreprice"
+    And I edit the test page in the test folder
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author an App Details component with enable twitter meta data from XF
+    Then I delete the page "/content/experience-fragments/dexter/us/en/temp/TestAutomation/XFForTwitterMetaData"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/temp/TestAutomation        |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | XFForTwitterMetaData                                                  |
+      | Page Name | XFForTwitterMetaData                                                  |
+    Then I switch to the editor tab
+    And I wait for 8 seconds
+    Then I open Assets tab on the side panel
+    And I insert a component "Dexter Restricted/App Details"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Enable Twitter Meta Data       | checked |
+    Then I wait for 1 second
+    Then I configure settings:
+      | Twitter Site            | test_Twitter Site              |
+      | Title                   | test_Title                     |
+      | Twitter App Description | test_Twitter App Description   |
+      | Featured Image Override | Assets:Images:First            |
+      | App Country             | test_App Country               |
+      | iOS App Name            | test_iOS App Name              |
+      | iOS App ID              | test_iOS App ID                |
+      | iOS App URL             | test_iOS App URL               |
+      | Google Play App Name    | test_Google Play App Name      |
+      | Google Play App ID      | test_Google Play App ID        |
+      | Google Play App URL     | test_Google Play App URL       |
+    Then I click Done to close Configuration dialog
+    And I have the page "Test-AppDetails-${DateTime}" in the test folder
+    And I edit the test page in the test folder
+    Then I open page properties
+    Then I wait for 5 seconds
+    Then I configure settings in "Social Media" tab:
+      | Preferred XF variation  | /content/experience-fragments/dexter/us/en/temp/TestAutomation/XFForTwitterMetaData/master   |
+    Then I click Save in page properties Configuration dialog
+    And I edit the test page in the test folder
+    Then I open the edited page on preview mode
+    Then I wait for 2 seconds
+    Then I should not see "test_Twitter Site"

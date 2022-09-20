@@ -1,0 +1,484 @@
+Feature: [Full][OneTrust Integration]
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario Outline: <title-1>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     And I should see the banner in light themes
+     And I should see "Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products, and services. We also use them to provide you more relevant information in searches, and in ads on this and other sites. If that’s okay, click “Enable all.” To limit sharing and view our vendors, click “Customize.” You can change your options at any time."
+     When I click the accept button on OneTrust consent banner
+      #And I should see "We've saved your preferences. Manage Coockie Settings"
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+
+  Examples:
+    <examples-1>
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario Outline: <title-2>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+
+  Examples:
+    <examples-2>
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario Outline: <title-3>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+      Then I scroll the page to the bottom
+      Then I scroll the page to the top
+      Then I should see the OneTrust consent banner
+
+  Examples:
+    <examples-3>
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario Outline: <title-4>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+      Then I close US geo popup if have
+      Then I should see the OneTrust consent banner
+      Then I navigate to iPad Features page
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-4>
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario Outline: <title-5>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     Then I print out all cookies
+     # Operate the site and core services
+     Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg                                     |  A                                                             |
+        |gpv                                        |  <cookie-1>       |
+        |s_cc                                       |  true       |
+        #|s_ppv                                      |  <cookie-2>       |
+        |AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg  |  1       |
+        |feds_visitor_audience                      |  visitor       |
+        #|_fbp                                       |   fb     |
+        #|_cs_c                                      |   0              |
+     When I click the accept button on OneTrust consent banner
+     Then I print out all new added cookies
+     Then I print out active groups
+     Then I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I print out all cookies
+      # Operate the site and core services
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":true,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                    |
+        |OptanonAlertBoxClosed|  2021 |
+      # Measure performance
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent                        |  {"hasUserProvidedConsent":true,"userHasCustomConsent":false} |
+        |s_cc                                        |	 true    |
+        |gpv                                         |  <cookie-1>       |
+        |s_ppv                                       |  <cookie-2>       |
+        |AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg   |  1    |
+        |OptanonAlertBoxClosed                       |  2021 |
+      # Extend functionality
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent                       |  {"hasUserProvidedConsent":true,"userHasCustomConsent":false} |
+       ##|feds_visitor_id	                          |  m_9CUzmuB3__isXoQ2w6s |
+        |feds_visitor_audience                      |  visitor|
+        #|ipe.29293.pageViewedCount	                |  1      |	
+        |OptanonAlertBoxClosed                      |  2021 |
+      # Personalize advertising
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent   |  {"hasUserProvidedConsent":true,"userHasCustomConsent":false} |
+        |_fbp                   |   fb   |
+        |_cs_c                  |   1              |
+        |OptanonAlertBoxClosed  |  2021 |
+    Given I clear cookies
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-4>
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario Outline: <title-6>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     Then I print out all cookies
+     # Operate the site and core services
+     Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+     When I click the Personalize button on OneTrust consent banner
+     Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+      And I enable Performance cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":true} |
+        |OptanonAlertBoxClosed|  2021 |
+      When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I close US geo popup if have
+      Then I print out all cookies
+      # verify not drop off for other categories
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent                        |  {"hasUserProvidedConsent":false,"userHasCustomConsent":true} |
+        |s_cc                                        |	 true    |
+        |gpv                                         |  <cookie-1>       |
+        |s_ppv                                       |  <cookie-2>       |
+        #|AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg   |  1    |
+        |OptanonAlertBoxClosed                       |  2021 |
+      Then I verify some cookies have not been dropped:
+       #|ipe.29293.pageViewedCount	                |  1      |
+       #|_cs_c                                      |   0     |	
+        |_fbp                                       |   fb    |
+      Then I click Personalize on footer
+      And I disable Performance cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+      When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I print out all cookies
+      Then I verify some cookies have not been dropped:
+        |s_cc                                        |	 true    |
+        |gpv                                         |  <cookie-1>       |
+        |s_ppv                                       |  <cookie-2>       |
+        |AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg   |  1    |
+    Given I clear cookies
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-4>
+  
+  <@id-7> <@desc-7> <@envs>
+  Scenario Outline: <title-7>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     Then I print out all cookies
+     # Operate the site and core services
+     Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+     When I click the Personalize button on OneTrust consent banner
+      Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+      And I enable Functionality cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":true} |
+        |OptanonAlertBoxClosed|  2021 |
+      When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I close US geo popup if have
+      Then I print out all cookies
+      # verify not drop off for other categories
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":true} |
+        |feds_visitor_audience                      |  visitor|
+        #|international                              |  us|
+      Then I verify some cookies have not been dropped:
+        |s_cc                                        |	 true    |
+        |gpv                                         |  <cookie-1>       |
+        |s_ppv                                       |  <cookie-2>       |
+        |AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg   |  1    |
+        |_fbp                |   fb   |
+      Then I click Personalize on footer
+      And I disable Functionality cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+      When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I print out all cookies
+      Then I verify some cookies have not been dropped:
+         |international                              |  us|
+      Given I clear cookies
+        And I go to "<Page>"
+        Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-4>
+  
+  <@id-8> <@desc-8> <@envs>
+  Scenario Outline: <title-8>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     Then I print out all cookies
+     # Operate the site and core services
+     Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+     When I click the Personalize button on OneTrust consent banner
+      Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+      And I enable Advertising cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":true} |
+        |OptanonAlertBoxClosed|  2021 |
+      When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I close US geo popup if have
+      Then I print out all cookies
+      # verify not drop off for other categories
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":true} |
+        |_fbp                |   fb   |
+        #|_cs_c                                      |   0     |
+      Then I verify some cookies have not been dropped:
+        |s_cc                                        |	 true    |
+        |gpv                                         |  <cookie-1>       |
+        |s_ppv                                       |  <cookie-2>       |
+        |AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg   |  1    |
+        #|international                              |  us|
+      Then I click Personalize on footer
+      And I disable Advertising cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+       Then I print out all cookies
+       When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I print out all cookies
+      Then I verify some cookies have not been dropped:
+        |_fbp                |   fb   |
+      Given I clear cookies
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-4>
+  
+  <@id-9> <@desc-9> <@envs>
+  Scenario Outline: <title-9>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     Then I print out all cookies
+     Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+     When I click the Personalize button on OneTrust consent banner
+      Then I verify some cookies have been dropped:
+        #|feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":false} |
+        |fg_stg              |  A                                                             |
+      And I enable all cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":true,"userHasCustomConsent":true} |
+        |OptanonAlertBoxClosed|  2021 |
+      When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I close US geo popup if have
+      Then I print out all cookies
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent                        |  {"hasUserProvidedConsent":true,"userHasCustomConsent":true} |
+        |s_cc                                        |	 true    |
+        |gpv                                         |  <cookie-1>       |
+        |s_ppv                                       |  <cookie-2>       |
+        |AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg   |  1    |
+        |_fbp                   |   fb   |
+        |_cs_c                  |   1              |
+        |feds_visitor_audience                      |  visitor|
+        |OptanonAlertBoxClosed                       |  2021 |
+      Then I click Personalize on footer
+      And I disable all cookies
+      Then I print out all new added cookies
+      Then I print out active groups
+      When I clear testing cookies
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+      Then I print out all cookies
+      # always active cookies still drop off
+      Then I verify some cookies have been dropped:
+        |feds_privacy_consent|  {"hasUserProvidedConsent":false,"userHasCustomConsent":true} |
+        |OptanonAlertBoxClosed                       |  2021 |
+      Then I verify some cookies have not been dropped:
+        |s_cc                                        |	 true    |
+        |gpv                                         |  <cookie-1>       |
+        |s_ppv                                       |  <cookie-2>       |
+        |AMCVS_9E1005A551ED61CA0A490D45%40AdobeOrg   |  1    |
+        |_fbp                   |   fb   |
+        |_cs_c                  |   1              |
+    Given I clear cookies
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-4>
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario Outline: <title-10>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     When I click the Personalize button on OneTrust consent banner
+     #Then I should see "Cookie Settings"
+     Then I should see "General information"
+     Then I should see "You are in control of your data." 
+     Then I should see "If enabled:"
+     Then I should see "If disabled:"
+     Then I should see "Operate the site and core services"
+     Then I should see "Measure performance"
+     Then I should see "Extend functionality"
+     Then I should see "Personalize advertising"
+
+  Examples:
+    <examples-3>
+
+  <@id-11> <@desc-11> <@envs>
+  Scenario Outline: <title-11>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     Then I close US geo popup if have
+     When I click the Personalize button on OneTrust consent banner
+      Then I should see "General information"
+      Then I should see "Enable"
+      And I enable all cookies
+      Then I wait for 5 seconds
+      When I click Personalize on footer
+      Then I close US geo popup if have
+      Then I should see "General information"
+
+  Examples:
+    <examples-3>
+
+  <@id-12> <@desc-12> <@envs>
+  Scenario Outline: <title-12>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+      Then I close US geo popup if have
+      Then I click the accept button on OneTrust consent banner
+      When I click AdChoices on footer
+      Then I close US geo popup if have
+      Then I should see "Your data. Your choices."
+
+
+  Examples:
+    <examples-4>
+
+  <@id-13> <@desc-13> <@envs>
+  Scenario Outline: <title-13>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+      Then I close US geo popup if have
+      Then I should see the OneTrust consent banner
+      Then I navigate to What’s New page
+      Then I should see the OneTrust consent banner
+      Then I navigate to Behance page
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-4>
+
+  <@id-14> <@desc-14> <@envs>
+  Scenario Outline: <title-14>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+      Then I close US geo popup if have
+      Then I should see the OneTrust consent banner
+      And I should see the banner in dark themes
+
+
+  Examples:
+   <examples-4>
+
+  <@id-15> <@desc-15> <@envs>
+  Scenario Outline: <title-15>
+    Given I am in the country "<Country>"
+      Then I switch to tablet view
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     And I should see "Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products, and services. We also use them to provide you more relevant information in searches, and in ads on this and other sites. If that’s okay, click “Enable all.” To limit sharing and view our vendors, click “Customize.” You can change your options at any time."
+     When I click the accept button on OneTrust consent banner
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+    Given I clear cookies
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-3>
+
+  <@id-16> <@desc-16> <@envs>
+  Scenario Outline: <title-16>
+    Given I am in the country "<Country>"
+      Then I switch to mobile view
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+      And I should see "Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products, and services. We also use them to provide you more relevant information in searches, and in ads on this and other sites. If that’s okay, click “Enable all.” To limit sharing and view our vendors, click “Customize.” You can change your options at any time."
+     When I click the accept button on OneTrust consent banner
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+    Given I clear cookies
+      And I go to "<Page>"
+      Then I should see the OneTrust consent banner
+
+
+  Examples:
+    <examples-3>
+
+  <@id-17> <@desc-17> <@envs>
+  Scenario Outline: <title-17>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+      Then I close US geo popup if have
+     Then I should see the OneTrust consent banner
+     And I should see the banner in light themes
+     And I should see "Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products, and services. We also use them to provide you more relevant information in searches, and in ads on this and other sites. If that’s okay, click “Enable all.” To limit sharing and view our vendors, click “Customize.” You can change your options at any time."
+     And I click sign in
+     #Then I should see the OneTrust consent banner
+     And I sign in Adobe Account as "autohelpx"
+     Then I should see the OneTrust consent banner
+     When I click the accept button on OneTrust consent banner
+      #And I should see "We've saved your preferences. Manage Coockie Settings"
+      And I go to "<Page>"
+      Then I should not see the OneTrust consent banner
+  Examples:
+    <examples-3>
+
+  <@id-18> <@desc-18> <@envs>
+  Scenario Outline: <title-18>
+    Given I am in the country "<Country>"
+      And I go to "<Page>"
+     Then I should see the OneTrust consent banner
+     When I click the Personalize button on OneTrust consent banner
+     Then I should see "General information"
+     Then I should see close button
+     When I click close button
+     Then I should not see "General information"
+
+  Examples:
+    <examples-3>

@@ -1,0 +1,15 @@
+Feature: [E2E][ops] buildinfo
+
+  <@id-1> <@desc-1> <@env-author>
+  Scenario: <Site> Admin checks build information text presence in author
+    Then I go to "/services/buildinfo"
+    Then I wait for 2 seconds
+    Then I should see "Build Info"
+    Then I should see page status code 200
+
+  <@id-2> <@desc-2> <@env-publish>
+  Scenario: <Site> Admin checks build information text presence in publish
+    Then I go to "/services/buildinfo"
+    Then I wait for 2 seconds
+    Then I should see "Build Info"
+    Then I should see page status code 200

@@ -102,6 +102,7 @@ function killProcesses() {
       'iexplore.exe',
       'IEDriverServer.exe',
       'MicrosoftWebDriver.exe',
+      'operadriver.exe',
       'ffmpeg.exe',
       'msedge.exe',
       'chrome.exe',
@@ -150,14 +151,14 @@ async function main() {
     })
     .option('processes', {
       type: 'boolean',
-      description: 'Kill processes using automation that may stay in background'
+      description: 'Kill processes used automation that may stay in background'
     }).argv;
 
   if (argv.selenium) {
     killSelenium();
     process.exit(0);
   }
-
+  
   let dirs = ['debug', 'screenshots', 'reports'];
   for (let dir of dirs) {
     console.log(`Deleting ${dir}/ ...`);

@@ -94,8 +94,7 @@ class AnalyticsLogs {
         let op = exp.cmp || '=';
         // console.log('comparing actual key: ' + key);
         if (op === '=') {
-          //cmpResult = actual[key] === exp.value;
-          cmpResult = actual[key].includes(exp.value);
+          cmpResult = actual[key] === exp.value;
         } else if (op === '>') {
           cmpResult = parseFloat(actual[key]) > parseFloat(exp.value);
         } else if (op === '<') {

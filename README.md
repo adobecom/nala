@@ -5,13 +5,15 @@ The framework is currently based on WDIO v7. See docs [here](https://webdriver.i
 
 ## Development Environment
 
-* [Node.JS](https://nodejs.org/) Please install the latest version of NodeJS.
+* [Node.JS](https://nodejs.org/) (>=14.16)
+  Please install the latest version 14 of NodeJS. There are [known issues](https://www.npmjs.com/package/fibers) with version 15 or greater.
 * [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 
     ```npm install --global yarn```
 * [Handpick](https://www.npmjs.com/package/handpick)
 
     ```npm install --global handpick```
+* [Oracle JDK](https://www.oracle.com/java/technologies/javase-downloads.html) or [OpenJDK](https://jdk.java.net/). Please follow [Adobe Java Standard](https://wiki.corp.adobe.com/display/TechOpsArchitecture/Adobe+Java+Strategy+FAQ#AdobeJavaStrategyFAQ-AdobeStandard). JDK 11 or higher is recommended.
 
 
 ## Install Dependencies

@@ -13,7 +13,7 @@ const funcExpressionArr = [
 ];
 
 // const CHECKED_CNT = 'Total classes/functions checked';
-// const MISSED_CNT = 'Classes/functions with missing documentation';
+// const MISSED_CNT = 'Classes/functions with missing documentations';
 // const PERCENTAGE = 'Complete Percentage';
 const CHECKED_CNT = 'totalChecked';
 const MISSED_CNT = 'missingDoc';
@@ -76,7 +76,7 @@ function findMissingFuncInFile(file) {
       console.log(`Eaten err in ${file} is:`);
       console.log(err);
       return { checkedCnt: 0, missedCnt: 0, missingFuncsArr: [] };
-    }
+    } 
 
     // since esprima still does not support optional catch argument in ES2019
     if (err.description === 'Unexpected token {') {

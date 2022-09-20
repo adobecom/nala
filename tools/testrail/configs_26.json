@@ -1,0 +1,168 @@
+[
+  {
+    "id": 86,
+    "name": "Browsers",
+    "project_id": 26,
+    "configs": [
+      {
+        "id": 847,
+        "name": "android",
+        "group_id": 86
+      },
+      {
+        "id": 1147,
+        "name": "chrome-mac",
+        "group_id": 86
+      },
+      {
+        "id": 662,
+        "name": "chrome-win10",
+        "group_id": 86
+      },
+      {
+        "id": 663,
+        "name": "firefox-win10",
+        "group_id": 86
+      },
+      {
+        "id": 845,
+        "name": "ipad",
+        "group_id": 86
+      },
+      {
+        "id": 864,
+        "name": "iphone",
+        "group_id": 86
+      },
+      {
+        "id": 846,
+        "name": "safari",
+        "group_id": 86
+      },
+      {
+        "id": 848,
+        "name": "xedge",
+        "group_id": 86
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Environments",
+    "project_id": 26,
+    "configs": [
+      {
+        "id": 850,
+        "name": "dev01",
+        "group_id": 85
+      },
+      {
+        "id": 851,
+        "name": "dev04",
+        "group_id": 85
+      },
+      {
+        "id": 659,
+        "name": "prod",
+        "group_id": 85
+      },
+      {
+        "id": 661,
+        "name": "qa",
+        "group_id": 85
+      },
+      {
+        "id": 849,
+        "name": "qa02",
+        "group_id": 85
+      },
+      {
+        "id": 1148,
+        "name": "qa02-author",
+        "group_id": 85
+      },
+      {
+        "id": 660,
+        "name": "stage",
+        "group_id": 85
+      },
+      {
+        "id": 1149,
+        "name": "stage-author",
+        "group_id": 85
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Locales",
+    "project_id": 26,
+    "configs": [
+      {
+        "id": 859,
+        "name": "au",
+        "group_id": 93
+      },
+      {
+        "id": 857,
+        "name": "be_en",
+        "group_id": 93
+      },
+      {
+        "id": 856,
+        "name": "br",
+        "group_id": 93
+      },
+      {
+        "id": 860,
+        "name": "cn",
+        "group_id": 93
+      },
+      {
+        "id": 726,
+        "name": "default",
+        "group_id": 93
+      },
+      {
+        "id": 863,
+        "name": "hk_en",
+        "group_id": 93
+      },
+      {
+        "id": 858,
+        "name": "in",
+        "group_id": 93
+      },
+      {
+        "id": 853,
+        "name": "jp",
+        "group_id": 93
+      },
+      {
+        "id": 861,
+        "name": "kr",
+        "group_id": 93
+      },
+      {
+        "id": 854,
+        "name": "nz",
+        "group_id": 93
+      },
+      {
+        "id": 862,
+        "name": "tw",
+        "group_id": 93
+      },
+      {
+        "id": 852,
+        "name": "uk",
+        "group_id": 93
+      },
+      {
+        "id": 855,
+        "name": "uk",
+        "group_id": 93
+      }
+    ]
+  }
+]

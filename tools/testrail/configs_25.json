@@ -1,0 +1,1875 @@
+[
+  {
+    "id": 84,
+    "name": "akamaiLocale",
+    "project_id": 25,
+    "configs": [
+      {
+        "id": 789,
+        "name": "ae",
+        "group_id": 84
+      },
+      {
+        "id": 641,
+        "name": "ar",
+        "group_id": 84
+      },
+      {
+        "id": 609,
+        "name": "at",
+        "group_id": 84
+      },
+      {
+        "id": 526,
+        "name": "au",
+        "group_id": 84
+      },
+      {
+        "id": 535,
+        "name": "auto",
+        "group_id": 84
+      },
+      {
+        "id": 612,
+        "name": "be",
+        "group_id": 84
+      },
+      {
+        "id": 670,
+        "name": "be_en",
+        "group_id": 84
+      },
+      {
+        "id": 613,
+        "name": "bg",
+        "group_id": 84
+      },
+      {
+        "id": 784,
+        "name": "bh",
+        "group_id": 84
+      },
+      {
+        "id": 910,
+        "name": "bo",
+        "group_id": 84
+      },
+      {
+        "id": 917,
+        "name": "bo",
+        "group_id": 84
+      },
+      {
+        "id": 635,
+        "name": "br",
+        "group_id": 84
+      },
+      {
+        "id": 528,
+        "name": "ca",
+        "group_id": 84
+      },
+      {
+        "id": 694,
+        "name": "ca_fr",
+        "group_id": 84
+      },
+      {
+        "id": 610,
+        "name": "ch",
+        "group_id": 84
+      },
+      {
+        "id": 673,
+        "name": "ch_de",
+        "group_id": 84
+      },
+      {
+        "id": 640,
+        "name": "cl",
+        "group_id": 84
+      },
+      {
+        "id": 604,
+        "name": "cn",
+        "group_id": 84
+      },
+      {
+        "id": 639,
+        "name": "co",
+        "group_id": 84
+      },
+      {
+        "id": 642,
+        "name": "cr",
+        "group_id": 84
+      },
+      {
+        "id": 614,
+        "name": "cy",
+        "group_id": 84
+      },
+      {
+        "id": 671,
+        "name": "cy_en",
+        "group_id": 84
+      },
+      {
+        "id": 607,
+        "name": "cz",
+        "group_id": 84
+      },
+      {
+        "id": 523,
+        "name": "de",
+        "group_id": 84
+      },
+      {
+        "id": 608,
+        "name": "dk",
+        "group_id": 84
+      },
+      {
+        "id": 909,
+        "name": "do",
+        "group_id": 84
+      },
+      {
+        "id": 916,
+        "name": "do",
+        "group_id": 84
+      },
+      {
+        "id": 792,
+        "name": "dz",
+        "group_id": 84
+      },
+      {
+        "id": 645,
+        "name": "ec",
+        "group_id": 84
+      },
+      {
+        "id": 615,
+        "name": "ee",
+        "group_id": 84
+      },
+      {
+        "id": 785,
+        "name": "eg",
+        "group_id": 84
+      },
+      {
+        "id": 625,
+        "name": "es",
+        "group_id": 84
+      },
+      {
+        "id": 627,
+        "name": "fi",
+        "group_id": 84
+      },
+      {
+        "id": 524,
+        "name": "fr",
+        "group_id": 84
+      },
+      {
+        "id": 533,
+        "name": "gb",
+        "group_id": 84
+      },
+      {
+        "id": 616,
+        "name": "gr",
+        "group_id": 84
+      },
+      {
+        "id": 675,
+        "name": "gr_en",
+        "group_id": 84
+      },
+      {
+        "id": 646,
+        "name": "gt",
+        "group_id": 84
+      },
+      {
+        "id": 606,
+        "name": "hk",
+        "group_id": 84
+      },
+      {
+        "id": 636,
+        "name": "hk",
+        "group_id": 84
+      },
+      {
+        "id": 674,
+        "name": "hk_en",
+        "group_id": 84
+      },
+      {
+        "id": 684,
+        "name": "hr",
+        "group_id": 84
+      },
+      {
+        "id": 628,
+        "name": "hu",
+        "group_id": 84
+      },
+      {
+        "id": 650,
+        "name": "id",
+        "group_id": 84
+      },
+      {
+        "id": 617,
+        "name": "ie",
+        "group_id": 84
+      },
+      {
+        "id": 654,
+        "name": "il",
+        "group_id": 84
+      },
+      {
+        "id": 669,
+        "name": "il_en",
+        "group_id": 84
+      },
+      {
+        "id": 653,
+        "name": "in",
+        "group_id": 84
+      },
+      {
+        "id": 618,
+        "name": "it",
+        "group_id": 84
+      },
+      {
+        "id": 795,
+        "name": "jo",
+        "group_id": 84
+      },
+      {
+        "id": 602,
+        "name": "jp",
+        "group_id": 84
+      },
+      {
+        "id": 897,
+        "name": "ke",
+        "group_id": 84
+      },
+      {
+        "id": 903,
+        "name": "ke",
+        "group_id": 84
+      },
+      {
+        "id": 638,
+        "name": "kr",
+        "group_id": 84
+      },
+      {
+        "id": 793,
+        "name": "kw",
+        "group_id": 84
+      },
+      {
+        "id": 683,
+        "name": "kw",
+        "group_id": 84
+      },
+      {
+        "id": 658,
+        "name": "la",
+        "group_id": 84
+      },
+      {
+        "id": 786,
+        "name": "lb",
+        "group_id": 84
+      },
+      {
+        "id": 896,
+        "name": "lk",
+        "group_id": 84
+      },
+      {
+        "id": 902,
+        "name": "lk",
+        "group_id": 84
+      },
+      {
+        "id": 629,
+        "name": "lt",
+        "group_id": 84
+      },
+      {
+        "id": 611,
+        "name": "lu",
+        "group_id": 84
+      },
+      {
+        "id": 686,
+        "name": "lu_de",
+        "group_id": 84
+      },
+      {
+        "id": 672,
+        "name": "lu_en",
+        "group_id": 84
+      },
+      {
+        "id": 619,
+        "name": "lv",
+        "group_id": 84
+      },
+      {
+        "id": 791,
+        "name": "ma",
+        "group_id": 84
+      },
+      {
+        "id": 656,
+        "name": "mena",
+        "group_id": 84
+      },
+      {
+        "id": 895,
+        "name": "mo",
+        "group_id": 84
+      },
+      {
+        "id": 901,
+        "name": "mo",
+        "group_id": 84
+      },
+      {
+        "id": 620,
+        "name": "mt",
+        "group_id": 84
+      },
+      {
+        "id": 898,
+        "name": "mu",
+        "group_id": 84
+      },
+      {
+        "id": 904,
+        "name": "mu",
+        "group_id": 84
+      },
+      {
+        "id": 626,
+        "name": "mx",
+        "group_id": 84
+      },
+      {
+        "id": 651,
+        "name": "my",
+        "group_id": 84
+      },
+      {
+        "id": 899,
+        "name": "ng",
+        "group_id": 84
+      },
+      {
+        "id": 905,
+        "name": "ng",
+        "group_id": 84
+      },
+      {
+        "id": 630,
+        "name": "nl",
+        "group_id": 84
+      },
+      {
+        "id": 631,
+        "name": "no",
+        "group_id": 84
+      },
+      {
+        "id": 527,
+        "name": "nz",
+        "group_id": 84
+      },
+      {
+        "id": 787,
+        "name": "om",
+        "group_id": 84
+      },
+      {
+        "id": 894,
+        "name": "pa",
+        "group_id": 84
+      },
+      {
+        "id": 900,
+        "name": "pa",
+        "group_id": 84
+      },
+      {
+        "id": 643,
+        "name": "pe",
+        "group_id": 84
+      },
+      {
+        "id": 648,
+        "name": "ph",
+        "group_id": 84
+      },
+      {
+        "id": 632,
+        "name": "pl",
+        "group_id": 84
+      },
+      {
+        "id": 633,
+        "name": "pt",
+        "group_id": 84
+      },
+      {
+        "id": 908,
+        "name": "py",
+        "group_id": 84
+      },
+      {
+        "id": 915,
+        "name": "py",
+        "group_id": 84
+      },
+      {
+        "id": 788,
+        "name": "qa",
+        "group_id": 84
+      },
+      {
+        "id": 621,
+        "name": "ro",
+        "group_id": 84
+      },
+      {
+        "id": 685,
+        "name": "rs",
+        "group_id": 84
+      },
+      {
+        "id": 637,
+        "name": "ru",
+        "group_id": 84
+      },
+      {
+        "id": 681,
+        "name": "sa",
+        "group_id": 84
+      },
+      {
+        "id": 634,
+        "name": "se",
+        "group_id": 84
+      },
+      {
+        "id": 657,
+        "name": "sea",
+        "group_id": 84
+      },
+      {
+        "id": 649,
+        "name": "sg",
+        "group_id": 84
+      },
+      {
+        "id": 622,
+        "name": "si",
+        "group_id": 84
+      },
+      {
+        "id": 623,
+        "name": "sk",
+        "group_id": 84
+      },
+      {
+        "id": 906,
+        "name": "sv",
+        "group_id": 84
+      },
+      {
+        "id": 913,
+        "name": "sv",
+        "group_id": 84
+      },
+      {
+        "id": 652,
+        "name": "th",
+        "group_id": 84
+      },
+      {
+        "id": 794,
+        "name": "tn",
+        "group_id": 84
+      },
+      {
+        "id": 682,
+        "name": "tn",
+        "group_id": 84
+      },
+      {
+        "id": 655,
+        "name": "tr",
+        "group_id": 84
+      },
+      {
+        "id": 911,
+        "name": "tt",
+        "group_id": 84
+      },
+      {
+        "id": 918,
+        "name": "tt",
+        "group_id": 84
+      },
+      {
+        "id": 603,
+        "name": "tw",
+        "group_id": 84
+      },
+      {
+        "id": 680,
+        "name": "ua",
+        "group_id": 84
+      },
+      {
+        "id": 532,
+        "name": "uk",
+        "group_id": 84
+      },
+      {
+        "id": 521,
+        "name": "us",
+        "group_id": 84
+      },
+      {
+        "id": 907,
+        "name": "uy",
+        "group_id": 84
+      },
+      {
+        "id": 914,
+        "name": "uy",
+        "group_id": 84
+      },
+      {
+        "id": 644,
+        "name": "ve",
+        "group_id": 84
+      },
+      {
+        "id": 912,
+        "name": "vn",
+        "group_id": 84
+      },
+      {
+        "id": 919,
+        "name": "vn",
+        "group_id": 84
+      },
+      {
+        "id": 790,
+        "name": "ye",
+        "group_id": 84
+      },
+      {
+        "id": 624,
+        "name": "za",
+        "group_id": 84
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Browsers",
+    "project_id": 25,
+    "configs": [
+      {
+        "id": 341,
+        "name": "android",
+        "group_id": 55
+      },
+      {
+        "id": 1060,
+        "name": "chrome",
+        "group_id": 55
+      },
+      {
+        "id": 1453,
+        "name": "chrome-linux",
+        "group_id": 55
+      },
+      {
+        "id": 1454,
+        "name": "chrome-linux",
+        "group_id": 55
+      },
+      {
+        "id": 1455,
+        "name": "chrome-linux",
+        "group_id": 55
+      },
+      {
+        "id": 1456,
+        "name": "chrome-linux",
+        "group_id": 55
+      },
+      {
+        "id": 1457,
+        "name": "chrome-linux",
+        "group_id": 55
+      },
+      {
+        "id": 1458,
+        "name": "chrome-linux",
+        "group_id": 55
+      },
+      {
+        "id": 1459,
+        "name": "chrome-linux",
+        "group_id": 55
+      },
+      {
+        "id": 337,
+        "name": "chrome-mac",
+        "group_id": 55
+      },
+      {
+        "id": 801,
+        "name": "chrome-macos",
+        "group_id": 55
+      },
+      {
+        "id": 1339,
+        "name": "chrome-win10",
+        "group_id": 55
+      },
+      {
+        "id": 1340,
+        "name": "chrome-win10",
+        "group_id": 55
+      },
+      {
+        "id": 1341,
+        "name": "chrome-win10",
+        "group_id": 55
+      },
+      {
+        "id": 1342,
+        "name": "chrome-win10",
+        "group_id": 55
+      },
+      {
+        "id": 1344,
+        "name": "chrome-win10",
+        "group_id": 55
+      },
+      {
+        "id": 1345,
+        "name": "chrome-win10",
+        "group_id": 55
+      },
+      {
+        "id": 333,
+        "name": "chrome-win10",
+        "group_id": 55
+      },
+      {
+        "id": 806,
+        "name": "chrome-win10x",
+        "group_id": 55
+      },
+      {
+        "id": 798,
+        "name": "edge",
+        "group_id": 55
+      },
+      {
+        "id": 689,
+        "name": "edge-win10",
+        "group_id": 55
+      },
+      {
+        "id": 338,
+        "name": "firefox-mac",
+        "group_id": 55
+      },
+      {
+        "id": 334,
+        "name": "firefox-win10",
+        "group_id": 55
+      },
+      {
+        "id": 799,
+        "name": "ie",
+        "group_id": 55
+      },
+      {
+        "id": 335,
+        "name": "ie-win10",
+        "group_id": 55
+      },
+      {
+        "id": 340,
+        "name": "ipad",
+        "group_id": 55
+      },
+      {
+        "id": 339,
+        "name": "iphone",
+        "group_id": 55
+      },
+      {
+        "id": 695,
+        "name": "safari",
+        "group_id": 55
+      },
+      {
+        "id": 1163,
+        "name": "safari-mac",
+        "group_id": 55
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Environments",
+    "project_id": 25,
+    "configs": [
+      {
+        "id": 1164,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1165,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1166,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1167,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1168,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1169,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1170,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1171,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1172,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1173,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1174,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1175,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1176,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1177,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1178,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1179,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1180,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1181,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1182,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1183,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1184,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1185,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1186,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1187,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1188,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1189,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1190,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1191,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1192,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1193,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1194,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1195,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1196,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 1197,
+        "name": "${Landscape}",
+        "group_id": 63
+      },
+      {
+        "id": 687,
+        "name": "acom-dev",
+        "group_id": 63
+      },
+      {
+        "id": 688,
+        "name": "acom-dev02",
+        "group_id": 63
+      },
+      {
+        "id": 797,
+        "name": "acom-dev04",
+        "group_id": 63
+      },
+      {
+        "id": 536,
+        "name": "acom-prod",
+        "group_id": 63
+      },
+      {
+        "id": 538,
+        "name": "acom-qa",
+        "group_id": 63
+      },
+      {
+        "id": 537,
+        "name": "acom-stage",
+        "group_id": 63
+      },
+      {
+        "id": 517,
+        "name": "dev",
+        "group_id": 63
+      },
+      {
+        "id": 1051,
+        "name": "dev-author",
+        "group_id": 63
+      },
+      {
+        "id": 1047,
+        "name": "dev-preview",
+        "group_id": 63
+      },
+      {
+        "id": 518,
+        "name": "dev02",
+        "group_id": 63
+      },
+      {
+        "id": 796,
+        "name": "dev04",
+        "group_id": 63
+      },
+      {
+        "id": 1156,
+        "name": "dev04-author",
+        "group_id": 63
+      },
+      {
+        "id": 1158,
+        "name": "dev04-preview",
+        "group_id": 63
+      },
+      {
+        "id": 359,
+        "name": "prod",
+        "group_id": 63
+      },
+      {
+        "id": 1054,
+        "name": "prod-author",
+        "group_id": 63
+      },
+      {
+        "id": 1050,
+        "name": "prod-preview",
+        "group_id": 63
+      },
+      {
+        "id": 815,
+        "name": "prod-xf",
+        "group_id": 63
+      },
+      {
+        "id": 531,
+        "name": "qa",
+        "group_id": 63
+      },
+      {
+        "id": 1052,
+        "name": "qa-author",
+        "group_id": 63
+      },
+      {
+        "id": 1048,
+        "name": "qa-preview",
+        "group_id": 63
+      },
+      {
+        "id": 1160,
+        "name": "qa01",
+        "group_id": 63
+      },
+      {
+        "id": 1161,
+        "name": "qa01",
+        "group_id": 63
+      },
+      {
+        "id": 1325,
+        "name": "qa01-author",
+        "group_id": 63
+      },
+      {
+        "id": 1326,
+        "name": "qa01-preview",
+        "group_id": 63
+      },
+      {
+        "id": 360,
+        "name": "stage",
+        "group_id": 63
+      },
+      {
+        "id": 1053,
+        "name": "stage-author",
+        "group_id": 63
+      },
+      {
+        "id": 1049,
+        "name": "stage-preview",
+        "group_id": 63
+      },
+      {
+        "id": 816,
+        "name": "stage-xf",
+        "group_id": 63
+      },
+      {
+        "id": 1030,
+        "name": "stage2",
+        "group_id": 63
+      },
+      {
+        "id": 1157,
+        "name": "stage2-author",
+        "group_id": 63
+      },
+      {
+        "id": 1159,
+        "name": "stage2-preview",
+        "group_id": 63
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Locales",
+    "project_id": 25,
+    "configs": [
+      {
+        "id": 936,
+        "name": "ae",
+        "group_id": 56
+      },
+      {
+        "id": 935,
+        "name": "ae_en",
+        "group_id": 56
+      },
+      {
+        "id": 931,
+        "name": "ae/en",
+        "group_id": 56
+      },
+      {
+        "id": 551,
+        "name": "africa",
+        "group_id": 56
+      },
+      {
+        "id": 1310,
+        "name": "ar",
+        "group_id": 56
+      },
+      {
+        "id": 576,
+        "name": "at",
+        "group_id": 56
+      },
+      {
+        "id": 727,
+        "name": "at/de",
+        "group_id": 56
+      },
+      {
+        "id": 592,
+        "name": "au",
+        "group_id": 56
+      },
+      {
+        "id": 716,
+        "name": "au/en",
+        "group_id": 56
+      },
+      {
+        "id": 554,
+        "name": "be_en",
+        "group_id": 56
+      },
+      {
+        "id": 553,
+        "name": "be_fr",
+        "group_id": 56
+      },
+      {
+        "id": 552,
+        "name": "be_nl",
+        "group_id": 56
+      },
+      {
+        "id": 729,
+        "name": "be/en",
+        "group_id": 56
+      },
+      {
+        "id": 730,
+        "name": "be/fr",
+        "group_id": 56
+      },
+      {
+        "id": 731,
+        "name": "be/nl",
+        "group_id": 56
+      },
+      {
+        "id": 589,
+        "name": "bg",
+        "group_id": 56
+      },
+      {
+        "id": 732,
+        "name": "bg/en",
+        "group_id": 56
+      },
+      {
+        "id": 547,
+        "name": "br",
+        "group_id": 56
+      },
+      {
+        "id": 733,
+        "name": "br/pt",
+        "group_id": 56
+      },
+      {
+        "id": 546,
+        "name": "ca",
+        "group_id": 56
+      },
+      {
+        "id": 548,
+        "name": "ca_fr",
+        "group_id": 56
+      },
+      {
+        "id": 717,
+        "name": "ca/en",
+        "group_id": 56
+      },
+      {
+        "id": 734,
+        "name": "ca/fr",
+        "group_id": 56
+      },
+      {
+        "id": 580,
+        "name": "ch_de",
+        "group_id": 56
+      },
+      {
+        "id": 583,
+        "name": "ch_fr",
+        "group_id": 56
+      },
+      {
+        "id": 586,
+        "name": "ch_it",
+        "group_id": 56
+      },
+      {
+        "id": 735,
+        "name": "ch/de",
+        "group_id": 56
+      },
+      {
+        "id": 736,
+        "name": "ch/fr",
+        "group_id": 56
+      },
+      {
+        "id": 737,
+        "name": "ch/it",
+        "group_id": 56
+      },
+      {
+        "id": 1015,
+        "name": "cl",
+        "group_id": 56
+      },
+      {
+        "id": 1016,
+        "name": "cl",
+        "group_id": 56
+      },
+      {
+        "id": 1017,
+        "name": "cl",
+        "group_id": 56
+      },
+      {
+        "id": 1018,
+        "name": "cl",
+        "group_id": 56
+      },
+      {
+        "id": 1019,
+        "name": "cl",
+        "group_id": 56
+      },
+      {
+        "id": 1020,
+        "name": "cl",
+        "group_id": 56
+      },
+      {
+        "id": 807,
+        "name": "cl/es",
+        "group_id": 56
+      },
+      {
+        "id": 605,
+        "name": "cn",
+        "group_id": 56
+      },
+      {
+        "id": 739,
+        "name": "cn/zh-Hans",
+        "group_id": 56
+      },
+      {
+        "id": 1311,
+        "name": "co",
+        "group_id": 56
+      },
+      {
+        "id": 556,
+        "name": "cy_en",
+        "group_id": 56
+      },
+      {
+        "id": 738,
+        "name": "cy/en",
+        "group_id": 56
+      },
+      {
+        "id": 555,
+        "name": "cz",
+        "group_id": 56
+      },
+      {
+        "id": 740,
+        "name": "cz/cs",
+        "group_id": 56
+      },
+      {
+        "id": 542,
+        "name": "de",
+        "group_id": 56
+      },
+      {
+        "id": 711,
+        "name": "de/de",
+        "group_id": 56
+      },
+      {
+        "id": 539,
+        "name": "default",
+        "group_id": 56
+      },
+      {
+        "id": 557,
+        "name": "dk",
+        "group_id": 56
+      },
+      {
+        "id": 742,
+        "name": "dk/da",
+        "group_id": 56
+      },
+      {
+        "id": 559,
+        "name": "ee",
+        "group_id": 56
+      },
+      {
+        "id": 743,
+        "name": "ee/en",
+        "group_id": 56
+      },
+      {
+        "id": 560,
+        "name": "es",
+        "group_id": 56
+      },
+      {
+        "id": 812,
+        "name": "es/ca",
+        "group_id": 56
+      },
+      {
+        "id": 744,
+        "name": "es/es",
+        "group_id": 56
+      },
+      {
+        "id": 813,
+        "name": "es/eu",
+        "group_id": 56
+      },
+      {
+        "id": 584,
+        "name": "fi",
+        "group_id": 56
+      },
+      {
+        "id": 745,
+        "name": "fi/fi",
+        "group_id": 56
+      },
+      {
+        "id": 561,
+        "name": "fr",
+        "group_id": 56
+      },
+      {
+        "id": 516,
+        "name": "fr/fr",
+        "group_id": 56
+      },
+      {
+        "id": 562,
+        "name": "gr_en",
+        "group_id": 56
+      },
+      {
+        "id": 746,
+        "name": "gr/en",
+        "group_id": 56
+      },
+      {
+        "id": 593,
+        "name": "hk_en",
+        "group_id": 56
+      },
+      {
+        "id": 597,
+        "name": "hk_zh",
+        "group_id": 56
+      },
+      {
+        "id": 747,
+        "name": "hk/en",
+        "group_id": 56
+      },
+      {
+        "id": 748,
+        "name": "hk/zh-Hant",
+        "group_id": 56
+      },
+      {
+        "id": 750,
+        "name": "hr/hr",
+        "group_id": 56
+      },
+      {
+        "id": 571,
+        "name": "hu",
+        "group_id": 56
+      },
+      {
+        "id": 749,
+        "name": "hu/hu",
+        "group_id": 56
+      },
+      {
+        "id": 1312,
+        "name": "id_en",
+        "group_id": 56
+      },
+      {
+        "id": 563,
+        "name": "ie",
+        "group_id": 56
+      },
+      {
+        "id": 751,
+        "name": "ie/en",
+        "group_id": 56
+      },
+      {
+        "id": 564,
+        "name": "il_en",
+        "group_id": 56
+      },
+      {
+        "id": 677,
+        "name": "il_he",
+        "group_id": 56
+      },
+      {
+        "id": 755,
+        "name": "il/en",
+        "group_id": 56
+      },
+      {
+        "id": 594,
+        "name": "in",
+        "group_id": 56
+      },
+      {
+        "id": 752,
+        "name": "in/en",
+        "group_id": 56
+      },
+      {
+        "id": 565,
+        "name": "it",
+        "group_id": 56
+      },
+      {
+        "id": 756,
+        "name": "it/it",
+        "group_id": 56
+      },
+      {
+        "id": 599,
+        "name": "jp",
+        "group_id": 56
+      },
+      {
+        "id": 678,
+        "name": "jp",
+        "group_id": 56
+      },
+      {
+        "id": 343,
+        "name": "jp/ja",
+        "group_id": 56
+      },
+      {
+        "id": 837,
+        "name": "ke/en",
+        "group_id": 56
+      },
+      {
+        "id": 600,
+        "name": "kr",
+        "group_id": 56
+      },
+      {
+        "id": 754,
+        "name": "kr/ko",
+        "group_id": 56
+      },
+      {
+        "id": 549,
+        "name": "la",
+        "group_id": 56
+      },
+      {
+        "id": 781,
+        "name": "la/es",
+        "group_id": 56
+      },
+      {
+        "id": 844,
+        "name": "lk/en",
+        "group_id": 56
+      },
+      {
+        "id": 567,
+        "name": "lt",
+        "group_id": 56
+      },
+      {
+        "id": 758,
+        "name": "lt/en",
+        "group_id": 56
+      },
+      {
+        "id": 568,
+        "name": "lu_de",
+        "group_id": 56
+      },
+      {
+        "id": 569,
+        "name": "lu_en",
+        "group_id": 56
+      },
+      {
+        "id": 570,
+        "name": "lu_fr",
+        "group_id": 56
+      },
+      {
+        "id": 757,
+        "name": "lu/de",
+        "group_id": 56
+      },
+      {
+        "id": 759,
+        "name": "lu/en",
+        "group_id": 56
+      },
+      {
+        "id": 760,
+        "name": "lu/fr",
+        "group_id": 56
+      },
+      {
+        "id": 566,
+        "name": "lv",
+        "group_id": 56
+      },
+      {
+        "id": 761,
+        "name": "lv/en",
+        "group_id": 56
+      },
+      {
+        "id": 573,
+        "name": "mena_en",
+        "group_id": 56
+      },
+      {
+        "id": 782,
+        "name": "mena/en",
+        "group_id": 56
+      },
+      {
+        "id": 842,
+        "name": "mo/en",
+        "group_id": 56
+      },
+      {
+        "id": 843,
+        "name": "mo/zh-Hant",
+        "group_id": 56
+      },
+      {
+        "id": 572,
+        "name": "mt",
+        "group_id": 56
+      },
+      {
+        "id": 762,
+        "name": "mt/en",
+        "group_id": 56
+      },
+      {
+        "id": 838,
+        "name": "mu/en",
+        "group_id": 56
+      },
+      {
+        "id": 550,
+        "name": "mx",
+        "group_id": 56
+      },
+      {
+        "id": 763,
+        "name": "mx/es",
+        "group_id": 56
+      },
+      {
+        "id": 1313,
+        "name": "my_en",
+        "group_id": 56
+      },
+      {
+        "id": 839,
+        "name": "ng/en",
+        "group_id": 56
+      },
+      {
+        "id": 574,
+        "name": "nl",
+        "group_id": 56
+      },
+      {
+        "id": 764,
+        "name": "nl/nl",
+        "group_id": 56
+      },
+      {
+        "id": 575,
+        "name": "no",
+        "group_id": 56
+      },
+      {
+        "id": 765,
+        "name": "no/no",
+        "group_id": 56
+      },
+      {
+        "id": 595,
+        "name": "nz",
+        "group_id": 56
+      },
+      {
+        "id": 520,
+        "name": "nz/en",
+        "group_id": 56
+      },
+      {
+        "id": 840,
+        "name": "pa/es",
+        "group_id": 56
+      },
+      {
+        "id": 1314,
+        "name": "pe",
+        "group_id": 56
+      },
+      {
+        "id": 1315,
+        "name": "ph_en",
+        "group_id": 56
+      },
+      {
+        "id": 577,
+        "name": "pl",
+        "group_id": 56
+      },
+      {
+        "id": 766,
+        "name": "pl/pl",
+        "group_id": 56
+      },
+      {
+        "id": 578,
+        "name": "pt",
+        "group_id": 56
+      },
+      {
+        "id": 767,
+        "name": "pt/pt",
+        "group_id": 56
+      },
+      {
+        "id": 579,
+        "name": "ro",
+        "group_id": 56
+      },
+      {
+        "id": 768,
+        "name": "ro/en",
+        "group_id": 56
+      },
+      {
+        "id": 769,
+        "name": "ro/ro",
+        "group_id": 56
+      },
+      {
+        "id": 590,
+        "name": "ru",
+        "group_id": 56
+      },
+      {
+        "id": 773,
+        "name": "ru/ru",
+        "group_id": 56
+      },
+      {
+        "id": 938,
+        "name": "sa_en",
+        "group_id": 56
+      },
+      {
+        "id": 932,
+        "name": "sa/en",
+        "group_id": 56
+      },
+      {
+        "id": 937,
+        "name": "sa/en",
+        "group_id": 56
+      },
+      {
+        "id": 585,
+        "name": "se",
+        "group_id": 56
+      },
+      {
+        "id": 774,
+        "name": "se/sv",
+        "group_id": 56
+      },
+      {
+        "id": 596,
+        "name": "sea",
+        "group_id": 56
+      },
+      {
+        "id": 783,
+        "name": "sea/en",
+        "group_id": 56
+      },
+      {
+        "id": 940,
+        "name": "sg",
+        "group_id": 56
+      },
+      {
+        "id": 933,
+        "name": "sg/en",
+        "group_id": 56
+      },
+      {
+        "id": 939,
+        "name": "sg/en",
+        "group_id": 56
+      },
+      {
+        "id": 581,
+        "name": "si",
+        "group_id": 56
+      },
+      {
+        "id": 775,
+        "name": "si/en",
+        "group_id": 56
+      },
+      {
+        "id": 770,
+        "name": "si/si",
+        "group_id": 56
+      },
+      {
+        "id": 582,
+        "name": "sk",
+        "group_id": 56
+      },
+      {
+        "id": 776,
+        "name": "sk/en",
+        "group_id": 56
+      },
+      {
+        "id": 771,
+        "name": "sk/sk",
+        "group_id": 56
+      },
+      {
+        "id": 942,
+        "name": "th_en",
+        "group_id": 56
+      },
+      {
+        "id": 934,
+        "name": "th/en",
+        "group_id": 56
+      },
+      {
+        "id": 941,
+        "name": "th/en",
+        "group_id": 56
+      },
+      {
+        "id": 587,
+        "name": "tr",
+        "group_id": 56
+      },
+      {
+        "id": 777,
+        "name": "tr/tr",
+        "group_id": 56
+      },
+      {
+        "id": 841,
+        "name": "tt/en",
+        "group_id": 56
+      },
+      {
+        "id": 598,
+        "name": "tw",
+        "group_id": 56
+      },
+      {
+        "id": 778,
+        "name": "tw/zh-Hant",
+        "group_id": 56
+      },
+      {
+        "id": 591,
+        "name": "ua",
+        "group_id": 56
+      },
+      {
+        "id": 779,
+        "name": "ua/en",
+        "group_id": 56
+      },
+      {
+        "id": 772,
+        "name": "ua/ua",
+        "group_id": 56
+      },
+      {
+        "id": 588,
+        "name": "uk",
+        "group_id": 56
+      },
+      {
+        "id": 519,
+        "name": "uk/en",
+        "group_id": 56
+      },
+      {
+        "id": 800,
+        "name": "us",
+        "group_id": 56
+      },
+      {
+        "id": 342,
+        "name": "us/en",
+        "group_id": 56
+      },
+      {
+        "id": 1316,
+        "name": "vn_en",
+        "group_id": 56
+      },
+      {
+        "id": 780,
+        "name": "za/en",
+        "group_id": 56
+      }
+    ]
+  }
+]

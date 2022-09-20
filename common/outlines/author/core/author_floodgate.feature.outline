@@ -1,0 +1,186 @@
+Feature: [E2E][Author] Floodgate
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Verify floodgate creation
+      Given I sign in as an author
+      Then I go to "sites.html"
+      And I select the site "Dexter"
+      And I should see "Floodgate"
+      Then I click on "floodgate" from top menu
+      Then I create floodgate loc tree
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: Verify copy pages from main tree to floodgate tree
+      Given I sign in as an author
+      Then I go to "sites.html"
+      Then I delete the page "/content/dexter/us/en/testautomation/TestPageCopy"
+      Then I delete the page "/content/floodgate-pink-dexter/us/en/testautomation/TestPageCopy"
+      Then I create a new content page:
+         | Folder    | /content/dexter/us/en/testautomation                          |
+         | Template  | /conf/dexter/settings/wcm/templates/full-width-with-globalnav |
+         | Title     | Test Page                                                     |
+         | Page Name | TestPageCopy                                                  |
+      Then I switch to the editor tab
+      Then I should see "Edit"
+      Then I insert a component "Dexter/Text"
+      Then I type "In Main Tree" into Text component
+      Then I wait for 5 seconds
+      Then I close current window
+      Then I activate the page "/content/dexter/us/en/testautomation/TestPageCopy"
+      And I select the site "floodgate-pink-dexter"
+      And I should see "Floodgate"
+      Then I click on "floodgate" from top menu
+      Then I click on Copy to FG Tree
+      Then I copy following pages to FG tree:
+         | /content/dexter/us/en/testautomation/TestPageCopy |
+      Then I edit the page "/content/floodgate-pink-dexter/us/en/testautomation/TestPageCopy.html"
+      Then I should see "Edit"
+      Then I delete all components
+      Then I wait for 5 seconds
+      Then I insert a component "Dexter/Text"
+      Then I type "In floodgate tree now" into Text component
+      Then I activate the page "/content/floodgate-pink-dexter/us/en/testautomation/TestPageCopy"
+
+      #Testing fallback logic
+      Then I open the "testautomation/TestPageCopy.html" page in publish
+      Then I should see "In Main Tree"
+      Then I open the "testautomation/TestPageCopy.html" page in publish with FG color "pink" request header
+      Then I wait for 10 seconds
+      Then I refresh the page
+      Then I should see "In floodgate tree now"
+
+      Then I deactivate the page "/content/floodgate-pink-dexter/us/en/testautomation/TestPageCopy"
+      Then I wait for 5 seconds
+      Then I open the "testautomation/TestPageCopy.html" page in publish with FG color "pink" request header
+      Then I should see "In Main Tree"
+
+      Then I deactivate the page "/content/dexter/us/en/testautomation/TestPageCopy"
+      Then I activate the page "/content/floodgate-pink-dexter/us/en/testautomation/TestPageCopy"
+      Then I wait for 5 seconds
+      Then I open the "testautomation/TestPageCopy.html" page in publish in new window
+      And I should see page status code 404
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: Verify floodgate promote for us/en
+      Given I sign in as an author
+      Then I go to "sites.html"
+      Then I delete the page "/content/dexter/us/en/testautomation/TestPagePromote"
+      Then I delete the page "/content/floodgate-pink-dexter/us/en/testautomation/TestPagePromote"
+      Then I create a new content page:
+         | Folder    | /content/floodgate-pink-dexter/us/en/testautomation           |
+         | Template  | /conf/dexter/settings/wcm/templates/full-width-with-globalnav |
+         | Title     | Test Page                                                     |
+         | Page Name | TestPagePromote                                               |
+      Then I switch to the editor tab
+      Then I should see "Edit"
+      Then I wait for 10 seconds
+      Then I insert a component "Dexter/Text"
+      Then I type "Promote Floodgate Tree" into Text component
+      Then I wait for 5 seconds
+      Then I close current window
+      And I select the site "floodgate-pink-dexter"
+      And I should see "Floodgate"
+      Then I click on "floodgate" from top menu
+      Then I promote the floodgate tree
+      Then I wait for 10 seconds
+      Then I check the status of promote
+      Then I wait for 10 seconds
+      Then I edit the page "/content/dexter/us/en/testautomation/TestPagePromote.html"
+      Then I should see "Edit"
+      Then I open the edited page on preview mode
+      Then I should see "Promote Floodgate Tree"
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: Verify floodgate promote and activate for us/en
+      Given I sign in as an author
+      Then I go to "sites.html"
+      Then I delete the page "/content/dexter/us/en/testautomation/test-promote-activate"
+      Then I delete the page "/content/floodgate-pink-dexter/us/en/testautomation/test-promote-activate"
+      Then I create a new content page:
+         | Folder    | /content/floodgate-pink-dexter/us/en/testautomation           |
+         | Template  | /conf/dexter/settings/wcm/templates/full-width-with-globalnav |
+         | Title     | Test Page                                                     |
+         | Page Name | test-promote-activate                                         |
+      Then I switch to the editor tab
+      Then I should see "Edit"
+      Then I wait for 10 seconds
+      Then I insert a component "Dexter/Text"
+      Then I type "Promote and Activate" into Text component
+      Then I wait for 5 seconds
+      Then I close current window
+      And I select the site "floodgate-pink-dexter"
+      And I should see "Floodgate"
+      Then I click on "floodgate" from top menu
+      Then I promote and activate the floodgate tree
+      Then I wait for 10 seconds
+      Then I check the status of promote and activate
+      Then I wait for 10 seconds
+      Then I open the "testautomation/test-promote-activate.html" page in publish
+      And I should see page status code 200
+      Then I should see "Promote and Activate"
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: Verify floodgate promote for non us/en
+      Given I sign in as an author
+      Then I go to "sites.html"
+      Then I delete the page "/content/dexter/fr/fr/testautomation/TestPagePromote"
+      Then I delete the page "/content/floodgate-pink-dexter/fr/fr/testautomation/TestPagePromote"
+      Then I create a new content page:
+         | Folder    | /content/floodgate-pink-dexter/fr/fr/testautomation           |
+         | Template  | /conf/dexter/settings/wcm/templates/full-width-with-globalnav |
+         | Title     | Test Page                                                     |
+         | Page Name | TestPagePromote                                               |
+      Then I switch to the editor tab
+      Then I should see "Edit"
+      Then I wait for 10 seconds
+      Then I insert a component "Dexter/Text"
+      Then I type "Promote Floodgate Tree" into Text component
+      Then I wait for 5 seconds
+      Then I close current window
+      And I select the site "floodgate-pink-dexter"
+      And I should see "Floodgate"
+      Then I click on "floodgate" from top menu
+      Then I promote the floodgate tree
+      Then I wait for 10 seconds
+      Then I check the status of promote
+      Then I wait for 10 seconds
+      Then I edit the page "/content/dexter/fr/fr/testautomation/TestPagePromote.html"
+      Then I should see "Edit"
+      Then I open the edited page on preview mode
+      Then I should see "Promote Floodgate Tree"
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: Verify floodgate promote and activate for non us/en
+      Given I sign in as an author
+      Then I go to "sites.html"
+      Then I delete the page "/content/dexter/fr/fr/testautomation/test-promote-activate"
+      Then I delete the page "/content/floodgate-pink-dexter/fr/fr/testautomation/test-promote-activate"
+      Then I create a new content page:
+         | Folder    | /content/floodgate-pink-dexter/fr/fr/testautomation           |
+         | Template  | /conf/dexter/settings/wcm/templates/full-width-with-globalnav |
+         | Title     | Test Page                                                     |
+         | Page Name | test-promote-activate                                         |
+      Then I switch to the editor tab
+      Then I should see "Edit"
+      Then I wait for 10 seconds
+      Then I insert a component "Dexter/Text"
+      Then I type "Promote and Activate" into Text component
+      Then I wait for 5 seconds
+      Then I close current window
+      And I select the site "floodgate-pink-dexter"
+      And I should see "Floodgate"
+      Then I click on "floodgate" from top menu
+      Then I promote and activate the floodgate tree
+      Then I wait for 10 seconds
+      Then I check the status of promote and activate
+      Then I wait for 10 seconds
+      Then I open the "fr/testautomation/test-promote-activate.html" page in publish
+      And I should see page status code 200
+      Then I should see "Promote and Activate"
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: Verify floodgate delete
+      Given I sign in as an author
+      Then I go to "sites.html"
+      Then I delete the floodgate tree "floodgate-purple-dexter"
+      Then I verify site "floodgate-purple-dexter" doesn't exist

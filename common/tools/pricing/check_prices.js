@@ -18,9 +18,10 @@ export const surveyPopup = 'iframe[data-src^="https://survey.adobe.com"]'
 export const choiceNo = '#QID1-2-label'
 export const closeSurvey = '[src$="siteintercept/svg-close-btn-black-7.svg"]'
 export const UCv3SupportedGeo = ['us'];
-export const UCv2ProductOffers = ['0E32602A854E56BF633D92B6B383A2BF', '51A532B0125F523CC6CBF352CA0CC931', 'CDBBCFE9BF5DB6E20BB77277183BBC3D', 'B126EEDE63DD0574C495726767B3D42E', '77CA3750B72767F9E985DD2997912DFE', '34F76738F3BFA36D46D73D6B5406918A', 'BEE806E2ECAB0755C8EE3DA5BBA1319B', '3EED504A0210027266204B98C27AAD0F'];
+export const UCv2ProductOffers = ['0E32602A854E56BF633D92B6B383A2BF', '51A532B0125F523CC6CBF352CA0CC931', 'CDBBCFE9BF5DB6E20BB77277183BBC3D', 'B126EEDE63DD0574C495726767B3D42E', '77CA3750B72767F9E985DD2997912DFE', '34F76738F3BFA36D46D73D6B5406918A', 'BEE806E2ECAB0755C8EE3DA5BBA1319B', '3EED504A0210027266204B98C27AAD0F', 'ADD857826A8DEE5A747D62053B25A4D2', '4F9E4CFDED9F1D3778AC7DAE883D49FC', 'C3C7915753BDD9E43D884F846C669FC4', 'B5AD4F53E1B747500017D374045CA57A', '2A922DAB547C22EEA5D3F8170254539E', '69EFE22A4071113CB2C72C58C9EF4E97', '4F5EFB5713F74AFFC5960C031FB24656', '2395115AE8BE7FABE101ED136FCB3525', 'AF794661A0494CF71F10ED37EFBA735F', '4B76650ECC8CA257DDC284B05FA8A6E1', '0A5A1FC0F3F85E51B6C53B19C7D80DF7', 'C592C0B7703044B6930FAE88193208FB', 'D858CC3D93A2ED67604AB3D413C3F3E5', '3BA289C82BE46483E176AB8B42819643', '0E32602A854E56BF633D92B6B383A2BF', '51A532B0125F523CC6CBF352CA0CC931', '84B492497FC7224F5CE3283B1192A6DB', 'FD0BEEBCA572B7BA7ABA7787F30F6965', '77CA3750B72767F9E985DD2997912DFE', '34F76738F3BFA36D46D73D6B5406918A', '8E7B6B16F97563FFAD8DC7DACE0BB58D', '177C8F46AAFC2D700A591642549CC3AC', 'F1FA0C678A0374EFC703FE4DA3D13CEE', 'BB938C4970986FF10BAD863B0A850661'];
 export const productOffersWithKnownIssues = [];
-export const isUCv3 = UCv3SupportedGeo.includes(browser.config.profile.akamaiLocale) && !['ie'].includes(browser.config.profile.browser)
+export const gnavHeader = '#feds-topnav';
+export const isUCv3 = UCv3SupportedGeo.includes(browser.config.profile.geolocation) && !['ie'].includes(browser.config.profile.browser)
 export const nonExistentPage = [
   {
     page: 'acrobat/pricing/business',
@@ -253,7 +254,7 @@ export function findContainerElement(source, locator) {
       results.push(quantityMatchResult)
     }
   
-    if (browser.config.profile.akamaiLocale && browser.config.profile.tags.match(/@desc-\S+.+?(?=\))|@MWPW-\S+?(?=\))/g)) {
+    if (browser.config.profile.geolocation && browser.config.profile.tags.match(/@desc-\S+.+?(?=\))|@MWPW-\S+?(?=\))/g)) {
       iShouldSeeTheCorrectCountryParameterInCurrentUrl(pageUrl);
       iShouldSeeTheCorrectLangParameterInCurrentUrl(pageUrl);
     }
@@ -281,6 +282,7 @@ export function closeGeoOverlay() {
  * click continue to checkout if present
  */
 export function clickContinueToCheckout() {
+  browser.pause(1500);
   if ($(continueToCheckoutLocator).isExisting()) {
     clickElement(browser.$(continueToCheckoutLocator));
     browser.pause(1500);
@@ -475,6 +477,7 @@ export function buildPricingText(pricing) {
             tabs[i].click();
             navlist[j].click();
             clickElement(planLabels[k]);
+            browser.pause(1000);
           }
         }
       }
@@ -584,6 +587,7 @@ export function handlePageWithTabWithRadioButtons(pResult) {
         console.log(planText);
 
         console.log('Container Locator: ' + containerLocator);
+        browser.pause(1000);
 
         links = getCommerceLinks(planLocator, containerLocator, j);
 
@@ -664,10 +668,10 @@ export function handlePageWithTabWithRadioButtons(pResult) {
 
           if (Object.keys(pResult).length === 0) expect(pricingMatchResult).toContain('true');
 
+          console.log(`Handles.length = ${handles.length}`);
+
           if (handles.length == 1) {
-            browser.back();
-            browser.pause(500);
-            closeGeoOverlay();
+            clickBack(planLocator);
           }
 
           testResult = saveResult(
@@ -694,6 +698,7 @@ export function handlePageWithTabWithRadioButtons(pResult) {
             );
             browser.pause(500);
             clickElement(planLabels[k]);
+            browser.pause(1000);
           }
         }
       }
@@ -830,7 +835,7 @@ export function handlePageNoTabWithRadioButtons(pResult) {
   let testResult = true;
   let links;
   let maxPlans = pResult.count || 10;
-  let scroll;
+  let scroll = (browser.config.profile.browser === 'ie');
 
   // Some pages are using table
   let containerLocator = '';
@@ -841,9 +846,7 @@ export function handlePageNoTabWithRadioButtons(pResult) {
   ) {
     containerLocator = 'row';
   } else if (
-    browser.$('.position .type-price').isExisting() ||
-    browser.$('.position .pricing').isExisting()
-  ) {
+    browser.$('.position .navList').isExisting()) {
     containerLocator = 'position';
   } else {
     containerLocator = 'flex';
@@ -892,10 +895,11 @@ export function handlePageNoTabWithRadioButtons(pResult) {
       browser.pause(5000);
       navlist[j].scrollIntoView({ block: 'center', inline: 'nearest' });
       browser.pause(1000);
-      clickElement(planLabels[k]);
+      clickElement(planLabels[k], scroll);
       let planText = planLabelText[k].getText();
       console.log(planText);
 
+      browser.pause(1000);
       links = getCommerceLinks(planLocator, containerLocator, j);
 
       if (Object.keys(pResult).length === 0) expect(links.length).toBeGreaterThanOrEqual(1);
@@ -947,7 +951,6 @@ export function handlePageNoTabWithRadioButtons(pResult) {
         );
 
         links[s].scrollIntoView({ block: 'center', inline: 'nearest' });
-        if (browser.config.profile.browser === 'ie') scroll = true;
         clickElement(links[s], scroll);
 
         clickContinueToCheckout();
@@ -975,10 +978,10 @@ export function handlePageNoTabWithRadioButtons(pResult) {
 
         if (Object.keys(pResult).length === 0) expect(pricingMatchResult).toContain('true');
 
+        console.log(`Handles.length = ${handles.length}`);
+
         if (handles.length == 1) {
-          browser.back();
-          browser.pause(500);
-          closeGeoOverlay();
+          clickBack(planLocator);
         }
 
         testResult = saveResult(
@@ -1004,8 +1007,8 @@ export function handlePageNoTabWithRadioButtons(pResult) {
             block: 'center',
             inline: 'nearest'
           });
-          clickElement(planLabels[k]);
-          browser.pause(500);
+          clickElement(planLabels[k], scroll);
+          browser.pause(1000);
         }
       }
     }
@@ -1023,19 +1026,20 @@ export function handlePageNoTabNoDropdown(pResult) {
   let links = browser.$$(buyButtonLocator).filter(x => x.isDisplayed());;
   let testResult = true;
   pResult = pResult ?? [];
-  let missingPage;
+  let maxPlans = pResult.count || 10;
+  let missingPage = false;
 
   nonExistentPage.filter(x => x.loc.includes(browser.config.profile.locale)).forEach(key => {
     if (pageUrl.includes(key.page)) missingPage = true;
     }
   )
 
-  if (Object.keys(pResult).length === 0 && !missingPage) {
+  if ((Object.keys(pResult).length === 0 || pResult.count) && !missingPage) {
     expect(links.length).toBeGreaterThanOrEqual(1);
   }
 
   console.log('Total buttons under this page: ' + links.length);
-  for (let s = 0; s < links.length; s++) {
+  for (let s = 0; s < links.length && maxPlans-- > 0; s++) {
     links = browser.$$(buyButtonLocator).filter(x => x.isDisplayed());;
 
     console.log(s);
@@ -1245,7 +1249,7 @@ export function handlePageWithTabNoDropdown(pResult) {
   const overrideGeoIP = () => { geoIp = GEOIP_OVERRIDES[geoIp] || geoIp };
   const overrideCountryCode = () => { coParam = CO_OVERRIDES[locale] || coParam };
   
-  geoIp = browser.config.profile.akamaiLocale || 'us';
+  geoIp = browser.config.profile.geolocation || 'us';
   locale = acomMap[browser.config.profile.locale] || browser.config.profile.locale;
 
   let jpHowTo = pageUrl.match(/(acrobat\/how-to\/)|(\/acrobat\/reader\/)/) && locale.includes('jp');
@@ -1295,13 +1299,21 @@ export function handlePageWithTabNoDropdown(pResult) {
  */
  export function iShouldSeeTheCorrectLangParameterInCurrentUrl(pageUrl) {
   let lang;
+  let url = new URL(browser.getUrl()).searchParams;
+
   if (browser.config.profile.tags.includes('preview')) {
     lang = browser.config.profile.locale.split('/')[1];
   } else {
     lang = browser.config.locales.find(x => x.locale === browser.config.profile.locale).author.split('/')[1];
   }
-  if (browser.config.profile.locale.includes('no') && browser.config.profile.akamaiLocale !== 'no') lang = 'nb';
-  // if (browser.config.profile.locale.includes('tw')) lang = lang.toLowerCase();
+  if (browser.config.profile.locale.includes('no') && browser.config.profile.geolocation !== 'no') lang = 'nb';
+  if (
+    (browser.config.profile.locale.includes('tw') &&
+      browser.config.profile.geolocation === 'tw') ||
+    (browser.config.profile.geolocation === 'us' &&
+      UCv2ProductOffers.includes(url.get('items[0][id]')))
+  )
+    lang = lang.toLowerCase();
   
   console.log(`Expected lang=${ lang }`);
   expect(browser).toHaveUrl(`lang=${ lang }`, {
@@ -1325,7 +1337,7 @@ export function handlePageWithTabNoDropdown(pResult) {
      browser.$$(planLocator).filter(x => x.isDisplayed())[index],
      containerLocator
    )
-     .$$('[data-path*="/offers/pricing"] .type-price')
+     .$$(`//div[contains(@data-path,'/offers/pricing/')]//*[contains(@class, 'type-price')] | //div[contains(@data-path,'/commerce/') and contains(@data-path,'/pricing/')]//*[contains(@class, 'type-price')]`)
      .filter(x => x.isDisplayed());
 
    let pricingReg = findContainerElement(
@@ -1339,14 +1351,14 @@ export function handlePageWithTabNoDropdown(pResult) {
      browser.$$(planLocator).filter(x => x.isDisplayed())[index],
      containerLocator
    )
-     .$$('[data-path*="/offers/pricing"] .type-light')
+     .$$(`//div[contains(@data-path,'/offers/pricing/')]//*[contains(@class, 'type-light')] | //div[contains(@data-path,'/commerce/') and contains(@data-path,'/pricing/')]//*[contains(@class, 'type-light')]`)
      .filter(x => x.isDisplayed());
 
    let pricingXF = findContainerElement(
      browser.$$(planLocator).filter(x => x.isDisplayed())[index],
      containerLocator
    )
-     .$$('[data-path*="/offers/pricing"]')
+     .$$(`//div[contains(@data-path,'/offers/pricing/')] | //div[contains(@data-path,'/commerce/') and contains(@data-path,'/pricing/')]`)
      .filter(x => x.isDisplayed());
 
    pricing.push(...pricingReg, ...pricingNoGeoIPDisclaimer, ...pricingXF);
@@ -1607,4 +1619,25 @@ function clickElement(element, scroll) {
       closeGeoOverlay();
     }
   }
+}
+
+function clickBack(waitElement) {
+  let retry = 5;
+
+  browser.back();
+  console.log(`Click back.. ${(new Date()).toLocaleString()}`);
+
+  while (retry-- > 0) {
+    try {
+      $(waitElement).waitForDisplayed({ interval: 2000, timeout: 10000 });
+      break;
+    } catch (err) {
+      console.log(
+        `"${waitElement}" is not displayed`
+      );
+      console.log(`Still waiting.. ${(new Date()).toLocaleString()}`);
+      closeGeoOverlay();
+    }
+  }
+  closeGeoOverlay();
 }

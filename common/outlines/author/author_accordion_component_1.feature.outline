@@ -1,0 +1,320 @@
+Feature: [E2E][Author] Accordion Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Accordion-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+      Then I wait for 10 seconds
+      And I insert a component "Dexter/Accordion"
+      Then I wait for 5 seconds
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> Author an accordion component with "Multi Select" checkbox option Selected and "Selected by default" checkbox option Not Selected
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *          | TestAccordion | 
+     | Multi Select    | checked       | 
+     | Accordion Items | @#1           |
+     | - Title *       | Item 1        |    
+     | Accordion Items | @#2           |        
+     | - Title *       | Item 2        | 
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item1"
+    Then I type "Item 1 Text" into Text component "accordion/content-Item1/text"
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item2"
+    Then I type "Item 2 Text" into Text component "accordion/content-Item2/text"
+    Then I open the edited page on preview mode
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 1st Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents 
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> Author an accordion component with "Multi Select" checkbox option Not Selected and "Selected by default" checkbox option Not Selected
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *          | TestAccordion | 
+     | Accordion Items | @#1           |
+     | - Title *       | Item 1        |    
+     | Accordion Items | @#2           |        
+     | - Title *       | Item 2        | 
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item1"
+    Then I type "Item 1 Text" into Text component "accordion/content-Item1/text"
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item2"
+    Then I type "Item 2 Text" into Text component "accordion/content-Item2/text"
+    Then I open the edited page on preview mode
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 1st Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> Author an accordion component with "Selected by default" checkbox option Selected
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *              | TestAccordion | 
+     | Accordion Items     | @#1           |
+     | - Title *           | Item 1        |    
+     | Accordion Items     | @#2           |        
+     | - Title *           | Item 2        |      
+     | Selected by default | checked       | 
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item1"
+    Then I type "Item 1 Text" into Text component "accordion/content-Item1/text"
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item2"
+    Then I type "Item 2 Text" into Text component "accordion/content-Item2/text"
+    Then I open the edited page on preview mode
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I wait for 3 seconds
+    Then I should see "Item 2 Text" in Accordion contents
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I click the 1st Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents 
+    
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> Author an accordion component with "Selected by default" checkbox option Selected for all items
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *              | TestAccordion | 
+     | Accordion Items     | @#1           |
+     | - Title *           | Item 1        |    
+     | Accordion Items     | @#2           |        
+     | - Title *           | Item 2        |      
+     | Selected by default | unchecked     |
+    Then I click on the "selectByDefaultCheckboxInAccordion"
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item1"
+    Then I type "Item 1 Text" into Text component "accordion/content-Item1/text"
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item2"
+    Then I type "Item 2 Text" into Text component "accordion/content-Item2/text"
+    Then I open the edited page on preview mode
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 1st Accordion header
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> Author an accordion component with "Disable" checkbox option Selected
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:    
+     | Name *              | TestAccordion | 
+     | Accordion Items     | @#1           |
+     | - Title *           | Item 1        |    
+     | Accordion Items     | @#2           |        
+     | - Title *           | Item 2        |      
+     | - Disable           | checked       |
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I wait for 6 seconds
+    Then I should see button containing text "Item 1" is enabled
+    Then I should see button containing text "Item 2" is not enabled
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> Author an accordion component with "Disable" checkbox option Selected for all items
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *              | TestAccordion | 
+     | Accordion Items     | @#1           |
+     | - Title *           | Item 1        | 
+     | - Disable           | checked       |        
+     | Accordion Items     | @#2           |        
+     | - Title *           | Item 2        |      
+     | - Disable           | checked       |
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I wait for 6 seconds
+    Then I close US geo popup if have
+    Then I should see button containing text "Item 1" is not enabled
+    Then I should see button containing text "Item 2" is not enabled
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> Author an accordion component with "Disable" checkbox Not Selected
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *              | TestAccordion | 
+     | Accordion Items     | @#1           |
+     | - Title *           | Item 1        |    
+     | Accordion Items     | @#2           |        
+     | - Title *           | Item 2        | 
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I wait for 6 seconds
+    Then I close US geo popup if have
+    Then I should see button containing text "Item 1" is enabled
+    Then I should see button containing text "Item 2" is enabled
+
+  <@id-8> <@desc-8> <@envs>
+  Scenario: <Site> Validate accordion items / slides parsys visibility
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *          | TestAccordion | 
+     | Multi Select    | checked       | 
+     | Accordion Items | @#1           |
+     | - Title *       | Item 1        |    
+     | Accordion Items | @#2           |        
+     | - Title *       | Item 2        | 
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item1"
+    Then I type "Item 1 Text" into Text component "accordion/content-Item1/text"
+    Then I insert "Dexter/Text" into Layout container "accordion/content-Item2"
+    Then I type "Item 2 Text" into Text component "accordion/content-Item2/text"
+    Then I wait for 6 seconds
+    And I should see "accordion" displayed
+    And I should see "accordionLayoutContainer" displayed
+
+  <@id-9> <@desc-9> <@envs>
+  Scenario: <Site> Accordion Name Text field should throw error message when it is empty
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Accordion Items | @#1     |
+     | Title *         | SEO Q1  |    
+    Then I click Done in Configuration dialog
+    Then I should see "invalidInputBox" displayed
+    Then I hover over the "alert"
+    Then I should see "tooltipContent" displayed
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario: <Site> Accordion Name Text field should throw error message when it is empty and validate Add & Remove accordion items
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *          | TestAccordion |
+     | Accordion Items | @#1           |     
+     | - Title *       |               |    
+    Then I click Done in Configuration dialog
+    Then I should see "invalidInputBox" displayed
+    Then I hover over the "alert"
+    Then I should see "tooltipContent" displayed
+    Then I should see "addButtonInAccordion" displayed
+    Then I should see "removeButtonInAccordion" displayed
+
+  <@id-11> <@desc-11> <@envs>
+  Scenario: <Site> Dexter Accordion SEO configuration dialog requirements
+    Then I open Configuration dialog of the newly added component
+    Then I select "SEO" tab in Configuration dialog
+    Then I verify dropdown "Structured Data Generation Method" in tab "SEO" has following values:
+      | Auto Generate (Server Side)       |
+      | Mixed (Server side + client side) |
+    Then I verify dropdown "Structured Data Type" in tab "SEO" has following values:
+      |               |
+      | FAQ           |
+      | How To        |
+      | Product       |
+      | Video         |
+      | Breadcrumb    |
+      | Organization  |
+      | Website       |
+      | Event         |
+  <@id-12> <@desc-12> <@envs>
+  Scenario: <Site> Author an accordion component as SEO-FAQ as one accordion component holding Mutliple Questions and Answers
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *          | TestAccordion | 
+     | Accordion Items | @#1           |
+     | - Title *       | SEO Q1        |    
+     | Accordion Items | @#2           |        
+     | - Title *       | SEO Q2        |   
+    Then I select "SEO" tab in Configuration dialog
+    Then I wait for 3 seconds
+    Then I configure settings in "SEO" tab:
+      | Structured Data Type | FAQ                   | 
+    Then I wait for 3 seconds
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "accordion/content-SEOQ1"
+    Then I type "SEO Answer 1" into Text component "accordion/content-SEOQ1/text"
+    Then I insert "Dexter/Text" into Layout container "accordion/content-SEOQ2"
+    Then I type "SEO Answer 2" into Text component "accordion/content-SEOQ2/text"
+    Then I open the edited page on preview mode
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should not see "SEO Answer 1" in Accordion contents
+    Then I should not see "SEO Answer 2" in Accordion contents
+    Then I click the 1st Accordion header
+    Then I should see "SEO Answer 1" in Accordion contents
+    Then I should not see "SEO Answer 2" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "SEO Answer 1" in Accordion contents
+    Then I should see "SEO Answer 2" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should not see "SEO Answer 1" in Accordion contents
+    Then I should not see "SEO Answer 2" in Accordion contents
+
+<@id-13> <@desc-13> <@envs>
+  Scenario: <Site> Author an accordion component as SEO-FAQ as Multiple accordion components holding Each Question and Answer
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *          | TestAccordion1 | 
+     | Accordion Items | @#1            |
+     | - Title *       | SEO Q1         |
+    Then I select "SEO" tab in Configuration dialog
+    Then I wait for 3 seconds
+    Then I configure settings in "SEO" tab:
+      | Structured Data Type | FAQ                   | 
+    Then I wait for 3 seconds
+    Then I click Done in Configuration dialog
+    Then I wait for 10 seconds
+    And I edit the test page in the test folder
+    And I insert a component "Dexter/Accordion"
+    Then I wait for 5 seconds
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+     | Name *          | TestAccordion2 | 
+     | Accordion Items | @#1            |
+     | - Title *       | SEO Q2         |   
+    Then I select "SEO" tab in Configuration dialog
+    Then I wait for 3 seconds
+    Then I configure settings in "SEO" tab:
+      | Structured Data Type | FAQ                   | 
+    Then I wait for 3 seconds
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "accordion/content-SEOQ1"
+    Then I type "SEO Answer 1" into Text component "accordion/content-SEOQ1/text"
+    Then I insert "Dexter/Text" into Layout container "content-SEOQ2"
+    Then I type "SEO Answer 2" into Text component "content-SEOQ2/text"
+    Then I open the edited page on preview mode
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should not see "SEO Answer 1" in Accordion contents
+    Then I should not see "SEO Answer 2" in Accordion contents
+    Then I click the 1st Accordion header
+    Then I should see "SEO Answer 1" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should see "SEO Answer 2" in Accordion contents
+

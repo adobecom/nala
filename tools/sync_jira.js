@@ -8,7 +8,7 @@ const { time } = require('console');
 const { LicenseManager } = require('aws-sdk');
 
 /**
- * Search and get all issues
+ * Seach and get all issues
  * @param {*} jira
  * @param {String} searchString
  * @param {Object} optional
@@ -47,7 +47,7 @@ async function getCukeScript(testCase) {
     }
   }
 
-  let script = lines.slice(start, end);
+  script = lines.slice(start, end);
 
   return script.join('\n');
 }
@@ -217,30 +217,38 @@ async function updateMochaScriptInDesc(jira, issue, testCase) {
 
 const teams = [
   {
-    name: 'Milo', // Jira team
-    site: 'milo' // Janus/Milo site
+    name: 'Slytherin', // Jira team
+    site: 'dc' // Platform-UI site
   },
   {
-    name: 'Milo', // Jira team
-    site: 'bacom' // Janus/Milo site
+    name: 'Inception, Warriors, Yugo', // Jira team
+    site: 'acom' // Platform-UI site
   },
   {
-    name: 'Milo', // Jira team
-    site: 'pacom' // Janus/Milo site
+    name: 'Javelin', // Jira team
+    site: 'javelin' // Platform-UI site
   },
   {
-    name: 'Milo', // Jira team
-    site: 'fedpub_seo' // Janus/Milo site
+    name: 'Gryffindor, Magma', // Jira team
+    site: 'ec' // Platform-UI site
   },
   {
-    name: 'Milo', // Jira team
-    site: 'blog_acom' // Janus/Milo site
+    name: 'Brahmos, Bhoomi', // Jira team
+    site: 'cc' // Platform-UI site
+  },
+  {
+    name: 'Dexter', // Jira team
+    site: 'dexter' // Platform-UI site
+  },
+  {
+    name: 'Eurovision', // Jira team
+    site: 'feds_new' // Platform-UI site
   }
 ];
 
 /**
  * Simple parser to retrieve JIRA IDs from describe() or it()
- * It uses regular expression so could be fragile.
+ * It uses regular expression so could be fragil.
  * @param {string} globPattern Glob pattern to Macho test specs
  * @returns {object[]}
  */
@@ -274,7 +282,7 @@ async function main() {
     .options('site', {
       alias: 's',
       required: true,
-      description: 'Janus/Milo site'
+      description: 'Platform-UI site'
     })
     .options('credentials', {
       alias: 'c',
@@ -293,7 +301,7 @@ async function main() {
   let team = teams.find(x => x.site === argv.site);
 
   if (!team) {
-    console.log(`Invalid Janus/Milo site "${argv.site}"`);
+    console.log(`Invalid Platform-UI site "${argv.site}"`);
     process.exit(1);
   }
   let testCases = [];
@@ -304,10 +312,10 @@ async function main() {
 
   // get test cases from automation code
   if (
-    team.site.match(/^(bacom|blog_acom|fedpub_seo|milo|pacom)$/)
+    team.site.match(/^(dc|javelin|ec|cc|acom|dexter|feds_new)$/)
   ) {
     testCases = await getProcessedTestCases(`${team.site}/**/*.feature`);
-  } else if (team.site == 'milo_api') {
+  } else if (team.site == 'feds') {
     testCases = getMochaTestCases(`${team.site}/specs/**/*.js`);
     framework = 'mocha';
   }
@@ -352,14 +360,22 @@ async function main() {
   let jql = '';
   let jqlForAllIssues = '';
   if (
-    team.site == 'bacom' ||
-    team.site == 'blog_acom' ||
-    team.site == 'fedpub_seo' ||
-    team.site == 'pacom' ||
-    team.site == 'milo'
+    team.site == 'dc' ||
+    team.site == 'javelin' ||
+    team.site == 'ec' ||
+    team.site == 'dexter'
   ) {
-    jql = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and "Test Automation Status" = Automated and ((labels not in(Tool) or labels is EMPTY)`;
-    jqlForAllIssues = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and ((labels not in(Tool) or labels is EMPTY)`;
+    jql = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and "Test Automation Status" = Automated and (labels not in(Tool) or labels is EMPTY)`;
+    jqlForAllIssues = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and (labels not in(Tool) or labels is EMPTY)`;
+  } else if (team.site == 'acom') {
+    jql = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and "Test Automation Status" = Automated and (labels not in(CCT-HAWKS) or labels is EMPTY)`;
+    jqlForAllIssues = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and (labels not in(CCT-HAWKS) or labels is EMPTY)`;
+  } else if (team.site == 'cc') {
+    jql = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and "Test Automation Status" = Automated and (labels not in(Yugo-Titan) or labels is EMPTY)`;
+    jqlForAllIssues = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and (labels not in(Yugo-Titan) or labels is EMPTY)`;
+  } else if (team.site == 'feds_new') {
+    jql = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and "Test Automation Status" = Automated and (labels not in(Java) or labels is EMPTY)`;
+    jqlForAllIssues = `project=MWPW and type=Test and status not in (Inactive) and team in (${team.name}) and (labels not in(Java) or labels is EMPTY)`;
   }
 
   let fields = [
@@ -396,6 +412,7 @@ async function main() {
   let allIssueKeys = Object.keys(allIssuesMap);
 
   let notInCases = issueKeys.filter(x => !caseTags.includes(x));
+  //let notInIssues = caseTags.filter(x => !issueKeys.includes(x));
   let notInIssues = caseTags.filter(x => !allIssueKeys.includes(x));
   let jqlForMissingCase = '';
   let missingIssue = [];
@@ -440,7 +457,14 @@ async function main() {
     JSON.stringify(results, null, 2)
   );
 
-  // Sync test cases that keys match
+  // // Sync test cases that keys match
+  // //let syncCasesKeys = issueKeys.filter(x => caseTags.includes(x));
+  // let syncCasesKeys = allIssueKeys.filter(x => caseTags.includes(x));
+  // for (let key of syncCasesKeys) {
+  //   console.log(`Processing ${key} ...`);
+  //   //await updateCukeScriptInDesc(jira, issueMap[key], caseMap[key]);
+  //   await updateCukeScriptInDesc(jira, allIssuesMap[key], caseMap[key]);
+  // }
   let syncCasesKeys = allIssueKeys.filter(x => caseTags.includes(x));
   let success = true;
   let syncResults;
@@ -469,7 +493,7 @@ async function main() {
     console.log('successfully');
     return;
   }
-  throw new Error('but Failed for some tickets! Check logs.');
+  throw 'but Failed for some tickets! Check logs.';
 }
 
 main().catch(err => {

@@ -1,0 +1,744 @@
+Feature: [E2E][Author] Jarvis Chat Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Jarvis-Chat-Component-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Text"
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author can configure jarvis chat with all checkboxes unchecked with overrite selected 
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | unchecked       |
+       #| Enable Jarvis lazy loading on desktop                 | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | unchecked       |
+       #| Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | unchecked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       | Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     Then I should not see "Contact us"
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       #| Enable Jarvis lazy loading on desktop                   | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | unchecked       |
+       #| Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | unchecked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       | Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should see a chat icon
+     #And I should see "bundle.js" loading in network logs
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click the chat button
+     Then I should see jarvis popup window
+     Then I wait for 5 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     Then I should not see "Contact us"
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author can configure jarvis chat with tablet and mobile only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | unchecked       |
+       #| Enable Jarvis lazy loading on desktop                   | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | unchecked       |
+      Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should see a chat icon
+     #And I should see JavaScript "bundle.js"
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]" 
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should see a chat icon
+     #And I should see JavaScript "bundle.js"
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]" 
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop and tablet and mobile
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       | Enable Jarvis lazy loading on desktop                   | unchecked       |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | unchecked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should see a chat icon
+     #And I should see "bundle.js" loading in network logs
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click the chat button
+     Then I should see jarvis popup window
+     Then I wait for 5 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should see a chat icon
+     #And I should see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should see a chat icon
+     #And I should see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop only with lazy loading
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       | Enable Jarvis lazy loading on desktop                   | checked         |
+       | Enable Jarvis on mobile and tablet devices             | unchecked       |
+       #| Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | unchecked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click the chat button
+     #And I should see "bundle.js" loading in network logs
+     Then I should see jarvis popup window
+     Then I wait for 5 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> author can configure jarvis chat with tablet and mobile only with lazy loading
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | unchecked       |
+       #| Enable Jarvis lazy loading on desktop                   | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | checked         |
+       | Load Jarvis configuration and assets on-demand         | unchecked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+     #And I should see JavaScript "bundle.js"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+     #And I should see JavaScript "bundle.js"
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop and tablet and mobile with lazy loading
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       | Enable Jarvis lazy loading on desktop                   | checked         |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | checked         |
+       | Load Jarvis configuration and assets on-demand         | unchecked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click the chat button
+     #And I should see "bundle.js" loading in network logs
+     Then I should see jarvis popup window
+     Then I wait for 5 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+     #And I should see JavaScript "bundle.js"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     #When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     #Then I should see jarvis popup window
+     #And I should see JavaScript "bundle.js"
+
+  <@id-8> <@desc-8> <@envs>
+  Scenario: <Site> author can configure jarvis chat with demand only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | unchecked       |
+       #| Enable Jarvis lazy loading on desktop                   | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | unchecked       |
+       #| Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | checked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       | Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+
+  <@id-9> <@desc-9> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop only with demand only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       | Enable Jarvis lazy loading on desktop                   | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | unchecked       |
+       #| Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | checked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     #Then I wait for 2 seconds
+     #Then I should see a chat icon
+     And I refresh the page
+     Then I should not see a chat icon
+     Then I wait for 2 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario: <Site> author can configure jarvis chat with tablet and mobile only with demand only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | unchecked       |
+       #| Enable Jarvis lazy loading on desktop                   | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | checked       |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+     Then I wait for 2 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+
+  <@id-11> <@desc-11> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop and tablet and mobile with demand only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       | Enable Jarvis lazy loading on desktop                   | unchecked       |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | checked         |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+     Then I wait for 2 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+
+  <@id-12> <@desc-12> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop only with lazy loading with demand only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       | Enable Jarvis lazy loading on desktop                   | checked         |
+       | Enable Jarvis on mobile and tablet devices             | unchecked       |
+       #| Enable Jarvis lazy loading on mobile devices           | unchecked       |
+       | Load Jarvis configuration and assets on-demand         | checked         |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     #Then I wait for 2 seconds
+     #Then I should see a chat icon
+     And I refresh the page
+     Then I should not see a chat icon
+     Then I wait for 2 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should not see "Contact us"
+
+  <@id-13> <@desc-13> <@envs>
+  Scenario: <Site> author can configure jarvis chat with tablet and mobile only with lazy loading with demand only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | unchecked       |
+       #| Enable Jarvis lazy loading on desktop                   | unchecked         |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | checked         |
+       | Load Jarvis configuration and assets on-demand         | checked         |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see JavaScript "bundle.js"
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should not see "Contact us"
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+     Then I wait for 2 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+
+  <@id-14> <@desc-14> <@envs>
+  Scenario: <Site> author can configure jarvis chat with desktop and tablet and mobile with lazy loading with demand only
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "Chat" tab:
+       | Jarvis Enablement                                      | Override        |
+     Then I wait for 10 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Enablement                                      | Override        |
+       | Enable Jarvis on desktop                               | checked         |
+       | Enable Jarvis lazy loading on desktop                  | checked         |
+       | Enable Jarvis on mobile and tablet devices             | checked         |
+       | Enable Jarvis lazy loading on mobile devices           | checked         |
+       | Load Jarvis configuration and assets on-demand         | checked         |
+     Then I configure settings in "Chat" tab:
+       | Jarvis Surface                                         | Override        |
+     Then I wait for 5 seconds
+     Then I configure settings in "Chat" tab:
+       #| Jarvis Surface                                         | Override        |
+       | Jarvis Surface Name                                    | adobedotcom2    |
+       #| Jarvis Mobile Surface Name                             | adobedotcomNI   |
+       | Jarvis Surface Version                                 | 1               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 5 seconds
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element "//span[contains(text(),'Help & Support')]" 
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+     Then I wait for 2 seconds
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPhone X
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon
+     And I edit the test page in the test folder
+     Then I view the edited page as published on iPad
+     Then I should not see a chat icon
+     #And I should not see "bundle.js" loading in network logs
+     When I click on element ".feds-navList-hamburger"
+     Then I click on element "//span[contains(text(),'Help & Support')]"
+     When I click on element "//span[contains(text(),'Help and support')]"
+     Then I should see "Contact us"
+     When I click on element "//a[@data-feds-action='open-jarvis-chat']"
+     Then I should see jarvis popup window
+     #And I should see "bundle.js" loading in network logs
+     Then I wait for 2 seconds
+     When I click on element "//button[@aria-label='Minimize conversation window']" in jarvis popup window
+     And I refresh the page
+     Then I should not see a chat icon

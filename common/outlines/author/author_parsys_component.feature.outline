@@ -1,0 +1,56 @@
+Feature: [E2E][Author] Parsys
+
+Background:
+ Given I sign in as an author
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> Create a page using FullWidth With GlobalNav Dexter template and verify that parsys is available in the page
+     Then I delete the page "FullWidthWithGlobalNav" in the test folder
+     Then I create a new content page in the test folder:
+       | Template  | full-width-with-globalnav |
+       | Title     | Full Width With Global Nav|
+       | Page Name | FullWidthWithGlobalNav    |
+    Then I wait for 3 seconds
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I should see "parsysPage" displayed
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> Create a page using FullWidth With Light Dexter template and verify that parsys is available in the page and modal section
+     Then I delete the page "FullWidthWithLight" in the test folder
+     Then I create a new content page in the test folder:
+       | Template  | full-width-light |
+       | Title     | Full Width With Light|
+       | Page Name | FullWidthWithLight    |
+    Then I wait for 3 seconds
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I should see "parsysPage" displayed
+    Then I should see "parsysModal" displayed
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> Create a page using FullWidth Light Theme Three Dexter template and verify that parsys is available in the page and modal section
+     Then I delete the page "FullWidthLightThemeThree" in the test folder
+     Then I create a new content page in the test folder:
+       | Template  | full-width-light-theme-three |
+       | Title     | Full Width Light Theme Three|
+       | Page Name | FullWidthLightThemeThree    |
+    Then I wait for 3 seconds
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I should see "parsysPage" displayed
+    Then I should see "parsysModal" displayed
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> Create a page using Experience-Fragment-Web-Variation Dexter template and verify that parsys is available in the page and modal section
+    Then I delete the page "/content/experience-fragments/dexter/us/en/temp/TestAutomation/TestXFWebVariation"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/temp/TestAutomation        |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | Test XF Web Variation                                                       |
+      | Page Name | TestXFWebVariation                                                        |
+    Then I wait for 3 seconds
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I should see "parsysXFPage" displayed
+    Then I should see "parsysModal" displayed

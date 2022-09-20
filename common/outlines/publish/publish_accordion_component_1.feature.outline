@@ -1,0 +1,19 @@
+Feature: [E2E][Publish] Accordion Component
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> Author an accordion component with "Multi Select" checkbox option Selected and "Selected by default" checkbox option Not Selected
+    Given I go to "testautomation/Test-Accordion-01.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should not see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 1st Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should see "Item 2 Text" in Accordion contents
+    Then I click the 2nd Accordion header
+    Then I should see "Item 1 Text" in Accordion contents
+    Then I should not see "Item 2 Text" in Accordion contents

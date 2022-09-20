@@ -20,7 +20,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Sign out button
-   */
+   */  
   get signOutButton() {
     return $('.Profile-dropdown > .Profile-menu:last-of-type .Profile-menu-link');
   }
@@ -28,7 +28,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Profile icon
-   */
+   */   
   get profileIcon() {
     return $('.feds-profile');
   }
@@ -36,7 +36,7 @@ export class Header extends Section {
   /**
    * @type {object[]}
    * @description Menu items
-   */
+   */ 
   get menuItems() {
     return $$('.feds-navList-wrapper--main .feds-popup-trigger > a');
   }
@@ -44,7 +44,7 @@ export class Header extends Section {
   /**
    * @type {object[]}
    * @description Menu items
-   */
+   */   
   get navListItems() {
     return $$('.feds-navList-item > a');
   }
@@ -52,7 +52,7 @@ export class Header extends Section {
   /**
    * @type {object[]}
    * @description Menu items
-   */
+   */   
   get popup() {
     return $('.feds-navList-wrapper--main .feds-popup--open');
   }
@@ -60,7 +60,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Search icon
-   */
+   */   
   get searchIcon() {
     return $('.feds-search-trigger');
   }
@@ -68,7 +68,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Search V.1 close icon
-   */
+   */   
   get searchCloseIcon() {
     return $('[name="search-term-clear"]');
   }
@@ -76,7 +76,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Search V.2 close icon
-   */
+   */   
   get searchCloseIconV2() {
     return $('.feds-search-close');
   }
@@ -84,7 +84,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Search V.1 input
-   */
+   */   
   get searchInput() {
     return $('.feds-searchInput');
   }
@@ -92,7 +92,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Search V.2 input
-   */
+   */   
   get searchInputV2() {
     return $('[type="search"]');
   }
@@ -100,7 +100,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Search V.1 results
-   */
+   */   
   get searchResults() {
     return $('#search-results results');
   }
@@ -112,7 +112,7 @@ export class Header extends Section {
   get searchResultsV2() {
     return $('.feds-searchResults .feds-searchResult');
   }
-
+ 
   /**
    * Click sign in button
    */
@@ -131,7 +131,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Search V.2 results
-   */
+   */    
   get profileDropdown() {
     return $('.Profile-dropdown');
   }
@@ -139,7 +139,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description AppLauch icon
-   */
+   */    
   get appLaunchIcon() {
     return $('.app-launcher-icon');
   }
@@ -147,7 +147,7 @@ export class Header extends Section {
   /**
    * @type {object}
    * @description Applaunch pop
-   */
+   */    
   get appLaunchPopover() {
     return $('.app-launcher-popover');
   }

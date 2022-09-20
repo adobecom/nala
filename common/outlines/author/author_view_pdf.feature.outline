@@ -1,0 +1,95 @@
+Feature: [E2E][Author] ViewPdf
+
+Background:
+    Given I sign in as an author
+      Then I delete the page "/content/dexter/us/en/testautomation/Test-View-Pdf"
+      Then I have the page "Test-View-Pdf" in the test folder
+      And I edit the test page in the test folder
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author can set the viewpdf feature to Inherit 
+      Then I open page properties
+      Then I wait for 5 seconds
+      Then I configure settings in "Advanced" tab:
+        | Enable ViewSDK | Yes |
+      Then I click Save in page properties Configuration dialog
+      Then I have the page "Test-View-Pdf-Child-Page" in the current test page folder with title "Test Page1"
+      Then I edit the page "/content/dexter/us/en/testautomation/Test-View-Pdf/Test-View-Pdf-Child-Page.html"
+      Then I view the page in view as published mode
+      Then I switch to the new window
+      Then I should see an element with attributes:
+        | class | viewPdf |
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author can set the viewpdf feature to Yes
+      Then I open page properties
+      Then I wait for 5 seconds
+      Then I configure settings in "Advanced" tab:
+        | Enable ViewSDK | Yes |
+      Then I click Save in page properties Configuration dialog
+      And I edit the test page in the test folder
+      Then I view the page in view as published mode
+      Then I switch to the new window
+      Then I should see an element with attributes:
+        | class | viewPdf |
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author can set the viewpdf feature to No
+      Then I open page properties
+      Then I wait for 5 seconds
+      Then I configure settings in "Advanced" tab:
+        | Enable ViewSDK | No |
+      Then I click Save in page properties Configuration dialog
+      And I edit the test page in the test folder
+      Then I view the page in view as published mode
+      Then I switch to the new window
+      Then I should not see an element with attributes:
+        | class | viewPdf |
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> ViewPdf links can be configured to open in a new window
+      Then I open page properties
+      Then I wait for 5 seconds
+      Then I configure settings in "Advanced" tab:
+        | Enable ViewSDK | Yes |
+      Then I click Save in page properties Configuration dialog
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Button"
+      Then I open Configuration dialog of the newly added component
+      Then I configure settings in "General" tab:
+        | Button Text * | ViewPdf new window |
+        | Link To       | <pdf-path> |
+        | Target Window | New Window |
+      Then I click Done in Configuration dialog
+      Then I view the page in view as published mode
+      Then I switch to the new window
+      When I click on element "a[data-viewsdk-pdf]"
+      Then I switch to the new window
+      Then I wait for 3 seconds
+      Then I should see an element with attributes:
+        | id | iframe-new-window-pdf |
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> ViewPdf links can be configured to open inline
+      Then I open page properties
+      Then I wait for 5 seconds
+      Then I configure settings in "Advanced" tab:
+        | Enable ViewSDK | Yes |
+      Then I click Save in page properties Configuration dialog
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Button"
+      Then I open Configuration dialog of the newly added component
+      Then I configure settings in "General" tab:
+        | Button Text * | ViewPdf inline |
+        | Link To       | <pdf-path> |
+        | Target Window | This Window |
+      Then I click Done in Configuration dialog
+      Then I view the page in view as published mode
+      Then I switch to the new window
+      When I click on element "a[data-viewsdk-pdf]"
+      Then I wait for 3 seconds
+      Then I should see an element "div" with attributes:
+        | class | contains | view-sdk-target |
+        | class | contains | view-sdk-active |
+      And I should see an element "iframe" with attributes:
+        | id | contains | iframe-view-sdk|

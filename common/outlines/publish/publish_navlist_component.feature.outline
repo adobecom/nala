@@ -1,0 +1,13 @@
+Feature: [E2E][Publish] Navigation list Component
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author can add navigation list title for the component with styles1
+    Given I go to "testautomation/Test-NavList-01.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see an element with attributes:
+       | class  | navList aem-GridColumn aem-GridColumn--default--12 |
+    Then I should see an element with attributes:
+      | data-name | Adobe cloud details | 
+      | data-tab-orientation | horizontal |

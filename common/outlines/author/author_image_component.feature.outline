@@ -1,0 +1,232 @@
+Feature: [E2E][Author] Image Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Image-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Image"
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author can't apply configuration change without required fields
+     Then I open Configuration dialog of the newly added component
+     Then I should see invalid configuration for "ACCESSIBILITY" tab
+     Then I click Done in Configuration dialog
+     Then I should see Configuration dialog
+     Then I click Cancel in Configuration dialog
+     Then I should not see Configuration dialog
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author sets an image decorative
+     Then I open Configuration dialog of the newly added component
+     Then I should see invalid configuration for "ACCESSIBILITY" tab
+     Then I configure settings in "ACCESSIBILITY" tab:
+       | Image is decorative | checked | 
+     Then I should not see invalid configuration for "ACCESSIBILITY" tab
+     Then I click Done in Configuration dialog
+     Then I should not see Configuration dialog
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author is able to set an image's alternative text
+    Then I open editor's side panel 
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |     
+    Then I configure settings in "ACCESSIBILITY" tab:
+       | Alternative Text | ThisAlternativeText |
+    Then I click Done in Configuration dialog
+    Then I preview the edited page
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+       | alt  | ThisAlternativeText |
+
+ <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> author configure analytics-tracking attributes for image component
+     Then I open editor's side panel  
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First   |     
+      | Link To     | https://www.adobe.com |
+     Then I configure settings in "ACCESSIBILITY" tab:
+       | Image is decorative | checked | 
+     Then I configure settings in "ANALYTICS" tab:   
+       | Track Impression   | im1 | 
+       | Link Hierarchy     | lh1 |
+       | Link Identifier    | ll1 |
+       | Link Type          | lt1 | 
+     Then I click Done to close Configuration dialog  
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:  
+       | daa-im  | true | 
+       | daa-lh  | lh1  | 
+       | daa-ll  | ll1  | 
+       | daa-lt  | lt1  |    
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> author configure draft only for image component
+     Then I open editor's side panel 
+     Then I open Configuration dialog of the newly added component
+     Then I wait for 3 seconds
+     Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |     
+      | Draft Only  | checked             | 
+     Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text | ThisAlternativeText | 
+     Then I click Done to close Configuration dialog 
+     Then I wait for 3 seconds 
+     Then I open the edited page on preview mode
+     Then I should not see an element with attributes:  
+      | alt  | ThisAlternativeText |  
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> author configure image component and then delete it
+    Then I open editor's side panel 
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |     
+    Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text | ThisAlternativeText |
+    Then I click Done to close Configuration dialog  
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | alt  | ThisAlternativeText |
+    Then I go back to last page 
+    Then I wait for 5 seconds
+    Then I delete all components
+    Then I wait for 2 seconds
+    Then I open the edited page on preview mode
+    Then I should not see an element with attributes:
+      | alt  | ThisAlternativeText |      
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> author update image in an image component
+    Then I open editor's side panel 
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |     
+    Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text | ThisAlternativeText |
+    Then I click Done in Configuration dialog    
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | alt  | ThisAlternativeText | 
+    Then I go back to last page
+    Then I select the newly added component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:Second |     
+    Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text | NewAlternativeText |
+    Then I click Done in Configuration dialog    
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | alt  | NewAlternativeText |   
+
+  <@id-8> <@desc-8> <@envs>
+  Scenario: <Site> author drag and drop an image component
+    Then I open editor's side panel 
+    Then I drag and drop a component "Dexter/Image"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |     
+    Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text | ThisAlternativeText |
+    Then I click Done in Configuration dialog    
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:  
+      | alt  | ThisAlternativeText |
+
+  <@id-9> <@desc-9> <@envs>
+  Scenario: <Site> verify image component for duplicate CustomId error message
+    Then I open editor's side panel 
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |
+      | Container/Target Id | id1 |     
+    Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text | ThisAlternativeText |
+    Then I click Done to close Configuration dialog    
+    And I insert a component "Dexter/Image"  
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Container/Target Id | id1 |     
+    Then I click Done in Configuration dialog    
+    Then I should see invalid configuration in "MOBILE / DEFAULT" tab for field
+      | Container/Target Id | 
+    Then I should see Configuration dialog
+    Then I click Cancel in Configuration dialog 
+    Then I should not see Configuration dialog 
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario: <Site> Verify all the fields in the configuration modal for image component
+    Then I open Configuration dialog of the newly added component
+    Then I verify fields in "MOBILE / DEFAULT" tab:
+       | Image asset          | FileUpload | 
+       | Dynamic Media Preset | Dropdown   |
+       | Rendition            | Dropdown   |
+       | Size                 | Dropdown   |
+       | Alignment            | Dropdown   |
+       | Title                | Text       |
+       | Description          | Text       |
+       | Link To              | Text       |
+       | Link Target          | Dropdown   |
+       | Overlay:Type         | Dropdown   |
+       | Tooltip Text         | Text       |
+       | Placement            | Dropdown   |
+       | Variants.            | Dropdown   |
+       | Container/Target Id  | Text       |
+       | Draft Only           | Checkbox   |
+    Then I verify dropdown "Dynamic Media Preset" in tab "MOBILE / DEFAULT" has following values:
+      | Auto        |
+      | No Preset   | 
+      | jpeg        |
+      | pjpeg       | 
+      | png-alpha   |    
+    And I press "Tab" key     
+    Then I verify dropdown "Size" in tab "MOBILE / DEFAULT" has following values:
+      | Auto        |
+      | Custom      |    
+    And I press "Tab" key    
+    Then I verify dropdown "Alignment" in tab "MOBILE / DEFAULT" has following values:
+      |             |
+      | Left        |
+      | Center      | 
+      | Right       |  
+    And I press "Tab" key    
+    Then I verify dropdown "Link Target" in tab "MOBILE / DEFAULT" has following values:
+      | Default      |
+      | This Page   |
+      | Blank Page  | 
+      | Parent Page |
+      | Top Page    |   
+    And I press "Tab" key    
+    Then I verify dropdown "Overlay:Type" in tab "MOBILE / DEFAULT" has following values:
+      | Tooltip     |
+      | Popover     |        
+    Then I verify fields in "RENDITIONS" tab:
+       | Tablet | Dropdown |
+       | Desktop| Dropdown | 
+    Then I verify fields in "ACCESSIBILITY" tab:
+       | Alternative Text    | Text     |
+       | Image is decorative | Checkbox |
+    Then I verify fields in "ANALYTICS" tab:
+       | Track Impression | Text |
+       | Link Hierarchy   | Text |
+       | Link Identifier  | Text |
+       | Link Type        | Text | 
+    Then I verify fields in "SPACING" tab:
+       | Top Padding    | Slider   | 
+       | Right Padding  | Slider   |
+       | Bottom Padding | Slider   |
+       | Left Padding   | Slider   |
+       | Top Margin     | Slider   |  
+       | Right Margin   | Slider   |
+       | Bottom Margin  | Slider   |
+       | Left Margin    | Slider   |  
+       | Tablet         | Dropdown |
+       | Desktop        | Dropdown |        
+    Then I click Done to close Configuration dialog          
+
+
+
+  

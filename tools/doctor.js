@@ -11,6 +11,9 @@ function checkTools() {
   const tools = [
     { name: 'NodeJS', exe: 'node', verArg: '--version', output: 'stdout' },
     { name: 'Yarn', exe: 'yarn', verArg: '--version', output: 'stdout' },
+    { name: 'Java', exe: 'java', verArg: '-version', output: 'stderr' },
+    { name: 'Python', exe: 'python', verArg: '--version', output: 'stderr' },
+    { name: 'Appium', exe: 'appium', verArg: '--version', output: 'stdout' },
     {
       name: 'ImageMagick',
       exe: 'magick',

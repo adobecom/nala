@@ -1,0 +1,63 @@
+Feature: [E2E][Author] Position Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Position-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Author a position component for visibility based on Button/CTA
+    Then I wait for 10 seconds
+    Then I insert a component "Dexter/Button"
+    Then I configure the newly added component:
+      | General       | ------------------------ |
+      | Button Text * | Show/Hide Position Component | 
+      | Button Type   | Toggle                   |
+      | Toggle ID     | position_toggle              |   
+    Then I insert a component "Dexter/Position"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Component Type | Button / CTA |   
+      | Button / CTA   | position_toggle  |
+    Then I click Done in Configuration dialog
+    Then I wait for 10 seconds
+    Then I insert "Dexter/Text" into Layout container "position/position-par"
+    Then I type "Text in Position component" into Text component "position/position-par/text"
+    Then I wait for 5 seconds
+    Then I open the edited page on preview mode
+    Then I wait for 5 seconds
+    Then I close US geo popup if have
+    Then I wait for 10 seconds
+    Then I should see "Text in Position component"
+    Then I click on CTA "Show/Hide Position Component"
+    Then I should not see "Text in Position component"
+    Then I click on CTA "Show/Hide Position Component"
+    Then I should see "Text in Position component"
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: Author a position component for visibility based on Navigation List
+    Then I insert a component "Dexter/Navigation List"
+    Then I configure the newly added component:
+      | Name *           | positionNavList |
+      | Navigation Items | @#1         |
+      | - Title *        | NavItem 1   |
+      | Navigation Items | @#2         |
+      | - Title *        | NavItem 2   |
+    Then I insert a component "Dexter/Position"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Component Type | NavList     |   
+      | NavList        | positionNavList |
+      | NavItem        | NavItem 2   |
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "position/position-par"
+    Then I type "Text in Position component" into Text component "position/position-par/text"
+    Then I wait for 5 seconds
+    Then I open the edited page on preview mode
+    Then I wait for 5 seconds
+    Then I close US geo popup if have    
+    Then I should not see "Text in Position component"
+    Then I click on NavItem "NavItem 2"
+    Then I should see "Text in Position component"
+    Then I click on NavItem "NavItem 1"
+    Then I should not see "Text in Position component"

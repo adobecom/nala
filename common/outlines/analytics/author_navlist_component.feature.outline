@@ -1,0 +1,92 @@
+Feature: [E2E][Author] Navigation list Component
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Dexter author can add navigation list items
+    Given I sign in as an author
+    Then I delete the page "Test_Analytics_Navlist" in the test folder
+    Then I create a new content page in the test folder:
+       | Title     | Test_Analytics_Navlist                |
+       | Page Name | Test_Analytics_Navlist                |      
+    Then I switch to the editor tab
+    And I insert a component "Dexter/Navigation List"
+    Then I wait for 2 seconds
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Name *                  | Adobe cloud details |
+      | Navigation Items        | @#1                 |
+      | - Title *               | Creative Cloud      |
+      | - Analytics Title       | cc                  | 
+      | Navigation Items        | @#2                 |
+      | - Title *               | Experience Cloud    |
+      | - Analytics Title       | ec                  |  
+      | Navigation Items        | @#3                 |
+      | - Title *               | Document Cloud      |
+      | - Analytics Title       | dc                  |
+    Then I click Done to close Configuration dialog
+    And I insert a component "Dexter/Flex Container"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Component Type  | NavList |
+    Then I wait for 1 second
+    Then I configure settings in "General" tab:
+      | NavList  | Adobe cloud details |
+      | NavItem  | Creative Cloud      |
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "flex/items"
+    Then I type "item1" into Text component "flex/items/text"
+    And I insert a component "Dexter/Flex Container"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Component Type  | NavList |
+    Then I wait for 1 second
+    Then I configure settings in "General" tab:
+      | NavList  | Adobe cloud details |
+      | NavItem  | Experience Cloud    |
+    Then I click Done in Configuration dialog
+    #Then I insert "Dexter/Text" into Layout container "flex/items"
+    #Then I type "item2" into Text component "flex/items/text"
+    And I insert a component "Dexter/Flex Container"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Component Type  | NavList |
+    Then I wait for 1 second
+    Then I configure settings in "General" tab:
+      | NavList  | Adobe cloud details |
+      | NavItem  | Document Cloud      |
+    Then I click Done in Configuration dialog
+    #Then I insert "Dexter/Text" into Layout container "flex/items"
+    #Then I type "item3" into Text component "flex/items/text"
+    Then I open page properties
+     Then I wait for 3 seconds
+     Then I configure settings in "Analytics" tab:
+       | Enable Adobe Launch | Yes |
+     Then I click Save in page properties Configuration dialog
+     Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see 3 elements with attributes:
+      | class  | spectrum-Tabs-itemLabel |
+    Then I should see "Creative Cloud"
+    Then I should see "Experience Cloud"
+    Then I should see "Document Cloud"
+
+    Then I load expected analytics data from wiki page "2707563461" with replacements "domainName=<baseUrl>,pageName=content:dexter:testautomation:Test_Analytics_Navlist,lang-CountryCode=en-US"
+    And I should see analytics data posted within all logs matched with "Page load"
+
+    Then I click on element "//div[@data-item0]/div[2]"
+    Then I wait for 1 second
+
+    Then I load expected analytics data from wiki page "2707563461" with replacements "domainName=<baseUrl>,pageName=content:dexter:testautomation:Test_Analytics_Navlist,lang-CountryCode=en-US"
+    And I should see analytics data posted within the last 1 log matched with "Nav List1"
+
+    Then I click on element "//div[@data-item0]/div[3]"
+    Then I wait for 1 second
+
+    Then I load expected analytics data from wiki page "2707563461" with replacements "domainName=<baseUrl>,pageName=content:dexter:testautomation:Test_Analytics_Navlist,lang-CountryCode=en-US"
+    And I should see analytics data posted within the last 1 log matched with "Nav List2"
+
+    Then I click on element "//div[@data-item0]/div[1]"
+    Then I should see "item1"
+
+    Then I load expected analytics data from wiki page "2707563461" with replacements "domainName=<baseUrl>,pageName=content:dexter:testautomation:Test_Analytics_Navlist,lang-CountryCode=en-US"
+    And I should see analytics data posted within the last 1 log matched with "Nav List3"
+    And I should see analytics data posted to suite "adbadobenonacdcqa"

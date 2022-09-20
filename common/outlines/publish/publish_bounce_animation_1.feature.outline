@@ -1,0 +1,28 @@
+Feature: [E2E][Publish] Animation Component
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> validates bounce animation on publish page with fade and rotate
+    Given I go to "testautomation/TestBounceForPublishPage1.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see css style for element "//*[@id='PositionOne']/..":
+      | from { opacity: 0.1; transform: rotate(5deg) ; } to { opacity: 0.8; transform: rotate(45deg) ; } |
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> validates bounce animation on publish page with scale and move
+    Given I go to "testautomation/TestBounceForPublishPage2.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see css style for element "//*[@id='PositionOne']/..":
+      | from {  transform: translateX(10px)translateY(12px) scale(0.5); } to {  transform: translateX(11px)translateY(13px) scale(0.9); } |
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> validates bounce animation on publish page with skew
+    Given I go to "testautomation/TestBounceForPublishPage3.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see css style for element "//*[@id='PositionOne']/..":
+      | from {  transform: skew(10deg); } to {  transform: skew(80deg); } |

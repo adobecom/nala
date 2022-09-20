@@ -1,0 +1,108 @@
+Feature: [E2E][Author] Horizontal Rule Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-HR-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Horizontal Rule"
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author a Horizontal Rule component with Color, Height and Style = Solid and update it
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Color       | #44B556 |
+      | Height (PX) | 123     |
+      | Style       | Solid   | 
+    Then I click Done to close Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see height 123px for element "hr"
+    Then I should see an element with attributes:
+      | style | border-bottom: 123px solid #44B556; |
+    Then I go back to last page
+    Then I wait for 2 seconds
+    Then I select the newly added component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Color       | #999999 |
+      | Height (PX) | 99      |
+      | Style       | Dotted  | 
+    Then I click Done to close Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see height 99px for element "hr"
+    Then I should see an element with attributes:
+      | style | border-bottom: 99px dotted #999999; |
+
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author a Horizontal Rule component with Color, Height and Style = Dotted and delete it
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Color       | #44B999 |
+      | Height (PX) | 456     |
+      | Style       | Dotted  | 
+    Then I click Done to close Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see height 456px for element "hr"
+    Then I should see an element with attributes:
+      | style | border-bottom: 456px dotted #44B999; |
+    Then I go back to last page
+    Then I delete all components
+    Then I wait for 2 seconds
+    Then I open the edited page on preview mode
+    Then I should not see an element with attributes:
+      | style | border-bottom: 456px dotted #44B999; |
+
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author a Horizontal Rule component with Color, Height and Style = Dashed
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Color       | #44B556 |
+      | Height (PX) | 222     |
+      | Style       | Dashed  | 
+    Then I click Done to close Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see height 222px for element "hr"
+    Then I should see an element with attributes:
+      | style | border-bottom: 222px dashed #44B556; |
+  
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> author a Horizontal Rule component with default values i.e. color = No value, Height = No Value, Style = Solid
+    Then I open Configuration dialog of the newly added component
+    Then I click Done to close Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see height 1px for element "hr"
+    Then I should see an element with attributes:
+      | style | border-bottom: 1px solid #333333; |
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> author a Horizontal Rule component as Draft only
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Draft Only   | checked |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds 
+    Then I open the edited page on preview mode
+    Then I should not see an element with attributes:
+      | style | border-bottom: 1px solid #333333; |
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> author a Horizontal Rule component with invalid color value
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Color   | invalid-color-code |
+    Then I click Done to close Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see height 1px for element "hr"
+    Then I should see an element with attributes:
+      | style | border-bottom: 1px solid #333333; |
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> author a Horizontal Rule component with invalid height value
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Height (PX)   | -123 |
+    Then I wait for 2 seconds
+    Then I should see the alert icon
+    When I mouse hover the alert icon
+    Then I should see "Please enter a value that is no less than 1."

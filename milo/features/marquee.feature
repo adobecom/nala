@@ -18,8 +18,8 @@ Feature: Validate Marquee blocks on library document page
       | /docs/library/blocks/marquee | marquee light            | Marquee standard medium left light | 2         | 0          | 1      | 1      | https://www.adobe.com/       |
       | /docs/library/blocks/marquee | marquee small dark       | Marquee standard small dark        | 1         | 0          | 1      | 1      | https://www.adobe.com/       |
       | /docs/library/blocks/marquee | marquee small light      | Marquee standard small light       | 2         | 0          | 1      | 1      | https://www.adobe.com/       |
-      | /docs/library/blocks/marquee | marquee large dark       | Marquee Large Dark                 | 2         | 0          | 1      | 1      | https://www.adobe.com/       |
-      | /docs/library/blocks/marquee | marquee large light      | Marquee Large Light                | 2         | 0          | 1      | 1      | https://www.adobe.com/       |
+      | /docs/library/blocks/marquee | marquee large dark       | Marquee Large Dark                 | 2         | 0          | 0      | 1      | https://www.adobe.com/       |
+      | /docs/library/blocks/marquee | marquee large light      | Marquee Large Light                | 2         | 0          | 0      | 1      | https://www.adobe.com/       |
       | /docs/library/blocks/marquee | marquee quiet dark       | Marquee quiet                      | 1         | 0          | 0      | 0      | https://www.adobe.com/       |
       | /docs/library/blocks/marquee | marquee inline dark      | Marquee inline                     | 0         | 0          | 0      | 0      | /docs/library/blocks/marquee |
       | /docs/library/blocks/marquee | marquee split small dark | Marquee Split ½ dark               | 2         | 0          | 1      | 0      | https://www.adobe.com/       |

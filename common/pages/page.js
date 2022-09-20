@@ -142,7 +142,7 @@ export class Page extends Section {
         let pupper = browser.getPuppeteer();
         browser.call(async () => {
           const [page] = await pupper.pages();
-          page.setExtraHTTPHeaders(this._headers);
+          page.setExtraHTTPHeaders(this._headers);   
         });
       } catch (err) {
         err.message +=
@@ -168,7 +168,7 @@ export class Page extends Section {
               url += `&country=${countryCode}`;
               interceptedRequest.continue({url});
             } else if (url.startsWith("https://geolocation.onetrust.com")) {
-                axios.get(url).then(res => {
+               axios.get(url).then(res => {
                 let body = res.data;
                 body.country = countryCode;
                 interceptedRequest.respond({
@@ -186,7 +186,7 @@ export class Page extends Section {
           'Intercepting network is supported only for Chrome\n' +
           'Please use --devtools to enable it';
         throw err;
-      }
+      }  
     }
     browser.url(url);
   }
@@ -238,7 +238,7 @@ export class Page extends Section {
    */
   waitForDisplayed(elementName, timeout = 10000, reverse = false) {
     let elem = this.checkElementName(elementName);
-    elem.waitForDisplayed({timeout: timeout, reverse: reverse});
+    elem.waitForDisplayed({timeout: timeout, reverse: reverse});  
   }
 
   /**
@@ -407,7 +407,7 @@ export class Page extends Section {
    * @param {number} interval Interval in milliseconds between retries
    * @param {functioin} callback Callback to be retried
    */
-  retryAction(retries = 10, interval = 1000, callback) {
+   retryAction(retries = 10, interval = 1000, callback) {
     while (retries > 0) {
       try {
         callback();

@@ -1,0 +1,164 @@
+Feature: [E2E][Author] Position Component
+
+  Background:
+    Given I sign in as an author
+    And I have the page "Test-Position-${DateTime}" in the test folder
+    And I edit the test page in the test folder
+    And I insert a component "Dexter/Position"
+    
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Dexter author can set mobile spacing for position
+    Then I open Configuration dialog of the newly added component
+    And I configure settings in "Spacing" tab:  
+       | Top Padding            | 16px | 
+       | Right Padding          | 12px |
+       | Bottom Padding         |  8px |
+       | Left Padding           |  4px |
+       | Top Margin             | 32px |  
+       | Right Margin           | 28px |
+       | Bottom Margin          | 24px |
+       | Left Margin            | 20px | 
+       | Tablet[0]              | Inherit from previous screen size |
+       | Tablet[1]              | Inherit from previous screen size |   
+       | Desktop[0]             | Inherit from previous screen size |
+       | Desktop[1]             | Inherit from previous screen size |          
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "position/position-par"
+    Then I type "Text in Position component" into Text component "position/position-par/text" 
+    Then I open the edited page on preview mode
+    Then I wait for 10 seconds
+    Then I should see an element "div" with attributes:
+       | class | contains | dexter-Position           |
+       | class | contains | mobile-place-relative     |
+       | class | contains | mobile-place-left         |
+       | class | contains | mobile-place-top          |
+       | class | contains | mobile-padding-top-16     |
+       | class | contains | mobile-padding-right-12   |
+       | class | contains | mobile-padding-bottom-8   |
+       | class | contains | mobile-padding-left-4     |
+       | class | contains | mobile-margin-top-32      |
+       | class | contains | mobile-margin-right-28    |
+       | class | contains | mobile-margin-bottom-24   |
+       | class | contains | mobile-margin-left-20     |
+
+
+<@id-2> <@desc-2> <@envs>
+  Scenario: Dexter author can set tablet spacing for position
+    Then I open Configuration dialog of the newly added component
+    And I configure settings in "Spacing" tab:  
+       | Tablet[0]              | Override |
+       | Tablet[1]              | Override |
+       | Tablet:Top Padding     | 48px | 
+       | Tablet:Right Padding   | 44px |
+       | Tablet:Bottom Padding  | 40px |
+       | Tablet:Left Padding    | 36px |
+       | Tablet:Top Margin      | 64px |  
+       | Tablet:Right Margin    | 60px |
+       | Tablet:Bottom Margin   | 56px |
+       | Tablet:Left Margin     | 52px |     
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "position/position-par"
+    Then I type "Text in Position component" into Text component "position/position-par/text" 
+    Then I open the edited page on preview mode
+    Then I wait for 10 seconds
+    Then I should see an element "div" with attributes:
+       | class | contains | dexter-Position           |
+       | class | contains | mobile-place-relative     |
+       | class | contains | mobile-place-left         |
+       | class | contains | mobile-place-top          |
+       | class | contains | tablet-padding-top-48     |
+       | class | contains | tablet-padding-right-44   |
+       | class | contains | tablet-padding-bottom-40  |
+       | class | contains | tablet-padding-left-36    |
+       | class | contains | tablet-margin-top-64      |
+       | class | contains | tablet-margin-right-60    |
+       | class | contains | tablet-margin-bottom-56   |
+       | class | contains | tablet-margin-left-52     |
+
+
+<@id-3> <@desc-3> <@envs>
+  Scenario: Dexter author can set desktop spacing for position
+    Then I open Configuration dialog of the newly added component
+    And I configure settings in "Spacing" tab:  
+       | Tablet[0]              | Inherit from previous screen size |
+       | Tablet[1]              | Inherit from previous screen size |
+       | Desktop[0]             | Override |
+       | Desktop[1]             | Override |          
+       | Desktop:Top Padding     | 48px | 
+       | Desktop:Right Padding   | 44px |
+       | Desktop:Bottom Padding  | 40px |
+       | Desktop:Left Padding    | 36px |
+       | Desktop:Top Margin      | 64px |  
+       | Desktop:Right Margin    | 60px |
+       | Desktop:Bottom Margin   | 56px |
+       | Desktop:Left Margin     | 52px |     
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "position/position-par"
+    Then I type "Text in Position component" into Text component "position/position-par/text" 
+    Then I open the edited page on preview mode
+    Then I wait for 10 seconds
+    Then I should see an element "div" with attributes:
+       | class | contains | dexter-Position            |
+       | class | contains | mobile-place-relative      | 
+       | class | contains | mobile-place-left          |
+       | class | contains | mobile-place-top          |
+       | class | contains | desktop-padding-top-48     |
+       | class | contains | desktop-padding-right-44   |
+       | class | contains | desktop-padding-bottom-40  |
+       | class | contains | desktop-padding-left-36    |
+       | class | contains | desktop-margin-top-64      |
+       | class | contains | desktop-margin-right-60    |
+       | class | contains | desktop-margin-bottom-56   |
+       | class | contains | desktop-margin-left-52     |       
+
+
+<@id-4> <@desc-4> <@envs>
+  Scenario: Dexter author can override mobile spacing for position
+    Then I open Configuration dialog of the newly added component
+    And I configure settings in "Spacing" tab:  
+       | Top Padding            | 16px | 
+       | Right Padding          | 12px |
+       | Bottom Padding         |  8px |
+       | Left Padding           |  4px |
+       | Top Margin             | 32px |  
+       | Right Margin           | 28px |
+       | Bottom Margin          | 24px |
+       | Left Margin            | 20px | 
+       | Tablet[0]              | Override |
+       | Tablet[1]              | Override |
+       | Tablet:Top Padding     | 48px | 
+       | Tablet:Right Padding   | 44px |
+       | Tablet:Bottom Padding  | 40px |
+       | Tablet:Left Padding    | 36px |
+       | Tablet:Top Margin      | 64px |  
+       | Tablet:Right Margin    | 60px |
+       | Tablet:Bottom Margin   | 56px |
+       | Tablet:Left Margin     | 52px |     
+       | Desktop[0]             | Override |
+       | Desktop[1]             | Override |          
+       | Desktop:Top Padding     | 48px | 
+       | Desktop:Right Padding   | 44px |
+       | Desktop:Bottom Padding  | 40px |
+       | Desktop:Left Padding    | 36px |
+       | Desktop:Top Margin      | 64px |  
+       | Desktop:Right Margin    | 60px |
+       | Desktop:Bottom Margin   | 56px |
+       | Desktop:Left Margin     | 52px |     
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "position/position-par"
+    Then I type "Text in Position component" into Text component "position/position-par/text" 
+    Then I open the edited page on preview mode
+    Then I wait for 10 seconds
+    Then I should see an element "div" with attributes:
+       | class | contains | dexter-Position            |
+       | class | contains | mobile-place-relative      | 
+       | class | contains | mobile-place-left          |
+       | class | contains | mobile-place-top          |
+       | class | contains | desktop-padding-top-48     |
+       | class | contains | desktop-padding-right-44   |
+       | class | contains | desktop-padding-bottom-40  |
+       | class | contains | desktop-padding-left-36    |
+       | class | contains | desktop-margin-top-64      |
+       | class | contains | desktop-margin-right-60    |
+       | class | contains | desktop-margin-bottom-56   |
+       | class | contains | desktop-margin-left-52     |       

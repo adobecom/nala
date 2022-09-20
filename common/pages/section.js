@@ -14,14 +14,14 @@ export class Section {
     let elements = $$(selector).filter(x => x.isDisplayed());
     return elements.length > 0 ? elements[0] : undefined;
   }
-
+  
   /**
    * Find the nth displayed element
    * @param {string} selector XPath or CSS selector of the element
    * @param {string} nth nth visible element
    * @return {object} Displayed element or undefined if not found
    */
-  nth_displayed$(selector, nth) {
+   nth_displayed$(selector, nth) {
     let elements = $$(selector).filter(x => x.isDisplayed());
     return elements.length > 0 ? elements[nth] : undefined;
   }

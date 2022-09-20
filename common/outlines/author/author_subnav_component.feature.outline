@@ -1,0 +1,864 @@
+Feature: [E2E][Author] Subnav Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Subnav-Component-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Text"
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author can configure gnav header
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "General" tab:
+       | Disable                  | Override   |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I should see "Creativity & Design"
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author can configure subnav to show child pages as links
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Inherit from parent   |
+       | Mnemonic                  | Inherit from parent   |
+       | Logo Text                 | Inherit from parent   |
+       | Logo Link                 | Inherit from parent   |
+       | CTA Button                | Inherit from parent   |
+       | Links                     | Override              |
+       | Show child pages as links | checked               | 
+     Then I click Done in Configuration dialog
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page2"
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page1        |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page2        |
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author can configure subnav with custom links
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Inherit from parent   |
+       | Mnemonic                  | Inherit from parent   |
+       | Logo Text                 | Inherit from parent   |
+       | Logo Link                 | Inherit from parent   |
+       | CTA Button                | Inherit from parent   |
+       | Links                     | Override              |
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+       | href   | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should see "background" color is "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I hover on element "//a[@title='iPad Features']"
+     Then I should see "background" color is not "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I click on element "//a[@title='iPad Features']"
+     Then I should see "Take your creativity to new places with Photoshop on the iPad."
+     Then I go back to last page
+     Then I switch to mobile view
+     Then I should not see "iPad Features"
+     When I click on element ".Subnav-trigger"
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> author can configure subnav with custom links and dropdown
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Inherit from parent   |
+       | Mnemonic                  | Inherit from parent   |
+       | Logo Text                 | Inherit from parent   |
+       | Logo Link                 | Inherit from parent   |
+       | CTA Button                | Inherit from parent   |
+       | Links                     | Override              |
+       | Show dropdowns            | checked               | 
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I configure settings in "Sublinks" tab:
+      | Column Headline   | Headline    |
+      | Links             | @#1         |
+      | - Title           | What's New  |
+      | - Url             | https://helpx.adobe.com/photoshop/using/whats-new.html?promoid=2SLRC6G5&mv=other |
+      | - Description     | What's New  |
+      | Links             | @#2         |
+      | - Title           | Photoshop Brushes   |
+      | - Url             | https://www.adobe.com/products/photoshop/photoshop-brushes.html?promoid=YB1TGNX3&mv=other |
+      | - Description     | Photoshop Brushes   |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should not see "What's New"
+     When I click on element "//a[@title='Learn & Support']"
+     Then I wait for 2 seconds
+     Then I should see "Headline"
+     Then I should see "What's New"
+     Then I should see 2 elements with attributes:
+       | class  | Subnav-submenu-description |
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | What's New          |
+       | href   | https://helpx.adobe.com/photoshop/using/whats-new.html?promoid=2SLRC6G5&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | Photoshop Brushes   |
+       | href   | https://www.adobe.com/products/photoshop/photoshop-brushes.html?promoid=YB1TGNX3&mv=other     |
+     When I click on element "//a[@title='Photoshop Brushes']"
+     Then I should see "Make your mark with Photoshop brushes."
+     Then I go back to last page
+     Then I should see "background" color is "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I hover on element "//a[@title='iPad Features']"
+     Then I should see "background" color is not "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I click on element "//a[@title='iPad Features']"
+     Then I should see "Take your creativity to new places with Photoshop on the iPad."
+     Then I go back to last page
+     Then I switch to mobile view
+     Then I should not see "iPad Features"
+     When I click on element ".Subnav-trigger"
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+
+    <@id-5> <@desc-5> <@envs>
+    Scenario: <Site> author can configure subnav with custom links and dropdown Hidden on Deskop
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Inherit from parent   |
+       | Mnemonic                  | Inherit from parent   |
+       | Logo Text                 | Inherit from parent   |
+       | Logo Link                 | Inherit from parent   |
+       | CTA Button                | Inherit from parent   |
+       | Links                     | Override              |
+       | Show dropdowns            | checked               | 
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+       | Hidden on Desktop        | checked                                                                       |
+     Then I configure settings in "Sublinks" tab:
+      | Column Headline   | Features            |
+      | Links             | @#1                 |
+      | - Title           | Content-Aware Fill  |
+      | - Url             | https://www.adobe.com/products/photoshop/content-aware-fill.html?promoid=SYBNM1M5&mv=other |
+      | - Description     | Content-Aware Fill Description |
+      | Links             | @#2                 |
+      | - Title           | Photo Effects       |
+      | - Url             | https://www.adobe.com/products/photoshop/photo-effects.html |
+      | - Description     | Photo Effects Description      |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I configure settings in "Sublinks" tab:
+      | Column Headline   | Headline    |
+      | Links             | @#1         |
+      | - Title           | What's New  |
+      | - Url             | https://helpx.adobe.com/photoshop/using/whats-new.html?promoid=2SLRC6G5&mv=other |
+      | - Description     | What's New Description |
+      | Links             | @#2         |
+      | - Title           | Photoshop Brushes   |
+      | - Url             | https://www.adobe.com/products/photoshop/photoshop-brushes.html?promoid=YB1TGNX3&mv=other |
+      | - Description     | Photoshop Brushes Description  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I should not see "iPad Features"
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should not see "What's New"
+     When I click on element "//a[@title='Learn & Support']"
+     Then I wait for 2 seconds
+     Then I should see "Headline"
+     Then I should see "What's New"
+     Then I should see "What's New Description"
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | What's New          |
+       | href   | https://helpx.adobe.com/photoshop/using/whats-new.html?promoid=2SLRC6G5&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | Photoshop Brushes   |
+       | href   | https://www.adobe.com/products/photoshop/photoshop-brushes.html?promoid=YB1TGNX3&mv=other     |
+     When I click on element "//a[@title='Photoshop Brushes']"
+     Then I should see "Make your mark with Photoshop brushes."
+     Then I go back to last page
+     Then I should see "background" color is "rgba(0, 0, 0, 0)" on element "//a[@title='Compare Plans']"
+     Then I hover on element "//a[@title='Compare Plans']"
+     Then I should see "background" color is not "rgba(0, 0, 0, 0)" on element "//a[@title='Compare Plans']"
+     Then I click on element "//a[@title='Compare Plans']"
+     Then I should see "Find the Adobe Creative Cloud plan that’s right for you."
+     Then I go back to last page
+     Then I switch to mobile view
+     Then I should not see "iPad Features"
+     When I click on element ".Subnav-trigger"
+     Then I should see "iPad Features"
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should not see "What's New"
+     When I click on element "//a[@title='Learn & Support']"
+     Then I wait for 2 seconds
+     Then I should not see "Headline"
+     Then I should not see "What's New Description"
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | What's New          |
+       | href   | https://helpx.adobe.com/photoshop/using/whats-new.html?promoid=2SLRC6G5&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | Photoshop Brushes   |
+       | href   | https://www.adobe.com/products/photoshop/photoshop-brushes.html?promoid=YB1TGNX3&mv=other     |
+     When I click on element "//a[@title='Photoshop Brushes']"
+     Then I should see "Make your mark with Photoshop brushes."
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> author can configure subnav with custom links and show child pages
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Inherit from parent   |
+       | Mnemonic                  | Inherit from parent   |
+       | Logo Text                 | Inherit from parent   |
+       | Logo Link                 | Inherit from parent   |
+       | CTA Button                | Inherit from parent   |
+       | Links                     | Override              |
+       | Show child pages as links | checked               |
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page1        |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+       | href   | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should see "background" color is "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I hover on element "//a[@title='iPad Features']"
+     Then I should see "background" color is not "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I click on element "//a[@title='iPad Features']"
+     Then I should see "Take your creativity to new places with Photoshop on the iPad."
+     Then I go back to last page
+     Then I switch to mobile view
+     Then I should not see "iPad Features"
+     When I click on element ".Subnav-trigger"
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> author can configure subnav with custom links and show child pages and more configs
+     #Then I open editor's side panel
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Override              |
+       | Theme:Theme               | Photoshop             |
+       #| Mnemonic                  | Override              |
+       #| Image asset               | Assets:Images:First   | 
+       | Logo Text                 | Override              |
+       | Logo Text:Logo Text       | Adobe Photoshop       |
+       | Use Logo Text as page title| checked              |
+       | Logo Link                 | Override              |
+       | Logo Link:Logo Link       | https://www.adobe.com |
+       | CTA Button                | Override              |
+       | CTA Text                  | Buy now               |
+       | Path Type                 | CTA                   |
+       | CTA Path                  | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other                  |
+       | Links                     | Override              |
+       | Show child pages as links | checked               |
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page1        |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+       | href   | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should see css style for element ".Subnav-background":
+       |background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0)); opacity: 1;|
+     Then I should see "ADOBE PHOTOSHOP"
+     Then I should see an element with attributes:
+       | class  | Subnav-logo                |
+       | href   | https://www.adobe.com     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-button         |
+       | title  | Buy now                    |
+       | href   | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other     |
+     Then I should see "background" color is "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I hover on element "//a[@title='iPad Features']"
+     Then I should see "background" color is not "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I click on element "//a[@title='iPad Features']"
+     Then I should see "Take your creativity to new places with Photoshop on the iPad."
+     Then I go back to last page
+     When I scroll the page to the bottom
+     Then I should see "ADOBE PHOTOSHOP"
+     When I scroll the page to the top
+     Then I switch to mobile view
+     Then I should not see "iPad Features"
+     When I click on element ".Subnav-trigger"
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+
+ <@id-8> <@desc-8> <@envs>
+  Scenario: <Site> author can configure subnav and disable subNav
+     #Then I open editor's side panel
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | checked               |
+       | Theme                     | Override              |
+       | Theme:Theme               | Photoshop             |
+       #| Mnemonic                  | Override              |
+       #| Image asset               | Assets:Images:First   | 
+       | Logo Text                 | Override              |
+       | Logo Text:Logo Text       | Adobe Photoshop       |
+       | Use Logo Text as page title| checked              |
+       | Logo Link                 | Override              |
+       | Logo Link:Logo Link       | https://www.adobe.com |
+       | CTA Button                | Override              |
+       | CTA Text                  | Buy now               |
+       | Path Type                 | CTA                   |
+       | CTA Path                  | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other                  |
+       | Links                     | Override              |
+       | Show child pages as links | checked               |
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I open the edited page on preview mode
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page1        |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+       | href   | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other     |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should not see "ADOBE PHOTOSHOP"
+     Then I should not see an element with attributes:
+       | class  | Subnav-logo                |
+       | href   | https://www.adobe.com     |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-button         |
+       | title  | Buy now                    |
+       | href   | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other     |
+     Then I switch to mobile view
+     Then I should not see "ADOBE PHOTOSHOP"
+     Then I should not see "iPad Features"
+
+  <@id-9> <@desc-9> <@envs>
+  Scenario: <Site> author can configure subnav and disable Global Nav
+     #Then I open editor's side panel
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "General" tab:
+       | Disable                  | Override              |
+       | Disable Global Nav       | checked               |
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | checked               |
+       | Theme                     | Override              |
+       | Theme:Theme               | Photoshop             |
+       #| Mnemonic                  | Override              |
+       #| Image asset               | Assets:Images:First   | 
+       | Logo Text                 | Override              |
+       | Logo Text:Logo Text       | Adobe Photoshop       |
+       | Use Logo Text as page title| checked              |
+       | Logo Link                 | Override              |
+       | Logo Link:Logo Link       | https://www.adobe.com |
+       | CTA Button                | Override              |
+       | CTA Text                  | Buy now               |
+       | Path Type                 | CTA                   |
+       | CTA Path                  | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other                  |
+       | Links                     | Override              |
+       | Show child pages as links | checked               |
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I open the edited page on preview mode
+     Then I should not see "Sign In"
+     Then I should not see "Creativity & Design"
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page1        |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+       | href   | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other     |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should not see "ADOBE PHOTOSHOP"
+     Then I should not see an element with attributes:
+       | class  | Subnav-logo                |
+       | href   | https://www.adobe.com     |
+     Then I should not see an element with attributes:
+       | class  | Subnav-menu-button         |
+       | title  | Buy now                    |
+       | href   | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other     |
+     Then I switch to mobile view
+     Then I should not see "ADOBE PHOTOSHOP"
+     Then I should not see "iPad Features"
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario: <Site> author can configure subnav with disable sticky
+     #Then I open editor's side panel
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "General" tab:
+       | Disable Sticky                          | Override              |
+       | Disable Sticky                          | checked               |
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Override              |
+       | Theme:Theme               | Photoshop             |
+       #| Mnemonic                  | Override              |
+       #| Image asset               | Assets:Images:First   | 
+       | Logo Text                 | Override              |
+       | Logo Text:Logo Text       | Adobe Photoshop       |
+       | Use Logo Text as page title| checked              |
+       | Logo Link                 | Override              |
+       | Logo Link:Logo Link       | https://www.adobe.com |
+       | CTA Button                | Override              |
+       | CTA Text                  | Buy now               |
+       | Path Type                 | CTA                   |
+       | CTA Path                  | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other                  |
+       | Links                     | Override              |
+       | Show child pages as links | checked               |
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I type "aaaaaaaaaabbbbbbbbbcccccccccccc" into Text component
+     And I insert a component "Dexter/Image"
+     Then I open editor's side panel
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | Assets:Images:First |
+     Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text          | image test    |
+     Then I click Done in Configuration dialog
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page1        |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+       | href   | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should see css style for element ".Subnav-background":
+       |background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0)); opacity: 1;|
+     Then I should see "ADOBE PHOTOSHOP"
+     Then I should see an element with attributes:
+       | class  | Subnav-logo                |
+       | href   | https://www.adobe.com     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-button         |
+       | title  | Buy now                    |
+       | href   | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other     |
+     Then I should see "background" color is "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I hover on element "//a[@title='iPad Features']"
+     Then I should see "background" color is not "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I click on element "//a[@title='iPad Features']"
+     Then I should see "Take your creativity to new places with Photoshop on the iPad."
+     Then I go back to last page
+     When I scroll the page to the bottom
+     Then I should see "Featured downloads" within viewport
+     Then I should not see "ADOBE PHOTOSHOP" within viewport
+
+  <@id-11> <@desc-11> <@envs>
+  Scenario: <Site> author can configure subnav with personalize cta
+     #Then I open editor's side panel
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Inherit from parent   |
+       | Mnemonic                  | Inherit from parent   |
+       | Logo Text                 | Inherit from parent   |
+       | Logo Link                 | Inherit from parent   |
+       | CTA Button                | Override              |
+       | CTA Text                  | Buy now               |
+       | Path Type                 | CTA                   |
+       | CTA Path                  | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other                  |
+       | Links                     |  Inherit from parent  |
+     Then I configure settings in "Personalize" tab:
+       | Personalize CTA           | Override                   |
+       | Product Plan              | CC Photography Plan        |
+       | Personalization           | @#1                        |
+       | Select Platform Tags      | Dexter : Platform / Mac OS |
+       | CTA Label *               | iOS CTA                    |
+       | CTA Path *                | https://www.adobe.com      |
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I open the edited page on preview mode
+     Then I wait for 2 seconds
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-button     |
+       | title  | iOS CTA                |
+       | href   | https://www.adobe.com  |
+     Then I should see an element with attributes:
+       | data-personalization | {"personalizedData":[{"platforms":{"scripts":[{"jsToEvaluate":"dexter.personalization.technology.os.versionArray","jsComparison":">=","jsValue":"10.0"}]},"user-data":{"scripts":[]},"variation":{"label":"iOS CTA","url":"https://www.adobe.com"}}]} |
+
+  <@id-12> <@desc-12> <@envs>
+  Scenario: <Site> author can configure subnav with child page inheritance
+     #Then I open editor's side panel
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Override              |
+       | Disable SubNav            | unchecked             |
+       | Theme                     | Override              |
+       | Theme:Theme               | Photoshop             |
+       #| Mnemonic                  | Override              |
+       #| Image asset               | Assets:Images:First   | 
+       | Logo Text                 | Override              |
+       | Logo Text:Logo Text       | Adobe Photoshop       |
+       | Use Logo Text as page title| checked              |
+       | Logo Link                 | Override              |
+       | Logo Link:Logo Link       | https://www.adobe.com |
+       | CTA Button                | Override              |
+       | CTA Text                  | Buy now               |
+       | Path Type                 | CTA                   |
+       | CTA Path                  | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other                  |
+       | Links                     | Override              |
+       | Show child pages as links | checked               |
+       | Show dropdowns            | checked               | 
+     Then I click Done in Configuration dialog
+     And I refresh the page
+     Then I wait for 2 seconds
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "1st" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | iPad Features                                                                 |
+       | Url                     | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other  |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "2nd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Learn & Support                                                           |
+       | Url                     | https://helpx.adobe.com/support/photoshop.html?promoid=5NHJ8FD2&mv=other  |
+     Then I configure settings in "Sublinks" tab:
+      | Column Headline   | Headline    |
+      | Links             | @#1         |
+      | - Title           | What's New  |
+      | - Url             | https://helpx.adobe.com/photoshop/using/whats-new.html?promoid=2SLRC6G5&mv=other |
+      | - Description     | What's New  |
+      | Links             | @#2         |
+      | - Title           | Photoshop Brushes   |
+      | - Url             | https://www.adobe.com/products/photoshop/photoshop-brushes.html?promoid=YB1TGNX3&mv=other |
+      | - Description     | Photoshop Brushes   |
+     Then I click Done in Configuration dialog
+     Then I insert a component "Dexter Restricted/Subnav Link" in subnav
+     Then I wait for 2 seconds
+     Then I open Configuration dialog of "3rd" subnav link
+     Then I configure settings in "General" tab:
+       | Title                   | Compare Plans                                            |
+       | Url                     | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I click Done in Configuration dialog
+     Then I have the page "Test-Subnav-Component-Child-Page-${DateTime}" in the current test page folder with title "Test Page1"
+     Then I edit the test child page under the test page
+     And I insert a component "Dexter/Text"
+     Then I open Configuration dialog of gnav header
+     Then I configure settings in "SubNav" tab:
+       | Disable                   | Inherit from parent   |
+       | Inherit generated links   | checked               |
+       | Inherit custom links      | checked               |
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 10 seconds
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Test Page1        |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Learn & Support   |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | Compare Plans     |
+       | href   | https://adobe.com/products/photoshop/compare-plans.html  |
+     Then I should not see "What's New"
+     When I click on element "//a[@title='Learn & Support']"
+     Then I wait for 2 seconds
+     Then I should see "Headline"
+     Then I should see "What's New"
+     Then I should see 2 elements with attributes:
+       | class  | Subnav-submenu-description |
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | What's New          |
+       | href   | https://helpx.adobe.com/photoshop/using/whats-new.html?promoid=2SLRC6G5&mv=other     |
+     Then I should see an element with attributes:
+       | class  | Subnav-submenu-link |
+       | title  | Photoshop Brushes   |
+       | href   | https://www.adobe.com/products/photoshop/photoshop-brushes.html?promoid=YB1TGNX3&mv=other     |
+     When I click on element "//a[@title='Photoshop Brushes']"
+     Then I should see "Make your mark with Photoshop brushes."
+     Then I go back to last page
+     Then I should see css style for element ".Subnav-background":
+       |background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0)); opacity: 1;|
+     Then I should see "ADOBE PHOTOSHOP"
+     Then I should see an element with attributes:
+       | class  | Subnav-logo                |
+       | href   | https://www.adobe.com     |
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-button         |
+       | title  | Buy now                    |
+       | href   | https://www.adobe.com/creativecloud/plans.html?plan=individual&filter=all&promoid=PYPVPZQK&mv=other     |
+     Then I should see "background" color is "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I hover on element "//a[@title='iPad Features']"
+     Then I should see "background" color is not "rgba(0, 0, 0, 0)" on element "//a[@title='iPad Features']"
+     Then I click on element "//a[@title='iPad Features']"
+     Then I should see "Take your creativity to new places with Photoshop on the iPad."
+     Then I go back to last page
+     When I scroll the page to the bottom
+     Then I should see "ADOBE PHOTOSHOP"
+     When I scroll the page to the top
+     Then I switch to mobile view
+     Then I should not see "iPad Features"
+     When I click on element ".Subnav-trigger"
+     Then I should see an element with attributes:
+       | class  | Subnav-menu-label |
+       | title  | iPad Features     |
+       | href   | https://www.adobe.com/products/photoshop/ipad.html?promoid=2FDNCKN8&mv=other     |

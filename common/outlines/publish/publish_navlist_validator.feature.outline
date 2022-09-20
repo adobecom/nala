@@ -1,0 +1,9 @@
+Feature: [E2E][Publish] Navigation list Validator
+  <@id-1> <@desc-1> <@envs>
+    Scenario Outline: [Acrobat] Checking for  data-navlist-author-error attributes
+      Given I go to "<testing page>"
+       Then I close the geo overlay if present
+       Then I run NavListValidator
+       Then I should not see error attributes, where it is expected to have nonused tab with "<tabOrder>"
+      Examples:
+           <examples-1>

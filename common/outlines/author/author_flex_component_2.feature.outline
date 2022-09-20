@@ -1,0 +1,60 @@
+Feature: [E2E][Author] Flex Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Flex-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Author a flex component for visibility based on Button/CTA
+    Then I insert a component "Dexter/Button"
+    Then I configure the newly added component:
+      | General       | ------------------------ |
+      | Button Text * | Show/Hide Flex Component | 
+      | Button Type   | Toggle                   |
+      | Toggle ID     | flex_toggle              |   
+    Then I insert a component "Dexter/Flex Container"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Component Type | Button / CTA |   
+      | Button / CTA   | flex_toggle  |
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "flex/items"
+    Then I type "Text in Flex component" into Text component "flex/items/text"
+    Then I open the edited page on preview mode
+    Then I close the geo overlay if present
+    Then I should see "Text in Flex component"
+    Then I click on CTA "Show/Hide Flex Component"
+    Then I should not see "Text in Flex component"
+    Then I click on CTA "Show/Hide Flex Component"
+    Then I should see "Text in Flex component"
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: Author a flex component for visibility based on Navigation List
+    Then I insert a component "Dexter/Navigation List"
+    Then I configure the newly added component:
+      | Name *           | flexNavList |
+      | Navigation Items | @#1         |
+      | - Title *        | NavItem 1   |
+      | Navigation Items | @#2         |
+      | - Title *        | NavItem 2   |
+    Then I insert a component "Dexter/Flex Container"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Component Type | NavList     |   
+      | NavList        | flexNavList |
+      | NavItem        | NavItem 2   |
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "flex/items"
+    Then I type "Text in Flex component" into Text component "flex/items/text"
+    Then I open the edited page on preview mode
+    Then I should not see "Text in Flex component"
+    Then I click on NavItem "NavItem 2"
+    Then I should see "Text in Flex component"
+    Then I click on NavItem "NavItem 1"
+    Then I should not see "Text in Flex component"
+
+
+
+
+

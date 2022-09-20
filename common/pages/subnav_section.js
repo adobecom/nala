@@ -5,7 +5,7 @@ export class SubNav extends Section {
   /**
    * @type {object}
    * @description Logo in a subnavigation
-   */
+   */   
   get subnavLogo() {
     return $('.Subnav-logo');
   }
@@ -13,7 +13,7 @@ export class SubNav extends Section {
   /**
    * @type {object[]}
    * @description Array of subnavigation menu items
-   */
+   */   
   get subnavMenuItems() {
     let usingLocalNav = ['default', 'uk'];
     if (usingLocalNav.includes(process.env.locale)) {
@@ -26,10 +26,10 @@ export class SubNav extends Section {
   /**
    * @type {object}
    * @description Buy button in subnavigation
-   */
-  get buyNow() {
+   */   
+   get buyNow() {
         return this.displayed$$('.feds-navLink--primaryCta')[0];
-  }
+   }
 
 
 
@@ -47,7 +47,7 @@ export class SubNav extends Section {
   /**
    * @type {object[]}
    * @description Array of submenu items in subnavigation
-   */
+   */  
   get subnavMenuSubmenuItems() {
     return this.displayed$$('.Subnav-submenu-item > a');
   }

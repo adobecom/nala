@@ -3,10 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 const getMissingSteps = async () => {
-  //for bacom
-  let command_bacom =
-    "npx cucumber-js 'bacom/**/*.feature' --require-module '@babel/register' -r common/steps -r bacom/steps  -d --format json:output_bacom.json -f progress:progress_bacom.txt";
-  exec(command_bacom, (error, stdout, stderr) => {
+  //for acom
+  let command_acom =
+    "npx cucumber-js 'acom/**/*.feature' --require-module '@babel/register' -r common/steps -r acom/steps  -d --format json:output_acom.json -f progress:progress_acom.txt";
+  exec(command_acom, (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
@@ -17,10 +17,10 @@ const getMissingSteps = async () => {
     }
   });
 
-  //for milo
-  let command_milo =
-    "npx cucumber-js 'milo/**/*.feature' --require-module '@babel/register' -r common/steps -r milo/steps  -d --format json:output_milo.json -f progress:progress_dc.txt";
-  exec(command_milo, (error, stdout, stderr) => {
+  //for dc
+  let command_dc =
+    "npx cucumber-js 'dc/**/*.feature' --require-module '@babel/register' -r common/steps -r dc/steps  -d --format json:output_dc.json -f progress:progress_dc.txt";
+  exec(command_dc, (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
@@ -34,7 +34,7 @@ const getMissingSteps = async () => {
 
 getMissingSteps();
 
-let sites = ['bacom', 'milo'];
+let sites = ['acom', 'dc'];
 
 const getFailures = async () => {
   let missingSteps = [];
@@ -43,15 +43,15 @@ const getFailures = async () => {
     let entries = JSON.parse(
       fs.readFileSync(`${JSONpath}/output_${site}.json`)
     );
-    for (const element of entries) {
-      let entry = element.elements;
+    for (let i = 0; i < entries.length; i++) {
+      let entry = entries[i].elements;
       for (let j = 0; j < entry.length; j++) {
         let steps = entry[j].steps;
         for (let k = 0; k < steps.length; k++) {
           let missingStep = {};
           let step_result = steps[k].result.status;
           if (step_result == 'undefined' || step_result == 'ambiguous') {
-            missingStep.uri = element.uri;
+            missingStep.uri = entries[i].uri;
             missingStep.scenarioName = entry[j].name;
             missingStep.stepName = steps[k].name;
             missingStep.result = step_result;

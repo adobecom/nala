@@ -7,7 +7,9 @@ import { RegionSwitch } from './region_switch_section';
 import { LocaleModal } from './locale_modal_section';
 import { Consent } from './consent_section';
 import { SubNav } from './subnav_section';
+import { Jarvis } from './jarvis_section';
 import { CardCollection } from './card_collection_section';
+import { Survey } from './survey_section';
 import { BrowserExtensionModal } from './browser_extension';
 
 
@@ -21,7 +23,9 @@ export class GnavPage extends classes(
   LocaleModal,
   Consent,
   SubNav,
+  Jarvis,
   CardCollection,
+  Survey,
   BrowserExtensionModal
 ) {
   /**
@@ -65,7 +69,7 @@ export class GnavPage extends classes(
   /**
    * @type {object}
    * @description Get cooke consent accept button
-   */
+   */  
   get CookieConsentAccept() {
     return $('#onetrust-accept-btn-handler');
   }

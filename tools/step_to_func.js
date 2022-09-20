@@ -33,7 +33,7 @@ function restoreSpaceLine(lines) {
 
 /**
  * Step function name is a concatenation of words in the step
- * definition regular expression
+ * defintion regulare expression
  * @param {string} regex Regular expression for a step definition
  */
 function formatStepFuncName(regex) {
@@ -65,13 +65,13 @@ function formatStepFuncComment(regex, paramNames) {
  * \`\`\`
  * ${regex}
  * \`\`\`${paramsText}
- */
+ */   
   `;
   return text;
 }
 
 /**
- * Convert step definitions to step function
+ * Convert step defintions to step function
  * @param {string} file File path of JavaScript code
  */
 function convert(file) {

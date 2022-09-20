@@ -1,0 +1,25 @@
+Feature: [E2E][Publish] Extension detection
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario Outline: <Site> page can detect and promote a browser extension if it is not yet installed
+    Given I go to "<Page>"
+    Then I should see a modal promoting the browser extension
+
+    When I click the extension modal button
+    Then I should see "<BrowserExtension>" in the url
+
+    Given I go to "<Page>"
+    Then I close the geo overlay if present
+    When I close the extension modal
+    And I go to "<Page>"
+    Then I close the geo overlay if present
+    Then I should not see a modal promoting the browser extension
+  Examples:
+    <examples-1>
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario Outline: <Site> page can detect and not promote a browser extension if it is already installed
+    Given I go to "<Page>"
+    Then I should not see a modal promoting the browser extension
+  Examples:
+    <examples-2> 

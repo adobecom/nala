@@ -1,0 +1,323 @@
+Feature: [E2E][Author] flex promo
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Verify flex promo in XF with CF master
+    Given I sign in as an author
+    Then I update the cf offers "shared/offers/products/stock/com-individual-abm-regular":
+    | Promotion Code            |                                           |
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/xf-flex-promo-with-cf-master"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | xf-flex-promo-with-cf-master                                                |
+      | Page Name | xf-flex-promo-with-cf-master                                                |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/shared/offers/products/stock/com-individual-abm-regular    |
+      | Offer Variation        | Master                                                                  |
+      | Client Id              | creative                                                                |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I wait for 3 seconds
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$52.99"
+    Then I should see an element with attributes:
+      | href               | https://commerce-stg.adobe.com/store/commitment?cli=creative&co=US&items%5B0%5D%5Bid%5D=24149BD1A8C8A4D80D73F31BB7A8A62F&lang=en        |
+      | data-checkout-type | ucv3 |
+    Then I click on element "//a[contains(@href,'commerce')]"
+    Then I should see "https://commerce-stg.adobe.com/store/commitment" in current url
+    Then I should see "52"
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: Verify flex promo in XF with CF variation using Promo Code
+    Given I sign in as an author
+    Then I update the cf offers "shared/offers/products/stock/com-individual-abm-regular":
+    | Promotion Code            |                                           |
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/xf-flex-promo-cf-variation-using-promocode"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | xf-flex-promo-cf-variation-using-promocode                                  |
+      | Page Name | xf-flex-promo-cf-variation-using-promocode                                  |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/shared/offers/products/stock/com-individual-abm-regular    |
+      | Offer Variation        | promocodetest                                                           |
+      | Client Id              | creative                                                                |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I wait for 3 seconds
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+      | Promotion Code| PPDPromo1|
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$47.69"
+    Then I should see an element with attributes:
+      | href               | https://commerce-stg.adobe.com/store/commitment?apc=PPDPromo1&cli=creative&co=US&items%5B0%5D%5Bid%5D=24149BD1A8C8A4D80D73F31BB7A8A62F&lang=en        |
+      | data-checkout-type | ucv3 |
+    Then I click on element "//a[contains(@href,'commerce')]"
+    Then I should see "https://commerce-stg.adobe.com/store/commitment" in current url
+    Then I should see "47"
+    
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: Verify flex promo in XF with CF master using Promo Code
+    Given I sign in as an author
+    Then I update the cf offers "shared/offers/products/stock/com-individual-abm-regular":
+      | Promotion Code            |    PPDPromo1                                       |
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/xf-flex-promo-cf-master-using-promocode"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | xf-flex-promo-cf-master-using-promocode                                     |
+      | Page Name | xf-flex-promo-cf-master-using-promocode                                     |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/shared/offers/products/stock/com-individual-abm-regular    |
+      | Offer Variation        | Master                                                                  |
+      | Client Id              | creative                                                                |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I wait for 3 seconds
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+      | Promotion Code| PPDPromo1|
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$47.69"
+    Then I should see an element with attributes:
+      | href               | https://commerce-stg.adobe.com/store/commitment?apc=PPDPromo1&cli=creative&co=US&items%5B0%5D%5Bid%5D=24149BD1A8C8A4D80D73F31BB7A8A62F&lang=en        |
+      | data-checkout-type | ucv3 |
+    Then I click on element "//a[contains(@href,'commerce')]"
+    Then I should see "https://commerce-stg.adobe.com/store/commitment" in current url
+    Then I should see "47"
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: Verify flex promo in XF with promo code set from page properties
+    Given I sign in as an author
+    Then I update the cf offers "shared/offers/products/stock/com-individual-abm-regular":
+    | Promotion Code            |                                           |
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/xf-flex-promo-with-promo-code-from-page"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | xf-flex-promo-with-promo-code-from-page                                     |
+      | Page Name | xf-flex-promo-with-promo-code-from-page                                     |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/shared/offers/products/stock/com-individual-abm-regular    |
+      | Offer Variation        | Master                                                                  |
+      | Promotion Code         | gayanePromo                                                             |
+      | Client Id              | creative                                                                |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I wait for 3 seconds
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+      | Promotion Code| PPDPromo1|
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$47.69"
+    Then I should see an element with attributes:
+      | href               | https://commerce-stg.adobe.com/store/commitment?apc=PPDPromo1&cli=creative&co=US&items%5B0%5D%5Bid%5D=24149BD1A8C8A4D80D73F31BB7A8A62F&lang=en        |
+      | data-checkout-type | ucv3 |
+    Then I click on element "//a[contains(@href,'commerce')]"
+    Then I should see "https://commerce-stg.adobe.com/store/commitment" in current url
+    Then I should see "47"
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: Verify flex promo in XF variation with parameter based promo
+    Given I sign in as an author
+    Then I update the cf offers "shared/offers/products/stock/com-individual-abm-regular":
+    | Promotion Code            |                                           |
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/xf-flex-promo-variation"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | xf-flex-promo-variation                                                     |
+      | Page Name | xf-flex-promo-variation                                                     |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/shared/offers/products/stock/com-individual-abm-regular    |
+      | Offer Variation        | Master                                                                  |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 5 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    Then I open Variations tab on the side panel
+    Then I click on selector "[trackingelement='create']"
+    Then I click on selector "#AddVariation"
+    Then I should see css selector:
+      | class | xf-create-variation-dialog |
+    Then I set value "/conf/<site>/settings/wcm/templates/experience-fragment-web-variation" in selector "[name='template'] .coral3-Textfield"
+    Then I set value "xf-flex-promo-variation-with-parameter-base-promo" in selector "[name='pageTitle']"
+    Then I click Done in Configuration dialog
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Promotion Code         | gayanePromo                                                             |
+      | Client Id              | creative                                                                |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I wait for 3 seconds
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+      | Promotion Code| PPDPromo1|
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$47.69"
+    Then I should see an element with attributes:
+      | href               | https://commerce-stg.adobe.com/store/commitment?apc=PPDPromo1&cli=creative&co=US&items%5B0%5D%5Bid%5D=24149BD1A8C8A4D80D73F31BB7A8A62F&lang=en        |
+      | data-checkout-type | ucv3 |
+    Then I click on element "//a[contains(@href,'commerce')]"
+    Then I should see "https://commerce-stg.adobe.com/store/commitment" in current url
+    Then I should see "47"
+    Then I wait for 3 seconds
+    Then I go to "/editor.html/content/experience-fragments/dexter/us/en/testautomation/xf-flex-promo-variation/xf-flex-promo-variation-with-parameter-base-promo.html"
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Promotion Code         |                                                              |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$52.99"
+    Then I should see an element with attributes:
+      | href               | https://commerce-stg.adobe.com/store/commitment?apc=PPDPromo1&cli=creative&co=US&items%5B0%5D%5Bid%5D=24149BD1A8C8A4D80D73F31BB7A8A62F&lang=en        |
+      | data-checkout-type | ucv3 |
+    Then I click on element "//a[contains(@href,'commerce')]"
+    Then I should see "https://commerce-stg.adobe.com/store/commitment" in current url
+    Then I should see "47"
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: Verify flex promo in XF variation with name based promo
+    Given I sign in as an author
+    Then I update the cf offers "shared/offers/products/stock/com-individual-abm-regular":
+    | Promotion Code            |                                           |
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/xf-flex-promo-variation-name"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | xf-flex-promo-variation-name                                                |
+      | Page Name | xf-flex-promo-variation-name                                                |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/shared/offers/products/stock/com-individual-abm-regular    |
+      | Offer Variation        | Master                                                                  |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 5 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    Then I open Variations tab on the side panel
+    Then I click on selector "[trackingelement='create']"
+    Then I click on selector "#AddVariation"
+    Then I should see css selector:
+      | class | xf-create-variation-dialog |
+    Then I set value "/conf/<site>/settings/wcm/templates/experience-fragment-web-variation" in selector "[name='template'] .coral3-Textfield"
+    Then I set value "gayanePromo" in selector "[name='pageTitle']"
+    Then I set value "gayanePromo" in selector "[name='pageName']"
+    Then I click Done in Configuration dialog
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Client Id              | creative                                                                |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I wait for 3 seconds
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+      | Promotion Code| PPDPromo1|
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$47.69"
+    Then I should see an element with attributes:
+      | href               | https://commerce-stg.adobe.com/store/commitment?apc=PPDPromo1&cli=creative&co=US&items%5B0%5D%5Bid%5D=24149BD1A8C8A4D80D73F31BB7A8A62F&lang=en        |
+      | data-checkout-type | ucv3 |
+    Then I click on element "//a[contains(@href,'commerce')]"
+    Then I should see "https://commerce-stg.adobe.com/store/commitment" in current url
+    Then I should see "47"

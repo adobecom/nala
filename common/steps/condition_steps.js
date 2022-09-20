@@ -13,19 +13,19 @@ Then(/^(.*) if env (|not )in ([^:]*)$/, stepEnv);
 
 Then(/^(.*) if env (|not )in (.+):$/, stepEnvTable);
 
-// Conditionally run a step for a locale.
+// Conditioinally run a step for a locale.
 // Add "if locale in jp,ru" or "if locale not in jp,ru" to conditionally run a step
 Then(/^(.*) if locale (|not )in ([^:]*)$/, stepLocale);
 
 Then(/^(.*) if locale (|not )in (.+):$/, { timeout: 1200000 }, stepLocaleTable);
 
-// Conditionally run a step for a geo-ip.
+// Conditioinally run a step for a geo-ip.
 // Add "if in jp,ru" or "if not in jp,ru" to conditionally run a step
 Then(/^(.*) if (|not )in ([^:]*)$/, stepGeoIp);
 
 Then(/^(.*) if (|not )visiting from a different country$/, stepAkamai);
 
-// Conditionally run a step based on Dexter version
+// Conditioinally run a step based on Dexter version
 Then(/^(.*) if Dexter "(.+)" (version|build) (>|<|=|<=|>=) ([^:]+)$/, stepDexterModVersion);
 
 Then(/^(.*) if Dexter "(.+)" (version|build) (>|<|=|<=|>=) ([^:]+):$/, stepDexterModVersionTable);
@@ -35,7 +35,7 @@ Then(/^(.*) if (|not )using regular nav$/, stepRegularNav);
 Then(/^(.*) if (|not )browser url contains "([^"]*)"$/, stepBrowserUrl);
 
 
-/* Old condition steps
+/* Old conditon steps
 
 Then(/^(.*) if (|not )on ([^:]*)$/, function (text, neg, locales) {
   //   locales = locales.split(',').map(&:strip)
@@ -168,7 +168,7 @@ function stepLocaleTable(step, neg, values, table) {
  */
 function stepGeoIp(step, neg, values) {
   let envs = values.split(',').map(Function.prototype.call, String.prototype.trim);
-  if (XOR(neg != '', envs.includes(process.env.akamaiLocale))) {
+  if (XOR(neg != '', envs.includes(browser.config.profile.geolocation))) {
     return this.step(step);
   }
 }
@@ -182,17 +182,17 @@ function stepGeoIp(step, neg, values) {
  * @param {string} neg "" for positive or "not " for negative
  */
  function stepAkamai(step, neg) {
-  if (XOR(neg != '', browser.config.locales.find(x => x.locale === browser.config.profile.locale).akamai !== browser.config.profile.akamaiLocale)) {
+  if (XOR(neg != '', browser.config.locales.find(x => x.locale === browser.config.profile.locale).akamai !== browser.config.profile.geolocation)) {
     return this.step(step);
   }
 }
 
 /**
- * Dexter module version comparison used by the conditional steps
+ * Dexter module version comparision used by the conditional steps
  * @param {string} modName A Dexter module
  * @param {string} verOrBld version or build to be compared
  * @param {string} condition A condition operator <, >, or =
- * @param {string} version Dexter module version/build to be compared
+ * @param {string} version Dexter module verion/build to be compared
  * @returns {boolean}
  */
 function dexterModVersionCompare(modName, verOrBld, condition, version) {
@@ -222,7 +222,7 @@ function dexterModVersionCompare(modName, verOrBld, condition, version) {
  * @param {string} modName A Dexter module
  * @param {string} verOrBld version or build to be compared
  * @param {string} condition A condition operator <, >, or =
- * @param {string} version Dexter module version/build to be compared
+ * @param {string} version Dexter module verion/build to be compared
  */
 function stepDexterModVersion(step, modName, verOrBld, condition, version) {
   if (dexterModVersionCompare(modName, verOrBld, condition, version)) {
@@ -239,7 +239,7 @@ function stepDexterModVersion(step, modName, verOrBld, condition, version) {
  * @param {string} modName A Dexter module
  * @param {string} verOrBld version or build to be compared
  * @param {string} condition A condition operator <, >, or =
- * @param {string} version Dexter module version/build to be compared
+ * @param {string} version Dexter module verion/build to be compared
  * @param {string[][]} table Table for the step
  */
 function stepDexterModVersionTable(step, modName, verOrBld, condition, version, table) {

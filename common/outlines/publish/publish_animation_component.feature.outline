@@ -1,0 +1,23 @@
+Feature: [E2E][Publish] Animation Component
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author a Animation component with Fade in
+    Given I go to "testautomation/Test-Animation-01.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should not see "Test editing a page"
+    Then I should see an element with attributes:
+      | class        | dexter-Animation                                            |
+      | data-effects | {"name":"fadein","effects":{"fadeStart":0.0,"fadeEnd":1.0}} |
+    Then I should see css style for element ".dexter-Animation":
+      | .fadein { opacity: 0.0; }                                                      |
+      | .fadein.fadein--is-Animating { animation: fadein 3s 0s linear normal both 1; } |
+      | @keyframes fadein { from { opacity: 0.0; } to { opacity: 1.0; }  }             |
+      | .fadein-transition { opacity: 0.0; transition: 3s 0s linear; }                 |
+      | .fadein-transition.fadein-transition--is-Animating { opacity: 1.0; }           |
+    Then I should see an element with attributes:
+      | data-animations | [{"type":"hover","name":"fadein"}] |
+    Then I hover on element ".cmp-text"
+    Then I wait for 5 seconds
+    Then I should see "Test editing a page"

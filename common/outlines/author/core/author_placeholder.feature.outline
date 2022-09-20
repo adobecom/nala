@@ -1,0 +1,186 @@
+Feature: [E2E][Author] placeholder
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Verify placeholder type as offer-price
+    Given I sign in as an author
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/placeholderofferprice"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | placeholderofferprice                                                       |
+      | Page Name | placeholderofferprice                                                       |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatstandard-monthly-annual-commitment |
+      | Offer Variation        | Master                                                                  |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price}}" into Text component
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price: US$12.99"
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: Verify placeholder type as offer
+    Given I sign in as an author
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/placeholderoffer"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | placeholderoffer                                                            |
+      | Page Name | placeholderoffer                                                            |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatstandard-monthly-annual-commitment |
+      | Offer Variation        | Master                                                                  |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer term: {{dexter.commerce.cf.0.offers.0.term}}, offer specId: {{dexter.commerce.cf.0.offers.0.specId}}" into Text component
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer term: MONTHLY, offer specId: 04ea5633-3389-c2f1-efd1-5eb8fcf79e87"
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: Verify placeholder type as offer-price-html
+    Given I sign in as an author
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/placeholderofferpricehtml"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | placeholderofferpricehtml                                                   |
+      | Page Name | placeholderofferpricehtml                                                   |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatstandard-monthly-annual-commitment |
+      | Offer Variation        | Master                                                                  |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price html: {{dexter.commerce.price-html}}" into Text component
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price html:"
+    Then I should see "US$"
+    Then I should see "12.99"
+    Then I should see "/mo"
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: Verify placeholder type as offer-text
+    Given I sign in as an author
+    And I have the page "Test-Placeholder-${DateTime}" in the test folder
+    And I edit the test page in the test folder
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/placeholderoffertext"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation             |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | placeholderoffertext                                                  |
+      | Page Name | placeholderoffertext                                                  |
+    Then I switch to the editor tab
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "{{ag.ph.buynow}}" into Text component
+    Then I wait for 3 seconds
+    And I edit the test page in the test folder
+    And I insert a component "Dexter/Experience Fragment"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings:
+      | Variation  | /content/experience-fragments/dexter/us/en/testautomation/placeholderoffertext/master |  
+    Then I wait for 3 seconds
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I wait for 2 seconds
+    And I close US geo popup if have
+    Then I should see "Buy Now"
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: Verify placeholder type as offer-url
+    Given I sign in as an author
+    And I have the page "Test-Placeholder-${DateTime}" in the test folder
+    And I edit the test page in the test folder
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "{{dexter.adobe.blog}}" into Text component
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "https://theblog.adobe.com/creative-cloud/photoshop/"
+  
+  <@id-6> <@desc-6> <@envs>
+  Scenario: Verify placeholder type as offer-content
+    Given I sign in as an author
+    And I have the page "Test-Placeholder-${DateTime}" in the test folder
+    And I edit the test page in the test folder
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "{{dexter.cta.title}}" into Text component
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "Buy now"
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: Verify placeholder type as offer-price
+    Given I sign in as an author
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/placeholdernotexisting"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | placeholdernotexisting                                                       |
+      | Page Name | placeholdernotexisting                                                       |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatstandard-monthly-annual-commitment |
+      | Offer Variation        | Master                                                                  |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "offer price: {{dexter.commerce.price1}}" into Text component
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "offer price:"
+
+  <@id-8> <@desc-8> <@envs>
+  Scenario: Verify placeholder type as offer-price
+    Given I sign in as an author
+    Then I delete the page "/content/experience-fragments/dexter/us/en/testautomation/placeholderofferpricenotavailable"
+    Then I create a new experience fragment:
+      | Folder    | /content/experience-fragments/dexter/us/en/testautomation                   |
+      | Template  | /conf/dexter/settings/wcm/templates/experience-fragment-web-variation       |
+      | Title     | placeholderofferpricenotavailable                                                       |
+      | Page Name | placeholderofferpricenotavailable                                                       |
+    Then I switch to the editor tab
+    Then I wait for 3 seconds
+    Then I open page properties of XF
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/shared/offers/products/all-apps/com-individual-abm         |
+      | Offer Variation        | Master                                                                  |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    And I insert a component "Dexter/Text"
+    Then I wait for 3 seconds
+    Then I type "Price with placeholder 'dexter.commerce.price':  {{dexter.commerce.price}}Proce with placeholder 'dexter.commerce.cf.0.price':  {{dexter.commerce.cf.0.price}}Price with placeholder 'dexter.commerce.cf.1.price':  {{dexter.commerce.cf.1.price}}" into Text component
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see "Price with placeholder 'dexter.commerce.price':  ...Proce with placeholder 'dexter.commerce.cf.0.price':  ...Price with placeholder 'dexter.commerce.cf.1.price':  ..."

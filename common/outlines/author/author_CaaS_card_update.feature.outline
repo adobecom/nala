@@ -1,0 +1,67 @@
+Feature: [Author] Consonant Card Collection
+
+    <@id-1> <@desc-1> <@envs>
+    Scenario: <Site> author update a created card and see the changes
+        Given I sign in as an author
+        And I have the page "Test-CaaS-${DateTime}" in the test folder
+        And I edit the test page in the test folder
+        Then I open page properties
+        Then I input "article" then add a tag with value "caas:content-type/article" to the field with label "Tags"
+        Then I wait for 3 seconds
+        Then I configure settings in "Chimera" tab:
+            | Headline | original update |
+        Then I click Save in page properties Configuration dialog
+        Then I wait for 3 seconds
+        Then I publish the page
+        Then I wait for 3 seconds
+        And I edit the test page in the test folder
+        Then I open page properties
+        Then I wait for 3 seconds
+        Then I configure settings in "Chimera" tab:
+            | Headline | ${DateTime} |
+        Then I click Save in page properties Configuration dialog
+        Then I wait for 3 seconds
+        Then I publish the page
+        Then I wait for 3 seconds
+        Then I edit the page "testconsonantcardcollection2.html" in the test folder
+        Then I open the edited page on preview mode
+        Then I wait for the card collection to load
+        Then I wait for 3 seconds
+        Then I verify the created card is present
+
+
+    <@id-2> <@desc-2> <@envs>
+    Scenario: <Site> update a created card and see the changes
+        Given I sign in as an author
+        And I have the page "Test-CaaS-${DateTime}" in the test folder
+        And I edit the test page in the test folder
+        Then I open page properties
+        Then I input "article" then add a tag with value "caas:content-type/article" to the field with label "Tags"
+        Then I wait for 3 seconds
+        Then I configure settings in "Chimera" tab:
+            | Headline | ${DateTime} |
+        Then I click Save in page properties Configuration dialog
+        Then I wait for 3 seconds
+        Then I publish the page
+        Then I wait for 3 seconds
+        Then I edit the page "testconsonantcardcollection2.html" in the test folder
+        Then I open the edited page on preview mode
+        Then I wait for the card collection to load
+        Then I verify the created card is present
+
+    <@id-3> <@desc-3> <@envs>
+    Scenario: <Site> author update a created card and see the changes
+        Given I sign in as an author
+        And I have the page "Test-CaaS-${DateTime}" in the test folder
+        And I edit the test page in the test folder
+        Then I open page properties
+        Then I configure settings in "Chimera" tab:
+            | Headline | ${DateTime} |
+        Then I click Save in page properties Configuration dialog
+        Then I wait for 3 seconds
+        Then I publish the page
+        Then I wait for 3 seconds
+        Then I edit the page "testconsonantcardcollection2.html" in the test folder
+        Then I open the edited page on preview mode
+        Then I wait for the card collection to load
+        Then I verify the created card is not present

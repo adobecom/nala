@@ -1,0 +1,204 @@
+Feature: [E2E][Author] Quantity Selector Component
+
+  Background:
+    Given I sign in as an author
+      Then I update the cf offers "<site>/cf/offers/acrobatpro-monthly-no-annual-commitment":
+      | Minimum Quantity Select (Team products)            | 1                                           |
+      | Maximum Quantity Select (Team products)            | 255                                         |
+      | Qty after to show input text field (Team products) | 10                                          |
+      | Default value of the quantity select for a product. Defaults to Min Quantity. (Team products)| 1 |
+      | Increment. Defaults to 1.                          |  1                                          |
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Author Quantity Selector with default checking
+    Then I delete the page "<xfFolder>/qsDefaultCheckout"
+    Then I create a new experience fragment:
+      | Folder    | <xfFolder>/                                                           |
+      | Template  | /conf/<site>/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | qs default checkout                                                   |
+      | Page Name | qsDefaultCheckout                                                     |
+    Then I switch to the editor tab
+    Then I insert a component "Dexter/Quantity Selector"
+    Then I configure the newly added component:
+      | Quantity Text   | Quantity Selector |
+    Then I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text *   | BuyNow                  |
+      | Button Type     | Checkout                |
+      | Style           | Spectrum Button - CTA   |
+    Then I click Done in Configuration dialog
+    Then I open page properties
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatpro-monthly-no-annual-commitment |
+      | Offer Variation        | Master                                                                |
+      | Checkout API Type      | ucv2                                                                  |
+      | Context                | a                                                                     |
+      | Client Id              | doc_cloud                                                             |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I wait for 2 seconds
+    And I close US geo popup if have
+    Then I should see attribute in selector ".dexter-team-qty" with value:
+      | data-qty-min                 | 1   |
+      | data-qty-max                 | 255 |
+      | data-qty-input-field-after   | 10  |
+      | data-qty-default             | 1   |
+    Then I should select quantity "1" in the quantity selector
+    Then I should see attribute in selector "[data-checkout-cta]" with value:
+      | data-checkout-type         | ucv2 |
+      | href | https://commerce.adobe.com/checkout/?cli=doc_cloud&co=US&code=&ctx=a&lang=en&items%5B0%5D%5Bq%5D=1 |
+    Then I click on selector "[data-checkout-cta]"
+    Then I should see "//commerce.adobe.com/checkout/?cli=doc_cloud&co=US&ctx=a&lang=en&items%5B0%5D%5Bq%5D=1" in the url
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: Author Quantity Selector with different values
+    Then I delete the page "<xfFolder>/qsValueCheck"
+    Then I create a new experience fragment:
+      | Folder    | <xfFolder>/                                                           |
+      | Template  | /conf/<site>/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | qs different values                                                   |
+      | Page Name | qsValueCheck                                                          |
+    Then I switch to the editor tab
+    Then I insert a component "Dexter/Quantity Selector"
+    Then I configure the newly added component:
+      | Quantity Text   | Quantity Selector |
+    Then I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text *   | BuyNow                  |
+      | Button Type     | Checkout                |
+      | Style           | Spectrum Button - CTA   |
+    Then I click Done in Configuration dialog
+    Then I open page properties
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatpro-monthly-no-annual-commitment |
+      | Offer Variation        | Master                                                                |
+      | Checkout API Type      | ucv2                                                                  |
+      | Context                | a                                                                     |
+      | Client Id              | doc_cloud                                                             |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I wait for 2 seconds
+    And I close US geo popup if have
+    Then I should select quantity "10+" in the quantity selector
+    Then I set value "100" in selector "[name='qty-input']"
+    #Then I mouse hover to the element "[data-checkout-cta]"
+    #Then I should see attribute in selector "[data-checkout-cta]" with value:
+    #  | href | https://commerce.adobe.com/checkout/?cli=doc_cloud&co=US&code=&ctx=a&lang=en&items%5B0%5D%5Bq%5D=100 |
+    Then I click on selector "[data-checkout-cta]"
+    Then I should see "commerce.adobe.com/checkout/?cli=doc_cloud&co=US&ctx=a&lang=en&items%5B0%5D%5Bq%5D=100" in the url
+    Then I go back
+    Then I wait for 2 seconds
+    And I close US geo popup if have
+    Then I should select quantity "5" in the quantity selector
+    Then I set value "5" in selector "[name='qty-input']"
+    #Then I mouse hover to the element "[data-checkout-cta]"
+    #Then I should see attribute in selector "[data-checkout-cta]" with value:
+    #  | href | https://commerce.adobe.com/checkout/?cli=doc_cloud&co=US&code=&ctx=a&lang=en&items%5B0%5D%5Bq%5D=5 |
+    Then I click on selector "[data-checkout-cta]"
+    Then I should see "commerce.adobe.com/checkout/?cli=doc_cloud&co=US&ctx=a&lang=en&items%5B0%5D%5Bq%5D=5" in the url
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: Author Quantity Selector update cf offers and re-check
+    Then I update the cf offers "<site>/cf/offers/acrobatpro-monthly-no-annual-commitment":
+      | Minimum Quantity Select (Team products)            | 2          |
+      | Maximum Quantity Select (Team products)            | 300        |
+      | Qty after to show input text field (Team products) | 20         |
+      | Default value of the quantity select for a product. Defaults to Min Quantity. (Team products)| 2 |
+      | Increment. Defaults to 1.                          |  2         |
+    Then I delete the page "<xfFolder>/qsUpdateOfferCheck"
+    Then I create a new experience fragment:
+      | Folder    | <xfFolder>/                                                           |
+      | Template  | /conf/<site>/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | qs update offer check                                                 |
+      | Page Name | qsUpdateOfferCheck                                                    |
+    Then I switch to the editor tab
+    Then I insert a component "Dexter/Quantity Selector"
+    Then I configure the newly added component:
+      | Quantity Text   | Quantity Selector |
+    Then I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text *   | BuyNow                  |
+      | Button Type     | Checkout                |
+      | Style           | Spectrum Button - CTA   |
+    Then I click Done in Configuration dialog
+    Then I open page properties
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatpro-monthly-no-annual-commitment |
+      | Offer Variation        | Master                                                                |
+      | Checkout API Type      | ucv2                                                                  |
+      | Context                | a                                                                     |
+      | Client Id              | doc_cloud                                                             |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I wait for 2 seconds
+    And I close US geo popup if have
+    Then I should see attribute in selector ".dexter-team-qty" with value:
+      | data-qty-min                 | 2   |
+      | data-qty-max                 | 300 |
+      | data-qty-input-field-after   | 20  |
+      | data-qty-default             | 2   |
+    Then I verify the qs dropdown increment of "2" starting from "2" to "20"
+    Then I should select quantity "20+" in the quantity selector
+    Then I set value "201" in selector "[name='qty-input']"
+    #Then I should see attribute in selector "[data-checkout-cta]" with value:
+    #  | href | https://commerce.adobe.com/checkout/?cli=doc_cloud&co=US&code=&ctx=a&lang=en&items%5B0%5D%5Bq%5D=201 |
+    Then I click on selector "[data-checkout-cta]"
+    Then I should see "commerce.adobe.com/checkout/?cli=doc_cloud&co=US&ctx=a&lang=en&items%5B0%5D%5Bq%5D=201" in the url
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: Author Quantity Selector display contact section for max quantity
+    Then I update the cf offers "<site>/cf/offers/acrobatpro-monthly-no-annual-commitment":
+      | Minimum Quantity Select (Team products)            | 2           |
+      | Maximum Quantity Select (Team products)            | 300         |
+      | Qty after to show input text field (Team products) | 20          |
+      | Default value of the quantity select for a product. Defaults to Min Quantity. (Team products)| 2 |
+      | Increment. Defaults to 1.                          |  2          |
+    Then I delete the page "<xfFolder>/qsContactSection"
+    Then I create a new experience fragment:
+      | Folder    | <xfFolder>/                                                           |
+      | Template  | /conf/<site>/settings/wcm/templates/experience-fragment-web-variation |
+      | Title     | qs contact section                                                    |
+      | Page Name | qsContactSection                                                      |
+    Then I switch to the editor tab
+    Then I insert a component "Dexter/Quantity Selector"
+    Then I configure the newly added component:
+      | Quantity Text   | Quantity Selector |
+      | Display contact us section when user selects max quantity from selector. | checked |
+    Then I insert "Dexter/Text" into Layout container "/contactus-par"
+    Then I type "contact us at xx-xxx-xxxx" into Text component "quantityselector/contactus-par/text"
+    Then I wait for 4 seconds
+    Then I insert a component "Dexter/Button"
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text *   | BuyNow                  |
+      | Button Type     | Checkout                |
+      | Style           | Spectrum Button - CTA   |
+    Then I click Done in Configuration dialog
+    Then I open page properties
+    Then I wait for 3 seconds
+    Then I configure settings in "Commerce" tab:
+      | Reference Offers | button |
+      | Offer Content Fragment | /content/dam/<site>/cf/offers/acrobatpro-monthly-no-annual-commitment |
+      | Offer Variation        | Master                                                                |
+      | Checkout API Type      | ucv2                                                                  |
+      | Context                | a                                                                     |
+      | Client Id              | doc_cloud                                                             |
+    Then I click Save in page properties Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I wait for 2 seconds
+    And I close US geo popup if have
+    Then I should select quantity "20+" in the quantity selector
+    Then I should see selector ".contact-us .cmp-text"

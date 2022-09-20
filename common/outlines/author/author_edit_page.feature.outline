@@ -1,0 +1,44 @@
+Feature: [E2E][Author] Basic
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author edit an existing page
+    Given I sign in as an author
+      And I have the page "Test" in the test folder
+     Then I edit the page "Test.html" in the test folder
+     Then I delete all components
+     Then I insert a component "Dexter/Text"
+     Then I type "Test editing a page" into Text component
+     Then I preview the edited page
+     Then I should see "Test editing a page" in the content frame
+     Then I wait for 5 seconds
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario Outline: <Site> author add a component <Group>/<Component>
+    Given I sign in as an author
+     Then I edit the page "Test.html" in the test folder
+     Then I delete all components
+     Then I insert a component "<Group>/<Component>"
+     Then I configure the newly added component
+     Then I preview the edited page
+     Then I wait for 5 seconds
+  
+  Examples:
+    | Group     | Component              |
+    | Dexter    | Accordion              |
+    | Dexter    | Button                 |
+    | Dexter    | Carousel               |
+    | Dexter    | Dropdown Navigation    |
+    | Dexter    | Faas Form              |
+    | Dexter    | Flex Container         |
+    | Dexter    | Horizontal Rule        |
+    | Dexter    | Image                  |
+    | Dexter    | Language Navigation    |
+    | Dexter    | Navigation List        |
+    | Dexter    | Position               |
+    | Dexter    | Quantity Selector      |
+    | Dexter    | Send A Link            |
+    | Dexter    | Social Media Share     |
+    | Dexter    | Spacer                 |
+    | Dexter    | Table                  |
+    | Dexter    | Text                   |
+    | Dexter    | Video                  |

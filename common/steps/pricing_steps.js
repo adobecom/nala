@@ -97,8 +97,8 @@ export function iClickSomeBuyButtonsAndCheckThePrice(count) {
 
 function getPrice(country) {
     let priceNumber = {
-        jp: '65',
-        tw: '40'
+        jp: '69',
+        tw: '60'
     }[country.toLowerCase()];
     return priceNumber;
 }
@@ -108,7 +108,7 @@ export function iSeeDiscountPercentage(){
     element.scrollIntoView({block: "center"});
 
     let expectedPrice;
-    expectedPrice = getPrice(browser.config.profile.akamaiLocale || this.page.urlQuery.akamaiLocale);
+    expectedPrice = getPrice(browser.config.profile.geolocation || this.page.urlQuery.akamaiLocale);
 
     expect(element).toHaveText(expectedPrice);
 }

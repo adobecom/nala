@@ -1,0 +1,271 @@
+Feature: [E2E][Author] Image Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Image-${DateTime}" in the test folder
+      And I have text "Image Popover" in the popover "TestImagePopover/master" 
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Image"
+      And I open editor's side panel 
+      And I open Configuration dialog of the newly added component
+      And I configure settings in "MOBILE / DEFAULT" tab:
+       | Image asset | Assets:Images:First              |
+       | Title       | My Image Title                   |
+       | Description | This is my image description     |       
+      And I configure settings in "RENDITIONS" tab:  
+       | Tablet      | Inherit from previous screen size |
+       | Desktop     | Inherit from previous screen size |          
+      And I configure settings in "ACCESSIBILITY" tab:
+       | Alternative Text | ThisAlternativeText |  
+     # And I click Done in Configuration dialog
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author add an image with auto size
+    #Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:  
+      | Size        | Auto                                 |
+      | Alignment   | Left                                 |
+      | Link To     | https://helpx.adobe.com/support.html |
+      | Link Target | Default                              |
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see an element "figure" with attributes:
+      | class | contains | dexter-Image       |    
+      | class | contains | dexter-Image-left  |  
+    Then I should see an element "a" with attributes:      
+      | href  | https://helpx.adobe.com/support.html |
+    Then I should see an element "img" with attributes:   
+      | title | My Image Title |
+
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author add an image with custom width in pixels
+    #Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:  
+      | Size        | Custom                               |
+      | Type        | Width Override                       |
+      | Value       | 127                                  |
+      | Measurement | Pixels                               |
+      | Alignment   | Center                               |
+      | Link To     | https://helpx.adobe.com/support.html |
+      | Link Target | This Page                            | 
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see the styles for element "img[title='My Image Title']":   
+      | width | 127px |
+
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author adds an image with custom width in percentage
+    #Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:  
+      | Size         | Custom                               |
+      | Type         | Width Override                       |
+      | Value        | 20                                   |
+      | Measurement  | % of Viewport                        |
+      | Alignment    | Center                               |
+      | Link To      |                                      |
+      | Link Target  | Parent Page                          |
+      | Overlay:Type | Tooltip                              |
+      | Tooltip Text | My tool tip                          |
+      | Placement    | Top                                  |
+      | Variants.    | Info                                 |
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see element "img[title='My Image Title']" width as 25% of viewport
+    Then I should see an element "figure" with attributes:
+      | class | contains | dexter-Image-center              |
+    Then I should see an element with attributes:
+      | data-overlay-type   | tooltip  |
+      | data-placement      | top      |     
+      | data-variant        | info     |
+
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> author adds an image with custom height in pixels
+    #Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:  
+      | Size         | Custom                       |
+      | Type         | Height Override              |
+      | Value        | 211                          |
+      | Measurement  | Pixels                       |
+      | Alignment    | Right                        |
+      | Link To      |                              |
+      | Link Target  | Parent Page                  |
+      | Overlay:Type | Tooltip                      |
+      | Tooltip Text | My tool tip                  |
+      | Placement    | Left                         |
+      | Variants.    | Error                        |
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see the styles for element "img[title='My Image Title']":   
+      | height | 211px |     
+    Then I should see an element "figure" with attributes:
+      | class | contains | dexter-Image-right       |
+    Then I should see an element with attributes:
+      | data-overlay-type   | tooltip  |
+      | data-placement      | left     |     
+      | data-variant        | error    |  
+
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> author adds an image with custom height in percentage
+    #Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:  
+      | Size         | Custom                                     |
+      | Type         | Height Override                            |
+      | Value        | 61                                         |
+      | Measurement  | % of Viewport                              |
+      | Alignment    | Right                                      |
+      | Link To      |                                            |
+      | Link Target  | Parent Page                                |
+      | Overlay:Type | Popover                                    |
+      | Popover Path | <profile.xfFolder>/TestImagePopover/master |
+      | Placement    | Top                                        |
+    Then I click Done in Configuration dialog
+    Then I open the edited page on preview mode
+    Then I should see element "img[title='My Image Title']" height as 61% of viewport
+    Then I should see an element "figure" with attributes:
+      | class | contains | dexter-Image-right       |
+    Then I should see an element with attributes:
+      | data-overlay-type   | popover  |
+      | data-placement      | top      |     
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> author adds an image with override for table rendition
+    #Given I open Configuration dialog of the newly added component
+     And I configure settings in "RENDITIONS" tab:  
+       | Tablet       | Override                   |
+     Then I set value "/content/dam/automation/images/tablet.jpg" in selector "//foundation-autocomplete[@name='./fileReferenceTabletPath']//input[@role='combobox']" 
+     Then I wait for 5 seconds 
+     And I press "Enter" key
+     Then I wait for 10 seconds
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I wait for 3 seconds
+     Then I should see an element "source" with attributes:
+       | media       | =        | (max-width: 599px)            |
+       | srcset      | contains | <Assets:Images:First>         |
+     Then I should see an element "source" with attributes:
+       | media       | =        | (min-width: 600px)            |
+       | srcset      | contains | tablet        |
+     Then I should see an element "source" with attributes:
+       | media       | =        | (min-width: 1200px)           |
+       | srcset      | contains | tablet         |
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> author adds an image with override for table rendition and custom size
+    #Given I open Configuration dialog of the newly added component
+     And I configure settings in "RENDITIONS" tab:  
+       | Tablet      | Override                   |
+       | Tablet:Image| Assets:Images:Second       |
+       | size        | Custom                     |
+       | Type        | Width Override             |
+       | Value       | 127                        |
+       | Measurement | Pixels                     |
+       | Alignment   | Right                      |    
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I resize the browser width to 800
+     Then I should see an element "figure" with attributes:
+       | class | contains | dexter-Image                |
+       | class | contains | dexter-Image-tablet-right   |
+
+  <@id-8> <@desc-8> <@envs>
+  Scenario: <Site> author adds an image with override for desktop rendition
+    #Given I open Configuration dialog of the newly added component
+     And I configure settings in "RENDITIONS" tab:  
+       | Desktop       | Override                   |    
+     Then I set value "/content/dam/automation/images/desktop.jpg" in selector "//foundation-autocomplete[@name='./fileReferencePath']//input[@role='combobox']" 
+     Then I wait for 5 seconds 
+     And I press "Enter" key
+     Then I wait for 10 seconds    
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I should see an element "source" with attributes:
+       | media   | =        | (max-width: 599px)     |
+       | srcset  | contains | <Assets:Images:First>  |
+     Then I should see an element "source" with attributes:
+       | media   | =        | (min-width: 600px)     |
+       | srcset  | contains | <Assets:Images:First>  |
+     Then I should see an element "source" with attributes:
+       | media   | =        | (min-width: 1200px)    |
+       | srcset  | contains | desktop |
+
+  <@id-9> <@desc-9> <@envs>
+  Scenario: <Site> author adds an image with override for desktop rendition and custom size
+   #Given I open Configuration dialog of the newly added component
+     And I configure settings in "RENDITIONS" tab:  
+       | Desktop             | Override                   |
+       | Desktop:Image       | Assets:Images:Second       |
+       | Desktop:Size        | Custom                     |
+       | Desktop:Type        | Width Override             |
+       | Desktop:Value       | 127                        |
+       | Desktop:Measurement | Pixels                     |
+       | Desktop:Alignment   | Right                      |    
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I resize the browser width to 1210
+     Then I should see an element "figure" with attributes:
+       | class | contains | dexter-Image                 |
+       | class | contains | dexter-Image-desktop-right   |
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario: <Site> author adds an image with spacing settings
+    #Given I open Configuration dialog of the newly added component
+     And I configure settings in "SPACING" tab:  
+       | Top Padding    | 16px | 
+       | Right Padding  | 12px |
+       | Bottom Padding |  8px |
+       | Left Padding   |  4px |
+       | Top Margin     | 32px |  
+       | Right Margin   | 28px |
+       | Bottom Margin  | 24px |
+       | Left Margin    | 20px | 
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I should see an element "figure" with attributes:
+       | class | contains | dexter-Image            |
+       | class | contains | mobile-padding-top-16   |
+       | class | contains | mobile-padding-right-12 |
+       | class | contains | mobile-padding-bottom-8 |
+       | class | contains | mobile-padding-left-4   |
+       | class | contains | mobile-margin-top-32    |
+       | class | contains | mobile-margin-right-28  |
+       | class | contains | mobile-margin-bottom-24 |
+       | class | contains | mobile-margin-left-20   |
+
+  <@id-11> <@desc-11> <@envs>
+  Scenario: <Site> author adds an image with override desktop and tablet spacing
+    #Given I open Configuration dialog of the newly added component
+     And I configure settings in "SPACING" tab:  
+       | Top Padding           | 16px | 
+       | Right Padding         | 12px |
+       | Bottom Padding        |  8px |
+       | Left Padding          |  4px |
+       | Top Margin            | 32px |  
+       | Right Margin          | 28px |
+       | Bottom Margin         | 24px |
+       | Left Margin           | 20px | 
+       | Tablet[0]             | Override |
+       | Tablet[1]             | Override |
+       | Tablet:Top Padding    | 48px | 
+       | Tablet:Right Padding  | 44px |
+       | Tablet:Bottom Padding | 40px |
+       | Tablet:Left Padding   | 36px |
+       | Tablet:Top Margin     | 64px |  
+       | Tablet:Right Margin   | 60px |
+       | Tablet:Bottom Margin  | 56px |
+       | Tablet:Left Margin    | 52px | 
+     Then I click Done in Configuration dialog
+     Then I open the edited page on preview mode
+     Then I should see an element "figure" with attributes:
+       | class | contains | dexter-Image            |
+       | class | contains | mobile-padding-top-16   |
+       | class | contains | mobile-padding-right-12 |
+       | class | contains | mobile-padding-bottom-8 |
+       | class | contains | mobile-padding-left-4   |
+       | class | contains | mobile-margin-top-32    |
+       | class | contains | mobile-margin-right-28  |
+       | class | contains | mobile-margin-bottom-24 |
+       | class | contains | mobile-margin-left-20   |

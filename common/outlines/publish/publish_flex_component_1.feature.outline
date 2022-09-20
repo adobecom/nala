@@ -1,0 +1,10 @@
+Feature: [E2E][Publish] Flex Component
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: Author a flex component enabling CTA
+    Given I go to "testautomation/Test-Flex-01.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I click on title "Test Page"
+    Then I should see "https://helpx.adobe.com/support.html" in current url

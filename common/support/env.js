@@ -34,7 +34,7 @@ class TheWorld extends World {
   }
 
   /**
-   * Call a step in a step definition.
+   * Call a step in a step defintion.
    *
    * @param {string} sentence The step to be run in a step definition.
    */
@@ -112,8 +112,8 @@ browser.addCommand('logger', function(name) {
 });
 
 browser.addCommand('highlightElement', function(element){
-  // yellow background
+  // yellow background 
   browser.execute('arguments[0].style.backgroundColor = "#FDFF47";', element);
   // red outline
   browser.execute('arguments[0].style.outline = "#f00 solid 4px";', element);
-});
+});  

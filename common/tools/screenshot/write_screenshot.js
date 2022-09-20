@@ -42,6 +42,12 @@ async function main() {
   const db = mongoClient.db(argv.db);
   const collection = db.collection(argv.collection);
 
+  let url2 = `mongodb://${creds}@grape-a.corp.adobe.com:27021,grape-b.corp.adobe.com:27021,grape-c.corp.adobe.com:27021/?authSource=WEBAUTODB&replicaSet=or_grape_prd_27021&readPreference=primary&ssl=false`;
+  let mongoClient2 = new mongodb.MongoClient(url2);
+  await mongoClient2.connect();
+  const db2 = mongoClient2.db('WEBAUTODB');
+  const collection2 = db2.collection(argv.collection);
+
   delete argv._;
   delete argv['$0'];
   delete argv.db;
@@ -49,8 +55,11 @@ async function main() {
   delete argv.creds;
   argv.timestamp = new Date();
 
-  await collection.insertOne(argv);
+  for (let c of [collection, collection2]) {
+    await c.insertOne(argv);
+  }
   await mongoClient.close();
+  await mongoClient2.close();
 }
 
 main();

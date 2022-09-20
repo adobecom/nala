@@ -1,0 +1,14 @@
+Feature: [E2E][Publish] Subnav Component
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author can configure subnav to show child pages as links
+    Given I go to "testautomation/Test-Subnav-01.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see an element with attributes:
+      | class  | Subnav-menu-label |
+      | title  | Test Page1        |
+    Then I should see an element with attributes:
+      | class  | Subnav-menu-label |
+      | title  | Test Page2        |

@@ -1,0 +1,750 @@
+Feature: [E2E][Author] Flex Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Flex-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+      And I insert a component "Dexter/Flex Container"
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author can set spacing for flex
+    Given I open Configuration dialog of the newly added component
+     And I configure settings in "Spacing" tab:  
+       | Top Padding    | 16px | 
+       | Right Padding  | 12px |
+       | Bottom Padding |  8px |
+       | Left Padding   |  4px |
+       | Top Margin     | 32px |  
+       | Right Margin   | 28px |
+       | Bottom Margin  | 24px |
+       | Left Margin    | 20px | 
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "flex/items"
+    Then I type "Text in Flex component" into Text component "flex/items/text" 
+    Then I open the edited page on preview mode
+    Then I should see an element "div" with attributes:
+       | class | contains | dexter-FlexContainer    |
+       | class | contains | mobile-padding-top-16   |
+       | class | contains | mobile-padding-right-12 |
+       | class | contains | mobile-padding-bottom-8 |
+       | class | contains | mobile-padding-left-4   |
+       | class | contains | mobile-margin-top-32    |
+       | class | contains | mobile-margin-right-28  |
+       | class | contains | mobile-margin-bottom-24 |
+       | class | contains | mobile-margin-left-20   |
+
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author can set tablet and desktop spacing for flex
+    Given I open Configuration dialog of the newly added component
+     And I configure settings in "Spacing" tab:  
+       | Top Padding            | 16px | 
+       | Right Padding          | 12px |
+       | Bottom Padding         |  8px |
+       | Left Padding           |  4px |
+       | Top Margin             | 32px |  
+       | Right Margin           | 28px |
+       | Bottom Margin          | 24px |
+       | Left Margin            | 20px | 
+       | Tablet[0]              | Override |
+       | Tablet[1]              | Override |
+       | Tablet:Top Padding     | 48px | 
+       | Tablet:Right Padding   | 44px |
+       | Tablet:Bottom Padding  | 40px |
+       | Tablet:Left Padding    | 36px |
+       | Tablet:Top Margin      | 64px |  
+       | Tablet:Right Margin    | 60px |
+       | Tablet:Bottom Margin   | 56px |
+       | Tablet:Left Margin     | 52px |     
+       | Desktop[0]             | Override |
+       | Desktop[1]             | Override |
+       | Desktop:Top Padding    | 48px | 
+       | Desktop:Right Padding  | 44px |
+       | Desktop:Bottom Padding | 40px |
+       | Desktop:Left Padding   | 36px |
+       | Desktop:Top Margin     | 64px |  
+       | Desktop:Right Margin   | 60px |
+       | Desktop:Bottom Margin  | 56px |
+       | Desktop:Left Margin    | 52px |             
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "flex/items"
+    Then I type "Text in Flex component" into Text component "flex/items/text" 
+    Then I open the edited page on preview mode
+    Then I should see an element "div" with attributes:
+       | class | contains | dexter-FlexContainer      |
+       | class | contains | mobile-padding-top-16     |
+       | class | contains | mobile-padding-right-12   |
+       | class | contains | mobile-padding-bottom-8   |
+       | class | contains | mobile-padding-left-4     |
+       | class | contains | mobile-margin-top-32      |
+       | class | contains | mobile-margin-right-28    |
+       | class | contains | mobile-margin-bottom-24   |
+       | class | contains | mobile-margin-left-20     |
+       | class | contains | tablet-padding-top-48     |
+       | class | contains | tablet-padding-right-44   |
+       | class | contains | tablet-padding-bottom-40  |
+       | class | contains | tablet-padding-left-36    |
+       | class | contains | tablet-margin-top-64      |
+       | class | contains | tablet-margin-right-60    |
+       | class | contains | tablet-margin-bottom-56   |
+       | class | contains | tablet-margin-left-52     |
+       | class | contains | desktop-padding-top-48    |
+       | class | contains | desktop-padding-right-44  |
+       | class | contains | desktop-padding-bottom-40 |
+       | class | contains | desktop-padding-left-36   |
+       | class | contains | desktop-margin-top-64     |
+       | class | contains | desktop-margin-right-60   |
+       | class | contains | desktop-margin-bottom-56  |
+       | class | contains | desktop-margin-left-52    |
+     
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author can disable mobile spacing for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Mobile" tab:
+      | Enable Container       | Disabled |
+      | Min Height             | 40       |
+      | Type                   | Pixels   |    
+      | Item Justification     | Stretch  |
+      | Item Alignment         | Stretch  |
+      | Row Alignment          | Stretch  | 
+      | Item Content Alignment | Start    |
+      | Items                  | @#1      |
+      | - Width                | Auto     |
+      | - Min Height           | Auto     | 
+     Then I configure settings in "Spacing" tab:  
+       | Top Padding            | 16px | 
+       | Right Padding          | 12px |
+       | Bottom Padding         |  8px |
+       | Left Padding           |  4px |
+       | Top Margin             | 32px |  
+       | Right Margin           | 28px |
+       | Bottom Margin          | 24px |
+       | Left Margin            | 20px | 
+       | Tablet[0]              | Override |
+       | Tablet[1]              | Override |
+       | Tablet:Top Padding     | 48px | 
+       | Tablet:Right Padding   | 44px |
+       | Tablet:Bottom Padding  | 40px |
+       | Tablet:Left Padding    | 36px |
+       | Tablet:Top Margin      | 64px |  
+       | Tablet:Right Margin    | 60px |
+       | Tablet:Bottom Margin   | 56px |
+       | Tablet:Left Margin     | 52px |     
+       | Desktop[0]             | Override |
+       | Desktop[1]             | Override |
+       | Desktop:Top Padding    | 48px | 
+       | Desktop:Right Padding  | 44px | 
+       | Desktop:Bottom Padding | 40px |
+       | Desktop:Left Padding   | 36px |
+       | Desktop:Top Margin     | 64px |  
+       | Desktop:Right Margin   | 60px |
+       | Desktop:Bottom Margin  | 56px |
+       | Desktop:Left Margin    | 52px |             
+    Then I click Done in Configuration dialog
+    Then I insert "Dexter/Text" into Layout container "flex/items"
+    Then I type "Text in Flex component" into Text component "flex/items/text" 
+    Then I open the edited page on preview mode
+    Then I should see an element "div" with attributes:
+       | class | contains | mobile-padding-top-16      |
+       | class | contains | mobile-padding-right-12    |
+       | class | contains | mobile-padding-bottom-8    |
+       | class | contains | mobile-padding-left-4      |
+       | class | contains | mobile-margin-top-32       |
+       | class | contains | mobile-margin-right-28     |
+       | class | contains | mobile-margin-bottom-24    |
+       | class | contains | mobile-margin-left-20      | 
+       | class | contains | tablet-padding-top-48      |
+       | class | contains | tablet-padding-right-44    |
+       | class | contains | tablet-padding-bottom-40   |
+       | class | contains | tablet-padding-left-36     |
+       | class | contains | tablet-margin-top-64       |
+       | class | contains | tablet-margin-right-60     |
+       | class | contains | tablet-margin-bottom-56    |
+       | class | contains | tablet-margin-left-52      |
+       | class | contains | desktop-padding-top-48     |
+       | class | contains | desktop-padding-right-44   |
+       | class | contains | desktop-padding-bottom-40  |
+       | class | contains | desktop-padding-left-36    |
+       | class | contains | desktop-margin-top-64      |
+       | class | contains | desktop-margin-right-60    |
+       | class | contains | desktop-margin-bottom-56   |
+       | class | contains | desktop-margin-left-52     |
+    Then I should not see an element with attributes:
+       | class | container                             |
+       | class | dexter-FlexContainer                  |
+       | class | dexter-FlexContainer--mobileJustifyStretch | 
+       | class | dexter-FlexContainer--mobileAlignAlignmentStretch | 
+       | class | dexter-FlexContainer--mobileAlignContentStretch | 
+       | class | dexter-FlexContainer--mobileAlignItemContentStart | 
+
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> author can set mobile spacing for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Mobile" tab:
+      | Enable Container       | Enabled   |
+      | Min Height             | 400       |
+      | Type                   | Pixels    |    
+      | Item Justification     | Stretch   |
+      | Item Alignment         | Stretch   |
+      | Row Alignment          | Stretch   | 
+      | Item Content Alignment | Start     |
+      | Items                  | @#1       |
+      | - Width                | 2 Columns |
+      | - Min Height           | Custom    | 
+      | - Min Height           | 600       | 
+     Then I configure settings in "Spacing" tab:
+      | Top Padding            | 16px | 
+      | Right Padding          | 12px |
+      | Bottom Padding         |  8px |
+      | Left Padding           |  4px |
+      | Top Margin             | 32px |  
+      | Right Margin           | 28px |
+      | Bottom Margin          | 24px |
+      | Left Margin            | 20px | 
+      | Tablet[0]              | Override |
+      | Tablet[1]              | Override |
+      | Tablet:Top Padding     | 48px | 
+      | Tablet:Right Padding   | 44px |
+      | Tablet:Bottom Padding  | 40px |
+      | Tablet:Left Padding    | 36px |
+      | Tablet:Top Margin      | 64px |  
+      | Tablet:Right Margin    | 60px |
+      | Tablet:Bottom Margin   | 56px |
+      | Tablet:Left Margin     | 52px |     
+      | Desktop[0]             | Override |
+      | Desktop[1]             | Override |
+      | Desktop:Top Padding    | 48px | 
+      | Desktop:Right Padding  | 44px |
+      | Desktop:Bottom Padding | 40px |
+      | Desktop:Left Padding   | 36px |
+      | Desktop:Top Margin     | 64px |  
+      | Desktop:Right Margin   | 60px |
+      | Desktop:Bottom Margin  | 56px |
+      | Desktop:Left Margin    | 52px |             
+     Then I click Done in Configuration dialog
+     Then I insert "Dexter/Text" into Layout container "flex/items"
+     Then I type "Text in Flex component" into Text component "flex/items/text" 
+     Then I open the edited page on preview mode
+     Then I should see an element "div" with attributes:
+      | class | contains | mobile-padding-top-16      |
+      | class | contains | mobile-padding-right-12    |
+      | class | contains | mobile-padding-bottom-8    |
+      | class | contains | mobile-padding-left-4      |
+      | class | contains | mobile-margin-top-32       |
+      | class | contains | mobile-margin-right-28     |
+      | class | contains | mobile-margin-bottom-24    |
+      | class | contains | mobile-margin-left-20      |
+      | class | contains | tablet-padding-top-48      |
+      | class | contains | tablet-padding-right-44    |
+      | class | contains | tablet-padding-bottom-40   |
+      | class | contains | tablet-padding-left-36     |
+      | class | contains | tablet-margin-top-64       |
+      | class | contains | tablet-margin-right-60     |
+      | class | contains | tablet-margin-bottom-56    |
+      | class | contains | tablet-margin-left-52      |
+      | class | contains | desktop-padding-top-48     |
+      | class | contains | desktop-padding-right-44   |
+      | class | contains | desktop-padding-bottom-40  |
+      | class | contains | desktop-padding-left-36    |
+      | class | contains | desktop-margin-top-64      |
+      | class | contains | desktop-margin-right-60    |
+      | class | contains | desktop-margin-bottom-56   |
+      | class | contains | desktop-margin-left-52     |
+     Then I should see an element "div" with attributes:
+      | class | contains | container                  |
+      | class | contains | dexter-FlexContainer--mobileJustifyStretch | 
+      | class | contains | dexter-FlexContainer--mobileAlignAlignmentStretch | 
+      | class | contains | dexter-FlexContainer--mobileAlignContentStretch | 
+      | class | contains | dexter-FlexContainer--mobileAlignItemContentStart | 
+
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> author can set tablet spacing to inherit for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Tablet" tab:
+      |                        | Override    |
+      | Enable Container       | Inherit     |
+      | Min Height             | 876         |
+      | Type                   | Pixels      |    
+      | Item Justification     | Stretch     |
+      | Item Alignment         | Stretch     |
+      | Row Alignment          | Stretch     | 
+      | Item Content Alignment | Start       |
+     Then I configure settings in "Spacing" tab:
+      | Top Padding            | 16px | 
+      | Right Padding          | 12px |
+      | Bottom Padding         |  8px |
+      | Left Padding           |  4px |
+      | Top Margin             | 32px |  
+      | Right Margin           | 28px |
+      | Bottom Margin          | 24px |
+      | Left Margin            | 20px | 
+      | Tablet[0]              | Override |
+      | Tablet[1]              | Override |
+      | Tablet:Top Padding     | 48px | 
+      | Tablet:Right Padding   | 44px |
+      | Tablet:Bottom Padding  | 40px |
+      | Tablet:Left Padding    | 36px |
+      | Tablet:Top Margin      | 64px |  
+      | Tablet:Right Margin    | 60px |
+      | Tablet:Bottom Margin   | 56px |
+      | Tablet:Left Margin     | 52px |     
+      | Desktop[0]             | Override |
+      | Desktop[1]             | Override |
+      | Desktop:Top Padding    | 48px | 
+      | Desktop:Right Padding  | 44px |
+      | Desktop:Bottom Padding | 40px |
+      | Desktop:Left Padding   | 36px |
+      | Desktop:Top Margin     | 64px |  
+      | Desktop:Right Margin   | 60px |
+      | Desktop:Bottom Margin  | 56px |
+      | Desktop:Left Margin    | 52px |             
+     Then I click Done in Configuration dialog
+     Then I insert "Dexter/Text" into Layout container "flex/items"
+     Then I type "Text in Flex component" into Text component "flex/items/text" 
+     Then I open the edited page on preview mode
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer       |
+      | class | contains | mobile-padding-top-16      |
+      | class | contains | mobile-padding-right-12    |
+      | class | contains | mobile-padding-bottom-8    |
+      | class | contains | mobile-padding-left-4      |
+      | class | contains | mobile-margin-top-32       |
+      | class | contains | mobile-margin-right-28     |
+      | class | contains | mobile-margin-bottom-24    |
+      | class | contains | mobile-margin-left-20      |
+      | class | contains | tablet-padding-top-48      |
+      | class | contains | tablet-padding-right-44    |
+      | class | contains | tablet-padding-bottom-40   |
+      | class | contains | tablet-padding-left-36     |
+      | class | contains | tablet-margin-top-64       |
+      | class | contains | tablet-margin-right-60     |
+      | class | contains | tablet-margin-bottom-56    |
+      | class | contains | tablet-margin-left-52      |
+      | class | contains | desktop-padding-top-48     |
+      | class | contains | desktop-padding-right-44   |
+      | class | contains | desktop-padding-bottom-40  |
+      | class | contains | desktop-padding-left-36    |
+      | class | contains | desktop-margin-top-64      |
+      | class | contains | desktop-margin-right-60    |
+      | class | contains | desktop-margin-bottom-56   |
+      | class | contains | desktop-margin-left-52     |
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer--mobileJustifyStretch       |
+      | class | contains | dexter-FlexContainer--mobileAlignAlignmentStretch      |
+      | class | contains | dexter-FlexContainer--mobileAlignContentStretch    |
+      | class | contains | dexter-FlexContainer--mobileAlignItemContentStart    |
+      | class | contains | dexter-FlexContainer--tabletJustifyStretch      |
+      | class | contains | dexter-FlexContainer--tabletAlignAlignmentStretch       |
+      | class | contains | dexter-FlexContainer--tabletAlignContentStretch     |
+      | class | contains | dexter-FlexContainer--tabletAlignItemContentStart    |
+
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> author can disable tablet spacing for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Tablet" tab:
+      |                        | Override    |
+      | Enable Container       | Disabled    |
+      | Min Height             | 876         |
+      | Type                   | Pixels      |    
+      | Item Justification     | Stretch     |
+      | Item Alignment         | Stretch     |
+      | Row Alignment          | Stretch     | 
+      | Item Content Alignment | Start       | 
+     Then I configure settings in "Spacing" tab:
+      | Top Padding            | 16px | 
+      | Right Padding          | 12px |
+      | Bottom Padding         |  8px |
+      | Left Padding           |  4px |
+      | Top Margin             | 32px |  
+      | Right Margin           | 28px |
+      | Bottom Margin          | 24px |
+      | Left Margin            | 20px | 
+      | Tablet[0]              | Override |
+      | Tablet[1]              | Override |
+      | Tablet:Top Padding     | 48px | 
+      | Tablet:Right Padding   | 44px |
+      | Tablet:Bottom Padding  | 40px |
+      | Tablet:Left Padding    | 36px |
+      | Tablet:Top Margin      | 64px |  
+      | Tablet:Right Margin    | 60px |
+      | Tablet:Bottom Margin   | 56px |
+      | Tablet:Left Margin     | 52px |     
+      | Desktop[0]             | Override |
+      | Desktop[1]             | Override |
+      | Desktop:Top Padding    | 48px | 
+      | Desktop:Right Padding  | 44px |
+      | Desktop:Bottom Padding | 40px |
+      | Desktop:Left Padding   | 36px |
+      | Desktop:Top Margin     | 64px |  
+      | Desktop:Right Margin   | 60px |
+      | Desktop:Bottom Margin  | 56px |
+      | Desktop:Left Margin    | 52px |             
+     Then I click Done in Configuration dialog
+     Then I insert "Dexter/Text" into Layout container "flex/items"
+     Then I type "Text in Flex component" into Text component "flex/items/text" 
+     Then I open the edited page on preview mode
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer       |
+      | class | contains | mobile-padding-top-16      |
+      | class | contains | mobile-padding-right-12    |
+      | class | contains | mobile-padding-bottom-8    |
+      | class | contains | mobile-padding-left-4      |
+      | class | contains | mobile-margin-top-32       |
+      | class | contains | mobile-margin-right-28     |
+      | class | contains | mobile-margin-bottom-24    |
+      | class | contains | mobile-margin-left-20      |
+      | class | contains | tablet-padding-top-48      |
+      | class | contains | tablet-padding-right-44    |
+      | class | contains | tablet-padding-bottom-40   |
+      | class | contains | tablet-padding-left-36     |
+      | class | contains | tablet-margin-top-64       |
+      | class | contains | tablet-margin-right-60     |
+      | class | contains | tablet-margin-bottom-56    |
+      | class | contains | tablet-margin-left-52      |
+      | class | contains | desktop-padding-top-48     |
+      | class | contains | desktop-padding-right-44   |
+      | class | contains | desktop-padding-bottom-40  |
+      | class | contains | desktop-padding-left-36    |
+      | class | contains | desktop-margin-top-64      |
+      | class | contains | desktop-margin-right-60    |
+      | class | contains | desktop-margin-bottom-56   |
+      | class | contains | desktop-margin-left-52     |
+     Then I should see an element "div" with attributes:
+      | class | contains | tablet-container-disabled  | 
+     Then I should not see an element with attributes:
+      | class | tablet-container                      |
+
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> author can set tablet spacing for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Tablet" tab:
+      |                        | Override    |
+      | Enable Container       | Enabled     |
+      | Min Height             | 876         |
+      | Type                   | Pixels      |    
+      | Item Justification     | Stretch     |
+      | Item Alignment         | Stretch     |
+      | Row Alignment          | Stretch     | 
+      | Item Content Alignment | Start       |
+     Then I configure settings in "Spacing" tab:
+      | Top Padding            | 16px | 
+      | Right Padding          | 12px |
+      | Bottom Padding         |  8px |
+      | Left Padding           |  4px |
+      | Top Margin             | 32px |  
+      | Right Margin           | 28px |
+      | Bottom Margin          | 24px |
+      | Left Margin            | 20px | 
+      | Tablet[0]              | Override |
+      | Tablet[1]              | Override |
+      | Tablet:Top Padding     | 48px | 
+      | Tablet:Right Padding   | 44px |
+      | Tablet:Bottom Padding  | 40px |
+      | Tablet:Left Padding    | 36px |
+      | Tablet:Top Margin      | 64px |  
+      | Tablet:Right Margin    | 60px |
+      | Tablet:Bottom Margin   | 56px |
+      | Tablet:Left Margin     | 52px |     
+      | Desktop[0]             | Override |
+      | Desktop[1]             | Override |
+      | Desktop:Top Padding    | 48px | 
+      | Desktop:Right Padding  | 44px |
+      | Desktop:Bottom Padding | 40px |
+      | Desktop:Left Padding   | 36px |
+      | Desktop:Top Margin     | 64px |  
+      | Desktop:Right Margin   | 60px |
+      | Desktop:Bottom Margin  | 56px |
+      | Desktop:Left Margin    | 52px |             
+     Then I click Done in Configuration dialog
+     Then I insert "Dexter/Text" into Layout container "flex/items"
+     Then I type "Text in Flex component" into Text component "flex/items/text" 
+     Then I open the edited page on preview mode
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer       |
+      | class | contains | mobile-padding-top-16      |
+      | class | contains | mobile-padding-right-12    |
+      | class | contains | mobile-padding-bottom-8    |
+      | class | contains | mobile-padding-left-4      |
+      | class | contains | mobile-margin-top-32       |
+      | class | contains | mobile-margin-right-28     |
+      | class | contains | mobile-margin-bottom-24    |
+      | class | contains | mobile-margin-left-20      |
+      | class | contains | tablet-padding-top-48      |
+      | class | contains | tablet-padding-right-44    |
+      | class | contains | tablet-padding-bottom-40   |
+      | class | contains | tablet-padding-left-36     |
+      | class | contains | tablet-margin-top-64       |
+      | class | contains | tablet-margin-right-60     |
+      | class | contains | tablet-margin-bottom-56    |
+      | class | contains | tablet-margin-left-52      |
+      | class | contains | desktop-padding-top-48     |
+      | class | contains | desktop-padding-right-44   |
+      | class | contains | desktop-padding-bottom-40  |
+      | class | contains | desktop-padding-left-36    |
+      | class | contains | desktop-margin-top-64      |
+      | class | contains | desktop-margin-right-60    |
+      | class | contains | desktop-margin-bottom-56   |
+      | class | contains | desktop-margin-left-52     |
+     Then I should see an element "div" with attributes:
+      | class | contains | tablet-container       |
+      | class | contains | dexter-FlexContainer--mobileJustifyStretch       |
+      | class | contains | dexter-FlexContainer--mobileAlignAlignmentStretch      |
+      | class | contains | dexter-FlexContainer--mobileAlignContentStretch    |
+      | class | contains | dexter-FlexContainer--mobileAlignItemContentStart    |
+      | class | contains | dexter-FlexContainer--tabletJustifyStretch      |
+      | class | contains | dexter-FlexContainer--tabletAlignAlignmentStretch       |
+      | class | contains | dexter-FlexContainer--tabletAlignContentStretch     |
+      | class | contains | dexter-FlexContainer--tabletAlignItemContentStart    | 
+      Then I should not see an element with attributes:
+      | class | tablet-container-disabled             |
+
+
+  <@id-8> <@desc-8> <@envs>
+  Scenario: <Site> author can set desktop to inherit spacing for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Desktop" tab:
+      |                        | Override    |
+      | Enable Container       | Inherit     |
+      | Min Height             | 876         |
+      | Type                   | Pixels      |    
+      | Item Justification     | Stretch     |
+      | Item Alignment         | Stretch     |
+      | Row Alignment          | Stretch     | 
+      | Item Content Alignment | Start       |
+     Then I configure settings in "Spacing" tab:
+      | Top Padding            | 16px | 
+      | Right Padding          | 12px |
+      | Bottom Padding         |  8px |
+      | Left Padding           |  4px |
+      | Top Margin             | 32px |  
+      | Right Margin           | 28px |
+      | Bottom Margin          | 24px |
+      | Left Margin            | 20px | 
+      | Tablet[0]              | Override |
+      | Tablet[1]              | Override |
+      | Tablet:Top Padding     | 48px | 
+      | Tablet:Right Padding   | 44px |
+      | Tablet:Bottom Padding  | 40px |
+      | Tablet:Left Padding    | 36px |
+      | Tablet:Top Margin      | 64px |  
+      | Tablet:Right Margin    | 60px |
+      | Tablet:Bottom Margin   | 56px |
+      | Tablet:Left Margin     | 52px |     
+      | Desktop[0]             | Override |
+      | Desktop[1]             | Override |
+      | Desktop:Top Padding    | 48px | 
+      | Desktop:Right Padding  | 44px |
+      | Desktop:Bottom Padding | 40px |
+      | Desktop:Left Padding   | 36px |
+      | Desktop:Top Margin     | 64px |  
+      | Desktop:Right Margin   | 60px |
+      | Desktop:Bottom Margin  | 56px |
+      | Desktop:Left Margin    | 52px |             
+     Then I click Done in Configuration dialog
+     Then I insert "Dexter/Text" into Layout container "flex/items"
+     Then I type "Text in Flex component" into Text component "flex/items/text" 
+     Then I open the edited page on preview mode
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer       |
+      | class | contains | mobile-padding-top-16      |
+      | class | contains | mobile-padding-right-12    |
+      | class | contains | mobile-padding-bottom-8    |
+      | class | contains | mobile-padding-left-4      |
+      | class | contains | mobile-margin-top-32       |
+      | class | contains | mobile-margin-right-28     |
+      | class | contains | mobile-margin-bottom-24    |
+      | class | contains | mobile-margin-left-20      |
+      | class | contains | tablet-padding-top-48      |
+      | class | contains | tablet-padding-right-44    |
+      | class | contains | tablet-padding-bottom-40   |
+      | class | contains | tablet-padding-left-36     |
+      | class | contains | tablet-margin-top-64       |
+      | class | contains | tablet-margin-right-60     |
+      | class | contains | tablet-margin-bottom-56    |
+      | class | contains | tablet-margin-left-52      |
+      | class | contains | desktop-padding-top-48     |
+      | class | contains | desktop-padding-right-44   |
+      | class | contains | desktop-padding-bottom-40  |
+      | class | contains | desktop-padding-left-36    |
+      | class | contains | desktop-margin-top-64      |
+      | class | contains | desktop-margin-right-60    |
+      | class | contains | desktop-margin-bottom-56   |
+      | class | contains | desktop-margin-left-52     |
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer--mobileJustifyStretch       |
+      | class | contains | dexter-FlexContainer--mobileAlignAlignmentStretch      |
+      | class | contains | dexter-FlexContainer--mobileAlignContentStretch    |
+      | class | contains | dexter-FlexContainer--mobileAlignItemContentStart    |
+      | class | contains | dexter-FlexContainer--desktopJustifyStretch      |
+      | class | contains | dexter-FlexContainer--desktopAlignAlignmentStretch       |
+      | class | contains | dexter-FlexContainer--desktopAlignContentStretch     |
+      | class | contains | dexter-FlexContainer--desktopAlignItemContentStart    |
+
+
+
+  <@id-9> <@desc-9> <@envs>
+  Scenario: <Site> author can disable desktop spacing for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Desktop" tab:
+      |                        | Override    |
+      | Enable Container       | Disabled    |
+      | Min Height             | 876         |
+      | Type                   | Pixels      |    
+      | Item Justification     | Stretch     |
+      | Item Alignment         | Stretch     |
+      | Row Alignment          | Stretch     | 
+      | Item Content Alignment | Start       |
+     Then I configure settings in "Spacing" tab:
+      | Top Padding            | 16px | 
+      | Right Padding          | 12px |
+      | Bottom Padding         |  8px |
+      | Left Padding           |  4px |
+      | Top Margin             | 32px |  
+      | Right Margin           | 28px |
+      | Bottom Margin          | 24px |
+      | Left Margin            | 20px | 
+      | Tablet[0]              | Override |
+      | Tablet[1]              | Override |
+      | Tablet:Top Padding     | 48px | 
+      | Tablet:Right Padding   | 44px |
+      | Tablet:Bottom Padding  | 40px |
+      | Tablet:Left Padding    | 36px |
+      | Tablet:Top Margin      | 64px |  
+      | Tablet:Right Margin    | 60px |
+      | Tablet:Bottom Margin   | 56px |
+      | Tablet:Left Margin     | 52px |     
+      | Desktop[0]             | Override |
+      | Desktop[1]             | Override |
+      | Desktop:Top Padding    | 48px | 
+      | Desktop:Right Padding  | 44px |
+      | Desktop:Bottom Padding | 40px |
+      | Desktop:Left Padding   | 36px |
+      | Desktop:Top Margin     | 64px |  
+      | Desktop:Right Margin   | 60px |
+      | Desktop:Bottom Margin  | 56px |
+      | Desktop:Left Margin    | 52px |             
+     Then I click Done in Configuration dialog
+     Then I insert "Dexter/Text" into Layout container "flex/items"
+     Then I type "Text in Flex component" into Text component "flex/items/text" 
+     Then I open the edited page on preview mode
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer       |
+      | class | contains | mobile-padding-top-16      |
+      | class | contains | mobile-padding-right-12    |
+      | class | contains | mobile-padding-bottom-8    |
+      | class | contains | mobile-padding-left-4      |
+      | class | contains | mobile-margin-top-32       |
+      | class | contains | mobile-margin-right-28     |
+      | class | contains | mobile-margin-bottom-24    |
+      | class | contains | mobile-margin-left-20      |
+      | class | contains | tablet-padding-top-48      |
+      | class | contains | tablet-padding-right-44    |
+      | class | contains | tablet-padding-bottom-40   |
+      | class | contains | tablet-padding-left-36     |
+      | class | contains | tablet-margin-top-64       |
+      | class | contains | tablet-margin-right-60     |
+      | class | contains | tablet-margin-bottom-56    |
+      | class | contains | tablet-margin-left-52      |
+      | class | contains | desktop-padding-top-48     |
+      | class | contains | desktop-padding-right-44   |
+      | class | contains | desktop-padding-bottom-40  |
+      | class | contains | desktop-padding-left-36    |
+      | class | contains | desktop-margin-top-64      |
+      | class | contains | desktop-margin-right-60    |
+      | class | contains | desktop-margin-bottom-56   |
+      | class | contains | desktop-margin-left-52     |
+     Then I should see an element "div" with attributes:
+      | class | contains | desktop-container-disabled  | 
+     Then I should not see an element with attributes:
+      | class | desktop-container                      |
+      | class | container                              |
+
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario: <Site> author can set desktop spacing for flex
+    Given I open Configuration dialog of the newly added component
+     Then I configure settings in "Desktop" tab:
+      |                        | Override    |
+      | Enable Container       | Enabled     |
+      | Min Height             | 876         |
+      | Type                   | Pixels      |    
+      | Item Justification     | Stretch     |
+      | Item Alignment         | Stretch     |
+      | Row Alignment          | Stretch     | 
+      | Item Content Alignment | Start       |
+     Then I configure settings in "Spacing" tab:
+      | Top Padding            | 16px | 
+      | Right Padding          | 12px |
+      | Bottom Padding         |  8px |
+      | Left Padding           |  4px |
+      | Top Margin             | 32px |  
+      | Right Margin           | 28px |
+      | Bottom Margin          | 24px |
+      | Left Margin            | 20px | 
+      | Tablet[0]              | Override |
+      | Tablet[1]              | Override |
+      | Tablet:Top Padding     | 48px | 
+      | Tablet:Right Padding   | 44px |
+      | Tablet:Bottom Padding  | 40px |
+      | Tablet:Left Padding    | 36px |
+      | Tablet:Top Margin      | 64px |  
+      | Tablet:Right Margin    | 60px |
+      | Tablet:Bottom Margin   | 56px |
+      | Tablet:Left Margin     | 52px |     
+      | Desktop[0]             | Override |
+      | Desktop[1]             | Override |
+      | Desktop:Top Padding    | 48px | 
+      | Desktop:Right Padding  | 44px |
+      | Desktop:Bottom Padding | 40px |
+      | Desktop:Left Padding   | 36px |
+      | Desktop:Top Margin     | 64px |  
+      | Desktop:Right Margin   | 60px |
+      | Desktop:Bottom Margin  | 56px |
+      | Desktop:Left Margin    | 52px |             
+     Then I click Done in Configuration dialog
+     Then I insert "Dexter/Text" into Layout container "flex/items"
+     Then I type "Text in Flex component" into Text component "flex/items/text" 
+     Then I open the edited page on preview mode
+     Then I should see an element "div" with attributes:
+      | class | contains | dexter-FlexContainer       |
+      | class | contains | mobile-padding-top-16      |
+      | class | contains | mobile-padding-right-12    |
+      | class | contains | mobile-padding-bottom-8    |
+      | class | contains | mobile-padding-left-4      |
+      | class | contains | mobile-margin-top-32       |
+      | class | contains | mobile-margin-right-28     |
+      | class | contains | mobile-margin-bottom-24    |
+      | class | contains | mobile-margin-left-20      |
+      | class | contains | tablet-padding-top-48      |
+      | class | contains | tablet-padding-right-44    |
+      | class | contains | tablet-padding-bottom-40   |
+      | class | contains | tablet-padding-left-36     |
+      | class | contains | tablet-margin-top-64       |
+      | class | contains | tablet-margin-right-60     |
+      | class | contains | tablet-margin-bottom-56    |
+      | class | contains | tablet-margin-left-52      |
+      | class | contains | desktop-padding-top-48     |
+      | class | contains | desktop-padding-right-44   |
+      | class | contains | desktop-padding-bottom-40  |
+      | class | contains | desktop-padding-left-36    |
+      | class | contains | desktop-margin-top-64      |
+      | class | contains | desktop-margin-right-60    |
+      | class | contains | desktop-margin-bottom-56   |
+      | class | contains | desktop-margin-left-52     |
+     Then I should see an element "div" with attributes:
+      | class | contains | desktop-container       |
+      | class | contains | dexter-FlexContainer--mobileJustifyStretch       |
+      | class | contains | dexter-FlexContainer--mobileAlignAlignmentStretch   |
+      | class | contains | dexter-FlexContainer--mobileAlignContentStretch       |
+      | class | contains | dexter-FlexContainer--mobileAlignItemContentStart       |
+      | class | contains | dexter-FlexContainer--desktopJustifyStretch       |
+      | class | contains | dexter-FlexContainer--desktopAlignAlignmentStretch   |
+      | class | contains | dexter-FlexContainer--desktopAlignContentStretch       |
+      | class | contains | dexter-FlexContainer--desktopAlignItemContentStart       |
+     Then I should not see an element with attributes:
+      | class | desktop-container-disabled                      |

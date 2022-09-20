@@ -1,0 +1,15 @@
+Feature: [E2E][Publish] FaaS Form Component
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: Dexter authoring of faas form with form template, form type,form sub type, primary product, valid campign ID
+    Given I go to "testautomation/Test-faasform-01.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see an element with attributes:
+       | class  | faas_title |
+    Then I should see "Test Automation FaaS Form"
+    Then I should see an element with attributes:
+       | class  | row dropdownlist 95  FaaS-95 |   
+    Then I should see an element with attributes:
+       | class  | row submit |   

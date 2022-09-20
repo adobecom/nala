@@ -1,0 +1,41 @@
+Feature: [E2E][Author] Image Component
+
+  Background:
+    Given I sign in as an author
+    Then I delete the asset "/content/dam/automation/desktop.jpg"
+    Then I delete the asset "/content/dam/automation/tablet.jpg"
+    Then I delete the asset "/content/dam/automation/mobile.jpg"
+    Then I upload the following files to Assets "/content/dam/automation":
+      | <common>/content/assets/desktop.jpg   |
+      | <common>/content/assets/mobile.jpg    |
+      | <common>/content/assets/tablet.jpg    |
+    And I wait for 25 seconds  
+    And I have the page "Test-Image-${DateTime}" in the test folder
+    And I edit the test page in the test folder
+    And I insert a component "Dexter/Image"
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> verify image component shows error message when image less than width defined for each breakpoint in dynamic media
+    Then I open editor's side panel 
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | /content/dam/automation/desktop.jpg |
+    Then I configure settings in "ACCESSIBILITY" tab:
+      | Alternative Text | ThisAlternativeText |  
+    Then I click Done to close Configuration dialog
+    Then I should see "Desktop: Lo-res error"   
+    Then I click Done to close Configuration dialog
+    Then I select the newly added component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "RENDITIONS" tab:
+      | Tablet:Image | /content/dam/automation/tablet.jpg | 
+    Then I click Done to close Configuration dialog  
+    Then I should see "Desktop: Lo-res error"
+    Then I should see "Tablet: Lo-res error"
+    Then I select the newly added component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "MOBILE / DEFAULT" tab:
+      | Image asset | /content/dam/automation/mobile.jpg |
+    Then I click Done to close Configuration dialog
+    Then I should see "Compression: Lo-res error"
+    Then I delete all components

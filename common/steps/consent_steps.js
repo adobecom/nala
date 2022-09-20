@@ -113,10 +113,10 @@ function iAmInTheCountryGeo(geo) {
  */
 function iAmInTheCountryFromLocale() {
   if (browser.config.profile.locale === 'uk') {
-    browser.config.profile.akamaiLocale = 'GB';
+    browser.config.profile.geolocation = 'GB';
   }
-  geomock(browser.config.profile.akamaiLocale);
-  console.log('mock ' + browser.config.profile.akamaiLocale);
+  geomock(browser.config.profile.geolocation);
+  console.log('mock ' + browser.config.profile.geolocation);
 }
 
 /**

@@ -1,0 +1,796 @@
+Feature: [E2E][Author] Button Component
+
+  Background:
+    Given I sign in as an author
+      And I have the page "Test-Button-${DateTime}" in the test folder
+      And I edit the test page in the test folder
+      Then I wait for 10 seconds
+      And I insert a component "Dexter/Button"
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author set button's text and link for basic button type
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                      |     
+      | Link To       | https://helpx.adobe.com  |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href  | https://helpx.adobe.com  |   
+
+  <@id-2> <@desc-2> <@envs>
+  Scenario: <Site> author can't apply configuration change without required fields for button
+     Then I open Configuration dialog of the newly added component
+     Then I click Done in Configuration dialog
+     Then I should see invalid configuration in "General" tab for field
+      | Button Text * | 
+      | Link To       |
+     Then I should see Configuration dialog
+     Then I click Cancel in Configuration dialog
+     Then I should not see Configuration dialog 
+
+
+  <@id-3> <@desc-3> <@envs>
+  Scenario: <Site> author select checkout button type
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+     Then I click Done to close Configuration dialog
+     Then I should not see Configuration dialog     
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | href   | contains | #     |   
+      | target | contains | _self |
+
+  <@id-4> <@desc-4> <@envs>
+  Scenario: <Site> author select placeholder button type
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA         |   
+      | Button Type   | Placeholder |
+     Then I click Done in Configuration dialog  
+     Then I should see invalid configuration in "General" tab for field
+      | Link To |  
+     Then I should see Configuration dialog    
+     Then I configure settings in "General" tab:   
+      | Link To | https://helpx.adobe.com | 
+     Then I click Done to close Configuration dialog 
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | href | https://helpx.adobe.com  |        
+
+
+  <@id-5> <@desc-5> <@envs>
+  Scenario: <Site> author select toggle button type
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA    |   
+      | Button Type   | Toggle |
+     Then I click Done in Configuration dialog  
+     Then I should see invalid configuration in "General" tab for field
+      | Toggle ID |  
+     Then I should see Configuration dialog    
+     Then I configure settings in "General" tab:   
+      | Toggle ID | toogleId1 | 
+     Then I click Done to close Configuration dialog  
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | data-toggleid  | toggle-toogleId1  |   
+
+
+  <@id-6> <@desc-6> <@envs>
+  Scenario: <Site> author select mobile, desktop and tablet alignment left for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text *        | CTA                   |   
+      | Link To              | https://www.adobe.com |
+      | Alignment - Mobile   | Left                  |
+      | Alignment - Tablet   | Left                  |
+      | Alignment - Desktop  | Left                  |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | dexter-Cta dexter-Cta--align-left |
+      | class | contains | dexter-Cta--tablet-align-left     | 
+      | class | contains | dexter-Cta--desktop-align-left    | 
+
+
+  <@id-7> <@desc-7> <@envs>
+  Scenario: <Site> author select mobile, desktop and tablet alignment right for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text *        | CTA                   |   
+      | Link To              | https://www.adobe.com |
+      | Alignment - Mobile   | Right                 |
+      | Alignment - Tablet   | Right                 |
+      | Alignment - Desktop  | Right                 |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | dexter-Cta dexter-Cta--align-right | 
+      | class | contains | dexter-Cta--tablet-align-right     | 
+      | class | contains | dexter-Cta--desktop-align-right    |    
+
+
+  <@id-8> <@desc-8> <@envs>
+  Scenario: <Site> author select mobile, desktop and tablet alignment center for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text *        | CTA                   |   
+      | Link To              | https://www.adobe.com |
+      | Alignment - Mobile   | Center                |
+      | Alignment - Tablet   | Center                |
+      | Alignment - Desktop  | Center                |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | dexter-Cta dexter-Cta--align-center | 
+      | class | contains | dexter-Cta--tablet-align-center     | 
+      | class | contains | dexter-Cta--desktop-align-center    |  
+
+
+
+  <@id-9> <@desc-9> <@envs>
+  Scenario: <Site> author set target window as new window
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |     
+      | Link To       | https://www.adobe.com |
+      | Target Window | New Window            |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href   | https://www.adobe.com  | 
+      | target |  _blank                |
+    Then I click on the "ctaLink"
+    Then I switch to the new window
+    Then I should see "https://www.adobe.com" in current url 
+
+
+  <@id-10> <@desc-10> <@envs>
+  Scenario: <Site> author set target window as same window
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |     
+      | Link To       | https://www.adobe.com |
+      | Target Window | This Window           |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href   | https://www.adobe.com  | 
+      | target |  _self                 |
+    Then I click on the "ctaLink"
+    Then I should see "https://www.adobe.com" in current url    
+
+  
+  <@id-11> <@desc-11> <@envs>
+  Scenario: <Site> author set target window as parent window
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |     
+      | Link To       | https://www.adobe.com |
+      | Target Window | Parent Frame          |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href   | https://www.adobe.com  | 
+      | target |  _parent               |
+    Then I click on the "ctaLink"
+    Then I should see "https://www.adobe.com" in current url
+
+  <@id-12> <@desc-12> <@envs>
+  Scenario: <Site> author set target window as top window
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |     
+      | Link To       | https://www.adobe.com |
+      | Target Window | Top Window            |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href   | https://www.adobe.com  | 
+      | target |  _top                  |
+    Then I click on the "ctaLink"
+    Then I should see "https://www.adobe.com" in current url
+
+  <@id-13> <@desc-13> <@envs>
+  Scenario: <Site> author configure draft only for button component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |     
+      | Link To       | https://www.adobe.com |
+      | Draft Only    | checked               | 
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should not see an element with attributes:
+      | href  | https://www.adobe.com  |    
+
+  <@id-14> <@desc-14> <@envs>
+  Scenario: <Site> author disable parameter pass through for button component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text *                    | CTA                   |     
+      | Link To                          | https://www.adobe.com |
+      | Disable Parameter Pass Through   | checked               | 
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | data-disable-query  | true |    
+
+  <@id-15> <@desc-15> <@envs>
+  Scenario: <Site> author select style Link - Primary (Quiet) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |   
+      | Link To       | https://www.adobe.com |
+      | Style         | spectrum-Link         |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link |    
+
+  <@id-16> <@desc-16> <@envs>
+  Scenario: <Site> author select style Link - Primary for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                               |   
+      | Link To       | https://www.adobe.com             |
+      | Style         | spectrum-Link spectrum-Link--primary                    |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link spectrum-Link--primary |    
+
+
+  <@id-17> <@desc-17> <@envs>
+  Scenario: <Site> author select style Link - Secondary for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                       |   
+      | Link To       | https://www.adobe.com     |
+      | Style         | spectrum-Link spectrum-Link--quiet          |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link spectrum-Link--quiet |    
+     
+
+  <@id-18> <@desc-18> <@envs>
+  Scenario: <Site> author select style Link - Secondary (Quiet) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |   
+      | Link To       | https://www.adobe.com |
+      | Style         | spectrum-Link spectrum-Link--secondary spectrum-Link--quiet |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link spectrum-Link--secondary spectrum-Link--quiet |    
+   
+
+  <@id-19> <@desc-19> <@envs>
+  Scenario: <Site> author select style Link - Static White for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Link spectrum-Link--overBackground |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link spectrum-Link--overBackground |    
+
+  <@id-20> <@desc-20> <@envs>
+  Scenario: <Site> author select style Link - Static White (Quiet) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Link spectrum-Link--overBackground spectrum-Link--quiet |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link spectrum-Link--overBackground spectrum-Link--quiet |    
+
+  <@id-21> <@desc-21> <@envs>
+  Scenario: <Site> author select style Link - Static Black for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Link consonant-Link--black |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link consonant-Link--black |    
+
+  <@id-22> <@desc-22> <@envs>
+  Scenario: <Site> author select style Link - Static Black (Quiet) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Link consonant-Link--black spectrum-Link--quiet |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Link consonant-Link--black spectrum-Link--quiet |    
+
+  <@id-23> <@desc-23> <@envs>
+  Scenario: <Site> author select style Button - Accent for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--accent spectrum-Button--fill |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--accent spectrum-Button--fill |    
+  
+  <@id-24> <@desc-24> <@envs>
+  Scenario: <Site> author select style Button - Accent (Outline) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--accent spectrum-Button--outline |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--accent spectrum-Button--outline |    
+
+  <@id-25> <@desc-25> <@envs>
+  Scenario: <Site> author select style Button - Static White for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticWhite spectrum-Button--fill |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticWhite spectrum-Button--fill |    
+
+  <@id-26> <@desc-26> <@envs>
+  Scenario: <Site> author select style Button - Static White (Outline) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticWhite spectrum-Button--outline |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticWhite spectrum-Button--outline |    
+
+  <@id-27> <@desc-27> <@envs>
+  Scenario: <Site> author select style Button - Static White Secondary for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticWhite spectrum-Button--fill spectrum-Button--secondary |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticWhite spectrum-Button--fill spectrum-Button--secondary |    
+
+  <@id-28> <@desc-28> <@envs>
+  Scenario: <Site> author select style Button - Static White Secondary (Outline) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticWhite spectrum-Button--outline spectrum-Button--secondary |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticWhite spectrum-Button--outline spectrum-Button--secondary |    
+
+
+  <@id-29> <@desc-29> <@envs>
+  Scenario: <Site> author select style Button - Static Black for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticBlack spectrum-Button--fill |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticBlack spectrum-Button--fill |    
+
+  <@id-30> <@desc-30> <@envs>
+  Scenario: <Site> author select style Button - Static Black (Outline) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticBlack spectrum-Button--outline |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticBlack spectrum-Button--outline |    
+
+  <@id-31> <@desc-31> <@envs>
+  Scenario: <Site> author select style Button - Static Black Secondary for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticBlack spectrum-Button--fill spectrum-Button--secondary |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticBlack spectrum-Button--fill spectrum-Button--secondary |    
+
+  <@id-32> <@desc-32> <@envs>
+  Scenario: <Site> author select style Button - Static Black Secondary (Outline) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--staticBlack spectrum-Button--outline spectrum-Button--secondary |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--staticBlack spectrum-Button--outline spectrum-Button--secondary |    
+
+  <@id-33> <@desc-33> <@envs>
+  Scenario: <Site> author select style Button - Primary for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--primary spectrum-Button--fill |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--primary spectrum-Button--fill |    
+
+  <@id-34> <@desc-34> <@envs>
+  Scenario: <Site> author select style Button - Primary (Outline) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--primary spectrum-Button--outline |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--primary spectrum-Button--outline |    
+
+  <@id-35> <@desc-35> <@envs>
+  Scenario: <Site> author select style Button - Secondary for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--secondary spectrum-Button--fill |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--secondary spectrum-Button--fill |    
+
+  <@id-36> <@desc-36> <@envs>
+  Scenario: <Site> author select style Button - Secondary (Outline) for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | spectrum-Button spectrum-Button--secondary spectrum-Button--outline |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Button spectrum-Button--secondary spectrum-Button--outline |    
+  
+  <@id-37> <@desc-37> <@envs>
+  Scenario: <Site> author select style Button - Video Play for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                             |   
+      | Link To       | https://www.adobe.com           |
+      | Style         | consonant-Button--videoPlay |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | consonant-Button--videoPlay |    
+
+  <@id-38> <@desc-38> <@envs>
+  Scenario: <Site> author configure SEO Query String Parameters for button
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text *                    | CTA                   |   
+      | Link To                          | https://www.adobe.com |
+      | Campaigns (Query String)         | button                |      
+      |Campaign Key (Parameter Name)     | param                 |
+      | Campaign Value (Parameter Value) | test                  |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | href | https://www.adobe.com?param=test |   
+     Then I click on the "ctaLink"
+     Then I should see "https://www.adobe.com/?param=test" in current url  
+
+  <@id-39> <@desc-39> <@envs>
+  Scenario: <Site> author configure button with icon on
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text *      | CTA                   |   
+      | Link To            | https://www.adobe.com |
+      | Icon               | On                    |
+      |Show text with icon | checked               |
+     Then I click Done to close Configuration dialog         
+     Then I wait for 3 seconds
+     Then I open the edited page on preview mode
+     Then I should see an element with attributes:
+      | class | contains | spectrum-Icon spectrum-Icon |         
+
+  <@id-40> <@desc-40> <@envs>
+  Scenario: <Site> author set button's text and link for basic button type and then delete it
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |     
+      | Link To       | https://www.adobe.com |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href  | contains | https://www.adobe.com                             |   
+      | class | contains | spectrum-Button spectrum-Button--warning          |    
+    Then I go back to last page
+    Then I delete all components
+    Then I wait for 2 seconds
+    Then I open the edited page on preview mode
+    Then I should not see an element with attributes:
+      | href  | https://www.adobe.com  |        
+
+  <@id-41> <@desc-41> <@envs>
+  Scenario: <Site> author select checkout button type and then update it
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA      |   
+      | Button Type   | Checkout |
+      | Link To       | https://www.test.com |
+    Then I click Done to close Configuration dialog
+    Then I should not see Configuration dialog     
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href | https://www.test.com  |     
+    Then I wait for 2 seconds
+    Then I go back to last page
+    Then I select the newly added component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Type   | Basic                 |     
+      | Link To       | https://www.adobe.com |
+    Then I click Done to close Configuration dialog
+    Then I wait for 3 seconds
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+      | href  | contains | https://www.adobe.com                             |   
+      | class | contains | spectrum-Button spectrum-Button--warning          |    
+
+  <@id-42> <@desc-42> <@envs>
+  Scenario: <Site> Verify all the fields in the configuration modal for button component
+    Then I open Configuration dialog of the newly added component
+    Then I verify fields in "General" tab:
+      | Button Text *                 | Text     |
+      | Button Type                   | Dropdown |
+      | Link To                       | Text     |
+      | Target Window                 | Dropdown | 
+      | Alignment - Mobile            | Dropdown |
+      | Alignment - Tablet            | Dropdown |
+      | Alignment - Desktop           | Dropdown |
+      | Style                         | SearchDropdown |
+      | Icon                          | Dropdown |
+      | Campaigns (Query String)      | Button   |
+      | Disable Parameter Pass Through| Checkbox |
+      |Draft Only                     | Checkbox |
+    Then I configure settings in "General" tab:
+      | Campaigns (Query String)         | button|           
+    Then I verify fields in "General" tab:
+      | Campaign Key (Parameter Name)     | Text |
+      | Campaign Value (Parameter Value)  | Text |
+    Then I verify dropdown "Button Type" in tab "General" has following values:
+      | Basic                        |
+      | Checkout                     |
+      | Placeholder                  |
+      | Commerce Checkout Placeholder|
+      | Toggle                       |
+    Then I verify dropdown "Target Window" in tab "General" has following values:
+      | This Window  |
+      | New Window   |
+      | Parent Frame |
+      | Top Window   |  
+    Then I verify dropdown "Alignment - Mobile" in tab "General" has following values:
+      |                                    |
+      | Left                               |
+      | Center                             |
+      | Right                              |
+      | Justified (full width mobile only) | 
+    Then I verify dropdown "Alignment - Tablet" in tab "General" has following values:
+      |            |
+      | Left       |
+      | Center     |
+      | Right      |   
+    Then I verify dropdown "Alignment - Desktop" in tab "General" has following values:
+      |            |
+      | Left       |
+      | Center     |
+      | Right      |     
+    Then I verify search dropdown "Style" in tab "General" has following values:
+      | Link - Primary (Quiet)                     | 
+      | Link - Primary                             |
+      | Link - Secondary                           |  
+      | Link - Secondary (Quiet)                   |
+      | Link - Static White                        |
+      | Link - Static White (Quiet)                |
+      | Link - Static Black                        |
+      | Link - Static Black (Quiet)                |
+      | Button - Accent                            |
+      | Button - Accent (Outline)                  |
+      | Button - Static White                      |
+      | Button - Static White (Outline)            |
+      | Button - Static White Secondary            |
+      | Button - Static White Secondary (Outline)  |
+      | Button - Static Black                      |
+      | Button - Static Black (Outline)            |
+      | Button - Static Black Secondary            |
+      | Button - Static Black Secondary (Outline)  |
+      | Button - Primary                           |
+      | Button - Primary (Outline)                 |
+      | Button - Secondary                         |
+      | Button - Secondary (Outline)               |
+      | Button - Video Play                        |
+    Then I verify dropdown "Icon" in tab "General" has following values:
+      | Off   |
+      | On    |   
+
+  <@id-43> <@desc-43> <@envs>
+  Scenario: <Site> author can configure padding and margin to button component in mobile layout
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+      | Button Text * | CTA                   |     
+      | Link To       | https://www.adobe.com |
+     Then I configure settings in "Spacing" tab:
+       | Top Padding    | 16px | 
+       | Right Padding  | 12px |
+       | Bottom Padding |  8px |
+       | Left Padding   |  4px |
+       | Top Margin     | 32px |  
+       | Right Margin   | 28px |
+       | Bottom Margin  | 24px |
+       | Left Margin    | 20px |
+    Then I click Done to close Configuration dialog  
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+       | class  | contains | dexter-Cta    mobile-padding-top-16 mobile-padding-right-12 mobile-padding-bottom-8 mobile-padding-left-4 mobile-margin-top-32 mobile-margin-right-28 mobile-margin-bottom-24 mobile-margin-left-20 | 
+
+  <@id-44> <@desc-44> <@envs>
+  Scenario: <Site> author set button's text and link as content page for basic button type
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA                                                      |     
+      | Link To       | /content/dexter/us/en/dexter/testpage_forautomation.html |
+    Then I click Done to close Configuration dialog  
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+       | href  | contains | /dexter/testpage_forautomation.html |  
+    Then I click on the "ctaLink"
+    Then I should see "/dexter/testpage_forautomation.html" in current url     
+ 
+  <@id-45> <@desc-45> <@envs>
+  Scenario: <Site> author copy paste the button component
+    Then I open Configuration dialog of the newly added component
+    Then I configure settings in "General" tab:
+      | Button Text * | CTA  |   
+      | Link To       | https://www.adobe.com |     
+    Then I click Done to close Configuration dialog              
+    Then I click Copy of the newly added component
+    Then I click Paste of the newly added component
+    Then I open the edited page on preview mode
+    Then I should see 2 elements with attributes:
+      | href  | https://www.adobe.com  |  
+
+  <@id-46> <@desc-46> <@envs>
+  Scenario: <Site> author can configure padding and margin to button component in tablet layout
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+       | Button Text * | CTA                   |     
+       | Link To       | https://www.adobe.com |
+      And I configure settings in "Spacing" tab:  
+       | Tablet[0]             | Override |
+       | Tablet[1]             | Override |
+       | Tablet:Top Padding    | 16px | 
+       | Tablet:Right Padding  | 12px |
+       | Tablet:Bottom Padding |  8px |
+       | Tablet:Left Padding   |  4px |
+       | Tablet:Top Margin     | 32px |  
+       | Tablet:Right Margin   | 28px |
+       | Tablet:Bottom Margin  | 24px |
+       | Tablet:Left Margin    | 20px |       
+    Then I click Done to close Configuration dialog  
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+       | class | contains | dexter-Cta              |
+       | class | contains | tablet-padding-top-16   |
+       | class | contains | tablet-padding-right-12 |
+       | class | contains | tablet-padding-bottom-8 |
+       | class | contains | tablet-padding-left-4   |
+       | class | contains | tablet-margin-top-32    |
+       | class | contains | tablet-margin-right-28  |
+       | class | contains | tablet-margin-bottom-24 |
+       | class | contains | tablet-margin-left-20   | 
+
+  <@id-47> <@desc-47> <@envs>
+  Scenario: <Site> author can configure padding and margin to button component in desktop layout
+     Then I open Configuration dialog of the newly added component
+     Then I configure settings in "General" tab:
+       | Button Text * | CTA                   |     
+       | Link To       | https://www.adobe.com |
+      And I configure settings in "Spacing" tab:  
+       | Desktop[0]             | Override |
+       | Desktop[1]             | Override |
+       | Desktop:Top Padding    | 16px | 
+       | Desktop:Right Padding  | 12px |
+       | Desktop:Bottom Padding |  8px |
+       | Desktop:Left Padding   |  4px |
+       | Desktop:Top Margin     | 32px |  
+       | Desktop:Right Margin   | 28px |
+       | Desktop:Bottom Margin  | 24px |
+       | Desktop:Left Margin    | 20px |            
+    Then I click Done to close Configuration dialog  
+    Then I open the edited page on preview mode
+    Then I should see an element with attributes:
+       | class | contains | dexter-Cta               |
+       | class | contains | desktop-padding-top-16   |
+       | class | contains | desktop-padding-right-12 |
+       | class | contains | desktop-padding-bottom-8 |
+       | class | contains | desktop-padding-left-4   |
+       | class | contains | desktop-margin-top-32    |
+       | class | contains | desktop-margin-right-28  |
+       | class | contains | desktop-margin-bottom-24 |
+       | class | contains | desktop-margin-left-20   |      
+
+
+
+
+ 

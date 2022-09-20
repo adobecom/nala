@@ -1,0 +1,11 @@
+Feature: [E2E][Publish] Horizontal Rule Component
+
+  <@id-1> <@desc-1> <@envs>
+  Scenario: <Site> author a Horizontal Rule component with Color, Height and Style = Solid and update it
+    Given I go to "testautomation/Test-HR-01.html"
+    Then I close the geo overlay if present
+    Then I wait for 3 seconds
+    Then I close US geo popup if have
+    Then I should see height 99px for element "hr"
+    Then I should see an element with attributes:
+      | style | border-bottom: 99px dotted #999999; |
