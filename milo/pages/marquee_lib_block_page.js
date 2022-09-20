@@ -1,11 +1,9 @@
 import { GnavPage } from '../../common/pages/gnav_page';
-import { iFocusAndClickTheElement } from '../../common/steps/cct_steps';
 
 /**
  * Page class for Milo Marquee Block page
  */
 export class MarqueeBlockPage extends GnavPage {
-    static selectedMarquee;
 
     /**
      * @type {string}
@@ -21,49 +19,61 @@ export class MarqueeBlockPage extends GnavPage {
      * @param {string} marqueeType marquee class type
      */
     getMarquee(marqueeType) {
-        this.selectedMarquee = $(`//*[@class='${marqueeType}']`);
-        return this.selectedMarquee;
+        return $(`//*[@class='${marqueeType}']`);
     }
 
     /**
-     * @type {object}
+     * @type {number}
      * @description Get the amount of actions of the selected marquee from the Marquee page
+     * @param {string} marqueeType marquee class type
      */
-    getMarqueeButtonCount() {
-        return this.selectedMarquee.$('.action-area').childElementCount();
+    getMarqueeButtonCount(marqueeType) {
+        if (marqueeType != "marquee inline dark")
+            return this.getMarquee(marqueeType).$('.action-area').$$('<a />').length;
+        else {
+            console.log('The marquee block ' + marqueeType + ' has an expected amount of "0" for cta buttons available so returned length is 0.');
+            return 0;
+        }
     }
 
     /**
-     * @type {object}
+     * @type {number}
      * @description Get the amount of icons present within the selected marquee from the Marquee page
+     * @param {string} marqueeType marquee class type
      */
-    getMarqueeIconCount() {
-        return this.selectedMarquee.$$('.icon-area picture').length;
+    getMarqueeIconCount(marqueeType) {
+        return this.getMarquee(marqueeType).$$('.icon-area picture').length;
     }
 
     /**
-     * @type {object}
+     * @type {number}
      * @description Get the amount of pictures present within the selected marquee from the Marquee page
+     * @param {string} marqueeType marquee class type
      */
-    getMarqueePicturesCount() {
-        return this.selectedMarquee.$$('.image picture').length;
+    getMarqueePicturesCount(marqueeType) {
+        return this.getMarquee(marqueeType).$$('.image picture').length;
     }
 
     /**
-     * @type {object}
+     * @type {number}
      * @description Get the amount of background images present within the selected marquee from the Marquee page
+     * @param {string} marqueeType marquee class type
      */
-    getMarqueeBackgroundImgCount() {
-        return this.selectedMarquee.$$('div.background div picture').length;
+    getMarqueeBackgroundImgCount(marqueeType) {
+        return this.getMarquee(marqueeType).$$('div.background div picture').length;
     }
 
     /**
      * @description Click the first action area cta within the selected marquee on the Marquee block page
+     * @param {string} marqueeType marquee class type
      */
-    clickCTA() {
-        iFocusAndClickTheElement(
-            this.selectedMarquee.$('.action-area').$$('<a />')[0]
-        );
+    clickCTA(marqueeType) {
+        if (marqueeType != "marquee inline dark") {
+            let ctaButton = this.getMarquee(marqueeType).$('.action-area').$$('<a />')[0];
+            console.log('Found first CTA button "' + ctaButton.getText() + '" in Action Area container and clicked the button.');
+            browser.execute('arguments[0].click()', ctaButton);
+        } else
+            console.log('There is no CTA action-area container for ' + marqueeType);
     }
 
     /**

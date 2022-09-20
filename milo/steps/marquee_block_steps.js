@@ -5,21 +5,21 @@ import { MarqueeBlockPage } from '../pages/marquee_lib_block_page';
 
 Given(/^I go to "([^\"]*)" marquee block page$/, iGoToMarqueePage);
 
-When(/^I select the marquee "([^\"]*)"$/, iSelectMarqueeBlock);
+When(/^I scroll to the marquee "([^\"]*)"$/, iScrollToMarqueeBlock);
 
-Then(/^I should see the text "([^\"]*)"$/, iSeeText);
+When(/^I click a cta button in marquee "([^\"]*)"$/, iClickCTA);
 
-Then(/^I should see "(.+)" buttons$/, iSeeButtonAmount);
+Then(/^I should see the text "([^\"]*)" in marquee "([^\"]*)"$/, iSeeText);
 
-Then(/^I should see "(.+)" icons$/, iSeeIconAmount);
+Then(/^I should see (\d+) buttons in marquee "([^\"]*)"$/, iSeeButtonAmount);
 
-Then(/^I should see "(.+)" pictures$/, iSeePictureAmount);
+Then(/^I should see (\d+) icons in marquee "([^\"]*)"$/, iSeeIconAmount);
 
-Then(/^I should see "(.+)" background image present$/, iSeeBackgroundPresent);
+Then(/^I should see (\d+) pictures in marquee "([^\"]*)"$/, iSeePictureAmount);
+
+Then(/^I should see (\d+) background image present in marquee "([^\"]*)"$/, iSeeBackgroundPresent);
 
 Then(/^I should see "([^\"]*)" in the current url on the page$/, iSeeUrlInPageUrl);
-
-When(/^I click a cta button$/, iClickCTA);
 
 /**
  * Step Definition:
@@ -37,67 +37,75 @@ function iGoToMarqueePage(path) {
 /**
  * Step Definition
  * ```
- * /^I select the marquee "([^\"]*)"$/
+ * /^I scroll to the marquee "([^\"]*)"$/
  * ```
  * @param {String} className marquee element class name to select
  */
-function iSelectMarqueeBlock(className) {
-    expect(this.page.getMarquee(className).isDisplayed()).toBe(true);
+function iScrollToMarqueeBlock(className) {
+    const elem = this.page.getMarquee(className);
+    browser.pause(2000);
+    elem.scrollIntoView();
+    expect(elem.isDisplayed()).toBe(true);
 }
 
 /**
  * Step Definition:
  * ```
- * /^I should see the text "([^\"]*)"$/
+ * /^I should see the text "([^\"]*)" in marquee "([^\"]*)"$/
  * ```
  * @param {string} text textual content in block
+ * @param {String} className marquee element class name to select
  */
-function iSeeText(text) {
-    expect(this.page.selectedMarquee.getText()).stringContaining(text);
+function iSeeText(text, className) {
+    expect(this.page.getMarquee(className).getText().includes(text)).toBe(true);
 }
 
 /**
  * Step Definition:
  * ```
- * /^I should see "(.+)" buttons$/
+ * /^I should see (\d+) buttons in marquee "([^\"]*)"$/
  * ```
- * @param {number} amount the number of action buttons present in marquee
+ * @param {number} amount the number of action buttons present or expected in marquee
+ * @param {String} className marquee element class name to select
  */
-function iSeeButtonAmount(amount) {
-    expect(this.page.marqueeButtonCount()).toEqual(amount);
+function iSeeButtonAmount(amount, className) {
+    expect(this.page.getMarqueeButtonCount(className)).toEqual(amount);
 }
 
 /**
  * Step Definition:
  * ```
- * /^I should see "(.+)" icons$/
+ * /^I should see (\d+) icons in marquee "([^\"]*)"$/
  * ```
  * @param {number} amount the number of icons present in marquee
+ * @param {String} className marquee element class name to select
  */
-function iSeeIconAmount(amount) {
-    expect(this.page.marqueeIconCount()).toEqual(amount);
+function iSeeIconAmount(amount, className) {
+    expect(this.page.getMarqueeIconCount(className)).toEqual(amount);
 }
 
 /**
  * Step Definition:
  * ```
- * /^I should see "(.+)" pictures$/
+ * /^I should see (\d+) pictures in marquee "([^\"]*)"$/
  * ```
  * @param {number} amount the number of pictures present in marquee
+ * @param {String} className marquee element class name to select
  */
-function iSeePictureAmount(amount) {
-    expect(this.page.marqueePicturesCount()).toEqual(amount);
+function iSeePictureAmount(amount, className) {
+    expect(this.page.getMarqueePicturesCount(className)).toEqual(amount);
 }
 
 /**
  * Step Definition:
  * ```
- * /^I should see "(.+)" background image present$/
+ * /^I should see (\d+) background image present in marquee "([^\"]*)"$/
  * ```
  * @param {number} amount the number of background image renditions present in marquee
+ * @param {String} className marquee element class name to select
  */
-function iSeeBackgroundPresent(amount) {
-    expect(this.page.marqueeBackgroundImgCount()).toEqual(amount);
+function iSeeBackgroundPresent(amount, className) {
+    expect(this.page.getMarqueeBackgroundImgCount(className)).toEqual(amount);
 }
 
 /**
@@ -117,9 +125,10 @@ function iSeeUrlInPageUrl(url) {
 /**
  * Step Definition:
  * ```
- * /^I click a cta button$/
+ * /^I click a cta button in marquee "([^\"]*)"$/
+ * @param {String} className marquee element class name to select
  * ```
  */
-function iClickCTA() {
-    this.page.clickCTA();
+function iClickCTA(className) {
+    this.page.clickCTA(className);
 }
