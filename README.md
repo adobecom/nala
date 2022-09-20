@@ -3,8 +3,6 @@ Test Automation Framework for the Milo Helix Project
 
 The framework is currently based on WDIO v7. See docs [here](https://webdriver.io/docs/api).
 
-Many of the framework files, runner code, common and tools files was originally instituted and copied/shared over from the [Platform UI Adobe Automation Project](https://git.corp.adobe.com/wcms/Platform-UI).  Various files, framework dependencies, common and tool files were updated to reflect only the Milo Helix Project's testing needs.
-
 ## Development Environment
 
 * [Node.JS](https://nodejs.org/) (>=14.16)
@@ -43,3 +41,7 @@ To run a matrix of configurations, for example, run test @desc-marquee on \[chro
 If async execution is desired, add `--async`.
 
 For more info, see [Wiki](https://milo.adobe.com/wiki/test-automation/test-automation-framework)
+
+## References
+
+Many of the framework files, runner code, common and tools files was originally instituted and copied/shared over from the [Platform UI Adobe Automation Project](https://git.corp.adobe.com/wcms/Platform-UI).  Various files, framework dependencies, common and tool files were updated to reflect only the Milo Helix Project's testing needs.
