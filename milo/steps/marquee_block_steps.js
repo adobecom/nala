@@ -43,7 +43,6 @@ function iGoToMarqueePage(path) {
  */
 function iScrollToMarqueeBlock(className) {
     const elem = this.page.getMarquee(className);
-    browser.pause(2000);
     elem.scrollIntoView();
     expect(elem.isDisplayed()).toBe(true);
 }
