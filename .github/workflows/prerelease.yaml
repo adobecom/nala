@@ -1,0 +1,35 @@
+name: Pre-release
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-build-workflow:
+    uses: ./.github/workflows/build.yaml
+  pre-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Pre-release Artifact Downloads directory
+        run: mkdir artifact-releases
+      - name: Archive Source Release
+      - uses: TheDoctor0/zip-release@0.6.2
+        with:
+          type: 'zip'
+          filename: 'janus-src-latest.zip'
+      - name: Archive Release
+      - uses: TheDoctor0/zip-release@0.6.2
+        with:
+          type: 'zip'
+          filename: 'janus-latest.zip'
+          exclusions: '*.git* *.vscode* *.prettierrc*'
+      - name: Create GitHub Pre-release
+      - uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: 'Janus Latest Build'
+          files: |
+            *.zip

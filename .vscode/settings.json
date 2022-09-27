@@ -19,5 +19,8 @@
   },
   "[feature]": {
     "editor.defaultFormatter": "alexkrechik.cucumberautocomplete"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   }
 }
