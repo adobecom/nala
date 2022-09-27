@@ -22,7 +22,7 @@ jobs:
         uses: TheDoctor0/zip-release@0.6.2
         with:
           type: 'tar'
-          filename: 'janus-latest.tar'
+          filename: 'janus-latest.tar.gz'
           path: ${{ github.workspace }}
           exclusions: '*.zip'
       - name: Create GitHub Pre-release
