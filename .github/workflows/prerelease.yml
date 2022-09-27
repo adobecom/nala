@@ -19,5 +19,3 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: true
           title: 'Janus Latest Build'
-          files: |
-            LICENSE
