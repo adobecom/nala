@@ -6,25 +6,9 @@ on:
       - main
 
 jobs:
-  call-build-workflow:
-    uses: ./.github/workflows/build.yml
   pre-release:
-    needs: call-build-workflow
     runs-on: ubuntu-latest
     steps:
-      - name: Archive Zip Binary Release
-        uses: TheDoctor0/zip-release@0.6.2
-        with:
-          type: 'zip'
-          filename: 'janus-latest.zip'
-          path: ${{ github.workspace }}
-      - name: Archive Tar Binary Release
-        uses: TheDoctor0/zip-release@0.6.2
-        with:
-          type: 'tar'
-          filename: 'janus-latest.tar.gz'
-          path: ${{ github.workspace }}
-          exclusions: '*.zip'
       - name: Create GitHub Pre-release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
@@ -33,5 +17,4 @@ jobs:
           prerelease: true
           title: 'Janus Latest Build'
           files: |
-            *.zip
-            *.tar.gz
+            LICENSE
