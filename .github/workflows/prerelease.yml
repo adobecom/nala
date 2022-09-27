@@ -6,7 +6,10 @@ on:
       - main
 
 jobs:
+  call-build-workflow:
+    uses: ./.github/workflows/build.yml
   pre-release:
+    needs: call-build-workflow
     runs-on: ubuntu-latest
     steps:
       - name: Create GitHub Pre-release
