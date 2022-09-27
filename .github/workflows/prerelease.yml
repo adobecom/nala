@@ -16,13 +16,13 @@ jobs:
         with:
           type: 'zip'
           filename: 'janus-src-latest.zip'
-          path: $ {{ github.workspace }}
+          path: ${{ github.workspace }}
       - name: Archive Binary Release
         uses: TheDoctor0/zip-release@0.6.2
         with:
           type: 'zip'
           filename: 'janus-latest.zip'
-          path: $ {{ github.workspace }}
+          path: ${{ github.workspace }}
           exclusions: '*.git* *.vscode* .prettierrc'
       - name: Create GitHub Pre-release
         uses: marvinpinto/action-automatic-releases@v1.2.1
