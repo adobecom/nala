@@ -16,7 +16,3 @@ jobs:
           cache: yarn
       - name: Install
         run: yarn install --immutable
-        if: failure()
-        with:
-          name: logs
-          path: logs
