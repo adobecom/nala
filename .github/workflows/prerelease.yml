@@ -18,14 +18,12 @@ jobs:
           type: 'zip'
           filename: 'janus-latest.zip'
           path: ${{ github.workspace }}
-          exclusions: '*.git* *.vscode* .prettierrc'
       - name: Archive Tar Binary Release
         uses: TheDoctor0/zip-release@0.6.2
         with:
           type: 'tar'
           filename: 'janus-latest.tar.gz'
           path: ${{ github.workspace }}
-          exclusions: '*.git* *.vscode* .prettierrc'
       - name: Create GitHub Pre-release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
