@@ -4,23 +4,5 @@
     "bacom",
     "fedpub",
     "pacom"
-  ],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "cucumberautocomplete.steps": ["*/steps/**/*.js"],
-  "cucumberautocomplete.syncfeatures": "*/features/**/*feature",
-  "cucumberautocomplete.onTypeFormat": true,
-  "editor.quickSuggestions": {
-    "comments": false,
-    "strings": true,
-    "other": true
-  },
-  "[feature]": {
-    "editor.defaultFormatter": "alexkrechik.cucumberautocomplete"
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  }
+  ]
 }
