@@ -113,3 +113,6 @@ dist
 debug
 reports
 screenshots
+/test-results/
+/playwright-report/
+/playwright/.cache/
