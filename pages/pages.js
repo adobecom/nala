@@ -6,7 +6,7 @@ module.exports = [
     },
     {
         "url": "https://business.adobe.com/customer-success-stories/princess-cruises-case-study",
-        "features": "marquee,columns",
+        "features": "marquee, columns",
         "site": "bacom"
     }
 ];

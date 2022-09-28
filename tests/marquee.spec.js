@@ -1,4 +1,4 @@
-const pages = require('../pages');
+const pages = require('../pages/pages');
 const { expect, test } = require('@playwright/test');
 
 test.describe('Marquee', () => {

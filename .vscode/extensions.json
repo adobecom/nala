@@ -1,9 +1,0 @@
-{
-  "recommendations": [
-      "esbenp.prettier-vscode",
-      "CucumberOpen.cucumber-official",
-      "alexkrechik.cucumberautocomplete",
-      "ms-vscode.js-debug-nightly",
-      "GitHub.vscode-pull-request-github"
-  ]
-}
