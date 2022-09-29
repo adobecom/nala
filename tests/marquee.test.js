@@ -7,15 +7,29 @@ const parsed = parse(marquee);
 
 test.describe(`${parsed.name}`, () => {
   parsed.features.forEach((props) => {
-    test(`${props.env} testing ${props.tag} on ${props.url}`, async ({ page }) => {
-      await page.goto(props.url);
-      const cta = page.locator(props.selector).first();
+    const title = `${props.name} ${props.env} ${props.tag} on ${props.url}`;
 
-      if (props.tag === '@inline-button') {
-        await expect(cta).not.toBeVisible();
-      } else {
-        await expect(cta).toBeVisible();
-      }
-    });
+    if (props.name === '@marquee') {
+      test(title, async ({ page }) => {
+        await page.goto(props.url);
+        const el = page.locator(props.selector).first();
+        await expect(el).toBeVisible();
+      });
+    }
+
+    if (props.name === '@button') {
+      test(`${props.name} ${props.env} ${props.tag} on ${props.url}`, async ({ page }) => {
+        await page.goto(props.url);
+        const cta = page.locator(props.selector).first();
+  
+        if (props.tag === '@inline-button') {
+          await expect(cta).not.toBeVisible();
+        } else {
+          await expect(cta).toBeVisible();
+        }
+      });
+    }
+
+
   });
 });
