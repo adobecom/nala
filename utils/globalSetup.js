@@ -12,6 +12,12 @@ module.exports = async function  globalSetup(config=FullConfig) {
             path: `.env.${process.env.test_env}`,
             override: true
         })
+    }else{
+        // default test execution site : milo
+        dotenv.config({
+            path: `.env.milo`,
+            override: true
+        })
     }
 
 }

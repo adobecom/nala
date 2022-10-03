@@ -18,7 +18,7 @@ module.exports = {
     {
       'name': '@button',
       'url': 'https://main--bacom--adobecom.hlx.live',
-      'path': '/customer-success-stories/princess-cruises-case-study',
+      'path': '/test/features/blocks/marquee',
       'env': '@consumer',
       'tags': '@medium-button',
     },

@@ -22,7 +22,6 @@ test.describe(`${parsed.name}`, () => {
 
         // get the test page page
         let url = process.env.baseUrl+path
-        console.log('[[[[[', url)
 
         // Navigate to the test page
         await page.goto(url)
