@@ -11,7 +11,16 @@
         "test:safari": "playwright test --config=playwright.config.js --project=webkit --headed",
         "test:chrome-headless": "playwright test --config=playwright.config.js --project=chromium",
         "test:firefox-headless": "playwright test --config=playwright.config.js --project=firefox",
-        "test:safari-hedless": "playwright test --config=playwright.config.js --project=webkit"
+        "test:safari-headless": "playwright test --config=playwright.config.js --project=webkit",
+        "test:milo-chrome-headless": "cross-env test_env=milo playwright test --config=playwright.config.js --project=chromium",
+        "test:milo-firefox-headless": "cross-env test_env=milo playwright test --config=playwright.config.js --project=firefox",
+        "test:milo-safari-headless": "cross-env test_env=milo playwright test --config=playwright.config.js --project=webkit",
+        "test:milo-chrome": "cross-env test_env=milo playwright test --config=playwright.config.js --project=chromium --headed",
+        "test:milo-firefox": "cross-env test_env=milo playwright test --config=playwright.config.js --project=firefox --headed",
+        "test:milo-safari": "cross-env test_env=milo playwright test --config=playwright.config.js --project=webkit --headed",
+        "test:bcom-chrome": "cross-env test_env=bcom playwright test --config=playwright.config.js --project=chromium --headed",
+        "test:bcom-firefox": "cross-env test_env=bcom playwright test --config=playwright.config.js --project=firefox --headed",
+        "test:bcom-safari": "cross-env test_env=bcom playwright test --config=playwright.config.js --project=webkit --headed"
     },
     "repository": {
         "type": "git",
@@ -26,5 +35,9 @@
     "homepage": "https://github.com/adobecom/janus#readme",
     "devDependencies": {
         "@playwright/test": "^1.26.1"
+    },
+    "dependencies": {
+        "cross-env": "^7.0.3",
+        "dotenv": "^16.0.3"
     }
 }

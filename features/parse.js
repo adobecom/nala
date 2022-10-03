@@ -18,7 +18,7 @@ module.exports = (feature) => {
     const url = buildUrl(feat.url, feat.env);
     const parsedTags = feat.tags.split(' ');
     parsedTags.forEach(tag => {
-      rdx.push({ name: feat.name, url, env: feat.env, tag, selector: selectors[tag] });
+      rdx.push({ name: feat.name, url, env: feat.env, tag, selector: selectors[tag],path:feat.path });
     });
     return rdx;
   }, []);
