@@ -21,7 +21,7 @@ test.describe(`${parsed.name}`, () => {
       test(`${props.name} ${props.env} ${props.tag} on ${props.url}`, async ({ page }) => {
         await page.goto(props.url);
         const cta = page.locator(props.selector).first();
-  
+
         if (props.tag === '@inline-button') {
           await expect(cta).not.toBeVisible();
         } else {
@@ -29,7 +29,5 @@ test.describe(`${parsed.name}`, () => {
         }
       });
     }
-
-
   });
 });
