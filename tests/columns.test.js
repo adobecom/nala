@@ -9,12 +9,9 @@ test.describe(`${parsed.name} Variation Tests`, () => {
   parsed.features.forEach((props) => {
     const title = `${props.name} ${props.env} ${props.tag} on ${props.url}`;
 
-    test.beforeEach(async ({ page }) => {
-      await page.goto(props.url);
-    });
-
     // Test columns block is visible and expected amount of columns
     test(title, async ({ page }) => {
+      await page.goto(props.url);
       const columns = page.locator(props.selector);
       await expect(columns).toBeVisible();
       const col = columns.locator(".col");
@@ -25,6 +22,7 @@ test.describe(`${parsed.name} Variation Tests`, () => {
     //Test link
     if(props.tag != '@columns-contained-table') {
       test(title, async ({ page }) => {
+        await page.goto(props.url);
         const el = page.locator(props.selector);
         await el.locator('a').first().click();
         expect(page.url).not.toEqual(props.url);
@@ -33,6 +31,7 @@ test.describe(`${parsed.name} Variation Tests`, () => {
 
     //Test column content whether image or text
     test(title, async ({ page }) => {
+      await page.goto(props.url);
       const el = page.locator(props.selector);
       const row = el.locator('.row').first();
       if(props.tag != '@columns-image') {
