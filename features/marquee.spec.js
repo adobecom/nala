@@ -3,23 +3,20 @@ module.exports = {
   'features': [
     {
       'name': '@marquee',
-      'url': 'https://main--milo--adobecom.hlx.live',
       'path': '/test/features/blocks/marquee',
-      'env': '@milo',
+      'envs': '@milo @bacom',
       'tags': '@marquee-large',
     },
     {
       'name': '@button',
-      'url': 'https://main--milo--adobecom.hlx.live',
       'path': '/test/features/blocks/marquee',
-      'env': '@milo',
+      'envs': '@milo',
       'tags': '@large-button @medium-button @inline-button',
     },
     {
       'name': '@button',
-      'url': 'https://main--bacom--adobecom.hlx.live',
-      'path': '/test/features/blocks/marquee',
-      'env': '@consumer',
+      'path': '/customer-success-stories/princess-cruises-case-study',
+      'envs': '@bacom',
       'tags': '@medium-button',
     },
   ],
