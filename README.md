@@ -22,9 +22,9 @@ export MILO_LIBS=your-branch-name
 ```
 
 ## Advanced use
-### Test only consumers
+### Test only a specific consumer
 ```bash
-npm test -- -g @consumer
+npm test -- -g @bacom
 ```
 
 ### Test only milo
