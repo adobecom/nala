@@ -11,7 +11,7 @@
         "test:safari": "playwright test --config=playwright.config.js --project=webkit --headed",
         "test:chrome-headless": "playwright test --config=playwright.config.js --project=chromium",
         "test:firefox-headless": "playwright test --config=playwright.config.js --project=firefox",
-        "test:safari-hedless": "playwright test --config=playwright.config.js --project=webkit"
+        "test:safari-headless": "playwright test --config=playwright.config.js --project=webkit"
     },
     "repository": {
         "type": "git",
@@ -19,7 +19,7 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC",
+    "license": "Apache-2.0",
     "bugs": {
         "url": "https://github.com/adobecom/janus/issues"
     },
