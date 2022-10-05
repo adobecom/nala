@@ -1,6 +1,11 @@
 # Janus
 
-Automate E2E testing of Milo-based projects.
+Automated E2E testing of Milo-based projects.
+
+## Get started
+```bash
+npm install
+```
 
 ## Basic use
 
@@ -17,9 +22,9 @@ export MILO_LIBS=your-branch-name
 ```
 
 ## Advanced use
-### Test only consumers
+### Test only a specific consumer
 ```bash
-npm test -- -g @consumer
+npm test -- -g @bacom
 ```
 
 ### Test only milo

@@ -1,9 +1,9 @@
-const selectors = require('../selectors/selectors');
+const envList = require('../envs/envs');
 
 function buildUrl(url, env) {
   const branch = process.env.MILO_LIBS;
   if (!branch) return url;
-  if (env === '@consumer') {
+  if (env !== '@milo') {
     return `${url}?milolibs=${branch}`;
   }
   return url.replace('main', branch);
@@ -13,17 +13,28 @@ function buildUrl(url, env) {
 /**
  * Parse a feature file based on name
  */
-module.exports = (feature) => {
-  const parsed = feature.features.reduce((rdx, feat) => {
-    const url = buildUrl(feat.url, feat.env);
-    const parsedTags = feat.tags.split(' ');
-    parsedTags.forEach(tag => {
-      rdx.push({ name: feat.name, url, env: feat.env, tag, selector: selectors[tag] });
+module.exports = (spec) => {
+  const parsed = spec.features.reduce((rdx, feat) => {
+    const envs = feat.envs.split(' ');
+    const tags = feat.tags.split(' ');
+
+    // For every environment
+    envs.forEach((env) => {
+      const domain = envList[env];
+      const url = buildUrl(`${domain}${feat.path}`, env);
+
+      console.log(url);
+
+      // Run each tag
+      tags.forEach(tag => {
+        rdx.push({ name: feat.name, url, env: env, tag, path: feat.path });
+      });
     });
     return rdx;
   }, []);
+
   return {
-    name: feature.name,
+    name: spec.name,
     features: parsed,
   }
 };
