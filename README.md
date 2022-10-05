@@ -1,6 +1,6 @@
 # Janus
 
-Automate E2E testing of Milo-based projects.
+Automated E2E testing of Milo-based projects.
 
 ## Get started
 ```bash
