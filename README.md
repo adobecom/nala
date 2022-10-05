@@ -2,6 +2,11 @@
 
 Automate E2E testing of Milo-based projects.
 
+## Get started
+```bash
+npm install
+```
+
 ## Basic use
 
 ### Test everything
