@@ -108,6 +108,7 @@ dist
 
 #.vscode Local files
 .vscode/launch.json
+.vscode/settings.json
 
 # Debug/Report/Screenshots Local files
 debug
