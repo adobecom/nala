@@ -12,5 +12,7 @@ module.exports = {
   '@accept-continue-button': '.spectrum-Button .Button-big',
   '@greeting': '.spectrum-Heading1 .greeting',
   '@account-vw-profile-button': '.Profile-thumbnail',
-  '@stay-signed-in': '.spectrum-ToggleSwitch-input'
+  '@account-vw-viewaccount': '.Profile-header',
+  '@stay-signed-in': '.spectrum-ToggleSwitch-input',
+  '@page-heading': '.spectrum-Heading1'
 };
