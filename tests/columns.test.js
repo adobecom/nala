@@ -34,7 +34,7 @@ test.describe('Columns', () => {
       await page.goto(props.url);
       const row = page.locator(`${selectors[props.tag]} >> .row`).first();
       if(props.env != '@blog') {
-        await expect(row.textContent).toBeTruthy();
+        expect(row.textContent).toBeTruthy();
       } else {
         const image = page.locator(`${selectors[props.tag]} >> .row >> img`).first();
         await expect(image).toBeVisible();
