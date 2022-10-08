@@ -16,7 +16,7 @@ test.describe('Columns', () => {
       const columns = page.locator(selectors[props.tag]).first();
       await columns.scrollIntoViewIfNeeded();
       await expect(columns).toBeVisible();
-      const count = await columns.locator('.col').count();
+      const count = await columns.locator(selectors['@col']).count();
       expect(count).toBeGreaterThan(0);
     });
 
@@ -24,7 +24,7 @@ test.describe('Columns', () => {
     if(props.tag != '@columns-contained-table') {
       test(`${title} Links`, async ({ page }) => {
         await page.goto(props.url);
-        await page.locator(`${selectors[props.tag]} >> a`).first().click();
+        await page.locator(`${selectors[props.tag]} >> ${selectors['@link']}`).first().click();
         expect(page.url).not.toEqual(props.url);
       });
     }
@@ -32,11 +32,12 @@ test.describe('Columns', () => {
     //Test column content whether image or text
     test(`${title} Contents`, async ({ page }) => {
       await page.goto(props.url);
-      const row = page.locator(`${selectors[props.tag]} >> .row`).first();
+      const row = page.locator(`${selectors[props.tag]} >> ${selectors['@row']}`).first();
       if(props.env != '@blog') {
         expect(row.textContent).toBeTruthy();
       } else {
-        const image = page.locator(`${selectors[props.tag]} >> .row >> img`).first();
+        const image = page.locator(`${selectors[props.tag]} >> ${selectors['@image']}`).first();
+        await image.scrollIntoViewIfNeeded();
         await expect(image).toBeVisible();
       }
     });
