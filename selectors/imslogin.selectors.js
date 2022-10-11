@@ -10,10 +10,5 @@ module.exports = {
   '@apple-signin': '[data-id=EmailPage-AppleSignInButton]',
   '@google-signin': '[data-id=EmailPage-GoogleSignInButton]',
   '@facebook-signin':'[data-id=EmailPage-FacebookSignInButton]',
-  '@accept-continue-button': '.spectrum-Button .Button-big',
-  '@greeting': '.spectrum-Heading1 .greeting',
-  '@account-vw-profile-button': '.Profile-thumbnail',
-  '@account-vw-viewaccount': '.Profile-header',
-  '@stay-signed-in': '.spectrum-ToggleSwitch-input',
   '@page-heading': '.spectrum-Heading1'
 };
