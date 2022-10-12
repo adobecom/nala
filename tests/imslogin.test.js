@@ -87,8 +87,4 @@ test.describe(`${parsed.name}`, () => {
     //   });
     // }
   });
-
-  test.afterEach(async ({ page }) => {
-    await page.close();
-  });
 });
