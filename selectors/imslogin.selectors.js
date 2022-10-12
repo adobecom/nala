@@ -7,6 +7,7 @@ module.exports = {
   '@email': '#EmailPage-EmailField',
   '@password': '#PasswordPage-PasswordField',
   '@email-continue-btn': '[data-id=EmailPage-ContinueButton]',
+  '@password-rememberMe-btn': '[data-id=PasswordPage-RememberMeButton]',
   '@password-continue-btn':'[data-id=PasswordPage-ContinueButton]',
   '@apple-signin': '[data-id=EmailPage-AppleSignInButton]',
   '@google-signin': '[data-id=EmailPage-GoogleSignInButton]',

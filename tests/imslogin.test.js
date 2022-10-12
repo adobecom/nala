@@ -36,8 +36,7 @@ test.describe(`${parsed.name}`, () => {
         else
           await page.locator(selectors['@email']).fill(credentials['@username_management']);
         await page.locator(selectors['@email-continue-btn']).click();
-        if(browser.browserType().name() != 'firefox')
-          await page.waitForURL(`**\/password`);
+        await expect(page.locator(selectors['@password-rememberMe-btn'])).toBeVisible({ timeout: 15000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
         heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
         expect(heading).toBe("Enter your password");
         if(props.env === '@bacom')
