@@ -1,30 +1,30 @@
 {
-    "name": "janus",
-    "version": "1.0.0",
-    "description": "Automate E2E testing of Milo-based projects.",
-    "main": "index.js",
-    "scripts": {
-        "test": "npx playwright test",
-        "test:gui": "npx playwright test --headed",
-        "test:chrome": "playwright test --config=playwright.config.js --project=chromium --headed",
-        "test:firefox": "playwright test --config=playwright.config.js --project=firefox --headed",
-        "test:safari": "playwright test --config=playwright.config.js --project=webkit --headed",
-        "test:chrome-headless": "playwright test --config=playwright.config.js --project=chromium",
-        "test:firefox-headless": "playwright test --config=playwright.config.js --project=firefox",
-        "test:safari-headless": "playwright test --config=playwright.config.js --project=webkit"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/adobecom/janus.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "Apache-2.0",
-    "bugs": {
-        "url": "https://github.com/adobecom/janus/issues"
-    },
-    "homepage": "https://github.com/adobecom/janus#readme",
-    "devDependencies": {
-        "@playwright/test": "^1.26.1"
-    }
+  "name": "janus",
+  "version": "1.0.0",
+  "description": "Automate E2E testing of Milo-based projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:gui": "npx playwright test --headed",
+    "test:chrome": "playwright test --config=playwright.config.js --project=chromium --headed",
+    "test:firefox": "playwright test --config=playwright.config.js --project=firefox --headed",
+    "test:safari": "playwright test --config=playwright.config.js --project=webkit --headed",
+    "test:chrome-headless": "playwright test --config=playwright.config.js --project=chromium",
+    "test:firefox-headless": "playwright test --config=playwright.config.js --project=firefox",
+    "test:safari-headless": "playwright test --config=playwright.config.js --project=webkit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobecom/janus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/adobecom/janus/issues"
+  },
+  "homepage": "https://github.com/adobecom/janus#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.26.1"
+  }
 }

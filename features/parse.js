@@ -23,8 +23,6 @@ module.exports = (spec) => {
       const domain = envList[env];
       const url = buildUrl(`${domain}${feat.path}`, env);
 
-      console.log(url);
-
       // Run each tag
       tags.forEach(tag => {
         rdx.push({ name: feat.name, url, env: env, tag, path: feat.path });
