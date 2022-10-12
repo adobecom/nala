@@ -31,13 +31,19 @@ test.describe(`${parsed.name}`, () => {
         expect(heading).toBe("Sign in");
 
         //Fill out Sign-in Form
-        await page.locator(selectors['@email']).fill(credentials['@username']);
+        if(props.env === '@bacom')
+          await page.locator(selectors['@email']).fill(credentials['@username']);
+        else
+          await page.locator(selectors['@email']).fill(credentials['@username_management']);
         await page.locator(selectors['@email-continue-btn']).click();
         if(browser.browserType().name() != 'firefox')
           await page.waitForURL(`**\/password`);
         heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
         expect(heading).toBe("Enter your password");
-        await page.locator(selectors['@password']).fill(credentials['@password']);
+        if(props.env === '@bacom')
+          await page.locator(selectors['@password']).fill(credentials['@password']);
+        else
+          await page.locator(selectors['@password']).fill(credentials['@password_management']);
         await page.locator(selectors['@password-continue-btn']).click();
         await page.waitForURL(`${props.url}#`);
         await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
@@ -45,9 +51,14 @@ test.describe(`${parsed.name}`, () => {
 
         //Sign-out Milo
         await page.locator(selectors['@gnav-profile-button']).click();
-        const viewAccount = page.locator(selectors['@gnav-viewaccount']);
+        if(props.env === '@bacom') {
+          const viewAccount = page.locator(selectors['@gnav-viewaccount']);
+          expect(viewAccount).toBeVisible();
+        } else {
+          const manageTeam = page.locator(selectors['@gnav-manageTeam']);
+          expect(manageTeam).toBeVisible();
+        }
         const signoutBtn = page.locator(selectors['@gnav-signout']);
-        expect(viewAccount).toBeVisible();
         expect(signoutBtn).toBeVisible();
         await signoutBtn.click();
         await page.waitForURL(`${props.url}#`);

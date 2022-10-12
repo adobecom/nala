@@ -3,6 +3,7 @@ module.exports = {
   '@gnav-profile-button': '.gnav-profile-button',
   '@gnav-signout': 'text=Sign Out',
   '@gnav-viewaccount': '.gnav-profile-header',
+  '@gnav-manageTeam': '.gnav-profile-header',
   '@email': '#EmailPage-EmailField',
   '@password': '#PasswordPage-PasswordField',
   '@email-continue-btn': '[data-id=EmailPage-ContinueButton]',
