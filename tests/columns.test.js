@@ -42,8 +42,4 @@ test.describe('Columns', () => {
       }
     });
   });
-
-  test.afterEach (async ({ page }) => {
-    await page.close();
-  });
 });
