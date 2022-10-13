@@ -1,6 +1,6 @@
 const envList = require('../envs/envs');
 
-function buildUrl(url, env) {
+export function buildUrl(url, env) {
   const branch = process.env.MILO_LIBS;
   if (!branch) return url;
   if (env !== '@milo') {
