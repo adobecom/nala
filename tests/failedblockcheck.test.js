@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import buildUrl from '../features/parse';
 import selectors from '../selectors/failedblock.selectors';
+import envList from '../envs/envs';
 
 // Parse the consumer key URL file into something flat that can be tested separately
 const parsed = JSONParse();
@@ -8,7 +9,8 @@ const parsed = JSONParse();
 test.describe('Failed Block Check', () => {
   parsed.features.forEach((keyUrls) => {
     const env = `@${keyUrls.env}`;
-    const url = buildUrl(keyUrls.path, env);
+    const domain = envList[env];
+    const url = buildUrl(`${domain}${keyUrls.path}`, env);
     const title = `Failed Block ${env} on ${url}`;
 
     if(keyUrls.available === 'yes') {
