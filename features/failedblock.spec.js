@@ -25,5 +25,11 @@ module.exports = {
       'envs': '@blog',
       'tags': '@failed-block',
     },
+    {
+      'name': '@failedblockCheck',
+      'path': '',
+      'envs': '@acrobat',
+      'tags': '@failed-block',
+    },
   ],
 };

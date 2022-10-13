@@ -1,26 +1,23 @@
 import { expect, test } from '@playwright/test';
-import buildUrl from '../features/parse';
+import failedBlock from '../features/failedblock.spec';
+import parse from '../features/parse';
 import selectors from '../selectors/failedblock.selectors';
-import envList from '../envs/envs';
 
-// Parse the consumer key URL file into something flat that can be tested separately
-const parsed = JSONParse();
+// Parse the feature file into something flat that can be tested separately
+const parsed = parse(failedBlock);
 
-test.describe('Failed Block Check', () => {
-  parsed.features.forEach((keyUrls) => {
-    const env = `@${keyUrls.env}`;
-    const domain = envList[env];
-    const url = buildUrl(`${domain}${keyUrls.path}`, env);
-    const title = `Failed Block ${env} on ${url}`;
+test.describe(`${parsed.name}`, () => {
+  parsed.features.forEach((props) => {
+    const title = `${props.name} ${props.env} ${props.tag} on ${props.url}`;
 
-    if(keyUrls.available === 'yes') {
+    if(props.env === '@bacom' || props.env === '@stock') {
       test(title, async ({ page }) => {
-        await page.goto(url);
-        const failedBlocks = await page.$$(selectors['@failed-block']);
+        await page.goto(props.url);
+        const failedBlocks = await page.$$(selectors[props.tag]);
         if(failedBlocks !== null) {
-          failedBlocks.forEach((failedBlock) => {
-            const failedMessage = failedBlock.innerText();
-            console.log(`Failed Block Message: ${failedMessage} : on page: ${url}`);
+          failedBlocks.forEach((failed) => {
+            const failedMessage = failed.innerText();
+            console.error(`Failed Block Message: ${failedMessage} : on page: ${props.url}`);
           });
         }
         expect(failedBlocks).toBeNull();
@@ -28,11 +25,3 @@ test.describe('Failed Block Check', () => {
     }
   });
 });
-
-async function JSONParse() {
-  const resp = await fetch('https://milo.adobe.com/test/consumer-keyurls.json?limit=-1');
-  expect(resp.ok).toBe(true);
-  const json = await resp.json();
-  const keyUrls = (Array.isArray(json) ? json : json.data)
-  return keyUrls;
-}
