@@ -1,17 +1,15 @@
-import { expect, test } from '@playwright/test';
-import failedBlock from '../features/failedblock.spec.js';
-import parse from '../features/parse.js';
-import selectors from '../selectors/failedblock.selectors.js';
+const { expect, test } = require('@playwright/test');
+const failedBlock = require('../features/failedblock.spec.js');
+const parse = require('../features/parse.js');
+const selectors = require('../selectors/failedblock.selectors.js');
 
 // Parse the feature file into something flat that can be tested separately
-const parsed = parse(failedBlock);
+const { name, features } = parse(failedBlock);
 
-test.describe(`${parsed.name}`, () => {
-  parsed.features.forEach((props) => {
-    const title = `${props.name} ${props.env} ${props.tag} on ${props.url}`;
-
+test.describe(`${name}`, () => {
+  features.forEach((props) => {
     if (props.env === '@bacom' || props.env === '@stock') {
-      test(title, async ({ page }) => {
+      test(props.title, async ({ page }) => {
         await page.goto(props.url);
         const failedBlocks = await page.$$(selectors[props.tag]);
         if (failedBlocks !== null) {
