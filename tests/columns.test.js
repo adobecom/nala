@@ -8,10 +8,8 @@ const parsed = parse(columns);
 
 test.describe('Columns', () => {
   parsed.features.forEach((props) => {
-    const title = `${props.name} ${props.env} ${props.tag} on ${props.url}`;
-
     // Test columns block is visible and .col divs are present
-    test(title, async ({ page }) => {
+    test(props.title, async ({ page }) => {
       await page.goto(props.url);
       const columns = page.locator(selectors[props.tag]).first();
       await columns.scrollIntoViewIfNeeded();
@@ -22,7 +20,7 @@ test.describe('Columns', () => {
 
     //Test link
     if(props.tag != '@columns-contained-table') {
-      test(`${title} Links`, async ({ page }) => {
+      test(`${props.title} Links`, async ({ page }) => {
         await page.goto(props.url);
         await page.locator(`${selectors[props.tag]} >> ${selectors['@link']}`).first().click();
         expect(page.url).not.toEqual(props.url);
@@ -30,7 +28,7 @@ test.describe('Columns', () => {
     }
 
     //Test column content whether image or text
-    test(`${title} Contents`, async ({ page }) => {
+    test(`${props.title} Contents`, async ({ page }) => {
       await page.goto(props.url);
       const row = page.locator(`${selectors[props.tag]} >> ${selectors['@row']}`).first();
       if(props.env != '@blog') {
