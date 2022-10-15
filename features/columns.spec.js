@@ -5,16 +5,10 @@ module.exports = {
       name: '@columns',
       path: '/test/features/blocks/columns',
       envs: '@milo',
-      tags: '@columns-contained @columns-contained-middle @columns-default',
+      tags: '@columns-default @columns-table',
     },
     {
-      name: '@table',
-      path: '/test/features/blocks/columns',
-      envs: '@milo',
-      tags: '@columns-contained-table @columns-table',
-    },
-    {
-      name: '@table',
+      name: '@columns',
       path: '/blog/basics/agile-vs-waterfall',
       envs: '@bacomblog',
       tags: '@columns-table',
