@@ -1,7 +1,4 @@
 name: 'Janus'
-branding:
-  icon: 'award'  
-  color: 'green'
 
 runs:
   using: 'composite'

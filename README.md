@@ -18,7 +18,7 @@ npm test
 You may want to test a Milo branch. This could be for either milo, consumers or both. This is done by setting an environment variable before you run your tests.
 
 ```bash
-export MILO_LIBS=your-branch-name
+export branch=your-branch-name
 ```
 
 ## Advanced use
