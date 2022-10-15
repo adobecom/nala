@@ -1,25 +1,24 @@
 import { expect, test } from '@playwright/test';
-import credentials from '../credentials/imslogin.creds';
-import imslogin from '../features/imslogin.spec';
-import parse from '../features/parse';
-import selectors from '../selectors/imslogin.selectors';
+import credentials from '../credentials/imslogin.creds.js';
+import imslogin from '../features/imslogin.spec.js';
+import parse from '../features/parse.js';
+import selectors from '../selectors/imslogin.selectors.js';
 
 // Parse the feature file into something flat that can be tested separately
-const parsed = parse(imslogin);
+const { name, features } = parse(imslogin);
 
-test.describe(`${parsed.name}`, () => {
-  parsed.features.forEach((props) => {
-    const title = `${props.name} ${props.env} ${props.tag} on ${props.url}`;
+test.describe(`${name}`, () => {
+  features.forEach((props) => {
 
-    if(props.tag === '@gnav-signin') {
-      test(title, async ({ page, browser }) => {
+    if (props.tag === '@gnav-signin') {
+      test(props.title, async ({ page, browser }) => {
         await page.goto(props.url);
 
         //Sign-in
         let signinBtn = page.locator(selectors[props.tag]);
         await expect(signinBtn).toBeVisible();
         await signinBtn.click();
-        if(props.env == '@bacom') {
+        if (props.url.includes("hlx.live")) {
           await page.waitForURL('**\/auth-stg1.services.adobe.com/en_US/index.html**\/');
           await expect(page).toHaveURL(/.*auth-stg1.services.adobe.com/);
         } else {
@@ -31,18 +30,12 @@ test.describe(`${parsed.name}`, () => {
         expect(heading).toBe("Sign in");
 
         //Fill out Sign-in Form
-        if(props.env === '@bacom')
-          await page.locator(selectors['@email']).fill(credentials['@username']);
-        else
-          await page.locator(selectors['@email']).fill(credentials['@username_management']);
+        await page.locator(selectors['@email']).fill(credentials['@username']);
         await page.locator(selectors['@email-continue-btn']).click();
         await expect(page.locator(selectors['@password-rememberMe-btn'])).toBeVisible({ timeout: 15000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
         heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
         expect(heading).toBe("Enter your password");
-        if(props.env === '@bacom')
-          await page.locator(selectors['@password']).fill(credentials['@password']);
-        else
-          await page.locator(selectors['@password']).fill(credentials['@password_management']);
+        await page.locator(selectors['@password']).fill(credentials['@password']);
         await page.locator(selectors['@password-continue-btn']).click();
         await page.waitForURL(`${props.url}#`);
         await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
@@ -50,13 +43,8 @@ test.describe(`${parsed.name}`, () => {
 
         //Sign-out Milo
         await page.locator(selectors['@gnav-profile-button']).click();
-        if(props.env === '@bacom') {
-          const viewAccount = page.locator(selectors['@gnav-viewaccount']);
-          expect(viewAccount).toBeVisible();
-        } else {
-          const manageTeam = page.locator(selectors['@gnav-manageTeam']);
-          expect(manageTeam).toBeVisible();
-        }
+        const viewAccount = page.locator(selectors['@gnav-viewaccount']);
+        expect(viewAccount).toBeVisible();
         const signoutBtn = page.locator(selectors['@gnav-signout']);
         expect(signoutBtn).toBeVisible();
         await signoutBtn.click();
@@ -68,20 +56,20 @@ test.describe(`${parsed.name}`, () => {
       });
     }
 
-    // if(props.tag === '@apple-signin') {
-    //   test(title, async ({ page }) => {
+    // if (props.tag === '@apple-signin') {
+    //   test(props.title, async ({ page }) => {
     //     await page.goto(props.url);
     //   });
     // }
 
-    // if(props.tag === '@google-signin') {
-    //   test(title, async ({ page }) => {
+    // if (props.tag === '@google-signin') {
+    //   test(props.title, async ({ page }) => {
     //     await page.goto(props.url);
     //   });
     // }
 
-    // if(props.tag === '@facebook-signin') {
-    //   test(title, async ({ page }) => {
+    // if (props.tag === '@facebook-signin') {
+    //   test(props.title, async ({ page }) => {
     //     await page.goto(props.url);
     //   });
     // }
