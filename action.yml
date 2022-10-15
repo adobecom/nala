@@ -1,0 +1,15 @@
+name: 'Janus'
+branding:
+  icon: 'award'  
+  color: 'green'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: lts/*
+
+    - run: $GITHUB_ACTION_PATH/run.sh
+      shell: bash

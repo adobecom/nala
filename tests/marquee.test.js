@@ -5,7 +5,7 @@ import selectors from '../selectors/marquee.selectors.js';
 
 const { name, features } = parse(marquee);
 
-test.describe(`${name}`, () => {
+test.describe(name, () => {
   features.forEach((props) => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
