@@ -1,5 +1,4 @@
 name: Run Janus
-descritpion: Run using the same action as consumers do.
 
 on:
   pull_request:
@@ -14,7 +13,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Use local action
+      - name: Run Janus
         uses: ./
         env:
-          branch: ${{ github.event.pull_request.head.ref }}
+          labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
+          branch: 'main' # ${{ github.event.pull_request.head.ref }}
