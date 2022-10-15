@@ -4,5 +4,5 @@ module.exports = {
   '@bacomblog': 'https://main--business-website--adobe.hlx.live',
   '@stock': 'https://main--stock--adobecom.hlx.live',
   '@acrobat': 'https://main--acrobat--adobecom.hlx.live',
-  '@blog': 'https://main--blog--adobe.hlx.live'
+  '@blog': 'https://main--blog--adobe.hlx.live',
 };

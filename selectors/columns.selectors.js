@@ -7,5 +7,5 @@ module.exports = {
   '@col': '.col',
   '@row': '.row',
   '@image': '.row >> img',
-  '@link': 'a'
+  '@link': 'a',
 };

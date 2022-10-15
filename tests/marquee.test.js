@@ -1,7 +1,7 @@
-const { expect, test } = require('@playwright/test');
-const parse = require('../features/parse');
-const marquee = require('../features/marquee.spec');
-const selectors = require('../selectors/marquee.selectors');
+import { expect, test } from '@playwright/test';
+import marquee from '../features/marquee.spec.js';
+import parse from '../features/parse.js';
+import selectors from '../selectors/marquee.selectors.js';
 
 const { name, features } = parse(marquee);
 
