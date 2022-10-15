@@ -1,0 +1,20 @@
+name: Run Janus
+descritpion: Run using the same action as consumers do.
+
+on:
+  pull_request:
+    types: [ labeled, opened, synchronize, reopened ]
+
+jobs:
+  action:
+    name: Running tests
+    if: contains(github.event.pull_request.labels.*.name, 'run-janus')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Use local action
+        uses: ./
+        env:
+          branch: ${{ github.event.pull_request.head.ref }}
