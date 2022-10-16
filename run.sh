@@ -13,8 +13,9 @@ done
 
 echo "*** Running Janus on $branch ***"
 echo $TAGS
+echo "npx playwright test ${TAGS}"
 
-cd $GITHUB_ACTION_PATH
-npm ci
-npx playwright install --with-deps
-npx playwright test ${TAGS}
+# cd $GITHUB_ACTION_PATH
+# npm ci
+# npx playwright install --with-deps
+# npx playwright test ${TAGS}
