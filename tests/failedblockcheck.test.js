@@ -10,9 +10,9 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
-      await page.locator('footer').hover();  // Added to give time for failed block JS to load. Without it, test becomes flaky.
+      await page.locator('footer').hover(); // Added to give time for failed block JS to load. Without it, test becomes flaky.
       const failedBlocks = await page.$$(selectors[props.tag]);
-      for await (const failedMessage of failedBlocks.map(failed => failed.getAttribute('data-reason'))) {
+      for await (const failedMessage of failedBlocks.map((failed) => failed.getAttribute('data-reason'))) {
         console.log(`Failed Block Message: "${failedMessage}" : Page URL: ${props.url}`);
       }
       expect(failedBlocks).toHaveLength(0);
