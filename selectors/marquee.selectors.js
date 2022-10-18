@@ -4,5 +4,3 @@ module.exports = {
   '@large-button': '.marquee.large .con-button.button-XL',
   '@inline-button': '.marquee.inline .con-button',
 };
-
-
