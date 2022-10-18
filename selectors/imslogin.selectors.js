@@ -8,9 +8,9 @@ module.exports = {
   '@password': '#PasswordPage-PasswordField',
   '@email-continue-btn': '[data-id=EmailPage-ContinueButton]',
   '@password-rememberMe-btn': '[data-id=PasswordPage-RememberMeButton]',
-  '@password-continue-btn':'[data-id=PasswordPage-ContinueButton]',
+  '@password-continue-btn': '[data-id=PasswordPage-ContinueButton]',
   '@apple-signin': '[data-id=EmailPage-AppleSignInButton]',
   '@google-signin': '[data-id=EmailPage-GoogleSignInButton]',
-  '@facebook-signin':'[data-id=EmailPage-FacebookSignInButton]',
-  '@page-heading': '.spectrum-Heading1'
+  '@facebook-signin': '[data-id=EmailPage-FacebookSignInButton]',
+  '@page-heading': '.spectrum-Heading1',
 };
