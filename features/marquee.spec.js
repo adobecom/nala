@@ -1,23 +1,23 @@
 module.exports = {
-  'name': 'Marquee',
-  'features': [
+  name: 'Marquee',
+  features: [
     {
-      'name': '@marquee',
-      'path': '/test/features/blocks/marquee',
-      'envs': '@milo @bacom',
-      'tags': '@marquee-large',
+      name: '@marquee',
+      path: '/test/features/blocks/marquee',
+      envs: '@milo @bacom',
+      tags: '@marquee-large',
     },
     {
-      'name': '@button',
-      'path': '/test/features/blocks/marquee',
-      'envs': '@milo',
-      'tags': '@large-button @medium-button @inline-button',
+      name: '@button',
+      path: '/test/features/blocks/marquee',
+      envs: '@milo',
+      tags: '@large-button @medium-button @inline-button',
     },
     {
-      'name': '@button',
-      'path': '/customer-success-stories/princess-cruises-case-study',
-      'envs': '@bacom',
-      'tags': '@medium-button',
+      name: '@button',
+      path: '/customer-success-stories/princess-cruises-case-study',
+      envs: '@bacom',
+      tags: '@medium-button',
     },
   ],
 };

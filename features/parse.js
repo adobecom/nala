@@ -1,13 +1,13 @@
-const envList = require('../envs/envs');
+const envList = require('../envs/envs.js');
 
 /**
  * This file will take a spec file and flatten it to individual
  * specs that can be tested.
- * 
+ *
  */
 
 function buildUrl(url, env) {
-  const branch = process.env.MILO_LIBS;
+  const { branch } = process.env;
   if (!branch) return url;
   if (env !== '@milo') {
     return `${url}?milolibs=${branch}`;
@@ -16,7 +16,7 @@ function buildUrl(url, env) {
 }
 
 function loopTags({ rdx, name, env, tags, url }) {
-  tags.forEach(tag => {
+  tags.forEach((tag) => {
     const title = `${name} ${env} ${tag} on ${url}`;
     rdx.push({ title, url, tag });
   });
@@ -32,7 +32,7 @@ module.exports = (spec) => {
       const domain = envList[env];
 
       // If an array is supplied, break the paths down.
-      if(Array.isArray(feat.path)) {
+      if (Array.isArray(feat.path)) {
         feat.path.forEach((path) => {
           const url = buildUrl(`${domain}${path}`, env);
           loopTags({ rdx, name: feat.name, env, tags, url });
@@ -49,5 +49,5 @@ module.exports = (spec) => {
   return {
     name: spec.name,
     features: parsed,
-  }
+  };
 };
