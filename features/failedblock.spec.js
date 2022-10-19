@@ -5,8 +5,9 @@ module.exports = {
       name: '@failedblock',
       path: [
         '/customer-success-stories/',
-        '/customer-success-stories/ben-and-jerrys-case-study',
+        'customer-success-stories/jaguar-land-rover-case-study',
         '/customer-success-stories/abb-case-study',
+        '/customer-success-stories/dentsu-isobar-case-study',
       ],
       envs: '@bacom',
       tags: '@failedblock',
@@ -15,10 +16,7 @@ module.exports = {
       name: '@failedblock',
       path: [
         '/pages/artisthub/',
-        '/pages/artisthub/get-started',
         '/pages/artisthub/learn',
-        '/pages/artisthub/get-inspired',
-        '/pages/artisthub/get-inspired/creative-trends',
       ],
       envs: '@stock',
       tags: '@failedblock',
