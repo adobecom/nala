@@ -1,4 +1,4 @@
-# Contributing to Project Janus
+# Contributing to Nala
 
 This project is an Open Development project and welcomes contributions from everyone who finds it useful or lacking.
 

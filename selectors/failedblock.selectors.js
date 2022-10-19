@@ -1,1 +1,1 @@
-module.exports = { '@failed-block': '[data-failed=true]' };
+module.exports = { '@failedblock': '[data-failed=true]' };
