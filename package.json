@@ -1,29 +1,29 @@
 {
-  "name": "janus",
+  "name": "nala",
   "version": "1.0.0",
-  "description": "Automate E2E testing of Milo-based projects.",
+  "description": "Automated E2E & integration testing of Milo-based projects.",
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
     "test:gui": "npx playwright test --headed",
-    "test:chrome": "playwright test --config=playwright.config.js --project=chromium --headed",
-    "test:firefox": "playwright test --config=playwright.config.js --project=firefox --headed",
-    "test:safari": "playwright test --config=playwright.config.js --project=webkit --headed",
-    "test:chrome-headless": "playwright test --config=playwright.config.js --project=chromium",
-    "test:firefox-headless": "playwright test --config=playwright.config.js --project=firefox",
-    "test:safari-headless": "playwright test --config=playwright.config.js --project=webkit"
+    "test:chrome": "playwright test --project=chromium --headed",
+    "test:firefox": "playwright test --project=firefox --headed",
+    "test:safari": "playwright test --project=webkit --headed",
+    "test:chrome-headless": "playwright test --project=chromium",
+    "test:firefox-headless": "playwright test --project=firefox",
+    "test:safari-headless": "playwright test --project=webkit"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adobecom/janus.git"
+    "url": "git+https://github.com/adobecom/nala.git"
   },
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/adobecom/janus/issues"
+    "url": "https://github.com/adobecom/nala/issues"
   },
-  "homepage": "https://github.com/adobecom/janus#readme",
+  "homepage": "https://github.com/adobecom/nala#readme",
   "dependencies": {
     "@playwright/test": "^1.26.1"
   },
