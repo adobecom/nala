@@ -11,8 +11,9 @@ done
 # Remove the first pipe from tags if tags are not empty
 [[ ! -z "$TAGS" ]] && TAGS="${TAGS:1}" && TAGS="-g $TAGS"
 
-echo "*** Running Janus on $branch ***"
+echo "*** Running Nala on $branch ***"
 echo $TAGS
+echo "npx playwright test ${TAGS}"
 
 cd $GITHUB_ACTION_PATH
 npm ci

@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
 const { expect, test } = require('@playwright/test');
 const failedBlock = require('../features/failedblock.spec.js');
 const parse = require('../features/parse.js');
@@ -11,11 +13,17 @@ test.describe(`${name}`, () => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
       await page.locator('footer').hover(); // Added to give time for failed block JS to load. Without it, test becomes flaky.
-      const failedBlocks = await page.$$(selectors[props.tag]);
-      for await (const failedMessage of failedBlocks.map((failed) => failed.getAttribute('data-reason'))) {
-        console.log(`Failed Block Message: "${failedMessage}" : Page URL: ${props.url}`);
+      const locator = await page.locator(selectors[props.tag]);
+      const count = await locator.count();
+      expect(count).toEqual(0);
+      if (count > 0) {
+        const handles = await locator.elementHandles();
+        for (const handlePromise of handles) {
+          const handle = await handlePromise;
+          const reason = await handle.getAttribute('data-reason');
+          console.log(`${reason} on ${props.url}`);
+        }
       }
-      expect(failedBlocks).toHaveLength(0);
     });
   });
 });
