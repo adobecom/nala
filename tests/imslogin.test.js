@@ -10,8 +10,8 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@gnav-signin') {
       test(props.title, async ({ page }) => {
-        expect(process.env.IMS_TEST_USERNAME, 'ERROR: No environment variable for username provided for IMS Test.').toBeTruthy();
-        expect(process.env.IMS_TEST_PSWD, 'ERROR: No environment variable for username provided for IMS Test.').toBeTruthy();
+        expect(process.env.IMS_EMAIL, 'ERROR: No environment variable for email provided for IMS Test.').toBeTruthy();
+        expect(process.env.IMS_PASS, 'ERROR: No environment variable for password provided for IMS Test.').toBeTruthy();
         await page.goto(props.url);
 
         // Sign-in
@@ -30,12 +30,12 @@ test.describe(`${name}`, () => {
         expect(heading).toBe('Sign in');
 
         // Fill out Sign-in Form
-        await page.locator(selectors['@email']).fill(process.env.IMS_TEST_USERNAME);
+        await page.locator(selectors['@email']).fill(process.env.IMS_EMAIL);
         await page.locator(selectors['@email-continue-btn']).click();
         await expect(page.locator(selectors['@password-rememberMe-btn'])).toBeVisible({ timeout: 15000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
         heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
         expect(heading).toBe('Enter your password');
-        await page.locator(selectors['@password']).fill(process.env.IMS_TEST_PSWD);
+        await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
         await page.locator(selectors['@password-continue-btn']).click();
         await page.waitForURL(`${props.url}#`);
         await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
