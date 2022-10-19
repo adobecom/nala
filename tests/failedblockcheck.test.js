@@ -12,10 +12,11 @@ test.describe(`${name}`, () => {
       await page.goto(props.url);
       await page.locator('footer').hover(); // Added to give time for failed block JS to load. Without it, test becomes flaky.
       const failedBlocks = await page.$$(selectors[props.tag]);
+      const failedMessages = [];
       for await (const failedMessage of failedBlocks.map((failed) => failed.getAttribute('data-reason'))) {
-        console.log(`Failed Block Message: "${failedMessage}" : Page URL: ${props.url}`);
+        failedMessages.push(failedMessage);
       }
-      expect(failedBlocks).toHaveLength(0);
+      expect(failedBlocks, `Failed Block Messages:\n${failedMessages.toString()}\nOn page ${props.url}`).toHaveLength(0);
     });
   });
 });
