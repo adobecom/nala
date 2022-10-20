@@ -32,7 +32,7 @@ test.describe(`${name}`, () => {
         // Fill out Sign-in Form
         await page.locator(selectors['@email']).fill(process.env.IMS_EMAIL);
         await page.locator(selectors['@email-continue-btn']).click();
-        await expect(page.locator(selectors['@password-rememberMe-btn'])).toBeVisible({ timeout: 30000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
+        await expect(page.locator(selectors['@password-reset'])).toBeVisible({ timeout: 15000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
         heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
         expect(heading).toBe('Enter your password');
         await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
