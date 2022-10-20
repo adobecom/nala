@@ -7,6 +7,7 @@ module.exports = {
   '@email': '#EmailPage-EmailField',
   '@password': '#PasswordPage-PasswordField',
   '@email-continue-btn': '[data-id=EmailPage-ContinueButton]',
+  '@verify-continue-btn': '[data-id=Page-PrimaryButton]',
   '@password-reset': 'text=Reset your password',
   '@password-continue-btn': '[data-id=PasswordPage-ContinueButton]',
   '@apple-signin': '[data-id=EmailPage-AppleSignInButton]',
