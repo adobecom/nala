@@ -32,7 +32,8 @@ const config = {
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    [process.env.CI ? 'github' : 'list'],
+    [process.env.CI ? 'html' : 'list'],
+    ['html', { outputFolder: 'playwright-report' }],
     ['list'],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
