@@ -18,7 +18,7 @@ test.describe(`${name}`, () => {
         let signinBtn = page.locator(selectors[props.tag]);
         await expect(signinBtn).toBeVisible();
         await signinBtn.click();
-        if (props.url.includes('hlx.live')) {
+        if (props.url.includes('bacom--adobecom')) {
           await page.waitForURL('**/auth-stg1.services.adobe.com/en_US/index.html**/');
           await expect(page).toHaveURL(/.*auth-stg1.services.adobe.com/);
         } else {
@@ -32,17 +32,17 @@ test.describe(`${name}`, () => {
         // Fill out Sign-in Form
         await page.locator(selectors['@email']).fill(process.env.IMS_EMAIL);
         await page.locator(selectors['@email-continue-btn']).click();
-        if (!(browser.browserType().name() === 'chromium' && props.url.includes('business.adobe.com'))) {
-          await expect(page.locator(selectors['@password-reset'])).toBeVisible({ timeout: 45000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
-          heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
-          expect(heading).toBe('Enter your password');
-          await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
-          await page.locator(selectors['@password-continue-btn']).click();
-          await page.waitForURL(`${props.url}#`);
-          await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
-          await expect(page).toHaveURL(`${props.url}#`);
+        await expect(page.locator(selectors['@password-reset'])).toBeVisible({ timeout: 45000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
+        heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
+        expect(heading).toBe('Enter your password');
+        await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
+        await page.locator(selectors['@password-continue-btn']).click();
+        await page.waitForURL(`${props.url}#`);
+        await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
+        await expect(page).toHaveURL(`${props.url}#`);
 
-          // Sign-out Milo
+        // Sign-out Milo
+        if (!(browser.browserType().name() === 'chromium' && props.url.includes('business.adobe.com'))) { // Chromium based browsers get 403 error for gnav profile.js and favicon.js
           await page.locator(selectors['@gnav-profile-button']).click();
           const viewAccount = page.locator(selectors['@gnav-viewaccount']);
           expect(viewAccount).toBeVisible();
