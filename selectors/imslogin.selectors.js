@@ -1,5 +1,5 @@
 module.exports = {
-  '@gnav-signin': 'text=Sign In',
+  '@gnav-signin': '.gnav-signin',
   '@gnav-profile-button': '.gnav-profile-button',
   '@gnav-signout': 'text=Sign Out',
   '@gnav-viewaccount': '.gnav-profile-header',

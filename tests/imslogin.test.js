@@ -9,7 +9,7 @@ const { name, features } = parse(imslogin);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@gnav-signin') {
-      test(props.title, async ({ page, browser }) => {
+      test(props.title, async ({ page }) => {
         expect(process.env.IMS_EMAIL, 'ERROR: No environment variable for email provided for IMS Test.').toBeTruthy();
         expect(process.env.IMS_PASS, 'ERROR: No environment variable for password provided for IMS Test.').toBeTruthy();
         await page.goto(props.url);
@@ -42,20 +42,18 @@ test.describe(`${name}`, () => {
         await expect(page).toHaveURL(`${props.url}#`);
 
         // Sign-out Milo
-        if (!(browser.browserType().name() === 'chromium' && props.url.includes('business.adobe.com'))) { // Chromium based browsers get 403 error for gnav profile.js and favicon.js
-          await page.locator(selectors['@gnav-profile-button']).click();
-          const viewAccount = page.locator(selectors['@gnav-viewaccount']);
-          expect(viewAccount).toBeVisible();
-          const signoutBtn = page.locator(selectors['@gnav-signout']);
-          expect(signoutBtn).toBeVisible();
-          await signoutBtn.click();
-          await page.waitForURL(`${props.url}#`);
+        await page.locator(selectors['@gnav-profile-button']).click();
+        const viewAccount = page.locator(selectors['@gnav-viewaccount']);
+        expect(viewAccount).toBeVisible();
+        const signoutBtn = page.locator(selectors['@gnav-signout']);
+        expect(signoutBtn).toBeVisible();
+        await signoutBtn.click();
+        await page.waitForURL(`${props.url}#`);
 
-          await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
-          expect(page).toHaveURL(`${props.url}#`);
-          signinBtn = page.locator(selectors[props.tag]);
-          await expect(signinBtn).toBeVisible();
-        }
+        await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
+        expect(page).toHaveURL(`${props.url}#`);
+        signinBtn = page.locator(selectors[props.tag]);
+        await expect(signinBtn).toBeVisible();
       });
     }
 
