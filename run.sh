@@ -18,4 +18,4 @@ echo "npx playwright test ${TAGS}"
 cd $GITHUB_ACTION_PATH
 npm ci
 npx playwright install --with-deps
-xvfb-run --auto-servernum -- npm test ${TAGS}
+npx playwright test ${TAGS}
