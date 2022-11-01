@@ -37,13 +37,11 @@ test.describe(`${name}`, () => {
         expect(heading).toBe('Enter your password');
         await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
         await page.locator(selectors['@password-continue-btn']).click();
-        await page.waitForTimeout(5000);
         await page.waitForURL(`${props.url}#`);
         await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
         await expect(page).toHaveURL(`${props.url}#`);
 
         // Sign-out Milo
-        await page.waitForTimeout(5000);
         await page.locator(selectors['@gnav-profile-button']).click();
         const viewAccount = page.locator(selectors['@gnav-viewaccount']);
         expect(viewAccount).toBeVisible();
