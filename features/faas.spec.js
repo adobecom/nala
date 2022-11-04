@@ -4,10 +4,9 @@ module.exports = {
     {
       name: '@faas',
       path: [
-        '/customer-success-stories/',
-        '/customer-success-stories/jaguar-land-rover-case-study',
-        '/customer-success-stories/abb-case-study',
-        '/customer-success-stories/dentsu-isobar-case-study',
+        '/drafts/cpatton/guides/how-to-choose-a-future-proof-cdp',
+        '/drafts/cpatton/sdk/turn-engagement-into-action',
+        '/drafts/cpatton/webinars/omnichannel-orchestration-with-adobe-marketo-engage-and-adobe-experience-cloud',
       ],
       envs: '@bacom',
       tags: '@faasblock',
@@ -15,7 +14,8 @@ module.exports = {
     {
       name: '@faas',
       path: [
-        '/pages/artisthub/',
+        '/test/features/blocks/faas-rfi',
+        '/test/features/blocks/faas-do',
       ],
       envs: '@milo',
       tags: '@faasblock',
