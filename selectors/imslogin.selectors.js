@@ -14,4 +14,7 @@ module.exports = {
   '@google-signin': '[data-id=EmailPage-GoogleSignInButton]',
   '@facebook-signin': '[data-id=EmailPage-FacebookSignInButton]',
   '@page-heading': '.spectrum-Heading1',
+  '@gnav-ec-signin': '[daa-ll=Experience_Cloud-1]',
+  '@gnav-comm-signin': '[daa-ll=Commerce__Magento-2]',
+  '@gnav-multi-signin': '[daa-ll=Adobe_Account-5]',
 };

@@ -7,5 +7,11 @@ module.exports = {
       envs: '@bacom @bacom_prod',
       tags: '@gnav-signin @apple-signin @google-signin @facebook-signin',
     },
+    {
+      name: '@imslogin',
+      path: '/test/features/blocks/multi-cloud-signin',
+      envs: '@bacom',
+      tags: '@gnav-multi-signin',
+    },
   ],
 };
