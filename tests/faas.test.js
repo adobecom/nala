@@ -13,6 +13,20 @@ test.describe(`${name}`, () => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
       const locator = await page.locator(selectors[props.tag]);
+      await expect(locator.isVisible()).toBe(true);
+
+      // Fill out Form
+      //
+
+      if (props.url) {
+        //
+      }
+
+      if (props.url) {
+        //
+      }
+
+      // Submit form
     });
   });
 });

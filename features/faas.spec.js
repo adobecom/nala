@@ -9,7 +9,7 @@ module.exports = {
         '/drafts/cpatton/webinars/omnichannel-orchestration-with-adobe-marketo-engage-and-adobe-experience-cloud',
       ],
       envs: '@bacom',
-      tags: '@faasblock',
+      tags: '@faas-form',
     },
     {
       name: '@faas',
@@ -18,7 +18,7 @@ module.exports = {
         '/test/features/blocks/faas-do',
       ],
       envs: '@milo',
-      tags: '@faasblock',
+      tags: '@faas-form',
     },
   ],
 };
