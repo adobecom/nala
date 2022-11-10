@@ -17,4 +17,7 @@ module.exports = {
   '@gnav-ec-signin': '[daa-ll=Experience_Cloud-1]',
   '@gnav-comm-signin': '[daa-ll=Commerce__Magento-2]',
   '@gnav-multi-signin': '[daa-ll=Adobe_Account-5]',
+  '@gnav-app-launcher': '.gnav-applications-button',
+  '@cc-app-launcher': '[daa-ll=Creative Cloud-1]',
+  '@app-launcher-list': '.apps >> li',
 };

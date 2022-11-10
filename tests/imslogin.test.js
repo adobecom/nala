@@ -62,6 +62,29 @@ test.describe(`${name}`, () => {
 
         checkPageTitle(props.tag, page);
 
+        if (props.tag === '@gnav-multi-signin') {
+          // Open App Launcher
+          const appLauncher = await page.locator(selectors['@gnav-app-launcher']);
+          await expect(appLauncher).toBeVisible();
+          await appLauncher.click();
+
+          // Verify the list of apps is available and all are showing.
+          const appsList = await page.locator(selectors['@app-launcher-list']).count();
+          expect(appsList).toEqual(12);
+
+          // Verify the apps can be clicked and navigated too.
+          const ccApp = await page.locator(selectors['@cc-app-launcher']);
+          await expect(ccApp).toBeVisible();
+          await ccApp.click();
+          await page.waitForURL('https://creativecloud.adobe.com/?context=home_cc&locale=en');
+          await expect(page).toHaveURL(/.*creativecloud.adobe.com\/?context=home_cc&locale=en/);
+
+          // Return to test page to sign-out
+          await page.goto(props.url);
+          await page.waitForURL(props.url);
+          await expect(page).toHaveURL(props.url);
+        }
+
         // Sign-out Milo
         await page.locator(selectors['@gnav-profile-button']).click();
         const viewAccount = page.locator(selectors['@gnav-viewaccount']);
