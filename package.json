@@ -12,7 +12,8 @@
     "test:chrome-headless": "playwright test --project=chromium",
     "test:firefox-headless": "playwright test --project=firefox",
     "test:safari-headless": "playwright test --project=webkit",
-    "test.sauce.us": "saucectl run --region us-west-1"
+    "test.sauce.us": "saucectl run --region us-west-1",
+    "test.sauce.eu": "saucectl run"
   },
   "repository": {
     "type": "git",
