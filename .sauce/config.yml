@@ -19,7 +19,31 @@ playwright:
 rootDir: ./
 suites:
   - name: "Firefox Win"
-    platformName: "Windows 11"
+    platformName: "Windows 10"
+    screenResolution: "1440x900"
+    testMatch: ['.*.js']
+    params:
+      browserName: "firefox"
+      project: "firefox"  # Runs the project that's defined in `playwright.config.js`
+      headless: true
+  - name: "Chromium Win"
+    platformName: "Windows 10"
+    screenResolution: "1440x900"
+    testMatch: ['.*.js']
+    params:
+      browserName: "chromium"
+      project: "chromium"
+      headless: true
+  - name: "Webkit Win"
+    platformName: "Windows 10"
+    screenResolution: "1440x900"
+    testMatch: ['.*.js']
+    params:
+      browserName: "webkit"
+      project: "webkit"
+      headless: true
+  - name: "Firefox Mac"
+    platformName: "macOS 12"
     screenResolution: "1440x900"
     testMatch: ['.*.js']
     params:
@@ -34,8 +58,8 @@ suites:
       browserName: "chromium"
       project: "chromium"
       headless: true
-  - name: "Webkit Win"
-    platformName: "Windows 11"
+  - name: "Webkit Mac"
+    platformName: "macOS 12"
     screenResolution: "1440x900"
     testMatch: ['.*.js']
     params:
