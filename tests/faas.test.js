@@ -12,21 +12,34 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
-      const locator = await page.locator(selectors[props.tag]);
-      await expect(locator.isVisible()).toBe(true);
+      const locator = page.locator(selectors[props.tag]);
+      await expect(locator).toBeVisible();
 
       // Fill out Form
-      //
+      await page.getByLabel(selectors['@business-email']).fill('milo@adobetest.com');
+      await page.getByLabel(selectors['@first-name']).fill('MiloTest');
+      await page.getByLabel(selectors['@last-name']).fill('MiloTest');
+      await page.getByLabel(selectors['@business-phone']).fill('777-777-7777');
+      await page.getByLabel(selectors['@job-title-role']).selectOption({ label: 'Individual Contributor' });
+      await page.getByLabel(selectors['@area-department']).selectOption({ label: 'IT' });
+      await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
+      await page.getByLabel(selectors['@country']).selectOption({ label: 'United Staes' });
+      await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
+      await page.getByLabel(selectors['@contact-me']).check();
 
       if (props.url) {
-        //
+        await page.getByLabel(selectors['@zipcode']).fill('77777');
+        await page.getByLabel(selectors['@website']).fill('https://milo.adobe.com');
+        await page.getByLabel(selectors['@industry']).selectOption({ label: 'Technology Software & Services' });
       }
 
       if (props.url) {
-        //
+        await page.getByLabel(selectors['@area-interest']).selectOption({ label: 'Website optimization' });
+        await page.getByLabel(selectors['@questions']).fill('Hello World?');
       }
 
       // Submit form
+      await page.locator(selectors['@submit']).click();
     });
   });
 });
