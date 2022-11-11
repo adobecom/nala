@@ -12,7 +12,7 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
-      const locator = page.locator(selectors[props.tag]).scrollIntoViewIfNeeded();
+      const locator = page.locator(selectors[props.tag]);
       await expect(locator).toBeVisible();
 
       // Fill out Form
@@ -38,6 +38,9 @@ test.describe(`${name}`, () => {
 
       // Submit form
       await page.locator(selectors['@submit']).first().click();
+      await page.waitForURL(/.*thankyou/, { timeout: 300000 });
+      await expect(page).toHaveURL(/.*thankyou/);
+      await expect(page).toHaveTitle(/Thank you\.*.*/);
     });
   });
 });
