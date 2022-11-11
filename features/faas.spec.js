@@ -5,9 +5,9 @@ module.exports = {
       name: '@faas',
       path: [
         '/drafts/cpatton/guides/how-to-choose-a-future-proof-cdp',
-        '/drafts/cpatton/webinars/omnichannel-orchestration-with-adobe-marketo-engage-and-adobe-experience-cloud',
+        '/drafts/cpatton/webinars/omnichannel-orchestration-with-adobe-marketo-engage-and-adobe-experience-cloud#register-now',
       ],
-      envs: '@bacom',
+      envs: '@bacom_prvw',
       tags: '@faas-form',
     },
     {
