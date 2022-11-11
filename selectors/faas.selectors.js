@@ -16,4 +16,5 @@ module.exports = {
   '@industry': 'Industry ',
   '@area-interest': 'Primary Area of Interest ',
   '@questions': 'Questions or comments',
+  '@errorMessage': '.errorMessage',
 };

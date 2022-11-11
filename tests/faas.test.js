@@ -15,6 +15,12 @@ test.describe(`${name}`, () => {
       const locator = page.locator(selectors[props.tag]);
       await expect(locator).toBeVisible();
 
+      // Test negative test to ensure error messages are showing up
+      await page.locator(selectors['@submit']).first().click();
+      const errorMessages = await page.$$(selectors['@errorMessage']);
+      expect(errorMessages).toBeTruthy();
+      expect(errorMessages.length()).toBeGreaterThanOrEqual(11);
+
       // Fill out Form
       await page.getByLabel(selectors['@business-email']).fill('milo@adobetest.com');
       await page.getByLabel(selectors['@first-name']).fill('MiloTest');
