@@ -113,7 +113,7 @@ test.describe(`${name}`, () => {
         const commSigninBtn = page.locator(selectors['@gnav-comm-signin']);
         await expect(commSigninBtn).toBeVisible();
         await ecSigninBtn.click();
-        await page.waitForURL('**/auth.services.adobe.com/en_US/index.html**/');
+        await page.waitForURL(/.*auth.services.adobe.com\/en_US.*/);
         await expect(page).toHaveURL(/.*auth.services.adobe.com/);
       });
     }
