@@ -6,4 +6,5 @@ module.exports = {
   '@acrobat': 'https://main--acrobat--adobecom.hlx.live',
   '@bacom_prod': 'https://business.adobe.com',
   '@blog': 'https://main--blog--adobe.hlx.live',
+  '@bacom_stg': 'https://main--bacom--adobecom.hlx.page', // TODO: Temp env, once app launcher is released we can remove
 };

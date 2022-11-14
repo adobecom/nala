@@ -18,6 +18,6 @@ module.exports = {
   '@gnav-comm-signin': '[daa-ll=Commerce__Magento-2]',
   '@gnav-multi-signin': '[daa-ll=Adobe_Account-5]',
   '@gnav-app-launcher': '.gnav-applications-button',
-  '@cc-app-launcher': '[daa-ll=Creative Cloud-1]',
+  '@cc-app-launcher': '#navmenu-apps >> ul >> li:nth-child(1) >> a',
   '@app-launcher-list': '.apps >> li',
 };

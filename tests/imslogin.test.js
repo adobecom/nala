@@ -8,7 +8,7 @@ const { name, features } = parse(imslogin);
 
 // Test Utils
 async function checkPageTitle(testTag, page) {
-  if (testTag === '@gnav-multi-signin') {
+  if (testTag === '@gnav-multi-signin' || testTag === '@gnav-app-launcher') {
     await expect(page).toHaveTitle(/Intro Text/);
   } else {
     await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
@@ -23,8 +23,9 @@ async function clickSignin(page) {
 
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    if (props.tag === '@gnav-signin' || props.tag === '@gnav-multi-signin') {
-      test(props.title, async ({ page }) => {
+    // TODO: Temp conditional tag, once app launcher is released we can change to multi-signin
+    if (props.tag === '@gnav-signin' || props.tag === '@gnav-multi-signin' || props.tag === '@gnav-app-launcher') {
+      test(props.title, async ({ page, context }) => {
         expect(process.env.IMS_EMAIL, 'ERROR: No environment variable for email provided for IMS Test.').toBeTruthy();
         expect(process.env.IMS_PASS, 'ERROR: No environment variable for password provided for IMS Test.').toBeTruthy();
         await page.goto(props.url);
@@ -32,7 +33,8 @@ test.describe(`${name}`, () => {
         // Sign-in
         clickSignin(page);
 
-        if (props.tag === '@gnav-multi-signin') {
+        // TODO: Temp conditional tag, once app launcher is released we can change to multi-signin
+        if (props.tag === '@gnav-multi-signin' || props.tag === '@gnav-app-launcher') {
           const multiSigninBtn = page.locator(selectors['@gnav-multi-signin']);
           await expect(multiSigninBtn).toBeVisible();
           await multiSigninBtn.click();
@@ -62,7 +64,8 @@ test.describe(`${name}`, () => {
 
         checkPageTitle(props.tag, page);
 
-        if (props.tag === '@gnav-multi-signin') {
+        // TODO: Temp conditional tag, once app launcher is released we can change to multi-signin
+        if (props.tag === '@gnav-app-launcher') {
           // Open App Launcher
           const appLauncher = await page.locator(selectors['@gnav-app-launcher']);
           await expect(appLauncher).toBeVisible();
@@ -75,14 +78,13 @@ test.describe(`${name}`, () => {
           // Verify the apps can be clicked and navigated too.
           const ccApp = await page.locator(selectors['@cc-app-launcher']);
           await expect(ccApp).toBeVisible();
-          await ccApp.click();
-          await page.waitForURL('https://creativecloud.adobe.com/?context=home_cc&locale=en');
-          await expect(page).toHaveURL(/.*creativecloud.adobe.com\/?context=home_cc&locale=en/);
-
-          // Return to test page to sign-out
-          await page.goto(props.url);
-          await page.waitForURL(props.url);
-          await expect(page).toHaveURL(props.url);
+          const [newPage] = await Promise.all([
+            context.waitForEvent('page'),
+            await ccApp.click(), // Opens a new tab
+          ]);
+          await newPage.waitForLoadState();
+          await newPage.waitForURL('https://creativecloud.adobe.com/?context=home_cc&locale=en');
+          await expect(newPage).toHaveURL(/.*creativecloud.adobe.com\/\?context=home_cc&locale=en/);
         }
 
         // Sign-out Milo
