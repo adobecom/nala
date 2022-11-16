@@ -13,12 +13,5 @@ module.exports = {
       envs: '@bacom',
       tags: '@gnav-multi-signin',
     },
-    // TODO: Temp spec tag, once app launcher is released we can remove
-    {
-      name: '@imslogin',
-      path: '/test/features/blocks/multi-cloud-signin?milolibs=rclayton-gnav-apps',
-      envs: '@bacom_stg',
-      tags: '@gnav-app-launcher',
-    },
   ],
 };
