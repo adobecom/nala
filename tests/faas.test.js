@@ -117,7 +117,7 @@ test.describe(`${name}`, () => {
       await expect(page).toHaveTitle(/Thank you\.*.*/);
     });
 
-    test(props.title, async ({ page }) => {
+    test(`${props.title} JS Injection`, async ({ page }) => {
       await page.goto(props.url);
       const locator = page.locator(selectors[props.tag]);
       await expect(locator).toBeVisible();
@@ -138,7 +138,7 @@ test.describe(`${name}`, () => {
       });
     });
 
-    test(props.title, async ({ page }) => {
+    test(`${props.title} JS Injection 2`, async ({ page }) => {
       await page.goto(props.url);
       const locator = page.locator(selectors[props.tag]);
       await expect(locator).toBeVisible();
