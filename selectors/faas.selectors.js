@@ -16,7 +16,8 @@ module.exports = {
   '@industry': 'Industry ',
   '@area-interest': 'Primary Area of Interest ',
   '@questions': 'Questions or comments',
-  '@errorMessage': '.errorMessage:visible',
-  '@required': 'label >> .required',
+  '@errorMessages': '.errorMessage',
+  '@hiddenErrorMessages': '.errorMessage[style="display:none"]',
+  '@required': '.required',
   '@form-overlay': '.faas-form-overlay',
 };

@@ -9,47 +9,6 @@ const selectors = require('../selectors/faas.selectors.js');
 const { name, features } = parse(faas);
 
 // Test Utils
-async function clearForm(page, props) {
-  await page.getByLabel(selectors['@business-email']).fill('');
-  await page.getByLabel(selectors['@first-name']).fill('');
-  await page.getByLabel(selectors['@last-name']).fill('');
-  await page.getByLabel(selectors['@business-phone']).fill('');
-  await page.getByLabel(selectors['@job-title-role']).selectOption({ label: 'Select' });
-  await page.getByLabel(selectors['@area-department']).selectOption({ label: 'Select' });
-  await page.getByLabel(selectors['@org-name']).fill('');
-  await page.getByLabel(selectors['@country']).selectOption({ label: 'Select' });
-  await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Select' });
-  await page.getByLabel(selectors['@contact-me']).check();
-
-  await page.getByLabel(selectors['@zipcode']).fill('');
-  await page.getByLabel(selectors['@website']).fill('');
-  await page.getByLabel(selectors['@industry']).selectOption({ label: 'Select' });
-
-  if (props.url.includes('faas-rfi')) {
-    await page.getByLabel(selectors['@area-interest']).selectOption({ label: 'Select' });
-    await page.getByLabel(selectors['@questions']).fill('');
-  }
-}
-
-async function fillForm(page, props) {
-  await page.getByLabel(selectors['@business-email']).fill('milo@adobetest.com');
-  await page.getByLabel(selectors['@first-name']).fill('MiloTest');
-  await page.getByLabel(selectors['@last-name']).fill('MiloTest');
-  await page.getByLabel(selectors['@business-phone']).fill('777-777-7777');
-  await page.getByLabel(selectors['@job-title-role']).selectOption({ label: 'Individual Contributor' });
-  await page.getByLabel(selectors['@area-department']).selectOption({ label: 'IT' });
-  await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
-  await page.getByLabel(selectors['@country']).selectOption({ label: 'United States' });
-  await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
-  await page.getByLabel(selectors['@contact-me']).check();
-  await page.getByLabel(selectors['@industry']).selectOption({ label: 'Technology Software & Services' });
-
-  if (props.url.includes('faas-rfi')) {
-    await page.getByLabel(selectors['@area-interest']).selectOption({ label: 'Website optimization' });
-    await page.getByLabel(selectors['@questions']).fill('Hello World?');
-  }
-}
-
 async function formInject(page, props, injectionInput) {
   // Reset form fields before filling.
   await page.getByLabel(selectors['@first-name']).fill('');
@@ -73,16 +32,17 @@ test.describe(`${name}`, () => {
       const locator = page.locator(selectors[props.tag]);
       await expect(locator).toBeVisible();
 
-      // Validate form input formats are required
+      // Validate form input formats are checked before submission
       const requiredFields = await page.$$(selectors['@required']);
 
+      await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg'); // Need to add org so that website field shows up
       await page.getByLabel(selectors['@business-email']).fill('milo');
       await page.getByLabel(selectors['@business-phone']).fill('a');
       await page.getByLabel(selectors['@website']).fill('milo');
+      await page.getByLabel(selectors['@first-name']).fill('MiloTest'); // Need to add extra input so that auto check happens for website.
 
-      let errorMessages = await page.$$(selectors['@errorMessage']);
-      expect(errorMessages).toBeTruthy();
-      expect(errorMessages.length()).toEqual(3);
+      let errorMessages = ((await page.$$(selectors['@errorMessages'])).length - (await page.$$(selectors['@hiddenErrorMessages'])).length);
+      expect(errorMessages).toEqual(3);
 
       const submit = page.locator(selectors['@submit']).first();
       await submit.click();
@@ -90,25 +50,68 @@ test.describe(`${name}`, () => {
       await expect(formOverlay).not.toBeVisible();
       await expect(page).toHaveURL(props.url);
 
-      // Reset inputs
-      clearForm(page, props);
+      // Reset inputs for next test case
+      await page.getByLabel(selectors['@website']).fill('');
+      await page.getByLabel(selectors['@org-name']).fill('');
+      await page.getByLabel(selectors['@business-email']).fill('');
+      await page.getByLabel(selectors['@business-phone']).fill('');
+      await page.getByLabel(selectors['@first-name']).fill('');
+      await page.getByLabel(selectors['@country']).selectOption({ label: 'Select' });
 
-      // Validate form errors show and doesn't submit
+      // Validate form errors show and doesn't submit the form
       await submit.click();
-      errorMessages = await page.$$(selectors['@errorMessage']);
-      expect(errorMessages).toBeTruthy();
-      expect(requiredFields.length()).toEqual(errorMessages.length());
+      errorMessages = ((await page.$$(selectors['@errorMessages'])).length - (await page.$$(selectors['@hiddenErrorMessages'])).length);
 
-      await submit.click();
+      expect((requiredFields.length - 2)).toEqual(errorMessages);
+
       formOverlay = page.locator(selectors['@form-overlay']);
       await expect(formOverlay).not.toBeVisible();
       await expect(page).toHaveURL(props.url);
 
-      // Reset inputs
-      clearForm(page, props);
+      // Fill out form
+      await page.getByLabel(selectors['@business-email']).fill('milo@adobetest.com');
+      await page.getByLabel(selectors['@first-name']).fill('MiloTest');
+      await page.getByLabel(selectors['@last-name']).fill('MiloTest');
+      await page.getByLabel(selectors['@business-phone']).fill('777-777-7777');
+      await page.getByLabel(selectors['@job-title-role']).selectOption({ label: 'Individual Contributor' });
+      await page.getByLabel(selectors['@area-department']).selectOption({ label: 'IT' });
+      await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
+      await page.getByLabel(selectors['@country']).selectOption({ label: 'United States' });
+      await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
+      await page.getByLabel(selectors['@zipcode']).fill('77777');
+      await page.getByLabel(selectors['@website']).fill('milo.adobe.com');
+      await page.getByLabel(selectors['@industry']).selectOption({ label: 'Technology Software & Services' });
+      await page.getByLabel(selectors['@contact-me']).check();
 
-      // Validate forms submit and navigate to their thank you pages
-      fillForm(page, props);
+      if (props.url.includes('faas-rfi')) {
+        await page.getByLabel(selectors['@area-interest']).selectOption({ label: 'Website optimization' });
+        await page.getByLabel(selectors['@questions']).fill('Hello World?');
+      }
+
+      // Test zip being a required field
+      await page.getByLabel(selectors['@zipcode']).fill('');
+      await page.getByLabel(selectors['@zipcode']).press('Enter');
+      await submit.click();
+      errorMessages = ((await page.$$(selectors['@errorMessages'])).length - (await page.$$(selectors['@hiddenErrorMessages'])).length);
+      expect(errorMessages).toEqual(1);
+
+      formOverlay = page.locator(selectors['@form-overlay']);
+      await expect(formOverlay).not.toBeVisible();
+      await expect(page).toHaveURL(props.url);
+
+      // Test state/province being a required field
+      await page.getByLabel(selectors['@zipcode']).fill('77777');
+      await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Select' });
+      await submit.click();
+      errorMessages = ((await page.$$(selectors['@errorMessages'])).length - (await page.$$(selectors['@hiddenErrorMessages'])).length);
+      expect(errorMessages).toEqual(1);
+
+      formOverlay = page.locator(selectors['@form-overlay']);
+      await expect(formOverlay).not.toBeVisible();
+      await expect(page).toHaveURL(props.url);
+
+      // Validate forms submissions and navigate to thank you pages by filling any empty fields
+      await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
 
       // Submit form
       await submit.click();
