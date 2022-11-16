@@ -17,4 +17,3 @@ jobs:
         uses: ./
         env:
           labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
-          branch: 'main' # ${{ github.event.pull_request.head.ref }}
