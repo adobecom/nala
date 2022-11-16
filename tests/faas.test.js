@@ -91,7 +91,7 @@ test.describe(`${name}`, () => {
       await expect(page).toHaveURL(props.url);
 
       // Reset inputs
-      clearForm();
+      clearForm(page, props);
 
       // Validate form errors show and doesn't submit
       await submit.click();
@@ -105,10 +105,10 @@ test.describe(`${name}`, () => {
       await expect(page).toHaveURL(props.url);
 
       // Reset inputs
-      clearForm();
+      clearForm(page, props);
 
       // Validate forms submit and navigate to their thank you pages
-      fillForm();
+      fillForm(page, props);
 
       // Submit form
       await submit.click();
@@ -123,8 +123,8 @@ test.describe(`${name}`, () => {
       await expect(locator).toBeVisible();
 
       // Validate JavaScript Injection
-      fillForm();
-      formInject(page, '<script>alert(“Hello World!“);</script>');
+      fillForm(page, props);
+      formInject(page, props, '<script>alert(“Hello World!“);</script>');
 
       // Submit form
       await page.locator(selectors['@submit']).first().click();
@@ -144,8 +144,8 @@ test.describe(`${name}`, () => {
       await expect(locator).toBeVisible();
 
       // Validate JavaScript Injection
-      fillForm();
-      formInject(page, '<img src=x onerror=“alert(18)“>');
+      fillForm(page, props);
+      formInject(page, props, '<img src=x onerror=“alert(18)“>');
 
       // Submit form
       await page.locator(selectors['@submit']).first().click();
