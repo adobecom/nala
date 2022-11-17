@@ -3,21 +3,19 @@ module.exports = {
   features: [
     {
       name: '@georouting',
-      path: '/test/features/blocks/columns',
+      path: [
+        '/test/features/blocks/georouting',
+        '/test/features/blocks/georouting-off',
+        '/test/features/blocks/fallback-off',
+      ],
       envs: '@milo',
-      tags: '@columns-default @columns-table',
+      tags: '@georouting',
     },
     {
       name: '@georouting',
-      path: '/blog/basics/agile-vs-waterfall',
-      envs: '@bacomblog',
-      tags: '@columns-table',
-    },
-    {
-      name: '@georouting',
-      path: '/en/publish/2022/07/28/announcing-2022-adobe-analytics-champions',
-      envs: '@blog',
-      tags: '@columns-default',
+      path: '/customer-success-stories/princess-cruises-case-study',
+      envs: '@bacom',
+      tags: '@georouting',
     },
   ],
 };
