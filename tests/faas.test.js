@@ -14,19 +14,6 @@ test.describe(`${name}`, () => {
       const locator = page.locator(selectors[props.tag]);
       await expect(locator).toBeVisible();
 
-      // Validate form input formats are checked before submission
-      const requiredFields = await page.$$(selectors['@required']);
-
-      await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg'); // Need to add org so that website field shows up
-      await page.getByLabel(selectors['@business-email']).fill('milo');
-      await page.getByLabel(selectors['@business-phone']).fill('a');
-      await page.getByLabel(selectors['@website']).fill('milo');
-      await page.getByLabel(selectors['@first-name']).fill('MiloTest'); // Need to add extra input so that auto check happens for website.
-
-      let errorMessages = ((await page.$$(selectors['@errorMessages'])).length - (await page.$$(selectors['@hiddenErrorMessages'])).length);
-      expect(errorMessages).toEqual(3);
-
-      const submit = page.locator(selectors['@submit']).first();
       // Fill out form
       await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
       await page.getByLabel(selectors['@business-email']).fill('milo@adobetest.com');
