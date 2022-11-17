@@ -11,8 +11,6 @@ const { name, features } = parse(faas);
 // Test Utils
 async function formInject(page, props, injectionInput) {
   // Reset form fields before filling.
-  await page.getByLabel(selectors['@first-name']).fill('');
-  await page.getByLabel(selectors['@last-name']).fill('');
   await page.getByLabel(selectors['@org-name']).fill('');
 
   await page.getByLabel(selectors['@first-name']).fill(injectionInput);
@@ -20,7 +18,6 @@ async function formInject(page, props, injectionInput) {
   await page.getByLabel(selectors['@org-name']).fill(injectionInput);
 
   if (props.url.includes('faas-rfi')) {
-    await page.getByLabel(selectors['@questions']).fill('');
     await page.getByLabel(selectors['@questions']).fill(injectionInput);
   }
 }
@@ -90,7 +87,7 @@ test.describe(`${name}`, () => {
 
       // Test zip being a required field
       await page.getByLabel(selectors['@zipcode']).fill('');
-      await page.getByLabel(selectors['@zipcode']).press('Enter');
+      await page.getByLabel(selectors['@org-name']).click(); // click out of changed input so it registers
       await submit.click();
       errorMessages = ((await page.$$(selectors['@errorMessages'])).length - (await page.$$(selectors['@hiddenErrorMessages'])).length);
       expect(errorMessages).toEqual(1);
@@ -102,6 +99,7 @@ test.describe(`${name}`, () => {
       // Test state/province being a required field
       await page.getByLabel(selectors['@zipcode']).fill('77777');
       await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Select' });
+      await page.getByLabel(selectors['@org-name']).click(); // click out of changed selector so it registers
       await submit.click();
       errorMessages = ((await page.$$(selectors['@errorMessages'])).length - (await page.$$(selectors['@hiddenErrorMessages'])).length);
       expect(errorMessages).toEqual(1);
@@ -112,6 +110,7 @@ test.describe(`${name}`, () => {
 
       // Validate forms submissions and navigate to thank you pages by filling any empty fields
       await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
+      await page.getByLabel(selectors['@org-name']).click(); // click out of changed selector so it registers
 
       // Submit form
       await submit.click();
@@ -126,7 +125,22 @@ test.describe(`${name}`, () => {
       await expect(locator).toBeVisible();
 
       // Validate JavaScript Injection
-      fillForm(page, props);
+      await page.getByLabel(selectors['@business-email']).fill('milo@adobetest.com');
+      await page.getByLabel(selectors['@business-phone']).fill('777-777-7777');
+      await page.getByLabel(selectors['@job-title-role']).selectOption({ label: 'Individual Contributor' });
+      await page.getByLabel(selectors['@area-department']).selectOption({ label: 'IT' });
+      await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
+      await page.getByLabel(selectors['@country']).selectOption({ label: 'United States' });
+      await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
+      await page.getByLabel(selectors['@zipcode']).fill('77777');
+      await page.getByLabel(selectors['@website']).fill('milo.adobe.com');
+      await page.getByLabel(selectors['@industry']).selectOption({ label: 'Technology Software & Services' });
+      await page.getByLabel(selectors['@contact-me']).check();
+
+      if (props.url.includes('faas-rfi')) {
+        await page.getByLabel(selectors['@area-interest']).selectOption({ label: 'Website optimization' });
+      }
+
       formInject(page, props, '<script>alert(“Hello World!“);</script>');
 
       // Submit form
@@ -147,7 +161,22 @@ test.describe(`${name}`, () => {
       await expect(locator).toBeVisible();
 
       // Validate JavaScript Injection
-      fillForm(page, props);
+      await page.getByLabel(selectors['@business-email']).fill('milo@adobetest.com');
+      await page.getByLabel(selectors['@business-phone']).fill('777-777-7777');
+      await page.getByLabel(selectors['@job-title-role']).selectOption({ label: 'Individual Contributor' });
+      await page.getByLabel(selectors['@area-department']).selectOption({ label: 'IT' });
+      await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
+      await page.getByLabel(selectors['@country']).selectOption({ label: 'United States' });
+      await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
+      await page.getByLabel(selectors['@zipcode']).fill('77777');
+      await page.getByLabel(selectors['@website']).fill('milo.adobe.com');
+      await page.getByLabel(selectors['@industry']).selectOption({ label: 'Technology Software & Services' });
+      await page.getByLabel(selectors['@contact-me']).check();
+
+      if (props.url.includes('faas-rfi')) {
+        await page.getByLabel(selectors['@area-interest']).selectOption({ label: 'Website optimization' });
+      }
+
       formInject(page, props, '<img src=x onerror=“alert(18)“>');
 
       // Submit form
