@@ -11,8 +11,6 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
-      const locator = page.locator(selectors[props.tag]);
-      await expect(locator).toBeVisible();
 
       // Fill out form
       await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
