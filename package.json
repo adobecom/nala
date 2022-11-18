@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/adobecom/nala#readme",
   "dependencies": {
-    "@playwright/test": "^1.26.1"
+    "@playwright/test": "^1.28.0"
   },
   "devDependencies": {
     "@babel/core": "7.17.7",
