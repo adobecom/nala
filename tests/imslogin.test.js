@@ -24,7 +24,7 @@ async function clickSignin(page) {
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@gnav-signin' || props.tag === '@gnav-multi-signin') {
-      test(props.title, async ({ page }) => {
+      test(props.title, async ({ page, context }) => {
         expect(process.env.IMS_EMAIL, 'ERROR: No environment variable for email provided for IMS Test.').toBeTruthy();
         expect(process.env.IMS_PASS, 'ERROR: No environment variable for password provided for IMS Test.').toBeTruthy();
         await page.goto(props.url);
@@ -62,29 +62,27 @@ test.describe(`${name}`, () => {
 
         checkPageTitle(props.tag, page);
 
-        // Once App Launcher is released this can be uncommented
-        // if (props.tag === '@gnav-multi-signin') {
-        //   // Open App Launcher
-        //   const appLauncher = await page.locator(selectors['@gnav-app-launcher']);
-        //   await expect(appLauncher).toBeVisible();
-        //   await appLauncher.click();
+        if (props.tag === '@gnav-multi-signin') {
+          // Open App Launcher
+          const appLauncher = await page.locator(selectors['@gnav-app-launcher']);
+          await expect(appLauncher).toBeVisible();
+          await appLauncher.click();
 
-        //   // Verify the list of apps is available and all are showing.
-        //   const appsList = await page.locator(selectors['@app-launcher-list']).count();
-        //   expect(appsList).toEqual(12);
+          // Verify the list of apps is available and all are showing.
+          const appsList = await page.locator(selectors['@app-launcher-list']).count();
+          expect(appsList).toEqual(12);
 
-        //   // Verify the apps can be clicked and navigated too.
-        //   const ccApp = await page.locator(selectors['@cc-app-launcher']);
-        //   await expect(ccApp).toBeVisible();
-        //   const [newPage] = await Promise.all([
-        //     context.waitForEvent('page'),
-        //     await ccApp.click(), // Opens a new tab
-        //   ]);
-        //   await newPage.waitForLoadState();
-        //   await newPage.waitForURL('https://creativecloud.adobe.com/?context=home_cc&locale=en');
-        // eslint-disable-next-line max-len
-        //   await expect(newPage).toHaveURL(/.*creativecloud.adobe.com\/\?context=home_cc&locale=en/);
-        // }
+          // Verify the apps can be clicked and navigated too.
+          const ccApp = await page.locator(selectors['@cc-app-launcher']);
+          await expect(ccApp).toBeVisible();
+          const [newPage] = await Promise.all([
+            context.waitForEvent('page'),
+            await ccApp.click(), // Opens a new tab
+          ]);
+          await newPage.waitForLoadState();
+          await newPage.waitForURL('https://creativecloud.adobe.com/?context=home_cc&locale=en');
+          await expect(newPage).toHaveURL(/.*creativecloud.adobe.com\/\?context=home_cc&locale=en/);
+        }
 
         // Sign-out Milo
         await page.locator(selectors['@gnav-profile-button']).click();
