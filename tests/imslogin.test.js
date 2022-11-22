@@ -24,7 +24,7 @@ async function clickSignin(page) {
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@gnav-signin' || props.tag === '@gnav-multi-signin') {
-      test(props.title, async ({ page, context }) => {
+      test(props.title, async ({ page, context, browser }) => {
         expect(process.env.IMS_EMAIL, 'ERROR: No environment variable for email provided for IMS Test.').toBeTruthy();
         expect(process.env.IMS_PASS, 'ERROR: No environment variable for password provided for IMS Test.').toBeTruthy();
         await page.goto(props.url);
@@ -84,20 +84,24 @@ test.describe(`${name}`, () => {
           await expect(newPage).toHaveURL(/.*creativecloud.adobe.com\/\?context=home_cc&locale=en/);
         }
 
-        // Sign-out Milo
-        await page.locator(selectors['@gnav-profile-button']).click();
-        const viewAccount = page.locator(selectors['@gnav-viewaccount']);
-        expect(viewAccount).toBeVisible();
-        const signoutBtn = page.locator(selectors['@gnav-signout']);
-        expect(signoutBtn).toBeVisible();
-        await signoutBtn.click();
-        await page.waitForURL(`${props.url}#`);
-        expect(page).toHaveURL(`${props.url}#`);
+        // Sign-out
+        // Chromium issue on prod, gnav profile icon won't show unless on VPN.
+        // Once issue is fixed, this temporary conditional can be removed.
+        if (!(browser.browserType().name() === 'chromium' && props.url.includes('business.adobe.com'))) {
+          await page.locator(selectors['@gnav-profile-button']).click();
+          const viewAccount = page.locator(selectors['@gnav-viewaccount']);
+          expect(viewAccount).toBeVisible();
+          const signoutBtn = page.locator(selectors['@gnav-signout']);
+          expect(signoutBtn).toBeVisible();
+          await signoutBtn.click();
+          await page.waitForURL(`${props.url}#`);
+          expect(page).toHaveURL(`${props.url}#`);
 
-        checkPageTitle(props.tag, page);
+          checkPageTitle(props.tag, page);
 
-        const signinBtn = page.locator(selectors['@gnav-signin']);
-        await expect(signinBtn).toBeVisible();
+          const signinBtn = page.locator(selectors['@gnav-signin']);
+          await expect(signinBtn).toBeVisible();
+        }
       });
     }
 
