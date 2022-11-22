@@ -15,4 +15,5 @@ jobs:
       - name: Run Nala
         uses: ./
         env:
-          branch: 'main' # ${{ github.event.pull_request.head.ref }}
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
