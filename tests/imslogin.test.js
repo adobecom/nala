@@ -7,14 +7,6 @@ import selectors from '../selectors/imslogin.selectors.js';
 const { name, features } = parse(imslogin);
 
 // Test Utils
-async function checkPageTitle(testTag, page) {
-  if (testTag === '@gnav-multi-signin') {
-    await expect(page).toHaveTitle(/Intro Text/);
-  } else {
-    await expect(page).toHaveTitle(/Princess Cruises entertains\.*.*/);
-  }
-}
-
 async function clickSignin(page) {
   const signinBtn = page.locator(selectors['@gnav-signin']);
   await expect(signinBtn).toBeVisible();
@@ -60,8 +52,6 @@ test.describe(`${name}`, () => {
         await page.waitForURL(`${props.url}#`);
         await expect(page).toHaveURL(`${props.url}#`);
 
-        checkPageTitle(props.tag, page);
-
         if (props.tag === '@gnav-multi-signin') {
           // Open App Launcher
           const appLauncher = await page.locator(selectors['@gnav-app-launcher']);
@@ -96,8 +86,6 @@ test.describe(`${name}`, () => {
           await signoutBtn.click();
           await page.waitForURL(`${props.url}#`);
           expect(page).toHaveURL(`${props.url}#`);
-
-          checkPageTitle(props.tag, page);
 
           const signinBtn = page.locator(selectors['@gnav-signin']);
           await expect(signinBtn).toBeVisible();
