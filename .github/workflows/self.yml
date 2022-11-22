@@ -17,13 +17,5 @@ jobs:
         uses: ./
         env:
           labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
-          branch: 'main' # ${{ github.event.pull_request.head.ref }}
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
-      - name: Nala Reporting
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
