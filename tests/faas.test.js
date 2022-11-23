@@ -39,7 +39,7 @@ test.describe(`${name}`, () => {
       // Submit form
       await page.locator(selectors['@submit']).first().click();
       const formOverlay = page.locator(selectors['@form-overlay']);
-      await expect(formOverlay).toBeVisible();
+      await expect(formOverlay).toBeVisible({ timeout: 10000 });
 
       // Only check thank you page on Milo domain, where BACOM hasn't been fully setup for FaaS
       // Add conditional where FaaS times out with submission request with playwright webkit browser
