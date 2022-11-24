@@ -1,0 +1,32 @@
+name: Run Nala Debugging
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+
+jobs:
+  action:
+    name: Debugging tests
+    if: contains(github.event.pull_request.labels.*.name, 'run-nala')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Run Nala for Trace Viewer
+        uses: ./
+        env:
+          labels: ${{ inputs.tags }}
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+      - name: Nala Reporting
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
