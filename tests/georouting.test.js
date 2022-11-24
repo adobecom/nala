@@ -9,8 +9,12 @@ const { name, features } = parse(georouting);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     // Test georouting features
+    // lang="de-DE" lang="en-US"
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
+      const geoModal = page.locator(selectors['@dialog-modal']);
+      expect(geoModal).toBeVisible();
+      expect(page).toHaveURL(props.url);
     });
   });
 });
