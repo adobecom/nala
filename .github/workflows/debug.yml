@@ -11,7 +11,6 @@ on:
 jobs:
   action:
     name: Debugging tests
-    if: contains(github.event.pull_request.labels.*.name, 'run-nala')
     runs-on: ubuntu-latest
 
     steps:
