@@ -28,6 +28,11 @@ test.describe(`${name}`, () => {
         await page.getByLabel(selectors['@questions']).fill('Hello World?');
       }
 
+      // Generally waitForTimeout should only be used for debugging,
+      // but for this test country/state is populated when run outside of GitHub Actions.
+      // The test needs a small sleep to slow down the state field since it swaps field values
+      // according to the country field.
+      await page.waitForTimeout(1000);
       await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
       await page.getByLabel(selectors['@zipcode']).fill('77777');
       await page.getByLabel(selectors['@website']).fill('milo.adobe.com');
