@@ -4,7 +4,6 @@ module.exports = {
     {
       name: '@georouting',
       path: [
-        '/drafts/vhargrave/georouting',
         '/test/features/blocks/georouting',
       ],
       envs: '@milo',
@@ -22,11 +21,11 @@ module.exports = {
       envs: '@milo',
       tags: '@fallback-off',
     },
-    {
-      name: '@georouting',
-      path: '/customer-success-stories/princess-cruises-case-study',
-      envs: '@bacom',
-      tags: '@georouting',
-    },
+    // {
+    //   name: '@georouting',
+    //   path: '/customer-success-stories/princess-cruises-case-study',
+    //   envs: '@bacom',
+    //   tags: '@georouting',
+    // },
   ],
 };
