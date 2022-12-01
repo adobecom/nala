@@ -19,7 +19,7 @@ REPORTER=$reporter
 
 echo "*** Running Nala on $branch ***"
 echo $TAGS
-echo "npx playwright test ${TAGS}"
+echo "npx playwright test ${TAGS} ${REPORTER}"
 
 cd $GITHUB_ACTION_PATH
 npm ci
