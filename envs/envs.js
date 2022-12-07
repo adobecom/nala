@@ -1,5 +1,5 @@
 module.exports = {
-  '@milo': 'https://main--milo--adobecom.hlx.live',
+  '@milo': 'https://main--milo--adobecom.hlx.page',
   '@bacom': 'https://main--bacom--adobecom.hlx.live',
   '@bacomblog': 'https://main--business-website--adobe.hlx.live',
   '@stock': 'https://main--stock--adobecom.hlx.live',
