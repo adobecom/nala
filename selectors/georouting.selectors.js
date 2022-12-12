@@ -1,5 +1,5 @@
 module.exports = {
-  '@dialog-modal': '.dialog-modal .locale-modal',
+  '@dialog-modal': '#locale-modal',
   '@dialog-close': '.dialog-close',
   '@messages': '.text-wrapper',
   '@message': '.locale-text',
