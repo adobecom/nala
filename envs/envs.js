@@ -6,4 +6,6 @@ module.exports = {
   '@acrobat': 'https://main--acrobat--adobecom.hlx.live',
   '@bacom_prod': 'https://business.adobe.com',
   '@blog': 'https://main--blog--adobe.hlx.live',
+  '@local3000': 'http://localhost:3000',
+  '@local6456': 'http://localhost:6456',
 };
