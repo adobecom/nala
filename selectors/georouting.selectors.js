@@ -1,4 +1,5 @@
 module.exports = {
+  '@page-header': '#georouting-root-page',
   '@dialog-modal': '#locale-modal',
   '@dialog-close': '.dialog-close',
   '@messages': '.text-wrapper',

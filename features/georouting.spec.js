@@ -3,9 +3,13 @@ module.exports = {
   features: [
     {
       name: '@georouting',
-      path: [
-        '/test/features/blocks/georouting',
-      ],
+      path: '/test/features/blocks/georouting',
+      envs: '@milo',
+      tags: '@georouting @georouting-close',
+    },
+    {
+      name: '@georouting',
+      path: '/de/test/features/blocks/georouting',
       envs: '@milo',
       tags: '@georouting',
     },
