@@ -6,6 +6,7 @@ const envList = require('../envs/envs.js');
  *
  */
 
+// TODO: Update to account for folder structures in branch name.
 function buildUrl(url, env) {
   const { branch } = process.env;
   if (!branch) return url;
