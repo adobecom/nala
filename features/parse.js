@@ -10,7 +10,13 @@ function buildUrl(url, env) {
   if (!branch) return url;
   if (branch.includes('/')) {
     const branchPath = branch.split('/');
-    if (branchPath.length > 1) { branch = `${branchPath[0]}-${branchPath[1]}`; }
+    if (branchPath.length > 1) {
+      let branchBuild = '';
+      branchPath.forEach((pathName) => {
+        branchBuild += `${pathName}-`;
+      });
+      branch = branchBuild.slice(0, (branchBuild.lastIndexOf('-')));
+    }
   }
   if (env !== '@milo') {
     return `${url}?milolibs=${branch}`;
