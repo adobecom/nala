@@ -8,8 +8,12 @@ const envList = require('../envs/envs.js');
 
 // TODO: Update to account for folder structures in branch name.
 function buildUrl(url, env) {
-  const { branch } = process.env;
+  let { branch } = process.env;
   if (!branch) return url;
+  if (branch.includes('/')) {
+    const branchPath = branch.split('/');
+    if (branchPath.length > 1) { branch = `${branchPath[0]}-${branchPath[1]}`; }
+  }
   if (env !== '@milo') {
     return `${url}?milolibs=${branch}`;
   }
