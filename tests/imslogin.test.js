@@ -44,17 +44,18 @@ test.describe(`${name}`, () => {
         // Fill out Sign-in Form
         await page.locator(selectors['@email']).fill(process.env.IMS_EMAIL);
         await page.locator(selectors['@email-continue-btn']).click();
-        await expect(page.locator(selectors['@password-reset'])).toBeVisible({ timeout: 45000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
+        await expect(page.locator(selectors['@password-reset'])).toBeVisible({ timeout: 45000 }); // Timeout accounting for how long IMS Login page takes to switch form
         heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
         expect(heading).toBe('Enter your password');
         await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
         await page.locator(selectors['@password-continue-btn']).click();
+        // TODO: Work to fix timing out issues with Webkit with the following expects, awaits below.
         await page.waitForURL(`${props.url}#`);
         await expect(page).toHaveURL(`${props.url}#`);
 
         if (props.tag === '@gnav-multi-signin') {
           // Open App Launcher
-          const appLauncher = await page.locator(selectors['@gnav-app-launcher']);
+          const appLauncher = page.locator(selectors['@gnav-app-launcher']);
           await expect(appLauncher).toBeVisible();
           await appLauncher.click();
 
@@ -63,8 +64,11 @@ test.describe(`${name}`, () => {
           expect(appsList).toEqual(12);
 
           // Verify the apps can be clicked and navigated too.
-          const ccApp = await page.locator(selectors['@cc-app-launcher']);
+          const ccApp = page.locator(selectors['@cc-app-launcher']);
           await expect(ccApp).toBeVisible();
+
+          // TODO: work on timing out issue for Webkit in the following method below
+
           const [newPage] = await Promise.all([
             context.waitForEvent('page'),
             await ccApp.click(), // Opens a new tab
@@ -108,26 +112,5 @@ test.describe(`${name}`, () => {
         await expect(page).toHaveURL(/.*auth.services.adobe.com/);
       });
     }
-
-    // if (props.tag === '@apple-signin') {
-    //   test(props.title, async ({ page }) => {
-    //     await page.goto(props.url);
-    //     clickSignin(page);
-    //   });
-    // }
-
-    // if (props.tag === '@google-signin') {
-    //   test(props.title, async ({ page }) => {
-    //     await page.goto(props.url);
-    //     clickSignin(page);
-    //   });
-    // }
-
-    // if (props.tag === '@facebook-signin') {
-    //   test(props.title, async ({ page }) => {
-    //     await page.goto(props.url);
-    //     clickSignin(page);
-    //   });
-    // }
   });
 });
