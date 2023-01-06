@@ -41,6 +41,14 @@ test.describe(`${name}`, () => {
         let heading = await page.locator(selectors['@page-heading']).first().innerText();
         expect(heading).toBe('Sign in');
 
+        // Chromium/WebKit issue on prod, Access Denied error happens unless on VPN.
+        // Some type of state or permission is blocking the successful redirection of login.
+        // Once issue is fixed, this temporary conditional can be removed.
+        // Issue only happens on Chromium/WebKit when logging into BACOM Prod environment.
+        if (!(browser.browserType().name() === 'firefox' && props.url.includes('business.adobe.com'))) {
+          await context.clearCookies();
+        }
+
         // Fill out Sign-in Form
         await page.locator(selectors['@email']).fill(process.env.IMS_EMAIL);
         await page.locator(selectors['@email-continue-btn']).click();
@@ -76,9 +84,12 @@ test.describe(`${name}`, () => {
         }
 
         // Sign-out
-        // Chromium issue on prod, gnav profile icon won't show unless on VPN.
+
+        // WebKit issue on prod, Access Denied error happens unless on VPN.
+        // Some type of state or permission is blocking the successful redirection of sign-out.
         // Once issue is fixed, this temporary conditional can be removed.
-        if (!(browser.browserType().name() === 'chromium' && props.url.includes('business.adobe.com'))) {
+        // Issue only happens on WebKit when signing out from BACOM Prod environment.
+        if (!(browser.browserType().name() === 'webkit' && props.url.includes('business.adobe.com'))) {
           await page.locator(selectors['@gnav-profile-button']).click();
           const viewAccount = page.locator(selectors['@gnav-viewaccount']);
           expect(viewAccount).toBeVisible();
