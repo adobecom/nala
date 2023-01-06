@@ -85,11 +85,11 @@ test.describe(`${name}`, () => {
 
         // Sign-out
 
-        // WebKit issue on prod, Access Denied error happens unless on VPN.
+        // Chromium/WebKit issue on prod, Access Denied error happens unless on VPN.
         // Some type of state or permission is blocking the successful redirection of sign-out.
         // Once issue is fixed, this temporary conditional can be removed.
         // Issue only happens on WebKit when signing out from BACOM Prod environment.
-        if (!(browser.browserType().name() === 'webkit' && props.url.includes('business.adobe.com'))) {
+        if ((browser.browserType().name() === 'firefox' && props.url.includes('business.adobe.com'))) {
           await page.locator(selectors['@gnav-profile-button']).click();
           const viewAccount = page.locator(selectors['@gnav-viewaccount']);
           expect(viewAccount).toBeVisible();
