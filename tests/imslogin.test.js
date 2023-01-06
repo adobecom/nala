@@ -50,7 +50,7 @@ test.describe(`${name}`, () => {
         await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
         await page.locator(selectors['@password-continue-btn']).click();
         // TODO: Work to fix timing out issues with Webkit with the following expects, awaits below.
-        await page.waitForURL(`${props.url}#`);
+        await page.waitForURL(`${props.url}#`, { waitUntil: 'domcontentloaded' });
         await expect(page).toHaveURL(`${props.url}#`);
 
         if (props.tag === '@gnav-multi-signin') {
@@ -66,8 +66,6 @@ test.describe(`${name}`, () => {
           // Verify the apps can be clicked and navigated too.
           const ccApp = page.locator(selectors['@cc-app-launcher']);
           await expect(ccApp).toBeVisible();
-
-          // TODO: work on timing out issue for Webkit in the following method below
 
           const [newPage] = await Promise.all([
             context.waitForEvent('page'),
