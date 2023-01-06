@@ -49,8 +49,7 @@ test.describe(`${name}`, () => {
         expect(heading).toBe('Enter your password');
         await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
         await page.locator(selectors['@password-continue-btn']).click();
-        // TODO: Work to fix timing out issues with Webkit with the following expects, awaits below.
-        await page.waitForURL(`${props.url}#`, { waitUntil: 'domcontentloaded' });
+        await page.waitForURL(`${props.url}#`);
         await expect(page).toHaveURL(`${props.url}#`);
 
         if (props.tag === '@gnav-multi-signin') {
