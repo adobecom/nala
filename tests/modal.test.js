@@ -34,7 +34,9 @@ test.describe(`${name}`, () => {
        * There's an issue with all the browsers where you can't immediately close the
        * modal with the escape key. The workaround is by tabbing 4 times to
        * get to the close button, then we can close the modal with the esc key.
-       * See Jira Ticket: https://jira.corp.adobe.com/browse/MWPW-119063
+       * See Jira Ticket: https://jira.corp.adobe.com/browse/MWPW-123567
+       *
+       * TODO:
        * Once ticket is addressed, condition can be removed or changed to only webkit as before.
        */
       // if (browser.browserType().name() === 'webkit') {
