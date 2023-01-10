@@ -16,7 +16,7 @@ module.exports = {
         '/test/features/blocks/faas-rfi',
         '/test/features/blocks/faas-do',
       ],
-      envs: '@milo',
+      envs: '@milo_prod',
       tags: '@faas-form',
     },
   ],
