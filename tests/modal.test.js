@@ -31,24 +31,24 @@ test.describe(`${name}`, () => {
       await selectModalBtn(marqueeBtn, page);
 
       /**
-       * There's an issue with webkit where you can't immediately close the
+       * There's an issue with all the browsers where you can't immediately close the
        * modal with the escape key. The workaround is by tabbing 4 times to
        * get to the close button, then we can close the modal with the esc key.
-       * This is only an issue in webkit. You can close the modal with the esc
-       * key when the modal opens on Safari.
+       * See Jira Ticket: https://jira.corp.adobe.com/browse/MWPW-119063
+       * Once ticket is addressed, condition can be removed or changed to only webkit as before.
        */
-      if (browser.browserType().name() === 'webkit') {
-        page.waitForSelector(modalSelectors['@dialog']);
+      // if (browser.browserType().name() === 'webkit') {
+      page.waitForSelector(modalSelectors['@dialog']);
+      page.keyboard.press('Escape');
+      let count = 0;
+      while (page.url().includes('#') && count < 10) {
+        page.keyboard.press('Tab');
         page.keyboard.press('Escape');
-        let count = 0;
-        while (page.url().includes('#') && count < 10) {
-          page.keyboard.press('Tab');
-          page.keyboard.press('Escape');
-          count += 1;
-        }
-      } else {
-        page.keyboard.press('Escape');
+        count += 1;
       }
+      // } else {
+      //   page.keyboard.press('Escape');
+      // }
 
       await checkModalClosed(page);
 
