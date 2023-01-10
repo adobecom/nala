@@ -41,10 +41,18 @@ test.describe(`${name}`, () => {
         let heading = await page.locator(selectors['@page-heading']).first().innerText();
         expect(heading).toBe('Sign in');
 
+        // Chromium/WebKit issue on prod, Access Denied error happens unless on VPN.
+        // Some type of state or permission is blocking the successful redirection of login.
+        // Once issue is fixed, this temporary conditional can be removed.
+        // Issue only happens on Chromium/WebKit when logging into BACOM Prod environment.
+        if (!(browser.browserType().name() === 'firefox' && props.url.includes('business.adobe.com'))) {
+          await context.clearCookies();
+        }
+
         // Fill out Sign-in Form
         await page.locator(selectors['@email']).fill(process.env.IMS_EMAIL);
         await page.locator(selectors['@email-continue-btn']).click();
-        await expect(page.locator(selectors['@password-reset'])).toBeVisible({ timeout: 45000 }); // Timeout accounting for how long IMS Login AEM page takes to switch form
+        await expect(page.locator(selectors['@password-reset'])).toBeVisible({ timeout: 45000 }); // Timeout accounting for how long IMS Login page takes to switch form
         heading = await page.locator(selectors['@page-heading'], { hasText: 'Enter your password' }).first().innerText();
         expect(heading).toBe('Enter your password');
         await page.locator(selectors['@password']).fill(process.env.IMS_PASS);
@@ -54,7 +62,7 @@ test.describe(`${name}`, () => {
 
         if (props.tag === '@gnav-multi-signin') {
           // Open App Launcher
-          const appLauncher = await page.locator(selectors['@gnav-app-launcher']);
+          const appLauncher = page.locator(selectors['@gnav-app-launcher']);
           await expect(appLauncher).toBeVisible();
           await appLauncher.click();
 
@@ -63,8 +71,9 @@ test.describe(`${name}`, () => {
           expect(appsList).toEqual(12);
 
           // Verify the apps can be clicked and navigated too.
-          const ccApp = await page.locator(selectors['@cc-app-launcher']);
+          const ccApp = page.locator(selectors['@cc-app-launcher']);
           await expect(ccApp).toBeVisible();
+
           const [newPage] = await Promise.all([
             context.waitForEvent('page'),
             await ccApp.click(), // Opens a new tab
@@ -75,9 +84,12 @@ test.describe(`${name}`, () => {
         }
 
         // Sign-out
-        // Chromium issue on prod, gnav profile icon won't show unless on VPN.
+
+        // Chromium/WebKit issue on prod, Access Denied error happens unless on VPN.
+        // Some type of state or permission is blocking the successful redirection of sign-out.
         // Once issue is fixed, this temporary conditional can be removed.
-        if (!(browser.browserType().name() === 'chromium' && props.url.includes('business.adobe.com'))) {
+        // Issue only happens on WebKit when signing out from BACOM Prod environment.
+        if ((browser.browserType().name() === 'firefox' && props.url.includes('business.adobe.com'))) {
           await page.locator(selectors['@gnav-profile-button']).click();
           const viewAccount = page.locator(selectors['@gnav-viewaccount']);
           expect(viewAccount).toBeVisible();
@@ -108,26 +120,5 @@ test.describe(`${name}`, () => {
         await expect(page).toHaveURL(/.*auth.services.adobe.com/);
       });
     }
-
-    // if (props.tag === '@apple-signin') {
-    //   test(props.title, async ({ page }) => {
-    //     await page.goto(props.url);
-    //     clickSignin(page);
-    //   });
-    // }
-
-    // if (props.tag === '@google-signin') {
-    //   test(props.title, async ({ page }) => {
-    //     await page.goto(props.url);
-    //     clickSignin(page);
-    //   });
-    // }
-
-    // if (props.tag === '@facebook-signin') {
-    //   test(props.title, async ({ page }) => {
-    //     await page.goto(props.url);
-    //     clickSignin(page);
-    //   });
-    // }
   });
 });
