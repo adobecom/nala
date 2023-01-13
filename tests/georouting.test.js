@@ -13,7 +13,11 @@ test.describe(`${name}`, () => {
 
     if (props.tag === '@georouting') {
       test(props.title, async ({ page, context }) => {
-        await page.goto(`${props.url}?akamaiLocale=DE`);
+        if (props.url.includes('/de/')) {
+          await page.goto(`${props.url}?akamaiLocale=US`);
+        } else {
+          await page.goto(`${props.url}?akamaiLocale=DE`);
+        }
         let geoModal = page.locator(selectors['@dialog-modal']);
         await expect(geoModal).toBeVisible({ timeout: 15000 });
 
@@ -63,11 +67,21 @@ test.describe(`${name}`, () => {
         context.clearCookies();
 
         // Verify going to another page in same locale the modal doesn't show up since region picked
-        await page.goto(`${props.url}?akamaiLocale=DE`);
+        await page.goto('https://main--milo--adobecom.hlx.live/de/test/features/blocks/georouting2?akamaiLocale=DE');
 
         geoModal = page.locator(selectors['@dialog-modal']);
         await expect(geoModal).not.toBeVisible({ timeout: 15000 });
+
+        // Verify going to another page in a different locale, modal shows up where region different
+        await page.goto('https://main--milo--adobecom.hlx.live/ch_fr/test/features/blocks/georouting?akamaiLocale=DE');
+
+        geoModal = page.locator(selectors['@dialog-modal']);
+        await expect(geoModal).toBeVisible({ timeout: 15000 });
       });
+
+      // Test multiple messages and links for a region code that has multiple prefixes
+
+      // Test region codes that don't have sibling, have a fallback to home page.
     }
 
     if (props.tag === '@georouting-close') {
@@ -96,7 +110,7 @@ test.describe(`${name}`, () => {
         expect(cookies).not.toContain('international');
 
         // Verify going to another page in same locale the modal shows up since region not picked
-        await page.goto(`${props.url}?akamaiLocale=DE`);
+        await page.goto('https://main--milo--adobecom.hlx.live/test/features/blocks/georouting2?akamaiLocale=DE');
 
         geoModal = page.locator(selectors['@dialog-modal']);
         await expect(geoModal).toBeVisible({ timeout: 15000 });

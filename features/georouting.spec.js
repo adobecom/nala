@@ -21,7 +21,7 @@ module.exports = {
     },
     {
       name: '@georouting',
-      path: '/test/features/blocks/fallback-off',
+      path: '/test/features/blocks/georouting-fallback-off',
       envs: '@milo',
       tags: '@fallback-off',
     },
