@@ -42,5 +42,5 @@ npm test -- -g @large-button
 
 ### Test multiple features
 ```bash
-npm test -- -g @large-button -g @medium-button
+npm test -- -g @large-button|@medium-button
 ```
