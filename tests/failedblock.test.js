@@ -13,13 +13,13 @@ test.describe(`${name}`, () => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
       await page.locator('footer').hover(); // Added to give time for failed block JS to load. Without it, test becomes flaky.
-      const locator = await page.locator(selectors[props.tag]);
+      const locator = page.locator(selectors[props.tag]);
       const count = await locator.count();
       expect(count).toEqual(0);
       if (count > 0) {
         const handles = await locator.elementHandles();
         for (const handlePromise of handles) {
-          const handle = await handlePromise;
+          const handle = handlePromise;
           const reason = await handle.getAttribute('data-reason');
           console.log(`${reason} on ${props.url}`);
         }
