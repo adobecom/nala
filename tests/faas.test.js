@@ -12,6 +12,12 @@ test.describe(`${name}`, () => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
 
+      // Open up form modal
+      if (props.url.includes('omnichannel-orchestration-with-adobe')) {
+        await page.locator(selectors['@register-link']).click();
+        await expect(page.locator(selectors['@faas-form'])).toBeVisible();
+      }
+
       // Fill out form
       await page.getByLabel(selectors['@org-name']).fill('MiloTestOrg');
       await page.getByLabel(selectors['@country']).selectOption({ label: 'United States' });
