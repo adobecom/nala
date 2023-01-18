@@ -1,5 +1,6 @@
 module.exports = {
   '@faas-form': '.faas-form',
+  '@register-link': 'text=Register for free',
   '@business-email': 'Business email ',
   '@first-name': 'First name ',
   '@last-name': 'Last name ',
