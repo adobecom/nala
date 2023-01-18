@@ -5,6 +5,7 @@ module.exports = {
   '@bacomblog': 'https://main--business-website--adobe.hlx.live',
   '@stock': 'https://main--stock--adobecom.hlx.live',
   '@acrobat': 'https://main--acrobat--adobecom.hlx.live',
+  '@dc_preview': 'https://main--acrobat--adobecom.hlx.page',
   '@bacom_prod': 'https://business.adobe.com',
   '@blog': 'https://main--blog--adobe.hlx.live',
   '@local3000': 'http://localhost:3000',
