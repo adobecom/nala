@@ -32,7 +32,7 @@ const config = {
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['./reporters/json-reporter.js'], ['./reporters/api-reporter.js']]
+    ? [['github'], ['./utils/reporters/json-reporter.js'], ['./utils/reporters/api-reporter.js']]
     : [['list']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

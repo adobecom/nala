@@ -1,7 +1,6 @@
 const axios = require('axios');
 const BaseReporter = require('./base-reporter.js');
 
-// FIXME: use GitHub Actions Environment variables
 const apiName = 'nala-api-testruns';
 const action = 'posttestrun';
 const apiVersion = 'v1';
