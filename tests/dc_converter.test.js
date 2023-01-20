@@ -10,9 +10,7 @@ const testPDF = 'docs/Test.pdf';
 const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ browser }) => {
-      const context = await browser.newContext({ acceptDownloads: true });
-      const page = await context.newPage();
+    test(props.title, async ({ page }) => {
       await page.goto(props.url);
 
       const fileInput = page.locator(selectors['@file-upload-input']);
