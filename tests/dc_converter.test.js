@@ -11,7 +11,7 @@ const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page }) => {
-      await page.goto(props.url);
+      await page.goto(props.title.match(/stage|prod/) ? `${props.url}.html` : props.url);
 
       const fileInput = page.locator(selectors['@file-upload-input']);
       const pdfComplete = page.locator(selectors['@pdf-complete']);
@@ -24,6 +24,7 @@ test.describe(`${name}`, () => {
       await fileInput.setInputFiles(testPDF);
 
       // Wait for conversion to complete
+      // DC Web services can sometimes be slow but do not wait for more than 30s
       await expect(pdfComplete).toBeVisible({ timeout: 30000 });
 
       // Wait for file preview
