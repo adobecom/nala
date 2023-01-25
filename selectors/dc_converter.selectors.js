@@ -4,4 +4,5 @@ module.exports = {
   '@pdf-complete': 'section[class*=lifecycleComplete]',
   '@file-preview': '[class*=PageView__PageView]',
   '@download': '[data-test-id="download"]',
+  '@widget-block-failed': '.dc-converter-widget[data-failed="true"]',
 };

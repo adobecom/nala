@@ -10,13 +10,20 @@ const testPDF = 'docs/Test.pdf';
 const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page }) => {
-      await page.goto(props.title.match(/stage|prod/) ? `${props.url}.html` : props.url);
-
+    test(props.title, async ({ page, browser }) => {
       const fileInput = page.locator(selectors['@file-upload-input']);
       const pdfComplete = page.locator(selectors['@pdf-complete']);
       const filePreview = page.locator(selectors['@file-preview']);
       const downloadButton = page.locator(selectors['@download']);
+      const failedBlock = page.locator(selectors['@widget-block-failed']);
+      const url = props.title.match(/stage|prod/) ? `${props.url}.html` : props.url;
+
+      await page.goto(url);
+
+      if (await failedBlock.isVisible()) {
+        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
+        await expect.soft(failedBlock).not.toBeVisible();
+      }
 
       await expect(fileInput).toBeVisible();
 
