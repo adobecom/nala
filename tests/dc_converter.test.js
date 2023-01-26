@@ -11,6 +11,7 @@ const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browser }) => {
+      const converterBlock = page.locator(selectors['@pdf-converter']);
       const fileInput = page.locator(selectors['@file-upload-input']);
       const pdfComplete = page.locator(selectors['@pdf-complete']);
       const filePreview = page.locator(selectors['@file-preview']);
@@ -20,14 +21,14 @@ test.describe(`${name}`, () => {
 
       await page.goto(url);
 
+      await expect.soft(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
         console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
         await expect.soft(failedBlock).not.toBeVisible();
       }
 
-      await expect(fileInput).toBeVisible();
-
       // Upload a test document
+      await expect(fileInput).toBeVisible();
       await fileInput.setInputFiles(testPDF);
 
       // Wait for conversion to complete
