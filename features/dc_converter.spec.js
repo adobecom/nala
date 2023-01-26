@@ -6,7 +6,7 @@ module.exports = {
       path: [
         '/acrobat/online/pdf-to-ppt',
       ],
-      envs: '@dc_live @dc_stage',
+      envs: '@dc_preview @dc_live',
       tags: '@pdf-converter',
     },
   ],

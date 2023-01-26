@@ -21,7 +21,7 @@ test.describe(`${name}`, () => {
 
       await page.goto(url);
 
-      await expect.soft(converterBlock).toBeVisible({ timeout: 10000 });
+      await expect(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
         console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
         await expect.soft(failedBlock).not.toBeVisible();
