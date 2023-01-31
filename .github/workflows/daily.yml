@@ -17,3 +17,10 @@ jobs:
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: nala-results
+          path: nala-results.json
+          retention-days: 30
