@@ -20,34 +20,38 @@ async function checkModalClosed(page) {
 
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page }) => {
+    test(props.title, async ({ page, browser }) => {
       await page.goto(props.url);
       const marqueeBtn = page.locator(marqueeSelectors['@marquee-modal-button']);
       const closeBtn = page.locator(modalSelectors['@close-button']);
 
       // Closing by pressing the Esc key
-      await selectModalBtn(marqueeBtn, page);
-
       /**
-       * There's an issue with all the browsers where you can't immediately close the
-       * modal with the escape key. The workaround is by tabbing multiple times to
-       * get to the close button, then we can close the modal with the esc key.
-       *
-       * TODO:
-       * After bug ticket (https://jira.corp.adobe.com/browse/MWPW-123567) is fixed remove the loop tabbing/escape.
+       * Playwright's WebKit browser for v1.30.0 has a bug that doesn't respond to keyboard
+       * tabbing or escape key presses in modals. For now we are adding a conditional to skip this
+       * use case for WebKit. Will remove once fixed.
       */
-      await page.waitForSelector(modalSelectors['@dialog']);
-      await page.keyboard.press('Escape');
-      let count = 0;
-      while (page.url().includes('#') && count < 10) {
-        // eslint-disable-next-line no-await-in-loop
-        await page.keyboard.press('Tab');
-        // eslint-disable-next-line no-await-in-loop
-        await page.keyboard.press('Escape');
-        count += 1;
-      }
+      if (browser.browserType().name() !== 'webkit') {
+        await selectModalBtn(marqueeBtn, page);
 
-      await checkModalClosed(page);
+        /**
+         * Per WCAG and w3 standards, first thing that should be focused on is the first item.
+         * The workaround is by tabbing multiple times to get to the close button,
+         * then we can close the modal with the esc key.
+        */
+        await page.waitForSelector(modalSelectors['@dialog']);
+        await page.keyboard.press('Escape');
+        let count = 0;
+        while (page.url().includes('#') && count < 10) {
+          // eslint-disable-next-line no-await-in-loop
+          await page.keyboard.press('Tab');
+          // eslint-disable-next-line no-await-in-loop
+          await page.keyboard.press('Escape');
+          count += 1;
+        }
+
+        await checkModalClosed(page);
+      }
 
       // Closing by selecting the close button
       await selectModalBtn(marqueeBtn, page);
@@ -66,24 +70,6 @@ test.describe(`${name}`, () => {
       expect(inViewport).toBeTruthy();
       await closeBtn.click();
       await checkModalClosed(page);
-    });
-
-    /**
-       * TODO: Test skipped temporarily since test will consistently fail due to ticket: (https://jira.corp.adobe.com/browse/MWPW-123567).
-       * Once the ticket is fixed this test case can be reincorporated.
-      */
-    test.skip(`Keyboard First Focused: ${props.title}`, async ({ page, browser }) => {
-      if (browser.browserType().name() !== 'webkit') {
-        await page.goto(props.url);
-        const marqueeBtn = page.locator(marqueeSelectors['@marquee-modal-button']);
-        // Verifying the first focused item is the close button
-        await selectModalBtn(marqueeBtn, page);
-        await page.keyboard.press('Enter');
-        await checkModalClosed(page);
-        await selectModalBtn(marqueeBtn, page);
-        await page.keyboard.press('Space');
-        await checkModalClosed(page);
-      }
     });
   });
 });
