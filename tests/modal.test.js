@@ -20,38 +20,31 @@ async function checkModalClosed(page) {
 
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page }) => {
       await page.goto(props.url);
       const marqueeBtn = page.locator(marqueeSelectors['@marquee-modal-button']);
       const closeBtn = page.locator(modalSelectors['@close-button']);
 
       // Closing by pressing the Esc key
+      await selectModalBtn(marqueeBtn, page);
+
       /**
-       * Playwright's WebKit browser for v1.30.0 has a bug that doesn't respond to keyboard
-       * tabbing or escape key presses in modals. For now we are adding a conditional to skip this
-       * use case for WebKit. Will remove once fixed.
+       * Per WCAG and w3 standards, first thing that should be focused on is the first item.
+       * The workaround is by tabbing multiple times to get to the close button,
+       * then we can close the modal with the esc key.
       */
-      if (browser.browserType().name() !== 'webkit') {
-        await selectModalBtn(marqueeBtn, page);
-
-        /**
-         * Per WCAG and w3 standards, first thing that should be focused on is the first item.
-         * The workaround is by tabbing multiple times to get to the close button,
-         * then we can close the modal with the esc key.
-        */
-        await page.waitForSelector(modalSelectors['@dialog']);
+      await page.waitForSelector(modalSelectors['@dialog']);
+      await page.keyboard.press('Escape');
+      let count = 0;
+      while (page.url().includes('#') && count < 10) {
+        // eslint-disable-next-line no-await-in-loop
+        await page.keyboard.press('Tab');
+        // eslint-disable-next-line no-await-in-loop
         await page.keyboard.press('Escape');
-        let count = 0;
-        while (page.url().includes('#') && count < 10) {
-          // eslint-disable-next-line no-await-in-loop
-          await page.keyboard.press('Tab');
-          // eslint-disable-next-line no-await-in-loop
-          await page.keyboard.press('Escape');
-          count += 1;
-        }
-
-        await checkModalClosed(page);
+        count += 1;
       }
+
+      await checkModalClosed(page);
 
       // Closing by selecting the close button
       await selectModalBtn(marqueeBtn, page);
