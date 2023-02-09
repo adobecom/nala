@@ -18,8 +18,11 @@ function buildUrl(url, env) {
       branch = branchBuild.slice(0, (branchBuild.lastIndexOf('-')));
     }
   }
-  if (env !== '@milo') {
+  if (!env.match(/@milo|@dc/) && !url.includes('--dc')) {
     return `${url}?milolibs=${branch}`;
+  }
+  if (env.match(/@dc_stage|@dc_prod/)) {
+    return `${url}.html`;
   }
   return url.replace('main', branch);
 }
