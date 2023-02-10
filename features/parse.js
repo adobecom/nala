@@ -7,7 +7,7 @@ const envList = require('../envs/envs.js');
  */
 function buildUrl(url, env) {
   let { branch } = process.env;
-  if (!branch) return url;
+  if (!branch) return env.match(/@dc_stage|@dc_prod/) ? `${url}.html` : url;
   if (branch.includes('/')) {
     const branchPath = branch.split('/');
     if (branchPath.length > 1) {
@@ -20,9 +20,6 @@ function buildUrl(url, env) {
   }
   if (!env.match(/@milo|@dc/) && !url.includes('--dc')) {
     return `${url}?milolibs=${branch}`;
-  }
-  if (env.match(/@dc_stage|@dc_prod/)) {
-    return `${url}.html`;
   }
   return url.replace('main', branch);
 }
