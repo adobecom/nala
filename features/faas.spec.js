@@ -12,12 +12,6 @@ module.exports = {
     },
     {
       name: '@faas',
-      path: '/resources/holiday-shopping-report',
-      envs: '@bacom_prod',
-      tags: '@html',
-    },
-    {
-      name: '@faas',
       path: [
         '/test/features/blocks/faas-rfi',
         '/test/features/blocks/faas-do',
