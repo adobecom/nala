@@ -1,5 +1,6 @@
 module.exports = {
   '@link': 'a',
-  '@recommended': '.consonant-CardsGrid',
-  '@dif_subdomain_link': 'Visit the Adobe Experience Cloud blog', // getByRole('a': { name: selectors['@dif_subdomain_link'] });
+  '@caas_cards': '.consonant-CardsGrid',
+  '@dif_subdomain_link': 'Visit the Adobe Experience Cloud blog',
+  '@dif_subdomain_heading': 'Adobe Summit',
 };
