@@ -22,8 +22,7 @@ test.describe(`${name}`, () => {
       // 4. Links with .html already on them shouldn't have .html added again.
       if (!props.title.match(/@blog/)) {
         const links = await page.$$(selectors['@link']);
-        const linkFailures = 0;
-        links.forEach((link) => {
+        links.forEach(async (link) => {
           const linkUrl = link.getAttribute('href');
 
           if (linkUrl.charAt(linkUrl.length) === '/') {
@@ -41,8 +40,15 @@ test.describe(`${name}`, () => {
           if (!linkUrl.contains('/')) {
             expect(linkUrl).not.toContain('.html');
           }
+
+          await expect.poll(async () => {
+            const response = await page.request.get(linkUrl);
+            return response.status();
+          }, {
+            message: `Failed to navigate to ${linkUrl}`,
+            timeout: 10000,
+          }).toBe(200);
         });
-        expect(linkFailures).toEqual(0);
       }
 
       if (props.title.match(/@blog/)) {
