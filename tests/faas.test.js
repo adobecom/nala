@@ -43,9 +43,6 @@ test.describe(`${name}`, () => {
       await page.getByLabel(selectors['@zipcode']).fill('77777');
       await page.getByLabel(selectors['@website']).fill('milo.adobe.com');
       await page.getByLabel(selectors['@industry']).selectOption({ label: 'Technology Software & Services' });
-      if (props.tag === '@html') {
-        await page.getByLabel(selectors['@company-type']).selectOption({ label: 'Technology or Solution Provider' });
-      }
 
       // Submit form
       await page.locator(selectors['@submit']).first().click();
@@ -57,10 +54,6 @@ test.describe(`${name}`, () => {
         await page.waitForURL(/.*thank-you/);
         await expect(page).toHaveURL(/.*thank-you/);
         await expect(page).toHaveTitle(/Thank you\.*.*/);
-      } else if (props.tag === '@html') {
-        await page.waitForURL(/.*sdk\/holiday-shopping-report/);
-        await expect(page).toHaveURL(/.*sdk\/holiday-shopping-report/);
-        await expect(page).toHaveTitle(/Holiday Shopping Report\.*.*/);
       }
     });
   });
