@@ -10,6 +10,7 @@ module.exports = {
   '@dc_stage': 'https://www.stage.adobe.com',
   '@dc_prod': 'https://www.adobe.com',
   '@blog': 'https://main--blog--adobe.hlx.live',
+  '@blog_prod': 'https://blog.adobe.com',
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
 };
