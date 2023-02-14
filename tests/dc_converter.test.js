@@ -7,7 +7,7 @@ const selectors = require('../selectors/dc_converter.selectors.js');
 
 const fileInputList = [
   {
-    file: 'docs/Small_PDF.pdf',
+    file: 'docs/dc/Small_PDF.pdf',
     locator: '@pdf-file-upload-input',
     pages: [
       'pdf-to-ppt',
@@ -18,7 +18,7 @@ const fileInputList = [
     ],
   },
   {
-    file: 'docs/Small_PPT.pptx',
+    file: 'docs/dc/Small_PPT.pptx',
     locator: '@ppt-file-upload-input',
     pages: [
       'ppt-to-pdf',
@@ -26,7 +26,7 @@ const fileInputList = [
     ],
   },
   {
-    file: 'docs/Small_JPG.jpg',
+    file: 'docs/dc/Small_JPG.jpg',
     locator: '@jpg-file-upload-input',
     pages: [
       'jpg-to-pdf',
@@ -34,7 +34,7 @@ const fileInputList = [
     ],
   },
   {
-    file: 'docs/Small_Word.docx',
+    file: 'docs/dc/Small_Word.docx',
     locator: '@word-file-upload-input',
     pages: [
       'word-to-pdf',
@@ -42,7 +42,7 @@ const fileInputList = [
     ],
   },
   {
-    file: 'docs/Small_Excel.xlsx',
+    file: 'docs/dc/Small_Excel.xlsx',
     locator: '@excel-file-upload-input',
     pages: [
       'excel-to-pdf',
