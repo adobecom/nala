@@ -6,8 +6,14 @@ Automated E2E and integration testing of Milo-based projects.
 
 ## Get started
 
+### Install Nala
 ```bash
 npm install
+```
+
+### Install Playwright's Browser Binaries
+```bash
+npx playwright install
 ```
 
 ## Basic use
