@@ -7,7 +7,8 @@ const envList = require('../envs/envs.js');
  */
 function buildUrl(url, env) {
   let { branch } = process.env;
-  if (!branch) return env.match(/@dc_stage|@dc_prod/) ? `${url}.html` : url;
+  let { repoName } = process.env;
+  if (!branch) return url;
   if (branch.includes('/')) {
     const branchPath = branch.split('/');
     if (branchPath.length > 1) {
@@ -18,7 +19,12 @@ function buildUrl(url, env) {
       branch = branchBuild.slice(0, (branchBuild.lastIndexOf('-')));
     }
   }
-  if (!env.match(/@milo|@dc/) && !url.includes('--dc')) {
+  if (!repoName) {
+    repoName = 'milo';
+  } else {
+    repoName = repoName.substring(repoName.lastIndexOf('/') + 1);
+  }
+  if (env !== `@${repoName}` && !url.match(/hlx.live|hlx.page/)) {
     return `${url}?milolibs=${branch}`;
   }
   return url.replace('main', branch);
