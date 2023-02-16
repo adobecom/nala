@@ -10,9 +10,9 @@ async function checkClass(el, className, contain = true) {
   const elClasses = await el.getAttribute('class');
 
   if (contain) {
-    await expect(elClasses).toContain(`${className}`);
+    expect(elClasses).toContain(`${className}`);
   } else {
-    await expect(elClasses).not.toContain(`${className}`);
+    expect(elClasses).not.toContain(`${className}`);
   }
 }
 
@@ -20,15 +20,15 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page }) => {
       await page.goto(props.url);
-      const previousButton = await page.locator(selectors['@previous']);
-      const nextButton = await page.locator(selectors['@next']);
-      const firstSlide = await page.locator(selectors['@firstSlide']);
-      const secondSlide = await page.locator(selectors['@secondSlide']);
-      const secondSlideIndicator = await page.locator(selectors['@secondSlideIndicator']);
+      const previousButton = page.locator(selectors['@previous']);
+      const nextButton = page.locator(selectors['@next']);
+      const firstSlide = page.locator(selectors['@firstSlide']);
+      const secondSlide = page.locator(selectors['@secondSlide']);
+      const secondSlideIndicator = page.locator(selectors['@secondSlideIndicator']);
       const secondSlideCta = page.locator(selectors['@secondSlideCta']);
-      const expand = await page.locator(selectors['@expand']);
-      const lightbox = await page.locator(selectors['@lightbox']);
-      const testPage = await page.url();
+      const expand = page.locator(selectors['@expand']);
+      const lightbox = page.locator(selectors['@lightbox']);
+      const testPage = page.url();
 
       await previousButton.scrollIntoViewIfNeeded();
 
@@ -53,13 +53,13 @@ test.describe(`${name}`, () => {
       await expand.click();
       await expect(lightbox).toBeVisible();
       await checkClass(
-        await page.locator(selectors['@carousel']),
+        page.locator(selectors['@carousel']),
         'lightbox-active',
       );
 
       // Buttons/links inside the slide should be clickable
       await secondSlideCta.click();
-      await expect(page.url()).not.toBe(testPage);
+      expect(page.url()).not.toBe(testPage);
     });
   });
 });
