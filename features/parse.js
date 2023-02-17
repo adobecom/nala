@@ -23,8 +23,10 @@ function buildUrl(url, env) {
     repoName = 'milo';
   } else {
     repoName = repoName.substring(repoName.lastIndexOf('/') + 1);
+    if (repoName === 'business-website') { repoName = 'bacomblog'; } // Switch repo name to coincide with env tag naming
   }
-  if (env !== `@${repoName}`) {
+  if (env !== `@${repoName}_preview` && env !== `@${repoName}_live`) {
+    if (env.match(/@dc_preview|@dc_live/)) { return url; } // Temporary addition to work around CSP issue
     return `${url}?milolibs=${branch}`;
   }
   return url.replace('main', branch);
