@@ -67,11 +67,11 @@ test.describe(`${name}`, () => {
       const downloadButton = page.locator(selectors['@download']);
       const failedBlock = page.locator(selectors['@widget-block-failed']);
 
-      await page.goto(url);
+      await page.goto(props.url);
 
       await expect(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
-        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
+        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${props.url}`);
         await expect.soft(failedBlock).not.toBeVisible();
       }
 
