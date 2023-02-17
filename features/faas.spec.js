@@ -7,7 +7,7 @@ module.exports = {
         '/test/features/blocks/how-to-choose-a-future-proof-cdp',
         '/test/features/blocks/omnichannel-orchestration-with-adobe-marketo-engage-and-adobe-experience-cloud',
       ],
-      envs: '@bacom',
+      envs: '@bacom_live',
       tags: '@faas-form',
     },
     {
