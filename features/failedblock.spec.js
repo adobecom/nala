@@ -9,7 +9,7 @@ module.exports = {
         '/customer-success-stories/abb-case-study',
         '/customer-success-stories/dentsu-isobar-case-study',
       ],
-      envs: '@bacom',
+      envs: '@bacom_live',
       tags: '@failedblock',
     },
     {
@@ -18,7 +18,7 @@ module.exports = {
         '/pages/artisthub/',
         '/pages/artisthub/learn',
       ],
-      envs: '@stock',
+      envs: '@stock_live',
       tags: '@failedblock',
     },
   ],
