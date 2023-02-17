@@ -30,7 +30,7 @@ module.exports = {
         '/acrobat/online/word-to-pdf.html',
         '/acrobat/online/excel-to-pdf.html',
       ],
-      envs: '@dc_prod',
+      envs: '@adobe_prod',
       tags: '@pdf-converter',
     },
   ],
