@@ -11,6 +11,8 @@ function extractTags(title) {
   let branch;
   if (/_prod/.test(env)) {
     branch = 'prod';
+  } else if (/_stage/.test(env)) {
+    branch = 'stage';
   } else {
     [, branch] = URL_REGEX.exec(url);
   }
