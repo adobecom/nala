@@ -7,8 +7,6 @@ module.exports = {
         'acrobat/online/sign-pdf',
         'acrobat/online/request-signature',
         'acrobat/online/crop-pdf',
-        'acrobat/online/merge-pdf',
-        // 'acrobat/online/password-protect-pdf', // can download, has upsell
         'acrobat/online/delete-pdf-pages',
         'acrobat/online/rotate-pdf',
         'acrobat/online/rearrange-pdf',
@@ -26,8 +24,6 @@ module.exports = {
         'acrobat/online/sign-pdf.html',
         'acrobat/online/request-signature.html',
         'acrobat/online/crop-pdf.html',
-        'acrobat/online/merge-pdf.html',
-        // 'acrobat/online/password-protect-pdf.html', // can download, has upsell
         'acrobat/online/delete-pdf-pages.html',
         'acrobat/online/rotate-pdf.html',
         'acrobat/online/rearrange-pdf.html',

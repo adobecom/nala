@@ -11,4 +11,13 @@ module.exports = {
   '@file-preview': '[class*=DocumentView] #pages-view',
   '@download': '[data-test-id="download"]',
   '@widget-block-failed': '.dc-converter-widget[data-failed="true"]',
+  '@insert-button': '[data-test-id="toggle-insert-button"]',
+  '@plus-button': '[data-test-id="combine-coachmark"] [class*=plusButton]',
+  '@merge-button': '[data-test-id="merge-button"]',
+  '@merge-input': '#fileInput[accept*=".pdf"]',
+  '@input-password': '[data-test-id="protect-settings-input-password"]',
+  '@confirm-password': '[data-test-id="protect-settings-confirm-password"]',
+  '@set-password': '[data-test-id="protect-settings-set-password-button"]',
+  '@protect-heading': 'section[class*=preview] > [class*=protectHeading]',
+  '@low-compress-option': '[name="compress-options"][value=low]',
 };
