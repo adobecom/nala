@@ -20,4 +20,6 @@ module.exports = {
   '@set-password': '[data-test-id="protect-settings-set-password-button"]',
   '@protect-heading': 'section[class*=preview] > [class*=protectHeading]',
   '@low-compress-option': '[name="compress-options"][value=low]',
+  '@google-cta': '[data-test-id="google-social-cta-button"]',
+  '@adobe-cta': '[data-test-id="adobe-social-cta-button"]',
 };

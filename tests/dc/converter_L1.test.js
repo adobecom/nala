@@ -5,63 +5,17 @@ const converter = require('../../features/dc/converter_L1.spec.js');
 const parse = require('../../features/parse.js');
 const selectors = require('../../selectors/dc_converter.selectors.js');
 
-const fileInputList = [
-  {
-    file: 'docs/dc/Small_PDF.pdf',
-    locator: '@pdf-file-upload-input',
-    pages: [
-      'pdf-to-ppt',
-      'pdf-to-jpg',
-      'pdf-to-word',
-      'pdf-to-excel',
-      'convert-pdf',
-    ],
-  },
-  {
-    file: 'docs/dc/Small_PPT.pptx',
-    locator: '@ppt-file-upload-input',
-    pages: [
-      'ppt-to-pdf',
-      'convert-pdf',
-    ],
-  },
-  {
-    file: 'docs/dc/Small_JPG.jpg',
-    locator: '@jpg-file-upload-input',
-    pages: [
-      'jpg-to-pdf',
-      'convert-pdf',
-    ],
-  },
-  {
-    file: 'docs/dc/Small_Word.docx',
-    locator: '@word-file-upload-input',
-    pages: [
-      'word-to-pdf',
-      'convert-pdf',
-    ],
-  },
-  {
-    file: 'docs/dc/Small_Excel.xlsx',
-    locator: '@excel-file-upload-input',
-    pages: [
-      'excel-to-pdf',
-      'convert-pdf',
-    ],
-  },
-];
-
 const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browser }) => {
       const { url } = props;
-      const pageNameRegex = /(?<=online\/)([^.]+)/gi;
-      const input = fileInputList.filter((x) => x.pages.includes(url.match(pageNameRegex)[0]))[0];
       const converterBlock = page.locator(selectors['@pdf-converter']);
-      const fileInput = page.locator(selectors[input.locator]);
+      const fileInput = page.locator(selectors['@pdf-file-upload-input']);
       const pdfComplete = page.locator(selectors['@pdf-complete']);
       const filePreview = page.locator(selectors['@file-preview']);
+      const googleCTA = page.locator(selectors['@google-cta']);
+      const adobeCTA = page.locator(selectors['@adobe-cta']);
       const failedBlock = page.locator(selectors['@widget-block-failed']);
 
       await page.goto(props.url);
@@ -74,7 +28,7 @@ test.describe(`${name}`, () => {
 
       // Upload a test document
       await expect(fileInput).toBeVisible();
-      await fileInput.setInputFiles(input.file);
+      await fileInput.setInputFiles(url.includes('split-pdf') ? 'docs/dc/Multipage_PDF.pdf' : 'docs/dc/Small_PDF.pdf');
 
       // Wait for conversion to complete
       // DC Web services can sometimes be slow but do not wait for more than 30s
@@ -82,6 +36,10 @@ test.describe(`${name}`, () => {
 
       // Wait for file preview
       await expect(filePreview).toBeVisible();
+
+      // Wait for social CTAs
+      await expect(googleCTA).toBeVisible();
+      await expect(adobeCTA).toBeVisible();
     });
   });
 });
