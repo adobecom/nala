@@ -8,10 +8,10 @@ module.exports = {
   '@stock': 'https://main--stock--adobecom.hlx.live',
   '@dc_preview': 'https://main--dc--adobecom.hlx.page',
   '@dc_live': 'https://main--dc--adobecom.hlx.live',
-  '@dc_stage': 'https://www.stage.adobe.com',
-  '@dc_prod': 'https://www.adobe.com',
+  '@adobe_stage': 'https://www.stage.adobe.com',
+  '@adobe_prod': 'https://www.adobe.com',
   '@bacom_prod': 'https://business.adobe.com',
-  '@blog': 'https://main--blog--adobe.hlx.live',
+  '@blog_live': 'https://main--blog--adobe.hlx.live',
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
 };
