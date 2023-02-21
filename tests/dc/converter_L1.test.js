@@ -37,8 +37,8 @@ test.describe(`${name}`, () => {
       // Wait for file preview
       await expect(filePreview).toBeVisible();
 
-      // Wait for social CTAs
-      await expect(googleCTA).toBeVisible();
+      // Wait for social CTAs. Github VMs can be slow but do not wait for more than 10s
+      await expect(googleCTA).toBeVisible({ timeout: 10000 });
       await expect(adobeCTA).toBeVisible();
     });
   });
