@@ -130,7 +130,7 @@ test.describe(`${name}`, () => {
       const fileName = await download.suggestedFilename();
 
       // Save downloaded file somewhere
-      await download.saveAs(fileName);
+      await download.saveAs(`test-results/${fileName}`);
       console.log(`${fileName} downloaded`);
 
       await download.delete();
