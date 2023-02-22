@@ -14,7 +14,8 @@ test.describe(`${name}`, () => {
       const fileInput = page.locator(selectors['@pdf-file-upload-input']);
       const pdfComplete = page.locator(selectors['@pdf-complete']);
       const filePreview = page.locator(selectors['@file-preview']);
-      const googleCTA = page.locator(selectors['@google-cta']);
+      // Known issue in Chrome with Google Sign-in prompt - MWPW-126913
+      const googleCTA = browser.browserType().name() === 'chromium' ? page.locator(selectors['@google-cta']) : page.locator(selectors['@google-yolo']);
       const adobeCTA = page.locator(selectors['@adobe-cta']);
       const failedBlock = page.locator(selectors['@widget-block-failed']);
 
@@ -37,8 +38,8 @@ test.describe(`${name}`, () => {
       // Wait for file preview
       await expect(filePreview).toBeVisible();
 
-      // Wait for social CTAs. Github VMs can be slow but do not wait for more than 10s
-      await expect(googleCTA).toBeVisible({ timeout: 10000 });
+      // Wait for social CTAs
+      await expect(googleCTA).toBeVisible();
       await expect(adobeCTA).toBeVisible();
     });
   });

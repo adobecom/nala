@@ -21,5 +21,6 @@ module.exports = {
   '@protect-heading': 'section[class*=preview] > [class*=protectHeading]',
   '@low-compress-option': '[name="compress-options"][value=low]',
   '@google-cta': '[data-test-id="google-social-cta-button"]',
+  '@google-yolo': '#dc_one_tap_prompt #credential_picker_container',
   '@adobe-cta': '[data-test-id="adobe-social-cta-button"]',
 };
