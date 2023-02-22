@@ -59,7 +59,7 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browser }) => {
       const { url } = props;
-      const pageNameRegex = /(?<=online\/)([^.]+)/gi;
+      const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
       const input = fileInputList.filter((x) => x.pages.includes(url.match(pageNameRegex)[0]))[0];
       const converterBlock = page.locator(selectors['@pdf-converter']);
       const fileInput = page.locator(selectors[input.locator]);
