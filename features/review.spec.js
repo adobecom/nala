@@ -2,7 +2,7 @@ module.exports = {
   name: 'Review',
   features: [
     {
-      name: '@review',
+      name: '@review_block',
       path: [
         '/acrobat/online/pdf-to-ppt',
         '/acrobat/online/pdf-editor',
@@ -11,7 +11,7 @@ module.exports = {
       tags: '@frictionless',
     },
     {
-      name: '@review',
+      name: '@review_block',
       path: [
         '/acrobat/online/pdf-to-ppt.html',
         '/acrobat/online/pdf-editor.html',
