@@ -8,7 +8,7 @@ module.exports = {
         '/acrobat/online/pdf-editor',
       ],
       envs: '@dc_preview',
-      tags: '@review @converter',
+      tags: '@frictionless',
     },
     {
       name: '@review',
@@ -17,7 +17,7 @@ module.exports = {
         '/acrobat/online/pdf-editor.html',
       ],
       envs: '@adobe_prod',
-      tags: '@review @converter',
+      tags: '@frictionless',
     },
   ],
 };

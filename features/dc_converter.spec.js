@@ -15,7 +15,7 @@ module.exports = {
         '/acrobat/online/excel-to-pdf',
       ],
       envs: '@dc_preview',
-      tags: '@pdf-converter',
+      tags: '@frictionless',
     },
     {
       name: '@converter',
@@ -31,7 +31,7 @@ module.exports = {
         '/acrobat/online/excel-to-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@pdf-converter',
+      tags: '@frictionless',
     },
   ],
 };
