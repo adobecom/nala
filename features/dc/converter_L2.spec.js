@@ -18,7 +18,7 @@ module.exports = {
         '/acrobat/online/compress-pdf',
       ],
       envs: '@dc_preview',
-      tags: '@pdf-converter',
+      tags: '@frictionless',
     },
     {
       name: '@converter',
@@ -37,7 +37,7 @@ module.exports = {
         '/acrobat/online/compress-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@pdf-converter',
+      tags: '@frictionless',
     },
   ],
 };
