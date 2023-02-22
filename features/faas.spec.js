@@ -13,7 +13,7 @@ module.exports = {
     {
       name: '@faas',
       path: '/resources/holiday-shopping-report',
-      envs: '@bacom',
+      envs: '@bacom_live',
       tags: '@html',
     },
     {
