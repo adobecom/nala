@@ -21,7 +21,7 @@ function buildUrl(url, env) {
   }
 
   if (!repoName) {
-    repoName = 'milo_live';
+    repoName = 'milo';
   } else {
     repoName = repoName.substring(repoName.lastIndexOf('/') + 1);
     if (repoName === 'business-website') { repoName = 'bacomblog'; } // Switch repo name to coincide with env tag naming
