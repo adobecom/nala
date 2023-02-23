@@ -14,7 +14,6 @@ module.exports = {
   '@insert-button': '[data-test-id="toggle-insert-button"]',
   '@plus-button': '[data-test-id="combine-coachmark"] [class*=plusButton]',
   '@merge-button': '[data-test-id="merge-button"]',
-  '@merge-input': '#fileInput[accept*=".pdf"]',
   '@input-password': '[data-test-id="protect-settings-input-password"]',
   '@confirm-password': '[data-test-id="protect-settings-confirm-password"]',
   '@set-password': '[data-test-id="protect-settings-set-password-button"]',

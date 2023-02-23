@@ -67,7 +67,6 @@ test.describe(`${name}`, () => {
       const convertButton = page.locator(selectors['@convert-button']);
       const insertButton = page.locator(selectors['@insert-button']);
       const plusButton = page.locator(selectors['@plus-button']);
-      const mergeInput = page.locator(selectors['@merge-input']);
       const mergeButton = page.locator(selectors['@merge-button']);
       const inputPassword = page.locator(selectors['@input-password']);
       const confirmPassword = page.locator(selectors['@confirm-password']);
@@ -98,8 +97,14 @@ test.describe(`${name}`, () => {
       }
       if (url.includes('merge-pdf')) {
         await insertButton.click();
-        await plusButton.click();
-        await mergeInput.setInputFiles(input.file);
+
+        const [fileChooser] = await Promise.all([
+          // Wait for the 'filechooser' event before clicking the button
+          page.waitForEvent('filechooser'),
+          // Open the file chooser
+          await plusButton.click(),
+        ]);
+        await fileChooser.setFiles(input.file);
         await mergeButton.click();
       }
       if (url.includes('password-protect-pdf')) {
