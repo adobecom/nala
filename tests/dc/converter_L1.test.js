@@ -31,7 +31,8 @@ test.describe(`${name}`, () => {
       }
 
       // Upload a test document
-      await expect(fileInput).toBeVisible();
+      // Increasing the timeout to 10s due to a known bug (MWPW-125603).
+      await expect(fileInput).toBeVisible({ timeout: 10000 });
       await fileInput.setInputFiles(url.includes('split-pdf') ? 'docs/dc/Multipage_PDF.pdf' : 'docs/dc/Small_PDF.pdf');
 
       // Wait for conversion to complete
