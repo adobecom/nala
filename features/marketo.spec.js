@@ -7,7 +7,7 @@ module.exports = {
         '/test/features/blocks/marketo-rfi',
         '/test/features/blocks/marketo-form-modal#form',
       ],
-      envs: '@milo',
+      envs: '@milo_live',
       tags: '@marketo',
     },
   ],

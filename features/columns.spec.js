@@ -4,7 +4,7 @@ module.exports = {
     {
       name: '@columns',
       path: '/test/features/blocks/columns',
-      envs: '@milo',
+      envs: '@milo_live',
       tags: '@columns-default @columns-table',
     },
     {

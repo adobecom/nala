@@ -6,7 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/consent/feds-consent-page',
       ],
-      envs: '@feds',
+      envs: '@feds_live',
       tags: '@feds-consent',
     },
   ],

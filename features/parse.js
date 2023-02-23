@@ -18,7 +18,7 @@ function buildUrl(url, env) {
       branch = branchBuild.slice(0, (branchBuild.lastIndexOf('-')));
     }
   }
-  if (env !== '@milo') {
+  if (env !== '@milo_live') {
     return `${url}?milolibs=${branch}`;
   }
   return url.replace('main', branch);

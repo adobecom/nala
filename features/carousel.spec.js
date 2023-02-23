@@ -4,7 +4,7 @@ module.exports = {
     {
       name: '@carousel',
       path: '/test/features/blocks/carousel',
-      envs: '@milo',
+      envs: '@milo_live',
       tags: '@carousel',
     },
   ],

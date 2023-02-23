@@ -10,7 +10,7 @@ module.exports = {
     {
       name: '@button',
       path: '/test/features/blocks/marquee',
-      envs: '@milo',
+      envs: '@milo_live',
       tags: '@large-button @medium-button @inline-button',
     },
     {
