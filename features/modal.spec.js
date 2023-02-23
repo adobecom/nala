@@ -4,7 +4,7 @@ module.exports = {
     {
       name: '@modal',
       path: '/customer-success-stories/coca-cola-case-study',
-      envs: '@bacom',
+      envs: '@bacom_live',
       tags: '@modal',
     },
   ],

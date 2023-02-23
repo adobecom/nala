@@ -10,13 +10,13 @@ module.exports = {
     {
       name: '@columns',
       path: '/blog/basics/agile-vs-waterfall',
-      envs: '@bacomblog',
+      envs: '@bacomblog_live',
       tags: '@columns-table',
     },
     {
       name: '@columns',
       path: '/en/publish/2022/07/28/announcing-2022-adobe-analytics-champions',
-      envs: '@blog',
+      envs: '@blog_live',
       tags: '@columns-default',
     },
   ],

@@ -7,6 +7,7 @@ const envList = require('../envs/envs.js');
  */
 function buildUrl(url, env) {
   let { branch } = process.env;
+  let { repoName } = process.env;
   if (!branch) return url;
   if (branch.includes('/')) {
     const branchPath = branch.split('/');
@@ -18,7 +19,14 @@ function buildUrl(url, env) {
       branch = branchBuild.slice(0, (branchBuild.lastIndexOf('-')));
     }
   }
-  if (env !== '@milo_live') {
+
+  if (!repoName) {
+    repoName = 'milo_live';
+  } else {
+    repoName = repoName.substring(repoName.lastIndexOf('/') + 1);
+    if (repoName === 'business-website') { repoName = 'bacomblog'; } // Switch repo name to coincide with env tag naming
+  }
+  if (env !== `@${repoName}_preview` && env !== `@${repoName}_live`) {
     return `${url}?milolibs=${branch}`;
   }
   return url.replace('main', branch);

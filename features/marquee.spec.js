@@ -4,7 +4,7 @@ module.exports = {
     {
       name: '@marquee',
       path: '/test/features/blocks/marquee',
-      envs: '@milo @bacom',
+      envs: '@milo_live @bacom_live',
       tags: '@marquee-large',
     },
     {
@@ -16,7 +16,7 @@ module.exports = {
     {
       name: '@button',
       path: '/customer-success-stories/princess-cruises-case-study',
-      envs: '@bacom',
+      envs: '@bacom_live',
       tags: '@medium-button',
     },
   ],
