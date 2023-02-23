@@ -14,6 +14,7 @@ test.describe(`${name}`, () => {
       const OneTrustEnableButton = page.locator(selectors['@OneTrustEnableButton']);
       const OneTrustCookiesButton = page.locator(selectors['@OneTrustCookiesButton']);
       const OneTrustDontEnableButton = page.locator(selectors['@OneTrustDontEnableButton']);
+      const OneTrustSuccessContainer = page.locator(selectors['@OneTrustSuccessContainer']);
 
       const OneTrustContainer = page.locator(selectors['@OneTrustContainer']);
       const OneTrustConsentFrame = page.locator(selectors['@OneTrustConsentFrame']);
@@ -23,8 +24,10 @@ test.describe(`${name}`, () => {
       const OneTrustModalClose = page.locator(selectors['@OneTrustModalClose']);
 
       // Load OneTrust consent component page:
-      const url = props.title.match(/stage|prod/) ? `${props.url}.html` : props.url;
-      await page.goto(url);
+      // !Note: OneTrust only loads on a specific subset of locales.
+      //        Forcing the component to load from any geolocation via
+      //        the FEDS '?customPrivacyLocation' browser parameter.
+      await page.goto(`${props.url}?customPrivacyLocation=de`);
 
       // Wait for the OneTrust consent bar to be displayed:
       await page.waitForSelector(selectors['@OneTrustContainer']);
@@ -36,6 +39,18 @@ test.describe(`${name}`, () => {
       await expect(OneTrustEnableButton).toHaveText('Enable all');
       await expect(OneTrustDontEnableButton).toHaveText('Don\'t Enable');
       await expect(OneTrustCookiesButton).toHaveText('Cookie Settings');
+
+      // Check 'Cookie Preferences' modal:
+      await OneTrustCookiesButton.click();
+      await expect(OneTrustConsentFrame).toBeVisible();
+      await page.waitForSelector(selectors['@OneTrustModalClose']);
+      await OneTrustModalClose.click();
+      await expect(OneTrustConsentFrame).not.toBeVisible();
+
+      // Accept the OneTrust consent banner:
+      await OneTrustEnableButton.click();
+      await expect(OneTrustContainer).not.toBeVisible();
+      await expect(OneTrustSuccessContainer).toBeVisible();
     });
   });
 });

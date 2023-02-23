@@ -1,7 +1,7 @@
 module.exports = {
-  '@milo': 'https://main--milo--adobecom.hlx.live',
+  '@milo_live': 'https://main--milo--adobecom.hlx.live',
   '@milo_prod': 'https://milo.adobe.com/',
-  '@feds': 'https://feds-gnav--milo--adobecom.hlx.live',
+  '@feds_live': 'https://feds-gnav--milo--adobecom.hlx.live',
   '@feds_preview': 'https://feds-gnav--milo--adobecom.hlx.page',
   '@bacom': 'https://main--bacom--adobecom.hlx.live',
   '@bacomblog': 'https://main--business-website--adobe.hlx.live',
