@@ -24,7 +24,7 @@ test.describe(`${name}`, () => {
       const OneTrustModalClose = page.locator(selectors['@OneTrustModalClose']);
 
       // Load OneTrust consent component page:
-      // !Note: OneTrust only loads on a specific subset of locales.
+      // !Note: OneTrust only loads only on GDPR enforced countries.
       //        Forcing the component to load from any geolocation via
       //        the FEDS '?customPrivacyLocation' browser parameter.
       await page.goto(`${props.url}?customPrivacyLocation=de`);
