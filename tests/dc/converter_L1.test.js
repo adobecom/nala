@@ -9,13 +9,16 @@ const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browser }) => {
-      const { url } = props;
+      const { url, title } = props;
       const converterBlock = page.locator(selectors['@pdf-converter']);
       const fileInput = page.locator(selectors['@pdf-file-upload-input']);
       const pdfComplete = page.locator(selectors['@pdf-complete']);
       const filePreview = page.locator(selectors['@file-preview']);
-      // Known issue in Chrome with Google Sign-in prompt - MWPW-126913
-      const googleCTA = browser.browserType().name() === 'chromium' ? page.locator(selectors['@google-cta']) : page.locator(selectors['@google-yolo']);
+      // Known issue in Chrome and Helix URLs with Google Sign-in prompt (MWPW-126913, MWPW-123890)
+      let googleCTA = page.locator(selectors['@google-cta']);
+      if (browser.browserType().name() !== 'chromium' && /stage|prod/.test(title)) {
+        googleCTA = page.locator(selectors['@google-yolo']);
+      }
       const adobeCTA = page.locator(selectors['@adobe-cta']);
       const failedBlock = page.locator(selectors['@widget-block-failed']);
 
@@ -23,7 +26,7 @@ test.describe(`${name}`, () => {
 
       await expect(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
-        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${props.url}`);
+        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
         await expect.soft(failedBlock).not.toBeVisible();
       }
 

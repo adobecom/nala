@@ -83,7 +83,7 @@ test.describe(`${name}`, () => {
 
       await expect(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
-        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${props.url}`);
+        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
         await expect.soft(failedBlock).not.toBeVisible();
       }
 
