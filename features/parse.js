@@ -19,6 +19,7 @@ function buildUrl(url, env) {
       branch = branchBuild.slice(0, (branchBuild.lastIndexOf('-')));
     }
   }
+
   if (!repoName) {
     repoName = 'milo';
   } else {
