@@ -5,6 +5,13 @@ module.exports = {
       name: '@converter',
       path: [
         '/acrobat/online/pdf-to-ppt',
+      ],
+      envs: '@dc_live',
+      tags: '@frictionless',
+    },
+    {
+      name: '@converter',
+      path: [
         '/acrobat/online/pdf-to-jpg',
         '/acrobat/online/pdf-to-word',
         '/acrobat/online/pdf-to-excel',

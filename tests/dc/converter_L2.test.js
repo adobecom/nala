@@ -1,10 +1,13 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+import { randomPassword } from '../../utils/random.js';
+
 const { expect, test } = require('@playwright/test');
 const converter = require('../../features/dc/converter_L2.spec.js');
 const parse = require('../../features/parse.js');
 const selectors = require('../../selectors/dc_converter.selectors.js');
 
+const TEST_PW = randomPassword();
 const fileInputList = [
   {
     file: 'docs/dc/Small_PDF.pdf',
@@ -108,8 +111,8 @@ test.describe(`${name}`, () => {
         await mergeButton.click();
       }
       if (url.includes('password-protect-pdf')) {
-        await inputPassword.fill('AdobePassword2023!');
-        await confirmPassword.fill('AdobePassword2023!');
+        await inputPassword.fill(TEST_PW);
+        await confirmPassword.fill(TEST_PW);
         await setPassword.click();
       }
       if (url.includes('compress-pdf')) {
