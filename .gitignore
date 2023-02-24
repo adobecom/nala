@@ -53,6 +53,9 @@ typings/
 # Optional eslint cache
 .eslintcache
 
+# Optional jshint cache
+.jshintrc
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
@@ -117,3 +120,4 @@ screenshots
 /test-results/
 /playwright-report/
 /playwright/.cache/
+Test.pptx
