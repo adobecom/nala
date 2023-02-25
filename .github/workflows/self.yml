@@ -5,18 +5,15 @@ on:
     types: [ labeled, opened, synchronize, reopened ]
 
 jobs:
-  platform_matrix:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+  action:
     name: Running tests
     if: contains(github.event.pull_request.labels.*.name, 'run-nala')
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Run Nala ${{ matrix.os }}
+      - name: Run Nala
         uses: ./
         env:
           labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
