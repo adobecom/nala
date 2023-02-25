@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Run Nala
+      - name: Run Nala ${{ matrix.os }}
         uses: ./
         env:
           labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}

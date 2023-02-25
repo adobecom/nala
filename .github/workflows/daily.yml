@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Run Nala
+      - name: Run Nala ${{ matrix.os }}
         uses: ./
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
