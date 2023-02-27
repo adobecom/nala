@@ -1,10 +1,13 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-const { expect, test } = require('@playwright/test');
-const converter = require('../features/dc_converter.spec.js');
-const parse = require('../features/parse.js');
-const selectors = require('../selectors/dc_converter.selectors.js');
+import { randomPassword } from '../../utils/random.js';
 
+const { expect, test } = require('@playwright/test');
+const converter = require('../../features/dc/converter_L2.spec.js');
+const parse = require('../../features/parse.js');
+const selectors = require('../../selectors/dc_converter.selectors.js');
+
+const TEST_PW = randomPassword();
 const fileInputList = [
   {
     file: 'docs/dc/Small_PDF.pdf',
@@ -15,6 +18,9 @@ const fileInputList = [
       'pdf-to-word',
       'pdf-to-excel',
       'convert-pdf',
+      'merge-pdf',
+      'password-protect-pdf',
+      'compress-pdf',
     ],
   },
   {
@@ -62,8 +68,16 @@ test.describe(`${name}`, () => {
       const fileInput = page.locator(selectors[input.locator]);
       const exportButton = page.locator(selectors['@export-convert-button']);
       const convertButton = page.locator(selectors['@convert-button']);
+      const insertButton = page.locator(selectors['@insert-button']);
+      const plusButton = page.locator(selectors['@plus-button']);
+      const mergeButton = page.locator(selectors['@merge-button']);
+      const inputPassword = page.locator(selectors['@input-password']);
+      const confirmPassword = page.locator(selectors['@confirm-password']);
+      const setPassword = page.locator(selectors['@set-password']);
       const pdfComplete = page.locator(selectors['@pdf-complete']);
       const filePreview = page.locator(selectors['@file-preview']);
+      const protectHeading = page.locator(selectors['@protect-heading']);
+      const lowCompress = page.locator(selectors['@low-compress-option']);
       const downloadButton = page.locator(selectors['@download']);
       const failedBlock = page.locator(selectors['@widget-block-failed']);
 
@@ -71,7 +85,7 @@ test.describe(`${name}`, () => {
 
       await expect(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
-        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${props.url}`);
+        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
         await expect.soft(failedBlock).not.toBeVisible();
       }
 
@@ -84,13 +98,38 @@ test.describe(`${name}`, () => {
       if (url.includes('pdf-to-jpg')) {
         await convertButton.click();
       }
+      if (url.includes('merge-pdf')) {
+        await insertButton.click();
+
+        const [fileChooser] = await Promise.all([
+          // Wait for the 'filechooser' event before clicking the button
+          page.waitForEvent('filechooser'),
+          // Open the file chooser
+          await plusButton.click(),
+        ]);
+        await fileChooser.setFiles(input.file);
+        await mergeButton.click();
+      }
+      if (url.includes('password-protect-pdf')) {
+        await inputPassword.fill(TEST_PW);
+        await confirmPassword.fill(TEST_PW);
+        await setPassword.click();
+      }
+      if (url.includes('compress-pdf')) {
+        await lowCompress.click();
+        await convertButton.click();
+      }
 
       // Wait for conversion to complete
       // DC Web services can sometimes be slow but do not wait for more than 30s
       await expect(pdfComplete).toBeVisible({ timeout: 30000 });
 
       // Wait for file preview
-      await expect(filePreview).toBeVisible();
+      if (url.includes('password-protect-pdf')) {
+        await expect(protectHeading).toHaveText('This file can’t be viewed because it’s password protected');
+      } else {
+        await expect(filePreview).toBeVisible();
+      }
 
       // Start waiting for download before clicking. Note no await.
       const downloadPromise = page.waitForEvent('download');
@@ -99,7 +138,7 @@ test.describe(`${name}`, () => {
       const fileName = await download.suggestedFilename();
 
       // Save downloaded file somewhere
-      await download.saveAs(fileName);
+      await download.saveAs(`test-results/${fileName}`);
       console.log(`${fileName} downloaded`);
 
       await download.delete();

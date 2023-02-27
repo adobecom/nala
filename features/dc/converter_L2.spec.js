@@ -5,6 +5,13 @@ module.exports = {
       name: '@converter',
       path: [
         '/acrobat/online/pdf-to-ppt',
+      ],
+      envs: '@dc_live',
+      tags: '@frictionless',
+    },
+    {
+      name: '@converter',
+      path: [
         '/acrobat/online/pdf-to-jpg',
         '/acrobat/online/pdf-to-word',
         '/acrobat/online/pdf-to-excel',
@@ -13,9 +20,12 @@ module.exports = {
         '/acrobat/online/jpg-to-pdf',
         '/acrobat/online/word-to-pdf',
         '/acrobat/online/excel-to-pdf',
+        '/acrobat/online/merge-pdf',
+        '/acrobat/online/password-protect-pdf',
+        '/acrobat/online/compress-pdf',
       ],
       envs: '@dc_preview',
-      tags: '@pdf-converter',
+      tags: '@frictionless',
     },
     {
       name: '@converter',
@@ -29,9 +39,12 @@ module.exports = {
         '/acrobat/online/jpg-to-pdf.html',
         '/acrobat/online/word-to-pdf.html',
         '/acrobat/online/excel-to-pdf.html',
+        '/acrobat/online/merge-pdf.html',
+        '/acrobat/online/password-protect-pdf.html',
+        '/acrobat/online/compress-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@pdf-converter',
+      tags: '@frictionless',
     },
   ],
 };
