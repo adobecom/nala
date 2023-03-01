@@ -10,6 +10,7 @@ module.exports = {
   '@org-name': 'Organization name ',
   '@country': 'Country/Region ',
   '@state-province': 'State/province',
+  '@company-type': 'Company Type',
   '@contact-me': 'Contact me to schedule a product demonstration',
   '@submit': 'text=Submit',
   '@zipcode': 'ZIP/postal code',
