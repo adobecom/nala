@@ -4,4 +4,5 @@ module.exports = {
   '@review-stats': 'div[class*=hlx-ReviewStats]',
   '@rating-fields': '[class*="hlx-Review-ratingFields"]',
   '@review-block-failed': '.review[data-failed="true"]',
+  '@outstanding-hovering': 'input[data-tooltip="Outstanding"].is-hovering',
 };

@@ -13,6 +13,10 @@ test.describe(`${name}`, () => {
       const reviewTitle = page.locator(selectors['@review-title']);
       const reviewStats = page.locator(selectors['@review-stats']);
       const ratingFields = page.locator(selectors['@rating-fields']);
+      const goodRating = page.getByRole('radio', { name: '3 star' });
+      const outstandingRating = page.getByRole('radio', { name: '5 star' });
+      const textField = page.getByPlaceholder('Please give your feedback');
+      const sendButton = page.getByRole('button', { name: 'Send' });
       const failedBlock = page.locator(selectors['@review-block-failed']);
 
       await page.goto(props.url);
@@ -25,6 +29,16 @@ test.describe(`${name}`, () => {
       await expect(reviewTitle).toBeVisible();
       await expect(reviewStats).toBeVisible();
       await expect(ratingFields).toBeVisible();
+
+      await outstandingRating.hover();
+      await page.waitForSelector(selectors['@outstanding-hovering']);
+
+      await goodRating.check();
+      await textField.click();
+      await textField.fill('Test comment');
+      await outstandingRating.check();
+      await sendButton.click();
+      await expect(page.getByText('Thank you for your feedback!')).toBeVisible();
     });
   });
 });
