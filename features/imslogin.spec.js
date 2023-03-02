@@ -4,13 +4,7 @@ module.exports = {
     {
       name: '@imslogin',
       path: '/customer-success-stories/princess-cruises-case-study',
-      envs: '@bacom_live',
-      tags: '@gnav-signin @apple-signin @google-signin @facebook-signin',
-    },
-    {
-      name: '@imslogin',
-      path: '/customer-success-stories/princess-cruises-case-study.html',
-      envs: '@bacom_prod',
+      envs: '@bacom_live @bacom_prod',
       tags: '@gnav-signin @apple-signin @google-signin @facebook-signin',
     },
     {

@@ -15,7 +15,7 @@ module.exports = {
         '/acrobat/online/extract-pdf-pages',
         '/acrobat/online/pdf-editor',
       ],
-      envs: '@dc_preview',
+      envs: '@dc_live',
       tags: '@frictionless',
     },
     {
