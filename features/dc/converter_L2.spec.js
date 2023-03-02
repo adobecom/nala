@@ -5,13 +5,6 @@ module.exports = {
       name: '@converter',
       path: [
         '/acrobat/online/pdf-to-ppt',
-      ],
-      envs: '@dc_live',
-      tags: '@frictionless',
-    },
-    {
-      name: '@converter',
-      path: [
         '/acrobat/online/pdf-to-jpg',
         '/acrobat/online/pdf-to-word',
         '/acrobat/online/pdf-to-excel',
@@ -24,7 +17,7 @@ module.exports = {
         '/acrobat/online/password-protect-pdf',
         '/acrobat/online/compress-pdf',
       ],
-      envs: '@dc_preview',
+      envs: '@dc_live',
       tags: '@frictionless',
     },
     {
