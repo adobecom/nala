@@ -4,19 +4,23 @@ on:
   workflow_dispatch:
     inputs:
       tags:
-        description: 'Test scenario tags'
+        description: 'Test scenario tags, if empty all tests will run. i.e., @marquee'
+        required: false
+        type: string
+      platform:
+        description: 'Platform to run tests on; select one, options: [ubuntu-latest, windows-latest, macos-latest]'
         required: true
         type: string
 
 jobs:
   action:
     name: Debugging tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.platform }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Run Nala for Trace Viewer
+      - name: Run Nala for Trace Viewer ${{ inputs.platform }}
         uses: ./
         env:
           labels: ${{ inputs.tags }}
