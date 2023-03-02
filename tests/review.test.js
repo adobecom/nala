@@ -31,8 +31,6 @@ test.describe(`${name}`, () => {
       await expect(ratingFields).toBeVisible();
 
       await outstandingRating.hover();
-      await page.waitForSelector(selectors['@outstanding-hovering']);
-
       await goodRating.check();
       await textField.fill('Test comment');
       await outstandingRating.check();
