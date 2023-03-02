@@ -5,14 +5,18 @@ on:
     - cron: "0 16 * * *"
 
 jobs:
-  action:
+  platform_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     name: Running tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Run Nala
+      - name: Run Nala ${{ matrix.os }}
         uses: ./
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
