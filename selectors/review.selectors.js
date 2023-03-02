@@ -5,4 +5,5 @@ module.exports = {
   '@rating-fields': '[class*="hlx-Review-ratingFields"]',
   '@review-block-failed': '.review[data-failed="true"]',
   '@outstanding-hovering': 'input[data-tooltip="Outstanding"].is-hovering',
+  '@rating-comments': 'textarea[id="rating-comments"]',
 };

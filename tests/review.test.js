@@ -15,7 +15,7 @@ test.describe(`${name}`, () => {
       const ratingFields = page.locator(selectors['@rating-fields']);
       const goodRating = page.getByRole('radio', { name: '3 star' });
       const outstandingRating = page.getByRole('radio', { name: '5 star' });
-      const textField = page.getByPlaceholder('Please give your feedback');
+      const textField = page.locator(selectors['@rating-comments']);
       const sendButton = page.getByRole('button', { name: 'Send' });
       const failedBlock = page.locator(selectors['@review-block-failed']);
 
@@ -34,7 +34,6 @@ test.describe(`${name}`, () => {
       await page.waitForSelector(selectors['@outstanding-hovering']);
 
       await goodRating.check();
-      await textField.click();
       await textField.fill('Test comment');
       await outstandingRating.check();
       await sendButton.click();
