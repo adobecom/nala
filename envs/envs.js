@@ -11,6 +11,7 @@ module.exports = {
   '@adobe_stage': 'https://www.stage.adobe.com',
   '@adobe_prod': 'https://www.adobe.com',
   '@bacom_prod': 'https://business.adobe.com',
+  '@blog_prod': 'https://blog.adobe.com',
   '@blog_live': 'https://main--blog--adobe.hlx.live',
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
