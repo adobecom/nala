@@ -7,7 +7,7 @@ module.exports = {
         '/acrobat/online/pdf-to-ppt',
         '/acrobat/online/pdf-editor',
       ],
-      envs: '@dc_preview',
+      envs: '@dc_live',
       tags: '@frictionless',
     },
     {
