@@ -57,6 +57,9 @@ async function clickEachAnswer(url, page, key) {
       // click next button
       // eslint-disable-next-line no-await-in-loop
       await page.getByRole('button', { name: selectors['@next-button'] }).click();
+
+      // eslint-disable-next-line no-await-in-loop
+      await page.waitForTimeout(1000);
     }
   }
 
@@ -84,3 +87,5 @@ async function checkResultPage(page, result) {
   expect(page.url()).toContain(type);
   expect(acturalProduct).toContain(expectProduct);
 }
+
+module.exports = { clickEachAnswer, checkResultPage };
