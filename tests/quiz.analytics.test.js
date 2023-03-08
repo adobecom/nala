@@ -14,30 +14,35 @@ let page;
 let networklogs;
 
 test.beforeAll(async ({ browser }) => {
-  console.log('Before tests');
   page = await browser.newPage();
   networklogs = [];
 
-  // Enable network logging
-  await page.route('**', (route) => {
-    const url = route.request().url();
-    if (url.includes('sstats.adobe.com/ee/or2/v1/interact') || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
-      networklogs.push(url);
-      // eslint-disable-next-line max-len, no-underscore-dangle
-      networklogs.push(JSON.stringify(route.request().postDataJSON().events[0].data._adobe_corpnew.digitalData.primaryEvent));
-    }
-    route.continue();
-  });
+  if (browser.browserType().name() === 'firefox') {
+    console.log('Before all tests: Enable network logging');
+    // Enable network logging
+    await page.route('**', (route) => {
+      const url = route.request().url();
+      if (url.includes('sstats.adobe.com/ee/or2/v1/interact') || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
+        networklogs.push(url);
+        // eslint-disable-next-line max-len, no-underscore-dangle
+        networklogs.push(JSON.stringify(route.request().postDataJSON().events[0].data._adobe_corpnew.digitalData.primaryEvent));
+      }
+      route.continue();
+    });
+  }
 });
 
-test.afterAll(async () => {
-  console.log('After tests');
-  // Disable network logging
-  await page.unroute('**');
-  await page.close();
+test.afterAll(async ({ browser }) => {
+  if (browser.browserType().name() === 'firefox') {
+    console.log('After all tests: Disable network logging');
+    // Disable network logging
+    await page.unroute('**');
+    await page.close();
+  }
 });
 
 test.describe(`${name}`, () => {
+  test.skip(({ browserName }) => browserName !== 'firefox', 'firefox only!');
   test.setTimeout(10 * 60 * 1000);
   // eslint-disable-next-line no-restricted-syntax
   for (const props of features) {
