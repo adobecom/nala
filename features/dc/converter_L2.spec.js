@@ -4,25 +4,6 @@ module.exports = {
     {
       name: '@converter',
       path: [
-        '/acrobat/online/pdf-to-ppt',
-        '/acrobat/online/pdf-to-jpg',
-        '/acrobat/online/pdf-to-word',
-        '/acrobat/online/pdf-to-excel',
-        '/acrobat/online/convert-pdf',
-        '/acrobat/online/ppt-to-pdf',
-        '/acrobat/online/jpg-to-pdf',
-        '/acrobat/online/word-to-pdf',
-        '/acrobat/online/excel-to-pdf',
-        '/acrobat/online/merge-pdf',
-        '/acrobat/online/password-protect-pdf',
-        '/acrobat/online/compress-pdf',
-      ],
-      envs: '@dc_live',
-      tags: '@frictionless',
-    },
-    {
-      name: '@converter',
-      path: [
         '/acrobat/online/pdf-to-ppt.html',
         '/acrobat/online/pdf-to-jpg.html',
         '/acrobat/online/pdf-to-word.html',
