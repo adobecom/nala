@@ -1,14 +1,38 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+import ims from '../../utils/imslogin.js';
+
 const { expect, test } = require('@playwright/test');
 const converter = require('../../features/dc/converter_L1.spec.js');
 const parse = require('../../features/parse.js');
 const selectors = require('../../selectors/dc_converter.selectors.js');
+const { extractTags } = require('../../utils/extract-test-title.js');
 
 const { name, features } = parse(converter);
+
+const verbToRedirectLink = {
+  'sign-pdf': 'fillsign',
+  'request-signature': 'sendforsignature',
+  'crop-pdf': 'crop',
+  'delete-pdf-pages': 'delete-pages',
+  'rotate-pdf': 'rotate-pages',
+  'rearrange-pdf': 'reorder-pages',
+  'split-pdf': 'split',
+  'add-pages-to-pdf': 'insert',
+  'extract-pdf-pages': 'extract',
+  'pdf-editor': 'add-comment',
+};
+
+const dcwebBaseUrl = {
+  dc_preview: 'dc.dev.dexilab.acrobat.com',
+  dc_live: 'stage.acrobat.adobe.com',
+  adobe_stage: 'stage.acrobat.adobe.com',
+  adobe_prod: 'acrobat.adobe.com',
+};
+
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(`Upload ${props.title}`, async ({ page, browser }) => {
       const { url, title } = props;
       const converterBlock = page.locator(selectors['@pdf-converter']);
       const fileInput = page.locator(selectors['@pdf-file-upload-input']);
@@ -45,6 +69,27 @@ test.describe(`${name}`, () => {
       // Wait for social CTAs
       await expect(googleCTA).toBeVisible();
       await expect(adobeCTA).toBeVisible();
+    });
+
+    test(`Sign-in ${props.title}`, async ({ page, context, browser }) => {
+      const { env, url } = extractTags(props.title);
+      const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
+      const redirectLink = verbToRedirectLink[url.match(pageNameRegex)[0]];
+      const imsBaseUrl = env === 'adobe_prod' ? 'auth.services.adobe.com' : 'auth-stg1.services.adobe.com';
+
+      await page.goto(props.url);
+
+      const navigationPromise = page.waitForNavigation({ url: new RegExp(imsBaseUrl) });
+      await ims.clickSignin(page);
+      await navigationPromise;
+      await ims.fillOutSignInForm(props, page, context, browser);
+
+      // Start waiting for navigation before opening the frictionless page. Note no await.
+      const redirectPromise = page.waitForNavigation({ url: new RegExp(dcwebBaseUrl[env]) });
+      // This action triggers the navigation with a script redirect.
+      await page.goto(props.url);
+      await redirectPromise;
+      await expect(page).toHaveURL(new RegExp(`/link/acrobat/${redirectLink}`, 'g'));
     });
   });
 });
