@@ -86,6 +86,9 @@ test.describe(`${name}`, () => {
 
       // Start waiting for navigation before opening the frictionless page. Note no await.
       const redirectPromise = page.waitForNavigation({ url: new RegExp(dcwebBaseUrl[env]) });
+      await redirectPromise;
+      await expect(page).toHaveURL(new RegExp(`/link/acrobat/${redirectLink}`, 'g'));
+
       // This action triggers the navigation with a script redirect.
       await page.goto(props.url);
       await redirectPromise;

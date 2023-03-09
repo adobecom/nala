@@ -1,13 +1,35 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 import { randomPassword } from '../../utils/random.js';
+import ims from '../../utils/imslogin.js';
 
 const { expect, test } = require('@playwright/test');
 const converter = require('../../features/dc/converter_L2.spec.js');
 const parse = require('../../features/parse.js');
 const selectors = require('../../selectors/dc_converter.selectors.js');
+const { extractTags } = require('../../utils/extract-test-title.js');
 
 const TEST_PW = randomPassword();
+const verbToRedirectLink = {
+  'pdf-to-ppt': 'pdf-to-ppt',
+  'pdf-to-jpg': 'pdf-to-image',
+  'pdf-to-word': 'pdf-to-word',
+  'pdf-to-excel': 'pdf-to-excel',
+  'convert-pdf': 'createpdf',
+  'ppt-to-pdf': 'ppt-to-pdf',
+  'jpg-to-pdf': 'jpg-to-pdf',
+  'word-to-pdf': 'word-to-pdf',
+  'excel-to-pdf': 'excel-to-pdf',
+  'merge-pdf': 'combine-pdf',
+  'password-protect-pdf': 'protect-pdf',
+  'compress-pdf': 'compress-pdf',
+};
+const dcwebBaseUrl = {
+  dc_preview: 'dc.dev.dexilab.acrobat.com',
+  dc_live: 'stage.acrobat.adobe.com',
+  adobe_stage: 'stage.acrobat.adobe.com',
+  adobe_prod: 'acrobat.adobe.com',
+};
 const fileInputList = [
   {
     file: 'docs/dc/Small_PDF.pdf',
@@ -60,7 +82,7 @@ const fileInputList = [
 const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(`Upload ${props.title}`, async ({ page, browser }) => {
       const { url } = props;
       const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
       const input = fileInputList.filter((x) => x.pages.includes(url.match(pageNameRegex)[0]))[0];
@@ -142,6 +164,30 @@ test.describe(`${name}`, () => {
       console.log(`${fileName} downloaded`);
 
       await download.delete();
+    });
+
+    test(`Sign-in ${props.title}`, async ({ page, context, browser }) => {
+      const { env, url } = extractTags(props.title);
+      const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
+      const redirectLink = verbToRedirectLink[url.match(pageNameRegex)[0]];
+      const imsBaseUrl = env === 'adobe_prod' ? 'auth.services.adobe.com' : 'auth-stg1.services.adobe.com';
+
+      await page.goto(props.url);
+
+      const navigationPromise = page.waitForNavigation({ url: new RegExp(imsBaseUrl) });
+      await ims.clickSignin(page);
+      await navigationPromise;
+      await ims.fillOutSignInForm(props, page, context, browser);
+
+      // Start waiting for navigation before opening the frictionless page. Note no await.
+      const redirectPromise = page.waitForNavigation({ url: new RegExp(dcwebBaseUrl[env]) });
+      await redirectPromise;
+      await expect(page).toHaveURL(new RegExp(`/link/acrobat/${redirectLink}`, 'g'));
+
+      // This action triggers the navigation with a script redirect.
+      await page.goto(props.url);
+      await redirectPromise;
+      await expect(page).toHaveURL(new RegExp(`/link/acrobat/${redirectLink}`, 'g'));
     });
   });
 });
