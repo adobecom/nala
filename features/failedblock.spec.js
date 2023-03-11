@@ -15,6 +15,18 @@ module.exports = {
     {
       name: '@failedblock',
       path: [
+        '/acrobat/online/pdf-to-ppt',
+        '/acrobat/online/jpg-to-pdf',
+        '/acrobat/online/sign-pdf',
+        '/acrobat/online/compress-pdf',
+        '/acrobat/online/crop-pdf',
+      ],
+      envs: '@dc_live',
+      tags: '@failedblock',
+    },
+    {
+      name: '@failedblock',
+      path: [
         '/pages/artisthub/',
         '/pages/artisthub/learn',
       ],
