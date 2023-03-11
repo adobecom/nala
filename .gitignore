@@ -118,6 +118,7 @@ debug
 reports
 screenshots
 /test-results/
+/test-html-results/
 /playwright-report/
 /playwright/.cache/
 Test.pptx
