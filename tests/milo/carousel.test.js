@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import carousel from '../../features/carousel.spec.js';
+import carousel from '../../features/milo/carousel.spec.js';
 import parse from '../../features/parse.js';
 import selectors from '../../selectors/carousel.selectors.js';
 

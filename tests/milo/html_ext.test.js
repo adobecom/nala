@@ -1,5 +1,5 @@
 const { expect, test } = require('@playwright/test');
-const htmlExt = require('../../features/html_ext.spec.js');
+const htmlExt = require('../../features/milo/html_ext.spec.js');
 const parse = require('../../features/parse.js');
 const selectors = require('../../selectors/html_ext.selectors.js');
 

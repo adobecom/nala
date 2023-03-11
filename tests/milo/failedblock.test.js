@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 const { expect, test } = require('@playwright/test');
-const failedBlock = require('../../features/failedblock.spec.js');
+const failedBlock = require('../../features/milo/failedblock.spec.js');
 const parse = require('../../features/parse.js');
 const selectors = require('../../selectors/failedblock.selectors.js');
 

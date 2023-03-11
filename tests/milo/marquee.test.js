@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import marquee from '../../features/marquee.spec.js';
+import marquee from '../../features/milo/marquee.spec.js';
 import parse from '../../features/parse.js';
 import selectors from '../../selectors/marquee.selectors.js';
 
