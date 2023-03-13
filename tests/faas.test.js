@@ -9,7 +9,8 @@ const selectors = require('../selectors/faas.selectors.js');
 const { name, features } = parse(faas);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page, browserName }) => {
+      test.skip(browserName !== 'firefox' && props.tag === '@html', 'Chromium and WebKit browsers are caught by bot checker, working on fix');
       await page.goto(props.url);
 
       // Open up form modal
@@ -60,7 +61,7 @@ test.describe(`${name}`, () => {
       } else if (props.tag === '@html') {
         await page.waitForURL(/.*sdk\/holiday-shopping-report/);
         await expect(page).toHaveURL(/.*sdk\/holiday-shopping-report/);
-        if (browser.browserType().name() === 'firefox') {
+        if (browserName === 'firefox') {
           await expect(page).toHaveTitle(/Holiday Shopping Report\.*.*/);
         }
       }
