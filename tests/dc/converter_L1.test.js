@@ -71,7 +71,7 @@ test.describe(`${name}`, () => {
       await expect(adobeCTA).toBeVisible();
     });
 
-    test(`Sign-in ${props.title}`, async ({ page, context, browser }) => {
+    test(`Sign-in ${props.title}`, async ({ page }) => {
       const { env, url } = extractTags(props.title);
       const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
       const redirectLink = verbToRedirectLink[url.match(pageNameRegex)[0]];
@@ -79,19 +79,12 @@ test.describe(`${name}`, () => {
 
       await page.goto(props.url);
 
-      const navigationPromise = page.waitForNavigation({ url: new RegExp(imsBaseUrl) });
+      const navigationPromise = page.waitForURL(new RegExp(imsBaseUrl));
       await ims.clickSignin(page);
       await navigationPromise;
-      await ims.fillOutSignInForm(props, page, context, browser);
+      await ims.fillOutSignInForm(props, page);
 
-      // Start waiting for navigation before opening the frictionless page. Note no await.
-      const redirectPromise = page.waitForNavigation({ url: new RegExp(dcwebBaseUrl[env]) });
-      await redirectPromise;
-      await expect(page).toHaveURL(new RegExp(`/link/acrobat/${redirectLink}`, 'g'));
-
-      // This action triggers the navigation with a script redirect.
-      await page.goto(props.url);
-      await redirectPromise;
+      await page.waitForURL(new RegExp(dcwebBaseUrl[env]));
       await expect(page).toHaveURL(new RegExp(`/link/acrobat/${redirectLink}`, 'g'));
     });
   });
