@@ -10,7 +10,8 @@ const { name, features } = parse(imslogin);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@gnav-signin' || props.tag === '@gnav-multi-signin') {
-      test(props.title, async ({ page, context, browser }) => {
+      test(props.title, async ({ page, context }) => {
+        test.skip(props.url.includes('business.adobe.com'), 'All browsers are caught by bot checker for BACOM Production links, working on fix');
         await page.goto(props.url);
 
         // Sign-in
@@ -30,7 +31,7 @@ test.describe(`${name}`, () => {
           await expect(page).toHaveURL(/.*auth.services.adobe.com/);
         }
 
-        await ims.fillOutSignInForm(props, page, context, browser);
+        await ims.fillOutSignInForm(props, page);
 
         if (props.tag === '@gnav-multi-signin') {
           // Open App Launcher
