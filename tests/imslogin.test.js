@@ -29,6 +29,7 @@ test.describe(`${name}`, () => {
           await page.waitForURL('**/auth.services.adobe.com/en_US/index.html**/');
           await expect(page).toHaveURL(/.*auth.services.adobe.com/);
         }
+
         await ims.fillOutSignInForm(props, page, context, browser);
 
         if (props.tag === '@gnav-multi-signin') {
@@ -55,24 +56,17 @@ test.describe(`${name}`, () => {
         }
 
         // Sign-out
+        await page.locator(selectors['@gnav-profile-button']).click();
+        const viewAccount = page.locator(selectors['@gnav-viewaccount']);
+        expect(viewAccount).toBeVisible();
+        const signoutBtn = page.locator(selectors['@gnav-signout']);
+        expect(signoutBtn).toBeVisible();
+        await signoutBtn.click();
+        await page.waitForURL(`${props.url}#`);
+        expect(page).toHaveURL(`${props.url}#`);
 
-        // Chromium/WebKit issue on prod, Access Denied error happens unless on VPN.
-        // Some type of state or permission is blocking the successful redirection of sign-out.
-        // Once issue is fixed, this temporary conditional can be removed.
-        // Issue only happens on WebKit when signing out from BACOM Prod environment.
-        if ((browser.browserType().name() === 'firefox' && props.url.includes('business.adobe.com'))) {
-          await page.locator(selectors['@gnav-profile-button']).click();
-          const viewAccount = page.locator(selectors['@gnav-viewaccount']);
-          expect(viewAccount).toBeVisible();
-          const signoutBtn = page.locator(selectors['@gnav-signout']);
-          expect(signoutBtn).toBeVisible();
-          await signoutBtn.click();
-          await page.waitForURL(`${props.url}#`);
-          expect(page).toHaveURL(`${props.url}#`);
-
-          const signinBtn = page.locator(selectors['@gnav-signin']);
-          await expect(signinBtn).toBeVisible();
-        }
+        const signinBtn = page.locator(selectors['@gnav-signin']);
+        await expect(signinBtn).toBeVisible();
       });
     }
 
