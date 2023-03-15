@@ -11,7 +11,7 @@ const selectors = require('../selectors/result.selectors.js');
 const { name, features } = parse(result);
 
 test.describe(`${name}`, () => {
-  test.setTimeout(10 * 60 * 1000);
+  // test.setTimeout(10 * 60 * 1000);
   for (const props of features) {
     test(props.title, async ({ page }) => {
       const testdata = await loadTestData(path.join('data/cc/quiz/', `${props.tag}.json`));

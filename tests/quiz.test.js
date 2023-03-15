@@ -3,13 +3,13 @@ const { test, expect } = require('@playwright/test');
 const quiz = require('../features/quiz.spec.js');
 const parse = require('../features/parse.js');
 const selectors = require('../selectors/quiz.selectors.js');
-const loadTestData = require('../common/data-provider.js');
+const { loadTestData } = require('../common/data-provider.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(quiz);
 
 test.describe(`${name}`, () => {
-  test.setTimeout(10 * 60 * 1000);
+  test.setTimeout(3 * 60 * 1000);
   // eslint-disable-next-line no-restricted-syntax
   for (const props of features) {
     test(props.title, async ({ page }) => {
@@ -59,7 +59,7 @@ async function clickEachAnswer(url, page, key) {
       await page.getByRole('button', { name: selectors['@next-button'] }).click();
 
       // eslint-disable-next-line no-await-in-loop
-      await page.waitForTimeout(1000);
+      // await page.waitForTimeout(1000);
     }
   }
 
