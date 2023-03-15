@@ -1,0 +1,38 @@
+name: Run Nala Daily Visual Comparison
+
+on:
+  schedule:
+    - cron: "0 16 * * *"
+
+jobs:
+  platform_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Running tests
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Run Nala Visual Comparison ${{ matrix.os }}
+        uses: ./
+        env:
+          isVisual: true
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: nala-results
+          path: nala-results.json
+          retention-days: 30
+      - name: Persist Screenshots Artifact
+        uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
+        with:
+          name: vc-screenshots-failures
+          path: test-results/
+          retention: 30

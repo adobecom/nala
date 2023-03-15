@@ -9,6 +9,12 @@ do
   [[ "$label" = \@* ]] && label="${label:1}" && TAGS+="|$label"
 done
 
+# Check to see if execution is a visual comparison execution
+# If so, add the tag for visual tests
+if [ $isVisual ]
+then
+  TAGS+="|@visual-compare"
+
 # Remove the first pipe from tags if tags are not empty
 [[ ! -z "$TAGS" ]] && TAGS="${TAGS:1}" && TAGS="-g $TAGS"
 
