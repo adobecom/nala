@@ -2,7 +2,7 @@ const path = require('path');
 const { test } = require('@playwright/test');
 const quiz = require('../features/quiz.analytics.spec.js');
 const parse = require('../features/parse.js');
-const loadTestData = require('../common/data-provider.js');
+const { loadTestData } = require('../common/data-provider.js');
 const { clickEachAnswer, checkResultPage } = require('./quiz.test.js');
 
 // Parse the feature file into something flat that can be tested separately
@@ -43,7 +43,7 @@ test.afterAll(async ({ browser }) => {
 
 test.describe(`${name}`, () => {
   test.skip(({ browserName }) => browserName !== 'firefox', 'firefox only!');
-  test.setTimeout(10 * 60 * 1000);
+  // test.setTimeout(10 * 60 * 1000);
   // eslint-disable-next-line no-restricted-syntax
   for (const props of features) {
     // eslint-disable-next-line no-loop-func
