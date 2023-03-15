@@ -26,7 +26,7 @@ const config = {
      * For example in `await expect(locator).toHaveText();`
      */
     timeout: 5000,
-    toHaveScreenshot: { maxDiffPixelRatio: 0.3 },
+    toHaveScreenshot: { maxDiffPixelRatio: 0.2 },
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -40,8 +40,6 @@ const config = {
   reporter: process.env.CI
     ? [['github'], ['./utils/reporters/json-reporter.js'], ['./utils/reporters/api-reporter.js']]
     : [['list']],
-  /* Skip snapshot expectations. See https://playwright.dev/docs/api/class-testconfig#test-config-ignore-snapshots. */
-  // ignoreSnapshots: !process.env.CI,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */

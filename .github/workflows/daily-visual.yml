@@ -2,7 +2,7 @@ name: Run Nala Daily Visual Comparison
 
 on:
   schedule:
-    - cron: "0 16 * * *"
+    - cron: "0 19 * * *"
 
 jobs:
   platform_matrix:

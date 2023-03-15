@@ -116,8 +116,10 @@ dist
 # Debug/Report/Screenshots Local files
 debug
 reports
+screenshots/*
 !screenshots/visual-compare/
 /test-results/
+/test-html-results/
 /playwright-report/
 /playwright/.cache/
 Test.pptx
