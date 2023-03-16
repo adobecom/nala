@@ -9,6 +9,7 @@ module.exports = {
         '/customer-success-stories/abb-case-study',
         '/customer-success-stories/dentsu-isobar-case-study',
         '/blog/',
+        '/jp/customer-success-stories/adobe-experience-cloud-case-study',
       ],
       envs: '@bacom_prod',
       tags: '@html',
