@@ -108,62 +108,28 @@ async function checkResultPage(page, result) {
  * @param {Object} data
  */
 function initializeOriginalData(data) {
-  // const dataMap = {
-  //   'q-category': qCategory,
-  //   'q-rather': qRather,
-  //   'q-customer': qCustomer,
-  //   'q-photo': qPhoto,
-  //   'q-video': qVideo,
-  //   'q-design': qDesign,
-  //   'q-illustration': qIllustration,
-  //   'q-pdf': qPdf,
-  //   'q-3d': q3d,
-  // };
+  const dataMap = {
+    'q-category': qCategory,
+    'q-rather': qRather,
+    'q-customer': qCustomer,
+    'q-photo': qPhoto,
+    'q-video': qVideo,
+    'q-design': qDesign,
+    'q-illustration': qIllustration,
+    'q-pdf': qPdf,
+    'q-3d': q3d,
+  };
 
-  // for (const [key, value] of Object.entries(dataMap)) {
-  //   data[key].data.forEach((element) => {
-  //     if (key === 'q-category') {
-  //       value.push(element.title.trim());
-  //     } else {
-  //       value.push(element.text.trim());
-  //     }
-  //   });
-  // }
-  data['q-category'].data.forEach((element) => {
-    qCategory.push(element.title.trim());
-  });
-
-  data['q-rather'].data.forEach((element) => {
-    qRather.push(element.text.trim());
-  });
-
-  data['q-customer'].data.forEach((element) => {
-    qCustomer.push(element.text.trim());
-  });
-
-  data['q-photo'].data.forEach((element) => {
-    qPhoto.push(element.text.trim());
-  });
-
-  data['q-video'].data.forEach((element) => {
-    qVideo.push(element.text.trim());
-  });
-
-  data['q-design'].data.forEach((element) => {
-    qDesign.push(element.text.trim());
-  });
-
-  data['q-illustration'].data.forEach((element) => {
-    qIllustration.push(element.text.trim());
-  });
-
-  data['q-pdf'].data.forEach((element) => {
-    qPdf.push(element.text.trim());
-  });
-
-  data['q-3d'].data.forEach((element) => {
-    q3d.push(element.text.trim());
-  });
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [key, value] of Object.entries(dataMap)) {
+    data[key].data.forEach((element) => {
+      if (key === 'q-category') {
+        value.push(element.title.trim());
+      } else {
+        value.push(element.text.trim());
+      }
+    });
+  }
 }
 
 /**
