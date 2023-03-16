@@ -50,13 +50,17 @@ test.describe(`${name}`, () => {
     test(props.title, async () => {
       const testdata = await loadTestData(path.join('data/cc/quiz/', `${props.tag}.yml`));
       const url = props.url.includes('?milolibs=') ? `${props.url}&mboxDisable=1` : `${props.url}?mboxDisable=1`;
-      const key = Object.keys(testdata)[0];
-      // eslint-disable-next-line no-await-in-loop, no-use-before-define
-      await clickEachAnswer(url, page, key);
-      // eslint-disable-next-line no-use-before-define, no-await-in-loop
-      await checkResultPage(page, testdata[key]);
+      // eslint-disable-next-line no-restricted-syntax
+      for (const key of Object.keys(testdata)) {
+        console.log(key);
+        networklogs.length = 0;
+        // eslint-disable-next-line no-await-in-loop, no-use-before-define
+        await clickEachAnswer(url, page, key);
+        // eslint-disable-next-line no-use-before-define, no-await-in-loop
+        await checkResultPage(page, testdata[key]);
 
-      console.log(networklogs);
+        console.log(networklogs);
+      }
     });
   }
 });
