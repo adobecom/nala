@@ -51,6 +51,11 @@ test.describe(`${name}`, () => {
       await OneTrustEnableButton.click();
       await expect(OneTrustContainer).not.toBeVisible();
       await expect(OneTrustSuccessContainer).toBeVisible();
+
+      // Check consent persistence:
+      await page.reload();
+      await page.waitForLoadState('networkidle');
+      await expect(OneTrustContainer).not.toBeVisible();
     });
   });
 });
