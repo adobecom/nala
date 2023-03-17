@@ -130,7 +130,6 @@ test.describe(`${name}`, () => {
       }
       if (url.includes('merge-pdf')) {
         await insertButton.click();
-
         const [fileChooser] = await Promise.all([
           // Wait for the 'filechooser' event before clicking the button
           page.waitForEvent('filechooser'),
@@ -138,7 +137,13 @@ test.describe(`${name}`, () => {
           await plusButton.click(),
         ]);
         await fileChooser.setFiles(input.file);
-        await mergeButton.click();
+        await expect(async () => {
+          await mergeButton.click({ force: true });
+          await expect(exportProgress).toBeVisible();
+        }).toPass({
+          intervals: [1_000],
+          timeout: 10_000,
+        });
       }
       if (url.includes('password-protect-pdf')) {
         await inputPassword.fill(TEST_PW);

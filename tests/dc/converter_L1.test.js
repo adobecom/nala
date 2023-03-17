@@ -63,8 +63,8 @@ test.describe(`${name}`, () => {
       // DC Web services can sometimes be slow but do not wait for more than 30s
       await expect(pdfComplete).toBeVisible({ timeout: 30000 });
 
-      // Wait for file preview
-      await expect(filePreview).toBeVisible();
+      // Wait for file preview for up to 10s as DC web services can be slow
+      await expect(filePreview).toBeVisible({ timeout: 10000 });
 
       // Wait for social CTAs
       await expect(googleCTA).toBeVisible();
