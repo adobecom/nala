@@ -1,25 +1,11 @@
-import { FedsPage } from './feds.page';
 import { expect } from '@playwright/test';
+import { FedsPage } from './feds.page';
 
 exports.FedsHeader = class FedsHeader extends FedsPage {
 
   constructor(page) {
     super();
     this.page = page;
-    this.page.props = {
-      lsKeyName: 'feds-notifications_en',
-      components: {
-        'NavBar': '#feds-topnav',
-        'subnav': '#AdobeSecondaryNav',
-        'NavDrawer': 'div.feds-drawer',
-        'NavList': 'div.feds-navList-wrapper--main',
-        'Localnav': 'div[data-feds-element="localnav"]',
-        'breadcrumbs': 'div.feds-breadcrumbs',
-        'regionPicker': 'a.feds-regionPicker',
-      },
-      headerData: {},
-      pageClouds: []
-    };
 
     // MegaMenu selectors:
     this.MegaMenuContainer = page.locator('#feds-header .feds-popup--open');
