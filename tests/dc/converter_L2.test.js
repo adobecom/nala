@@ -89,6 +89,7 @@ test.describe(`${name}`, () => {
       const converterBlock = page.locator(selectors['@pdf-converter']);
       const fileInput = page.locator(selectors[input.locator]);
       const exportButton = page.locator(selectors['@export-convert-button']);
+      const exportProgress = page.locator(selectors['@export-progress-bar']);
       const convertButton = page.locator(selectors['@convert-button']);
       const insertButton = page.locator(selectors['@insert-button']);
       const plusButton = page.locator(selectors['@plus-button']);
@@ -115,7 +116,14 @@ test.describe(`${name}`, () => {
       await expect(fileInput).toBeVisible();
       await fileInput.setInputFiles(input.file);
       if (url.includes('convert-pdf')) {
-        await exportButton.click();
+        await expect(async () => {
+          await expect(exportButton).toBeVisible();
+          await exportButton.click({ force: true });
+          await expect(exportProgress).toBeVisible();
+        }).toPass({
+          intervals: [1_000],
+          timeout: 10_000,
+        });
       }
       if (url.includes('pdf-to-jpg')) {
         await convertButton.click();
