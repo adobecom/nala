@@ -16,7 +16,7 @@ module.exports = {
         '/acrobat/online/pdf-editor',
       ],
       envs: '@dc_live',
-      tags: '@frictionless @visual-compare',
+      tags: '@frictionless',
     },
     {
       name: '@converter',
