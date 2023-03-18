@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 const { expect, test } = require('@playwright/test');
-const faas = require('../../features/milo/faas.spec.js');
-const parse = require('../../features/parse.js');
-const selectors = require('../../selectors/faas.selectors.js');
+const faas = require('../features/faas.spec.js');
+const parse = require('../features/parse.js');
+const selectors = require('../selectors/faas.selectors.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(faas);

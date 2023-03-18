@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 const { expect, test } = require('@playwright/test');
-const converter = require('../../features/dc/review.spec.js');
-const parse = require('../../features/parse.js');
-const selectors = require('../../selectors/review.selectors.js');
+const converter = require('../features/review.spec.js');
+const parse = require('../features/parse.js');
+const selectors = require('../selectors/review.selectors.js');
 
 const { name, features } = parse(converter);
 test.describe(`${name}`, () => {

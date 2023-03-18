@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 const { expect, test } = require('@playwright/test');
-const parse = require('../../features/parse.js');
-const consent = require('../../features/feds/consent.spec.js');
-const selectors = require('../../selectors/consent.selectors.js');
+const parse = require('../features/parse.js');
+const consent = require('../features/consent.spec.js');
+const selectors = require('../selectors/consent.selectors.js');
 
 const { name, features } = parse(consent);
 test.describe(`${name}`, () => {
