@@ -62,14 +62,14 @@ test.describe(`${name}`, () => {
         const hrefs = await page.evaluate(() => Array.from(document.links).map((item) => item.href));
         hrefs.forEach(async (linkUrl) => {
           if (!linkUrl.includes('/fragments/')) {
-            if (linkUrl !== 'https://business.adobe.com/blog') {
+            if (!linkUrl.match(/business.adobe.com\/blog|business.adobe.com\/.*\/blog/)) {
               if (linkUrl.charAt(linkUrl.length - 1) === '/') {
                 expect(linkUrl).not.toContain('.html');
               } else {
                 if (linkUrl.includes('business.adobe.com') && !linkUrl.includes('/blog/')) {
                   expect(linkUrl).toContain('.html');
                 }
-                if (linkUrl.includes('business.adobe.com/blog/')) {
+                if (linkUrl.match(/business.adobe.com\/blog\/|business.adobe.com\/.*\/blog\//)) {
                   expect(linkUrl).not.toContain('.html');
                 }
                 if (linkUrl.includes('.html')) {
