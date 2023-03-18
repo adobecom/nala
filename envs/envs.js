@@ -1,8 +1,8 @@
 module.exports = {
   '@milo_live': 'https://main--milo--adobecom.hlx.live',
   '@milo_prod': 'https://milo.adobe.com',
-  '@feds_live': 'https://feds-gnav--milo--adobecom.hlx.live',
-  '@feds_preview': 'https://feds-gnav--milo--adobecom.hlx.page',
+  '@feds_live': 'https://gnav--milo--adobecom.hlx.live',
+  '@feds_preview': 'https://gnav--milo--adobecom.hlx.page',
   '@bacom_live': 'https://main--bacom--adobecom.hlx.live',
   '@bacomblog_live': 'https://main--business-website--adobe.hlx.live',
   '@stock_live': 'https://main--stock--adobecom.hlx.live',
@@ -11,6 +11,7 @@ module.exports = {
   '@adobe_stage': 'https://www.stage.adobe.com',
   '@adobe_prod': 'https://www.adobe.com',
   '@bacom_prod': 'https://business.adobe.com',
+  '@bacom_stage': 'https://business.stage.adobe.com',
   '@blog_prod': 'https://blog.adobe.com',
   '@blog_live': 'https://main--blog--adobe.hlx.live',
   '@local3000': 'http://localhost:3000',

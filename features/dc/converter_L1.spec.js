@@ -4,23 +4,6 @@ module.exports = {
     {
       name: '@converter',
       path: [
-        '/acrobat/online/sign-pdf',
-        '/acrobat/online/request-signature',
-        '/acrobat/online/crop-pdf',
-        '/acrobat/online/delete-pdf-pages',
-        '/acrobat/online/rotate-pdf',
-        '/acrobat/online/rearrange-pdf',
-        '/acrobat/online/split-pdf',
-        '/acrobat/online/add-pages-to-pdf',
-        '/acrobat/online/extract-pdf-pages',
-        '/acrobat/online/pdf-editor',
-      ],
-      envs: '@dc_live',
-      tags: '@frictionless',
-    },
-    {
-      name: '@converter',
-      path: [
         '/acrobat/online/sign-pdf.html',
         '/acrobat/online/request-signature.html',
         '/acrobat/online/crop-pdf.html',
