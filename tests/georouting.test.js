@@ -32,15 +32,16 @@ test.describe(`${name}`, () => {
         messages.forEach(async (message) => {
           expectedLang = false;
           lang = await message.getAttribute('lang');
+          const messageText = await message.innerText();
           expect(lang).toBeTruthy();
 
           if (lang === 'de-DE' || lang === 'en-US') { expectedLang = true; }
           expect(expectedLang).toBeTruthy();
 
           if (lang === 'de-DE') {
-            expect(message.textContent()).toEqual('Sie befinden sich außerhalb der USA? Auf der Adobe-Website für Ihre Region finden Sie Informationen zu den für Sie relevanten Preisen, Angeboten und Veranstaltungen.');
+            expect(messageText).toEqual('Sie befinden sich außerhalb der USA? Auf der Adobe-Website für Ihre Region finden Sie Informationen zu den für Sie relevanten Preisen, Angeboten und Veranstaltungen.');
           } else {
-            expect(message.textContent()).toEqual('Are you visiting Adobe.com from outside the US? Visit your regional site for more relevant pricing, promotions and events.');
+            expect(messageText).toEqual('Are you visiting Adobe.com from outside the US? Visit your regional site for more relevant pricing, promotions and events.');
           }
         });
 
@@ -52,24 +53,18 @@ test.describe(`${name}`, () => {
         links.forEach(async (link) => {
           expectedLang = false;
           lang = await link.getAttribute('lang');
+          const linkText = await link.innerText();
           expect(lang).toBeTruthy();
 
           if (lang === 'de-DE' || lang === 'en-US') { expectedLang = true; }
           expect(expectedLang).toBeTruthy();
 
           if (lang === 'de-DE') {
-            expect(link.textContent()).toEqual('Zur Website für Deutschland');
-          } else {
-            expect(link.textContent()).toEqual('Continue to United States');
-          }
-        });
-
-        // Then click the new region language link
-        links.forEach(async (link) => {
-          lang = await link.getAttribute('lang');
-          if (lang === 'de-DE') {
+            expect(linkText).toEqual('Zur Website für Deutschland');
             await link.click();
             await expect(page).toHaveURL(/.*de\/test\/features\/blocks\/georouting\?akamaiLocale=DE/);
+          } else {
+            expect(linkText).toEqual('Continue to United States');
           }
         });
 
@@ -112,7 +107,7 @@ test.describe(`${name}`, () => {
           lang = await message.getAttribute('lang');
           expect(lang).toBeTruthy();
 
-          if (lang === 'ar-QA' || lang === 'en-QA') { expectedLang = true; }
+          if (lang === 'en' || lang === 'en-US') { expectedLang = true; }
           expect(expectedLang).toBeTruthy();
         });
 
@@ -126,7 +121,7 @@ test.describe(`${name}`, () => {
           lang = await link.getAttribute('lang');
           expect(lang).toBeTruthy();
 
-          if (lang === 'ar-QA' || lang === 'en-QA') { expectedLang = true; }
+          if (lang === 'en' || lang === 'en-US') { expectedLang = true; }
           expect(expectedLang).toBeTruthy();
         });
       });
@@ -144,13 +139,13 @@ test.describe(`${name}`, () => {
         const linksWrapper = page.locator(selectors['@links']);
         await expect(linksWrapper).toBeVisible();
         const links = await page.$$(selectors['@link']);
-        expect(links.length).toEqual(1);
+        expect(links.length).toEqual(2);
         links.forEach(async (link) => {
           lang = await link.getAttribute('lang');
           if (lang === 'de-DE') {
             await link.click();
           }
-          expect(page, 'ERROR: Fallback link did not go to locale homepage.').toHaveURL(/.*business.adobe.com\/de/);
+          expect(page, 'ERROR: Fallback link did not go to locale homepage.').toHaveURL(/.*main--milo--adobecom.hlx.live\/de/);
         });
       });
     }
@@ -173,7 +168,7 @@ test.describe(`${name}`, () => {
         geoModal = page.locator(selectors['@dialog-modal']);
         await expect(geoModal).toBeVisible({ timeout: 15000 });
 
-        await page.locator(selectors['@page-header']).click();
+        await page.locator(selectors['@modal-curtain']).click();
         await expect(geoModal).not.toBeVisible({ timeout: 15000 });
 
         // Verify Cookies have not been set
@@ -198,7 +193,7 @@ test.describe(`${name}`, () => {
 
     if (props.tag === '@fallback-off') {
       test(props.title, async ({ page }) => {
-        await page.goto(`${props.url}?akamaiLocale=ES`);
+        await page.goto(`${props.url}?akamaiLocale=CA`);
         const geoModal = page.locator(selectors['@dialog-modal']);
         await expect(geoModal).toBeVisible({ timeout: 15000 });
 
