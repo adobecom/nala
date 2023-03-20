@@ -163,7 +163,7 @@ test.describe(`${name}`, () => {
       if (url.includes('password-protect-pdf')) {
         await expect(protectHeading).toHaveText('This file can’t be viewed because it’s password protected');
       } else {
-        await expect(filePreview).toBeVisible();
+        await expect(filePreview).toBeVisible({ timeout: 10000 });
       }
 
       // Start waiting for download before clicking. Note no await.

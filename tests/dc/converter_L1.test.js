@@ -57,8 +57,12 @@ test.describe(`${name}`, () => {
       // Upload a test document
       // Increasing the timeout to 10s due to a known bug (MWPW-125603).
       await expect(fileInput).toBeVisible({ timeout: 10000 });
-      await fileInput.setInputFiles(url.includes('split-pdf') ? 'docs/dc/Multipage_PDF.pdf' : 'docs/dc/Small_PDF.pdf');
-
+      await expect(async () => {
+        await fileInput.setInputFiles(url.includes('split-pdf') ? 'docs/dc/Multipage_PDF.pdf' : 'docs/dc/Small_PDF.pdf');
+      }).toPass({
+        intervals: [1_000],
+        timeout: 10_000,
+      });
       // Wait for conversion to complete
       // DC Web services can sometimes be slow but do not wait for more than 30s
       await expect(pdfComplete).toBeVisible({ timeout: 30000 });
