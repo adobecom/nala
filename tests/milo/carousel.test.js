@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import carousel from '../features/carousel.spec.js';
-import parse from '../features/parse.js';
-import selectors from '../selectors/carousel.selectors.js';
+import parse from '../../libs/parse.js';
+import carousel from '../../features/milo/carousel.spec.js';
+import selectors from '../../selectors/milo/carousel.selectors.js';
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(carousel);
