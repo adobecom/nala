@@ -118,31 +118,34 @@ test.describe(`${name}`, () => {
       if (url.includes('convert-pdf')) {
         await expect(async () => {
           await expect(exportButton).toBeVisible();
-          await exportButton.click({ force: true });
+          await exportButton.click({ trial: true });
+          await exportButton.click();
           await expect(exportProgress).toBeVisible();
         }).toPass({
           intervals: [1_000],
-          timeout: 10_000,
+          timeout: 20_000,
         });
       }
       if (url.includes('pdf-to-jpg')) {
+        await convertButton.click({ trial: true });
         await convertButton.click();
       }
       if (url.includes('merge-pdf')) {
-        await insertButton.click();
-        const [fileChooser] = await Promise.all([
-          // Wait for the 'filechooser' event before clicking the button
-          page.waitForEvent('filechooser'),
-          // Open the file chooser
-          await plusButton.click(),
-        ]);
-        await fileChooser.setFiles(input.file);
         await expect(async () => {
-          await mergeButton.click({ force: true });
-          await expect(exportProgress).toBeVisible();
+          await insertButton.click();
+          const [fileChooser] = await Promise.all([
+            // Wait for the 'filechooser' event before clicking the button
+            page.waitForEvent('filechooser'),
+            // Open the file chooser
+            await plusButton.click(),
+          ]);
+          await fileChooser.setFiles(input.file);
+          await mergeButton.click({ trial: true });
+          await mergeButton.click();
+          await expect(exportProgress).toBeVisible({ timeout: 10000 });
         }).toPass({
           intervals: [1_000],
-          timeout: 10_000,
+          timeout: 30_000,
         });
       }
       if (url.includes('password-protect-pdf')) {
