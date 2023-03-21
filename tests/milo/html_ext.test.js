@@ -1,7 +1,7 @@
 const { expect, test } = require('@playwright/test');
-const htmlExt = require('../features/html_ext.spec.js');
-const parse = require('../features/parse.js');
-const selectors = require('../selectors/html_ext.selectors.js');
+const parse = require('../../libs/parse.js');
+const htmlExt = require('../../features/milo/html_ext.spec.js');
+const selectors = require('../../selectors/milo/html_ext.selectors.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(htmlExt);
