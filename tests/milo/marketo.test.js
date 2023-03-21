@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import marketo from '../features/marketo.spec.js';
-import selector from '../selectors/marketo.selectors.js';
-import parse from '../features/parse.js';
+import parse from '../../libs/parse.js';
+import marketo from '../../features/milo/marketo.spec.js';
+import selector from '../../selectors/milo/marketo.selectors.js';
 
 const { name, features } = parse(marketo);
 

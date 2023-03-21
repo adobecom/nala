@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import columns from '../features/columns.spec.js';
-import parse from '../features/parse.js';
-import selectors from '../selectors/columns.selectors.js';
+import parse from '../../libs/parse.js';
+import columns from '../../features/milo/columns.spec.js';
+import selectors from '../../selectors/milo/columns.selectors.js';
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(columns);
