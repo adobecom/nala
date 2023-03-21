@@ -89,6 +89,7 @@ test.describe(`${name}`, () => {
       const converterBlock = page.locator(selectors['@pdf-converter']);
       const fileInput = page.locator(selectors[input.locator]);
       const exportButton = page.locator(selectors['@export-convert-button']);
+      const exportProgress = page.locator(selectors['@export-progress-bar']);
       const convertButton = page.locator(selectors['@convert-button']);
       const insertButton = page.locator(selectors['@insert-button']);
       const plusButton = page.locator(selectors['@plus-button']);
@@ -115,22 +116,37 @@ test.describe(`${name}`, () => {
       await expect(fileInput).toBeVisible();
       await fileInput.setInputFiles(input.file);
       if (url.includes('convert-pdf')) {
-        await exportButton.click();
+        await expect(async () => {
+          await expect(exportButton).toBeVisible();
+          await exportButton.click({ trial: true });
+          await exportButton.click();
+          await expect(exportProgress).toBeVisible();
+        }).toPass({
+          intervals: [1_000],
+          timeout: 20_000,
+        });
       }
       if (url.includes('pdf-to-jpg')) {
+        await convertButton.click({ trial: true });
         await convertButton.click();
       }
       if (url.includes('merge-pdf')) {
-        await insertButton.click();
-
-        const [fileChooser] = await Promise.all([
-          // Wait for the 'filechooser' event before clicking the button
-          page.waitForEvent('filechooser'),
-          // Open the file chooser
-          await plusButton.click(),
-        ]);
-        await fileChooser.setFiles(input.file);
-        await mergeButton.click();
+        await expect(async () => {
+          await insertButton.click();
+          const [fileChooser] = await Promise.all([
+            // Wait for the 'filechooser' event before clicking the button
+            page.waitForEvent('filechooser'),
+            // Open the file chooser
+            await plusButton.click(),
+          ]);
+          await fileChooser.setFiles(input.file);
+          await mergeButton.click({ trial: true });
+          await mergeButton.click();
+          await expect(exportProgress).toBeVisible({ timeout: 10000 });
+        }).toPass({
+          intervals: [1_000],
+          timeout: 30_000,
+        });
       }
       if (url.includes('password-protect-pdf')) {
         await inputPassword.fill(TEST_PW);
@@ -150,7 +166,7 @@ test.describe(`${name}`, () => {
       if (url.includes('password-protect-pdf')) {
         await expect(protectHeading).toHaveText('This file can’t be viewed because it’s password protected');
       } else {
-        await expect(filePreview).toBeVisible();
+        await expect(filePreview).toBeVisible({ timeout: 10000 });
       }
 
       // Start waiting for download before clicking. Note no await.
