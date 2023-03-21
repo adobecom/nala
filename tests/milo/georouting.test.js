@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import { expect, test } from '@playwright/test';
-import georouting from '../features/georouting.spec.js';
-import parse from '../features/parse.js';
-import selectors from '../selectors/georouting.selectors.js';
+import georouting from '../../features/milo/georouting.spec.js';
+import parse from '../../libs/parse.js';
+import selectors from '../../selectors/milo/georouting.selectors.js';
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(georouting);
