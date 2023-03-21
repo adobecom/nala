@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { expect, test } from '@playwright/test';
 import georouting from '../features/georouting.spec.js';
 import parse from '../features/parse.js';
@@ -24,53 +25,38 @@ test.describe(`${name}`, () => {
         // Check all messages are there per regions and the text is correct for the region.
         const messagesWrapper = page.locator(selectors['@messages']);
         await expect(messagesWrapper).toBeVisible();
-        let expectedLang;
-        let lang;
         const messages = await page.$$(selectors['@message']);
         expect(messages.length).toEqual(2);
 
-        messages.forEach(async (message) => {
-          expectedLang = false;
-          lang = await message.getAttribute('lang');
-          const messageText = await message.innerText();
-          expect(lang).toBeTruthy();
+        const messageDE = page.getByText(selectors['@messageDE'], { exact: true });
+        const messageUS = page.getByText(selectors['@messageEnglish'], { exact: true });
 
-          if (lang === 'de-DE' || lang === 'en-US') { expectedLang = true; }
-          expect(expectedLang).toBeTruthy();
-
-          if (lang === 'de-DE') {
-            expect(messageText).toEqual('Sie befinden sich außerhalb der USA? Auf der Adobe-Website für Ihre Region finden Sie Informationen zu den für Sie relevanten Preisen, Angeboten und Veranstaltungen.');
-          } else {
-            expect(messageText).toEqual('Are you visiting Adobe.com from outside the US? Visit your regional site for more relevant pricing, promotions and events.');
-          }
-        });
+        await expect(messageDE).toBeVisible();
+        await expect(messageUS).toBeVisible();
+        expect(await messageDE.getAttribute('lang')).toEqual('de-DE');
+        expect(await messageUS.getAttribute('lang')).toEqual('en-US');
 
         // Check all links are there for languages and the link text is correct for the locale.
         const linksWrapper = page.locator(selectors['@links']);
         await expect(linksWrapper).toBeVisible();
         const links = await page.$$(selectors['@link']);
         expect(links.length).toEqual(2);
-        links.forEach(async (link) => {
-          expectedLang = false;
-          lang = await link.getAttribute('lang');
-          const linkText = await link.innerText();
-          expect(lang).toBeTruthy();
 
-          if (lang === 'de-DE' || lang === 'en-US') { expectedLang = true; }
-          expect(expectedLang).toBeTruthy();
+        const linkDE = page.getByRole('link', { name: selectors['@linkDE'], exact: true });
+        const linkUS = page.getByRole('link', { name: selectors['@linkUS'], exact: true });
 
-          if (lang === 'de-DE') {
-            expect(linkText).toEqual('Zur Website für Deutschland');
-            await link.click();
-            await expect(page).toHaveURL(/.*de\/test\/features\/blocks\/georouting\?akamaiLocale=DE/);
-          } else {
-            expect(linkText).toEqual('Continue to United States');
-          }
-        });
+        await expect(linkDE).toBeVisible();
+        await expect(linkUS).toBeVisible();
+        expect(await linkDE.getAttribute('lang')).toEqual('de-DE');
+        expect(await linkUS.getAttribute('lang')).toEqual('en-US');
+
+        // Click German Link
+        await linkDE.click();
+        await expect(page).toHaveURL(/.*de\/test\/features\/blocks\/georouting\?akamaiLocale=DE/);
 
         // Verify Cookies has been set
-        const cookies = context.cookies();
-        expect(cookies).toContain('international');
+        const cookies = await context.cookies();
+        expect(cookies.includes('international')).toBeTruthy();
 
         // Verify going to another page in same locale the modal doesn't show up since region picked
         await page.goto('https://main--milo--adobecom.hlx.live/de/test/features/blocks/georouting2?akamaiLocale=DE');
@@ -97,33 +83,30 @@ test.describe(`${name}`, () => {
         // Check all messages are there per regions
         const messagesWrapper = page.locator(selectors['@messages']);
         await expect(messagesWrapper).toBeVisible();
-        let expectedLang;
-        let lang;
         const messages = await page.$$(selectors['@message']);
         expect(messages.length).toEqual(2);
 
-        messages.forEach(async (message) => {
-          expectedLang = false;
-          lang = await message.getAttribute('lang');
-          expect(lang).toBeTruthy();
+        const messageMena = page.getByText(selectors['@messageEnglish'], { exact: true });
+        const messageUS = page.getByText(selectors['@messageEnglish'], { exact: true });
 
-          if (lang === 'en' || lang === 'en-US') { expectedLang = true; }
-          expect(expectedLang).toBeTruthy();
-        });
+        await expect(messageMena).toBeVisible();
+        await expect(messageUS).toBeVisible();
+        expect(await messageMena.getAttribute('lang')).toEqual('en');
+        expect(await messageUS.getAttribute('lang')).toEqual('en-US');
 
-        // Check all links are there for languages
+        // Check all links are there for languages and the link text is correct for the locale.
         const linksWrapper = page.locator(selectors['@links']);
         await expect(linksWrapper).toBeVisible();
         const links = await page.$$(selectors['@link']);
         expect(links.length).toEqual(2);
-        links.forEach(async (link) => {
-          expectedLang = false;
-          lang = await link.getAttribute('lang');
-          expect(lang).toBeTruthy();
 
-          if (lang === 'en' || lang === 'en-US') { expectedLang = true; }
-          expect(expectedLang).toBeTruthy();
-        });
+        const linkMena = page.getByRole('link', { name: selectors['@linkMena'], exact: true });
+        const linkUS = page.getByRole('link', { name: selectors['@linkUS'], exact: true });
+
+        await expect(linkMena).toBeVisible();
+        await expect(linkUS).toBeVisible();
+        expect(await linkMena.getAttribute('lang')).toEqual('en');
+        expect(await linkUS.getAttribute('lang')).toEqual('en-US');
       });
     }
 
@@ -135,18 +118,14 @@ test.describe(`${name}`, () => {
         await expect(geoModal).toBeVisible({ timeout: 15000 });
 
         // Check fallback link navigates to locale homepage since sibling page isn't available.
-        let lang;
         const linksWrapper = page.locator(selectors['@links']);
         await expect(linksWrapper).toBeVisible();
         const links = await page.$$(selectors['@link']);
         expect(links.length).toEqual(2);
-        links.forEach(async (link) => {
-          lang = await link.getAttribute('lang');
-          if (lang === 'de-DE') {
-            await link.click();
-          }
-          expect(page, 'ERROR: Fallback link did not go to locale homepage.').toHaveURL(/.*main--milo--adobecom.hlx.live\/de/);
-        });
+
+        const linkDE = page.getByRole('link', { name: selectors['@linkDE'], exact: true });
+        await linkDE.click();
+        expect(page, 'ERROR: Fallback link did not go to locale homepage.').toHaveURL(/.*main--milo--adobecom.hlx.live\/de/);
       });
     }
 
@@ -186,47 +165,35 @@ test.describe(`${name}`, () => {
     if (props.tag === '@georouting-off') {
       test(props.title, async ({ page }) => {
         await page.goto(`${props.url}?akamaiLocale=DE`);
-        const geoModal = page.locator(selectors['@dialog-modal']);
-        await expect(geoModal).not.toBeVisible({ timeout: 15000 });
+        await expect(page.locator(selectors['@dialog-modal'])).not.toBeVisible({ timeout: 15000 });
       });
     }
 
     if (props.tag === '@fallback-off') {
       test(props.title, async ({ page }) => {
-        await page.goto(`${props.url}?akamaiLocale=CA`);
+        await page.goto(`${props.url}?akamaiLocale=DE`);
         const geoModal = page.locator(selectors['@dialog-modal']);
         await expect(geoModal).toBeVisible({ timeout: 15000 });
 
         // Check all messages are there per regions
         const messagesWrapper = page.locator(selectors['@messages']);
         await expect(messagesWrapper).toBeVisible();
-        let expectedLang;
-        let lang;
         const messages = await page.$$(selectors['@message']);
         expect(messages.length).toEqual(1);
 
-        messages.forEach(async (message) => {
-          expectedLang = false;
-          lang = await message.getAttribute('lang');
-          expect(lang).toBeTruthy();
-
-          if (lang === 'en-US') { expectedLang = true; }
-          expect(expectedLang, 'ERROR: Found more languages than expected when Fallback is off').toBeTruthy();
-        });
+        const messageUS = page.getByText(selectors['@messageEnglish'], { exact: true });
+        await expect(messageUS).toBeVisible();
+        expect(await messageUS.getAttribute('lang')).toEqual('en-US');
 
         // Check all links are there for languages
         const linksWrapper = page.locator(selectors['@links']);
         await expect(linksWrapper).toBeVisible();
         const links = await page.$$(selectors['@link']);
         expect(links.length).toEqual(1);
-        links.forEach(async (link) => {
-          expectedLang = false;
-          lang = await link.getAttribute('lang');
-          expect(lang).toBeTruthy();
 
-          if (lang === 'en-US') { expectedLang = true; }
-          expect(expectedLang, 'ERROR: Found more links than expected when Fallback is off').toBeTruthy();
-        });
+        const linkUS = page.getByRole('link', { name: selectors['@linkUS'], exact: true });
+        await expect(linkUS).toBeVisible();
+        expect(await linkUS.getAttribute('lang')).toEqual('en-US');
       });
     }
   });
