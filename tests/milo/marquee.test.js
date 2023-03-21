@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import marquee from '../features/marquee.spec.js';
-import parse from '../features/parse.js';
-import selectors from '../selectors/marquee.selectors.js';
+import parse from '../../libs/parse.js';
+import marquee from '../../features/milo/marquee.spec.js';
+import selectors from '../../selectors/milo/marquee.selectors.js';
 
 const { name, features } = parse(marquee);
 

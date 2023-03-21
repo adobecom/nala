@@ -1,6 +1,6 @@
 /* eslint-disable import/no-import-module-exports */
 import { expect } from '@playwright/test';
-import selectors from '../selectors/imslogin.selectors.js';
+import selectors from '../selectors/milo/imslogin.selectors.js';
 
 async function clickSignin(page) {
   const signinBtn = page.locator(selectors['@gnav-signin']);

@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import modal from '../features/modal.spec.js';
-import parse from '../features/parse.js';
-import modalSelectors from '../selectors/modal.selectors.js';
-import marqueeSelectors from '../selectors/marquee.selectors.js';
+import parse from '../../libs/parse.js';
+import modal from '../../features/milo/modal.spec.js';
+import modalSelectors from '../../selectors/milo/modal.selectors.js';
+import marqueeSelectors from '../../selectors/milo/marquee.selectors.js';
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(modal);
