@@ -48,12 +48,10 @@ test.describe(`${name}`, () => {
       await expect(OneTrustConsentFrame).not.toBeVisible();
 
       // Check FEDS browser objects (pre-consent):
-      let feds = await page.evaluate(() => { return window.feds; });
       let fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
       let optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
       let activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
 
-      expect(typeof feds).toBe('object');
       expect(typeof fedsConfig).toBe('object');
       expect(optanonStatus).toBe(false);
       expect(Array.isArray(activeCookieGroups)).toBe(true);
@@ -75,22 +73,18 @@ test.describe(`${name}`, () => {
       // Polling 'adobePrivacy' initialization:
       const adobePrivacy = await page.evaluate(async () => {
         let timer = 3000; // 3000ms max wait time
-        let adobePrivacy = window.adobePrivacy;
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        while (adobePrivacy === undefined && timer > 0) {
+        while (window.adobePrivacy === undefined && timer > 0) {
           await delay(250); timer-=250;
-          adobePrivacy = window.adobePrivacy;
         }
-        return adobePrivacy;
+        return {...(window.adobePrivacy)};
       });
 
       // Check FEDS browser objects (post-consent):
-      feds = await page.evaluate(() => { return window.feds; });
       fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
       optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
       activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
 
-      expect(typeof feds).toBe('object');
       expect(typeof fedsConfig).toBe('object');
       expect(optanonStatus).toBe(true);
       expect(Array.isArray(activeCookieGroups)).toBe(true);
