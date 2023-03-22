@@ -6,6 +6,21 @@ import selectors from '../../selectors/milo/georouting.selectors.js';
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(georouting);
 
+// Helper Functions
+/**
+ * Checks whether or not the International Cookie has been set in session storage.
+ * @param context object Browser context provided by playwright/test for current test session.
+ * @param isSet boolean Whether to check if the cookie has been set or not.
+*/
+async function checkInternationalCookie(context, isSet) {
+  let isCookieFound = false;
+  const cookies = await context.cookies();
+  cookies.forEach((cookie) => {
+    if (cookie.name === 'international') { isCookieFound = true; }
+  });
+
+  if (isSet) { expect(isCookieFound).toBeTruthy(); } else { expect(isCookieFound).toBeFalsy(); }
+}
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@georouting' && props.title.includes('@bacom_live')) {
@@ -47,12 +62,7 @@ test.describe(`${name}`, () => {
         await expect(page).toHaveURL(/.*main--bacom--adobecom.hlx.live\/de\//);
 
         // Verify international cookie has been set
-        let isCookieFound = false;
-        const cookies = await context.cookies();
-        cookies.forEach((cookie) => {
-          if (cookie.name === 'international') { isCookieFound = true; }
-        });
-        expect(isCookieFound).toBeTruthy();
+        checkInternationalCookie(context, true);
       });
     }
 
@@ -119,12 +129,7 @@ test.describe(`${name}`, () => {
         await expect(page).toHaveURL(/.*de\/test\/features\/blocks\/georouting\.*/);
 
         // Verify international cookie has been set
-        let isCookieFound = false;
-        const cookies = await context.cookies();
-        cookies.forEach((cookie) => {
-          if (cookie.name === 'international') { isCookieFound = true; }
-        });
-        expect(isCookieFound).toBeTruthy();
+        checkInternationalCookie(context, true);
 
         // Verify going to another page in same locale the modal doesn't show up since region picked
         if (page.url().includes('?akamaiLocale=DE')) {
@@ -209,12 +214,7 @@ test.describe(`${name}`, () => {
         await expect(geoModal).not.toBeVisible({ timeout: 15000 });
 
         // Verify Cookies have not been set
-        let isCookieFound = false;
-        const cookies = await context.cookies();
-        cookies.forEach((cookie) => {
-          if (cookie.name === 'international') { isCookieFound = true; }
-        });
-        expect(isCookieFound).toBeFalsy();
+        checkInternationalCookie(context, false);
 
         // Verify going to another page in same locale the modal shows up since region not picked
         await page.goto('https://main--milo--adobecom.hlx.live/test/features/blocks/georouting2?akamaiLocale=DE');
