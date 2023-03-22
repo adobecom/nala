@@ -6,6 +6,7 @@ module.exports = {
   '@word-file-upload-input': '[data-test-id="file-upload-input"][accept*=".docx"]',
   '@excel-file-upload-input': '[data-test-id="file-upload-input"][accept*=".xlsx"]',
   '@export-convert-button': '[data-test-id="export-form-convert-button"]',
+  '@export-progress-bar': '.spectrum-BarLoader-label',
   '@convert-button': '[data-test-id="convert"]',
   '@pdf-complete': 'div[class*=LifecycleComplete][data-verb]',
   '@file-preview': '[class*=DocumentView] #pages-view',
