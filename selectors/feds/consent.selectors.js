@@ -14,5 +14,5 @@ module.exports = {
   '@OneTrustConfirmChoices': 'button.save-and-close',
   '@OneTrustModalDontEnable': 'button.disable-all-btn',
   '@OneTrustModalEnableAll': 'button.enable-all-btn',
-  '@OneTrustModalClose': 'button#close-pc-btn-handler'
+  '@OneTrustModalClose': 'button#close-pc-btn-handler',
 };

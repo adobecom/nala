@@ -1,0 +1,16 @@
+module.exports = {
+  '@dialog-modal': '#locale-modal-v2',
+  '@dialog-close': '.dialog-close',
+  '@modal-headerDE': 'Sie besuchen Adobe.com für die Vereinigten Staaten.',
+  '@modal-headerUS': 'You\'re visiting Adobe.com for Germany.',
+  '@modal-headerQA': 'You\'re visiting Adobe.com for the United States.',
+  '@message': '.locale-text',
+  '@modal-content': '.georouting-wrapper .fragment',
+  '@messageDE': 'Aufgrund Ihres Standorts denken wir, dass Sie die deutsche Website bevorzugen könnten, auf der Sie regionale Inhalte, Angebote und Preise finden werden.',
+  '@messageUS': 'Based on your location, we think you may prefer the United States website, where you\'ll get regional content, offerings, and pricing.',
+  '@messageMena': 'Based on your location, we think you may prefer the Middle Eastern & North African website, where you\'ll get regional content, offerings, and pricing.',
+  '@links': '.link-wrapper',
+  '@linkDE': 'Deutschland',
+  '@linkUS': 'United States',
+  '@linkMena': 'Middle East and North Africa',
+};
