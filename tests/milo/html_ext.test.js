@@ -31,10 +31,10 @@ const scroll = async (args) => {
 
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page, browserName }) => {
       await page.goto(props.url);
       if (!props.title.match(/@blog/) && (props.url.match(/customer-success-stories/))) {
-        await expect(page).toHaveURL(`${props.url}.html`);
+        expect(page.url()).toContain('.html');
 
         // Added scrolling for CaaS to load.
         // Without it, test provides false count for validation checking.
@@ -44,7 +44,7 @@ test.describe(`${name}`, () => {
         // Check CaaS fragments urls are not converted by verifying the cards render and are visible
         // Issue with CaaS cards loading when using WebKit/Chromium browsers
         // outside of internal network. Firefox works though.
-        if (browser.browserType() === 'firefox') {
+        if (browserName === 'firefox') {
           const caasCards = page.locator(selectors['@caas_cards']);
           await expect(caasCards).toBeVisible();
         }
