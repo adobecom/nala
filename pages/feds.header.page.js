@@ -43,6 +43,13 @@ exports.FedsHeader = class FedsHeader {
     expect(this.ProfileModal).not.toBeVisible();
   }
 
+  async checkUserProfile() {
+    await expect(this.ProfileName).toBeVisible();
+    await expect(this.ProfileEmail).toBeVisible();
+    await expect(this.ProfileSignOut).toBeVisible();
+    await expect(this.ProfileAccountLink).toBeVisible();
+  }
+
   async openSearchBar() {
     await this.SearchIcon.waitFor({state: 'visible', timeout: 10000});
     await this.SearchIcon.click();

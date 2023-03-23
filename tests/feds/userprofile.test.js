@@ -29,10 +29,7 @@ test.describe(`${name}`, () => {
       // Check FEDS user profile:
       await Header.openUserProfile();
       await expect(Header.ProfileModal).toBeVisible();
-      await expect(Header.ProfileName).toBeVisible();
-      await expect(Header.ProfileEmail).toBeVisible();
-      await expect(Header.ProfileSignOut).toBeVisible();
-      await expect(Header.ProfileAccountLink).toBeVisible();
+      await Header.checkUserProfile();
       await Header.closeUserProfile();
       await expect(Header.ProfileModal).not.toBeVisible();
     });
