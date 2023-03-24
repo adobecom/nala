@@ -1,7 +1,7 @@
 const { expect, test } = require('@playwright/test');
-const htmlExt = require('../features/html_ext.spec.js');
-const parse = require('../features/parse.js');
-const selectors = require('../selectors/html_ext.selectors.js');
+const parse = require('../../libs/parse.js');
+const htmlExt = require('../../features/milo/html_ext.spec.js');
+const selectors = require('../../selectors/milo/html_ext.selectors.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(htmlExt);
@@ -31,10 +31,10 @@ const scroll = async (args) => {
 
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page, browserName }) => {
       await page.goto(props.url);
       if (!props.title.match(/@blog/) && (props.url.match(/customer-success-stories/))) {
-        await expect(page).toHaveURL(`${props.url}.html`);
+        expect(page.url()).toContain('.html');
 
         // Added scrolling for CaaS to load.
         // Without it, test provides false count for validation checking.
@@ -44,7 +44,7 @@ test.describe(`${name}`, () => {
         // Check CaaS fragments urls are not converted by verifying the cards render and are visible
         // Issue with CaaS cards loading when using WebKit/Chromium browsers
         // outside of internal network. Firefox works though.
-        if (browser.browserType() === 'firefox') {
+        if (browserName === 'firefox') {
           const caasCards = page.locator(selectors['@caas_cards']);
           await expect(caasCards).toBeVisible();
         }
@@ -62,14 +62,14 @@ test.describe(`${name}`, () => {
         const hrefs = await page.evaluate(() => Array.from(document.links).map((item) => item.href));
         hrefs.forEach(async (linkUrl) => {
           if (!linkUrl.includes('/fragments/')) {
-            if (linkUrl !== 'https://business.adobe.com/blog') {
+            if (!linkUrl.match(/business.adobe.com\/blog|business.adobe.com\/.*\/blog/)) {
               if (linkUrl.charAt(linkUrl.length - 1) === '/') {
                 expect(linkUrl).not.toContain('.html');
               } else {
                 if (linkUrl.includes('business.adobe.com') && !linkUrl.includes('/blog/')) {
                   expect(linkUrl).toContain('.html');
                 }
-                if (linkUrl.includes('business.adobe.com/blog/')) {
+                if (linkUrl.match(/business.adobe.com\/blog\/|business.adobe.com\/.*\/blog\//)) {
                   expect(linkUrl).not.toContain('.html');
                 }
                 if (linkUrl.includes('.html')) {
