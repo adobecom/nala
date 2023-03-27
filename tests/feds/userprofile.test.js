@@ -19,11 +19,12 @@ test.describe(`${name}`, () => {
       await page.waitForLoadState('domcontentloaded');
 
       // Wait for FEDS GNAV to be visible:
-      await Header.MainNavLogo.waitFor({state: 'visible', timeout: 10000});
-      await Header.MainNavContainer.waitFor({state: 'visible', timeout: 10000});
-
-      // Login with a valid ACOM account:
+      await Header.MainNavLogo.waitFor({state: 'visible', timeout: 5000});
+      await Header.MainNavContainer.waitFor({state: 'visible', timeout: 5000});
+      // Click 'Sign In' label:
+      await Header.SignInLabel.waitFor({state: 'visible', timeout: 5000});
       await Header.SignInLabel.click();
+      // Login with a valid ACOM account:
       await Login.loginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
 
       // Check FEDS user profile:

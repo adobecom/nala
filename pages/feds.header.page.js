@@ -31,18 +31,35 @@ exports.FedsHeader = class FedsHeader {
     this.BreadcrumbContainer = page.locator('div.feds-breadcrumbs-wrapper');
   }
 
+  /**
+   * Opens the User Profile via click on GNAV profile icon.
+   * !Note: Only use after user was logged in!
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async openUserProfile() {
     await this.ProfileIcon.waitFor({state: 'visible', timeout: 10000});
     await this.ProfileIcon.click();
     await expect(this.ProfileModal).toBeVisible();
   }
 
+  /**
+   * Closes the User Profile via click on GNAV profile icon.
+   * !Note: Only use after user was logged in!
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async closeUserProfile() {
     await this.ProfileIcon.waitFor({state: 'visible', timeout: 10000});
     await this.ProfileIcon.click();
-    expect(this.ProfileModal).not.toBeVisible();
+    await expect(this.ProfileModal).not.toBeVisible();
   }
 
+  /**
+   * Checks the elements of the User Profile component.
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async checkUserProfile() {
     await expect(this.ProfileName).toBeVisible();
     await expect(this.ProfileEmail).toBeVisible();
@@ -50,12 +67,22 @@ exports.FedsHeader = class FedsHeader {
     await expect(this.ProfileAccountLink).toBeVisible();
   }
 
+  /**
+   * Opens the search bar via click fron GNAV search icon.
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async openSearchBar() {
     await this.SearchIcon.waitFor({state: 'visible', timeout: 10000});
     await this.SearchIcon.click();
     await expect(this.SearchInput).toBeVisible();
   }
 
+  /**
+   * Closes the search bar via click fron GNAV search icon.
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async closeSearchBar() {
     await this.CloseSearch.waitFor({state: 'visible', timeout: 10000});
     await this.CloseSearch.click();
