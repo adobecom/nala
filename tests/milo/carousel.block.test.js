@@ -10,7 +10,8 @@ const { features } = CarouselSpec;
 // Carousel blocks tests
 test.describe('Milo Carousel block test suite', () => {
   // Test - 1
-  test(`${features[0].name} ${features[0].tags} @https://milo.adobe.com `, async ({ page, baseURL }) => {
+  let title = `${features[0].name} ${features[0].tags} @https://milo.adobe.com `;
+  test(title, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
 
     // test step-1
@@ -55,7 +56,8 @@ test.describe('Milo Carousel block test suite', () => {
   });
 
   // Spec-2 : Carousel (lightbox)
-  test(`${features[1].name} ${features[1].tags} @https://milo.adobe.com `, async ({ page, baseURL }) => {
+  title = `${features[0].name} ${features[0].tags} @https://milo.adobe.com `;
+  test(title, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
     // const action = new WebInteraction(page);
 
@@ -90,7 +92,8 @@ test.describe('Milo Carousel block test suite', () => {
   });
 
   // Spec-3 : Carousel Multi slide (show-2)
-  test(`${features[2].name} ${features[2].tags} @https://milo.adobe.com `, async ({ page, baseURL }) => {
+  title = `${features[2].name} ${features[2].tags} @https://milo.adobe.com `;
+  test(title, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
 
     // test step-1
