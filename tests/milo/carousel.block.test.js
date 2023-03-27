@@ -56,7 +56,7 @@ test.describe('Milo Carousel block test suite', () => {
   });
 
   // Spec-2 : Carousel (lightbox)
-  title = `${features[0].name} ${features[0].tags} @https://milo.adobe.com `;
+  title = `${features[1].name} ${features[1].tags} @https://milo.adobe.com `;
   test(title, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
     // const action = new WebInteraction(page);
