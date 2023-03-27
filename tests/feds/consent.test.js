@@ -48,10 +48,51 @@ test.describe(`${name}`, () => {
       await OneTrustModalClose.click();
       await expect(OneTrustConsentFrame).not.toBeVisible();
 
+      // Check FEDS browser objects (pre-consent):
+      let fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
+      let optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
+      let activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
+
+      expect(typeof fedsConfig).toBe('object');
+      expect(optanonStatus).toBe(false);
+      expect(Array.isArray(activeCookieGroups)).toBe(true);
+      expect(activeCookieGroups.includes('C0001')).toBe(true);
+      expect(activeCookieGroups.includes('C0002')).toBe(false);
+      expect(activeCookieGroups.includes('C0003')).toBe(false);
+      expect(activeCookieGroups.includes('C0004')).toBe(false);
+
       // Accept the OneTrust consent banner:
       await OneTrustEnableButton.click();
       await expect(OneTrustContainer).not.toBeVisible();
       await expect(OneTrustSuccessContainer).toBeVisible();
+
+      // Check consent persistence:
+      await page.reload();
+      await page.waitForLoadState('networkidle');
+      await expect(OneTrustContainer).not.toBeVisible();
+
+      // Polling 'adobePrivacy' initialization:
+      const adobePrivacy = await page.evaluate(async () => {
+        let timer = 3000; // 3000ms max wait time
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+        while (window.adobePrivacy === undefined && timer > 0) {
+          await delay(250); timer-=250;
+        }
+        return {...(window.adobePrivacy)};
+      });
+
+      // Check FEDS browser objects (post-consent):
+      fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
+      optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
+      activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
+
+      expect(typeof fedsConfig).toBe('object');
+      expect(optanonStatus).toBe(true);
+      expect(Array.isArray(activeCookieGroups)).toBe(true);
+      expect(activeCookieGroups.includes('C0001')).toBe(true);
+      expect(activeCookieGroups.includes('C0002')).toBe(true);
+      expect(activeCookieGroups.includes('C0003')).toBe(true);
+      expect(activeCookieGroups.includes('C0004')).toBe(true);
     });
   });
 });
