@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-const parse = require('../features/parse.js');
-const search = require('../features/search.spec.js');
 const { expect, test } = require('@playwright/test');
-import { FedsHeader } from '../pages/feds.header.page';
+const parse = require('../../libs/parse.js');
+const search = require('../../features/feds/search.spec.js');
+import { FedsHeader } from '../../pages/feds.header.page';
 
 const { name, features } = parse(search);
 test.describe(`${name}`, () => {
