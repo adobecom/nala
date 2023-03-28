@@ -123,3 +123,4 @@ screenshots/*
 /playwright-report/
 /playwright/.cache/
 Test.pptx
+nala-results.json
