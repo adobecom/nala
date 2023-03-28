@@ -1,6 +1,5 @@
 import { expect } from '@playwright/test';
-import { FedsPage } from './feds.page';
-exports.FedsConsent = class FedsConsent extends FedsPage {
+exports.FedsConsent = class FedsConsent {
 
   constructor(page) {
     super();
