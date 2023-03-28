@@ -2,10 +2,10 @@
 /* eslint-disable no-await-in-loop */
 const path = require('path');
 const { test, expect } = require('@playwright/test');
-const result = require('../features/result.spec.js');
-const parse = require('../features/parse.js');
-const loadTestData = require('../common/data-provider.js');
-const selectors = require('../selectors/result.selectors.js');
+const result = require('../../features/cc/result.spec.js');
+const parse = require('../../libs/parse.js');
+const loadTestData = require('../../common/data-provider.js');
+const selectors = require('../../selectors/cc/result.selectors.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(result);

@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-use-before-define */
 const { test, expect } = require('@playwright/test');
-const quiz = require('../features/quiz.dynamic.spec.js');
-const parse = require('../features/parse.js');
-const selectors = require('../selectors/quiz.selectors.js');
-const { loadTestDataFromAPI } = require('../common/data-provider.js');
+const quiz = require('../../features/cc/quiz.dynamic.spec.js');
+const parse = require('../../libs/parse.js');
+const selectors = require('../../selectors/cc/quiz.selectors.js');
+const { loadTestDataFromAPI } = require('../../common/data-provider.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(quiz);
@@ -18,13 +18,14 @@ const qIllustration = [];
 const qPdf = [];
 const q3d = [];
 
-test.beforeAll(async () => {
-  const data = await loadTestDataFromAPI('https://main--milo--adobecom.hlx.page/', '/drafts/echampio/quiz/strings.json');
-
-  initializeOriginalData(data);
-});
-
 test.describe(`${name}`, () => {
+  test.beforeAll(async () => {
+    console.log('Load data from json');
+    const data = await loadTestDataFromAPI('https://main--milo--adobecom.hlx.page/', '/drafts/echampio/quiz/strings.json');
+
+    initializeOriginalData(data);
+  });
+
   test.setTimeout(3 * 60 * 1000);
   // eslint-disable-next-line no-restricted-syntax
   for (const props of features) {
