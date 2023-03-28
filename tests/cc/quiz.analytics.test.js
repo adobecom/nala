@@ -1,9 +1,9 @@
 const path = require('path');
 const { test } = require('@playwright/test');
-const quiz = require('../features/quiz.analytics.spec.js');
-const parse = require('../features/parse.js');
-const { loadTestData } = require('../common/data-provider.js');
-const { clickEachAnswer, checkResultPage } = require('./quiz.test.js');
+const quiz = require('../../features/cc/quiz.analytics.spec.js');
+const parse = require('../../libs/parse.js');
+const { loadTestData } = require('../../common/data-provider.js');
+const { clickEachAnswer, checkResultPage } = require('./quiz.static.test.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(quiz);
@@ -13,11 +13,12 @@ test.describe.configure({ mode: 'serial' });
 let page;
 let networklogs;
 
-test.beforeAll(async ({ browser }) => {
-  page = await browser.newPage();
-  networklogs = [];
+test.describe(`${name}`, () => {
+  test.skip(({ browserName }) => browserName !== 'firefox', 'firefox only!');
 
-  if (browser.browserType().name() === 'firefox') {
+  test.beforeAll(async ({ browser }) => {
+    page = await browser.newPage();
+    networklogs = [];
     console.log('Before all tests: Enable network logging');
     // Enable network logging
     await page.route('**', (route) => {
@@ -29,21 +30,16 @@ test.beforeAll(async ({ browser }) => {
       }
       route.continue();
     });
-  }
-});
+  });
 
-test.afterAll(async ({ browser }) => {
-  if (browser.browserType().name() === 'firefox') {
+  test.afterAll(async () => {
     console.log('After all tests: Disable network logging');
     // Disable network logging
     await page.unroute('**');
     await page.close();
-  }
-});
+  });
 
-test.describe(`${name}`, () => {
-  test.skip(({ browserName }) => browserName !== 'firefox', 'firefox only!');
-  // test.setTimeout(10 * 60 * 1000);
+  test.setTimeout(2 * 60 * 1000);
   // eslint-disable-next-line no-restricted-syntax
   for (const props of features) {
     // eslint-disable-next-line no-loop-func
