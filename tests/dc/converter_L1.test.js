@@ -1,11 +1,11 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-import ims from '../../utils/imslogin.js';
+import ims from '../../libs/imslogin.js';
 
 const { expect, test } = require('@playwright/test');
 const converter = require('../../features/dc/converter_L1.spec.js');
-const parse = require('../../features/parse.js');
-const selectors = require('../../selectors/dc_converter.selectors.js');
+const parse = require('../../libs/parse.js');
+const selectors = require('../../selectors/dc/dc_converter.selectors.js');
 const { extractTags } = require('../../utils/extract-test-title.js');
 
 const { name, features } = parse(converter);

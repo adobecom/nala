@@ -5,19 +5,19 @@ module.exports = {
       name: '@imslogin',
       path: '/test/features/blocks/ims-signin',
       envs: '@bacom_live',
-      tags: '@gnav-signin @apple-signin @google-signin @facebook-signin @smoke',
+      tags: '@gnav-signin @apple-signin @ims-login @google-signin @facebook-signin @smoke',
     },
     {
       name: '@imslogin',
       path: '/customer-success-stories/princess-cruises-case-study',
       envs: '@bacom_prod',
-      tags: '@gnav-signin @apple-signin @google-signin @facebook-signin @regression',
+      tags: '@gnav-signin @apple-signin @ims-login @google-signin @facebook-signin @regression',
     },
     {
       name: '@imslogin',
       path: '/test/features/blocks/multi-cloud-signin',
       envs: '@bacom_live',
-      tags: '@gnav-multi-signin @smoke',
+      tags: '@gnav-multi-signin @ims-login @smoke',
     },
   ],
 };
