@@ -135,14 +135,14 @@ exports.Carousel = class Carousel {
   /**
  * Click carousel <lightbox expand> button
  */
-  async expandLighboxModal() {
+  async expandLightboxModal() {
     await this.lightboxExpandButton.click();
   }
 
   /**
  * Click carousel <lightbox modal close> button
  */
-  async closeLighboxModal() {
+  async closeLightboxModal() {
     await this.lightboxCloseButton.click();
   }
 

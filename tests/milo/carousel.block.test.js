@@ -82,10 +82,10 @@ test.describe('Milo Carousel block test suite', () => {
 
       // verify expand and close lightbox
       expect(await carousel.isLightboxExpandButtonVisible()).toBeTruthy();
-      await carousel.expandLighboxModal();
+      await carousel.expandLightboxModal();
 
       expect(await carousel.isLightboxCloseButtonVisible()).toBeTruthy();
-      await carousel.closeLighboxModal();
+      await carousel.closeLightboxModal();
     });
   });
 
