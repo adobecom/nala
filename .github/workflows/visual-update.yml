@@ -1,13 +1,11 @@
 name: Run Nala Visual Comparisons
 
 on:
-  pull_request:
-    types: [ labeled, opened, synchronize, reopened ]
+  workflow_dispatch:
 
 jobs:
   action:
-    name: Running visual comparison tests
-    if: contains(github.event.pull_request.labels.*.name, 'run-nala')
+    name: Running visual comparison base image(s) update
     runs-on: ubuntu-latest
 
     steps:
