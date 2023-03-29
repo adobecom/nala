@@ -10,7 +10,7 @@ const { name, features } = parse(faas);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
-      test.skip(browserName !== 'firefox' && props.tag === '@html', 'Chromium and WebKit browsers are caught by bot checker, working on fix');
+      test.skip(browserName !== 'firefox' && props.tag === '@html-ext', 'Chromium and WebKit browsers are caught by bot checker, working on fix');
       await page.goto(props.url);
 
       // Open up form modal
@@ -44,7 +44,7 @@ test.describe(`${name}`, () => {
       await page.getByLabel(selectors['@zipcode']).fill('77777');
       await page.getByLabel(selectors['@website']).fill('milo.adobe.com');
       await page.getByLabel(selectors['@industry']).selectOption({ label: 'Technology Software & Services' });
-      if (props.tag === '@html') {
+      if (props.tag === '@html-ext') {
         await page.getByLabel(selectors['@company-type']).selectOption({ label: 'Technology or Solution Provider' });
       }
 
@@ -58,7 +58,7 @@ test.describe(`${name}`, () => {
         await page.waitForURL(/.*thank-you/);
         await expect(page).toHaveURL(/.*thank-you/);
         await expect(page).toHaveTitle(/Thank you\.*.*/);
-      } else if (props.tag === '@html') {
+      } else if (props.tag === '@html-ext') {
         await page.waitForURL(/.*sdk\/holiday-shopping-report/);
         await expect(page).toHaveURL(/.*sdk\/holiday-shopping-report/);
         if (browserName === 'firefox') {
