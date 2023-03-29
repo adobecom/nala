@@ -8,7 +8,7 @@ module.exports = {
         '/test/features/blocks/marketo-form-modal#form',
       ],
       envs: '@milo_live',
-      tags: '@marketo',
+      tags: '@marketo @milo',
     },
   ],
 };

@@ -8,13 +8,13 @@ module.exports = {
         '/test/features/blocks/omnichannel-orchestration-with-adobe-marketo-engage-and-adobe-experience-cloud',
       ],
       envs: '@bacom_live',
-      tags: '@faas-form',
+      tags: '@faas-form @milo',
     },
     {
       name: '@faas',
       path: '/resources/holiday-shopping-report',
       envs: '@bacom_prod',
-      tags: '@html-ext',
+      tags: '@html-ext @milo',
     },
     {
       name: '@faas',
@@ -23,7 +23,7 @@ module.exports = {
         '/test/features/blocks/faas-do',
       ],
       envs: '@milo_prod',
-      tags: '@faas-form',
+      tags: '@faas-form @milo',
     },
   ],
 };

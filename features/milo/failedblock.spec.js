@@ -10,7 +10,7 @@ module.exports = {
         '/customer-success-stories/dentsu-isobar-case-study',
       ],
       envs: '@bacom_live',
-      tags: '@failedblock',
+      tags: '@failedblock @milo',
     },
     {
       name: '@failedblock',
@@ -22,7 +22,7 @@ module.exports = {
         '/acrobat/online/crop-pdf',
       ],
       envs: '@dc_live',
-      tags: '@failedblock',
+      tags: '@failedblock @milo',
     },
     {
       name: '@failedblock',
@@ -31,7 +31,7 @@ module.exports = {
         '/pages/artisthub/learn',
       ],
       envs: '@stock_live',
-      tags: '@failedblock',
+      tags: '@failedblock @milo',
     },
   ],
 };
