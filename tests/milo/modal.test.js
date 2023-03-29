@@ -20,12 +20,11 @@ async function checkModalClosed(page) {
 
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page }) => {
+    test(`${props.title} Esc key close`, async ({ page, browserName }) => {
+      test.skip(browserName === 'webkit', 'Closing of modal is broken for Webkit 16.4 (playwright build v1792)');
       await page.goto(props.url);
       const marqueeBtn = page.locator(marqueeSelectors['@marquee-modal-button']);
-      const closeBtn = page.locator(modalSelectors['@close-button']);
 
-      // Closing by pressing the Esc key
       await selectModalBtn(marqueeBtn, page);
 
       /**
@@ -45,8 +44,13 @@ test.describe(`${name}`, () => {
       }
 
       await checkModalClosed(page);
+    });
 
-      // Closing by selecting the close button
+    test(`${props.title} button close`, async ({ page }) => {
+      await page.goto(props.url);
+      const marqueeBtn = page.locator(marqueeSelectors['@marquee-modal-button']);
+      const closeBtn = page.locator(modalSelectors['@close-button']);
+
       await selectModalBtn(marqueeBtn, page);
       const inViewport = await page.evaluate(() => {
         const modalDialog = document.querySelector('.dialog-modal');
