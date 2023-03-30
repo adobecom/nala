@@ -41,7 +41,7 @@ exports.FedsHeader = class FedsHeader {
    * @param  {none}
    * @return {Promise} PlayWright promise
    */
-  async openUserProfile() {
+  async OpenUserProfile() {
     await this.ProfileIcon.waitFor({state: 'visible', timeout: 10000});
     await this.ProfileIcon.click();
     await expect(this.ProfileModal).toBeVisible();
@@ -53,7 +53,7 @@ exports.FedsHeader = class FedsHeader {
    * @param  {none}
    * @return {Promise} PlayWright promise
    */
-  async closeUserProfile() {
+  async CloseUserProfile() {
     await this.ProfileIcon.waitFor({state: 'visible', timeout: 10000});
     await this.ProfileIcon.click();
     await expect(this.ProfileModal).not.toBeVisible();
@@ -64,7 +64,7 @@ exports.FedsHeader = class FedsHeader {
    * @param  {none}
    * @return {Promise} PlayWright promise
    */
-  async checkUserProfile() {
+  async CheckUserProfile() {
     await expect(this.ProfileName).toBeVisible();
     await expect(this.ProfileEmail).toBeVisible();
     await expect(this.ProfileSignOut).toBeVisible();
@@ -76,7 +76,7 @@ exports.FedsHeader = class FedsHeader {
    * @param  {none}
    * @return {Promise} PlayWright promise
    */
-  async openSearchBar() {
+  async OpenSearchBar() {
     await this.SearchIcon.waitFor({state: 'visible', timeout: 10000});
     await this.SearchIcon.click();
     await expect(this.SearchInput).toBeVisible();
@@ -87,7 +87,7 @@ exports.FedsHeader = class FedsHeader {
    * @param  {none}
    * @return {Promise} PlayWright promise
    */
-  async closeSearchBar() {
+  async CloseSearchBar() {
     await this.CloseSearch.waitFor({state: 'visible', timeout: 10000});
     await this.CloseSearch.click();
     await expect(this.SearchInput).not.toBeVisible();

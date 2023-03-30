@@ -26,8 +26,8 @@ test.describe(`${name}`, () => {
       await expect(Header.MainNavLogo).toBeVisible();
 
       // Check basic search functionality:
-      await Header.openSearchBar();
-      await Header.closeSearchBar();
+      await Header.OpenSearchBar();
+      await Header.CloseSearchBar();
 
       // Check header mega menu:
       await Header.MegaMenuToggle.waitFor({state: 'visible', timeout: 5000});
