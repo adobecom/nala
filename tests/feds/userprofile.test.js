@@ -25,13 +25,13 @@ test.describe(`${name}`, () => {
       await Header.SignInLabel.waitFor({state: 'visible', timeout: 5000});
       await Header.SignInLabel.click();
       // Login with a valid ACOM account:
-      await Login.loginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
+      await Login.LoginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
 
       // Check FEDS user profile:
-      await Header.openUserProfile();
+      await Header.OpenUserProfile();
       await expect(Header.ProfileModal).toBeVisible();
-      await Header.checkUserProfile();
-      await Header.closeUserProfile();
+      await Header.CheckUserProfile();
+      await Header.CloseUserProfile();
       await expect(Header.ProfileModal).not.toBeVisible();
     });
   });
