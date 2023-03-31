@@ -52,6 +52,8 @@ exports.FedsLogin = class FedsLogin {
     await this.AppPasswordContinue.waitFor({state: 'visible', timeout: 15000});
     await expect(this.AppPasswordContinue).toHaveText('Continue');
     await this.AppPasswordContinue.click();
+    // Wait for page to load & stabilize:
+    await this.page.waitForLoadState('domcontentloaded');    
     // Insert account password & click 'Continue':
     await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
     await this.AppPasswordField.waitFor({state: 'visible', timeout: 15000});
@@ -81,6 +83,8 @@ exports.FedsLogin = class FedsLogin {
     // !Note: Email field has short client-side validation (load).
     //        Password field is not interactable during that time.
     await this.page.keyboard.press('Tab');
+    // Wait for page to load & stabilize:
+    await this.page.waitForLoadState('domcontentloaded');
     // Set password & click 'Continue':
     await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
     await this.PasswordField.waitFor({state: 'visible', timeout: 15000});
