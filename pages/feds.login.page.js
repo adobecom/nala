@@ -45,18 +45,18 @@ exports.FedsLogin = class FedsLogin {
     // Wait for page to load & stabilize:
     await this.page.waitForLoadState('domcontentloaded');
     // Wait for the SUSI login form to load:
-    await this.AppEmailForm.waitFor({state: 'visible', timeout: 10000});
+    await this.AppEmailForm.waitFor({state: 'visible', timeout: 15000});
     // Insert account email & click 'Continue':
-    await this.AppEmailField.waitFor({state: 'visible', timeout: 10000});
+    await this.AppEmailField.waitFor({state: 'visible', timeout: 15000});
     await this.AppEmailField.fill(email);
-    await this.AppPasswordContinue.waitFor({state: 'visible', timeout: 10000});
+    await this.AppPasswordContinue.waitFor({state: 'visible', timeout: 15000});
     await expect(this.AppPasswordContinue).toHaveText('Continue');
     await this.AppPasswordContinue.click();
     // Insert account password & click 'Continue':
-    await this.AppPasswordForm.waitFor({state: 'visible', timeout: 10000});
-    await this.AppPasswordField.waitFor({state: 'visible', timeout: 10000});
+    await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
+    await this.AppPasswordField.waitFor({state: 'visible', timeout: 15000});
     await this.AppPasswordField.fill(password);
-    await this.AppLoginContinue.waitFor({state: 'visible', timeout: 10000});
+    await this.AppLoginContinue.waitFor({state: 'visible', timeout: 15000});
     await expect(this.AppLoginContinue).toHaveText('Continue');
     await this.AppLoginContinue.click();
     // Check if login process was successful:
@@ -76,17 +76,17 @@ exports.FedsLogin = class FedsLogin {
     // Wait for page to load & stabilize:
     await this.page.waitForLoadState('networkidle');
     // Wait for the SUSI login form to load:
-    await this.LoginForm.waitFor({state: 'visible', timeout: 10000});
+    await this.LoginForm.waitFor({state: 'visible', timeout: 15000});
     await this.EmailField.fill(email);
     // !Note: Email field has short client-side validation (load).
     //        Password field is not interactable during that time.
     await this.page.keyboard.press('Tab');
     // Set password & click 'Continue':
-    await this.AppPasswordForm.waitFor({state: 'visible', timeout: 10000});
-    await this.PasswordField.waitFor({state: 'visible', timeout: 10000});
+    await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
+    await this.PasswordField.waitFor({state: 'visible', timeout: 15000});
     await this.PasswordField.fill(password);
     // Complete the login flow:
-    await this.LoginButton.waitFor({state: 'visible', timeout: 10000});
+    await this.LoginButton.waitFor({state: 'visible', timeout: 15000});
     await this.LoginButton.click();
     // Check if login process was successful:
     await this.LoggedInState.waitFor({state: 'visible', timeout: 20000});
@@ -99,10 +99,10 @@ exports.FedsLogin = class FedsLogin {
    * @return {Promise} PlayWright promise
    */
   async TogglePasswordVisibility(password) {
-    await this.AppVisibilityToggle.waitFor({state: 'visible', timeout: 10000});
+    await this.AppVisibilityToggle.waitFor({state: 'visible', timeout: 15000});
     await this.AppVisibilityToggle.click();
     await expect(this.AppPasswordField).toContain(password);
     await this.AppVisibilityToggle.click();
-    await this.AppVisibilityToggle.waitFor({state: 'visible', timeout: 10000});
+    await this.AppVisibilityToggle.waitFor({state: 'visible', timeout: 15000});
   }
 };
