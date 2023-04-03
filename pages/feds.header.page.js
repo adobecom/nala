@@ -6,8 +6,12 @@ exports.FedsHeader = class FedsHeader {
     this.page = page;
 
     // GNAV selectors:
+    this.GnavLogo = page.locator('a.gnav-logo');
     this.MainNavLogo = page.locator('a.feds-brand');
     this.MainNavContainer = page.locator('nav.feds-topnav');
+    this.MegaMenuToggle = page.locator('div.feds-navItem--megaMenu');
+    this.MegaMenuContainer = page.locator('div.feds-navItem--megaMenu div.feds-popup');
+    this.MegaMenuColumn = page.locator('div.feds-navItem--megaMenu div.feds-popup-column');
 
     // GNAV action selectors:
     this.SignInLabel = page.locator('a.feds-signIn');
