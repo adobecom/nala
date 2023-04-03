@@ -53,9 +53,9 @@ exports.FedsLogin = class FedsLogin {
     await expect(this.AppPasswordContinue).toHaveText('Continue');
     await this.AppPasswordContinue.click();
     // Wait for page to load & stabilize:
-    await this.page.waitForLoadState('domcontentloaded');    
+    await this.page.waitForTimeout(5000); 
     // Insert account password & click 'Continue':
-    await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
+    // await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
     await this.AppPasswordField.waitFor({state: 'visible', timeout: 15000});
     await this.AppPasswordField.fill(password);
     await this.AppLoginContinue.waitFor({state: 'visible', timeout: 15000});
