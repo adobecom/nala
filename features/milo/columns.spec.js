@@ -19,5 +19,11 @@ module.exports = {
       envs: '@blog_live',
       tags: '@columns-default',
     },
+    {
+      name: '@columns',
+      path: '/acrobat/online/sign-pdf.html',
+      envs: '@adobe_prod',
+      tags: '@columns-default',
+    },
   ],
 };

@@ -15,13 +15,13 @@ module.exports = {
     {
       name: '@failedblock',
       path: [
-        '/acrobat/online/pdf-to-ppt',
-        '/acrobat/online/jpg-to-pdf',
-        '/acrobat/online/sign-pdf',
-        '/acrobat/online/compress-pdf',
-        '/acrobat/online/crop-pdf',
+        '/acrobat/online/pdf-to-ppt.html',
+        '/acrobat/online/jpg-to-pdf.html',
+        '/acrobat/online/sign-pdf.html',
+        '/acrobat/online/compress-pdf.html',
+        '/acrobat/online/crop-pdf.html',
       ],
-      envs: '@dc_live',
+      envs: '@adobe_prod',
       tags: '@failedblock',
     },
     {
