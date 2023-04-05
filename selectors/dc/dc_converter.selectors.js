@@ -7,7 +7,7 @@ module.exports = {
   '@excel-file-upload-input': '[data-test-id="file-upload-input"][accept*=".xlsx"]',
   '@export-convert-button': '[data-test-id="export-form-convert-button"]',
   '@export-progress-bar': '.spectrum-BarLoader-label',
-  '@convert-button': '[data-test-id="convert"]',
+  '@convert-button': '[data-test-id="convert"], [data-test-id*=compress-button]',
   '@pdf-complete': 'div[class*=LifecycleComplete][data-verb]',
   '@file-preview': '[class*=DocumentView] #pages-view',
   '@download': '[data-test-id="download"]',
