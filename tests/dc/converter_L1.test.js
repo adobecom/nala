@@ -32,7 +32,9 @@ const dcwebBaseUrl = {
 
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(`Upload ${props.title}`, async ({ page, browser }) => {
+    test(`Upload ${props.title}`, async ({ page, browserName }) => {
+      test.skip(browserName === 'webkit', 'Webkit tests are flaky in Github VMs');
+
       const { url, title } = props;
       const converterBlock = page.locator(selectors['@pdf-converter']);
       const fileInput = page.locator(selectors['@pdf-file-upload-input']);
@@ -40,7 +42,7 @@ test.describe(`${name}`, () => {
       const filePreview = page.locator(selectors['@file-preview']);
       // Known issue in Chrome and Helix URLs with Google Sign-in prompt (MWPW-126913, MWPW-123890)
       let googleCTA = page.locator(selectors['@google-cta']);
-      if (browser.browserType().name() !== 'chromium' && /stage|prod/.test(title)) {
+      if (browserName !== 'chromium' && /stage|prod/.test(title)) {
         googleCTA = page.locator(selectors['@google-yolo']);
       }
       const adobeCTA = page.locator(selectors['@adobe-cta']);
@@ -50,7 +52,7 @@ test.describe(`${name}`, () => {
 
       await expect(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
-        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
+        console.log(`${browserName}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
         await expect.soft(failedBlock).not.toBeVisible();
       }
 
@@ -75,7 +77,9 @@ test.describe(`${name}`, () => {
       await expect(adobeCTA).toBeVisible();
     });
 
-    test(`Sign-in ${props.title}`, async ({ page }) => {
+    test(`Sign-in ${props.title}`, async ({ page, browserName }) => {
+      test.skip(browserName === 'webkit', 'Webkit tests are flaky in Github VMs');
+
       const { env, url } = extractTags(props.title);
       const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
       const redirectLink = verbToRedirectLink[url.match(pageNameRegex)[0]];

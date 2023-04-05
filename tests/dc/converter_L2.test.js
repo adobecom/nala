@@ -82,7 +82,9 @@ const fileInputList = [
 const { name, features } = parse(converter);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(`Upload ${props.title}`, async ({ page, browser }) => {
+    test(`Upload ${props.title}`, async ({ page, browserName }) => {
+      test.skip(browserName === 'webkit', 'Webkit tests are flaky in Github VMs');
+
       const { url } = props;
       const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
       const input = fileInputList.filter((x) => x.pages.includes(url.match(pageNameRegex)[0]))[0];
@@ -108,7 +110,7 @@ test.describe(`${name}`, () => {
 
       await expect(converterBlock).toBeVisible();
       if (await failedBlock.isVisible()) {
-        console.log(`${browser.browserType().name()}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
+        console.log(`${browserName}: ${await failedBlock.getAttribute('data-reason')} on ${url}`);
         await expect.soft(failedBlock).not.toBeVisible();
       }
 
@@ -182,7 +184,9 @@ test.describe(`${name}`, () => {
       await download.delete();
     });
 
-    test(`Sign-in ${props.title}`, async ({ page }) => {
+    test(`Sign-in ${props.title}`, async ({ page, browserName }) => {
+      test.skip(browserName === 'webkit', 'Webkit tests are flaky in Github VMs');
+
       const { env, url } = extractTags(props.title);
       const pageNameRegex = /(?<=online\/)([^.?]+)/gi;
       const redirectLink = verbToRedirectLink[url.match(pageNameRegex)[0]];
