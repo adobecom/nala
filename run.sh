@@ -39,10 +39,11 @@ if [[ -n  "$APPS" ]];then
   for app_name in $APPS;
     do
       # Run on all three browsers
-      echo "npx playwright test "--config=configs/${app_name}.config.js "${TAGS} "--project=${app_name}-chrome "${REPORTER}"
-      npx playwright test "--config=configs/${app_name}.config.js ""${TAGS}" "--project=${app_name}-chrome "${REPORTER}
-      npx playwright test "--config=configs/${app_name}.config.js "${TAGS} "--project=${app_name}-firefox "${REPORTER} 
-      npx playwright test "--config=configs/${app_name}.config.js "${TAGS} "--project=${app_name}-webkit "${REPORTER}
+      conf_name=$(echo $app_name | cut -d '-' -f1)
+      echo "npx playwright test --config=configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}"      
+      npx playwright test --config=configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
+      npx playwright test --config=configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
+      npx playwright test --config=configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
     done
 else
   npx npx playwright test ${TAGS} ${REPORTER}
