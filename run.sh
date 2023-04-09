@@ -6,18 +6,16 @@ APPS=""
 
 # Convert github labels to tags that can be grepped
 for label in ${labels}
-do
-  echo "label --: $label"
+do  
   if [[ "$label" = "@run-on-"* ]] || [[ "$label" = "run-on"* ]]; then  
     # Extract the application name from the label by slicing prefix 'run-on-'    
     APP_NAME=${label#*run-on-}
     # Add app name to a list 
     APPS+=$APP_NAME
-    echo " App name : $APP_NAME"    
+    #echo " App name : $APP_NAME"    
 
   elif [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
-    label="${label:1}"
-    echo " tags : $label"
+    label="${label:1}" 
     TAGS+="|$label"  
   fi  
 done
@@ -31,7 +29,8 @@ REPORTER=$reporter
 [[ ! -z "$REPORTER" ]] && REPORTER="--reporter $REPORTER"
 
 echo "*** Running Nala on $branch ***"
-echo $TAGS
+echo " Tags : $$TAGS"
+echo " APPS : $APPS"
 echo "npx playwright test ${TAGS} ${REPORTER}"
 
 cd "$GITHUB_ACTION_PATH" || exit
@@ -41,9 +40,7 @@ npx playwright install --with-deps
 if [[ -n  "$APPS" ]];then
   for app_name in $APPS;
     do
-      # Run on all three browsers
-      conf_name=$(echo $app_name | cut -d '-' -f1)
-      echo "npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}"      
+      # Run on all three browsers, configured as projects in corresponding .config.js      
       npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
       npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
       npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
