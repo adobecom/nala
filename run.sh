@@ -46,3 +46,4 @@ if [[-n "$APPS"]];then
     done
 else
   npx npx playwright test ${TAGS} ${REPORTER}
+
