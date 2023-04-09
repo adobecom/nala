@@ -7,7 +7,7 @@ APPS=""
 # Convert github labels to tags that can be grepped
 for label in ${labels}
 do
-  if [[ "$label" = "@run-on-"* ]] || [[ "$label" = "@run-on"* ]]; then  
+  if [[ "$label" = "@run-on-"* ]] || [[ "$label" = "run-on"* ]]; then  
     # Extract the application name from the label by slicing prefix 'run-on'    
     APP_NAME=${label#*run-on-}
     # Add app name to a list 
