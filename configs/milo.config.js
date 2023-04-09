@@ -14,8 +14,8 @@ const envs = require('../envs/envs.js');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests',
-  outputDir: './test-results',
+  testDir: '../tests',
+  outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -100,4 +100,4 @@ const config = {
     },
   ],
 };
-module.exports = config;
+export default config;
