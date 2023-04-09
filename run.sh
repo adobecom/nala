@@ -38,7 +38,9 @@ npx playwright install --with-deps
 if [[ -n  "$APPS" ]];then
   for app_name in $APPS;
     do
-      # Run on all three browsers, configured as projects in corresponding .config.js      
+      # Extract the config file name from app_name
+      conf_name=$(echo $app_name | cut -d '-' -f1)
+      # Run on all three browsers, configured as projects in corresponding .config.js file      
       npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
       npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
       npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
