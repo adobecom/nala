@@ -14,7 +14,7 @@ do
     APPS+=$APP_NAME    
 
   elif [[ "$label" = "@*" && "$label" != "@run-on"* ]]; then
-    label="${lable:1}"
+    label="${label:1}"
     TAGS+="|$label"  
   fi  
 done
@@ -46,6 +46,6 @@ if [[ -n  "$APPS" ]];then
       npx playwright test --config=configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
     done
 else
-  npx npx playwright test ${TAGS} ${REPORTER}
+  npx playwright test ${TAGS} ${REPORTER}
 fi
 
