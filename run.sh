@@ -11,9 +11,9 @@ do
     # Extract the application name from the label by slicing prefix 'run-on'    
     APP_NAME=${label#*run-on-}
     # Add app name to a list 
-    APPS+=$APP_NAME
+    APPS+=$APP_NAME    
 
-  elif [[ "$label" = \@* ]]; then
+  elif [[ "$label" = "@*" && "$label" != "@run-on"* ]]; then
     label="${lable:1}"
     TAGS+="|$label"  
   fi  
