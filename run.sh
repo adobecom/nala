@@ -15,7 +15,7 @@ do
     APPS+=$APP_NAME
     echo " App name : $APP_NAME"    
 
-  elif [[ "$label" = \@ && "$label" != "@run-on"* ]]; then
+  elif [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
     label="${label:1}"
     echo " tags : $label"
     TAGS+="|$label"  
