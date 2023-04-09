@@ -8,13 +8,15 @@ APPS=""
 for label in ${labels}
 do
   if [[ "$label" = "@run-on-"* ]] || [[ "$label" = "run-on"* ]]; then  
-    # Extract the application name from the label by slicing prefix 'run-on'    
+    # Extract the application name from the label by slicing prefix 'run-on-'    
     APP_NAME=${label#*run-on-}
     # Add app name to a list 
-    APPS+=$APP_NAME    
+    APPS+=$APP_NAME
+    echo " App name : $APP_NAME"    
 
-  elif [[ "$label" = "@*" && "$label" != "@run-on"* ]]; then
+  elif [[ "$label" = \@ && "$label" != "@run-on"* ]]; then
     label="${label:1}"
+    echo " tags : $label"
     TAGS+="|$label"  
   fi  
 done
