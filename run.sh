@@ -12,8 +12,6 @@ do
     APP_NAME=${label#*run-on-}
     # Add app name to a list 
     APPS+=$APP_NAME
-    #echo " App name : $APP_NAME"    
-
   elif [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
     label="${label:1}" 
     TAGS+="|$label"  
@@ -29,8 +27,8 @@ REPORTER=$reporter
 [[ ! -z "$REPORTER" ]] && REPORTER="--reporter $REPORTER"
 
 echo "*** Running Nala on $branch ***"
-echo " Tags : $$TAGS"
-echo " APPS : $APPS"
+echo "Tags : $TAGS"
+echo "APPS : $APPS"
 echo "npx playwright test ${TAGS} ${REPORTER}"
 
 cd "$GITHUB_ACTION_PATH" || exit
