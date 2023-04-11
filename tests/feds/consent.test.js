@@ -20,60 +20,31 @@ test.describe(`${name}`, () => {
       await page.waitForLoadState('networkidle');
 
       // Wait for the OneTrust consent bar to be displayed:
-      await page.waitForSelector(Consent.OneTrustContainer);
+      await  Consent.OneTrustContainer.waitFor({state: 'visible', timeout: 15000});
       await expect(Consent.OneTrustContainer).toBeVisible();
 
       // Check the contents of the consent bar:
       await Consent.checkOneTrustConsentBar();
-
       // Check 'Cookie Settings' modal:
       await Consent.checkOneTrustCustomizeModal();
+      // Check FEDS browser objects (pre-consent):
+      await Consent.assertOneTrustCookieGroups(0);
 
-      // // Check FEDS browser objects (pre-consent):
-      // let fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
-      // let optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
-      // let activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
-
-      // expect(typeof fedsConfig).toBe('object');
-      // expect(optanonStatus).toBe(false);
-      // expect(Array.isArray(activeCookieGroups)).toBe(true);
-      // expect(activeCookieGroups.includes('C0001')).toBe(true);
-      // expect(activeCookieGroups.includes('C0002')).toBe(false);
-      // expect(activeCookieGroups.includes('C0003')).toBe(false);
-      // expect(activeCookieGroups.includes('C0004')).toBe(false);
-
-      // // Accept the OneTrust consent banner:
-      // await OneTrustEnableButton.click();
-      // await expect(OneTrustContainer).not.toBeVisible();
-      // await expect(OneTrustSuccessContainer).toBeVisible();
-
-      // // Check consent persistence:
-      // await page.reload();
-      // await page.waitForLoadState('networkidle');
-      // await expect(OneTrustContainer).not.toBeVisible();
-
-      // // Polling 'adobePrivacy' initialization:
-      // const adobePrivacy = await page.evaluate(async () => {
-      //   let timer = 3000; // 3000ms max wait time
-      //   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-      //   while (window.adobePrivacy === undefined && timer > 0) {
-      //     await delay(250); timer-=250;
-      //   }
-      //   return {...(window.adobePrivacy)};
-      // });
-
-      // // Check FEDS browser objects (post-consent):
-      // fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
-      // optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
-      // activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
-
-      // expect(typeof fedsConfig).toBe('object');
-      // expect(optanonStatus).toBe(true);
-      // expect(Array.isArray(activeCookieGroups)).toBe(true);
-      // expect(activeCookieGroups.includes('C0001')).toBe(true);
-      // expect(activeCookieGroups.includes('C0002')).toBe(true);
-      // expect(activeCookieGroups.includes('C0003')).toBe(true);
-      // expect(activeCookieGroups.includes('C0004')).toBe(true);
+      // Accept the OneTrust consent banner:
+      await Consent.acceptOneTrustConsentBar();
+      // Check consent persistence:
+      await Consent.assertOneTrustAcceptState();
+      // Polling 'adobePrivacy' initialization:
+      const adobePrivacy = await page.evaluate(async () => {
+        let timer = 3000; // 3000ms max wait time
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+        while (window.adobePrivacy === undefined && timer > 0) {
+          await delay(250); timer-=250;
+        }
+        return {...(window.adobePrivacy)};
+      });
+      // Check FEDS browser objects (post-consent):
+      await Consent.assertOneTrustCookieGroups(1);
     });
   });
 });
