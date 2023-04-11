@@ -2,7 +2,6 @@ import { expect } from '@playwright/test';
 exports.FedsConsent = class FedsConsent {
 
   constructor(page) {
-    super();
     this.page = page;
     this.props = {
       // OneTrust consent component props:
@@ -20,13 +19,9 @@ exports.FedsConsent = class FedsConsent {
                   "H31", "H53", "H32", "H204", "H54", "H210", "H33", "H217", "H76", "H34", "H77", "H35"]
       },
       OneTrustTitle: 'Make It Your Own',
-      OneTrustMessage: [
-        'Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products and services. We also use them to provide you more relevant information in searches, and in ads on this and other sites. If that’s okay, click “Enable all.” To limit sharing and view our vendors, click “Customize.” You can change your options at any time.',
-        'Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products, and services. We also use them to provide you more relevant information in searches, and in ads on this and other sites. If that’s okay, click “Enable all.” To limit sharing and view our vendors, click “Customize.” You can change your options at any time.',
-        'Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products and services. We also use them to provide you more relevant information in searches and in ads on this and other sites. If that’s okay, click “Enable all". Clicking “Don’t enable” will set only cookies that are strictly necessary. You can also view our vendors and customize your choices by clicking "Cookie Settings".'
-      ],
+      OneTrustMessage: 'Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products and services. We also use them to provide you more relevant information in searches and in ads on this and other sites. If that’s okay, click “Enable all". Clicking “Don’t enable” will set only cookies that are strictly necessary. You can also view our vendors and customize your choices by clicking "Cookie Settings".',
       OneTrustEnableButton: 'Enable all',
-      OneTrustCookiesButton: ['Customize', 'Cookie Settings']
+      OneTrustCookiesButton: 'Cookie Settings'
     };
 
     // OneTrust consent selectors:
@@ -46,7 +41,11 @@ exports.FedsConsent = class FedsConsent {
     this.OneTrustModalClose = page.locator('button#close-pc-btn-handler');
   }
 
-  // OneTrust-specific methods:
+  /**
+   * Checks the content of the consent component.
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async checkOneTrustConsentBar() {
     // Wait for the consent bar to be displayed:
     await this.OneTrustContainer.waitFor({state: 'visible', timeout: 10000});
@@ -57,6 +56,11 @@ exports.FedsConsent = class FedsConsent {
     await expect(this.OneTrustCookiesButton).toHaveText(this.props.OneTrustCookiesButton);
   }
 
+  /**
+   * Checks the Cookie Settings modal.
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async checkOneTrustCustomizeModal() {
     // Check the 'Customize' modal:
     await this.OneTrustContainer.waitFor({state: 'visible', timeout: 10000});
@@ -69,50 +73,61 @@ exports.FedsConsent = class FedsConsent {
     await expect(this.OneTrustConsentFrame).not.toBeVisible();
   }
 
+  /**
+   * Accept the OneTrust consent component.
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
   async acceptOneTrustConsentBar() {
     // Wait for the consent bar to be displayed:
-    this.OneTrustContainer.waitFor({state: 'visible', timeout: 10000});
+    await this.OneTrustContainer.waitFor({state: 'visible', timeout: 10000});
     // Click on the 'Enable all' button (ACCEPT consent action):
-    this.OneTrustEnableButton.waitFor({state: 'visible', timeout: 10000});
-    this.OneTrustEnableButton.click();
+    await this.OneTrustEnableButton.waitFor({state: 'visible', timeout: 10000});
+    await this.OneTrustEnableButton.click();
     // Wait for the consent bar to disappear:
-    this.OneTrustContainer.waitFor({state: 'hidden', timeout: 10000});
+    await this.OneTrustContainer.waitFor({state: 'hidden', timeout: 10000});
   }
 
-  async assertOneTrustAcceptState(nextUrl=baseUrl) {
+  /**
+   * Assert the OneTrust consent ACCEPT state.
+   * @param  {none}
+   * @return {Promise} PlayWright promise
+   */
+  async assertOneTrustAcceptState() {
     // OneTrust consent shouldn't be prompted after page refresh:
-    browser.refresh();
-    expect(this.OneTrustContainer).not.toBeVisible();
-    // Navigate to a different page and assert the same behavior:
-    browser.url(nextUrl);
+    await this.page.reload();
     // Wait for the page to load & stabilize:
     await this.page.waitForLoadState('networkidle');
     // OneTrust consent shouldn't be prompted after page loads:
-    expect(this.OneTrustContainer).not.toBeVisible();
+    await expect(this.OneTrustContainer).not.toBeVisible();
   }
 
-  async assertOneTrustAcceptCookies() {
-    // Extract OneTrust cookie from current domain (if present):
-    const OneTrustCookie = await this.page.context().cookies();
-    // Assert OneTrust cookie (existance & content):
-    await expect(OneTrustCookie[0].name).toEqual(this.props.OneTrustCookie);
-    // Checking if the 'consent_date' property has the proper format:
-    const foundConsentDate = (OneTrustCookie[0].value).split('T')[0];
-    const propsConsentDate = (this.props.consent_date).split('T')[0];
-    // !Note: Minutes & seconds are not taken into consideration!
-    //   e.g: From '2019-10-10T11:13:34.781Z' | Only '2019-10-10T11'
-    await expect(foundConsentDate).toEqual(propsConsentDate);
-  }
-
-  assertOneTrustIgnoreAction() {
-    
-    // // Navigate to a different Adobe.com page:
-    // browser.url(`${browser.options.baseUrl}/products/premiere.html`);
-    // // Check OneTrust consent contents:
-    // this.checkOneTrustConsentBar();
-    // // Navigate to a different Adobe.com page:
-    // browser.url(`${browser.options.baseUrl}/products/photoshop-lightroom.html`);
-    // // Check OneTrust consent contents:
-    // this.checkOneTrustConsentBar();
+   /**
+   * Assert the OneTrust consent ACCEPT state.
+   * @param  {number}  0 | 1 (Not logged-in / Logged-in)
+   * @return {Promise} PlayWright promise
+   */
+  async assertOneTrustCookieGroups(loggedIn=0) {
+    // Retrieve browser object values:
+    let fedsConfig = await this.page.evaluate(() => { return window.fedsConfig; });
+    let optanonStatus = await this.page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
+    let activeCookieGroups = await this.page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
+    // Check retrieved data:
+    expect(typeof fedsConfig).toBe('object');
+    if (loggedIn===0) {
+      expect(optanonStatus).toBe(false);
+      expect(Array.isArray(activeCookieGroups)).toBe(true);
+      expect(activeCookieGroups.includes('C0001')).toBe(true);
+      expect(activeCookieGroups.includes('C0002')).toBe(false);
+      expect(activeCookieGroups.includes('C0003')).toBe(false);
+      expect(activeCookieGroups.includes('C0004')).toBe(false);
+    } else {
+      expect(Array.isArray(activeCookieGroups)).toBe(true);
+      expect(optanonStatus).toBe(true);
+      expect(activeCookieGroups.includes('C0001')).toBe(true);
+      expect(activeCookieGroups.includes('C0002')).toBe(true);
+      expect(activeCookieGroups.includes('C0003')).toBe(true);
+      expect(activeCookieGroups.includes('C0004')).toBe(true);
+    }
   }
 };
