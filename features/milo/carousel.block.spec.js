@@ -5,7 +5,7 @@ module.exports = {
       tcid: '1',
       name: '@Carousel(container)',
       path: '/drafts/nala/blocks/carousel/lightbox',
-      tags: '@carousel @carousel-container @smoke @t1 @regression @milo,',
+      tags: '@carousel @carousel-container @smoke @regression @milo,',
       envs: '@milo-live @milo-prod',
     },
     {

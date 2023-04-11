@@ -4,12 +4,6 @@ const { devices } = require('@playwright/test');
 const envs = require('../envs/envs.js');
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
-
-/**
  * @see https://playwright.dev/docs/test-configuration
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
