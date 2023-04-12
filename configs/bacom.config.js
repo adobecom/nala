@@ -46,7 +46,7 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'bacom_live-chrome',
+      name: 'bacom-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@bacom_live'],
@@ -54,7 +54,7 @@ const config = {
     },
 
     {
-      name: 'bacom_live-firefox',
+      name: 'bacom-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@bacom_live'],
@@ -62,7 +62,7 @@ const config = {
     },
 
     {
-      name: 'bacom_live-webkit',
+      name: 'bacom-live-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@bacom_live'],
@@ -70,7 +70,7 @@ const config = {
     },
 
     {
-      name: 'bacomblog_live-chrome',
+      name: 'bacomblog-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@bacomblog_live'],
@@ -78,7 +78,7 @@ const config = {
     },
 
     {
-      name: 'bacomblog_live-firefox',
+      name: 'bacomblog-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@bacomblog_live'],
@@ -86,7 +86,7 @@ const config = {
     },
 
     {
-      name: 'bacomblog_live-webkit',
+      name: 'bacomblog-live-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@bacomblog_live'],
@@ -94,7 +94,7 @@ const config = {
     },
 
     {
-      name: 'bacom_stage-chrome',
+      name: 'bacom-stage-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@bacom_stage'],
@@ -102,7 +102,7 @@ const config = {
     },
 
     {
-      name: 'bacom_stage-firefox',
+      name: 'bacom-stage-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@bacom_stage'],
@@ -110,7 +110,7 @@ const config = {
     },
 
     {
-      name: 'bacom_stage-webkit',
+      name: 'bacom-stage-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@bacom_stage'],
@@ -118,7 +118,7 @@ const config = {
     },
 
     {
-      name: 'bacom_prod-chrome',
+      name: 'bacom-prod-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@bacom_prod'],
@@ -126,7 +126,7 @@ const config = {
     },
 
     {
-      name: 'bacom_prod-firefox',
+      name: 'bacom-prod-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@bacom_prod'],
@@ -134,7 +134,7 @@ const config = {
     },
 
     {
-      name: 'bacom_prod-webkit',
+      name: 'bacom-prod-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@bacom_prod'],

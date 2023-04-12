@@ -46,7 +46,7 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'dc_preview-chrome',
+      name: 'dc-preview-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@dc_preview'],
@@ -54,7 +54,7 @@ const config = {
     },
 
     {
-      name: 'dc_preview-firefox',
+      name: 'dc-preview-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@dc_preview'],
@@ -62,7 +62,7 @@ const config = {
     },
 
     {
-      name: 'dc_preview-webkit',
+      name: 'dc-preview-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@dc_preview'],
@@ -70,7 +70,7 @@ const config = {
     },
 
     {
-      name: 'dc_live-chrome',
+      name: 'dc-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@dc_live'],
@@ -78,7 +78,7 @@ const config = {
     },
 
     {
-      name: 'dc_live-firefox',
+      name: 'dc-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@dc_live'],
@@ -86,10 +86,34 @@ const config = {
     },
 
     {
-      name: 'dc_live-webkit',
+      name: 'dc-live-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@dc_live'],
+      },
+    },
+
+    {
+      name: 'adobe-prod-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@adobe_prod'],
+      },
+    },
+
+    {
+      name: 'adobe-prod-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@adobe_prod'],
+      },
+    },
+
+    {
+      name: 'adobe-prod-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@adobe_prod'],
       },
     },
   ],

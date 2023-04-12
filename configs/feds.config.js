@@ -46,14 +46,14 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'feds_live-chrome',
+      name: 'feds-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@feds_live'],
       },
     },
     {
-      name: 'feds_live-firefox',
+      name: 'feds-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@feds_live'],
@@ -61,14 +61,14 @@ const config = {
     },
 
     {
-      name: 'feds_live-webkit',
+      name: 'feds-live-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@feds_live'],
       },
     },
     {
-      name: 'feds_preview-chrome',
+      name: 'feds-preview-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@feds_preview'],
@@ -76,7 +76,7 @@ const config = {
     },
 
     {
-      name: 'feds_preview-firefox',
+      name: 'feds-preview-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@feds_preview'],
@@ -84,7 +84,7 @@ const config = {
     },
 
     {
-      name: 'feds_preview-webkit',
+      name: 'feds-preview-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@feds_preview'],

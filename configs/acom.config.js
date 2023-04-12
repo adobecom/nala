@@ -46,7 +46,7 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'adobe_stage-chrome',
+      name: 'adobe-stage-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@adobe_stage'],
@@ -54,7 +54,7 @@ const config = {
     },
 
     {
-      name: 'adobe_stage-firefox',
+      name: 'adobe-stage-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@adobe_stage'],
@@ -62,7 +62,7 @@ const config = {
     },
 
     {
-      name: 'adobe_stage-webkit',
+      name: 'adobe-stage-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@adobe_stage'],
@@ -70,7 +70,7 @@ const config = {
     },
 
     {
-      name: 'adobe_prodchrome',
+      name: 'adobe-prodchrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@adobe_prod'],
@@ -78,7 +78,7 @@ const config = {
     },
 
     {
-      name: 'adobe_prod-firefox',
+      name: 'adobe-prod-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@adobe_prod'],
@@ -86,7 +86,7 @@ const config = {
     },
 
     {
-      name: 'adobe_prod-webkit',
+      name: 'adobe-prod-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@adobe_prod'],

@@ -46,7 +46,7 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'blog_live-chrome',
+      name: 'blog-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@blog_live'],
@@ -54,7 +54,7 @@ const config = {
     },
 
     {
-      name: 'blog_live-firefox',
+      name: 'blog-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@blog_live'],
@@ -62,7 +62,7 @@ const config = {
     },
 
     {
-      name: 'blog_live-webkit',
+      name: 'blog-live-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@blog_live'],
@@ -70,7 +70,7 @@ const config = {
     },
 
     {
-      name: 'blog_prod-chrome',
+      name: 'blog-prod-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@blog_prod'],
@@ -78,7 +78,7 @@ const config = {
     },
 
     {
-      name: 'blog_prod-firefox',
+      name: 'blog-prod-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@blog_prod'],
@@ -86,7 +86,7 @@ const config = {
     },
 
     {
-      name: 'blog_prod-webkit',
+      name: 'blog-prod-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@blog_prod'],
