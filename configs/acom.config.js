@@ -70,7 +70,7 @@ const config = {
     },
 
     {
-      name: 'adobe-prodchrome',
+      name: 'adobe-prod-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@adobe_prod'],
