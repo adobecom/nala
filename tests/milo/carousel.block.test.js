@@ -12,6 +12,7 @@ test.describe('Milo Carousel block test suite', () => {
   // Test - 1
   test(`${features[0].name}, @milo-live, ${features[0].tags},https://milo.adobe.com `, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
+    console.info('Base URL test :  ', baseURL);
 
     // test step-1
     await test.step('Go to Carousel block test page', async () => {
