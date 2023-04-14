@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-const { expect, test } = require('@playwright/test');
+import { expect, test } from '@playwright/test';
+
 const parse = require('../../libs/parse.js');
 const consent = require('../../features/feds/consent.spec.js');
 const selectors = require('../../selectors/feds/consent.selectors.js');
@@ -49,9 +50,9 @@ test.describe(`${name}`, () => {
       await expect(OneTrustConsentFrame).not.toBeVisible();
 
       // Check FEDS browser objects (pre-consent):
-      let fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
-      let optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
-      let activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
+      let fedsConfig = await page.evaluate(() => window.fedsConfig);
+      let optanonStatus = await page.evaluate(() => window.adobePrivacy.hasUserProvidedConsent());
+      let activeCookieGroups = await page.evaluate(() => window.adobePrivacy.activeCookieGroups());
 
       expect(typeof fedsConfig).toBe('object');
       expect(optanonStatus).toBe(false);
@@ -76,15 +77,15 @@ test.describe(`${name}`, () => {
         let timer = 3000; // 3000ms max wait time
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
         while (window.adobePrivacy === undefined && timer > 0) {
-          await delay(250); timer-=250;
+          await delay(250); timer -= 250;
         }
-        return {...(window.adobePrivacy)};
+        return { ...(window.adobePrivacy) };
       });
 
       // Check FEDS browser objects (post-consent):
-      fedsConfig = await page.evaluate(() => { return window.fedsConfig; });
-      optanonStatus = await page.evaluate(() => { return window.adobePrivacy.hasUserProvidedConsent(); });
-      activeCookieGroups = await page.evaluate(() => { return window.adobePrivacy.activeCookieGroups(); });
+      fedsConfig = await page.evaluate(() => window.fedsConfig);
+      optanonStatus = await page.evaluate(() => window.adobePrivacy.hasUserProvidedConsent());
+      activeCookieGroups = await page.evaluate(() => window.adobePrivacy.activeCookieGroups());
 
       expect(typeof fedsConfig).toBe('object');
       expect(optanonStatus).toBe(true);

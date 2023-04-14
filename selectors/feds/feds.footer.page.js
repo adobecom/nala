@@ -1,7 +1,8 @@
+/* eslint-disable import/no-import-module-exports */
+/* eslint-disable constructor-super */
 import { expect } from '@playwright/test';
 
 exports.FedsFooter = class FedsFooter {
-
   constructor(page) {
     super();
     this.page = page;

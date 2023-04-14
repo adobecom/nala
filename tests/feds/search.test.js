@@ -1,9 +1,11 @@
+/* eslint-disable import/named */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-const { expect, test } = require('@playwright/test');
+import { expect, test } from '@playwright/test';
+import { FedsHeader } from '../../selectors/feds/feds.header.page.js';
+
 const parse = require('../../libs/parse.js');
 const search = require('../../features/feds/search.spec.js');
-import { FedsHeader } from '../../pages/feds.header.page';
 
 const { name, features } = parse(search);
 test.describe(`${name}`, () => {

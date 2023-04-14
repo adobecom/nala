@@ -1,6 +1,8 @@
+/* eslint-disable constructor-super */
+/* eslint-disable import/no-import-module-exports */
 import { expect } from '@playwright/test';
-exports.FedsConsent = class FedsConsent {
 
+exports.FedsConsent = class FedsConsent {
   constructor(page) {
     super();
     this.page = page;
@@ -20,5 +22,5 @@ exports.FedsConsent = class FedsConsent {
     this.OneTrustEnableAll = page.locator('button.enable-all-btn');
   }
 
-    // >> FEDS Consent methods declared here <<
+  // >> FEDS Consent methods declared here <<
 };
