@@ -53,7 +53,7 @@ if [[ -n  "$APPS" ]];then
         project_name=$(echo $app_name | cut -d '-' -f2)
       fi
 
-      if [[ "$conf_name" == "nala" ]]; then
+      if [[ "$conf_name" == "nala" && -z "$project_name" ]]; then
         # Run default run-nala execution
         echo "*** Default nala-run config ***"
         echo "npx playwright test ${TAGS} ${REPORTER}" 
@@ -65,11 +65,13 @@ if [[ -n  "$APPS" ]];then
       else
         if [[ -n "$project_name" ]];then
           # Run on all three browsers, configured as projects in corresponding .config.js file
+          echo "*** npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name} ***"
           npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
           npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
           npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
         else
           # Run all the projects from config file for all projects
+          echo "*** npx playwright test --config="$config_file" ${TAGS} ${REPORTER} ***"
           npx playwright test --config="$config_file" ${TAGS} ${REPORTER}
         fi
       fi
