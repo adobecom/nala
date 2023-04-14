@@ -7,7 +7,7 @@ on:
 jobs:
   action:
     name: Running tests
-    if: github.event.pull_request.labels.some(label => label.name.startsWith('run-'))
+    if: ${{ contains(join(github.event.pull_request.labels.*.name, ' '), 'run-') }}
     runs-on: ubuntu-latest
 
     steps:
