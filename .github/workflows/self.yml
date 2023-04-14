@@ -7,7 +7,8 @@ on:
 jobs:
   action:
     name: Running tests
-    if: contains(github.event.pull_request.labels.*.name, 'run-nala')
+    if: |
+      github.event.pull_request.labels.some(label => label.name.startsWith('run-'))
     runs-on: ubuntu-latest
 
     steps:
