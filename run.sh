@@ -6,16 +6,20 @@ APPS=""
 
 # Convert github labels to tags that can be grepped
 for label in ${labels}
-do  
-  if [[ "$label" = "@run-on-"* ]] || [[ "$label" = "run-on"* ]]; then  
-    # Extract the application name from the label by slicing prefix 'run-on-'    
-    APP_NAME=${label#*run-on-}
-    # Add app name to a list 
-    APPS+=$APP_NAME
-  elif [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
+do
+  # Extracts the tags
+  # If the label starts with '@', remove the '@' and add it to the list of tags
+  if [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
     label="${label:1}" 
     TAGS+="|$label"  
-  fi  
+  else
+    # Extract the application name from the label using sed
+    APP_NAME=$(echo "$label" | sed -E 's/^run(-nala(-on)?|(-on)?)*-(.*)$/\4/')
+    # If the app name is not empty, add it to the list of apps
+    if [[ -n "$APP_NAME" ]]; then
+      APPS+=" $APP_NAME"
+    fi
+  fi 
 done
 
 # Remove the first pipe from tags if tags are not empty
@@ -34,16 +38,41 @@ echo "npx playwright test ${TAGS} ${REPORTER}"
 cd "$GITHUB_ACTION_PATH" || exit
 npm ci
 npx playwright install --with-deps
+
 # Loop through each apps  
 if [[ -n  "$APPS" ]];then
   for app_name in $APPS;
     do
       # Extract the config file name from app_name
       conf_name=$(echo $app_name | cut -d '-' -f1)
-      # Run on all three browsers, configured as projects in corresponding .config.js file      
-      npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
-      npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
-      npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
+      config_file="./configs/${conf_name}.config.js"
+
+      # Extract the project name if available
+      project_name=""
+      if [[ $app_name == *-* ]]; then
+        project_name=$(echo $app_name | cut -d '-' -f2)
+      fi
+
+      if [[ "$conf_name" == "nala" ]]; then
+        # Run default run-nala execution
+        echo "*** Default nala-run config ***"
+        echo "npx playwright test ${TAGS} ${REPORTER}" 
+        npx playwright test ${TAGS} ${REPORTER}
+
+      elif [ ! -f "$config_file" ]; then        
+        echo "Config file : $config_file is not found"
+        continue
+      else
+        if [[ -n "$project_name" ]];then
+          # Run on all three browsers, configured as projects in corresponding .config.js file
+          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
+          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
+          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
+        else
+          # Run all the projects from config file for all projects
+          npx playwright test --config="$config_file" ${TAGS} ${REPORTER}
+        fi
+      fi
     done
 else
   npx playwright test ${TAGS} ${REPORTER}
