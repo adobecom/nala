@@ -4,10 +4,14 @@ module.exports = {
     {
       name: '@failedblock',
       path: [
-        '/customer-success-stories/',
-        '/customer-success-stories/jaguar-land-rover-case-study',
-        '/customer-success-stories/abb-case-study',
-        '/customer-success-stories/dentsu-isobar-case-study',
+        '/customer-success-stories',
+        '/customer-success-stories/dicks-sporting-goods-case-study',
+        '/customer-success-stories/xfinity-creative-customer-story',
+        '/customer-success-stories/the-home-depot-case-study',
+        '/customer-success-stories/hugo-boss-case-study',
+        '/customer-success-stories/coca-cola-case-study',
+        '/customer-success-stories/cisco-case-study',
+        '/resources/holiday-shopping-report',
       ],
       envs: '@bacom_live',
       tags: '@failedblock @milo',
