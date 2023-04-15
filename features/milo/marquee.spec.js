@@ -5,7 +5,7 @@ module.exports = {
       name: '@marquee',
       path: '/test/features/blocks/marquee',
       envs: '@milo_live @bacom_live',
-      tags: '@marquee-large @visual-compare',
+      tags: '@marquee-large @visual',
     },
     {
       name: '@button',

@@ -7,7 +7,7 @@ on:
 jobs:
   action:
     name: Running visual comparison tests
-    if: contains(github.event.pull_request.labels.*.name, 'run-nala')
+    if: ${{ contains(join(github.event.pull_request.labels.*.name, ' '), 'run-') }}
     runs-on: ubuntu-latest
 
     steps:
