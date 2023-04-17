@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test';
+
 exports.FedsConsent = class FedsConsent {
 
   constructor(page) {
@@ -61,14 +62,14 @@ exports.FedsConsent = class FedsConsent {
    * @param  {none}
    * @return {Promise} PlayWright promise
    */
-  async checkOneTrustCustomizeModal() {
+  async checkOneTrustSettingsModal() {
     // Check the 'Customize' modal:
     await this.OneTrustContainer.waitFor({state: 'visible', timeout: 10000});
     await this.OneTrustCookiesButton.waitFor({state: 'visible', timeout: 10000});
     await this.OneTrustCookiesButton.click();
-    // Wait for the out-out modal to be displayed:
+    // Wait for the opt-out modal to be displayed:
     await expect(this.OneTrustConsentFrame).toBeVisible();
-    // Close the out-out modal & assert result:
+    // Close the opt-out modal & assert result:
     await this.OneTrustModalClose.click();
     await expect(this.OneTrustConsentFrame).not.toBeVisible();
   }
