@@ -3,7 +3,7 @@
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const header = require('../../features/feds/header.spec.js');
-import { FedsHeader } from '../../pages/feds.header.page';
+import { FedsHeader } from '../../selectors/feds/feds.header.page';
 
 const { name, features } = parse(header);
 test.describe(`${name}`, () => {

@@ -3,7 +3,6 @@ import { expect } from '@playwright/test';
 exports.FedsFooter = class FedsFooter {
 
   constructor(page) {
-    super();
     this.page = page;
 
     // FOOTER - Containers:
