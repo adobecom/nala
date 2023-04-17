@@ -3,7 +3,7 @@
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const consent = require('../../features/feds/consent.spec.js');
-import { FedsConsent } from '../../pages/feds.consent.page';
+import { FedsConsent } from '../../selectors/feds/feds.consent.page';
 
 const { name, features } = parse(consent);
 test.describe(`${name}`, () => {
@@ -26,7 +26,7 @@ test.describe(`${name}`, () => {
       // Check the contents of the consent bar:
       await Consent.checkOneTrustConsentBar();
       // Check 'Cookie Settings' modal:
-      await Consent.checkOneTrustCustomizeModal();
+      await Consent.checkOneTrustSettingsModal();
       // Check FEDS browser objects (pre-consent):
       await Consent.assertOneTrustCookieGroups(0);
 
