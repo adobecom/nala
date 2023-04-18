@@ -1,14 +1,17 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/named */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+import { FedsConsent } from '../../selectors/feds/feds.consent.page';
+
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const consent = require('../../features/feds/consent.spec.js');
-import { FedsConsent } from '../../selectors/feds/feds.consent.page';
 
 const { name, features } = parse(consent);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page }) => {
       const Consent = new FedsConsent(page);
 
       // Load OneTrust consent component page:
@@ -20,7 +23,7 @@ test.describe(`${name}`, () => {
       await page.waitForLoadState('networkidle');
 
       // Wait for the OneTrust consent bar to be displayed:
-      await  Consent.OneTrustContainer.waitFor({state: 'visible', timeout: 15000});
+      await Consent.OneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
       await expect(Consent.OneTrustContainer).toBeVisible();
 
       // Check the contents of the consent bar:
@@ -39,9 +42,9 @@ test.describe(`${name}`, () => {
         let timer = 3000; // 3000ms max wait time
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
         while (window.adobePrivacy === undefined && timer > 0) {
-          await delay(250); timer-=250;
+          await delay(250); timer -= 250;
         }
-        return {...(window.adobePrivacy)};
+        return { ...(window.adobePrivacy) };
       });
       // Check FEDS browser objects (post-consent):
       await Consent.assertOneTrustCookieGroups(1);
