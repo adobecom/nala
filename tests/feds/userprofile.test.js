@@ -2,11 +2,11 @@
 /* eslint-disable no-await-in-loop */
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
-const consent = require('../../features/feds/userprofile.spec.js');
-import { FedsLogin } from '../../pages/feds.login.page';
-import { FedsHeader } from '../../pages/feds.header.page';
+const userProfile = require('../../features/feds/userprofile.spec.js');
+import { FedsLogin } from '../../selectors/feds/feds.login.page';
+import { FedsHeader } from '../../selectors/feds/feds.header.page';
 
-const { name, features } = parse(consent);
+const { name, features } = parse(userProfile);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browser }) => {

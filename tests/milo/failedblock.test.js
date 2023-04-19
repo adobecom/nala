@@ -34,6 +34,8 @@ test.describe(`${name}`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browser }) => {
       await page.goto(props.url);
+      const res = await page.goto(props.url);
+      await expect(res.status()).toBe(200);
 
       // Added scrolling for failed block JS to load.
       // Without it, test provides false count for validation checking.
