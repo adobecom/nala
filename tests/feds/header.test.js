@@ -11,7 +11,7 @@ const header = require('../../features/feds/header.spec.js');
 const { name, features } = parse(header);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page }) => {
       const { title } = props;
 
       // Initialize FEDS header page:

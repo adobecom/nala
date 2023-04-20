@@ -1,4 +1,4 @@
-const { extractTags, processTestTitle } = require('../extract-test-title.js');
+const { processTestTitle } = require('../extract-test-title.js');
 
 // playwright will include ANSI color characters: https://github.com/microsoft/playwright/issues/13522
 // using regex from https://github.com/chalk/ansi-regex/blob/main/index.js#L3

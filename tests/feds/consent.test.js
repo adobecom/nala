@@ -38,8 +38,9 @@ test.describe(`${name}`, () => {
       // Check consent persistence:
       await Consent.assertOneTrustAcceptState();
       // Polling 'adobePrivacy' initialization:
-      const adobePrivacy = await page.evaluate(async () => {
+      await page.evaluate(async () => {
         let timer = 3000; // 3000ms max wait time
+        // eslint-disable-next-line no-promise-executor-return
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
         while (window.adobePrivacy === undefined && timer > 0) {
           await delay(250); timer -= 250;
