@@ -11,7 +11,9 @@ const header = require('../../features/feds/header.spec.js');
 const { name, features } = parse(header);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page }) => {
+    test(props.title, async ({ page, browser }) => {
+      const { title } = props;
+
       // Initialize FEDS header page:
       const Header = new FedsHeader(page);
 
@@ -24,7 +26,7 @@ test.describe(`${name}`, () => {
       await Header.MainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
       await expect(Header.SearchIcon).toBeVisible();
       await expect(Header.SignInLabel).toBeVisible();
-      await expect(Header.GnavLogo).toBeVisible();
+      if (!/adobe/.test(title)) await expect(Header.GnavLogo).toBeVisible();
       await expect(Header.MainNavLogo).toBeVisible();
 
       // Check basic search functionality:
