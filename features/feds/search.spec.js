@@ -9,5 +9,13 @@ module.exports = {
       envs: '@feds_live',
       tags: '@feds-search',
     },
+    {
+      name: '@search',
+      path: [
+        '/acrobat/online/sign-pdf.html',
+      ],
+      envs: '@adobe_prod',
+      tags: '@feds-search',
+    },
   ],
 };
