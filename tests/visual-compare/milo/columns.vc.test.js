@@ -36,7 +36,7 @@ test.describe(`${name}`, () => {
     if (props.tag === '@visual') {
       test(props.title, async ({ page }) => {
         await page.goto(props.url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Added scrolling for lazy loaded images to initiate their load.
         await page.evaluate(scroll, { direction: 'down', speed: 'slow' });
