@@ -29,7 +29,6 @@ test.describe('Milo Marquee block test suite', () => {
       await page.goto(`${baseURL}${features[0].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
-      return 'gr8';
     });
 
     // test step-2

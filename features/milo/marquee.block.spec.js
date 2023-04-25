@@ -5,7 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@Marquee (light)',
       path: '/drafts/nala/blocks/marquee/marquee-light',
-      tags: '@marquee, @marquee-light,@smoke, @regression',
+      tags: '@marquee, @marquee-light, @smoke, @regression',
     },
 
     {
@@ -38,9 +38,9 @@ module.exports = {
 
     {
       tcid: '5',
-      name: '@Marquee (quite)',
+      name: '@Marquee (quiet)',
       path: '/drafts/nala/blocks/marquee/marquee-quiet',
-      tags: '@marquee, @marquee-quite, @smoke, @regression',
+      tags: '@marquee, @marquee-quiet, @smoke, @regression',
     },
 
     {
@@ -54,7 +54,7 @@ module.exports = {
       tcid: '7',
       name: '@Marquee (split,small)',
       path: '/drafts/nala/blocks/marquee/marquee-split-small',
-      tags: '@marquee, @marquee-splitt-small, @smoke, @regression',
+      tags: '@marquee, @marquee-split-small, @smoke, @regression',
     },
 
     {
@@ -68,7 +68,7 @@ module.exports = {
       tcid: '9',
       name: '@Marquee (split,one-third,large,light)',
       path: '/drafts/nala/blocks/marquee/marquee-split-one-third-large-light',
-      tags: '@marquee, @marquee-one-third-large-light, @smoke, @regression',
+      tags: '@marquee, @marquee-split-one-third-large-light, @smoke, @regression',
     },
 
     {
@@ -82,7 +82,7 @@ module.exports = {
       tcid: '11',
       name: '@Marquee (split,one-third,small,light)',
       path: '/drafts/nala/blocks/marquee/marquee-split-one-third-small-light',
-      tags: '@marquee, @marquee-one-third-small-light, @smoke, @regression',
+      tags: '@marquee, @marquee-split-one-third-small-light, @smoke, @regression',
     },
 
   ],

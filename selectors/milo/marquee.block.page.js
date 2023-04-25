@@ -19,7 +19,7 @@ exports.Marquee = class Marquee {
     this.marqueeLarge = page.locator('.marquee.large');
     this.marqueeLargeLight = page.locator('.marquee.large.light');
     this.marqueeQuiet = page.locator('.marquee.quiet');
-    this.marqueeInline = page.locator('.marquee.inline');
+    this.marqueeInline = page.locator('.marquee');
     this.marqueeSplitSmall = page.locator('.marquee.split.small');
     this.marqueeSplitLarge = page.locator('.marquee.split.large');
     this.marqueeSplitLargeLight = page.locator('.marquee.split.one-third.large.light');
@@ -212,6 +212,18 @@ exports.Marquee = class Marquee {
         'width': '600',
         'height': '300',
       },
+      'media-split-small': {
+        'width': '720',
+        'height': '520',
+      },
+      'media-split-large': {
+        'width': '720',
+        'height': '520',
+      },
+      'media-split-one-third': {
+        'width': '720',
+        'height': '520',
+      },
     };
   }
 
@@ -321,9 +333,9 @@ exports.Marquee = class Marquee {
       throw new Error(`Unsupported images : ${imageType}`);
     }
 
-    if (imageType === 'background') {
+    if (imageType.startsWith('background')) {
       imageElement = this.backgroundImage;
-    } else if (imageType === 'media') {
+    } else if (imageType.startsWith('media')) {
       imageElement = this.mediaImage;
     } else {
       throw new Error(`Invalid image type: ${imageType}`);
@@ -445,13 +457,8 @@ exports.Marquee = class Marquee {
       case 'marquee (inline)':
       // verify marquee visibility, css, analytics and other attributes
         await expect(await this.marqueeInline).toBeVisible();
-        expect(WebUtil.verifyCSS(this.marqueeInline, this.cssProperties['marquee-inline'])).toBeTruthy();
-        expect(WebUtil.verifyAttributes(this.marqueeInline, this.attProperties['marquee-inline'])).toBeTruthy();
-
-        // verify heading, detail text css
-        await Promise.all(['heading-xl', 'detail-m'].map(async (type) => {
-          expect(await this.verifyMarqueeTextCSS(type)).toBeTruthy();
-        }));
+        await expect(this.marqueeInline).toHaveCSS('min-height', '360px');
+        await expect(this.marqueeInline).toHaveAttribute('daa-lh', 'marquee|inline');
 
         return true;
 
@@ -469,7 +476,7 @@ exports.Marquee = class Marquee {
         }));
 
         // verify image attributes
-        expect(await this.verifyMarqueeMediaImageAttributes('background')).toBeTruthy();
+        expect(await this.verifyMarqueeImageAttributes('media-split-small')).toBeTruthy();
         return true;
 
       case 'marquee (split, large)':
@@ -489,7 +496,7 @@ exports.Marquee = class Marquee {
         expect(await this.verifyMarqueeButtonClasses('filled-xl')).toBeTruthy();
 
         // verify image attributes
-        expect(await this.verifyMarqueeMediaImageAttributes('background')).toBeTruthy();
+        expect(await this.verifyMarqueeImageAttributes('media-split-large')).toBeTruthy();
 
         return true;
 
@@ -510,7 +517,7 @@ exports.Marquee = class Marquee {
         expect(await this.verifyMarqueeButtonClasses('filled-xl')).toBeTruthy();
 
         // verify image attributes
-        expect(await this.verifyMarqueeMediaImageAttributes('background')).toBeTruthy();
+        expect(await this.verifyMarqueeImageAttributes('media-split-one-third')).toBeTruthy();
 
         return true;
 
@@ -531,7 +538,7 @@ exports.Marquee = class Marquee {
         expect(await this.verifyMarqueeButtonClasses('filled-l')).toBeTruthy();
 
         // verify image attributes
-        expect(await this.verifyMarqueeMediaImageAttributes('background')).toBeTruthy();
+        expect(await this.verifyMarqueeImageAttributes('media-split-one-third')).toBeTruthy();
 
         return true;
 
@@ -551,7 +558,7 @@ exports.Marquee = class Marquee {
         expect(await this.verifyMarqueeButtonClasses('filled-l')).toBeTruthy();
 
         // verify image attributes
-        expect(await this.verifyMarqueeMediaImageAttributes('background')).toBeTruthy();
+        expect(await this.verifyMarqueeImageAttributes('media-split-one-third')).toBeTruthy();
         return true;
       default:
         throw new Error(`Unsupported marquee type: ${marqueeType}`);

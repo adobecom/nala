@@ -104,10 +104,10 @@ exports.WebUtil = class WebUtil {
   }
 
   /**
- * Verifies that the specified CSS properties of the given locator match the expected values.
+ * Verifies that the specified attribute properties of the given locator match the expected values.
  * @param {Object} locator - The locator to verify CSS properties for.
- * @param {Object} cssProps - The CSS properties and expected values to verify.
- * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
+ * @param {Object} attProps - The attribute properties and expected values to verify.
+ * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
  */
   static async verifyAttributes(locator, attProps) {
     this.locator = locator;
