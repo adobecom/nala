@@ -22,14 +22,9 @@ exports.HowTo = class HowTo {
     this.howToList = this.howTo.locator('li');
 
     // how-to large details
-    this.howToHeading = this.howTo.locator('.how-to-heading');
-    this.howToImage = this.howTo.locator('.how-to-image');
-    this.howToList = this.howTo.locator('li');
-
-    // how-to large details
     this.howToLargeImage = page.locator('.how-to-image img');
 
-    // how contents css
+    // howto contents css
     this.cssProperties = {
       'how-to': {
         'padding': '80px 24px',
@@ -59,6 +54,7 @@ exports.HowTo = class HowTo {
       },
     };
 
+    // howto contents attributes
     this.attProperties = {
       'how-to-large-image': {
         'width': '600',
