@@ -1,13 +1,24 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/named */
+import { WebUtil } from '../../libs/webutil';
+
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const htmlExt = require('../../features/milo/html_ext.spec.js');
 const selectors = require('../../selectors/milo/html_ext.selectors.js');
-const helpers = require('../../libs/helpers.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(htmlExt);
 
+// Create test global page/util variables
+let webUtil;
+
 test.describe(`${name}`, () => {
+  // before each test block
+  test.beforeEach(async ({ page }) => {
+    webUtil = new WebUtil(page);
+  });
+
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
       await page.goto(props.url);
@@ -16,8 +27,8 @@ test.describe(`${name}`, () => {
 
         // Added scrolling for CaaS to load.
         // Without it, test provides false count for validation checking.
-        await page.evaluate(helpers.scroll, { direction: 'down', speed: 'slow' });
-        await page.evaluate(helpers.scroll, { direction: 'up', speed: 'fast' });
+        await webUtil.scrollPage('down', 'slow');
+        await webUtil.scrollPage('up', 'fast');
 
         // Check CaaS fragments urls are not converted by verifying the cards render and are visible
         // Issue with CaaS cards loading when using WebKit/Chromium browsers

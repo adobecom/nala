@@ -120,4 +120,31 @@ exports.WebUtil = class WebUtil {
     );
     return true;
   }
+
+  /**
+   * Slow/fast scroll of entire page JS evaluation method, aides with lazy loaded content.
+   * This wrapper method calls a scroll script in page.evaluate, i.e. page.evaluate(scroll, { dir: 'direction', spd: 'speed' });
+   * @param direction string direction you want to scroll on the page
+   * @param speed string speed you would like to scroll through the page. Options: slow, fast
+  */
+  static async scrollPage(direction, speed) {
+    const scroll = async (args) => {
+      const { dir, spd } = args;
+      // eslint-disable-next-line no-promise-executor-return
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+      const scrollHeight = () => document.body.scrollHeight;
+      const start = direction === 'down' ? 0 : scrollHeight();
+      const shouldStop = (position) => (direction === 'down' ? position > scrollHeight() : position < 0);
+      const increment = direction === 'down' ? 100 : -100;
+      const delayTime = speed === 'slow' ? 30 : 5;
+      console.error(start, shouldStop(start), increment);
+      for (let i = start; !shouldStop(i); i += increment) {
+        window.scrollTo(0, i);
+        // eslint-disable-next-line no-await-in-loop
+        await delay(delayTime);
+      }
+    };
+
+    await this.page.evaluate(scroll, { dir: direction, spd: speed });
+  }
 };
