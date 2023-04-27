@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-import-module-exports
@@ -93,32 +94,41 @@ exports.WebUtil = class WebUtil {
  */
   static async verifyCSS(locator, cssProps) {
     this.locator = locator;
-
     // Verify the CSS properties and values
+    let result = true;
     await Promise.allSettled(
       Object.entries(cssProps).map(async ([property, expectedValue]) => {
-        await expect(await this.locator).toHaveCSS(property, expectedValue).toBeTruthy();
+        try {
+          await expect(this.locator).toHaveCSS(property, expectedValue);
+        } catch (error) {
+          console.error(`CSS property ${property} not found:`, error);
+          result = false;
+        }
       }),
     );
-    return true;
+    return result;
   }
 
   /**
  * Verifies that the specified attribute properties of the given locator match the expected values.
- * @param {Object} locator - The locator to verify CSS properties for.
+ * @param {Object} locator - The locator to verify attributes.
  * @param {Object} attProps - The attribute properties and expected values to verify.
  * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
  */
   static async verifyAttributes(locator, attProps) {
     this.locator = locator;
-
-    // Verify the attributes and values
+    let result = true;
     await Promise.allSettled(
       Object.entries(attProps).map(async ([property, expectedValue]) => {
-        await expect(await this.locator).toHaveAttribute(property, expectedValue).toBeTruthy();
+        try {
+          await expect(this.locator).toHaveAttribute(property, expectedValue);
+        } catch (error) {
+          console.error(`Attribute ${property} not found:`, error);
+          result = false;
+        }
       }),
     );
-    return true;
+    return result;
   }
 
   /**
