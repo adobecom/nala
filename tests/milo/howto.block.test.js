@@ -34,7 +34,7 @@ test.describe('Milo HowTo block test suite', () => {
     // test step-2
     await test.step('Verify HowTo specs ', async () => {
       // verify HowTo and its content are visibility
-      expect(await howTo.verifyHowTo('how-to')).toBeTruthy();
+      expect(await howTo.verifyHowTo('how-to', 4)).toBeTruthy();
     });
   });
   // Test - 1
@@ -50,7 +50,7 @@ test.describe('Milo HowTo block test suite', () => {
     // test step-2
     await test.step('Verify HowTo large specs ', async () => {
       // verify HowTo large and its content are visibility
-      expect(await howTo.verifyHowTo('how-to (large)')).toBeTruthy();
+      expect(await howTo.verifyHowTo('how-to (large)', 4)).toBeTruthy();
     });
   });
 
@@ -67,7 +67,7 @@ test.describe('Milo HowTo block test suite', () => {
     // test step-2
     await test.step('Verify HowTo SEO specs ', async () => {
       // verify HowTo SEO and its content are visibility
-      expect(await howTo.verifyHowTo('how-to (seo)')).toBeTruthy();
+      expect(await howTo.verifyHowTo('how-to (seo)', 4)).toBeTruthy();
     });
   });
 });

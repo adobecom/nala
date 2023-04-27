@@ -111,7 +111,7 @@ exports.WebUtil = class WebUtil {
 
   /**
  * Verifies that the specified attribute properties of the given locator match the expected values.
- * @param {Object} locator - The locator to verify attributes .
+ * @param {Object} locator - The locator to verify attributes.
  * @param {Object} attProps - The attribute properties and expected values to verify.
  * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
  */

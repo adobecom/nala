@@ -68,10 +68,11 @@ exports.HowTo = class HowTo {
  * Verifies the css, attributes, styles, of elements or sections of the specified HowTo block.
  *
  * @param {string} howToType - The type of the HowTo to verify.
- * Possible values are 'how-to', 'how-to, how-to (large-image)', and 'how-to (seo)'.
+ * Possible values are 'how-to', 'how-to (large-image)', and 'how-to (seo)'.
+ * @param {Integer} howToListCount - Howto block list count (ex: 3, 4, 5 etc..).
  * @returns {Promise<boolean>} - Returns true if the specified HowTo type has the expected values.
  */
-  async verifyHowTo(howToType) {
+  async verifyHowTo(howToType, howToListCount) {
     switch (howToType) {
       case 'how-to':
         // verify howto visibility and css values
@@ -79,7 +80,8 @@ exports.HowTo = class HowTo {
         expect(await WebUtil.verifyCSS(this.howTo, this.cssProperties['how-to'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.howToHeading, this.cssProperties['body-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.howToImage, this.cssProperties['how-to-image'])).toBeTruthy();
-        await expect(await this.howToList).toHaveCount(4);
+        // verify howto list count
+        await expect(await this.howToList).toHaveCount(howToListCount);
         return true;
       case 'how-to (large)':
         // verify howto large visibility and css values
@@ -87,17 +89,19 @@ exports.HowTo = class HowTo {
         expect(await WebUtil.verifyCSS(this.howToHeading, this.cssProperties['body-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.howToLarge, this.cssProperties['how-to-large-image'])).toBeTruthy();
         expect(await WebUtil.verifyAttributes(await this.howToLargeImage, this.attProperties['how-to-large-image'])).toBeTruthy();
-        await expect(await this.howToList).toHaveCount(4);
+        // verify howto list count
+        await expect(await this.howToList).toHaveCount(howToListCount);
         return true;
       case 'how-to (seo)':
         // verify howto seo visibility and css values
         await expect(this.howToSeo).toBeVisible();
         expect(await WebUtil.verifyCSS(this.howToHeading, this.cssProperties['body-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.howToSeo, this.cssProperties['how-to-seo'])).toBeTruthy();
-        await expect(await this.howToList).toHaveCount(4);
+        // verify howto list count
+        await expect(await this.howToList).toHaveCount(howToListCount);
         return true;
       default:
-        throw new Error(`Unsupported marquee type: ${this.howToList}`);
+        throw new Error(`Unsupported howto type: ${this.howToList}`);
     }
   }
 };
