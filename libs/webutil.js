@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-import-module-exports
-import { expect, selectors } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 /**
  * A utility class for common web interactions.
@@ -127,16 +127,16 @@ exports.WebUtil = class WebUtil {
    * @param direction string direction you want to scroll on the page
    * @param speed string speed you would like to scroll through the page. Options: slow, fast
   */
-  static async scrollPage(direction, speed) {
+  async scrollPage(direction, speed) {
     const scroll = async (args) => {
       const { dir, spd } = args;
       // eslint-disable-next-line no-promise-executor-return
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
       const scrollHeight = () => document.body.scrollHeight;
-      const start = direction === 'down' ? 0 : scrollHeight();
-      const shouldStop = (position) => (direction === 'down' ? position > scrollHeight() : position < 0);
-      const increment = direction === 'down' ? 100 : -100;
-      const delayTime = speed === 'slow' ? 30 : 5;
+      const start = dir === 'down' ? 0 : scrollHeight();
+      const shouldStop = (position) => (dir === 'down' ? position > scrollHeight() : position < 0);
+      const increment = dir === 'down' ? 100 : -100;
+      const delayTime = spd === 'slow' ? 30 : 5;
       console.error(start, shouldStop(start), increment);
       for (let i = start; !shouldStop(i); i += increment) {
         window.scrollTo(0, i);

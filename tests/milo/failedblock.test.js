@@ -12,7 +12,7 @@ const selectors = require('../../selectors/milo/failedblock.selectors.js');
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(failedBlock);
 
-// Create test global page/util variables
+// Global declarations
 let webUtil;
 
 test.describe(`${name}`, () => {

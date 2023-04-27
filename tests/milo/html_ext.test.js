@@ -10,7 +10,7 @@ const selectors = require('../../selectors/milo/html_ext.selectors.js');
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(htmlExt);
 
-// Create test global page/util variables
+// Global declarations
 let webUtil;
 
 test.describe(`${name}`, () => {
