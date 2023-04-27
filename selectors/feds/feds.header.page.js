@@ -1,7 +1,7 @@
+/* eslint-disable import/no-import-module-exports */
 import { expect } from '@playwright/test';
 
 exports.FedsHeader = class FedsHeader {
-
   constructor(page) {
     this.page = page;
 
@@ -42,7 +42,7 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async OpenUserProfile() {
-    await this.ProfileIcon.waitFor({state: 'visible', timeout: 10000});
+    await this.ProfileIcon.waitFor({ state: 'visible', timeout: 10000 });
     await this.ProfileIcon.click();
     await expect(this.ProfileModal).toBeVisible();
   }
@@ -54,7 +54,7 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async CloseUserProfile() {
-    await this.ProfileIcon.waitFor({state: 'visible', timeout: 10000});
+    await this.ProfileIcon.waitFor({ state: 'visible', timeout: 10000 });
     await this.ProfileIcon.click();
     await expect(this.ProfileModal).not.toBeVisible();
   }
@@ -77,7 +77,7 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async OpenSearchBar() {
-    await this.SearchIcon.waitFor({state: 'visible', timeout: 10000});
+    await this.SearchIcon.waitFor({ state: 'visible', timeout: 10000 });
     await this.SearchIcon.click();
     await expect(this.SearchInput).toBeVisible();
   }
@@ -88,7 +88,7 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async CloseSearchBar() {
-    await this.CloseSearch.waitFor({state: 'visible', timeout: 10000});
+    await this.CloseSearch.waitFor({ state: 'visible', timeout: 10000 });
     await this.CloseSearch.click();
     await expect(this.SearchInput).not.toBeVisible();
   }

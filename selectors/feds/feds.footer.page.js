@@ -1,7 +1,7 @@
+/* eslint-disable import/no-import-module-exports */
 import { expect } from '@playwright/test';
 
 exports.FedsFooter = class FedsFooter {
-
   constructor(page) {
     this.page = page;
 

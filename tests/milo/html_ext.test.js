@@ -1,3 +1,7 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/named */
+import { WebUtil } from '../../libs/webutil';
+
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const htmlExt = require('../../features/milo/html_ext.spec.js');
@@ -6,30 +10,15 @@ const selectors = require('../../selectors/milo/html_ext.selectors.js');
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(htmlExt);
 
-/**
- * Slow/fast scroll JS evaluation method.
- * To be used in page.evaluate, i.e. page.evaluate(scroll, { direction: 'value', speed: 'value' });
- * @param direction string direction you want to scroll
- * @param speed string speed you would like to scroll. Options: slow, fast
-*/
-const scroll = async (args) => {
-  const { direction, speed } = args;
-  // eslint-disable-next-line no-promise-executor-return
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const scrollHeight = () => document.body.scrollHeight;
-  const start = direction === 'down' ? 0 : scrollHeight();
-  const shouldStop = (position) => (direction === 'down' ? position > scrollHeight() : position < 0);
-  const increment = direction === 'down' ? 100 : -100;
-  const delayTime = speed === 'slow' ? 30 : 5;
-  console.error(start, shouldStop(start), increment);
-  for (let i = start; !shouldStop(i); i += increment) {
-    window.scrollTo(0, i);
-    // eslint-disable-next-line no-await-in-loop
-    await delay(delayTime);
-  }
-};
+// Global declarations
+let webUtil;
 
 test.describe(`${name}`, () => {
+  // before each test block
+  test.beforeEach(async ({ page }) => {
+    webUtil = new WebUtil(page);
+  });
+
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
       await page.goto(props.url);
@@ -38,8 +27,8 @@ test.describe(`${name}`, () => {
 
         // Added scrolling for CaaS to load.
         // Without it, test provides false count for validation checking.
-        await page.evaluate(scroll, { direction: 'down', speed: 'slow' });
-        await page.evaluate(scroll, { direction: 'up', speed: 'fast' });
+        await webUtil.scrollPage('down', 'slow');
+        await webUtil.scrollPage('up', 'fast');
 
         // Check CaaS fragments urls are not converted by verifying the cards render and are visible
         // Issue with CaaS cards loading when using WebKit/Chromium browsers
