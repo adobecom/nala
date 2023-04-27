@@ -16,6 +16,13 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: Check out nala screenshots repository
+        uses: actions/checkout@v3
+        with:
+          repository: adobecom/nala-screenshots
+          path: main
+      - name: Copy over base screenshots to expected test screenshot path
+        uses: ./runVisualPrep.sh
       - name: Run Nala Visual Comparison ${{ matrix.os }}
         uses: ./
         env:
