@@ -35,7 +35,7 @@ exports.Media = class Media {
     this.outlineButton = this.media.locator('.con-button.outline');
     this.blueButton = this.media.locator('.con-button.blue');
 
-    // media action buttons
+    // media image
     this.mediaImage = this.media.locator('.image');
     this.mediaImg = this.mediaImage.locator('img');
 
