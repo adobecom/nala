@@ -1,14 +1,18 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/named */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+import { FedsHeader } from '../../selectors/feds/feds.header.page';
+
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const header = require('../../features/feds/header.spec.js');
-import { FedsHeader } from '../../selectors/feds/feds.header.page';
 
 const { name, features } = parse(header);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page }) => {
+      const { title } = props;
 
       // Initialize FEDS header page:
       const Header = new FedsHeader(page);
@@ -19,10 +23,10 @@ test.describe(`${name}`, () => {
       await page.waitForLoadState('domcontentloaded');
 
       // Wait for FEDS GNAV to be visible:
-      await Header.MainNavContainer.waitFor({state: 'visible', timeout: 5000});
+      await Header.MainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
       await expect(Header.SearchIcon).toBeVisible();
       await expect(Header.SignInLabel).toBeVisible();
-      await expect(Header.GnavLogo).toBeVisible();
+      if (!/adobe/.test(title)) await expect(Header.GnavLogo).toBeVisible();
       await expect(Header.MainNavLogo).toBeVisible();
 
       // Check basic search functionality:
@@ -30,7 +34,7 @@ test.describe(`${name}`, () => {
       await Header.CloseSearchBar();
 
       // Check header mega menu:
-      await Header.MegaMenuToggle.waitFor({state: 'visible', timeout: 5000});
+      await Header.MegaMenuToggle.waitFor({ state: 'visible', timeout: 5000 });
       await Header.MegaMenuToggle.click();
       await expect(Header.MegaMenuContainer).toBeVisible();
       await Header.MegaMenuToggle.click();

@@ -1,14 +1,17 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/named */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+import { FedsHeader } from '../../selectors/feds/feds.header.page';
+
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const search = require('../../features/feds/search.spec.js');
-import { FedsHeader } from '../../selectors/feds/feds.header.page';
 
 const { name, features } = parse(search);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
-    test(props.title, async ({ page, browser }) => {
+    test(props.title, async ({ page }) => {
       // Initialize FEDS page:
       const Header = new FedsHeader(page);
       // Load page with FEDS search component:
