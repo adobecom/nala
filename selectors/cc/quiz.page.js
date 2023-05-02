@@ -41,6 +41,7 @@ exports.Quiz = class Quiz {
    */
   async clickEachAnswer(url, key) {
     await this.page.goto(url);
+    await this.page.waitForLoadState('domcontentloaded');
 
     const answers = key.split('>').map((x) => x.trim());
 
@@ -75,13 +76,21 @@ exports.Quiz = class Quiz {
     let expectProduct = results[1];
     let acturalProduct = await this.uarResult.textContent();
 
-    if (expectProduct === '2') {
+    if (expectProduct === 'more products') {
       // eslint-disable-next-line prefer-destructuring
       expectProduct = results[2];
-      acturalProduct = await this.uarResult2.textContent();
+      acturalProduct = await this.uarResult2.allTextContents();
     }
 
+    // check url
     expect(this.page.url()).toContain(type);
-    expect(acturalProduct).toContain(expectProduct);
+    // check more than one product
+    if (expectProduct.split(',').length > 1) {
+      for (const product of expectProduct.split(',')) {
+        expect(acturalProduct.toString()).toContain(product);
+      }
+    } else {
+      expect(acturalProduct.toString()).toContain(expectProduct);
+    }
   }
 };
