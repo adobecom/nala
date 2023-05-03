@@ -7,7 +7,7 @@ module.exports = {
         '/libs/feds/drafts/qa/consent/feds-consent-page',
       ],
       envs: '@feds_live',
-      tags: '@feds-consent',
+      tags: '@feds @feds-consent',
     },
     {
       name: '@consent',
