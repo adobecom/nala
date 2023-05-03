@@ -91,6 +91,7 @@ exports.Result = class Result {
       await this.page.reload();
       await this.page.waitForLoadState('domcontentloaded');
     } else {
+      await this.page.waitForLoadState('domcontentloaded');
       expect(pageText).toContain(value);
     }
   }

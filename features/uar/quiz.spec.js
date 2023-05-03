@@ -6,7 +6,7 @@ module.exports = {
       name: '@quiz single template',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-template @quiz-static',
-      data: 'data/cc/quiz/quiz-single-template.yml',
+      data: 'data/uar/quiz/quiz-single-template.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -14,7 +14,7 @@ module.exports = {
       name: '@quiz double template',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-template @quiz-static',
-      data: 'data/cc/quiz/quiz-double-template.yml',
+      data: 'data/uar/quiz/quiz-double-template.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -22,7 +22,7 @@ module.exports = {
       name: '@quiz triple template',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-triple-template @quiz-static',
-      data: 'data/cc/quiz/quiz-triple-template.yml',
+      data: 'data/uar/quiz/quiz-triple-template.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -30,7 +30,7 @@ module.exports = {
       name: '@quiz single flagship photo',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-flagship-photo @quiz-static',
-      data: 'data/cc/quiz/quiz-single-flagship-photo.yml',
+      data: 'data/uar/quiz/quiz-single-flagship-photo.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -38,7 +38,7 @@ module.exports = {
       name: '@quiz single flagship video',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-flagship-video @quiz-static',
-      data: 'data/cc/quiz/quiz-single-flagship-video.yml',
+      data: 'data/uar/quiz/quiz-single-flagship-video.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -46,7 +46,7 @@ module.exports = {
       name: '@quiz double flagship design illustration',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-flagship-design-illustration @quiz-static',
-      data: 'data/cc/quiz/quiz-double-flagship-design-illustration.yml',
+      data: 'data/uar/quiz/quiz-double-flagship-design-illustration.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -54,7 +54,7 @@ module.exports = {
       name: '@quiz double flagship photo illustration',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-flagship-photo-illustration @quiz-static',
-      data: 'data/cc/quiz/quiz-double-flagship-photo-illustration.yml',
+      data: 'data/uar/quiz/quiz-double-flagship-photo-illustration.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -62,7 +62,7 @@ module.exports = {
       name: '@quiz triple flagship photo video pdf',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-triple-flagship-photo-video-pdf @quiz-static',
-      data: 'data/cc/quiz/quiz-triple-flagship-photo-video-pdf.yml',
+      data: 'data/uar/quiz/quiz-triple-flagship-photo-video-pdf.yml',
       envs: '@adobe_prod @adobe_stage',
     },
     {
@@ -70,7 +70,7 @@ module.exports = {
       name: '@quiz single 3D',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-3D @quiz-static',
-      data: 'data/cc/quiz/quiz-single-3D.yml',
+      data: 'data/uar/quiz/quiz-single-3D.yml',
       envs: '@adobe_prod @adobe_stage',
     },
   ],

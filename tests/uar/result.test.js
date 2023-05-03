@@ -1,12 +1,12 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-import { Result } from '../../selectors/cc/result.page.js';
+import { Result } from '../../selectors/uar/result.page.js';
 
 const { test } = require('@playwright/test');
-const ResultSpec = require('../../features/cc/result.spec.js');
+const ResultSpec = require('../../features/uar/result.spec.js');
 
 const { features } = ResultSpec;
-const { loadTestData } = require('../../common/data-provider.js');
+const { loadTestData } = require('../../libs/data-provider.js');
 
 test.describe('Result flow test suite', () => {
   // test.setTimeout(10 * 60 * 1000);

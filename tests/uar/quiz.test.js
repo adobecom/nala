@@ -1,12 +1,12 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-import { Quiz } from '../../selectors/cc/quiz.page.js';
+import { Quiz } from '../../selectors/uar/quiz.page.js';
 
 const { test } = require('@playwright/test');
-const QuizSpec = require('../../features/cc/quiz.spec.js');
+const QuizSpec = require('../../features/uar/quiz.spec.js');
 
 const { features } = QuizSpec;
-const { loadTestData } = require('../../common/data-provider.js');
+const { loadTestData } = require('../../libs/data-provider.js');
 
 test.describe('Quiz flow test suite', () => {
   test.setTimeout(3 * 60 * 1000);
