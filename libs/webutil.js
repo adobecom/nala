@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-import-module-exports
-import { expect, selectors } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 /**
  * A utility class for common web interactions.
@@ -120,14 +120,53 @@ exports.WebUtil = class WebUtil {
     let result = true;
     await Promise.allSettled(
       Object.entries(attProps).map(async ([property, expectedValue]) => {
-        try {
-          await expect(this.locator).toHaveAttribute(property, expectedValue);
-        } catch (error) {
-          console.error(`Attribute ${property} not found:`, error);
-          result = false;
+        if (property === 'class' && typeof expectedValue === 'string') {
+          // If the property is 'class' and the expected value is an string,
+          // split the string value into individual classes
+          const classes = expectedValue.split(' ');
+          try {
+            await expect(this.locator).toHaveClass(classes.join(' '));
+          } catch (error) {
+            console.error('Attribute class not found:', error);
+            result = false;
+          }
+        } else {
+          try {
+            await expect(this.locator).toHaveAttribute(property, expectedValue);
+          } catch (error) {
+            console.error(`Attribute ${property} not found:`, error);
+            result = false;
+          }
         }
       }),
     );
     return result;
+  }
+
+  /**
+   * Slow/fast scroll of entire page JS evaluation method, aides with lazy loaded content.
+   * This wrapper method calls a scroll script in page.evaluate, i.e. page.evaluate(scroll, { dir: 'direction', spd: 'speed' });
+   * @param direction string direction you want to scroll on the page
+   * @param speed string speed you would like to scroll through the page. Options: slow, fast
+  */
+  async scrollPage(direction, speed) {
+    const scroll = async (args) => {
+      const { dir, spd } = args;
+      // eslint-disable-next-line no-promise-executor-return
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+      const scrollHeight = () => document.body.scrollHeight;
+      const start = dir === 'down' ? 0 : scrollHeight();
+      const shouldStop = (position) => (dir === 'down' ? position > scrollHeight() : position < 0);
+      const increment = dir === 'down' ? 100 : -100;
+      const delayTime = spd === 'slow' ? 30 : 5;
+      console.error(start, shouldStop(start), increment);
+      for (let i = start; !shouldStop(i); i += increment) {
+        window.scrollTo(0, i);
+        // eslint-disable-next-line no-await-in-loop
+        await delay(delayTime);
+      }
+    };
+
+    await this.page.evaluate(scroll, { dir: direction, spd: speed });
   }
 };
