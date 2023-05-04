@@ -26,9 +26,11 @@ exports.Media = class Media {
     this.headingXL = this.media.locator('.heading-xl');
 
     // media body area
+    this.bodyS = this.media.locator('.body-s');
     this.bodyM = this.media.locator('.body-m');
     this.bodyXL = this.media.locator('.body-xl');
     this.bodyTextM = this.media.locator('p:nth-of-type(2)');
+    this.bodyTextS = this.media.locator('p:nth-of-type(2)');
 
     // media actions area
     this.actionArea = this.media.locator('.action-area');
@@ -73,9 +75,13 @@ exports.Media = class Media {
         'font-size': '18px',
         'line-height': '27px',
       },
+      'body-s': {
+        'font-size': '16px',
+        'line-height': '24px',
+      },
       'outline': {
-        'border': '2px solid rgb(0, 0, 0)',
-        'color': 'rgb(0, 0, 0)',
+        'border': '2px solid rgb(44, 44, 44)',
+        'color': 'rgb(44, 44, 44)',
         'border-radius': '16px',
         'display': 'block',
         'padding': '5px 14px',
@@ -140,7 +146,7 @@ exports.Media = class Media {
         expect(await WebUtil.verifyCSS(this.mediaSmall, this.cssProperties.media)).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.detailM, this.cssProperties['detail-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.headingXS, this.cssProperties['heading-xs'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.bodyTextM, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(this.bodyTextS, this.cssProperties['body-s'])).toBeTruthy();
         expect(await WebUtil.verifyAttributes(this.media, this.attProperties['media-small'])).toBeTruthy();
 
         expect(await WebUtil.verifyCSS(this.blueButton, this.cssProperties.blue)).toBeTruthy();
@@ -157,7 +163,7 @@ exports.Media = class Media {
         expect(await WebUtil.verifyCSS(this.media, this.cssProperties.media)).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.detailM, this.cssProperties['detail-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.headingM, this.cssProperties['heading-m'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.bodyTextM, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(this.bodyTextS, this.cssProperties['body-s'])).toBeTruthy();
         expect(await WebUtil.verifyAttributes(this.media, this.attProperties.media)).toBeTruthy();
 
         expect(await WebUtil.verifyCSS(this.blueButton, this.cssProperties.blue)).toBeTruthy();
