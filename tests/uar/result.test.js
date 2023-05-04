@@ -6,7 +6,7 @@ const { test } = require('@playwright/test');
 const ResultSpec = require('../../features/uar/result.spec.js');
 
 const { features } = ResultSpec;
-const { loadTestData } = require('../../libs/data-provider.js');
+const { WebUtil } = require('../../libs/webutil.js');
 
 test.describe('Result flow test suite', () => {
   for (const feature of features) {
@@ -17,7 +17,7 @@ test.describe('Result flow test suite', () => {
         const url = `${baseURL}${feature.path}`;
 
         // load test data from static files
-        const testdata = await loadTestData(`${feature.data}`);
+        const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
         for (const key of Object.keys(testdata)) {
           const resultUrl = url + key;

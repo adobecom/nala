@@ -7,7 +7,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-template @quiz-static',
       data: 'data/uar/quiz/quiz-single-template.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '1',
@@ -15,7 +14,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-template @quiz-static',
       data: 'data/uar/quiz/quiz-double-template.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '2',
@@ -23,7 +21,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-triple-template @quiz-static',
       data: 'data/uar/quiz/quiz-triple-template.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '3',
@@ -31,7 +28,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-flagship-photo @quiz-static',
       data: 'data/uar/quiz/quiz-single-flagship-photo.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '4',
@@ -39,7 +35,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-flagship-video @quiz-static',
       data: 'data/uar/quiz/quiz-single-flagship-video.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '5',
@@ -47,7 +42,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-flagship-design-illustration @quiz-static',
       data: 'data/uar/quiz/quiz-double-flagship-design-illustration.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '6',
@@ -55,7 +49,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-flagship-photo-illustration @quiz-static',
       data: 'data/uar/quiz/quiz-double-flagship-photo-illustration.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '7',
@@ -63,7 +56,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-triple-flagship-photo-video-pdf @quiz-static',
       data: 'data/uar/quiz/quiz-triple-flagship-photo-video-pdf.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
     {
       tcid: '8',
@@ -71,7 +63,6 @@ module.exports = {
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-3D @quiz-static',
       data: 'data/uar/quiz/quiz-single-3D.yml',
-      envs: '@adobe_prod @adobe_stage',
     },
   ],
 };
