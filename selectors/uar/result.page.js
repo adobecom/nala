@@ -25,7 +25,7 @@ exports.Result = class Result {
    */
   async checkResultPage(url, results) {
     await this.page.goto(url);
-    // need to refresh the page the load latest content
+    // need to refresh the page to load the latest content
     await this.page.reload();
     await this.page.waitForLoadState('domcontentloaded');
     const pageText = await this.page.innerText('div');
@@ -90,7 +90,7 @@ exports.Result = class Result {
       await this.page.waitForLoadState('domcontentloaded');
       expect(this.page.url()).toContain(`${value.split(':')[2]}`);
       await this.page.goto(url);
-      // need to refresh the page the load latest content
+      // need to refresh the page to load the latest content
       await this.page.reload();
       await this.page.waitForLoadState('domcontentloaded');
     } else {
