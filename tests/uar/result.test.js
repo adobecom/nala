@@ -9,7 +9,6 @@ const { features } = ResultSpec;
 const { loadTestData } = require('../../libs/data-provider.js');
 
 test.describe('Result flow test suite', () => {
-  // test.setTimeout(10 * 60 * 1000);
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
@@ -23,7 +22,6 @@ test.describe('Result flow test suite', () => {
         for (const key of Object.keys(testdata)) {
           const resultUrl = url + key;
           console.info(resultUrl);
-          page.waitForTimeout(5000);
           await result.checkResultPage(resultUrl, testdata[key]);
         }
       },

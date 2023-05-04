@@ -9,6 +9,7 @@ const { features } = QuizSpec;
 const { loadTestData } = require('../../libs/data-provider.js');
 
 test.describe('Quiz flow test suite', () => {
+  // reset timeout because we use this to run all test data
   test.setTimeout(3 * 60 * 1000);
   for (const feature of features) {
     test(

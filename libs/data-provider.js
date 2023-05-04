@@ -4,6 +4,7 @@ const yaml = require('js-yaml');
 const { request } = require('@playwright/test');
 
 /**
+ * Load test data from yml file or json file in local
  * @param {string} filePath
  */
 async function loadTestData(dataFilePath) {
@@ -11,6 +12,7 @@ async function loadTestData(dataFilePath) {
 }
 
 /**
+ * Load test data from remote json file
  * @param {string} path
  * @param {string} url
  */

@@ -13,37 +13,37 @@ exports.Quiz = class Quiz {
   }
 
   /**
- * select answer
- * @param {String} answer
- */
+   * Select answer
+   * @param {String} answer
+   */
   async selectAnswer(answer) {
     const locator = `//div[@class="quiz-options"]//*[@aria-label="${answer}"]`;
     await this.page.locator(locator).click();
   }
 
   /**
-   * click next button
+   * Click next button
    */
   async clickNextButton() {
     await this.nextButton.click();
   }
 
   /**
-   * click get your results button
+   * Click get your results button
    */
   async clickResultButton() {
     await this.resultButton.click();
   }
 
   /**
+   * Select each answer and click next button on question page
    * @param {string} url
-   * @param {string} key
+   * @param {string} originalAnswer
    */
-  async clickEachAnswer(url, key) {
+  async clickEachAnswer(url, originalAnswer) {
     await this.page.goto(url);
-    await this.page.waitForLoadState('domcontentloaded');
 
-    const answers = key.split('>').map((x) => x.trim());
+    const answers = originalAnswer.split('>').map((x) => x.trim());
 
     for (const answer of answers) {
       if (answer.includes('+')) {
@@ -68,10 +68,11 @@ exports.Quiz = class Quiz {
   }
 
   /**
-   * @param {string} result
+   * Validate products on result page to match with expect products
+   * @param {string} expectResult
    */
-  async checkResultPage(result) {
-    const results = result.split('>').map((x) => x.trim());
+  async checkResultPage(expectResult) {
+    const results = expectResult.split('>').map((x) => x.trim());
     const type = results[0];
     let expectProduct = results[1];
     let acturalProduct = await this.uarResult.textContent();

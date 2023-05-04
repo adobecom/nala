@@ -19,12 +19,13 @@ exports.Result = class Result {
   }
 
   /**
+   * Check product details on result page
    * @param {string} url
-   * @param {import('@playwright/test').Page} page
    * @param {string} results
    */
   async checkResultPage(url, results) {
     await this.page.goto(url);
+    // need to refresh the page the load latest content
     await this.page.reload();
     await this.page.waitForLoadState('domcontentloaded');
     const pageText = await this.page.innerText('div');
@@ -42,6 +43,7 @@ exports.Result = class Result {
   }
 
   /**
+   * Validate each text and link on result page
    * @param {string} url
    * @param {string} value
    * @param {string} pageText
@@ -85,13 +87,13 @@ exports.Result = class Result {
         await this.flyer.click();
       }
 
-      await this.page.waitForTimeout(1000);
+      await this.page.waitForLoadState('domcontentloaded');
       expect(this.page.url()).toContain(`${value.split(':')[2]}`);
       await this.page.goto(url);
+      // need to refresh the page the load latest content
       await this.page.reload();
       await this.page.waitForLoadState('domcontentloaded');
     } else {
-      await this.page.waitForLoadState('domcontentloaded');
       expect(pageText).toContain(value);
     }
   }

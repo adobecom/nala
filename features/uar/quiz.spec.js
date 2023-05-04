@@ -2,7 +2,7 @@ module.exports = {
   name: 'Quiz Recommender Blocks',
   features: [
     {
-      tcid: '1',
+      tcid: '0',
       name: '@quiz single template',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-template @quiz-static',
@@ -10,7 +10,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '2',
+      tcid: '1',
       name: '@quiz double template',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-template @quiz-static',
@@ -18,7 +18,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '3',
+      tcid: '2',
       name: '@quiz triple template',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-triple-template @quiz-static',
@@ -26,7 +26,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '4',
+      tcid: '3',
       name: '@quiz single flagship photo',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-flagship-photo @quiz-static',
@@ -34,7 +34,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '5',
+      tcid: '4',
       name: '@quiz single flagship video',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-flagship-video @quiz-static',
@@ -42,7 +42,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '6',
+      tcid: '5',
       name: '@quiz double flagship design illustration',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-flagship-design-illustration @quiz-static',
@@ -50,7 +50,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '7',
+      tcid: '6',
       name: '@quiz double flagship photo illustration',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-double-flagship-photo-illustration @quiz-static',
@@ -58,7 +58,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '8',
+      tcid: '7',
       name: '@quiz triple flagship photo video pdf',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-triple-flagship-photo-video-pdf @quiz-static',
@@ -66,7 +66,7 @@ module.exports = {
       envs: '@adobe_prod @adobe_stage',
     },
     {
-      tcid: '9',
+      tcid: '8',
       name: '@quiz single 3D',
       path: '/creativecloud/quiz-recommender.html',
       tags: '@quiz-single-3D @quiz-static',

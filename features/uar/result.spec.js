@@ -2,7 +2,7 @@ module.exports = {
   name: 'Quiz Recommender Blocks',
   features: [
     {
-      tcid: '1',
+      tcid: '0',
       name: '@result single template',
       path: '/creativecloud/quiz-recommender/result.html#type=',
       tags: '@result-single-template @result-static',
