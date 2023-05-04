@@ -120,11 +120,23 @@ exports.WebUtil = class WebUtil {
     let result = true;
     await Promise.allSettled(
       Object.entries(attProps).map(async ([property, expectedValue]) => {
-        try {
-          await expect(this.locator).toHaveAttribute(property, expectedValue);
-        } catch (error) {
-          console.error(`Attribute ${property} not found:`, error);
-          result = false;
+        if (property === 'class' && typeof expectedValue === 'string') {
+          // If the property is 'class' and the expected value is an string,
+          // split the string value into individual classes
+          const classes = expectedValue.split(' ');
+          try {
+            await expect(this.locator).toHaveClass(classes.join(' '));
+          } catch (error) {
+            console.error('Attribute class not found:', error);
+            result = false;
+          }
+        } else {
+          try {
+            await expect(this.locator).toHaveAttribute(property, expectedValue);
+          } catch (error) {
+            console.error(`Attribute ${property} not found:`, error);
+            result = false;
+          }
         }
       }),
     );
