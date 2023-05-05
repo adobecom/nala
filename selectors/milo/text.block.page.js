@@ -32,10 +32,6 @@ exports.Text = class Text {
 
     this.textBodyM = this.text.locator('.body-m').first();
     this.textBodyL = this.text.locator('.body-l').first();
-    this.textIntroBodyM = this.text.locator('.body-m').first();
-    this.textTextFullWidthBodyM = this.text.locator('.body-m').first();
-    this.textLongFormLargeBodyL = this.text.locator('.body-l').first();
-    this.textInsetLargeMSpacingBodyL = this.text.locator('.body-l').first();
 
     this.textPropertiesHeadingM = this.text.locator('#properties-h3').first();
 
@@ -138,7 +134,7 @@ exports.Text = class Text {
         expect(await WebUtil.verifyAttributes(this.textIntro, this.attProperties['text-intro'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.textIntroDetailM, this.cssProperties['detail-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.textIntroHeadline, this.cssProperties['heading-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textIntroBodyM, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
 
         return true;
 
@@ -168,7 +164,7 @@ exports.Text = class Text {
         expect(await WebUtil.verifyAttributes(this.textLongFormLarge, this.attProperties['text-long-form-large'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.textLongFormDetailL, this.cssProperties['detail-l'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.textLongFormLargeHeadline, this.cssProperties['heading-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textLongFormLargeBodyL, this.cssProperties['body-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(this.textBodyL, this.cssProperties['body-l'])).toBeTruthy();
 
         return true;
 
@@ -177,7 +173,7 @@ exports.Text = class Text {
         await expect(this.textInsetLargeMSpacing).toBeVisible();
         expect(await WebUtil.verifyAttributes(this.textInsetLargeMSpacing, this.attProperties['text-inset-medium-m-spacing'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.textInsetLargeMSpacingHeadline, this.cssProperties['heading-m'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textInsetLargeMSpacingBodyL, this.cssProperties['body-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(this.textBodyL, this.cssProperties['body-l'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.textPropertiesHeadingM, this.cssProperties['heading-m'])).toBeTruthy();
 
         return true;
