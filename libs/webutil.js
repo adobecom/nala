@@ -4,6 +4,10 @@
 // eslint-disable-next-line import/no-import-module-exports
 import { expect } from '@playwright/test';
 
+const fs = require('fs');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const yaml = require('js-yaml');
+
 /**
  * A utility class for common web interactions.
  */
@@ -168,5 +172,24 @@ exports.WebUtil = class WebUtil {
     };
 
     await this.page.evaluate(scroll, { dir: direction, spd: speed });
+  }
+
+  /**
+   * Load test data from yml file or json file in local
+   * @param {string} filePath
+  */
+  static async loadTestData(dataFilePath) {
+    return dataFilePath.includes('.yml') ? yaml.load(fs.readFileSync(dataFilePath, 'utf8')) : JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
+  }
+
+  /**
+   * Load test data from remote json file
+   * @param {string} path
+   * @param {string} url
+  */
+  static async loadTestDataFromAPI(url, path) {
+    const context = await request.newContext({ baseURL: url });
+    const res = await context.fetch(path);
+    return res.json();
   }
 };
