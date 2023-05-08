@@ -14,7 +14,7 @@ exports.ZPattern = class ZPattern {
     this.largeIntroHeadingText = this.zPattern.locator('#large-intro-text-optional');
     this.darkIntroHeadingText = this.zPattern.locator('#intuitive-block-authoring');
 
-    this.zPatternMediaBlocks = this.zPattern.locator('.media');
+    this.zPatternMeidaBlocks = this.zPattern.locator('.media');
 
     // zpattern contents css
     this.cssProperties = {
@@ -104,26 +104,31 @@ exports.ZPattern = class ZPattern {
       'medium-intro-text-optional': { 'class': 'heading-l headline' },
       'large-intro-text-optional': { 'class': 'heading-xl headline' },
       'dark-intro-text-optional': { 'class': 'heading-l headline' },
+
       'media-medium': {
         'class': 'media medium con-block',
         'daa-lh': 'media|medium',
         'daa-im': 'true',
       },
+
       'small-media-reversed': {
         'class': 'media small media-reversed con-block',
         'daa-lh': 'media|small|media-reversed',
         'daa-im': 'true',
       },
+
       'medium-media-reversed': {
         'class': 'media medium media-reversed con-block',
         'daa-lh': 'media|medium|media-reversed',
         'daa-im': 'true',
       },
+
       'medium-media-reverse-mobile': {
         'class': 'media medium con-block media-reverse-mobile',
         'daa-lh': 'media|medium|',
         'daa-im': 'true',
       },
+
       'large-media-reversed': {
         'class': 'media large media-reversed con-block',
         'daa-lh': 'media|large|media-reversed',
@@ -142,10 +147,10 @@ exports.ZPattern = class ZPattern {
  *
  * @param {string} howToType - The type of the Z Pattern to verify.
  * Possible values are 'zpattern', z-pattern (small), z-pattern (large) and z-pattern (dark)
- * @returns {Promise<boolean>} - Returns true if the specified Z Pattern type has the expected values.
+ * @returns {Promise<boolean>} - Returns true if the specified Z Pattern type has the expected val.
  */
   async verifyZPattern(zPatternType) {
-    const mediaBlocks = await this.zPatternMediaBlocks.all();
+    const mediaBlocks = await this.zPatternMeidaBlocks.all();
     const mediaBlocksArray = await Promise.all(mediaBlocks.map(async (block) => block));
 
     switch (zPatternType) {
