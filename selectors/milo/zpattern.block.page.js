@@ -142,7 +142,7 @@ export default class ZPattern {
  *
  * @param {string} howToType - The type of the Z Pattern to verify.
  * Possible values are 'zpattern', z-pattern (small), z-pattern (large) and z-pattern (dark)
- * @returns {Promise<boolean>} - Returns true if the specified Z Pattern type has the expected val.
+ * @returns {Promise<boolean>} - Returns true if the specified Z Pattern type has the expected values.
  */
   async verifyZPattern(zPatternType) {
     const mediaBlocks = await this.zPatternMeidaBlocks.all();
