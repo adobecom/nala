@@ -4,6 +4,7 @@
 /* eslint-disable no-await-in-loop */
 import { FedsHeader } from '../../selectors/feds/feds.header.page';
 
+const AxeBuilder = require('@axe-core/playwright').default;
 const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const a11y = require('../../features/feds/a11y.spec.js');
@@ -30,6 +31,8 @@ test.describe(`${name}`, () => {
       await expect(Header.MainNavLogo).toBeVisible();
 
       // Do A11y Magic Here!
+      const a11yScan = await new AxeBuilder({ page }).analyze();
+      expect(a11yScan.violations.length).toBeLessThan(5);
     });
   });
 });
