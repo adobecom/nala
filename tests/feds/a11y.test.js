@@ -30,7 +30,7 @@ test.describe(`${name}`, () => {
       if (!/adobe/.test(title)) await expect(Header.GnavLogo).toBeVisible();
       await expect(Header.MainNavLogo).toBeVisible();
 
-      // Do A11y Magic Here!
+      // Analyze page accessibility:
       const a11yScan = await new AxeBuilder({ page }).analyze();
       expect(a11yScan.violations.length).toBeLessThan(5);
     });
