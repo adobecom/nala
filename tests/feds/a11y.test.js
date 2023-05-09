@@ -1,0 +1,35 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/named */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
+import { FedsHeader } from '../../selectors/feds/feds.header.page';
+
+const { expect, test } = require('@playwright/test');
+const parse = require('../../libs/parse.js');
+const a11y = require('../../features/feds/a11y.spec.js');
+const { name, features } = parse(a11y);
+
+test.describe(`${name}`, () => {
+  features.forEach((props) => {
+    test(props.title, async ({ page }) => {
+      const { title } = props;
+
+      // Initialize FEDS header page:
+      const Header = new FedsHeader(page);
+
+      // Navigate to FEDS header page:
+      await page.goto(props.url);
+      // Wait for page to load & stabilize:
+      await page.waitForLoadState('domcontentloaded');
+
+      // Wait for FEDS GNAV to be visible:
+      await Header.MainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
+      await expect(Header.SearchIcon).toBeVisible();
+      await expect(Header.SignInLabel).toBeVisible();
+      if (!/adobe/.test(title)) await expect(Header.GnavLogo).toBeVisible();
+      await expect(Header.MainNavLogo).toBeVisible();
+
+      // Do A11y Magic Here!
+    });
+  });
+});
