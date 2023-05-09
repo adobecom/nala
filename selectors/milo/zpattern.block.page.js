@@ -14,7 +14,7 @@ exports.ZPattern = class ZPattern {
     this.largeIntroHeadingText = this.zPattern.locator('#large-intro-text-optional');
     this.darkIntroHeadingText = this.zPattern.locator('#intuitive-block-authoring');
 
-    this.zPatternMeidaBlocks = this.zPattern.locator('.media');
+    this.zPatternMediaBlocks = this.zPattern.locator('.media');
 
     // zpattern contents css
     this.cssProperties = {
@@ -145,7 +145,7 @@ exports.ZPattern = class ZPattern {
  * @returns {Promise<boolean>} - Returns true if the specified Z Pattern type has the expected values.
  */
   async verifyZPattern(zPatternType) {
-    const mediaBlocks = await this.zPatternMeidaBlocks.all();
+    const mediaBlocks = await this.zPatternMediaBlocks.all();
     const mediaBlocksArray = await Promise.all(mediaBlocks.map(async (block) => block));
 
     switch (zPatternType) {
