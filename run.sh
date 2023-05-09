@@ -56,8 +56,11 @@ if [[ -n  "$APPS" ]];then
       if [[ "$conf_name" == "nala" && -z "$project_name" ]]; then
         # Run default run-nala execution
         echo "*** Default nala-run config ***"
-        echo "npx playwright test ${TAGS} ${REPORTER}" 
-        npx playwright test ${TAGS} ${REPORTER}
+        # Run all config.js for default label run-nala 
+        for file in ./configs/*.config.js; do
+          echo "*** npx playwright test --config=${file} ${TAGS} ${REPORTER} ***"
+          npx playwright test --config=${file} ${TAGS} ${REPORTER}
+        done
 
       elif [ ! -f "$config_file" ]; then        
         echo "Config file : $config_file is not found"
@@ -77,6 +80,8 @@ if [[ -n  "$APPS" ]];then
       fi
     done
 else
+  # If no label is provided then by default Milo tests will be run
+  echo "*** No label, default Milo Run***"
   npx playwright test ${TAGS} ${REPORTER}
 fi
 
