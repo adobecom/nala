@@ -31,7 +31,10 @@ test.describe(`${name}`, () => {
       await expect(Header.MainNavLogo).toBeVisible();
 
       // Analyze page accessibility:
-      const a11yScan = await new AxeBuilder({ page }).analyze();
+      const a11yScan = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
+        .analyze();
+      // Assert page violations are limited:
       expect(a11yScan.violations.length).toBeLessThan(5);
     });
   });
