@@ -59,7 +59,7 @@ if [[ -n  "$APPS" ]];then
         # Run all config.js for default label run-nala 
         for file in ./configs/*.config.js; do
           echo "*** npx playwright test --config=${file} ${TAGS} ${REPORTER} ***"
-          npx playwright test --config=${file} ${TAGS} ${REPORTER}
+          npx playwright test --config=${file} ${TAGS} ${REPORTER} --quiet
         done
 
       elif [ ! -f "$config_file" ]; then        
