@@ -8,7 +8,7 @@ const envs = require('../envs/envs.js');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: '../tests/feds',
+  testDir: '../tests/uar',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
@@ -40,54 +40,56 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@feds_live'] || 'https://gnav--milo--adobecom.hlx.live',
+    baseURL: process.env.BASE_URL || envs['@adobe_stage'] || 'https://www.stage.adobe.com',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'feds-live-chrome',
+      name: 'adobe-stage-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@feds_live'],
-      },
-    },
-    {
-      name: 'feds-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@feds_live'],
+        baseURL: envs['@adobe_stage'],
       },
     },
 
     {
-      name: 'feds-live-webkit',
+      name: 'adobe-stage-firefox',
       use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@feds_live'],
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@adobe_stage'],
       },
     },
+
     {
-      name: 'feds-preview-chrome',
+      name: 'adobe-stage-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@adobe_stage'],
+      },
+    },
+
+    {
+      name: 'adobe-prod-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@feds_preview'],
+        baseURL: envs['@adobe_prod'],
       },
     },
 
     {
-      name: 'feds-preview-firefox',
+      name: 'adobe-prod-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@feds_preview'],
+        baseURL: envs['@adobe_prod'],
       },
     },
 
     {
-      name: 'feds-preview-webkit',
+      name: 'adobe-prod-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@feds_preview'],
+        baseURL: envs['@adobe_prod'],
       },
     },
   ],
