@@ -37,5 +37,14 @@ module.exports = {
       envs: '@stock_live',
       tags: '@failedblock',
     },
+    {
+      name: '@failedblock',
+      path: [
+        '/legal/license-terms-linkless',
+        '/legal/enterprise-conditions-linkless',
+      ],
+      envs: '@adobestock_live',
+      tags: '@failedblock',
+    },
   ],
 };
