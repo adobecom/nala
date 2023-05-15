@@ -175,6 +175,36 @@ exports.WebUtil = class WebUtil {
   }
 
   /**
+ * Check if the modal associated with the current locator is within the viewport.
+ * @param page - calling method page object.
+ * @returns {Promise<boolean>} - Resolves to true if the modal is within the viewport, or false.
+ */
+  static async isModalInViewport(page, selector) {
+    try {
+      const inViewport = await page.evaluate((sel) => {
+        const modalDialog = document.querySelector('.dialog-modal');
+        if (!modalDialog) {
+          throw new Error(`Modal element with selector '${sel}' not found.`);
+        }
+        const rect = modalDialog.getBoundingClientRect();
+        return (
+          rect.top >= 0
+        && rect.left >= 0
+        && rect.bottom
+          <= (window.innerHeight || document.documentElement.clientHeight)
+        && rect.right
+          <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }, selector);
+
+      return inViewport;
+    } catch (error) {
+      console.error('Error verifying modal veiwport:', error);
+      return false;
+    }
+  }
+
+  /**
    * Load test data from yml file or json file in local
    * @param {string} filePath
   */
