@@ -1,21 +1,21 @@
 module.exports = {
-  name: 'FEDS Consent',
+  name: 'Consent Component',
   features: [
     {
-      name: '@consent',
+      name: '@FEDS-Consent-Checks',
       path: [
         '/libs/feds/drafts/qa/consent/feds-consent-page',
       ],
       envs: '@feds_live',
-      tags: '@feds @feds-consent',
+      tags: '@feds @consent @feds-consent',
     },
     {
-      name: '@consent',
+      name: '@DC-Consent-Checks',
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@feds-consent',
+      tags: '@feds @consent @dc-consent',
     },
   ],
 };

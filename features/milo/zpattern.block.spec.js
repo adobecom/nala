@@ -1,5 +1,5 @@
 module.exports = {
-  BlockName: 'ZPattern',
+  BlockName: 'ZPattern Blocks',
   features: [
     {
       tcid: '0',

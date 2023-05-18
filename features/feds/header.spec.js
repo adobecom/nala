@@ -1,21 +1,21 @@
 module.exports = {
-  name: 'FEDS Header',
+  name: 'Header Component',
   features: [
     {
-      name: '@header',
+      name: '@FEDS-Header-Checks',
       path: [
         '/libs/feds/drafts/qa/header/feds-header-page',
       ],
       envs: '@feds_live',
-      tags: '@feds @feds-header',
+      tags: '@feds @header @feds-header',
     },
     {
-      name: '@header',
+      name: '@DC-Header-Checks',
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@feds @feds-header',
+      tags: '@dc @header @dc-header',
     },
   ],
 };

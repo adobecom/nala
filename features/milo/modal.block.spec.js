@@ -1,5 +1,5 @@
 module.exports = {
-  FeatureName: 'Modal',
+  FeatureName: 'Modal Blocks',
   features: [
     {
       tcid: '0',

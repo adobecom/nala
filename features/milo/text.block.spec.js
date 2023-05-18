@@ -1,5 +1,5 @@
 module.exports = {
-  BlockName: 'Text block',
+  BlockName: 'Text Blocks',
   features: [
     {
       tcid: '0',

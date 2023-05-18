@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Stats',
+  name: 'Stats Block',
   features: [
     {
       tcid: '1',

@@ -24,8 +24,11 @@ test.describe(`${name}`, () => {
       // Click 'Sign In' label:
       await Header.SignInLabel.waitFor({state: 'visible', timeout: 5000});
       await Header.SignInLabel.click();
-      // Login with a valid ACOM account:
-      await Login.LoginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
+
+
+      //await test.step('Login with a valid Adobe account', async () => {
+        await Login.LoginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
+      // });
 
       // Check FEDS user profile:
       await Header.OpenUserProfile();

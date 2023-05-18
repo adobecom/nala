@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Tree-view block',
+  name: 'Tree-View Block',
   features: [
     {
       tcid: '1',
