@@ -356,9 +356,10 @@ exports.Marquee = class Marquee {
     switch (marqueeType) {
       case 'marquee (light)':
         // verify marquee visibility, css, analytics and other attributes
+        console.log('In Marquee Block page title : ', await this.page.title());
         await expect(await this.marqueeLight).toBeVisible();
-        expect(WebUtil.verifyCSS(this.marqueeLight, this.cssProperties['marquee-light'])).toBeTruthy();
-        expect(WebUtil.verifyAttributes(this.marqueeLight, this.attProperties['marquee-light'])).toBeTruthy();
+        expect(WebUtil.verifyCSS(await this.marqueeLight, this.cssProperties['marquee-light'])).toBeTruthy();
+        expect(WebUtil.verifyAttributes(await this.marqueeLight, this.attProperties['marquee-light'])).toBeTruthy();
 
         // verify action button css, attributes and classes
         await Promise.all(['filled-l', 'outline-l'].map(async (type) => {

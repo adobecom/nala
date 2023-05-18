@@ -119,62 +119,62 @@ exports.Text = class Text {
     switch (textType) {
       case 'text':
         // verify text visibility, css and attribute values
-        await expect(this.text).toBeVisible();
-        expect(await WebUtil.verifyAttributes(this.text, this.attProperties.text)).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textHeadline, this.cssProperties['heading-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textBodyLink, this.cssProperties['body-m'])).toBeTruthy();
-        expect(await WebUtil.verifyAttributes(this.textBodyLink, this.attProperties['text-link'])).toBeTruthy();
-        expect(await WebUtil.verifyAttributes(this.outlineButton, this.attProperties.outline)).toBeTruthy();
+        await expect(await this.text).toBeVisible();
+        expect(await WebUtil.verifyAttributes(await this.text, this.attProperties.text)).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textHeadline, this.cssProperties['heading-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyLink, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.textBodyLink, this.attProperties['text-link'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.outlineButton, this.attProperties.outline)).toBeTruthy();
 
         return true;
       case 'text (intro)':
         // verify text (intro) visibility, css and attribute values
         await expect(this.textIntro).toBeVisible();
-        expect(await WebUtil.verifyAttributes(this.textIntro, this.attProperties['text-intro'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textIntroDetailM, this.cssProperties['detail-m'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textIntroHeadline, this.cssProperties['heading-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.textIntro, this.attProperties['text-intro'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textIntroDetailM, this.cssProperties['detail-m'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textIntroHeadline, this.cssProperties['heading-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
 
         return true;
 
       case 'text (full width)':
         // verify text (full width) visibility, css and attribute values
         await expect(this.textFullWidth).toBeVisible();
-        expect(await WebUtil.verifyAttributes(this.textFullWidth, this.attProperties['text-full-width'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textFullWidthHeadline, this.cssProperties['heading-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
-        expect(await WebUtil.verifyAttributes(this.textBodyLink, this.attProperties['text-link'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.textFullWidth, this.attProperties['text-full-width'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textFullWidthHeadline, this.cssProperties['heading-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.textBodyLink, this.attProperties['text-link'])).toBeTruthy();
 
         return true;
 
       case 'text (full-width, large)':
         // verify text (full-width, large) visibility, css and attribute values
         await expect(this.textFullWidthLarge).toBeVisible();
-        expect(await WebUtil.verifyAttributes(this.textFullWidthLarge, this.attProperties['text-full-width-large'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textFullWidthLargeHeadline, this.cssProperties['heading-xl'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
-        expect(await WebUtil.verifyAttributes(this.textBodyLink, this.attProperties['text-link'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.textFullWidthLarge, this.attProperties['text-full-width-large'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textFullWidthLargeHeadline, this.cssProperties['heading-xl'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyM, this.cssProperties['body-m'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.textBodyLink, this.attProperties['text-link'])).toBeTruthy();
 
         return true;
 
       case 'text (long form, large)':
         // verify text (long-form, large) visibility, css and attribute values
-        await expect(this.textLongFormLarge).toBeVisible();
-        expect(await WebUtil.verifyAttributes(this.textLongFormLarge, this.attProperties['text-long-form-large'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textLongFormDetailL, this.cssProperties['detail-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textLongFormLargeHeadline, this.cssProperties['heading-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textBodyL, this.cssProperties['body-l'])).toBeTruthy();
+        await expect(await this.textLongFormLarge).toBeVisible();
+        expect(await WebUtil.verifyAttributes(await this.textLongFormLarge, this.attProperties['text-long-form-large'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textLongFormDetailL, this.cssProperties['detail-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textLongFormLargeHeadline, this.cssProperties['heading-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyL, this.cssProperties['body-l'])).toBeTruthy();
 
         return true;
 
       case 'text (inset, large, m spacing)':
         // verify text (inset, large, m spacing) visibility, css and attribute values
-        await expect(this.textInsetLargeMSpacing).toBeVisible();
-        expect(await WebUtil.verifyAttributes(this.textInsetLargeMSpacing, this.attProperties['text-inset-medium-m-spacing'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textInsetLargeMSpacingHeadline, this.cssProperties['heading-m'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textBodyL, this.cssProperties['body-l'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(this.textPropertiesHeadingM, this.cssProperties['heading-m'])).toBeTruthy();
+        await expect(await this.textInsetLargeMSpacing).toBeVisible();
+        expect(await WebUtil.verifyAttributes(await this.textInsetLargeMSpacing, this.attProperties['text-inset-medium-m-spacing'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textInsetLargeMSpacingHeadline, this.cssProperties['heading-m'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyL, this.cssProperties['body-l'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textPropertiesHeadingM, this.cssProperties['heading-m'])).toBeTruthy();
 
         return true;
 
