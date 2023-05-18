@@ -67,29 +67,6 @@ const config = {
         baseURL: envs['@feds_live'],
       },
     },
-    {
-      name: 'feds-preview-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@feds_preview'],
-      },
-    },
-
-    {
-      name: 'feds-preview-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@feds_preview'],
-      },
-    },
-
-    {
-      name: 'feds-preview-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@feds_preview'],
-      },
-    },
   ],
 };
 module.exports = config;
