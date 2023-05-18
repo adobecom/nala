@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Georouting Version 2',
+  name: 'Georouting V2',
   features: [
     {
       name: '@georoutingV2',

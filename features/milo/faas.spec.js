@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'FaaS Blocks',
+  name: 'FaaS Block',
   features: [
     {
       name: '@faas',

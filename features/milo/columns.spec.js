@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Column Blocks',
+  name: 'Columns Block',
   features: [
     {
       name: '@columns',

@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Marquee Blocks',
+  name: 'Marquee Block',
   features: [
     {
       tcid: '0',

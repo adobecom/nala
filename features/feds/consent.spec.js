@@ -15,7 +15,7 @@ module.exports = {
         '/acrobat/online/sign-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@feds @consent @dc-consent',
+      tags: '@dc @consent @dc-consent',
     },
   ],
 };

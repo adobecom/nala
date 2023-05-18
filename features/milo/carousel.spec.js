@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Carousel Blocks',
+  name: 'Carousel Block',
   features: [
     {
       name: '@carousel',

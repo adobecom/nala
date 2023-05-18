@@ -3,7 +3,7 @@ module.exports = {
   features: [
     {
       tcid: '1',
-      name: '@Tree-view',
+      name: '@BACOM-TreeView-Checks',
       path: '/test/features/blocks/tree-view',
       tags: '@tree-view @smoke @regression @bacom',
     },

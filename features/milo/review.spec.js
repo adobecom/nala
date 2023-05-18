@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Review',
+  name: 'Review Block',
   features: [
     {
       name: '@review_block',
