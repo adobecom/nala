@@ -34,12 +34,11 @@ test.describe(`${name}`, () => {
 
       // Custom-summary for a11y html report:
       const reportSummary =
-      `Report Summary: Checks the page accessibility of the ${props.url} URL.
+      `Report Summary: Checks the page accessibility of the given URL & generates a a11y report.
         <br>More info:</br>
         <ol style="margin: 0">
         <li>This is a Federated Services, A11y initiative.</li>
         <li>For more info contact chivescu@adobe.com.</li>
-        <li>.</li>
         </ol>
       `;
       // Generate a11y html report:
