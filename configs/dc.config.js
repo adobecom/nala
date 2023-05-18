@@ -46,54 +46,6 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'dc-preview-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@dc_preview'],
-      },
-    },
-
-    {
-      name: 'dc-preview-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@dc_preview'],
-      },
-    },
-
-    {
-      name: 'dc-preview-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@dc_preview'],
-      },
-    },
-
-    {
-      name: 'dc-live-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@dc_live'],
-      },
-    },
-
-    {
-      name: 'dc-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@dc_live'],
-      },
-    },
-
-    {
-      name: 'dc-live-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@dc_live'],
-      },
-    },
-
-    {
       name: 'adobe-prod-chrome',
       use: {
         ...devices['Desktop Chrome'],
