@@ -27,8 +27,8 @@ test.describe(`${name}`, () => {
       if (!/adobe/.test(title)) await expect(Header.GnavLogo).toBeVisible();
 
       await test.step('Check HEADER search component', async () => {
-        await Header.OpenSearchBar();
-        await Header.CloseSearchBar();
+        await Header.openSearchBar();
+        await Header.closeSearchBar();
       });
 
       await test.step('Check HEADER mega menu component', async () => {

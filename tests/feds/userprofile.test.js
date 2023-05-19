@@ -25,14 +25,14 @@ test.describe(`${name}`, () => {
         // Click 'Sign In' label:
         await Header.SignInLabel.waitFor({state: 'visible', timeout: 5000});
         await Header.SignInLabel.click();
-        await Login.LoginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
+        await Login.loginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
       });
 
       await test.step('Check FEDS user profile component', async () => {
-        await Header.OpenUserProfile();
+        await Header.openUserProfile();
         await expect(Header.ProfileModal).toBeVisible();
-        await Header.CheckUserProfile();
-        await Header.CloseUserProfile();
+        await Header.checkUserProfile();
+        await Header.closeUserProfile();
         await expect(Header.ProfileModal).not.toBeVisible();
       });
     });
