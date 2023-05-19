@@ -99,6 +99,7 @@ const config = {
       },
     },
 
+    // Added viewport for standardized window testing for visual comparisons
     {
       name: 'milo-live-chrome-visual',
       use: {
