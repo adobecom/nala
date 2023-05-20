@@ -27,7 +27,9 @@ done
 
 # For visual tests add global visual tag if tags are empty
 if [[ $isVisual ]]; then
-  [[ -z "$TAGS"]] && TAGS="-g @visual"
+  if [[ -n "$TAGS" ]]; then
+    TAGS+="-g @visual"
+  fi
 fi
 
 # Retrieve github reporter parameter if not empty
