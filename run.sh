@@ -11,7 +11,15 @@ do
   # If the label starts with '@', remove the '@' and add it to the list of tags
   if [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
     label="${label:1}"
-    TAGS+="|$label"
+    if [[ !$isVisual ]]; then
+      if [[ "$label" != *"visual"* ]]
+        TAGS+="|$label"
+      fi
+    else
+      if [[ "$label" == *"visual"* ]]
+        TAGS+="|$label"
+      fi
+    fi
   else
     # Extract the application name from the label using sed
     APP_NAME=$(echo "$label" | sed -E 's/^run(-nala(-on)?|(-on)?)*-(.*)$/\4/')

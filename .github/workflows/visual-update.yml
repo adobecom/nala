@@ -2,6 +2,11 @@ name: Run Nala Visual Comparisons
 
 on:
   workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test scenario tags, if empty all tests will run. i.e., @marquee'
+        required: false
+        type: string
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -24,7 +29,7 @@ jobs:
       - name: Run Nala
         uses: ./
         env:
-          labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
+          labels: ${{ inputs.tags }}
           isVisual: true
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}

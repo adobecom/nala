@@ -19,7 +19,8 @@ jobs:
           repository: adobecom/nala-screenshots
           ref: main
       - name: Copy base screenshots to test screenshot path
-        run: cp -fr nala-screenshots/screenshots/visual-compare/ nala/screenshots/visual-compare/
+        run: pwd && ls -ali
+        #run: cp -fr nala-screenshots/screenshots/visual-compare/ nala/screenshots/visual-compare/
       - name: Run Nala
         uses: ./
         env:
