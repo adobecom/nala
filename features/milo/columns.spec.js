@@ -5,19 +5,19 @@ module.exports = {
       name: '@columns',
       path: '/test/features/blocks/columns',
       envs: '@milo_live',
-      tags: '@columns-default @columns-table @visual @smoke @regression @visual-smoke @visual-regression',
+      tags: '@columns-default @columns-table @columns-visual @visual @smoke @regression @visual-smoke @visual-regression',
     },
     {
       name: '@columns',
       path: '/blog/basics/agile-vs-waterfall',
       envs: '@bacomblog_live',
-      tags: '@columns-table @visual @regression @visual-regression',
+      tags: '@columns-table @columns-visual @visual @regression @visual-regression',
     },
     {
       name: '@columns',
       path: '/en/publish/2022/07/28/announcing-2022-adobe-analytics-champions',
       envs: '@blog_live',
-      tags: '@columns-default @visual @regression @visual-regression',
+      tags: '@columns-default @columns-visual @visual @regression @visual-regression',
     },
     {
       name: '@columns',

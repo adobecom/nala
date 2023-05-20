@@ -29,7 +29,8 @@ test.describe(`${name}`, () => {
         // Added scrolling for lazy loaded images to initiate their load.
         await webUtil.scrollPage('down', 'slow');
         await webUtil.scrollPage('up', 'fast');
-
+        // Compare the base screenshot against a newly taken screenshot for equality
+        // If no base screenshot image is available for comparison create one.
         await expect(page).toHaveScreenshot(`columns_${props.url}.png`, { fullPage: true, timeout: 30000 });
       });
     }

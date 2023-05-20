@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Check out nala repository
         uses: actions/checkout@v3
       - name: Check out nala screenshots repository
         uses: actions/checkout@v3
         with:
           repository: adobecom/nala-screenshots
-          path: main
-      - name: Copy over base screenshots to expected test screenshot path
-        uses: ./runVisualPrep.sh
+          ref: main
+      - name: Copy base screenshots to test screenshot path
+        run: cp -fr nala-screenshots/screenshots/visual-compare/ nala/screenshots/visual-compare/
       - name: Run Nala
         uses: ./
         env:
@@ -40,4 +40,4 @@ jobs:
         with:
           name: vc-screenshots-failures
           path: test-results/
-          retention: 30
+          retention-days: 30

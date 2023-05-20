@@ -10,8 +10,8 @@ do
   # Extracts the tags
   # If the label starts with '@', remove the '@' and add it to the list of tags
   if [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
-    label="${label:1}" 
-    TAGS+="|$label"  
+    label="${label:1}"
+    TAGS+="|$label"
   else
     # Extract the application name from the label using sed
     APP_NAME=$(echo "$label" | sed -E 's/^run(-nala(-on)?|(-on)?)*-(.*)$/\4/')
@@ -19,17 +19,16 @@ do
     if [[ -n "$APP_NAME" ]]; then
       APPS+=" $APP_NAME"
     fi
-  fi 
+  fi
 done
-
-# Check to see if execution is a visual comparison execution
-# If so, add the tag for visual tests
-if [ $isVisual ]
-then
-  TAGS+="|@visual-compare"
 
 # Remove the first pipe from tags if tags are not empty
 [[ ! -z "$TAGS" ]] && TAGS="${TAGS:1}" && TAGS="-g $TAGS"
+
+# For visual tests add global visual tag if tags are empty
+if [[ $isVisual ]]; then
+  [[ -z "$TAGS"]] && TAGS="-g @visual"
+fi
 
 # Retrieve github reporter parameter if not empty
 # Otherwise use reporter settings in playwright.config.js
@@ -39,13 +38,12 @@ REPORTER=$reporter
 echo "*** Running Nala on $branch ***"
 echo "Tags : $TAGS"
 echo "APPS : $APPS"
-echo "npx playwright test ${TAGS} ${REPORTER}"
 
 cd "$GITHUB_ACTION_PATH" || exit
 npm ci
 npx playwright install --with-deps
 
-# Loop through each apps  
+# Loop through each apps
 if [[ -n  "$APPS" ]];then
   for app_name in $APPS;
     do
@@ -62,19 +60,33 @@ if [[ -n  "$APPS" ]];then
       if [[ "$conf_name" == "nala" && -z "$project_name" ]]; then
         # Run default run-nala execution
         echo "*** Default nala-run config ***"
-        echo "npx playwright test ${TAGS} ${REPORTER}" 
-        npx playwright test ${TAGS} ${REPORTER}
+        if [[ $isVisual ]]; then
+          echo "npx playwright test --config=./configs/visual.config.js ${TAGS} ${REPORTER}"
+          npx playwright test --config="./configs/visual.config.js" ${TAGS} ${REPORTER}
+        else
+          echo "npx playwright test ${TAGS} ${REPORTER}"
+          npx playwright test ${TAGS} ${REPORTER}
+        fi
 
-      elif [ ! -f "$config_file" ]; then        
+      elif [ ! -f "$config_file" ]; then
         echo "Config file : $config_file is not found"
         continue
       else
-        if [[ -n "$project_name" ]];then
+        if [[ -n "$project_name" ]]; then
           # Run on all three browsers, configured as projects in corresponding .config.js file
           echo "*** npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name} ***"
-          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
-          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
-          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
+          if [[ $isVisual ]]; then
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome-visual ${REPORTER}
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox-visual ${REPORTER}
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit-visual ${REPORTER}
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-android-visual ${REPORTER}
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-iphone-visual ${REPORTER}
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-ipad-visual ${REPORTER}
+          else
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER}
+            npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
+          fi
         else
           # Run all the projects from config file for all projects
           echo "*** npx playwright test --config="$config_file" ${TAGS} ${REPORTER} ***"
@@ -83,6 +95,11 @@ if [[ -n  "$APPS" ]];then
       fi
     done
 else
-  npx playwright test ${TAGS} ${REPORTER}
+  if [[ $isVisual ]]; then
+    echo "npx playwright test --config=./configs/visual.config.js ${TAGS} ${REPORTER}"
+    npx playwright test --config="./configs/visual.config.js" ${TAGS} ${REPORTER}
+  else
+    echo "npx playwright test ${TAGS} ${REPORTER}"
+    npx playwright test ${TAGS} ${REPORTER}
+  fi
 fi
-

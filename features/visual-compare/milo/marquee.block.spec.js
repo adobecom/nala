@@ -5,7 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@Marquee',
       path: '/test/features/blocks/marquee',
-      tags: '@marquee, @marquee-large, @visual, @visual-smoke, @visual-regression',
+      tags: '@marquee, @marquee-large, @marquee-visual, @visual, @visual-smoke, @visual-regression',
     },
   ],
 };
