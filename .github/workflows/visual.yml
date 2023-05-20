@@ -19,10 +19,10 @@ jobs:
           repository: adobecom/nala-screenshots
           ref: main
       - name: Copy base screenshots to test screenshot path
-        working-directory: ${{ github.workspace }}/nala
+        working-directory: ${{ github.workspace }}
         run: ./runVisualPrep.sh
       - name: Run Nala
-        working-directory: ${{ github.workspace }}/nala
+        working-directory: ${{ github.workspace }}
         run: ./
         env:
           labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
