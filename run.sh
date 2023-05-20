@@ -12,11 +12,11 @@ do
   if [[ "$label" = \@* && "$label" != "@run-on"* ]]; then
     label="${label:1}"
     if [[ !$isVisual ]]; then
-      if [[ "$label" != *"visual"* ]]
+      if [[ "$label" != *"visual"* ]]; then
         TAGS+="|$label"
       fi
     else
-      if [[ "$label" == *"visual"* ]]
+      if [[ "$label" == *"visual"* ]]; then
         TAGS+="|$label"
       fi
     fi
