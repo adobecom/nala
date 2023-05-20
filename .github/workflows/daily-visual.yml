@@ -14,13 +14,12 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Check out nala repository
+      - name: Check out repositories
         uses: actions/checkout@v3
-      - name: Check out nala screenshots repository
-        uses: actions/checkout@v3
+      - name: Check out nala repository and nala screenshots repository
+        uses: vweevers/multi-checkout-action@v1
         with:
-          repository: adobecom/nala-screenshots
-          ref: main
+          repositories: adobecom/nala adobecom/nala-screenshots
       - name: Copy base screenshots to test screenshot path
         uses: ./runVisualPrep.sh
       - name: Run Nala Visual Comparison ${{ matrix.os }}
