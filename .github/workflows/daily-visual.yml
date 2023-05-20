@@ -22,9 +22,11 @@ jobs:
           repository: adobecom/nala-screenshots
           ref: main
       - name: Copy base screenshots to test screenshot path
-        run: ./runVisualPrep
+        working-directory: ${{ github.workspace }}/nala
+        run: ./runVisualPrep.sh
       - name: Run Nala Visual Comparison ${{ matrix.os }}
-        uses: ./
+        working-directory: ${{ github.workspace }}/nala
+        run: ./
         env:
           isVisual: true
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
