@@ -25,7 +25,7 @@ jobs:
           repository: adobecom/nala-screenshots
           ref: main
       - name: Copy base screenshots to test screenshot path
-        run: ./runVisualPrep.sh
+        run: ./runVisualPrep
       - name: Run Nala
         uses: ./
         env:
@@ -34,6 +34,6 @@ jobs:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
       - name: Create PR of updated base images to screenshots repository
-        uses: ./runVisualUpdate.sh
+        uses: ./runVisualUpdate
         env:
           id: ${{ github.run_id }}

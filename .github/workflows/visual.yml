@@ -19,7 +19,7 @@ jobs:
           repository: adobecom/nala-screenshots
           ref: main
       - name: Copy base screenshots to test screenshot path
-        run: ./runVisualPrep.sh
+        run: ./runVisualPrep
       - name: Run Nala
         uses: ./
         env:
