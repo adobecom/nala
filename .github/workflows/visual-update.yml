@@ -30,7 +30,8 @@ jobs:
       - name: Change to Nala repostiory directory
         run: |
           cd ${{ github.action_path }}
-          cd nala/
+          echo pwd
+          echo ls -ali
       - name: Copy base screenshots to test screenshot path
         uses: ./runVisualPrep.sh
       - name: Run Nala
