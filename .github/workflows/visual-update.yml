@@ -30,9 +30,9 @@ jobs:
       - name: Copy base screenshots to test screenshot path
         run: |
           echo "Copying base screenshots..."
-          cp -fr nala-screenshots/screenshots/visual-compare/ nala/screenshots/visual-compare/
+          cp -fr /home/runner/work/nala/nala/nala-screenshots/screenshots/visual-compare/ /home/runner/work/nala/nala/nala/screenshots/visual-compare/
       - name: Run Nala
-        uses: ./
+        uses: ./home/runner/work/nala/nala/nala/run.sh
         env:
           labels: ${{ inputs.tags }}
           isVisual: true
