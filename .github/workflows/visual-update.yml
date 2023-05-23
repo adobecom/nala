@@ -17,21 +17,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out nala repository
-        uses: actions/checkout@v3
-        with:
-          path: nala
       - name: Check out nala screenshots repository
         uses: actions/checkout@v3
         with:
           repository: adobecom/nala-screenshots
           ref: main
           path: nala-screenshots
-      - name: Change to Nala repostiory directory
-        run: |
-          cd ${{ github.action_path }}
-          echo pwd
-          echo ls -ali
+      - name: Check out nala repository
+        uses: actions/checkout@v3
+        with:
+          path: nala
       - name: Copy base screenshots to test screenshot path
         uses: ./runVisualPrep.sh
       - name: Run Nala
