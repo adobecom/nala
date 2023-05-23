@@ -28,7 +28,9 @@ jobs:
         with:
           path: nala
       - name: Copy base screenshots to test screenshot path
-        uses: ./runVisualPrep.sh
+        run: |
+          echo "Copying base screenshots..."
+          cp -fr nala-screenshots/screenshots/visual-compare/ nala/screenshots/visual-compare/
       - name: Run Nala
         uses: ./
         env:
