@@ -27,8 +27,10 @@ jobs:
           repository: adobecom/nala-screenshots
           ref: main
           path: nala-screenshots
-      - name: Change to Action Path
-        run: cd ${{ github.action_path }}
+      - name: Change to Nala repostiory directory
+        run: |
+          cd ${{ github.action_path }}
+          cd nala/
       - name: Copy base screenshots to test screenshot path
         uses: ./runVisualPrep.sh
       - name: Run Nala
