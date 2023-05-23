@@ -1,0 +1,73 @@
+version: 2.1
+
+parameters:
+  env:
+    type: string
+    default: prod
+  dcbranch:
+    type: string
+    default: none
+
+orbs:
+  node: circleci/node@5.1.0
+
+jobs:
+  test:
+    docker:
+      - image: cimg/base:2022.06
+    environment:
+      ENV: << pipeline.parameters.env >>
+      DCBRANCH: << pipeline.parameters.dcbranch >>
+      TESTSUITE: '@smoke'
+    steps:
+      - node/install:
+          node-version: '16.16.0'
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package-lock.json" }}
+      - run: |
+          npm install
+      - save_cache:
+          key: npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run: |
+          npx playwright install-deps
+          npx playwright install
+      - run:
+          name: Set env variables
+          command: |
+            if [[ "$DCBRANCH" == "stage" ]]; then
+              echo 'export ENV="stage"' >> "$BASH_ENV"
+              echo 'export TESTSUITE="@regression"' >> "$BASH_ENV"
+            fi
+            if [[ "$DCBRANCH" == "main" ]]; then
+              echo 'export ENV="prod"' >> "$BASH_ENV"
+              echo 'export TESTSUITE="@regression"' >> "$BASH_ENV"
+            fi
+      - run:
+          name: Run analytics tests
+          no_output_timeout: 30m
+          command: |
+            npm test -- -t ${TESTSUITE}-analytics -p $ENV --branch $DCBRANCH --enableAnalytics --browser=firefox
+      - run:
+          name: Run E2E tests
+          no_output_timeout: 30m
+          command: |
+            npm test -- -t $TESTSUITE -p $ENV --branch $DCBRANCH
+      - store_artifacts:
+          path: reports
+      - run:
+          when: on_fail
+          command: |
+            curl -X POST --data-urlencode "payload={\"text\": \"<$CIRCLE_BUILD_URL|CircleCI tests> failed\"}" https://hooks.slack.com/services/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
+      - run:
+          when: on_success
+          command: |
+            curl -X POST --data-urlencode "payload={\"text\": \"<$CIRCLE_BUILD_URL|CircleCI tests> passed\"}" https://hooks.slack.com/services/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
+
+workflows:
+  run:
+    jobs:
+      - test
