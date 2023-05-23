@@ -230,10 +230,12 @@ exports.WebUtil = class WebUtil {
   async enableNetworkLogging(networklogs) {
     await this.page.route('**', (route) => {
       const url = route.request().url();
-      if (url.includes('sstats.adobe.com/ee/or2/v1/interact') || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
+      if (url.includes('sstats.adobe.com/ee/or2/v1/interact')
+       || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
         networklogs.push(url);
-        // eslint-disable-next-line max-len, no-underscore-dangle
-        networklogs.push(JSON.stringify(route.request().postDataJSON().events[0].data._adobe_corpnew.digitalData.primaryEvent));
+        const firstEvent = route.request().postDataJSON().events[0];
+        // eslint-disable-next-line no-underscore-dangle
+        networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.primaryEvent));
       }
       route.continue();
     });

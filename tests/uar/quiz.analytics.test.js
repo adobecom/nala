@@ -23,13 +23,14 @@ test.describe('Quiz flow test suite', () => {
     webUtil.enableNetworkLogging(networklogs);
   });
 
-  // reset timeout because we use this to run all test data
-  test.setTimeout(3 * 60 * 1000);
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
       // eslint-disable-next-line no-loop-func
       async ({ baseURL }) => {
+        // reset timeout because we use this to run all test data
+        test.setTimeout(3 * 60 * 1000);
+
         const quiz = new Quiz(page);
         const url = `${baseURL}${feature.path}`;
         console.info(url);
