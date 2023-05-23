@@ -32,7 +32,7 @@ jobs:
           echo "Copying base screenshots..."
           cp -fr /home/runner/work/nala/nala/nala-screenshots/screenshots/visual-compare/ /home/runner/work/nala/nala/nala/screenshots/visual-compare/
       - name: Run Nala
-        uses: ./home/runner/work/nala/nala/nala/run.sh
+        uses: ./nala/run.sh
         env:
           labels: ${{ inputs.tags }}
           isVisual: true
