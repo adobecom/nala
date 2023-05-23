@@ -24,8 +24,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: nala
-      - name: Change to Action Path
-        run: cd ${{ github.action_path }}
       - name: Copy base screenshots to test screenshot path
         uses: ./runVisualPrep.sh
       - name: Run Nala Visual Comparison ${{ matrix.os }}
