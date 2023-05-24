@@ -1,5 +1,5 @@
 module.exports = {
-  BlockName: 'HowTo',
+  BlockName: 'HowTo Block',
   features: [
     {
       tcid: '1',

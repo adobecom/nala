@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Failed Blocks',
+  name: 'Failed Block',
   features: [
     {
       name: '@failedblock',
