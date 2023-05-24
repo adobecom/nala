@@ -5,7 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@quiz single template',
       path: '/creativecloud/quiz-recommender.html',
-      tags: '@uar-quiz-analytics-single-template @uar-quiz-analytics',
+      tags: '@cc @uar-quiz-analytics-single-template @uar-quiz-analytics',
       data: 'data/uar/quiz/quiz-single-template.yml',
     },
   ],
