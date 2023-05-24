@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'DC Converter',
+  name: 'Converter Component',
   features: [
     {
-      name: '@converter',
+      name: '@DC-Converter-Checks',
       path: [
         '/acrobat/online/pdf-to-ppt.html',
         '/acrobat/online/pdf-to-jpg.html',
@@ -18,7 +18,7 @@ module.exports = {
         '/acrobat/online/compress-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@frictionless',
+      tags: '@dc @frictionless',
     },
   ],
 };

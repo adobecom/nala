@@ -5,7 +5,7 @@ const StatsSpec = require('../../features/bacom/stats.spec.js');
 
 const { features } = StatsSpec;
 
-test.describe('BACOM Stats block test suite', () => {
+test.describe('BACOM Stats Block Test Suite', () => {
   test(
     `${features[0].name}, @bacom-live, ${features[0].tags}, https://bacom.adobe.com`,
     async ({ page, baseURL }) => {
@@ -16,14 +16,14 @@ test.describe('BACOM Stats block test suite', () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
         await stats.clickStatsLink();
-        await expect(page.url()).not.toBe(testPage);
+        expect(page.url()).not.toBe(testPage);
       });
 
       await test.step('Selecting a solutions link', async () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
         await stats.clickSolutionsLink();
-        await expect(page.url()).not.toBe(testPage);
+        expect(page.url()).not.toBe(testPage);
       });
     },
   );
