@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Footer Component',
+  name: 'Footer Block',
   features: [
     {
       name: '@FEDS-Footer-Checks',

@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Header Component',
+  name: 'Header Block',
   features: [
     {
       name: '@FEDS-Header-Checks',
