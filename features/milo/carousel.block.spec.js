@@ -1,5 +1,5 @@
 module.exports = {
-  BlockName: 'Carousel block',
+  BlockName: 'Carousel Block',
   features: [
     {
       tcid: '1',

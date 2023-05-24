@@ -1,21 +1,21 @@
 module.exports = {
-  name: 'FEDS Search',
+  name: 'Search Component',
   features: [
     {
-      name: '@search',
+      name: '@FEDS-Search-Checks',
       path: [
         '/libs/feds/drafts/qa/search/feds-search-page',
       ],
       envs: '@feds_live',
-      tags: '@feds-search',
+      tags: '@feds @search @feds-search',
     },
     {
-      name: '@search',
+      name: '@DC-Search-Checks',
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@feds-search',
+      tags: '@dc @search @feds-search',
     },
   ],
 };

@@ -5,7 +5,7 @@ const TreeViewSpec = require('../../features/bacom/tree-view.spec.js');
 
 const { features } = TreeViewSpec;
 
-test.describe('BACOM Tree-viewblock test suite', () => {
+test.describe('BACOM Tree-View Block Test Suite', () => {
   test(
     `${features[0].name}, @bacom_live, ${features[0].tags}, https://bacom.adobe.com`,
     async ({ page, baseURL }) => {
@@ -17,23 +17,20 @@ test.describe('BACOM Tree-viewblock test suite', () => {
 
       await test.step('Verifying collapsed state', async () => {
         const beforeClick = await treeView.getFirstAccordionState();
-
-        await expect(beforeClick).toBe('false');
+        expect(beforeClick).toBe('false');
         await expect(treeView.firstAccordionFirstItem).not.toBeVisible();
       });
 
       await test.step('Verifying the expanded state', async () => {
         await treeView.firstAccordionButton.click();
-
         const afterClick = await treeView.getFirstAccordionState();
-
-        await expect(afterClick).toBe('true');
+        expect(afterClick).toBe('true');
       });
 
       await test.step('Verifying the ability to click the links inside the accordion', async () => {
         await expect(treeView.firstAccordionFirstItem).toBeVisible();
         await treeView.firstAccordionFirstItem.click();
-        await expect(page.url()).not.toBe(testPage);
+        expect(page.url()).not.toBe(testPage);
       });
     },
   );
