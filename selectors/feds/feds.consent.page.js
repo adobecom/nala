@@ -99,7 +99,7 @@ exports.FedsConsent = class FedsConsent {
     // OneTrust consent shouldn't be prompted after page refresh:
     await this.page.reload();
     // Wait for the page to load & stabilize:
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
     // OneTrust consent shouldn't be prompted after page loads:
     await expect(this.OneTrustContainer).not.toBeVisible();
   }

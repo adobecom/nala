@@ -17,22 +17,24 @@ test.describe(`${name}`, () => {
       await page.goto(props.url);
       // Wait for page to load & stabilize:
       await page.waitForLoadState('domcontentloaded');
-
       // Wait for FEDS GNAV to be visible:
       await Header.MainNavLogo.waitFor({state: 'visible', timeout: 5000});
       await Header.MainNavContainer.waitFor({state: 'visible', timeout: 5000});
-      // Click 'Sign In' label:
-      await Header.SignInLabel.waitFor({state: 'visible', timeout: 5000});
-      await Header.SignInLabel.click();
-      // Login with a valid ACOM account:
-      await Login.LoginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
 
-      // Check FEDS user profile:
-      await Header.OpenUserProfile();
-      await expect(Header.ProfileModal).toBeVisible();
-      await Header.CheckUserProfile();
-      await Header.CloseUserProfile();
-      await expect(Header.ProfileModal).not.toBeVisible();
+      await test.step('Login with a valid Adobe account', async () => {
+        // Click 'Sign In' label:
+        await Header.SignInLabel.waitFor({state: 'visible', timeout: 5000});
+        await Header.SignInLabel.click();
+        await Login.loginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
+      });
+
+      await test.step('Check FEDS user profile component', async () => {
+        await Header.openUserProfile();
+        await expect(Header.ProfileModal).toBeVisible();
+        await Header.checkUserProfile();
+        await Header.closeUserProfile();
+        await expect(Header.ProfileModal).not.toBeVisible();
+      });
     });
   });
 });

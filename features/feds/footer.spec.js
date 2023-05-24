@@ -1,21 +1,21 @@
 module.exports = {
-  name: 'FEDS Footer',
+  name: 'Footer Block',
   features: [
     {
-      name: '@footer',
+      name: '@FEDS-Footer-Checks',
       path: [
         '/libs/feds/drafts/qa/footer/feds-footer-page',
       ],
       envs: '@feds_live',
-      tags: '@feds @feds-footer',
+      tags: '@feds @footer @feds-footer',
     },
     {
-      name: '@footer',
+      name: '@DC-Footer-Checks',
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
       envs: '@adobe_prod',
-      tags: '@feds @feds-footer',
+      tags: '@dc @footer @dc-footer',
     },
   ],
 };
