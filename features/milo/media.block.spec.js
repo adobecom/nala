@@ -1,5 +1,5 @@
 module.exports = {
-  BlockName: 'Media',
+  BlockName: 'Media Block',
   features: [
     {
       tcid: '1',

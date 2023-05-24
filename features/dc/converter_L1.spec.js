@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'DC Converter',
+  name: 'Converter Component',
   features: [
     {
-      name: '@converter',
+      name: '@DC-Converter-Checks',
       path: [
         '/acrobat/online/sign-pdf.html',
         '/acrobat/online/request-signature.html',
@@ -16,7 +16,7 @@ module.exports = {
         '/acrobat/online/pdf-editor.html',
       ],
       envs: '@adobe_prod',
-      tags: '@frictionless',
+      tags: '@dc @frictionless',
     },
   ],
 };

@@ -39,8 +39,11 @@ exports.FedsLogin = class FedsLogin {
    * @param  {string} password
    * @return {Promise} PlayWright promise
    */
-  async LoginOnAppForm(email, password) {
+  async loginOnAppForm(email, password) {
     console.info(`[EuroLogin] APP login form identified!`);
+    // Check EMAIL & PASSWWORD status:
+    expect(process.env.IMS_EMAIL, 'ERROR: No environment variable found for IMS_EMAIL').toBeTruthy();
+    expect(process.env.IMS_PASS, 'ERROR: No environment variable found for IMS_PASS.').toBeTruthy();
     console.info(`[EuroLogin] Logging in with '${email}' account ...`);
     // Wait for page to load & stabilize:
     await this.page.waitForLoadState('domcontentloaded');
@@ -72,8 +75,11 @@ exports.FedsLogin = class FedsLogin {
    * @param  {string} password
    * @return {Promise} PlayWright promise
    */
-  async LoginOnSusiForm(email, password) {
+  async loginOnSusiForm(email, password) {
     console.info(`[EuroLogin] SUSI login form identified!`);
+    // Check EMAIL & PASSWWORD status:
+    expect(process.env.IMS_EMAIL, 'ERROR: No environment variable found for IMS_EMAIL').toBeTruthy();
+    expect(process.env.IMS_PASS, 'ERROR: No environment variable found for IMS_PASS.').toBeTruthy();
     console.info(`[EuroLogin] Logging in with '${email}' account ...`);
     // Wait for page to load & stabilize:
     await this.page.waitForLoadState('networkidle');

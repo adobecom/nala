@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'HTML extension',
+  name: 'HTML Extension',
   features: [
     {
       name: '@html_ext',

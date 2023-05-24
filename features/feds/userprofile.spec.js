@@ -1,13 +1,13 @@
 module.exports = {
-  name: 'FEDS User Profile',
+  name: 'UserProfile Component',
   features: [
     {
-      name: '@userprofile',
+      name: '@FEDS-User-Profile-Checks',
       path: [
         '/libs/feds/drafts/qa/ims/feds-user-profile-page',
       ],
       envs: '@feds_live',
-      tags: '@feds @feds-userprofile',
+      tags: '@feds @userprofile @feds-userprofile',
     },
   ],
 };
