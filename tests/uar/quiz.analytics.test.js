@@ -52,7 +52,8 @@ test.describe('Quiz flow test suite', () => {
           });
         }
 
-        console.log(networklogs);
+        // To Do: add validation when we have it
+        // console.log(networklogs);
       },
     );
   }

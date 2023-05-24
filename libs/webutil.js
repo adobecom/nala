@@ -246,6 +246,5 @@ exports.WebUtil = class WebUtil {
    */
   async disableNetworkLogging() {
     await this.page.unroute('**');
-    await this.page.close();
   }
 };
