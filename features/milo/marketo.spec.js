@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Marketo',
+  name: 'Marketo Block',
   features: [
     {
       name: '@marketo',

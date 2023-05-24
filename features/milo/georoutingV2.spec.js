@@ -1,35 +1,35 @@
 module.exports = {
-  name: 'Georouting Version 2',
+  name: 'Georouting V2',
   features: [
     {
       name: '@georoutingV2',
       path: '/test/features/blocks/georouting',
       envs: '@milo_live',
-      tags: '@georoutingV2 @georouting-close @georouting-multi',
+      tags: '@milo @georoutingV2 @georouting-close @georouting-multi',
     },
     {
       name: '@georoutingV2',
       path: '/de/test/features/blocks/georouting',
       envs: '@milo_live',
-      tags: '@georoutingV2',
+      tags: '@milo @georoutingV2',
     },
     {
       name: '@georoutingV2',
       path: '/test/features/blocks/georouting-off',
       envs: '@milo_live',
-      tags: '@georouting-off',
+      tags: '@milo @georouting-off',
     },
     {
       name: '@georoutingV2',
       path: '/test/features/blocks/georouting-fallback-off',
       envs: '@milo_live',
-      tags: '@fallback-off',
+      tags: '@milo @fallback-off',
     },
     {
       name: '@georoutingV2',
       path: '/test/features/blocks/georouting-fallback',
       envs: '@milo_live',
-      tags: '@fallback-on',
+      tags: '@milo @fallback-on',
     },
   ],
 };
