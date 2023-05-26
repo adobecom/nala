@@ -17,7 +17,7 @@ export default class Quote {
     this.quoteFigCaptionCite = this.quote.locator('cite p');
     this.sectionDark = this.page.locator('.section.dark');
 
-    // quote block contents css
+    // quote blocks css
     this.cssProperties = {
       'quote': {
         'text-align': 'center',
@@ -58,7 +58,7 @@ export default class Quote {
       },
     };
 
-    // quote block contents attributes
+    // quote blocks attributes
     this.attProperties = {
       'quote': { 'class': 'quote con-block' },
       'quote-contained': { 'class': 'quote contained con-block' },
@@ -85,7 +85,7 @@ export default class Quote {
 
     switch (quoteType) {
       case 'quote':
-        // verify quote block css, attribute and content values
+        // verify quote block image visibility, attributes, css and different contents
         await expect(await this.quoteImage).toBeVisible();
         expect(await WebUtil.verifyAttributes(
           await this.quote,
@@ -98,7 +98,7 @@ export default class Quote {
 
         return true;
       case 'quote (contained)':
-      // verify quote block css, attribute and content values
+        // verify quote (contained) block image visibility, attributes, css and different contents
         await expect(await this.quoteImage).toBeVisible();
         expect(await WebUtil.verifyAttributes(
           await this.quote,
@@ -112,7 +112,7 @@ export default class Quote {
         return true;
 
       case 'quote (inline)':
-        // verify quote block css, attribute and content values
+        // verify quote (inline) block image visibility, attributes, css and different contents
         await expect(await this.quoteImage).toBeVisible();
         expect(await WebUtil.verifyAttributes(
           await this.quote,
@@ -127,7 +127,7 @@ export default class Quote {
         return true;
 
       case 'quote (borders)':
-        // verify quote(borders) block image visibility, css, attribute and content values
+        // verify quote (borders) block image not visibility, attributes, css and different contents
         await expect(await this.quoteImage).not.toBeVisible();
         expect(await WebUtil.verifyAttributes(
           await this.quote,
@@ -141,7 +141,7 @@ export default class Quote {
         return true;
 
       case 'quote (align-right)':
-        // verify quote (align-right) block image visibility, css, attribute and content values
+        // verify quote (align-right) block image visibility, attributes, css and different content
         await expect(await this.quoteImage).toBeVisible();
         expect(await WebUtil.verifyAttributes(
           await this.quote,
@@ -155,8 +155,7 @@ export default class Quote {
         return true;
 
       case 'quote (xl-spaced)':
-        // verify section , quote (xl-spaced) block image visibility, css,
-        // attribute and content values
+        // verify quote (xl-spaced) block image visibility, attributes, css and different content
         await expect(await this.sectionDark).toBeVisible();
         expect(await WebUtil.verifyAttributes(
           await this.sectionDark,
