@@ -22,7 +22,7 @@ module.exports = {
         figCaption: 'Benny Lee',
         cite: 'Global Manager of Experiential Design, Coca-Cola Company',
       },
-      tags: '@Quote @smoke @regression @milo,',
+      tags: '@Quote @quote-contained @smoke @regression @milo,',
     },
 
     {
@@ -34,7 +34,7 @@ module.exports = {
         figCaption: 'Rapha Abreu',
         cite: 'Global Vice President of Design, Coca-Cola Company',
       },
-      tags: '@Quote @smoke @regression @milo,',
+      tags: '@Quote @quote-inine @smoke @regression @milo,',
     },
 
     {
@@ -46,7 +46,7 @@ module.exports = {
         figCaption: 'Ron Nagy',
         cite: 'Sr. Evangelist, Adobe@Adobe',
       },
-      tags: '@Quote @smoke @regression @milo,',
+      tags: '@Quote @quote-borders @smoke @regression @milo,',
     },
 
     {
@@ -54,11 +54,11 @@ module.exports = {
       name: '@Quote (contained, align-right)',
       path: '/drafts/nala/blocks/quote/quote-contained-align-right',
       data: {
-        quoteCopy: 'This was our opportunity to be one of the first teams to delve into Adobe Experience Platform',
+        quoteCopy: '“This was our opportunity to be one of the first teams to delve into Adobe Experience Platform, and we wanted to show people just how powerful it can be.”',
         figCaption: 'Ron Nagy',
         cite: 'Sr. Evangelist, Adobe@Adobe',
       },
-      tags: '@Quote @smoke @regression @milo,',
+      tags: '@Quote @quote-align-right @smoke @regression @milo,',
     },
 
     {
@@ -70,7 +70,7 @@ module.exports = {
         figCaption: 'Ron Nagy',
         cite: 'Sr. Evangelist, Adobe@Adobe',
       },
-      tags: '@Quote @smoke @regression @milo,',
+      tags: '@Quote @quote-xl-spaced @smoke @regression @milo,',
     },
   ],
 };
