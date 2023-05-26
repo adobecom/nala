@@ -34,7 +34,7 @@ module.exports = {
         figCaption: 'Rapha Abreu',
         cite: 'Global Vice President of Design, Coca-Cola Company',
       },
-      tags: '@Quote @quote-inine @smoke @regression @milo,',
+      tags: '@Quote @quote-inline @smoke @regression @milo,',
     },
 
     {
