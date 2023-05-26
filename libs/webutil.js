@@ -222,4 +222,29 @@ exports.WebUtil = class WebUtil {
     const res = await context.fetch(path);
     return res.json();
   }
+
+  /**
+   * Enable network logging
+   * @param {Array} networklogs - An array to store all network logs
+   */
+  async enableNetworkLogging(networklogs) {
+    await this.page.route('**', (route) => {
+      const url = route.request().url();
+      if (url.includes('sstats.adobe.com/ee/or2/v1/interact')
+       || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
+        networklogs.push(url);
+        const firstEvent = route.request().postDataJSON().events[0];
+        // eslint-disable-next-line no-underscore-dangle
+        networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.primaryEvent));
+      }
+      route.continue();
+    });
+  }
+
+  /**
+   * Disable network logging
+   */
+  async disableNetworkLogging() {
+    await this.page.unroute('**');
+  }
 };
