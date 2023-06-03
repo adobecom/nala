@@ -1,0 +1,45 @@
+name: Run Nala Visual Comparisons
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test scenario tags, if empty all tests will run. i.e., @marquee'
+        required: false
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  action:
+    name: Running visual comparison base image(s) update
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out nala screenshots repository
+        uses: actions/checkout@v3
+        with:
+          repository: adobecom/nala-screenshots
+          ref: main
+          path: nala-screenshots
+      - name: Check out nala repository
+        uses: actions/checkout@v3
+        with:
+          path: nala
+      - name: Copy base screenshots to test screenshot path
+        shell: bash
+        run: |
+          echo "Copying base screenshots..."
+          cp -fr ${{ github.workspace}}/nala-screenshots/screenshots/visual-compare/ ${{ github.workspace}}/nala/screenshots/visual-compare/
+      - name: Run Nala
+        uses: ./nala/run.sh
+        env:
+          labels: ${{ inputs.tags }}
+          isVisual: true
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+      - name: Create PR of updated base images to screenshots repository
+        uses: ./runVisualUpdate.sh
+        env:
+          id: ${{ github.run_id }}

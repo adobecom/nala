@@ -1,0 +1,49 @@
+name: Run Nala Visual Comparisons
+
+on:
+  pull_request:
+    types: [ labeled, opened, synchronize, reopened ]
+
+jobs:
+  action:
+    name: Running visual comparison tests
+    if: ${{ contains(join(github.event.pull_request.labels.*.name, ' '), 'run-') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out nala screenshots repository
+        uses: actions/checkout@v3
+        with:
+          repository: adobecom/nala-screenshots
+          ref: main
+          path: nala-screenshots
+      - name: Check out nala repository
+        uses: actions/checkout@v3
+        with:
+          path: nala
+      - name: Copy base screenshots to test screenshot path
+        shell: bash
+        run: |
+          echo "Copying base screenshots..."
+          cp -fr ${{ github.workspace}}/nala-screenshots/screenshots/visual-compare/ ${{ github.workspace}}/nala/screenshots/visual-compare/
+      - name: Run Nala
+        uses: ./nala/run.sh
+        env:
+          labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
+          isVisual: true
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: nala-results
+          path: nala-results.json
+          retention-days: 30
+      - name: Persist Screenshots Artifact
+        uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
+        with:
+          name: vc-screenshots-failures
+          path: test-results/
+          retention-days: 30
