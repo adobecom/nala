@@ -6,7 +6,7 @@ const { devices } = require('@playwright/test');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests/milo', // TODO: Switch to ./tests once baseURL checks have been made on individual tests
+  testDir: './tests/milo', // TODO: Switch to ./tests once baseURL conditional checks have been made on individual tests
   outputDir: './test-results',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
