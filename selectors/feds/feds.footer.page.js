@@ -5,46 +5,43 @@ exports.FedsFooter = class FedsFooter {
   constructor(page) {
     this.page = page;
 
-    // FOOTER - Containers:
-    this.FooterContainer = page.locator('#feds-footernav');
-    this.AdobeContainer = page.locator('#feds-footer #Globalnav\\.Adobe');
-    this.SupportContainer = page.locator('#feds-footer #Globalnav\\.Support');
-    this.ProductsContainer = page.locator('#feds-footer #Globalnav\\.Products');
-    this.BlogsContainer = page.locator('#feds-footer #Globalnav\\.Blogs_Community');
-    this.ItemsContainer = page.locator('footer ul li.feds-navList-item:nth-of-type(2)');
+    // Containers:
+    this.FooterContainer = page.locator('footer.global-footer');
+    this.FooterSections = page.$$('footer div.feds-menu-section');
+    this.FooterColumns = page.$$('footer div.feds-menu-column');
+    this.FooterHeadings = page.$$('footer div.feds-menu-headline');
 
-    // FOOTER - Breadcrumb:
-    this.BreadcrumbLogo = page.locator('.feds-breadcrumbs-logo');
-    this.BreadcrumbList = page.locator('.feds-breadcrumbs-items');
-    this.BreadcrumbElems = page.locator$('.feds-breadcrumbs-element');
+    // Change Region Elements:
+    this.ChangeRegionContainer = page.locator('div.feds-regionPicker-wrapper');
+    this.ChangeRegionDropDown = page.locator('div.feds-regionPicker-wrapper a');
+    this.ChangeRegionModal = page.locator('div#langnav');
+    this.ChangeRegionCloseButton = page.locator('button.dialog-close');
 
-    // FOOTER - Social-Media Icons:
-    this.SocialIcons = page.locator$('ul[daa-lh="Social"] li');
-    this.TwitterIcon = page.locator('a[daa-ll*="Twitter"] span');
-    this.LinkedInIcon = page.locator('a[daa-ll*="LinkedIn"] span');
-    this.FacebookIcon = page.locator('a[daa-ll*="Facebook"] span');
-    this.InstagramIcon = page.locator('a[daa-ll*="Instagram"] span');
-    this.SocialIconsContainer = page.locator('ul[daa-lh="Social"]');
+    // Legal Elements:
+    this.LegalContainer = page.locator('div.feds-footer-legalWrapper');
+    this.LegalLinks = page.$$('div.feds-footer-legalWrapper a');
+    this.LegalCopyright = page.locator('span.feds-footer-copyright');
+    this.PrivacyLink = page.locator('a[href*="privacy.html"]');
+    this.TermsOfUseLink = page.locator('a[href*="terms.html"]');
+    this.CookiePreferencesLink = page.locator('a[href*="#openPrivacy"]');
+    this.DoNotSellInformationLink = page.locator('a[href*="ca-rights.html"]');
+    this.AdChoicesLink = page.locator('a[href*="opt-out.html"]');
+    this.AdChoicesLogo = page.locator('svg.feds-adChoices-icon');
 
-    // FOOTER - Legacy Downloads:
-    this.DownloadAir = page.locator('#Globalnav\\.Adobe_AIR');
-    this.DownloadFlashPlayer = page.locator('#Globalnav\\.Adobe_Flash_Player');
-    // FOOTER - Featured Downloads:
-    this.DownloadPhotoshop = page.locator('#feds-footer a[daa-ll*="Photoshop"]');
-    this.DownloadIllustrator = page.locator('#feds-footer a[daa-ll*="Illustrator"]');
-    this.DownloadAcrobatReader = page.locator('#feds-footer a[daa-ll*="Adobe_Acrobat_Reader"]');
+    // Adobe Socials Elements:
+    this.TwitterIcon = page.locator('ul.feds-social a[aria-label="twitter"]');
+    this.LinkedInIcon = page.locator('ul.feds-social a[aria-label="linkedin"]');
+    this.FacebookIcon = page.locator('ul.feds-social a[aria-label="facebook"]');
+    this.InstagramIcon = page.locator('ul.feds-social a[aria-label="instagram"]');
+    this.SocialContainer = page.locator('ul.feds-social');
+    this.SocialIcons = page.$$('ul.feds-social li');
 
-    // FOOTER - Copyright Banner:
-    this.TermsLink = page.locator('a[daa-ll^="Term"]');
-    this.PrivacyLink = page.locator('a[daa-ll^="Privacy"]');
-    this.CookiesLink = page.locator('a[daa-ll^="Cookies"]');
-    this.AdChoicesLogo = page.locator('a[daa-ll^="AdChoices"]');
-    this.AdChoicesLink = page.locator('a[data-feds-action="open-adchoices-modal"] span.feds-navLink-contentWrapper');
-    this.CopyrightBanner = page.locator('#feds-footernav [daa-lh*="Copyright"]');
-
-    this.RegionPickerBtn = page.locator('a.feds-regionPicker');
-    this.RegionPickerModal = page.locator('nav.language-Navigation');
-    this.RegionPickerClose = page.locator('a.dexter-CloseButton');
+    // Featured Products Elements:
+    this.FeaturedProductsContainer = page.locator('div.feds-featuredProducts');
+    this.FeaturedProducts = page.$$('div.feds-featuredProducts a');
+    this.DownloadAdobeExpress = page.locator('footer a[daa-ll="Adobe_Express"]');
+    this.DownloadAdobePhotoshop = page.locator('footer a[daa-ll="Photoshop"]');
+    this.DownloadAdobeIllustrator = page.locator('footer a[daa-ll="Illustrator"]');
   }
 
   // >> FEDS Footer methods declared here <<
