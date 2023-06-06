@@ -1,5 +1,5 @@
 /* eslint-disable import/no-import-module-exports */
-import { expect } from '@playwright/test';
+// import { expect } from '@playwright/test';
 
 exports.FedsFooter = class FedsFooter {
   constructor(page) {
@@ -7,9 +7,9 @@ exports.FedsFooter = class FedsFooter {
 
     // Containers:
     this.FooterContainer = page.locator('footer.global-footer');
-    this.FooterSections = page.$$('footer div.feds-menu-section');
-    this.FooterColumns = page.$$('footer div.feds-menu-column');
-    this.FooterHeadings = page.$$('footer div.feds-menu-headline');
+    this.FooterSections = page.locator('footer div.feds-menu-section');
+    this.FooterColumns = page.locator('footer div.feds-menu-column');
+    this.FooterHeadings = page.locator('footer div.feds-menu-headline');
 
     // Change Region Elements:
     this.ChangeRegionContainer = page.locator('div.feds-regionPicker-wrapper');
@@ -19,7 +19,7 @@ exports.FedsFooter = class FedsFooter {
 
     // Legal Elements:
     this.LegalContainer = page.locator('div.feds-footer-legalWrapper');
-    this.LegalLinks = page.$$('div.feds-footer-legalWrapper a');
+    this.LegalLinks = page.locator('div.feds-footer-legalWrapper a');
     this.LegalCopyright = page.locator('span.feds-footer-copyright');
     this.PrivacyLink = page.locator('a[href*="privacy.html"]');
     this.TermsOfUseLink = page.locator('a[href*="terms.html"]');
@@ -34,11 +34,11 @@ exports.FedsFooter = class FedsFooter {
     this.FacebookIcon = page.locator('ul.feds-social a[aria-label="facebook"]');
     this.InstagramIcon = page.locator('ul.feds-social a[aria-label="instagram"]');
     this.SocialContainer = page.locator('ul.feds-social');
-    this.SocialIcons = page.$$('ul.feds-social li');
+    this.SocialIcons = page.locator('ul.feds-social li');
 
     // Featured Products Elements:
     this.FeaturedProductsContainer = page.locator('div.feds-featuredProducts');
-    this.FeaturedProducts = page.$$('div.feds-featuredProducts a');
+    this.FeaturedProducts = page.locator('div.feds-featuredProducts a');
     this.DownloadAdobeExpress = page.locator('footer a[daa-ll="Adobe_Express"]');
     this.DownloadAdobePhotoshop = page.locator('footer a[daa-ll="Photoshop"]');
     this.DownloadAdobeIllustrator = page.locator('footer a[daa-ll="Illustrator"]');
