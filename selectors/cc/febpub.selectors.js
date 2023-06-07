@@ -1,6 +1,4 @@
-module.exports = {
-    '@gnav1item': '//div[@class="gnav-navitem"][1]',
-    '@gnavtrybtn': '//strong[@class="gnav-cta"]',
-       
-  };
-  
+   module.exports = {
+    '@gnavitem1': '[href="/creativecloud/photography.html#mini-plans-web-cta-photoshop-lightroom-card"]',
+    '@gnavtrybtn': '[class="con-button blue button-m"]',
+   };  
