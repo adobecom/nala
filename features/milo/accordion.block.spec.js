@@ -3,7 +3,7 @@ module.exports = {
   features: [
     {
       tcid: '0',
-      name: '@Accordion ',
+      name: '@Accordion',
       path: '/drafts/nala/blocks/accordion/accordion',
       data: {
         headers: 3,
@@ -16,7 +16,7 @@ module.exports = {
 
     {
       tcid: '1',
-      name: '@Accordion (seo) ',
+      name: '@Accordion (seo)',
       path: '/drafts/nala/blocks/accordion/accordion-seo',
       data: {
         headers: 3,
@@ -29,7 +29,7 @@ module.exports = {
 
     {
       tcid: '2',
-      name: '@Accordion (quiet, max-width-12-desktop-large) ',
+      name: '@Accordion (quiet, max-width-12-desktop-large)',
       path: '/drafts/nala/blocks/accordion/accordion-quiet-max-width-12-desktop-large',
       data: {
         headers: 3,
