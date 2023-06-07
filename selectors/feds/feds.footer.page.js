@@ -1,5 +1,4 @@
 /* eslint-disable import/no-import-module-exports */
-// import { expect } from '@playwright/test';
 
 exports.FedsFooter = class FedsFooter {
   constructor(page) {
@@ -13,12 +12,14 @@ exports.FedsFooter = class FedsFooter {
 
     // Change Region Elements:
     this.ChangeRegionContainer = page.locator('div.feds-regionPicker-wrapper');
-    this.ChangeRegionDropDown = page.locator('div.feds-regionPicker-wrapper a');
+    this.ChangeRegionButton = page.locator('div.feds-regionPicker-wrapper a.feds-regionPicker');
     this.ChangeRegionModal = page.locator('div#langnav');
+    this.ChangeRegionDropDown = page.locator('div.region-selector');
     this.ChangeRegionCloseButton = page.locator('button.dialog-close');
 
     // Legal Elements:
     this.LegalContainer = page.locator('div.feds-footer-legalWrapper');
+    this.LegalSections = page.locator('p.feds-footer-privacySection');
     this.LegalLinks = page.locator('div.feds-footer-legalWrapper a');
     this.LegalCopyright = page.locator('span.feds-footer-copyright');
     this.PrivacyLink = page.locator('a[href*="privacy.html"]');
