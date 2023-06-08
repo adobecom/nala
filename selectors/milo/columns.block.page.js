@@ -61,7 +61,7 @@ export default class Columns {
   /**
  * Verifies the visibility, css, attributes, styles, of elements or sections of
  * the specified Columns block.
- * @param {string} quoteType - The type of the Columns block to verify.
+ * @param {string} columnType - The type of the Columns block to verify.
  * Possible values are 'columns', 'columns (contained)', 'columns (contained,middle)',and
  * columns (table),columns (contained,table),
  * @returns {Promise<boolean>} - Returns true if the specified Column type has the expected values.
