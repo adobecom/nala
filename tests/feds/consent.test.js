@@ -1,10 +1,10 @@
-/* eslint-disable import/extensions */
 /* eslint-disable import/named */
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+/* eslint-disable import/extensions */
+/* eslint-disable no-restricted-syntax */
+import { expect, test } from '@playwright/test';
 import { FedsConsent } from '../../selectors/feds/feds.consent.page';
 
-const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
 const consent = require('../../features/feds/consent.spec.js');
 
