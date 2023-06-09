@@ -7,7 +7,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-default-footer',
       ],
-      envs: '@feds_live',
+      envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
     },
     {
@@ -16,7 +16,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-skinny-footer',
       ],
-      envs: '@feds_live',
+      envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
     },
     {
