@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'fedpub Component',
+    name: 'Fedpub Component',
     features: [
       {
         tcid : 1,
@@ -9,5 +9,4 @@ module.exports = {
         tags: '@cc @cc-fedpub',
       },
      ],
-  };
-  
+  };  
