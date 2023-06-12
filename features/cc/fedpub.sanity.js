@@ -9,4 +9,4 @@ module.exports = {
         tags: '@cc @cc-fedpub',
       },
      ],
-  };  
+  };
