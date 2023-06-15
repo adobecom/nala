@@ -1,13 +1,39 @@
+/* eslint-disable import/named */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable import/extensions */
 /* eslint-disable no-restricted-syntax */
-import { fedpub } from '../../selectors/cc/fedpub.selectors.js';
+import { expect, test } from '@playwright/test';
+import { FedPub } from '../../selectors/cc/fedpub.selectors.js';
 
-const { test } = require('@playwright/test');
-const fedpubSpec = require('../../features/cc/fedpub.sanity.js');
+const FedPubSpec = require('../../features/cc/fedpub.spec.js');
 
-const { features } = fedpubSpec;
-const { WebUtil } = require('../../libs/webutil.js');
+const { features } = FedPubSpec;
 
-test('ulr has html ext' , async({page}) =>
-{await page.goto(`${ba$seURL}{features[0].path}`)} );
+test.describe('FedPub Sanity test suite', () => {
+  // FedPub Sanity Checks:
+  test(`${features[0].name} > ${features[0].tags}`, async ({ page, baseURL }) => {
+    const fedpub = new FedPub(page);
+    console.info(`[FedPub] Checking page: ${baseURL}${features[0].path}`);
 
-await expert(page).toHaveURL('html');
+    await test.step('Navigate to FedPub page', async () => {
+      await page.goto(`${baseURL}${features[0].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+    });
+
+    await test.step('Check FedPub page content', async () => {
+      // Check page title:
+      await expect(fedpub.fedPubTitle).toBeVisible();
+      await expect(fedpub.fedPubTitle).toHaveText(fedpub.props.fedPubTitle);
+      // Check page first subtitle:
+      await expect(fedpub.fedPubSubtitle1).toBeVisible();
+      await expect(fedpub.fedPubSubtitle1).toHaveText(fedpub.props.fedPubSubtitle1);
+      // Check page second subtitle:
+      await expect(fedpub.fedPubSubtitle2).toBeVisible();
+      await expect(fedpub.fedPubSubtitle2).toHaveText(fedpub.props.fedPubSubtitle2);
+      // Check page 'Try for free' button:
+      await expect(fedpub.tryForFreeButton).toBeVisible();
+      await expect(fedpub.tryForFreeButton).toHaveAttribute('href', fedpub.props.tryForFreeHref);
+    });
+  });
+});
