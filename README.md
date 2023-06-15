@@ -29,7 +29,7 @@ npx playwright test -g@quote
 ```
 ### 3. Start Nala automation test script creation
 Nala automation script creation involves following three simple steps.
-- #### Step-1 : Create [`feature.spec.js`](https://github.com/adobecom/nala/tree/main/features) under Features folder and add test cases and data
+- #### Step-1 : Create [`feature.spec.js`](https://github.com/adobecom/nala/tree/main/features) under `features` folder and add test cases and data
   - Please refer sample template for creating test cases
 ```bash
 module.exports = {
@@ -52,7 +52,7 @@ module.exports = {
 <img width="1100" alt="nala spec" src="https://user-images.githubusercontent.com/22153717/245921315-f404404f-0b10-4735-a434-e329767f76aa.png">
 ----
 
-- #### Step-2 : Create [`selector.page.js`](https://github.com/adobecom/nala/tree/main/selectors) under Selector folder and add selectors
+- #### Step-2 : Create [`selector.page.js`](https://github.com/adobecom/nala/tree/main/selectors) under `selectors` folder and add selectors
   - Please refer sample template for creating selector page object
 ```bash
 export default class Quote {
@@ -71,7 +71,7 @@ export default class Quote {
 <img width="1100" alt="nala pom" src="https://user-images.githubusercontent.com/22153717/245926484-e587de5b-6d66-4d0e-860d-c7a8a9d6fc26.png">
 ---
 
-- #### Step-3 : Create [`<block_name>.test.js`](https://github.com/adobecom/nala-template/blob/main/tests/quote.block.test.js) under Tests folder, and add tests
+- #### Step-3 : Create [`<block_name>.test.js`](https://github.com/adobecom/nala-template/blob/main/tests/quote.block.test.js) under `tests` folder, and add tests
   - Please refer sample template for creating tests. Also please refer [Nala onboarding wiki](https://github.com/adobecom/nala/wiki/Onboarding#tests)
 ```bash
 // Quote block tests
