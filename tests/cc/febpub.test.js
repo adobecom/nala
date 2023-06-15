@@ -4,8 +4,7 @@
 /* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import { FedPub } from '../../selectors/cc/fedpub.selectors.js';
-
-const FedPubSpec = require('../../features/cc/fedpub.spec.js');
+import * as FedPubSpec from '../../features/cc/fedpub.spec.js';
 
 const { features } = FedPubSpec;
 
@@ -17,7 +16,7 @@ test.describe('FedPub Sanity test suite', () => {
 
     await test.step('Navigate to FedPub page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
 
