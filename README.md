@@ -7,14 +7,14 @@ Automated E2E and integration testing of Milo-based projects.
 ## Get started
 
 ### 1. GitHub repositoy 
-- Scenario A : I / We want use existing Nala repo, learn, explore and contribute to Nala test automation 
+- Scenario A : I / We want to use existing Nala repo, learn, explore and contribute to Nala test automation 
   - step-1 : Fork [Nala](https://github.com/adobecom/nala) repository
   - step-2 : Clone, and set the remote URLs (Upstream and Origin)
 
 - Scenario B : I / We want to onboard to Nala for our application test automation
   - step-1 : Follow Scenario A 
   - step-2 : Your first PR should include adding your project folder(s) under features, selectors and test folders.
-  - step-3 : Create your project `.config.js` and add your application url's in `.env.js`, thats it you are ready to go!!
+  - step-3 : Create your project `.config.js` under `config` folder, and add your application url's in `.env.js`, thats it you are ready to go!!
   
     - Note: The folder structure in Nala is designed to make it easy to migrate your tests to your repository seamlessly when Nala becomes a consuming tool,
 ### 2. Nala Dry run test :
