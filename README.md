@@ -14,7 +14,7 @@ Automated E2E and integration testing of Milo-based projects.
 - Scenario B : I / We want to onboard to Nala for our application test automation
   - step-1 : Follow Scenario A 
   - step-2 : Your first PR should include adding your project folder(s) under features, selectors and test folders.
-  - step-3 : Create your project `.config.js` under `config` folder, and add your application url's in `.env.js`, thats it you are ready to go!!
+  - step-3 : Create your project `.config.js` under `configs` folder, and add your application url's in `.env.js`, thats it you are ready to go!!
   
     - Note: The folder structure in Nala is designed to make it easy to migrate your tests to your repository seamlessly when Nala becomes a consuming tool,
 ### 2. Nala Dry run test :
@@ -29,7 +29,7 @@ npx playwright test -g@quote
 ```
 ### 3. Start Nala automation test script creation
 Nala automation script creation involves following three simple steps.
-- #### Step-1 : Create [`feature.spec.js`](https://github.com/adobecom/nala/tree/main/features) under `features` folder and add test cases and data
+- #### Step-1 : Create [`feature.spec.js`](https://github.com/adobecom/nala/tree/main/features) under the `features` folder and add test cases and data
   - Please refer sample template for creating test cases
 ```bash
 module.exports = {
@@ -52,7 +52,7 @@ module.exports = {
 <img width="1100" alt="nala spec" src="https://user-images.githubusercontent.com/22153717/245921315-f404404f-0b10-4735-a434-e329767f76aa.png">
 ----
 
-- #### Step-2 : Create [`selector.page.js`](https://github.com/adobecom/nala/tree/main/selectors) under `selectors` folder and add selectors
+- #### Step-2 : Create [`selector.page.js`](https://github.com/adobecom/nala/tree/main/selectors) under the `selectors` folder and add selectors
   - Please refer sample template for creating selector page object
 ```bash
 export default class Quote {
@@ -71,7 +71,7 @@ export default class Quote {
 <img width="1100" alt="nala pom" src="https://user-images.githubusercontent.com/22153717/245926484-e587de5b-6d66-4d0e-860d-c7a8a9d6fc26.png">
 ---
 
-- #### Step-3 : Create [`<block_name>.test.js`](https://github.com/adobecom/nala-template/blob/main/tests/quote.block.test.js) under `tests` folder, and add tests
+- #### Step-3 : Create [`<block_name>.test.js`](https://github.com/adobecom/nala-template/blob/main/tests/quote.block.test.js) under the `tests` folder, and add tests
   - Please refer sample template for creating tests. Also please refer [Nala onboarding wiki](https://github.com/adobecom/nala/wiki/Onboarding#tests)
 ```bash
 // Quote block tests
