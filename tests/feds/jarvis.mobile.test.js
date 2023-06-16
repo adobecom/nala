@@ -1,7 +1,6 @@
 /* eslint-disable import/named */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
-/* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import { FedsJarvis } from '../../selectors/feds/feds.jarvis.page.js';
 import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
