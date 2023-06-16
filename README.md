@@ -151,27 +151,27 @@ npx playwright quote.block.test --project=milo-live-firefox
   ##### Example-1: I want to run all milo tests on all environment or projects on all browsers in headless mode
   - headless mode
 ```bash
-npx playwright test -g=@milo
+npx playwright test -g@milo
 ``` 
   - Example-2: I want to run all smoke test suite on all environment or projects on all browsers in headless mode
 ```bash
-npx playwright test -g=@smoke
+npx playwright test -g@smoke
 ```
   - Example-3: I want to run all regression test suite on all environment or projects on all browsers in headless mode
 ```bash
-npx playwright test -g=@regression
+npx playwright test -g@regression
 ```
   - Example-4: I want to run all quote block tests on all environment or projects on all browsers in headless mode
 ```bash
-npx playwright test -g=@quote
+npx playwright test -g@quote
 ```
   - Example-5: I want to run quote and marquee blocks tests on all environment or projects on all browsers in headless mode
 ```bash
-npx playwright test -g=@quote|@marquee
+npx playwright test -g@quote|@marquee
 ```
   - Example-6: I want to run quote, marquee and accordion blocks tests on (i.e [milo-live](https://main--milo--adobecom.hlx.live)) envronment on chrome browser in headless mode
 ```bash
-npx playwright test -g=@quote|@marquee|@accordion --project=milo-live-chrome
+npx playwright test -g@quote|@marquee|@accordion --project=milo-live-chrome
 ```
 - Note : To run tests using tags, make sure in `.spec.js` file `@tags` are specified 
 
