@@ -196,7 +196,7 @@ npx playwright test --project=local-chrome
 ```
   - Example-2: I want to run all smoke test suite on my local all environment or projects on chrome browser in headless mode
 ```bash
-npx playwright test -g=@smoke --project=local-chrome
+npx playwright test -g@smoke --project=local-chrome
 ```
 - Note: Please refer other options of section-4, for various run methods  
 
