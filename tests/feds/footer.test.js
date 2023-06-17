@@ -1,12 +1,10 @@
 /* eslint-disable import/named */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
-/* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import { FedsFooter } from '../../selectors/feds/feds.footer.page.js';
 import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
-
-const FooterSpec = require('../../features/feds/footer.spec.js');
+import * as FooterSpec from '../../features/feds/footer.spec.js';
 
 const { features } = FooterSpec;
 
