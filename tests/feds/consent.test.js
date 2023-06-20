@@ -9,11 +9,11 @@ const { features } = ConsentSpec;
 
 test.describe('Consent Component test suite', () => {
   // FEDS Consent Component Checks:
-  test(`${features[0].name} > ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name} › ${features[0].tags}`, async ({ page, baseURL }) => {
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
-    await test.step('Navigate to FEDS Default Footer page', async () => {
+    await test.step('Navigate to FEDS consent component page', async () => {
       // !Note: Forcing consent to load on GDPR-enforced country.
       // Load OneTrust consent component page:
       await page.goto(`${baseURL}${features[0].path}?customPrivacyLocation=de`);
