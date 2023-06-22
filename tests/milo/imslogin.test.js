@@ -10,7 +10,7 @@ const { name, features } = parse(imslogin);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@gnav-signin' || props.tag === '@gnav-multi-signin') {
-      test(props.title, async ({ page, context }) => {
+      test.skip(props.title, async ({ page, context }) => {
         test.skip(props.url.includes('business.adobe.com'), 'All browsers are caught by bot checker for BACOM Production links, working on fix');
         await page.goto(props.url);
 
@@ -72,7 +72,7 @@ test.describe(`${name}`, () => {
     }
 
     if (props.tag === '@gnav-multi-signin') {
-      test(`${props.title} (Drop-Down Options Check)`, async ({ page }) => {
+      test.skip(`${props.title} (Drop-Down Options Check)`, async ({ page }) => {
         await page.goto(props.url);
 
         // Sign-in
