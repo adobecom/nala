@@ -4,20 +4,20 @@ exports.FedsFooter = class FedsFooter {
   constructor(page) {
     this.page = page;
 
-    // Containers:
+    // Container Selectors:
     this.FooterContainer = page.locator('footer.global-footer');
     this.FooterSections = page.locator('footer div.feds-menu-section');
     this.FooterColumns = page.locator('footer div.feds-menu-column');
     this.FooterHeadings = page.locator('footer div.feds-menu-headline');
 
-    // Change Region Elements:
+    // Change Region Selectors:
     this.ChangeRegionContainer = page.locator('div.feds-regionPicker-wrapper');
     this.ChangeRegionButton = page.locator('div.feds-regionPicker-wrapper a.feds-regionPicker');
     this.ChangeRegionModal = page.locator('div#langnav');
     this.ChangeRegionDropDown = page.locator('div.region-selector');
     this.ChangeRegionCloseButton = page.locator('button.dialog-close');
 
-    // Legal Elements:
+    // Legal Selectors:
     this.LegalContainer = page.locator('div.feds-footer-legalWrapper');
     this.LegalSections = page.locator('p.feds-footer-privacySection');
     this.LegalLinks = page.locator('div.feds-footer-legalWrapper a');
@@ -29,7 +29,7 @@ exports.FedsFooter = class FedsFooter {
     this.AdChoicesLink = page.locator('a[href*="opt-out.html"]');
     this.AdChoicesLogo = page.locator('svg.feds-adChoices-icon');
 
-    // Adobe Socials Elements:
+    // Adobe Socials Selectors:
     this.TwitterIcon = page.locator('ul.feds-social a[aria-label="twitter"]');
     this.LinkedInIcon = page.locator('ul.feds-social a[aria-label="linkedin"]');
     this.FacebookIcon = page.locator('ul.feds-social a[aria-label="facebook"]');
@@ -37,7 +37,7 @@ exports.FedsFooter = class FedsFooter {
     this.SocialContainer = page.locator('ul.feds-social');
     this.SocialIcons = page.locator('ul.feds-social li');
 
-    // Featured Products Elements:
+    // Featured Products Selectors:
     this.FeaturedProductsContainer = page.locator('div.feds-featuredProducts');
     this.FeaturedProducts = page.locator('div.feds-featuredProducts a');
     this.DownloadAdobeExpress = page.locator('footer a[daa-ll="Adobe_Express"]');
