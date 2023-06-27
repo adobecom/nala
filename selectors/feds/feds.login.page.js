@@ -1,18 +1,18 @@
+// eslint-disable-next-line import/no-import-module-exports
 import { expect } from '@playwright/test';
 
 exports.FedsLogin = class FedsLogin {
-
   constructor(page) {
     this.page = page;
 
     this.LoginButton = page.locator('button#sign_in');
     this.LoginForm = page.locator('form#adobeid_signin');
     this.EmailField = page.locator('input#adobeid_username');
-    this.PasswordField  = page.locator('input#adobeid_password');
+    this.PasswordField = page.locator('input#adobeid_password');
 
     this.LoggedInState = page.locator('img.feds-profile-img');
     this.LoginWithEnterpriseId = page.locator('a#enterprise_signin_link');
-    this.ForgotPasswordLink  = page.locator('a#adobeid_trouble_signing_in');
+    this.ForgotPasswordLink = page.locator('a#adobeid_trouble_signing_in');
 
     this.LoginWithFacebook = page.locator('a.mod-facebook');
     this.LoginWithGoogle = page.locator('a.mod-google');
@@ -40,7 +40,7 @@ exports.FedsLogin = class FedsLogin {
    * @return {Promise} PlayWright promise
    */
   async loginOnAppForm(email, password) {
-    console.info(`[EuroLogin] APP login form identified!`);
+    console.info('[EuroLogin] APP login form identified!');
     // Check EMAIL & PASSWWORD status:
     expect(process.env.IMS_EMAIL, 'ERROR: No environment variable found for IMS_EMAIL').toBeTruthy();
     expect(process.env.IMS_PASS, 'ERROR: No environment variable found for IMS_PASS.').toBeTruthy();
@@ -48,24 +48,24 @@ exports.FedsLogin = class FedsLogin {
     // Wait for page to load & stabilize:
     await this.page.waitForLoadState('domcontentloaded');
     // Wait for the SUSI login form to load:
-    await this.AppEmailForm.waitFor({state: 'visible', timeout: 15000});
+    await this.AppEmailForm.waitFor({ state: 'visible', timeout: 15000 });
     // Insert account email & click 'Continue':
-    await this.AppEmailField.waitFor({state: 'visible', timeout: 15000});
+    await this.AppEmailField.waitFor({ state: 'visible', timeout: 15000 });
     await this.AppEmailField.fill(email);
-    await this.AppPasswordContinue.waitFor({state: 'visible', timeout: 15000});
+    await this.AppPasswordContinue.waitFor({ state: 'visible', timeout: 15000 });
     await expect(this.AppPasswordContinue).toHaveText('Continue');
     await this.AppPasswordContinue.click();
     // Wait for page to load & stabilize:
-    await this.page.waitForTimeout(5000); 
+    await this.page.waitForTimeout(5000);
     // Insert account password & click 'Continue':
     // await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
-    await this.AppPasswordField.waitFor({state: 'visible', timeout: 15000});
+    await this.AppPasswordField.waitFor({ state: 'visible', timeout: 15000 });
     await this.AppPasswordField.fill(password);
-    await this.AppLoginContinue.waitFor({state: 'visible', timeout: 15000});
+    await this.AppLoginContinue.waitFor({ state: 'visible', timeout: 15000 });
     await expect(this.AppLoginContinue).toHaveText('Continue');
     await this.AppLoginContinue.click();
     // Check if login process was successful:
-    await this.LoggedInState.waitFor({state: 'visible', timeout: 20000});
+    await this.LoggedInState.waitFor({ state: 'visible', timeout: 20000 });
     console.info(`[EuroLogin] Successfully logged-in as '${email}' (via APP login form).`);
   }
 
@@ -76,7 +76,7 @@ exports.FedsLogin = class FedsLogin {
    * @return {Promise} PlayWright promise
    */
   async loginOnSusiForm(email, password) {
-    console.info(`[EuroLogin] SUSI login form identified!`);
+    console.info('[EuroLogin] SUSI login form identified!');
     // Check EMAIL & PASSWWORD status:
     expect(process.env.IMS_EMAIL, 'ERROR: No environment variable found for IMS_EMAIL').toBeTruthy();
     expect(process.env.IMS_PASS, 'ERROR: No environment variable found for IMS_PASS.').toBeTruthy();
@@ -84,7 +84,7 @@ exports.FedsLogin = class FedsLogin {
     // Wait for page to load & stabilize:
     await this.page.waitForLoadState('networkidle');
     // Wait for the SUSI login form to load:
-    await this.LoginForm.waitFor({state: 'visible', timeout: 15000});
+    await this.LoginForm.waitFor({ state: 'visible', timeout: 15000 });
     await this.EmailField.fill(email);
     // !Note: Email field has short client-side validation (load).
     //        Password field is not interactable during that time.
@@ -92,14 +92,14 @@ exports.FedsLogin = class FedsLogin {
     // Wait for page to load & stabilize:
     await this.page.waitForLoadState('domcontentloaded');
     // Set password & click 'Continue':
-    await this.AppPasswordForm.waitFor({state: 'visible', timeout: 15000});
-    await this.PasswordField.waitFor({state: 'visible', timeout: 15000});
+    await this.AppPasswordForm.waitFor({ state: 'visible', timeout: 15000 });
+    await this.PasswordField.waitFor({ state: 'visible', timeout: 15000 });
     await this.PasswordField.fill(password);
     // Complete the login flow:
-    await this.LoginButton.waitFor({state: 'visible', timeout: 15000});
+    await this.LoginButton.waitFor({ state: 'visible', timeout: 15000 });
     await this.LoginButton.click();
     // Check if login process was successful:
-    await this.LoggedInState.waitFor({state: 'visible', timeout: 20000});
+    await this.LoggedInState.waitFor({ state: 'visible', timeout: 20000 });
     console.info(`[EuroLogin] Successfully logged-in as '${email}' (via SUSI login form).`);
   }
 
@@ -109,10 +109,10 @@ exports.FedsLogin = class FedsLogin {
    * @return {Promise} PlayWright promise
    */
   async TogglePasswordVisibility(password) {
-    await this.AppVisibilityToggle.waitFor({state: 'visible', timeout: 15000});
+    await this.AppVisibilityToggle.waitFor({ state: 'visible', timeout: 15000 });
     await this.AppVisibilityToggle.click();
     await expect(this.AppPasswordField).toContain(password);
     await this.AppVisibilityToggle.click();
-    await this.AppVisibilityToggle.waitFor({state: 'visible', timeout: 15000});
+    await this.AppVisibilityToggle.waitFor({ state: 'visible', timeout: 15000 });
   }
 };
