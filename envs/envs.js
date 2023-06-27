@@ -15,5 +15,5 @@ module.exports = {
   '@blog_live': 'https://main--blog--adobe.hlx.live',
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
-  '@cc_live' : 'https://main--cc--adobecom.hlx.live',
-  };
+  '@cc_live': 'https://main--cc--adobecom.hlx.live',
+};
