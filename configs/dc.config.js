@@ -40,7 +40,7 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@dc_preview'] || 'https://main--dc--adobecom.hlx.live',
+    baseURL: process.env.BASE_URL || envs['@dc_live'] || 'https://main--dc--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
@@ -52,7 +52,6 @@ const config = {
         baseURL: envs['@adobe_prod'],
       },
     },
-
     {
       name: 'adobe-prod-firefox',
       use: {
@@ -60,12 +59,32 @@ const config = {
         baseURL: envs['@adobe_prod'],
       },
     },
-
     {
       name: 'adobe-prod-webkit',
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@adobe_prod'],
+      },
+    },
+    {
+      name: 'dc-live-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@dc-live'],
+      },
+    },
+    {
+      name: 'dc-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@dc-live'],
+      },
+    },
+    {
+      name: 'dc-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@dc-live'],
       },
     },
   ],
