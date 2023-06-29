@@ -19,13 +19,23 @@ module.exports = {
     {
       name: '@failedblock',
       path: [
-        '/acrobat/online/pdf-to-ppt.html',
-        '/acrobat/online/jpg-to-pdf.html',
-        '/acrobat/online/sign-pdf.html',
-        '/acrobat/online/compress-pdf.html',
-        '/acrobat/online/crop-pdf.html',
+        '/acrobat/online/pdf-to-ppt',
+        '/acrobat/online/jpg-to-pdf',
+        '/acrobat/online/sign-pdf',
+        '/acrobat/online/compress-pdf',
+        '/acrobat/online/crop-pdf',
       ],
-      envs: '@adobe_prod',
+      envs: '@dc_live',
+      tags: '@failedblock',
+    },
+    {
+      name: '@failedblock',
+      path: [
+        '/acrobat/resources/how-to-create-fillable-pdf',
+        '/acrobat/resources/tax-preparation',
+        '/acrobat/resources/how-to-add-hyperlink-to-pdf',
+      ],
+      envs: '@dc_live',
       tags: '@failedblock',
     },
     {
