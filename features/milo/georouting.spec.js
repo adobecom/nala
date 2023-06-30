@@ -21,7 +21,7 @@ module.exports = {
     {
       tcid: '1',
       name: '@Georouting with query param',
-      desc: 'User accessing US page from query param (akamaiLocale=DE)',
+      desc: 'User accessing US page with query param (akamaiLocale=DE)',
       path: '/drafts/nala/features/georouting/georouting?akamaiLocale=DE',
       data: {
         title: "Diese Adobe-Site passt nicht zu deinem Standort.",
@@ -38,7 +38,7 @@ module.exports = {
     {
       tcid: '2',
       name: '@Georouting through Change region',
-      desc: 'User navigating to DE page through "Change region" modal',
+      desc: 'User navigating to DE site through "Change region" modal',
       path: '/drafts/nala/features/georouting/georouting',
       data: {
         title: "Diese Adobe-Site passt nicht zu deinem Standort.",
@@ -89,7 +89,7 @@ module.exports = {
     {
       tcid: '4',
       name: '@Georouting-off',
-      desc: 'User accessing a page for which georouting is turned off',
+      desc: 'User accessing a georouting turned off page',
       path: '/de/drafts/nala/features/georouting/geo-off',
       tags: '@georouting @georouting-off @milo @smoke @regression',
     },
@@ -97,7 +97,7 @@ module.exports = {
     {
       tcid: '5',
       name: '@Georouting modal close',
-      desc: 'If user closes georouting modal then cookie should not be added to the browser',
+      desc: 'If user closes a georouting modal then international cookie should not be added to the browser',
       path: '/de/drafts/nala/features/georouting/georouting',
       data: {
         cookieName: 'international',
