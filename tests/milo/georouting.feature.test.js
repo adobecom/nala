@@ -14,7 +14,7 @@ test.describe('Milo Georouting feature test suite', () => {
         console.info(`[Test Page]: ${baseURL}${features[0].path}`);
         const { data } = features[0];
 
-        await test.step('step-1: Clear cookies and access "de" page from "us" region', async () => {
+        await test.step('step-1: Clear cookies and access "DE" page from "US" region', async () => {
             await page.context().clearCookies();
             await page.goto(`${baseURL}${features[0].path}`);
             await page.waitForLoadState('domcontentloaded');
@@ -26,7 +26,7 @@ test.describe('Milo Georouting feature test suite', () => {
             expect(await obj.verifyGeoModal(data)).toBeTruthy();;
         });
 
-        await test.step('step-3: Click "de" link from modal and then verify international cookie value', async () => {
+        await test.step('step-3: Click "Deutschland" link from modal and then verify international cookie value', async () => {
             await obj.deLink.click();
             expect((await page.context().cookies()).find(cookie => cookie.name === data.cookieName).value).toEqual(data.cookieValue);
 
@@ -37,7 +37,7 @@ test.describe('Milo Georouting feature test suite', () => {
         console.info(`[Test Page]: ${baseURL}${features[1].path}`);
         const { data } = features[1];
 
-        await test.step('step-1: Clear cookies and access "us" page with query param (akamailLocale=DE)', async () => {
+        await test.step('step-1: Clear cookies and access "US" page with query param (akamailLocale=DE)', async () => {
             await page.context().clearCookies();
             await page.goto(`${baseURL}${features[1].path}`);
             await page.waitForLoadState('domcontentloaded');
@@ -49,7 +49,7 @@ test.describe('Milo Georouting feature test suite', () => {
             expect(await obj.verifyGeoModal(data)).toBeTruthy();
         });
 
-        await test.step('step-3: Click "de" button and then verify international cookie value', async () => {
+        await test.step('step-3: Click "Deutschland" button and then verify international cookie value', async () => {
             await obj.deLink.click();
             expect((await page.context().cookies()).find(cookie => cookie.name === data.cookieName).value).toEqual(data.cookieValue);
         });
@@ -59,14 +59,14 @@ test.describe('Milo Georouting feature test suite', () => {
         console.info(`[Test Page]: ${baseURL}${features[2].path}`);
         const { data } = features[2];
 
-        await test.step('step-1: Clear cookies and access "us" page', async () => {
+        await test.step('step-1: Clear cookies and access "US" page', async () => {
             await page.context().clearCookies();
             await page.goto(`${baseURL}${features[2].path}`);
             await page.waitForLoadState('domcontentloaded');
             await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
         });
 
-        await test.step('step-2: Click "Change region" link from footer and navigate to "de" page', async () => {
+        await test.step('step-2: Click "Change region" link from footer and navigate to "Deutschland" page', async () => {
             await obj.changeRegionLink.click();
             await obj.changeRegionModal.waitFor({ state: 'visible', timeout: 10000 });
             await obj.deLink.click();
@@ -81,7 +81,7 @@ test.describe('Milo Georouting feature test suite', () => {
         console.info(`[Test Page]: ${baseURL}${features[3].path}`);
         const { data } = features[3];
 
-        await test.step('step-1: Clear cookies and access "us" page', async () => {
+        await test.step('step-1: Clear cookies and access "US" page', async () => {
             await page.context().clearCookies();
             await page.goto(`${baseURL}${features[3].path}`);
             await page.waitForLoadState('domcontentloaded');
@@ -98,7 +98,7 @@ test.describe('Milo Georouting feature test suite', () => {
         console.info(`[Test Page]: ${baseURL}${features[4].path}`);
         const { data } = features[4];
 
-        await test.step('step-1: Clear cookies and access given "de" page', async () => {
+        await test.step('step-1: Clear cookies and access given "DE" page', async () => {
             await page.context().clearCookies();
             await page.goto(`${baseURL}${features[4].path}`);
             await page.waitForLoadState('domcontentloaded');
@@ -114,7 +114,7 @@ test.describe('Milo Georouting feature test suite', () => {
         console.info(`[Test Page]: ${baseURL}${features[5].path}`);
         const { data } = features[5];
 
-        await test.step('step-1: Clear cookies and access given "de" page', async () => {
+        await test.step('step-1: Clear cookies and access given "DE" page', async () => {
             await page.context().clearCookies();
             await page.goto(`${baseURL}${features[5].path}`);
             await page.waitForLoadState('domcontentloaded');
