@@ -104,7 +104,6 @@ module.exports = {
         cookieValue: 'de',
       },
       tags: '@georouting @georouting-close @milo @regression',
-
     },
   ],
 };
