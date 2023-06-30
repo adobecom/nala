@@ -5,7 +5,6 @@ const { features } = require('../../features/milo/georouting.spec.js');
 
 let obj;
 
-// Georouting feature tests
 test.describe('Milo Georouting feature test suite', () => {
     test.beforeEach(async ({ page }) => {
         obj = new Georouting(page);
