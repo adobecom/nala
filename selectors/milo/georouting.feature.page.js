@@ -1,28 +1,28 @@
 import { expect } from '@playwright/test';
 
 export default class Georouting {
-  constructor(page) {
-    this.page = page;
-    
-    // global footer locators
-    this.footer = this.page.locator('.global-footer');
-    this.changeRegionLink = this.footer.locator('//a[@data-modal-path="/fragments/regions"]');
-    
-    // change region modal locators
-    this.changeRegionModal = this.page.locator('.dialog-modal');
-    this.fragment = this.changeRegionModal.locator('.fragment');
-    this.regionNav = this.changeRegionModal.locator('.region-nav');
-    this.deLink = this.changeRegionModal.locator('//a[text()="Deutschland"]');
-    this.usLink = this.changeRegionModal.locator('//a[text()="United States"]/@href');
-    this.modalClose = this.changeRegionModal.locator('.dialog-close');
-    
-    // georouting modal locators
-    this.geoModal = this.page.locator('#locale-modal-v2');
-    this.geoModalTitle = this.geoModal.locator('h3');
-    this.geoModalText = this.geoModal.locator('.locale-text');
-    this.geoModalClose = this.geoModal.locator('.dialog-close');
-    this.usButton = this.geoModal.locator('//a[text()="United States"][@lang="en-US"]');
-  }
+    constructor(page) {
+        this.page = page;
+
+        // global footer locators
+        this.footer = this.page.locator('.global-footer');
+        this.changeRegionLink = this.footer.locator('//a[@data-modal-path="/fragments/regions"]');
+
+        // change region modal locators
+        this.changeRegionModal = this.page.locator('.dialog-modal');
+        this.fragment = this.changeRegionModal.locator('.fragment');
+        this.regionNav = this.changeRegionModal.locator('.region-nav');
+        this.deLink = this.changeRegionModal.locator('//a[text()="Deutschland"]');
+        this.usLink = this.changeRegionModal.locator('//a[text()="United States"]/@href');
+        this.modalClose = this.changeRegionModal.locator('.dialog-close');
+
+        // georouting modal locators
+        this.geoModal = this.page.locator('#locale-modal-v2');
+        this.geoModalTitle = this.geoModal.locator('h3');
+        this.geoModalText = this.geoModal.locator('.locale-text');
+        this.geoModalClose = this.geoModal.locator('.dialog-close');
+        this.usButton = this.geoModal.locator('//a[text()="United States"][@lang="en-US"]');
+    }
 
     /**
     * Verifies georouting modal.
@@ -52,11 +52,11 @@ export default class Georouting {
     * @returns {Promise<boolean>} - Returns true if modal content is as expected.
     */
     async verifyMultiTabGeoModal(data) {
-        try{
+        try {
             await expect(this.geoModal).toBeVisible();
             await expect(this.geoModalClose).toBeVisible();
             let index = 0;
-            for (const tab in  data) {
+            for (const tab in data) {
                 console.info(`[Tab]: "${data[tab].name}"`);
                 await this.geoModal.locator(`//button[text()="${data[tab].name}"]`).click();
                 await expect(this.geoModalTitle.nth(index)).toContainText(data[tab].title,);

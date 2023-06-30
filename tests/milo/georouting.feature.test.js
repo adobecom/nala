@@ -10,7 +10,6 @@ test.describe('Milo Georouting feature test suite', () => {
         obj = new Georouting(page);
     });
 
-    // Test - 0
     test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
         console.info(`[Test Page]: ${baseURL}${features[0].path}`);
         const { data } = features[0];
@@ -34,7 +33,6 @@ test.describe('Milo Georouting feature test suite', () => {
         });
     });
 
-    // Test - 1
     test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
         console.info(`[Test Page]: ${baseURL}${features[1].path}`);
         const { data } = features[1];
@@ -54,11 +52,9 @@ test.describe('Milo Georouting feature test suite', () => {
         await test.step('step-3: Click "de" button and then verify international cookie value', async () => {
             await obj.deLink.click();
             expect((await page.context().cookies()).find(cookie => cookie.name === data.cookieName).value).toEqual(data.cookieValue);
-
         });
     });
 
-    // Test - 2
     test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
         console.info(`[Test Page]: ${baseURL}${features[2].path}`);
         const { data } = features[2];
@@ -78,11 +74,9 @@ test.describe('Milo Georouting feature test suite', () => {
 
         await test.step('step-3: Verify international cookie value', async () => {
             expect((await page.context().cookies()).find(cookie => cookie.name === data.cookieName).value).toEqual(data.cookieValue);
-
         });
     });
 
-    // Test - 3
     test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
         console.info(`[Test Page]: ${baseURL}${features[3].path}`);
         const { data } = features[3];
@@ -100,7 +94,6 @@ test.describe('Milo Georouting feature test suite', () => {
         });
     });
 
-    // Test - 4
     test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
         console.info(`[Test Page]: ${baseURL}${features[4].path}`);
         const { data } = features[4];
@@ -117,7 +110,6 @@ test.describe('Milo Georouting feature test suite', () => {
         });
     });
 
-    // Test - 5
     test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
         console.info(`[Test Page]: ${baseURL}${features[5].path}`);
         const { data } = features[5];
