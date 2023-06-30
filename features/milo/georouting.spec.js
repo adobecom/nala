@@ -21,7 +21,7 @@ module.exports = {
     {
       tcid: '1',
       name: '@Georouting with query param',
-      desc: 'The user is accessing the US page with a query parameter.(akamaiLocale=DE)',
+      desc: 'User is accessing the US page with a query parameter (akamaiLocale=DE).',
       path: '/drafts/nala/features/georouting/georouting?akamaiLocale=DE',
       data: {
         title: "Diese Adobe-Site passt nicht zu deinem Standort.",
@@ -38,7 +38,7 @@ module.exports = {
     {
       tcid: '2',
       name: '@Georouting through Change region',
-      desc: 'User navigating to DE site through "Change region" modal',
+      desc: 'User navigating to DE site through "Change region" modal.',
       path: '/drafts/nala/features/georouting/georouting',
       data: {
         title: "Diese Adobe-Site passt nicht zu deinem Standort.",
