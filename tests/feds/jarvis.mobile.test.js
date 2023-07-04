@@ -4,9 +4,7 @@
 import { expect, test } from '@playwright/test';
 import { FedsJarvis } from '../../selectors/feds/feds.jarvis.page.js';
 import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
-import * as JarvisSpec from '../../features/feds/jarvis.spec.js';
-
-const { features } = JarvisSpec;
+import { features } from '../../features/feds/jarvis.spec.js';
 
 test.describe('Jarvis Component test suite', () => {
   // Setup viewport to trigger mobile logic:
