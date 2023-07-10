@@ -4,9 +4,8 @@
 /* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import { ZPattern } from '../../selectors/milo/zpattern.block.page';
-import * as ZPatternSpec from '../../features/milo/zpattern.block.spec';
+import { features } from '../../features/milo/zpattern.block.spec';
 
-const { features } = ZPatternSpec;
 let zpattern;
 
 test.describe('Milo Z Pattern Block test suite', () => {

@@ -3,13 +3,11 @@
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
 import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
-import * as ConsentSpec from '../../features/feds/consent.spec.js';
-
-const { features } = ConsentSpec;
+import { features } from '../../features/feds/consent.spec.js';
 
 test.describe('Consent Component test suite', () => {
   // FEDS Consent Component Checks:
-  test(`${features[0].name} › ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 

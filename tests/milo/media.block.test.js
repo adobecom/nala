@@ -4,9 +4,8 @@
 /* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import { Media } from '../../selectors/milo/media.block.page';
-import * as MediaSpec from '../../features/milo/media.block.spec';
+import { features } from '../../features/milo/media.block.spec';
 
-const { features } = MediaSpec;
 let media;
 
 test.describe('Milo Media Block test suite', () => {

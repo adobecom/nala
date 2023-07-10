@@ -2,9 +2,8 @@
 /* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import Accordion from '../../selectors/milo/accordion.block.page.js';
-import * as accordionSpec from '../../features/milo/accordion.block.spec.js';
+import { features } from '../../features/milo/accordion.block.spec.js';
 
-const { features } = accordionSpec;
 let accordion;
 
 test.describe('Milo Accordion Block test suite', () => {
@@ -13,7 +12,7 @@ test.describe('Milo Accordion Block test suite', () => {
   });
 
   // Test - 1
-  test(`${features[0].name} › @milo-live › ${features[0].tags} › https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, @milo-live, ${features[0].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
     console.info('[MiloInfo] Checking page: ', baseURL);
 
     // test step-1
@@ -31,7 +30,7 @@ test.describe('Milo Accordion Block test suite', () => {
   });
 
   // Test - 2
-  test(`${features[1].name} › @milo-live › ${features[1].tags} › https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[1].name}, @milo-live, ${features[1].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
     console.info('[MiloInfo] Checking page: ', baseURL);
 
     // test step-1
@@ -49,7 +48,7 @@ test.describe('Milo Accordion Block test suite', () => {
   });
 
   // Test - 3
-  test(`${features[2].name} › @milo-live › ${features[2].tags} › https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[2].name}, @milo-live, ${features[2].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
     console.info('[MiloInfo] Checking page: ', baseURL);
 
     // test step-1

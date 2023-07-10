@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 import Modal from '../../selectors/milo/modal.block.page.js';
-import * as ModalSpec from '../../features/milo/modal.block.spec.js';
+import { features } from '../../features/milo/modal.block.spec.js';
 
-const { features } = ModalSpec;
 let modal;
 
 test.describe('Milo Modal feature test suite', () => {

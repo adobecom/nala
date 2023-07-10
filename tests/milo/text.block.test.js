@@ -4,9 +4,8 @@
 /* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import { Text } from '../../selectors/milo/text.block.page';
-import * as TextSpec from '../../features/milo/text.block.spec';
+import { features } from '../../features/milo/text.block.spec';
 
-const { features } = TextSpec;
 let text;
 
 test.describe('Milo Text Block test suite', () => {

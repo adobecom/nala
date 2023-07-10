@@ -3,13 +3,11 @@
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
 import { FedsHeader } from '../../selectors/feds/feds.header.page.js';
-import * as HeaderSpec from '../../features/feds/header.spec.js';
-
-const { features } = HeaderSpec;
+import { features } from '../../features/feds/header.spec.js';
 
 test.describe('Header Block test suite', () => {
   // FEDS Default Header Checks:
-  test(`${features[0].name} › ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Header = new FedsHeader(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 

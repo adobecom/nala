@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 import Columns from '../../selectors/milo/columns.block.page.js';
-import * as ColumnsSpecs from '../../features/milo/columns.block.spec.js';
+import { features } from '../../features/milo/columns.block.spec.js';
 
-const { features } = ColumnsSpecs;
 let column;
 
 test.describe('Milo Columns Block test suite', () => {

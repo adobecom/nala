@@ -4,13 +4,11 @@
 import { expect, test } from '@playwright/test';
 import { FedsLogin } from '../../selectors/feds/feds.login.page.js';
 import { FedsHeader } from '../../selectors/feds/feds.header.page.js';
-import * as UserProfileSpec from '../../features/feds/userprofile.spec.js';
-
-const { features } = UserProfileSpec;
+import { features } from '../../features/feds/userprofile.spec.js';
 
 test.describe('User Profile Component test suite', () => {
   // FEDS User Profile Checks:
-  test(`${features[0].name} › ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Login = new FedsLogin(page);
     const Header = new FedsHeader(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);

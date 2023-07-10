@@ -5,9 +5,8 @@
 import { expect, test } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil';
 import { Marquee } from '../../selectors/milo/marquee.block.page';
-import * as MarqueeSpec from '../../features/milo/marquee.block.spec';
+import { features } from '../../features/milo/marquee.block.spec';
 
-const { features } = MarqueeSpec;
 let marquee;
 let webUtil;
 
@@ -36,7 +35,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 1
-  test(`${features[1].name} › @milo-live › ${features[1].tags}`, async ({ page, baseURL }) => {
+  test(`${features[1].name}, @milo-live, ${features[1].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[1].path}`);
 
     // test step-1
@@ -54,7 +53,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 2
-  test(`${features[2].name} › @milo-live › ${features[2].tags}`, async ({ page, baseURL }) => {
+  test(`${features[2].name}, @milo-live, ${features[2].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[2].path}`);
 
     // test step-1
@@ -72,7 +71,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 3
-  test(`${features[3].name} › @milo-live › ${features[3].tags}`, async ({ page, baseURL }) => {
+  test(`${features[3].name}, @milo-live, ${features[3].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[3].path}`);
 
     // test step-1
@@ -90,7 +89,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 4
-  test(`${features[4].name} › @milo-live › ${features[4].tags}`, async ({ page, baseURL }) => {
+  test(`${features[4].name}, @milo-live, ${features[4].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[4].path}`);
 
     // test step-1
@@ -108,7 +107,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 5
-  test(`${features[5].name} › @milo-live › ${features[5].tags}`, async ({ page, baseURL }) => {
+  test(`${features[5].name}, @milo-live, ${features[5].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[5].path}`);
 
     // test step-1
@@ -126,7 +125,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 6
-  test(`${features[6].name} › @milo-live › ${features[6].tags}`, async ({ page, baseURL }) => {
+  test(`${features[6].name}, @milo-live, ${features[6].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[6].path}`);
 
     // test step-1
@@ -144,7 +143,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 7
-  test(`${features[7].name} › @milo-live › ${features[7].tags}`, async ({ page, baseURL }) => {
+  test(`${features[7].name}, @milo-live, ${features[7].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[7].path}`);
 
     // test step-1
@@ -162,7 +161,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 8
-  test(`${features[8].name} › @milo-live › ${features[8].tags}`, async ({ page, baseURL }) => {
+  test(`${features[8].name}, @milo-live, ${features[8].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[8].path}`);
 
     // test step-1
@@ -180,7 +179,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 9
-  test(`${features[9].name} › @milo-live › ${features[9].tags}`, async ({ page, baseURL }) => {
+  test(`${features[9].name}, @milo-live, ${features[9].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[9].path}`);
 
     // test step-1
@@ -198,7 +197,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 10
-  test(`${features[10].name} › @milo-live › ${features[10].tags}`, async ({ page, baseURL }) => {
+  test(`${features[10].name}, @milo-live, ${features[10].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[10].path}`);
 
     // test step-1
@@ -216,7 +215,7 @@ test.describe('Milo Marquee Block test suite', () => {
   });
 
   // Test - 11
-  test(`${features[11].name} › @milo-live › ${features[11].tags}`, async ({ page, baseURL }) => {
+  test(`${features[11].name}, @milo-live, ${features[11].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[11].path}`);
 
     // test step-1

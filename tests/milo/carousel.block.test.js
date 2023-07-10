@@ -2,13 +2,11 @@
 /* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import { Carousel } from '../../selectors/milo/carousel.block.page';
-import * as CarouselSpec from '../../features/milo/carousel.block.spec';
-
-const { features } = CarouselSpec;
+import { features } from '../../features/milo/carousel.block.spec';
 
 test.describe('Milo Carousel Block test suite', () => {
   // Test - 1
-  test(`${features[0].name} › @milo-live › ${features[0].tags} › https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, @milo-live, ${features[0].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
     console.info('[MiloInfo] Checking page: ', baseURL);
 
@@ -54,7 +52,7 @@ test.describe('Milo Carousel Block test suite', () => {
   });
 
   // Spec-2 : Carousel (lightbox)
-  test(`${features[1].name} › @milo-live › ${features[1].tags} › https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[1].name}, @milo-live, ${features[1].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
     // const action = new WebInteraction(page);
 
@@ -89,7 +87,7 @@ test.describe('Milo Carousel Block test suite', () => {
   });
 
   // Spec-3 : Carousel Multi slide (show-2)
-  test(`${features[2].name} › @milo-live › ${features[2].tags} › https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[2].name}, @milo-live, ${features[2].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
     const carousel = new Carousel(page);
 
     // test step-1

@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 import Review from '../../selectors/milo/review.block.page.js';
-import * as ReviewSpec from '../../features/milo/review.block.spec.js';
+import { features } from '../../features/milo/review.block.spec.js';
 
-const { features } = ReviewSpec;
 let review;
 
 test.describe('Milo Review Block test suite', () => {

@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 import Quote from '../../selectors/milo/quote.block.page.js';
-import * as QuoteSpec from '../../features/milo/quote.block.spec.js';
+import { features } from '../../features/milo/quote.block.spec.js';
 
-const { features } = QuoteSpec;
 let quote;
 
 test.describe('Milo Quote Block test suite', () => {

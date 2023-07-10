@@ -5,9 +5,8 @@
 import { expect, test } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil';
 import { HowTo } from '../../selectors/milo/howto.block.page';
-import * as HowToSpec from '../../features/milo/howto.block.spec';
+import { features } from '../../features/milo/howto.block.spec';
 
-const { features } = HowToSpec;
 let howTo;
 let webUtil;
 
