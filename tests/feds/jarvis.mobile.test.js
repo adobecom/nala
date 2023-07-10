@@ -4,10 +4,7 @@
 import { expect, test } from '@playwright/test';
 import { FedsJarvis } from '../../selectors/feds/feds.jarvis.page.js';
 import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
-
-const JarvisSpec = require('../../features/feds/jarvis.spec.js');
-
-const { features } = JarvisSpec;
+import { features } from '../../features/feds/jarvis.spec.js';
 
 test.describe('Jarvis Component test suite', () => {
   // Setup viewport to trigger mobile logic:
@@ -19,7 +16,7 @@ test.describe('Jarvis Component test suite', () => {
   });
 
   // FEDS Jarvis Mobile Checks:
-  test(`${features[3].name} > ${features[3].tags}`, async ({ page, baseURL }) => {
+  test(`${features[3].name}, ${features[3].tags}`, async ({ page, baseURL }) => {
     const Jarvis = new FedsJarvis(page);
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[3].path}`);

@@ -9,7 +9,7 @@ const { features } = FedPubSpec;
 
 test.describe('FedPub Sanity test suite', () => {
   // FedPub Sanity Checks:
-  test(`${features[0].name} > ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const fedpub = new FedPub(page);
     console.info(`[FedPub] Checking page: ${baseURL}${features[0].path}`);
 
