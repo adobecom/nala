@@ -20,27 +20,27 @@ exports.FedsConsent = class FedsConsent {
           'H49', 'H209', 'H220', 'H23', 'H24', 'H25', 'H27', 'H50', 'H51', 'H28', 'H268', 'H30',
           'H31', 'H53', 'H32', 'H204', 'H54', 'H210', 'H33', 'H217', 'H76', 'H34', 'H77', 'H35'],
       },
-      OneTrustTitle: 'Make It Your Own',
-      OneTrustMessage: 'Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products and services. We also use them to provide you more relevant information in searches and in ads on this and other sites. If that’s okay, click “Enable all". Clicking “Don’t enable” will set only cookies that are strictly necessary. You can also view our vendors and customize your choices by clicking "Cookie Settings".',
-      OneTrustEnableButton: 'Enable all',
-      OneTrustCookiesButton: 'Cookie Settings',
+      oneTrustTitle: 'Make It Your Own',
+      oneTrustMessage: 'Adobe and its vendors use cookies and similar technologies to improve your experience and measure your interactions with our websites, products and services. We also use them to provide you more relevant information in searches and in ads on this and other sites. If that’s okay, click “Enable all". Clicking “Don’t enable” will set only cookies that are strictly necessary. You can also view our vendors and customize your choices by clicking "Cookie Settings".',
+      oneTrustEnableButton: 'Enable all',
+      oneTrustCookiesButton: 'Cookie Settings',
     };
 
     // OneTrust consent selectors:
-    this.OneTrustTitle = page.locator('#onetrust-policy-title');
-    this.OneTrustMessage = page.locator('#onetrust-policy-text');
-    this.OneTrustEnableButton = page.locator('#onetrust-accept-btn-handler');
-    this.OneTrustCookiesButton = page.locator('#onetrust-pc-btn-handler');
-    this.OneTrustDontEnableButton = page.locator('#onetrust-reject-all-handler');
-    this.OneTrustSuccessContainer = page.locator('#ot-cookie-settings');
+    this.oneTrustTitle = page.locator('#onetrust-policy-title');
+    this.oneTrustMessage = page.locator('#onetrust-policy-text');
+    this.oneTrustEnableButton = page.locator('#onetrust-accept-btn-handler');
+    this.oneTrustCookiesButton = page.locator('#onetrust-pc-btn-handler');
+    this.oneTrustDontEnableButton = page.locator('#onetrust-reject-all-handler');
+    this.oneTrustSuccessContainer = page.locator('#ot-cookie-settings');
 
     // OneTrust modal selectors:
-    this.OneTrustContainer = page.locator('#onetrust-banner-sdk');
-    this.OneTrustConsentFrame = page.locator('#onetrust-pc-sdk');
-    this.OneTrustConfirmChoices = page.locator('button.save-and-close');
-    this.OneTrustModalDontEnable = page.locator('button.disable-all-btn');
-    this.OneTrustModalEnableAll = page.locator('button.enable-all-btn');
-    this.OneTrustModalClose = page.locator('button#close-pc-btn-handler');
+    this.oneTrustContainer = page.locator('#onetrust-banner-sdk');
+    this.oneTrustConsentFrame = page.locator('#onetrust-pc-sdk');
+    this.oneTrustConfirmChoices = page.locator('button.save-and-close');
+    this.oneTrustModalDontEnable = page.locator('button.disable-all-btn');
+    this.oneTrustModalEnableAll = page.locator('button.enable-all-btn');
+    this.oneTrustModalClose = page.locator('button#close-pc-btn-handler');
   }
 
   /**
@@ -50,12 +50,12 @@ exports.FedsConsent = class FedsConsent {
    */
   async checkOneTrustConsentBar() {
     // Wait for the consent bar to be displayed:
-    await this.OneTrustContainer.waitFor({ state: 'visible', timeout: 10000 });
+    await this.oneTrustContainer.waitFor({ state: 'visible', timeout: 10000 });
     // Check the contents of the consent bar:
-    await expect(this.OneTrustTitle).toHaveText(this.props.OneTrustTitle);
-    await expect(this.OneTrustMessage).toHaveText(this.props.OneTrustMessage);
-    await expect(this.OneTrustEnableButton).toHaveText(this.props.OneTrustEnableButton);
-    await expect(this.OneTrustCookiesButton).toHaveText(this.props.OneTrustCookiesButton);
+    await expect(this.oneTrustTitle).toHaveText(this.props.oneTrustTitle);
+    await expect(this.oneTrustMessage).toHaveText(this.props.oneTrustMessage);
+    await expect(this.oneTrustEnableButton).toHaveText(this.props.oneTrustEnableButton);
+    await expect(this.oneTrustCookiesButton).toHaveText(this.props.oneTrustCookiesButton);
   }
 
   /**
@@ -65,14 +65,14 @@ exports.FedsConsent = class FedsConsent {
    */
   async checkOneTrustSettingsModal() {
     // Check the 'Customize' modal:
-    await this.OneTrustContainer.waitFor({ state: 'visible', timeout: 10000 });
-    await this.OneTrustCookiesButton.waitFor({ state: 'visible', timeout: 10000 });
-    await this.OneTrustCookiesButton.click();
+    await this.oneTrustContainer.waitFor({ state: 'visible', timeout: 10000 });
+    await this.oneTrustCookiesButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.oneTrustCookiesButton.click();
     // Wait for the opt-out modal to be displayed:
-    await expect(this.OneTrustConsentFrame).toBeVisible();
+    await expect(this.oneTrustConsentFrame).toBeVisible();
     // Close the opt-out modal & assert result:
-    await this.OneTrustModalClose.click();
-    await expect(this.OneTrustConsentFrame).not.toBeVisible();
+    await this.oneTrustModalClose.click();
+    await expect(this.oneTrustConsentFrame).not.toBeVisible();
   }
 
   /**
@@ -82,12 +82,12 @@ exports.FedsConsent = class FedsConsent {
    */
   async acceptOneTrustConsentBar() {
     // Wait for the consent bar to be displayed:
-    await this.OneTrustContainer.waitFor({ state: 'visible', timeout: 10000 });
+    await this.oneTrustContainer.waitFor({ state: 'visible', timeout: 10000 });
     // Click on the 'Enable all' button (ACCEPT consent action):
-    await this.OneTrustEnableButton.waitFor({ state: 'visible', timeout: 10000 });
-    await this.OneTrustEnableButton.click();
+    await this.oneTrustEnableButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.oneTrustEnableButton.click();
     // Wait for the consent bar to disappear:
-    await this.OneTrustContainer.waitFor({ state: 'hidden', timeout: 10000 });
+    await this.oneTrustContainer.waitFor({ state: 'hidden', timeout: 10000 });
   }
 
   /**
@@ -101,7 +101,7 @@ exports.FedsConsent = class FedsConsent {
     // Wait for the page to load & stabilize:
     await this.page.waitForLoadState('domcontentloaded');
     // OneTrust consent shouldn't be prompted after page loads:
-    await expect(this.OneTrustContainer).not.toBeVisible();
+    await expect(this.oneTrustContainer).not.toBeVisible();
   }
 
   /**

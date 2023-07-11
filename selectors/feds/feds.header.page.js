@@ -6,33 +6,33 @@ exports.FedsHeader = class FedsHeader {
     this.page = page;
 
     // GNAV selectors:
-    this.GnavLogo = page.locator('a.gnav-logo');
-    this.MainNavLogo = page.locator('a.feds-brand, a.gnav-brand');
-    this.MainNavContainer = page.locator('nav.feds-topnav, .gnav-wrapper');
-    this.MegaMenuToggle = page.locator('div.feds-navItem--megaMenu, .section-menu');
-    this.MegaMenuContainer = page.locator('div.feds-navItem--megaMenu div.feds-popup, .section-menu .gnav-menu-container');
-    this.MegaMenuColumn = page.locator('div.feds-navItem--megaMenu div.feds-popup-column');
+    this.gnavLogo = page.locator('a.gnav-logo');
+    this.mainNavLogo = page.locator('a.feds-brand, a.gnav-brand');
+    this.mainNavContainer = page.locator('nav.feds-topnav, .gnav-wrapper');
+    this.megaMenuToggle = page.locator('div.feds-navItem--megaMenu, .section-menu');
+    this.megaMenuContainer = page.locator('div.feds-navItem--megaMenu div.feds-popup, .section-menu .gnav-menu-container');
+    this.megaMenuColumn = page.locator('div.feds-navItem--megaMenu div.feds-popup-column');
 
     // GNAV action selectors:
-    this.SignInLabel = page.locator('a.feds-signIn, a.gnav-signin');
-    this.SearchIcon = page.locator('button.feds-search-trigger, button.gnav-search-button');
-    this.SearchInput = page.locator('input.feds-search-input, input.gnav-search-input');
-    this.CloseSearch = page.locator('span.feds-search-close, button.gnav-search-button[daa-lh="header|Close"]');
-    this.SearchResults = page.locator('#feds-search-results, .gnav-search-results');
-    this.AdvancedSearchLink = page.locator('#feds-search-results li a, .gnav-search-results li a');
+    this.signInLabel = page.locator('a.feds-signIn, a.gnav-signin');
+    this.searchIcon = page.locator('button.feds-search-trigger, button.gnav-search-button');
+    this.searchInput = page.locator('input.feds-search-input, input.gnav-search-input');
+    this.closeSearch = page.locator('span.feds-search-close, button.gnav-search-button[daa-lh="header|Close"]');
+    this.searchResults = page.locator('#feds-search-results, .gnav-search-results');
+    this.advancedSearchLink = page.locator('#feds-search-results li a, .gnav-search-results li a');
 
-    this.ProfileIcon = page.locator('button.feds-profile-button');
-    this.ProfileModal = page.locator('div#feds-profile-menu');
-    this.ProfileName = page.locator('p.feds-profile-name');
-    this.ProfileEmail = page.locator('p.feds-profile-email');
-    this.ProfileAccountLink = page.locator('p.feds-profile-account');
-    this.ProfileDetails = page.locator('div.feds-profile-details');
-    this.ProfileSignOut = page.locator('a.feds-profile-action');
+    this.profileIcon = page.locator('button.feds-profile-button');
+    this.profileModal = page.locator('div#feds-profile-menu');
+    this.profileName = page.locator('p.feds-profile-name');
+    this.profileEmail = page.locator('p.feds-profile-email');
+    this.profileAccountLink = page.locator('p.feds-profile-account');
+    this.profileDetails = page.locator('div.feds-profile-details');
+    this.profileSignOut = page.locator('a.feds-profile-action');
 
     // GNAV breadcrumb selectors:
-    this.BreadcrumbList = page.locator('nav.feds-breadcrumbs');
-    this.BreadcrumbElems = page.locator('nav.feds-breadcrumbs li');
-    this.BreadcrumbContainer = page.locator('div.feds-breadcrumbs-wrapper');
+    this.breadcrumbList = page.locator('nav.feds-breadcrumbs');
+    this.breadcrumbElems = page.locator('nav.feds-breadcrumbs li');
+    this.breadcrumbContainer = page.locator('div.feds-breadcrumbs-wrapper');
   }
 
   /**
@@ -42,9 +42,9 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async openUserProfile() {
-    await this.ProfileIcon.waitFor({ state: 'visible', timeout: 10000 });
-    await this.ProfileIcon.click();
-    await expect(this.ProfileModal).toBeVisible();
+    await this.profileIcon.waitFor({ state: 'visible', timeout: 10000 });
+    await this.profileIcon.click();
+    await expect(this.profileModal).toBeVisible();
   }
 
   /**
@@ -54,9 +54,9 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async closeUserProfile() {
-    await this.ProfileIcon.waitFor({ state: 'visible', timeout: 10000 });
-    await this.ProfileIcon.click();
-    await expect(this.ProfileModal).not.toBeVisible();
+    await this.profileIcon.waitFor({ state: 'visible', timeout: 10000 });
+    await this.profileIcon.click();
+    await expect(this.profileModal).not.toBeVisible();
   }
 
   /**
@@ -65,10 +65,10 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async checkUserProfile() {
-    await expect(this.ProfileName).toBeVisible();
-    await expect(this.ProfileEmail).toBeVisible();
-    await expect(this.ProfileSignOut).toBeVisible();
-    await expect(this.ProfileAccountLink).toBeVisible();
+    await expect(this.profileName).toBeVisible();
+    await expect(this.profileEmail).toBeVisible();
+    await expect(this.profileSignOut).toBeVisible();
+    await expect(this.profileAccountLink).toBeVisible();
   }
 
   /**
@@ -77,9 +77,9 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async openSearchBar() {
-    await this.SearchIcon.waitFor({ state: 'visible', timeout: 10000 });
-    await this.SearchIcon.click();
-    await expect(this.SearchInput).toBeVisible();
+    await this.searchIcon.waitFor({ state: 'visible', timeout: 10000 });
+    await this.searchIcon.click();
+    await expect(this.searchInput).toBeVisible();
   }
 
   /**
@@ -88,8 +88,8 @@ exports.FedsHeader = class FedsHeader {
    * @return {Promise} PlayWright promise
    */
   async closeSearchBar() {
-    await this.CloseSearch.waitFor({ state: 'visible', timeout: 10000 });
-    await this.CloseSearch.click();
-    await expect(this.SearchInput).not.toBeVisible();
+    await this.closeSearch.waitFor({ state: 'visible', timeout: 10000 });
+    await this.closeSearch.click();
+    await expect(this.searchInput).not.toBeVisible();
   }
 };
