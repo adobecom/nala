@@ -30,10 +30,10 @@ test.describe('Jarvis Component test suite', () => {
 
     await test.step('Check Jarvis component is initialized', async () => {
       // Wait for Jarvis component to appear:
-      await Jarvis.JarvisButton.waitFor({ state: 'visible', timeout: 15000 });
+      await Jarvis.jarvisButton.waitFor({ state: 'visible', timeout: 15000 });
       // Open Jarvis chat assistent:
-      await Jarvis.JarvisButton.click();
-      await expect(Jarvis.JarvisContainer).toBeVisible();
+      await Jarvis.jarvisButton.click();
+      await expect(Jarvis.jarvisContainer).toBeVisible();
     });
   });
 
@@ -60,10 +60,10 @@ test.describe('Jarvis Component test suite', () => {
 
     await test.step('Check Jarvis component is initialized', async () => {
       // Wait for Jarvis component to appear:
-      await Jarvis.JarvisButton.waitFor({ state: 'visible', timeout: 15000 });
+      await Jarvis.jarvisButton.waitFor({ state: 'visible', timeout: 15000 });
       // Open Jarvis chat assistent:
-      await Jarvis.JarvisButton.click();
-      await expect(Jarvis.JarvisContainer).toBeVisible();
+      await Jarvis.jarvisButton.click();
+      await expect(Jarvis.jarvisContainer).toBeVisible();
     });
   });
 
@@ -90,8 +90,8 @@ test.describe('Jarvis Component test suite', () => {
 
     await test.step('Check Jarvis component is not initialized', async () => {
       // Check Jarvis component doesn't get initialized:
-      await Jarvis.JarvisButton.waitFor({ state: 'hidden', timeout: 15000 });
-      await expect(Jarvis.JarvisButton).not.toBeVisible();
+      await Jarvis.jarvisButton.waitFor({ state: 'hidden', timeout: 15000 });
+      await expect(Jarvis.jarvisButton).not.toBeVisible();
     });
   });
 });
