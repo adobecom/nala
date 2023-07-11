@@ -1,7 +1,6 @@
 /* eslint-disable import/named */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
-/* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import { FedsFooter } from '../../selectors/feds/feds.footer.page.js';
 import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
@@ -12,7 +11,7 @@ const { features } = FooterSpec;
 
 test.describe('Footer Block test suite', () => {
   // FEDS Default Footer Checks:
-  test(`${features[0].name} > ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Footer = new FedsFooter(page);
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
@@ -60,7 +59,7 @@ test.describe('Footer Block test suite', () => {
   });
 
   // FEDS Skinny Footer Checks:
-  test(`${features[1].name} > ${features[1].tags}`, async ({ page, baseURL }) => {
+  test(`${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }) => {
     const Footer = new FedsFooter(page);
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[1].path}`);
@@ -114,7 +113,7 @@ test.describe('Footer Block test suite', () => {
   });
 
   // FEDS Privacy Footer Checks:
-  test(`${features[2].name} > ${features[2].tags}`, async ({ page, baseURL }) => {
+  test(`${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }) => {
     const Footer = new FedsFooter(page);
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[2].path}`);
