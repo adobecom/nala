@@ -19,8 +19,8 @@ test.describe('Consent Component test suite', () => {
       await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}?customPrivacyLocation=de`);
       // Wait for the OneTrust consent bar to appear:
-      await Consent.OneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
-      await expect(Consent.OneTrustContainer).toBeVisible();
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await expect(Consent.oneTrustContainer).toBeVisible();
     });
 
     await test.step('Check consent component integrity', async () => {
@@ -32,8 +32,8 @@ test.describe('Consent Component test suite', () => {
       await page.reload();
       await page.waitForLoadState('domcontentloaded');
       // Wait for the OneTrust consent bar to reappear:
-      await Consent.OneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
-      await expect(Consent.OneTrustContainer).toBeVisible();
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await expect(Consent.oneTrustContainer).toBeVisible();
     });
 
     await test.step('Check consent Cookie Settings modal', async () => {

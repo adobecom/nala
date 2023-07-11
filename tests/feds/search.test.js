@@ -24,17 +24,17 @@ test.describe('Search Component test suite', () => {
 
     await test.step('Check search component functionality (real search)', async () => {
       await Header.openSearchBar();
-      await Header.SearchInput.fill('Adobe Photoshop');
-      await expect(Header.SearchResults).toBeVisible();
+      await Header.searchInput.fill('Adobe Photoshop');
+      await expect(Header.searchResults).toBeVisible();
       await Header.closeSearchBar();
     });
 
     await test.step('Check search component functionality (bogus search)', async () => {
       await Header.openSearchBar();
-      await Header.SearchInput.fill('How much wood could a woodchuck chuck ...');
+      await Header.searchInput.fill('How much wood could a woodchuck chuck ...');
       // Wait for search results to populate:
       await page.waitForTimeout(1000);
-      await expect(Header.AdvancedSearchLink).toBeVisible();
+      await expect(Header.advancedSearchLink).toBeVisible();
       await Header.closeSearchBar();
     });
   });

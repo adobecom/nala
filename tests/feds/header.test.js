@@ -19,11 +19,11 @@ test.describe('Header Block test suite', () => {
 
     await test.step('Check HEADER block content', async () => {
       // Wait for FEDS GNAV to be visible:
-      await Header.MainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
+      await Header.mainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
       // Check HEADER block content:
-      await expect(Header.SearchIcon).toBeVisible();
-      await expect(Header.SignInLabel).toBeVisible();
-      await expect(Header.MainNavLogo).toBeVisible();
+      await expect(Header.searchIcon).toBeVisible();
+      await expect(Header.signInLabel).toBeVisible();
+      await expect(Header.mainNavLogo).toBeVisible();
     });
 
     await test.step('Check HEADER search component', async () => {
@@ -32,11 +32,11 @@ test.describe('Header Block test suite', () => {
     });
 
     await test.step('Check HEADER block mega menu component', async () => {
-      await Header.MegaMenuToggle.waitFor({ state: 'visible', timeout: 5000 });
-      await Header.MegaMenuToggle.click();
-      await expect(Header.MegaMenuContainer).toBeVisible();
-      await Header.MegaMenuToggle.click();
-      await expect(Header.MegaMenuContainer).not.toBeVisible();
+      await Header.megaMenuToggle.waitFor({ state: 'visible', timeout: 5000 });
+      await Header.megaMenuToggle.click();
+      await expect(Header.megaMenuContainer).toBeVisible();
+      await Header.megaMenuToggle.click();
+      await expect(Header.megaMenuContainer).not.toBeVisible();
     });
   });
 });

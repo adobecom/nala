@@ -18,23 +18,23 @@ test.describe('User Profile Component test suite', () => {
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
       // Wait for FEDS GNAV to be visible:
-      await Header.MainNavLogo.waitFor({ state: 'visible', timeout: 5000 });
-      await Header.MainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
+      await Header.mainNavLogo.waitFor({ state: 'visible', timeout: 5000 });
+      await Header.mainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
     });
 
     await test.step('Login with a valid Adobe account', async () => {
       // Click 'Sign In' label:
-      await Header.SignInLabel.waitFor({ state: 'visible', timeout: 5000 });
-      await Header.SignInLabel.click();
+      await Header.signInLabel.waitFor({ state: 'visible', timeout: 5000 });
+      await Header.signInLabel.click();
       await Login.loginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
     });
 
     await test.step('Check FEDS user profile component', async () => {
       await Header.openUserProfile();
-      await expect(Header.ProfileModal).toBeVisible();
+      await expect(Header.profileModal).toBeVisible();
       await Header.checkUserProfile();
       await Header.closeUserProfile();
-      await expect(Header.ProfileModal).not.toBeVisible();
+      await expect(Header.profileModal).not.toBeVisible();
     });
   });
 });
