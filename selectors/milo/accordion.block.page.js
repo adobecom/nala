@@ -1,16 +1,11 @@
-/* eslint-disable quote-props */
-/* eslint-disable import/named */
-/* eslint-disable import/no-import-module-exports */
-
-import { expect } from '@playwright/test';
-
+import { expect } from '@playwright/test'
 import { WebUtil } from '../../libs/webutil.js';
 
-export default class Accordion {
+export class Accordion {
   constructor(page) {
     this.page = page;
 
-    // accordion  locators
+    // accordion locators
     this.accordion = this.page.locator('.accordion-container');
     this.accordionForeground = this.accordion.locator('.foreground');
     this.accordionHeaders = this.accordion.locator('dt[role=heading]');
