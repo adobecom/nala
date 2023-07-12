@@ -9,7 +9,7 @@ test.describe('Milo Accordion Block test suite', () => {
     accordion = new Accordion(page);
   });
 
-  test(`${features[0].name},${features[0].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info('[Test Page]: ', baseURL);
 
     await test.step('step-1: Go to Accordion block test page', async () => {
@@ -24,7 +24,7 @@ test.describe('Milo Accordion Block test suite', () => {
     });
   });
 
-  test(`${features[1].name}, @milo-live, ${features[1].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     console.info('[Test Page]: ', baseURL);
 
     await test.step('step-1: Go to Accordion block test page', async () => {
@@ -39,7 +39,7 @@ test.describe('Milo Accordion Block test suite', () => {
     });
   });
 
-  test(`${features[2].name}, @milo-live, ${features[2].tags}, https://milo.adobe.com`, async ({ page, baseURL }) => {
+  test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     console.info('[Test Page]: ', baseURL);
 
     await test.step('step-1: Go to Accordion block test page', async () => {
