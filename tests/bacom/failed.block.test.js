@@ -1,26 +1,23 @@
-/* eslint-disable import/named */
-/* eslint-disable import/extensions */
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-import { WebUtil } from '../../libs/webutil';
+import { expect, test } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
 
-const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
-const failedBlock = require('../../features/milo/failedblock.spec.js');
-const selectors = require('../../selectors/milo/failedblock.selectors.js');
+const failedBlock = require('../../features/bacom/failed.block.spec.js');
+const selectors = require('../../selectors/bacom/failed.block.page.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(failedBlock);
 
-// Global declarations
 let webUtil;
 
-test.describe(`${name}`, () => {
-  // before each test block
+test.describe(`${name} test suite`, () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
   });
+
   features.forEach((props) => {
+
     test(props.title, async ({ page, browser }) => {
       await page.goto(props.url);
       const res = await page.goto(props.url);
