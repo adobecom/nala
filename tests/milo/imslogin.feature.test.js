@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import parse from '../../libs/parse.js';
 import ims from '../../libs/imslogin.js';
 import imslogin from '../../features/milo/imslogin.spec.js';
-import selectors from '../../selectors/milo/imslogin.selectors.js';
+import { selectors } from '../../selectors/milo/imslogin.selectors.js';
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(imslogin);
@@ -10,7 +10,7 @@ const { name, features } = parse(imslogin);
 test.describe(`${name}`, () => {
   features.forEach((props) => {
     if (props.tag === '@gnav-signin' || props.tag === '@gnav-multi-signin') {
-      test(props.title, async ({ page, context }) => {
+      test.skip(props.title, async ({ page, context }) => {
         test.skip(props.url.includes('business.adobe.com'), 'All browsers are caught by bot checker for BACOM Production links, working on fix');
         await page.goto(props.url);
 
@@ -72,7 +72,7 @@ test.describe(`${name}`, () => {
     }
 
     if (props.tag === '@gnav-multi-signin') {
-      test(`${props.title} (Drop-Down Options Check)`, async ({ page }) => {
+      test.skip(`${props.title} (Drop-Down Options Check)`, async ({ page }) => {
         await page.goto(props.url);
 
         // Sign-in

@@ -1,29 +1,24 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
-import { Carousel } from '../../selectors/milo/carousel.block.page';
+import { features } from '../../features/milo/carousel.block.spec.js';
+import { Carousel } from '../../selectors/milo/carousel.block.page.js';
 
-const CarouselSpec = require('../../features/milo/carousel.block.spec');
+let carousel;
 
-const { features } = CarouselSpec;
+test.describe('Milo Carousel Block test suite', () => {
+  test.beforeEach(async ({ page }) => {
+    carousel = new Carousel(page);
+});
 
-// Carousel blocks tests
-test.describe('Milo Carousel block test suite', () => {
-  // Test - 1
-  test(`${features[0].name}, @milo-live, ${features[0].tags},https://milo.adobe.com `, async ({ page, baseURL }) => {
-    const carousel = new Carousel(page);
-    console.info('Base URL test :  ', baseURL);
+  test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
+    console.info('[Test Page]: ', baseURL);
 
-    // test step-1
-    await test.step('Go to Carousel block test page', async () => {
+    await test.step('step-1: Go to Carousel block test page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
       await page.waitForLoadState('domcontentloaded');
-
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
 
-    // test step-2
-    await test.step('Verify Carousel container ', async () => {
+    await test.step('step-2: Verify Carousel container', async () => {
       // verify carousel elements
       expect(await carousel.isCarouselDisplayed('carouselContainer')).toBeTruthy();
 
@@ -41,8 +36,7 @@ test.describe('Milo Carousel block test suite', () => {
       expect(await carousel.isPreviousButtonlVisible()).toBeTruthy();
     });
 
-    // test step-3
-    await test.step('Perform carousel slides and controls operation and verify contents', async () => {
+    await test.step('step-3: Perform carousel slides and controls operation and verify contents', async () => {
       // move to next slide by clicking next button and verify h2 tag header
       await carousel.moveToNextSlide();
       expect(await carousel.getCurrentSlideIndex()).toBe('1');
@@ -55,18 +49,16 @@ test.describe('Milo Carousel block test suite', () => {
     });
   });
 
-  // Spec-2 : Carousel (lightbox)
-  test(`${features[1].name}, @milo-live, ${features[1].tags}, https://milo.adobe.com `, async ({ page, baseURL }) => {
-    const carousel = new Carousel(page);
-    // const action = new WebInteraction(page);
+  test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
+    console.info('[Test Page]: ', baseURL);
 
-    await test.step('Go to Carousel lightbox block test page', async () => {
+    await test.step('step-1: Go to Carousel lightbox block test page', async () => {
       await page.goto(`${baseURL}${features[1].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
     });
 
-    await test.step('Verify carousel with lightbox features ', async () => {
+    await test.step('step-2: Verify carousel with lightbox features', async () => {
       expect(await carousel.isCarouselDisplayed('carouselLightbox')).toBeTruthy();
 
       // verify active slide and slides count
@@ -90,19 +82,16 @@ test.describe('Milo Carousel block test suite', () => {
     });
   });
 
-  // Spec-3 : Carousel Multi slide (show-2)
-  test(`${features[2].name}, @milo-live, ${features[2].tags}, https://milo.adobe.com `, async ({ page, baseURL }) => {
-    const carousel = new Carousel(page);
+  test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
+    console.info('[Test Page]: ', baseURL);
 
-    // test step-1
-    await test.step('Go to Carousel multi-slide show-2 block test page', async () => {
+    await test.step('step-1: Go to Carousel multi-slide show-2 block test page', async () => {
       await page.goto(`${baseURL}${features[2].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
     });
 
-    // test step-2
-    await test.step('Verify multi slide carousel show-2 features ', async () => {
+    await test.step('step-2: Verify multi slide carousel show-2 features', async () => {
       expect(await carousel.isCarouselDisplayed('carouselShow-2')).toBeTruthy();
 
       // In multi-slide 2 number of slides will be n-slides +1 so it will be 5
@@ -111,12 +100,11 @@ test.describe('Milo Carousel block test suite', () => {
 
       // In multi-slide carousel indicators are not shown
       expect(await carousel.areIndicatorsDisplayed()).toBeFalsy();
-
       expect(await carousel.isNextButtonlVisible()).toBeTruthy();
       expect(await carousel.isPreviousButtonlVisible()).toBeTruthy();
     });
-    // test step-3
-    await test.step('Perform carousel slides and controls operation and verify contents', async () => {
+
+    await test.step('step-3: Perform carousel slides and controls operation and verify contents', async () => {
       // move to next slide by clicking next button and verify h2 tag header
       await carousel.moveToNextSlide();
       expect(await carousel.getSlideText(1, 'h2', 'Melon')).toBeTruthy();
