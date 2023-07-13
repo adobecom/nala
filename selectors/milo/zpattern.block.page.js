@@ -1,14 +1,5 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable max-len */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable quote-props */
-/* eslint-disable import/named */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-import-module-exports */
-
 import { expect } from '@playwright/test';
-
-import { WebUtil } from '../../libs/webutil';
+import { WebUtil } from '../../libs/webutil.js';
 
 exports.ZPattern = class ZPattern {
   constructor(page) {

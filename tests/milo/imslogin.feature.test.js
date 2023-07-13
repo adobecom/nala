@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import parse from '../../libs/parse.js';
 import ims from '../../libs/imslogin.js';
 import imslogin from '../../features/milo/imslogin.spec.js';
-import selectors from '../../selectors/milo/imslogin.selectors.js';
+import { selectors } from '../../selectors/milo/imslogin.selectors.js';
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(imslogin);

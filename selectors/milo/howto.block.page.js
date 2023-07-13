@@ -1,27 +1,16 @@
-/* eslint-disable max-len */
-/* eslint-disable quote-props */
-/* eslint-disable import/named */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-import-module-exports */
-
 import { expect } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
 
-import { WebUtil } from '../../libs/webutil';
-
-exports.HowTo = class HowTo {
+export class HowTo {
   constructor(page) {
     this.page = page;
     // how-to  locators
     this.howTo = page.locator('.how-to');
     this.howToLarge = this.page.locator('.how-to.large-image');
     this.howToSeo = this.page.locator('.how-to.seo');
-
-    // how-to details
     this.howToHeading = this.howTo.locator('.how-to-heading');
     this.howToImage = this.howTo.locator('.how-to-image');
     this.howToList = this.howTo.locator('li');
-
-    // how-to large details
     this.howToLargeImage = page.locator('.how-to-image img');
 
     // howto contents css
