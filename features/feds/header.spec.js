@@ -6,7 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/header/feds-header-page',
       ],
-      envs: '@feds_live',
+      envs: '@milo_live',
       tags: '@feds @header @feds-header',
     },
     {

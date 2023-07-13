@@ -1,50 +1,48 @@
 /* eslint-disable import/no-import-module-exports */
-import { expect } from '@playwright/test';
 
 exports.FedsFooter = class FedsFooter {
   constructor(page) {
     this.page = page;
 
-    // FOOTER - Containers:
-    this.FooterContainer = page.locator('#feds-footernav');
-    this.AdobeContainer = page.locator('#feds-footer #Globalnav\\.Adobe');
-    this.SupportContainer = page.locator('#feds-footer #Globalnav\\.Support');
-    this.ProductsContainer = page.locator('#feds-footer #Globalnav\\.Products');
-    this.BlogsContainer = page.locator('#feds-footer #Globalnav\\.Blogs_Community');
-    this.ItemsContainer = page.locator('footer ul li.feds-navList-item:nth-of-type(2)');
+    // Container Selectors:
+    this.footerContainer = page.locator('footer.global-footer');
+    this.footerSections = page.locator('footer div.feds-menu-section');
+    this.footerColumns = page.locator('footer div.feds-menu-column');
+    this.footerHeadings = page.locator('footer div.feds-menu-headline');
 
-    // FOOTER - Breadcrumb:
-    this.BreadcrumbLogo = page.locator('.feds-breadcrumbs-logo');
-    this.BreadcrumbList = page.locator('.feds-breadcrumbs-items');
-    this.BreadcrumbElems = page.locator$('.feds-breadcrumbs-element');
+    // Change Region Selectors:
+    this.changeRegionContainer = page.locator('div.feds-regionPicker-wrapper');
+    this.changeRegionButton = page.locator('div.feds-regionPicker-wrapper a.feds-regionPicker');
+    this.changeRegionModal = page.locator('div#langnav');
+    this.changeRegionDropDown = page.locator('div.region-selector');
+    this.changeRegionCloseButton = page.locator('button.dialog-close');
 
-    // FOOTER - Social-Media Icons:
-    this.SocialIcons = page.locator$('ul[daa-lh="Social"] li');
-    this.TwitterIcon = page.locator('a[daa-ll*="Twitter"] span');
-    this.LinkedInIcon = page.locator('a[daa-ll*="LinkedIn"] span');
-    this.FacebookIcon = page.locator('a[daa-ll*="Facebook"] span');
-    this.InstagramIcon = page.locator('a[daa-ll*="Instagram"] span');
-    this.SocialIconsContainer = page.locator('ul[daa-lh="Social"]');
+    // Legal Selectors:
+    this.legalContainer = page.locator('div.feds-footer-legalWrapper');
+    this.legalSections = page.locator('p.feds-footer-privacySection');
+    this.legalLinks = page.locator('div.feds-footer-legalWrapper a');
+    this.legalCopyright = page.locator('span.feds-footer-copyright');
+    this.privacyLink = page.locator('a[href*="privacy.html"]');
+    this.termsOfUseLink = page.locator('a[href*="terms.html"]');
+    this.cookiePreferencesLink = page.locator('a[href*="#openPrivacy"]');
+    this.doNotSellInformationLink = page.locator('a[href*="ca-rights.html"]');
+    this.adChoicesLink = page.locator('a[href*="opt-out.html"]');
+    this.adChoicesLogo = page.locator('svg.feds-adChoices-icon');
 
-    // FOOTER - Legacy Downloads:
-    this.DownloadAir = page.locator('#Globalnav\\.Adobe_AIR');
-    this.DownloadFlashPlayer = page.locator('#Globalnav\\.Adobe_Flash_Player');
-    // FOOTER - Featured Downloads:
-    this.DownloadPhotoshop = page.locator('#feds-footer a[daa-ll*="Photoshop"]');
-    this.DownloadIllustrator = page.locator('#feds-footer a[daa-ll*="Illustrator"]');
-    this.DownloadAcrobatReader = page.locator('#feds-footer a[daa-ll*="Adobe_Acrobat_Reader"]');
+    // Adobe Socials Selectors:
+    this.twitterIcon = page.locator('ul.feds-social a[aria-label="twitter"]');
+    this.linkedInIcon = page.locator('ul.feds-social a[aria-label="linkedin"]');
+    this.facebookIcon = page.locator('ul.feds-social a[aria-label="facebook"]');
+    this.instagramIcon = page.locator('ul.feds-social a[aria-label="instagram"]');
+    this.socialContainer = page.locator('ul.feds-social');
+    this.socialIcons = page.locator('ul.feds-social li');
 
-    // FOOTER - Copyright Banner:
-    this.TermsLink = page.locator('a[daa-ll^="Term"]');
-    this.PrivacyLink = page.locator('a[daa-ll^="Privacy"]');
-    this.CookiesLink = page.locator('a[daa-ll^="Cookies"]');
-    this.AdChoicesLogo = page.locator('a[daa-ll^="AdChoices"]');
-    this.AdChoicesLink = page.locator('a[data-feds-action="open-adchoices-modal"] span.feds-navLink-contentWrapper');
-    this.CopyrightBanner = page.locator('#feds-footernav [daa-lh*="Copyright"]');
-
-    this.RegionPickerBtn = page.locator('a.feds-regionPicker');
-    this.RegionPickerModal = page.locator('nav.language-Navigation');
-    this.RegionPickerClose = page.locator('a.dexter-CloseButton');
+    // Featured Products Selectors:
+    this.featuredProductsContainer = page.locator('div.feds-featuredProducts');
+    this.featuredProducts = page.locator('div.feds-featuredProducts a');
+    this.downloadAdobeExpress = page.locator('footer a[daa-ll="Adobe_Express"]');
+    this.downloadAdobePhotoshop = page.locator('footer a[daa-ll="Photoshop"]');
+    this.downloadAdobeIllustrator = page.locator('footer a[daa-ll="Illustrator"]');
   }
 
   // >> FEDS Footer methods declared here <<

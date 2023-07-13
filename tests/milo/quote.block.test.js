@@ -1,16 +1,12 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/extensions */
-/* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
-import { Text } from '../../selectors/milo/text.block.page';
-import { features } from '../../features/milo/text.block.spec';
+import Quote from '../../selectors/milo/quote.block.page.js';
+import { features } from '../../features/milo/quote.block.spec.js';
 
-let text;
+let quote;
 
-test.describe('Milo Text Block test suite', () => {
+test.describe('Milo Quote Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    text = new Text(page);
+    quote = new Quote(page);
   });
 
   // Test - 0
@@ -18,16 +14,16 @@ test.describe('Milo Text Block test suite', () => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[0].path}`);
 
     // test step-1
-    await test.step('Go to Text block test page', async () => {
+    await test.step('Go to Quote block test page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
 
     // test step-2
-    await test.step('Verify Text specs', async () => {
-      // verify Text and its content visibility
-      expect(await text.verifyText('text')).toBeTruthy();
+    await test.step('Verify Quote block content/specs', async () => {
+      const { data } = features[0];
+      expect(await quote.verifyQuote('quote', data)).toBeTruthy();
     });
   });
 
@@ -36,16 +32,16 @@ test.describe('Milo Text Block test suite', () => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[1].path}`);
 
     // test step-1
-    await test.step('Go to Text (intro) block test page', async () => {
+    await test.step('Go to Quote block test page', async () => {
       await page.goto(`${baseURL}${features[1].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
     });
 
     // test step-2
-    await test.step('Verify Text (intro) specs', async () => {
-      // verify text (intro) and its content visibility
-      expect(await text.verifyText('text (intro)')).toBeTruthy();
+    await test.step('Verify Quote (contained) block content/specs', async () => {
+      const { data } = features[1];
+      expect(await quote.verifyQuote('quote (contained)', data)).toBeTruthy();
     });
   });
 
@@ -54,16 +50,16 @@ test.describe('Milo Text Block test suite', () => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[2].path}`);
 
     // test step-1
-    await test.step('Go to Text (full width) block test page', async () => {
+    await test.step('Go to Quote (inline) block test page', async () => {
       await page.goto(`${baseURL}${features[2].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
     });
 
     // test step-2
-    await test.step('Verify Text (full width) specs', async () => {
-      // verify Text (full width) and its content visibility
-      expect(await text.verifyText('text (full width)')).toBeTruthy();
+    await test.step('Verify Quote (inline) block content/specs', async () => {
+      const { data } = features[2];
+      expect(await quote.verifyQuote('quote (inline)', data)).toBeTruthy();
     });
   });
 
@@ -72,16 +68,16 @@ test.describe('Milo Text Block test suite', () => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[3].path}`);
 
     // test step-1
-    await test.step('Go to text (full-width, large) block test page', async () => {
+    await test.step('Go to Quote (borders) block test page', async () => {
       await page.goto(`${baseURL}${features[3].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
     });
 
     // test step-2
-    await test.step('Verify Text (full-width, large) specs', async () => {
-      // verify Text (full-width, large) and its content visibility
-      expect(await text.verifyText('text (full-width, large)')).toBeTruthy();
+    await test.step('Verify Quote (borders) block content/specs', async () => {
+      const { data } = features[3];
+      expect(await quote.verifyQuote('quote (borders)', data)).toBeTruthy();
     });
   });
 
@@ -90,16 +86,16 @@ test.describe('Milo Text Block test suite', () => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[4].path}`);
 
     // test step-1
-    await test.step('Go to Text (long form, large) block test page', async () => {
+    await test.step('Go to Quote (align-right) block test page', async () => {
       await page.goto(`${baseURL}${features[4].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
     });
 
     // test step-2
-    await test.step('Verify Text (long form, large) specs', async () => {
-      // verify Text (long form, large) and its content visibility
-      expect(await text.verifyText('text (long form, large)')).toBeTruthy();
+    await test.step('Verify Quote (align-right) block content/specs', async () => {
+      const { data } = features[4];
+      expect(await quote.verifyQuote('quote (align-right)', data)).toBeTruthy();
     });
   });
 
@@ -108,16 +104,16 @@ test.describe('Milo Text Block test suite', () => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[5].path}`);
 
     // test step-1
-    await test.step('Go to Text (long form, large) block test page', async () => {
+    await test.step('Go to Quote (xl-spaced) block test page', async () => {
       await page.goto(`${baseURL}${features[5].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
     });
 
     // test step-2
-    await test.step('Verify Text (inset, large, m spacing) specs', async () => {
-      // verify Text (inset, large, m spacing) and its content visibility
-      expect(await text.verifyText('text (inset, large, m spacing)')).toBeTruthy();
+    await test.step('Verify Quote (xl-spaced) block content/specs', async () => {
+      const { data } = features[5];
+      expect(await quote.verifyQuote('quote (xl-spaced)', data)).toBeTruthy();
     });
   });
 });

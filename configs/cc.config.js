@@ -8,7 +8,7 @@ const envs = require('../envs/envs.js');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: '../tests/feds',
+  testDir: '../tests/cc',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
@@ -40,33 +40,58 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@milo_live'] || 'https://main--milo--adobecom.hlx.live',
+    baseURL: process.env.BASE_URL || envs['@cc_live'] || 'https://main--cc--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'feds-live-chrome',
+      name: 'cc-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@milo_live'],
-      },
-    },
-    {
-      name: 'feds-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@milo_live'],
+        baseURL: envs['@cc-live'],
       },
     },
 
     {
-      name: 'feds-live-webkit',
+      name: 'cc-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@cc-live'],
+      },
+    },
+
+    {
+      name: 'cc-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@milo_live'],
+        baseURL: envs['@cc-live'],
+      },
+    },
+
+    {
+      name: 'cc-prod-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@cc_prod'],
+      },
+    },
+
+    {
+      name: 'cc-prod-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@cc_prod'],
+      },
+    },
+
+    {
+      name: 'cc-prod-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@cc_prod'],
       },
     },
   ],
 };
-module.exports = config;
+export default config;
