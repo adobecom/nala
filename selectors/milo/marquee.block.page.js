@@ -1,14 +1,7 @@
-/* eslint-disable quote-props */
-/* eslint-disable import/named */
-/* eslint-disable import/extensions */
-/* eslint-disable max-len */
-/* eslint-disable import/no-import-module-exports */
-
 import { expect } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
 
-import { WebUtil } from '../../libs/webutil';
-
-exports.Marquee = class Marquee {
+export class Marquee {
   constructor(page) {
     this.page = page;
     // marquee types locators
@@ -28,7 +21,6 @@ exports.Marquee = class Marquee {
     this.marqueeSplitOneThirdSmallLight = page.locator('.marquee.split.one-third.small.light');
 
     // marque section(s) locators
-
     // marquee details
     this.detailM = this.marquee.locator('.detail-m');
     this.detailL = this.marquee.locator('.detail-l');

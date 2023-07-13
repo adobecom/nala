@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export default class Georouting {
+export class Georouting {
     constructor(page) {
         this.page = page;
 

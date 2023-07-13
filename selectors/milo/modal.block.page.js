@@ -1,12 +1,9 @@
-/* eslint-disable no-promise-executor-return */
-/* eslint-disable import/named */
 import { expect } from '@playwright/test';
-
+import { WebUtil } from '../../libs/webutil.js';
 import { Text } from './text.block.page.js';
 import { Media } from './media.block.page.js';
-import { WebUtil } from '../../libs/webutil.js';
 
-export default class Modal {
+export class Modal {
   constructor(page) {
     this.page = page;
     // modal locators
