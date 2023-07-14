@@ -1,7 +1,6 @@
-/* eslint-disable import/no-import-module-exports */
 import { expect } from '@playwright/test';
 
-exports.Carousel = class Carousel {
+export class Carousel {
   constructor(page) {
     this.page = page;
     // carousel types selectors

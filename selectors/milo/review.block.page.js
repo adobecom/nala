@@ -1,9 +1,6 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-promise-executor-return */
-
 import { expect } from '@playwright/test';
 
-export default class Review {
+export class Review {
   constructor(page) {
     this.page = page;
     // review block locators
