@@ -1,12 +1,5 @@
-/* eslint-disable max-len */
-/* eslint-disable quote-props */
-/* eslint-disable import/named */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-import-module-exports */
-
 import { expect } from '@playwright/test';
-
-import { WebUtil } from '../../libs/webutil';
+import { WebUtil } from '../../libs/webutil.js';
 
 exports.Media = class Media {
   constructor(page) {

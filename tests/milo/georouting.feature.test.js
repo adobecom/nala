@@ -1,13 +1,12 @@
 import { expect, test } from '@playwright/test';
-import Georouting from '../../selectors/milo/georouting.feature.page.js';
+import { features } from '../../features/milo/georouting.spec.js';
+import { Georouting } from '../../selectors/milo/georouting.feature.page.js';
 
-const { features } = require('../../features/milo/georouting.spec.js');
-
-let obj;
+let modal;
 
 test.describe('Milo Georouting feature test suite', () => {
     test.beforeEach(async ({ page }) => {
-        obj = new Georouting(page);
+        modal = new Georouting(page);
     });
 
     test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
@@ -19,15 +18,15 @@ test.describe('Milo Georouting feature test suite', () => {
             await page.goto(`${baseURL}${features[0].path}`);
             await page.waitForLoadState('domcontentloaded');
             await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
-            await obj.geoModal.waitFor({ state: 'visible', timeout: 10000 });
+            await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
         });
 
         await test.step('step-2: Verify georouting modal and its content', async () => {
-            expect(await obj.verifyGeoModal(data)).toBeTruthy();;
+            expect(await modal.verifyGeoModal(data)).toBeTruthy();;
         });
 
         await test.step('step-3: Click "Deutschland" link from modal and then verify international cookie value', async () => {
-            await obj.deLink.click();
+            await modal.deLink.click();
             expect((await page.context().cookies()).find(cookie => cookie.name === data.cookieName).value).toEqual(data.cookieValue);
 
         });
@@ -42,15 +41,15 @@ test.describe('Milo Georouting feature test suite', () => {
             await page.goto(`${baseURL}${features[1].path}`);
             await page.waitForLoadState('domcontentloaded');
             await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
-            await obj.geoModal.waitFor({ state: 'visible', timeout: 10000 });
+            await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
         });
 
         await test.step('step-2: Verify georouting modal and its content', async () => {
-            expect(await obj.verifyGeoModal(data)).toBeTruthy();
+            expect(await modal.verifyGeoModal(data)).toBeTruthy();
         });
 
         await test.step('step-3: Click "Deutschland" button and then verify international cookie value', async () => {
-            await obj.deLink.click();
+            await modal.deLink.click();
             expect((await page.context().cookies()).find(cookie => cookie.name === data.cookieName).value).toEqual(data.cookieValue);
         });
     });
@@ -67,9 +66,9 @@ test.describe('Milo Georouting feature test suite', () => {
         });
 
         await test.step('step-2: Click "Change region" link from footer and navigate to "Deutschland" page', async () => {
-            await obj.changeRegionLink.click();
-            await obj.changeRegionModal.waitFor({ state: 'visible', timeout: 10000 });
-            await obj.deLink.click();
+            await modal.changeRegionLink.click();
+            await modal.changeRegionModal.waitFor({ state: 'visible', timeout: 10000 });
+            await modal.deLink.click();
         });
 
         await test.step('step-3: Verify international cookie value', async () => {
@@ -86,11 +85,11 @@ test.describe('Milo Georouting feature test suite', () => {
             await page.goto(`${baseURL}${features[3].path}`);
             await page.waitForLoadState('domcontentloaded');
             await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
-            await obj.geoModal.waitFor({ state: 'visible', timeout: 10000 });
+            await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
         });
 
         await test.step('step-2: Verify multi tab georouting modal and its content', async () => {
-            expect(await obj.verifyMultiTabGeoModal(data)).toBeTruthy();
+            expect(await modal.verifyMultiTabGeoModal(data)).toBeTruthy();
         });
     });
 
@@ -106,7 +105,7 @@ test.describe('Milo Georouting feature test suite', () => {
         });
 
         await test.step('step-2: Verify that georouting modal is not shown', async () => {
-            await expect(await obj.geoModal).not.toBeVisible();
+            await expect(await modal.geoModal).not.toBeVisible();
         });
     });
 
@@ -119,11 +118,11 @@ test.describe('Milo Georouting feature test suite', () => {
             await page.goto(`${baseURL}${features[5].path}`);
             await page.waitForLoadState('domcontentloaded');
             await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
-            await obj.geoModal.waitFor({ state: 'visible', timeout: 10000 });
+            await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
         });
 
         await test.step('step-2: Close the georouting modal and then check that international cookie is not added', async () => {
-            await obj.geoModalClose.click();
+            await modal.geoModalClose.click();
             expect((await page.context().cookies()).find(cookie => cookie.name === data.cookieName)).toBeUndefined();
         });
     });

@@ -1,14 +1,7 @@
-/* eslint-disable max-len */
-/* eslint-disable quote-props */
-/* eslint-disable import/named */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-import-module-exports */
-
 import { expect } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
 
-import { WebUtil } from '../../libs/webutil';
-
-exports.Text = class Text {
+export class Text {
   constructor(page) {
     this.page = page;
     // text  locators
