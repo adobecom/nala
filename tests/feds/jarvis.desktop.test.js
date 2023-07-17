@@ -28,12 +28,17 @@ test.describe('Jarvis Component test suite', () => {
       await Consent.assertOneTrustAcceptState();
     });
 
-    await test.step('Check Jarvis component is initialized', async () => {
-      // Wait for Jarvis component to appear:
-      await Jarvis.jarvisButton.waitFor({ state: 'visible', timeout: 15000 });
-      // Open Jarvis chat assistent:
-      await Jarvis.jarvisButton.click();
+    await test.step('Check Jarvis component functionality', async () => {
+      // Open Jarvis chat assistent (via Jarvis button):
+      await Jarvis.openJarvisFromCta();
+      // Close Jarvis chat assistent (via Jarvis iframe):
+      await Jarvis.closeJarvisFromIframe();
+      // Open Jarvis chat assistent (via header button):
+      await Jarvis.jarvisHeaderButton.click();
       await expect(Jarvis.jarvisContainer).toBeVisible();
+      // Open Jarvis chat assistent (via header button):
+      await Jarvis.jarvisHeaderButton.click();
+      await expect(Jarvis.jarvisContainer).not.toBeVisible();
     });
   });
 
@@ -58,12 +63,17 @@ test.describe('Jarvis Component test suite', () => {
       await Consent.assertOneTrustAcceptState();
     });
 
-    await test.step('Check Jarvis component is initialized', async () => {
-      // Wait for Jarvis component to appear:
-      await Jarvis.jarvisButton.waitFor({ state: 'visible', timeout: 15000 });
-      // Open Jarvis chat assistent:
-      await Jarvis.jarvisButton.click();
+    await test.step('Check Jarvis component functionality', async () => {
+      // Open Jarvis chat assistent (via Jarvis button):
+      await Jarvis.openJarvisFromCta();
+      // Close Jarvis chat assistent (via Jarvis iframe):
+      await Jarvis.closeJarvisFromIframe();
+      // Open Jarvis chat assistent (via header button):
+      await Jarvis.jarvisHeaderButton.click();
       await expect(Jarvis.jarvisContainer).toBeVisible();
+      // Open Jarvis chat assistent (via header button):
+      await Jarvis.jarvisHeaderButton.click();
+      await expect(Jarvis.jarvisContainer).not.toBeVisible();
     });
   });
 
