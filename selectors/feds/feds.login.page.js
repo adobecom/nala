@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-import-module-exports
 import { expect } from '@playwright/test';
 
-exports.FedsLogin = class FedsLogin {
+export default class FedsLogin {
   constructor(page) {
     this.page = page;
 
@@ -20,16 +20,16 @@ exports.FedsLogin = class FedsLogin {
 
     this.appEmailForm = page.locator('form#EmailForm');
     this.appPasswordForm = page.locator('form#PasswordForm');
-    this.appEmailField = page.locator('input#EmailPage-emailField');
-    this.appPasswordField = page.locator('input#PasswordPage-passwordField');
-    this.appVisibilityToggle = page.locator('button.passwordField-VisibilityToggle');
+    this.appEmailField = page.locator('input#EmailPage-EmailField');
+    this.appPasswordField = page.locator('input#PasswordPage-PasswordField');
+    this.appVisibilityToggle = page.locator('button.PasswordField-VisibilityToggle');
     this.appPasswordContinue = page.locator('button[data-id^="EmailPage"]');
     this.appLoginContinue = page.locator('button[data-id^="PasswordPage"]');
     this.personalAccountLogo = page.locator('img[alt="Personal Account"]');
     this.selectAccountForm = page.locator('div[data-id="Profile"]');
 
-    this.appEmailFieldSelector = page.locator('input#EmailPage-emailField');
-    this.appPasswordFieldSelector = page.locator('input#PasswordPage-passwordField');
+    this.appEmailFieldSelector = page.locator('input#EmailPage-EmailField');
+    this.appPasswordFieldSelector = page.locator('input#PasswordPage-PasswordField');
     this.codePadChallenge = page.locator('div[data-id="ChallengeCodePage"]');
   }
 
@@ -115,4 +115,4 @@ exports.FedsLogin = class FedsLogin {
     await this.appVisibilityToggle.click();
     await this.appVisibilityToggle.waitFor({ state: 'visible', timeout: 15000 });
   }
-};
+}

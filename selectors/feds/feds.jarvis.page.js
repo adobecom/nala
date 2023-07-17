@@ -1,6 +1,6 @@
 /* eslint-disable import/no-import-module-exports */
 
-exports.FedsJarvis = class FedsJarvis {
+export default class FedsJarvis {
   constructor(page) {
     this.page = page;
 
@@ -16,4 +16,4 @@ exports.FedsJarvis = class FedsJarvis {
   }
 
   // >> FEDS Jarvis methods declared here <<
-};
+}

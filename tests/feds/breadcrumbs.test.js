@@ -2,8 +2,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { FedsHeader } from '../../selectors/feds/feds.header.page.js';
 import { features } from '../../features/feds/breadcrumbs.spec.js';
+import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
 test.describe('Breadcrumbs Component test suite', () => {
   // FEDS Breadcrumbs-With-Base Checks:

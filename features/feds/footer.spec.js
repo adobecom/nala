@@ -2,7 +2,6 @@ module.exports = {
   name: 'Footer Block',
   features: [
     {
-      tcid: '0',
       name: '@FEDS-Default-Footer',
       path: [
         '/libs/feds/drafts/qa/footer/feds-default-footer',
@@ -11,7 +10,6 @@ module.exports = {
       tags: '@feds @footer @feds-footer',
     },
     {
-      tcid: '1',
       name: '@FEDS-Skinny-Footer',
       path: [
         '/libs/feds/drafts/qa/footer/feds-skinny-footer',
@@ -20,7 +18,6 @@ module.exports = {
       tags: '@feds @footer @feds-footer',
     },
     {
-      tcid: '2',
       name: '@FEDS-Privacy-Footer',
       path: [
         '/libs/feds/drafts/qa/footer/feds-privacy-footer',

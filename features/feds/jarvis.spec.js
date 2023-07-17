@@ -2,7 +2,6 @@ module.exports = {
   name: 'Jarvis Component',
   features: [
     {
-      tcid: '0',
       name: '@FEDS-Jarvis-Default',
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-default',
@@ -11,7 +10,6 @@ module.exports = {
       tags: '@feds @jarvis @feds-jarvis',
     },
     {
-      tcid: '1',
       name: '@FEDS-Jarvis-Desktop',
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-desktop',
@@ -20,7 +18,6 @@ module.exports = {
       tags: '@feds @jarvis @feds-jarvis',
     },
     {
-      tcid: '2',
       name: '@FEDS-Jarvis-Disabled',
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-disabled',
@@ -29,7 +26,6 @@ module.exports = {
       tags: '@feds @jarvis @feds-jarvis',
     },
     {
-      tcid: '3',
       name: '@FEDS-Jarvis-Mobile',
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-mobile',

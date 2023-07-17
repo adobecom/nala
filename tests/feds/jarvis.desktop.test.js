@@ -2,9 +2,9 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { FedsJarvis } from '../../selectors/feds/feds.jarvis.page.js';
-import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
 import { features } from '../../features/feds/jarvis.spec.js';
+import FedsJarvis from '../../selectors/feds/feds.jarvis.page.js';
+import FedsConsent from '../../selectors/feds/feds.consent.page.js';
 
 test.describe('Jarvis Component test suite', () => {
   // FEDS Jarvis Default Checks:
@@ -14,9 +14,9 @@ test.describe('Jarvis Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to FEDS Jarvis Default page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}?hideGeorouting=on`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}?hideGeorouting=on`);
     });
 
     await test.step('Accept OneTrust consent bar', async () => {
@@ -44,9 +44,9 @@ test.describe('Jarvis Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[1].path}`);
 
     await test.step('Navigate to FEDS Jarvis Desktop page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}?hideGeorouting=on`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}?hideGeorouting=on`);
     });
 
     await test.step('Accept OneTrust consent bar', async () => {
@@ -74,9 +74,9 @@ test.describe('Jarvis Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[2].path}`);
 
     await test.step('Navigate to FEDS Jarvis Disabled page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}?hideGeorouting=on`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}?hideGeorouting=on`);
     });
 
     await test.step('Accept OneTrust consent bar', async () => {

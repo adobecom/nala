@@ -2,7 +2,7 @@
 /* eslint-disable import/no-import-module-exports */
 import { expect } from '@playwright/test';
 
-exports.FedsConsent = class FedsConsent {
+export default class FedsConsent {
   constructor(page) {
     this.page = page;
     this.props = {
@@ -132,4 +132,4 @@ exports.FedsConsent = class FedsConsent {
       expect(activeCookieGroups.includes('C0004')).toBe(true);
     }
   }
-};
+}
