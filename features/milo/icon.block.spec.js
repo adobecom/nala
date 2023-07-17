@@ -42,6 +42,4 @@ module.exports = {
         tags: '@icon @icon-fullwidth-large, @smoke @regression @milo,',
       },
     ],
-  };
-  
-  
+  }
