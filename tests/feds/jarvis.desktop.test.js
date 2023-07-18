@@ -29,14 +29,14 @@ test.describe('Jarvis Component test suite', () => {
     });
 
     await test.step('Check Jarvis component functionality', async () => {
-      // Open Jarvis chat assistent (via Jarvis button):
+      // Open Jarvis chat assistant (via Jarvis button):
       await Jarvis.openJarvisFromCta();
-      // Close Jarvis chat assistent (via Jarvis iframe):
+      // Close Jarvis chat assistant (via Jarvis iframe):
       await Jarvis.closeJarvisFromIframe();
-      // Open Jarvis chat assistent (via header button):
+      // Open Jarvis chat assistant (via header button):
       await Jarvis.jarvisHeaderButton.click();
       await expect(Jarvis.jarvisContainer).toBeVisible();
-      // Open Jarvis chat assistent (via header button):
+      // Close Jarvis chat assistant (via header button):
       await Jarvis.jarvisHeaderButton.click();
       await expect(Jarvis.jarvisContainer).not.toBeVisible();
     });
@@ -64,14 +64,14 @@ test.describe('Jarvis Component test suite', () => {
     });
 
     await test.step('Check Jarvis component functionality', async () => {
-      // Open Jarvis chat assistent (via Jarvis button):
+      // Open Jarvis chat assistant (via Jarvis button):
       await Jarvis.openJarvisFromCta();
-      // Close Jarvis chat assistent (via Jarvis iframe):
+      // Close Jarvis chat assistant (via Jarvis iframe):
       await Jarvis.closeJarvisFromIframe();
-      // Open Jarvis chat assistent (via header button):
+      // Open Jarvis chat assistant (via header button):
       await Jarvis.jarvisHeaderButton.click();
       await expect(Jarvis.jarvisContainer).toBeVisible();
-      // Open Jarvis chat assistent (via header button):
+      // Close Jarvis chat assistant (via header button):
       await Jarvis.jarvisHeaderButton.click();
       await expect(Jarvis.jarvisContainer).not.toBeVisible();
     });
