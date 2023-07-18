@@ -12,9 +12,9 @@ test.describe('Header Block test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to FEDS HEADER page', async () => {
-      await page.goto(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
     });
 
     await test.step('Check HEADER block content', async () => {

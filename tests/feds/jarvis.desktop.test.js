@@ -14,9 +14,9 @@ test.describe('Jarvis Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to FEDS Jarvis Default page', async () => {
-      await page.goto(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
     });
 
     await test.step('Accept OneTrust consent bar', async () => {
@@ -49,9 +49,9 @@ test.describe('Jarvis Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[1].path}`);
 
     await test.step('Navigate to FEDS Jarvis Desktop page', async () => {
-      await page.goto(`${baseURL}${features[1].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[1].path}${features[1].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${features[1].browserParams}`);
     });
 
     await test.step('Accept OneTrust consent bar', async () => {
@@ -84,9 +84,9 @@ test.describe('Jarvis Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[2].path}`);
 
     await test.step('Navigate to FEDS Jarvis Disabled page', async () => {
-      await page.goto(`${baseURL}${features[2].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[2].path}${features[2].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${features[2].browserParams}`);
     });
 
     await test.step('Accept OneTrust consent bar', async () => {

@@ -22,9 +22,9 @@ test.describe('Jarvis Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[3].path}`);
 
     await test.step('Navigate to FEDS Jarvis Default page', async () => {
-      await page.goto(`${baseURL}${features[3].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[3].path}${features[3].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${features[3].browserParams}`);
     });
 
     await test.step('Accept OneTrust consent bar', async () => {

@@ -6,6 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-default-footer',
       ],
+      browserParams: '?hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
     },
@@ -14,6 +15,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-skinny-footer',
       ],
+      browserParams: '?hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
     },
@@ -22,6 +24,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-privacy-footer',
       ],
+      browserParams: '?hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
     },
@@ -30,6 +33,7 @@ module.exports = {
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
+      browserParams: '?hideGeorouting=on',
       envs: '@adobe_prod',
       tags: '@dc @footer @dc-footer',
     },

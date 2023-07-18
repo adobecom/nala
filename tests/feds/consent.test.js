@@ -14,10 +14,10 @@ test.describe('Consent Component test suite', () => {
     await test.step('Navigate to FEDS consent component page', async () => {
       // !Note: Forcing consent to load on GDPR-enforced country.
       // Load OneTrust consent component page:
-      await page.goto(`${baseURL}${features[0].path}?customPrivacyLocation=de&hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
       // Wait for page to load & stabilize:
       await page.waitForLoadState('networkidle');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}?customPrivacyLocation=de&hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
       // Wait for the OneTrust consent bar to appear:
       await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
       await expect(Consent.oneTrustContainer).toBeVisible();

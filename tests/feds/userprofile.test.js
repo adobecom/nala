@@ -14,9 +14,9 @@ test.describe('User Profile Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to FEDS user profile page', async () => {
-      await page.goto(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
       // Wait for FEDS GNAV to be visible:
       await Header.mainNavLogo.waitFor({ state: 'visible', timeout: 5000 });
       await Header.mainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
