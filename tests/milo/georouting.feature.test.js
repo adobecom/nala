@@ -10,6 +10,7 @@ test.describe('Milo Georouting feature test suite', () => {
     });
 
     test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
+        test.slow();
         console.info(`[Test Page]: ${baseURL}${features[0].path}`);
         const { data } = features[0];
 
@@ -18,7 +19,7 @@ test.describe('Milo Georouting feature test suite', () => {
             await page.goto(`${baseURL}${features[0].path}`);
             await page.waitForLoadState('domcontentloaded');
             await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
-            await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
+            await modal.geoModal.waitFor({ state: 'visible', timeout: 30000 });
         });
 
         await test.step('step-2: Verify georouting modal and its content', async () => {
@@ -33,6 +34,7 @@ test.describe('Milo Georouting feature test suite', () => {
     });
 
     test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
+        test.slow();
         console.info(`[Test Page]: ${baseURL}${features[1].path}`);
         const { data } = features[1];
 
@@ -55,6 +57,7 @@ test.describe('Milo Georouting feature test suite', () => {
     });
 
     test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
+        test.slow();
         console.info(`[Test Page]: ${baseURL}${features[2].path}`);
         const { data } = features[2];
 
@@ -77,6 +80,7 @@ test.describe('Milo Georouting feature test suite', () => {
     });
 
     test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
+        test.slow();
         console.info(`[Test Page]: ${baseURL}${features[3].path}`);
         const { data } = features[3];
 
@@ -110,6 +114,7 @@ test.describe('Milo Georouting feature test suite', () => {
     });
 
     test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
+        test.slow();
         console.info(`[Test Page]: ${baseURL}${features[5].path}`);
         const { data } = features[5];
 

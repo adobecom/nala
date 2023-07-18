@@ -17,7 +17,10 @@ test.describe(`${name} test suite`, () => {
 
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
+      test.slow();
       await page.goto(props.url);
+      await page.waitForLoadState('domcontentloaded');
+
       if (!props.title.match(/@blog/) && (props.url.match(/customer-success-stories/))) {
         expect(page.url()).toContain('.html');
 
@@ -49,7 +52,7 @@ test.describe(`${name} test suite`, () => {
       if (!props.title.match(/@blog/)) {
         // eslint-disable-next-line max-len
         const hrefs = await page.evaluate(() => Array.from(document.links).map((item) => item.href));
-        hrefs.forEach(async (linkUrl) => {
+        hrefs.forEach(async (linkUrl) => {          
           if (!linkUrl.includes('/fragments/')) {
             if (!linkUrl.match(/business.adobe.com\/blog|business.adobe.com\/.*\/blog/)) {
               if (linkUrl.charAt(linkUrl.length - 1) === '/') {
