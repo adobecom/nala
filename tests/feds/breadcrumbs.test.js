@@ -2,8 +2,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { FedsHeader } from '../../selectors/feds/feds.header.page.js';
 import { features } from '../../features/feds/breadcrumbs.spec.js';
+import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
 test.describe('Breadcrumbs Component test suite', () => {
   // FEDS Breadcrumbs-With-Base Checks:
@@ -12,9 +12,9 @@ test.describe('Breadcrumbs Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to FEDS Breadcrumbs-With-Base page', async () => {
-      await page.goto(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
     });
 
     await test.step('Check breadcrumbs structure on current page', async () => {
@@ -36,9 +36,9 @@ test.describe('Breadcrumbs Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[1].path}`);
 
     await test.step('Navigate to FEDS Breadcrumbs-From-Document page', async () => {
-      await page.goto(`${baseURL}${features[1].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[1].path}${features[1].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${features[1].browserParams}`);
     });
 
     await test.step('Check breadcrumbs structure on current page', async () => {
@@ -60,9 +60,9 @@ test.describe('Breadcrumbs Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[2].path}`);
 
     await test.step('Navigate to FEDS Breadcrumbs-Hidden-Links page', async () => {
-      await page.goto(`${baseURL}${features[2].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[2].path}${features[2].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${features[2].browserParams}`);
     });
 
     await test.step('Check breadcrumbs structure on current page', async () => {
@@ -84,9 +84,9 @@ test.describe('Breadcrumbs Component test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[3].path}`);
 
     await test.step('Navigate to FEDS Breadcrumbs-No-Hidden-Links page', async () => {
-      await page.goto(`${baseURL}${features[3].path}?hideGeorouting=on`);
+      await page.goto(`${baseURL}${features[3].path}${features[3].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}?hideGeorouting=on`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${features[3].browserParams}`);
     });
 
     await test.step('Check breadcrumbs structure on current page', async () => {
