@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test'
+import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
 export class Accordion {

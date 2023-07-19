@@ -5,14 +5,14 @@ module.exports = {
       tcid: '1',
       name: '@Carousel(container)',
       path: '/drafts/nala/blocks/carousel/lightbox',
-      tags: '@carousel @carousel-container @smoke @regression @milo,',
+      tags: '@carousel @carousel-container @smoke @regression @milo',
       envs: '@milo-live @milo-prod',
     },
     {
       tcid: '2',
       name: '@Carousel(lightbox)',
       path: '/drafts/nala/blocks/carousel/fullpage-carousel',
-      tags: '@carousel @carousel-container @smoke @regression @milo,',
+      tags: '@carousel @carousel-container @smoke @regression @milo',
       envs: '@milo-live milo-prod',
     },
     {

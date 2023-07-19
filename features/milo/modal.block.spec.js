@@ -12,7 +12,7 @@ module.exports = {
         headingText: 'Text (intro)',
         bodyText: 'Body M Regular Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
       },
-      tags: '@modal @smoke @regression @milo,',
+      tags: '@modal @smoke @regression @milo',
     },
     {
       tcid: '1',
@@ -25,7 +25,7 @@ module.exports = {
         headingText: 'Text',
         bodyText: 'Body S 16/24 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed',
       },
-      tags: '@modal @smoke @regression @milo,',
+      tags: '@modal @smoke @regression @milo',
     },
   ],
 };
