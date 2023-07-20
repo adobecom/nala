@@ -54,4 +54,3 @@ test.describe('Milo Accordion Block test suite', () => {
     });
   });
 });
-

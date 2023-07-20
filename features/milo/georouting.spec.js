@@ -15,7 +15,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @milo @smoke @regression',
+      tags: '@georouting @smoke @regression @milo ',
     },
 
     {
@@ -32,7 +32,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @georouting-query-param @milo @smoke @regression',
+      tags: '@georouting @georouting-query-param @smoke @regression @milo',
     },
 
     {
@@ -49,7 +49,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @milo @smoke @regression',
+      tags: '@georouting @smoke @regression @milo ',
     },
 
     {
@@ -83,7 +83,7 @@ module.exports = {
           flag: 'Svizzera',
         },
       },
-      tags: '@georouting @georouting-multi-tab @milo @smoke @regression',
+      tags: '@georouting @georouting-multi-tab @smoke @regression @milo ',
     },
 
     {
@@ -103,7 +103,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @georouting-close @milo @regression',
+      tags: '@georouting @georouting-close @regression @milo ',
     },
   ],
 };

@@ -12,7 +12,7 @@ module.exports = {
         reviewComment: 'This is great',
 
       },
-      tags: '@Review @smoke @regression @milo,',
+      tags: '@Review @smoke @regression @milo',
     },
     {
       tcid: '1',
@@ -25,7 +25,7 @@ module.exports = {
         reviewComment: 'This is great',
 
       },
-      tags: '@Review @smoke @regression @milo,',
+      tags: '@Review @smoke @regression @milo',
     },
   ],
 };

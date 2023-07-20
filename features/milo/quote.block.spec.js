@@ -10,7 +10,7 @@ module.exports = {
         figCaption: 'Benny Lee',
         cite: 'Global Manager of Experiential Design, Coca-Cola Company',
       },
-      tags: '@Quote @smoke @regression @milo,',
+      tags: '@Quote @smoke @regression @milo',
     },
 
     {
@@ -22,7 +22,7 @@ module.exports = {
         figCaption: 'Benny Lee',
         cite: 'Global Manager of Experiential Design, Coca-Cola Company',
       },
-      tags: '@Quote @quote-contained @smoke @regression @milo,',
+      tags: '@Quote @quote-contained @smoke @regression @milo',
     },
 
     {

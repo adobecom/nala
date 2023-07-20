@@ -2,8 +2,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { FedsConsent } from '../../selectors/feds/feds.consent.page.js';
 import { features } from '../../features/feds/consent.spec.js';
+import FedsConsent from '../../selectors/feds/feds.consent.page.js';
 
 test.describe('Consent Component test suite', () => {
   // FEDS Consent Component Checks:
@@ -14,10 +14,10 @@ test.describe('Consent Component test suite', () => {
     await test.step('Navigate to FEDS consent component page', async () => {
       // !Note: Forcing consent to load on GDPR-enforced country.
       // Load OneTrust consent component page:
-      await page.goto(`${baseURL}${features[0].path}?customPrivacyLocation=de`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
       // Wait for page to load & stabilize:
       await page.waitForLoadState('networkidle');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}?customPrivacyLocation=de`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
       // Wait for the OneTrust consent bar to appear:
       await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
       await expect(Consent.oneTrustContainer).toBeVisible();
