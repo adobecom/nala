@@ -1,7 +1,7 @@
 /* eslint-disable import/no-import-module-exports */
 import { expect } from '@playwright/test';
 
-exports.FedsHeader = class FedsHeader {
+export default class FedsHeader {
   constructor(page) {
     this.page = page;
 
@@ -30,9 +30,9 @@ exports.FedsHeader = class FedsHeader {
     this.profileSignOut = page.locator('a.feds-profile-action');
 
     // GNAV breadcrumb selectors:
-    this.breadcrumbList = page.locator('nav.feds-breadcrumbs');
+    this.breadcrumbList = page.locator('nav.feds-breadcrumbs ul');
     this.breadcrumbElems = page.locator('nav.feds-breadcrumbs li');
-    this.breadcrumbContainer = page.locator('div.feds-breadcrumbs-wrapper');
+    this.breadcrumbContainer = page.locator('nav.feds-breadcrumbs');
   }
 
   /**
@@ -92,4 +92,4 @@ exports.FedsHeader = class FedsHeader {
     await this.closeSearch.click();
     await expect(this.searchInput).not.toBeVisible();
   }
-};
+}

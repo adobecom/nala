@@ -6,6 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/consent/feds-consent-page',
       ],
+      browserParams: '?customPrivacyLocation=de&hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @consent @feds-consent',
     },
@@ -14,6 +15,7 @@ module.exports = {
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
+      browserParams: '?customPrivacyLocation=de&hideGeorouting=on',
       envs: '@adobe_prod',
       tags: '@dc @consent @dc-consent',
     },
