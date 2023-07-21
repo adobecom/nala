@@ -12,7 +12,9 @@ test.describe(`${name} test suite`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
       test.skip(browserName !== 'firefox' && props.tag === '@html-ext', 'Chromium and WebKit browsers are caught by bot checker, working on fix');
+      test.slow();
       await page.goto(props.url);
+      await page.waitForLoadState('domcontentloaded');
 
       // Open up form modal
       if (props.url.includes('omnichannel-orchestration-with-adobe')) {
