@@ -12,7 +12,7 @@ module.exports = {
         col1: 'Related Adobe products',
         col2: 'Adobe Target',
       },
-      tags: '@columns @smoke @regression @milo,',
+      tags: '@columns @smoke @regression @milo',
     },
 
     {
@@ -25,7 +25,7 @@ module.exports = {
         col0: 'Market Segmentation',
         col1: 'Adobe Analytics',
       },
-      tags: '@columns @columns-contained @smoke @regression @milo,',
+      tags: '@columns @columns-contained @smoke @regression @milo',
     },
 
     {
@@ -38,7 +38,7 @@ module.exports = {
         col0: 'Descriptive Analytics',
         col1: 'Adobe Target',
       },
-      tags: '@columns @columns-contained-middle @smoke @regression @milo,',
+      tags: '@columns @columns-contained-middle @smoke @regression @milo',
     },
 
     {
@@ -53,7 +53,7 @@ module.exports = {
         col2: 'Detail: Waterfall’s meticulous upfront planning results in detailed project plans.',
         col3: 'Rigid: With a strict blueprint, departure from the original plan is difficult.',
       },
-      tags: '@columns @columns-table @smoke @regression @milo,',
+      tags: '@columns @columns-table @smoke @regression @milo',
     },
 
     {
@@ -68,7 +68,7 @@ module.exports = {
         col2: 'Engineering Manager',
         col3: 'Chris Millar',
       },
-      tags: '@columns @columns-contained-table @smoke @regression @milo,',
+      tags: '@columns @columns-contained-table @smoke @regression @milo',
     },
 
     {

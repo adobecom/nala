@@ -2,8 +2,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { FedsHeader } from '../../selectors/feds/feds.header.page.js';
 import { features } from '../../features/feds/header.spec.js';
+import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
 test.describe('Header Block test suite', () => {
   // FEDS Default Header Checks:
@@ -12,9 +12,9 @@ test.describe('Header Block test suite', () => {
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to FEDS HEADER page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
     });
 
     await test.step('Check HEADER block content', async () => {
