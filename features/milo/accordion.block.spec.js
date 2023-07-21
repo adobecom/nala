@@ -11,7 +11,7 @@ module.exports = {
         heading1: 'What size PDFs can I compress?',
         heading2: 'How do I check my PDF file size?',
       },
-      tags: '@accordion @smoke @regression @milo,',
+      tags: '@accordion @smoke @regression @milo',
     },
 
     {
@@ -24,7 +24,7 @@ module.exports = {
         heading1: 'What size PDFs can I compress?',
         heading2: 'How do I check my PDF file size?',
       },
-      tags: '@accordion @accordion-seo @smoke @regression @milo,',
+      tags: '@accordion @accordion-seo @smoke @regression @milo',
     },
 
     {
@@ -37,7 +37,7 @@ module.exports = {
         heading1: 'What size PDFs can I compress?',
         heading2: 'How do I check my PDF file size?',
       },
-      tags: '@accordion @accordion-quiet-max @smoke @regression @milo,',
+      tags: '@accordion @accordion-quiet-max @smoke @regression @milo',
     },
   ],
 };
