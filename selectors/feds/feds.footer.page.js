@@ -1,6 +1,6 @@
 /* eslint-disable import/no-import-module-exports */
 
-exports.FedsFooter = class FedsFooter {
+export default class FedsFooter {
   constructor(page) {
     this.page = page;
 
@@ -46,4 +46,4 @@ exports.FedsFooter = class FedsFooter {
   }
 
   // >> FEDS Footer methods declared here <<
-};
+}
