@@ -130,7 +130,8 @@ export class Text {
  *
  * @param {string} textType - The type of the Text block to verify.
  * Possible values are 'text', 'text (Intro)', 'Text (full width)'.
- * text (full-width, large), text (long form, large), and text (inset, large, m spacing), text (legal), text (link-farm)
+ * text (full-width, large), text (long form, large), and text (inset, large, m spacing).
+ * text (legal), text (link-farm).
  * @returns {Promise<boolean>} - Returns true if the specified Text type has the expected values.
  */
   async verifyText(textType) {
