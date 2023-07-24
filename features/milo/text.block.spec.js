@@ -37,5 +37,17 @@ module.exports = {
       path: '/drafts/nala/blocks/text/text-inset-medium-m-spacing',
       tags: '@text @inset-medium-m-spacing @smoke @regression @milo',
     },
+    {
+      tcid: '6',
+      name: '@Text (legal)',
+      path: '/drafts/nala/blocks/text/text-legal',
+      tags: '@text @legal @smoke @regression @milo',
+    },
+    {
+      tcid: '7',
+      name: '@Text (link-farm)',
+      path: '/drafts/nala/blocks/text/text-link-farm',
+      tags: '@text @link-farm @smoke @regression @milo',
+    },
   ],
 };
