@@ -92,4 +92,33 @@ test.describe('Milo Text Block test suite', () => {
       expect(await text.verifyText('text (inset, large, m spacing)')).toBeTruthy();
     });
   });
+
+  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
+    console.info(`[Test Page]: ${baseURL}${features[6].path}`);
+
+    await test.step('step-1: Go to Text (legal) block test page', async () => {
+      await page.goto(`${baseURL}${features[6].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[6].path}`);
+    });
+
+    await test.step('step-2: Verify Text (legal) specs', async () => {
+      expect(await text.verifyText('text (legal)')).toBeTruthy();
+    });
+  });
+  
+  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
+    console.info(`[Test Page]: ${baseURL}${features[7].path}`);
+
+    await test.step('step-1: Go to Text (link-farm) block test page', async () => {
+      await page.goto(`${baseURL}${features[7].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[7].path}`);
+    });
+
+    await test.step('step-2: Verify Text (link-farm) specs', async () => {
+      expect(await text.verifyText('text (link-farm)')).toBeTruthy();
+    });
+  });
+
 });
