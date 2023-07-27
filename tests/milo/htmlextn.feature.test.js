@@ -1,38 +1,40 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/named */
-import { WebUtil } from '../../libs/webutil';
+import { expect, test } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
 
-const { expect, test } = require('@playwright/test');
 const parse = require('../../libs/parse.js');
-const htmlExt = require('../../features/milo/html_ext.spec.js');
-const selectors = require('../../selectors/milo/html_ext.selectors.js');
+const htmlExtn = require('../../features/milo/htmlextn.spec.js');
+const selectors = require('../../selectors/milo/htmlextn.feature.page.js');
 
 // Parse the feature file into something flat that can be tested separately
-const { name, features } = parse(htmlExt);
+const { name, features } = parse(htmlExtn);
 
-// Global declarations
 let webUtil;
 
-test.describe(`${name}`, () => {
-  // before each test block
+test.describe(`${name} test suite`, () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
   });
 
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
+      test.slow();
       await page.goto(props.url);
+      await page.waitForLoadState('domcontentloaded');
+
       if (!props.title.match(/@blog/) && (props.url.match(/customer-success-stories/))) {
         expect(page.url()).toContain('.html');
 
-        // Added scrolling for CaaS to load.
-        // Without it, test provides false count for validation checking.
+        /* Added scrolling for CaaS to load.
+        * Without it, test provides false count for validation checking.
+        * */
         await webUtil.scrollPage('down', 'slow');
         await webUtil.scrollPage('up', 'fast');
 
-        // Check CaaS fragments urls are not converted by verifying the cards render and are visible
-        // Issue with CaaS cards loading when using WebKit/Chromium browsers
-        // outside of internal network. Firefox works though.
+        /* Check 
+        * CaaS fragments urls are not converted by verifying the cards render and are visible
+        * Issue with CaaS cards loading when using WebKit/Chromium browsers
+        * outside of internal network. Firefox works though. 
+        * */
         if (browserName === 'firefox') {
           const caasCards = page.locator(selectors['@caas_cards']);
           await expect(caasCards).toBeVisible();
@@ -41,15 +43,19 @@ test.describe(`${name}`, () => {
         await expect(page).toHaveURL(props.url);
       }
 
-      // Check all links for:
-      // 1. They have .html on them within the same domain, subdomain.
-      // 2. Domains without a '/', like www.adobe.com shouldn't have .html added.
-      // 3. They don't have .html on urls ending in '/'.
-      // 4. Links with .html already on them shouldn't have .html added again.
+      /* Check all links for:
+      * They have .html on them within the same domain, subdomain.
+      * Domains without a '/', like www.adobe.com shouldn't have .html added.
+      * They don't have .html on urls ending in '/'.
+      * Links with .html already on them shouldn't have .html added again. 
+      * */
       if (!props.title.match(/@blog/)) {
-        // eslint-disable-next-line max-len
-        const hrefs = await page.evaluate(() => Array.from(document.links).map((item) => item.href));
-        hrefs.forEach(async (linkUrl) => {
+        const hrefs = await page.evaluate(async () => {
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          return Array.from(document.links).map((item) => item.href);
+        });
+             
+        hrefs.forEach(async (linkUrl) => {          
           if (!linkUrl.includes('/fragments/')) {
             if (!linkUrl.match(/business.adobe.com\/blog|business.adobe.com\/.*\/blog/)) {
               if (linkUrl.charAt(linkUrl.length - 1) === '/') {

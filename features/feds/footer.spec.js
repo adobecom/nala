@@ -2,11 +2,30 @@ module.exports = {
   name: 'Footer Block',
   features: [
     {
-      name: '@FEDS-Footer-Checks',
+      name: '@FEDS-Default-Footer',
       path: [
-        '/libs/feds/drafts/qa/footer/feds-footer-page',
+        '/libs/feds/drafts/qa/footer/feds-default-footer',
       ],
-      envs: '@feds_live',
+      browserParams: '?hideGeorouting=on',
+      envs: '@milo_live',
+      tags: '@feds @footer @feds-footer',
+    },
+    {
+      name: '@FEDS-Skinny-Footer',
+      path: [
+        '/libs/feds/drafts/qa/footer/feds-skinny-footer',
+      ],
+      browserParams: '?hideGeorouting=on',
+      envs: '@milo_live',
+      tags: '@feds @footer @feds-footer',
+    },
+    {
+      name: '@FEDS-Privacy-Footer',
+      path: [
+        '/libs/feds/drafts/qa/footer/feds-privacy-footer',
+      ],
+      browserParams: '?hideGeorouting=on',
+      envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
     },
     {
@@ -14,6 +33,7 @@ module.exports = {
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
+      browserParams: '?hideGeorouting=on',
       envs: '@adobe_prod',
       tags: '@dc @footer @dc-footer',
     },

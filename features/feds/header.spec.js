@@ -6,7 +6,8 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/header/feds-header-page',
       ],
-      envs: '@feds_live',
+      browserParams: '?hideGeorouting=on',
+      envs: '@milo_live',
       tags: '@feds @header @feds-header',
     },
     {
@@ -14,6 +15,7 @@ module.exports = {
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
+      browserParams: '?hideGeorouting=on',
       envs: '@adobe_prod',
       tags: '@dc @header @dc-header',
     },

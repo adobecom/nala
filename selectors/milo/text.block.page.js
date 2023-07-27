@@ -1,14 +1,7 @@
-/* eslint-disable max-len */
-/* eslint-disable quote-props */
-/* eslint-disable import/named */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-import-module-exports */
-
 import { expect } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
 
-import { WebUtil } from '../../libs/webutil';
-
-exports.Text = class Text {
+export class Text {
   constructor(page) {
     this.page = page;
     // text  locators
@@ -18,21 +11,27 @@ exports.Text = class Text {
     this.textFullWidthLarge = this.page.locator('.text.full-width.large');
     this.textLongFormLarge = this.page.locator('.text.long-form');
     this.textInsetLargeMSpacing = this.page.locator('.text.inset.medium.m-spacing');
+    this.textlegal = this.page.locator('.text.legal.text-block.con-block.has-bg');
+    this.textLinkFarm = this.page.locator('.text.link-farm.text-block.con-block.has-bg');
 
     this.textDetailM = page.locator('.detail-m');
     this.textIntroDetailM = page.locator('.detail-m');
     this.textLongFormDetailL = page.locator('.detail-l');
-
+    this.textLegalDetail = page.locator('.foreground');
+    
     this.textHeadline = this.text.locator('#text');
     this.textIntroHeadline = this.text.locator('#text-intro');
     this.textFullWidthHeadline = this.text.locator('#text-full-width');
     this.textFullWidthLargeHeadline = this.text.locator('#text-full-width-large');
     this.textLongFormLargeHeadline = this.text.locator('#text-long-form-large');
     this.textInsetLargeMSpacingHeadline = this.text.locator('#text-inset-large-m-spacing');
-
+    this.textLinkFarmHeadline = this.text.locator('#text-link-farm-title');
+    this.textLinkFarmcolumnheading = this.text.locator('#heading-1');
+    
     this.textBodyM = this.text.locator('.body-m').first();
     this.textBodyL = this.text.locator('.body-l').first();
-
+    this.textBodyM1 = this.text.locator('.body-m').first();
+       
     this.textPropertiesHeadingM = this.text.locator('#properties-h3').first();
 
     this.textBodyLink = this.page.locator('a[daa-ll^=link]');
@@ -68,9 +67,17 @@ exports.Text = class Text {
         'font-size': '18px',
         'line-height': '27px',
       },
+      'body-m1': {
+        'font-size': '12px',
+        'line-height': '18px',
+      },
       'body-l': {
         'font-size': '20px',
         'line-height': '30px',
+      },
+      'foreground': {
+        'font-size': '12px',
+        'line-height': '18px',
       },
     };
 
@@ -104,6 +111,17 @@ exports.Text = class Text {
         'class': 'text inset medium m-spacing text-block con-block max-width-8-desktop',
         'daa-lh': 'Text (inset, large, m spacing)|Properties H3|Properties H3',
       },
+      'text-legal': {
+        'class': 'text legal text-block con-block has-bg',
+      },
+      'text-Link-farm': {
+        'class': 'text link-farm text-block con-block has-bg',
+        'daa-lh' : 'Text link farm title|Heading 1|Heading 2|Heading 3|Heading 4',
+        'style': 'background: rgb(255, 255, 255);',
+      },
+      'headingprops': {
+        'id' : 'heading-1',
+       },
     };
   }
 
@@ -112,7 +130,8 @@ exports.Text = class Text {
  *
  * @param {string} textType - The type of the Text block to verify.
  * Possible values are 'text', 'text (Intro)', 'Text (full width)'.
- * text (full-width, large), text (long form, large), and text (inset, large, m spacing)
+ * text (full-width, large), text (long form, large), and text (inset, large, m spacing).
+ * text (legal), text (link-farm).
  * @returns {Promise<boolean>} - Returns true if the specified Text type has the expected values.
  */
   async verifyText(textType) {
@@ -175,6 +194,23 @@ exports.Text = class Text {
         expect(await WebUtil.verifyCSS(await this.textInsetLargeMSpacingHeadline, this.cssProperties['heading-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(await this.textBodyL, this.cssProperties['body-l'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(await this.textPropertiesHeadingM, this.cssProperties['heading-m'])).toBeTruthy();
+
+        return true;
+
+        case 'text (legal)':
+        // verify text (legal) visibility, css and attribute values
+        await expect(await this.textlegal).toBeVisible();
+        expect(await WebUtil.verifyAttributes(await this.textlegal, this.attProperties['text-legal'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyM1, this.cssProperties['body-m1'])).toBeTruthy();
+     
+        return true;
+
+        case 'text (link-farm)':
+        // verify text (link-farm) visibility, css and attribute values
+        await expect(await this.textLinkFarm).toBeVisible();
+        expect(await WebUtil.verifyAttributes(await this.textLinkFarm, this.attProperties['text-Link-farm'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textLinkFarmHeadline, this.cssProperties['heading-l'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(await this.textLinkFarmcolumnheading, this.attProperties['headingprops'])).toBeTruthy();
 
         return true;
 

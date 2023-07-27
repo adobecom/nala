@@ -1,17 +1,20 @@
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-const { expect, test } = require('@playwright/test');
+import { expect, test } from '@playwright/test';
+
 const parse = require('../../libs/parse.js');
-const faas = require('../../features/milo/faas.spec.js');
-const selectors = require('../../selectors/milo/faas.selectors.js');
+const faas = require('../../features/milo/faas.block.spec.js');
+const selectors = require('../../selectors/milo/faas.block.page.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(faas);
-test.describe(`${name}`, () => {
+
+test.describe(`${name} test suite`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
       test.skip(browserName !== 'firefox' && props.tag === '@html-ext', 'Chromium and WebKit browsers are caught by bot checker, working on fix');
+      test.slow();
       await page.goto(props.url);
+      await page.waitForLoadState('domcontentloaded');
 
       // Open up form modal
       if (props.url.includes('omnichannel-orchestration-with-adobe')) {
@@ -35,10 +38,10 @@ test.describe(`${name}`, () => {
         await page.getByLabel(selectors['@questions']).fill('Hello World?');
       }
 
-      // Generally waitForTimeout should only be used for debugging,
-      // but for this test country/state is populated when run outside of GitHub Actions.
-      // The test needs a small sleep to slow down the state field since it swaps field values
-      // according to the country field.
+      /* Generally waitForTimeout should only be used for debugging,
+      but for this test country/state is populated when run outside of GitHub Actions.
+      The test needs a small sleep to slow down the state field since it swaps field values
+      according to the country field. */
       await page.waitForTimeout(1000);
       await page.getByLabel(selectors['@state-province']).selectOption({ label: 'Utah' });
       await page.getByLabel(selectors['@zipcode']).fill('77777');

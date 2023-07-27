@@ -2,7 +2,7 @@ module.exports = {
   name: 'HTML Extension',
   features: [
     {
-      name: '@html_ext',
+      name: '@Html Extn',
       path: [
         '/customer-success-stories',
         '/customer-success-stories/jaguar-land-rover-case-study',
@@ -12,13 +12,14 @@ module.exports = {
         '/jp/customer-success-stories/adobe-experience-cloud-case-study',
       ],
       envs: '@bacom_prod',
-      tags: '@html-ext',
+      tags: '@htmlextn',
     },
+    
     {
-      name: '@html_ext',
+      name: '@Html Extn',
       path: '/en/publish/2023/02/01/see-you-in-vegas-adobe-summit-2023-reg-open',
       envs: '@blog_prod',
-      tags: '@html-ext',
+      tags: '@htmlextn',
     },
   ],
 };

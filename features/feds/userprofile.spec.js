@@ -6,7 +6,8 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/ims/feds-user-profile-page',
       ],
-      envs: '@feds_live',
+      browserParams: '?hideGeorouting=on',
+      envs: '@milo_live',
       tags: '@feds @userprofile @feds-userprofile',
     },
   ],
