@@ -6,9 +6,12 @@ import { features } from '../../features/feds/footer.spec.js';
 import FedsFooter from '../../selectors/feds/feds.footer.page.js';
 import FedsConsent from '../../selectors/feds/feds.consent.page.js';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+const AxeBuilder = require('@axe-core/playwright').default;
+
 test.describe('Footer Block test suite', () => {
   // FEDS Default Footer Checks:
-  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }, testInfo) => {
     const Footer = new FedsFooter(page);
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
@@ -53,10 +56,25 @@ test.describe('Footer Block test suite', () => {
       await Footer.changeRegionCloseButton.click();
       await expect(Footer.changeRegionModal).not.toBeVisible();
     });
+
+    await test.step('Analyze page accessibility', async () => {
+      // Analyze page accessibility:
+      const a11yReport = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
+        .include('header.global-navigation')
+        .analyze();
+      // Assert there are no page accessibility violations:
+      expect.soft(a11yReport.violations.length).toBeLessThan(5);
+      // Attach A11y results to test output:
+      await testInfo.attach('a11y-scan-results', {
+        body: JSON.stringify(a11yReport, null, 2),
+        contentType: 'application/json',
+      });
+    });
   });
 
   // FEDS Skinny Footer Checks:
-  test(`${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }) => {
+  test(`${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }, testInfo) => {
     const Footer = new FedsFooter(page);
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[1].path}`);
@@ -107,10 +125,25 @@ test.describe('Footer Block test suite', () => {
       await Footer.changeRegionCloseButton.click();
       await expect(Footer.changeRegionModal).not.toBeVisible();
     });
+
+    await test.step('Analyze page accessibility', async () => {
+      // Analyze page accessibility:
+      const a11yReport = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
+        .include('header.global-navigation')
+        .analyze();
+      // Assert there are no page accessibility violations:
+      expect.soft(a11yReport.violations.length).toBeLessThan(5);
+      // Attach A11y results to test output:
+      await testInfo.attach('a11y-scan-results', {
+        body: JSON.stringify(a11yReport, null, 2),
+        contentType: 'application/json',
+      });
+    });
   });
 
   // FEDS Privacy Footer Checks:
-  test(`${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }) => {
+  test(`${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }, testInfo) => {
     const Footer = new FedsFooter(page);
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[2].path}`);
@@ -158,6 +191,21 @@ test.describe('Footer Block test suite', () => {
       await expect(Footer.changeRegionModal).not.toBeVisible();
       await Footer.changeRegionButton.click();
       await expect(Footer.changeRegionDropDown).not.toBeVisible();
+    });
+
+    await test.step('Analyze footer block accessibility', async () => {
+      // Analyze page accessibility:
+      const a11yReport = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
+        .include('footer.global-footer')
+        .analyze();
+      // Assert there are no page accessibility violations:
+      expect.soft(a11yReport.violations.length).toBeLessThan(5);
+      // Attach A11y results to test output:
+      await testInfo.attach('a11y-scan-results', {
+        body: JSON.stringify(a11yReport, null, 2),
+        contentType: 'application/json',
+      });
     });
   });
 });

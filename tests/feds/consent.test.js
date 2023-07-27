@@ -5,9 +5,12 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/feds/consent.spec.js';
 import FedsConsent from '../../selectors/feds/feds.consent.page.js';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+const AxeBuilder = require('@axe-core/playwright').default;
+
 test.describe('Consent Component test suite', () => {
   // FEDS Consent Component Checks:
-  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }, testInfo) => {
     const Consent = new FedsConsent(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
@@ -66,6 +69,21 @@ test.describe('Consent Component test suite', () => {
       });
       // Check FEDS browser objects (post-consent):
       await Consent.assertOneTrustCookieGroups(1);
+    });
+
+    await test.step('Analyze consent block accessibility', async () => {
+      // Analyze page accessibility:
+      const a11yReport = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
+        .include('#onetrust-banner-sdk')
+        .analyze();
+      // Assert there are no page accessibility violations:
+      expect.soft(a11yReport.violations.length).toBeLessThan(5);
+      // Attach A11y results to test output:
+      await testInfo.attach('a11y-scan-results', {
+        body: JSON.stringify(a11yReport, null, 2),
+        contentType: 'application/json',
+      });
     });
   });
 });

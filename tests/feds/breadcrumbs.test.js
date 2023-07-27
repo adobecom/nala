@@ -74,7 +74,7 @@ test.describe('Breadcrumbs Component test suite', () => {
       await expect(Header.breadcrumbElems).toHaveCount(2);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
       breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
-      expect(breadcrumbs).toEqual('breadcrumbsfeds-breadcrumbs-hidden-links');
+      expect(breadcrumbs).toEqual('breadcrumbsfedsbreadcrumbshiddenlinks');
     });
   });
 
@@ -98,7 +98,7 @@ test.describe('Breadcrumbs Component test suite', () => {
       await expect(Header.breadcrumbElems).toHaveCount(6);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
       breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
-      expect(breadcrumbs).toEqual('libsfedsdraftsqabreadcrumbsfeds-breadcrumbs-no-hidden-links');
+      expect(breadcrumbs).toEqual('libsfedsdraftsqabreadcrumbsfedsbreadcrumbsnohiddenlinks');
     });
   });
 });
