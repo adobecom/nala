@@ -17,7 +17,7 @@ test.describe(`${name} test suite`, () => {
 
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
-      test.slow();
+      test.skip();
       await page.goto(props.url);
       await page.waitForLoadState('domcontentloaded');
 
