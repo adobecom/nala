@@ -6,6 +6,7 @@ export class HowTo {
     this.page = page;
     // how-to  locators
     this.howTo = page.locator('.how-to');
+    this.howToForeground = this.howTo.locator('.foreground');
     this.howToLarge = this.page.locator('.how-to.large-image');
     this.howToSeo = this.page.locator('.how-to.seo');
     this.howToHeading = this.howTo.locator('.how-to-heading');
@@ -15,9 +16,9 @@ export class HowTo {
 
     // howto contents css
     this.cssProperties = {
-      'how-to': {
-        'padding': '80px 24px',
-        'max-width': '700px',
+      '.how-to .foreground': {
+        'padding': '80px 0px',
+        'max-width': /%$/,
         'display': 'grid',
       },
       'how-to-image': {
@@ -34,12 +35,12 @@ export class HowTo {
         'max-width': '700px',
       },
       'how-to-large-image': {
-        'display': 'grid',
-        'grid-template-areas': '"heading image" "list image"',
+        'display': 'block',
+        'grid-template-areas': 'none',
       },
       'how-to-seo': {
-        'display': 'grid',
-        'grid-template-areas': '"heading image" "list list"',
+        'display': 'block',
+        'grid-template-areas': 'none',
       },
     };
 
@@ -66,7 +67,7 @@ export class HowTo {
       case 'how-to':
         // verify howto visibility and css values
         await expect(this.howTo).toBeVisible();
-        expect(await WebUtil.verifyCSS(this.howTo, this.cssProperties['how-to'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(this.howToForeground, this.cssProperties['.how-to .foreground'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.howToHeading, this.cssProperties['body-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.howToImage, this.cssProperties['how-to-image'])).toBeTruthy();
         // verify howto list count
