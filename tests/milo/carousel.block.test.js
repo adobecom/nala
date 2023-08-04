@@ -10,7 +10,7 @@ test.describe('Milo Carousel Block test suite', () => {
 });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info('[Test Page]: ', baseURL);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
 
     await test.step('step-1: Go to Carousel block test page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
@@ -50,7 +50,7 @@ test.describe('Milo Carousel Block test suite', () => {
   });
 
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info('[Test Page]: ', baseURL);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
 
     await test.step('step-1: Go to Carousel lightbox block test page', async () => {
       await page.goto(`${baseURL}${features[1].path}`);
@@ -83,7 +83,7 @@ test.describe('Milo Carousel Block test suite', () => {
   });
 
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info('[Test Page]: ', baseURL);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
 
     await test.step('step-1: Go to Carousel multi-slide show-2 block test page', async () => {
       await page.goto(`${baseURL}${features[2].path}`);
