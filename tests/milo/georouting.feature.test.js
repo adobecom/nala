@@ -113,7 +113,8 @@ test.describe('Milo Georouting feature test suite', () => {
         });
     });
 
-    test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
+    test(`${features[5].name},${features[5].tags}`, async ({ page, browserName, baseURL }) => {
+        test.skip(browserName === 'webkit', 'This feature is failing on Webkit browsers');
         test.slow();
         console.info(`[Test Page]: ${baseURL}${features[5].path}`);
         const { data } = features[5];

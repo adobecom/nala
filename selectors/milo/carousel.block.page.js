@@ -197,18 +197,23 @@ export class Carousel {
     let isDisplayed;
     switch (type) {
       case 'carouselLightbox':
+        await this.carouselLightbox.waitFor({ state: 'visible' });
         isDisplayed = await this.carouselLightbox.isVisible();
         break;
       case 'carouselFullpage':
+        await this.carouselFullpage.waitFor({ state: 'visible' });
         isDisplayed = await this.carouselFullpage.isVisible();
         break;
       case 'carouselContainer':
+        await this.carouselContainer.waitFor({ state: 'visible' });
         isDisplayed = await this.carouselContainer.isVisible();
         break;
       case 'carouselShow-2':
+        await this.carouselContainerShow2.waitFor({ state: 'visible' });
         isDisplayed = await this.carouselContainerShow2.isVisible();
         break;
       case 'carousel':
+        await this.carouselDefault.waitFor({ state: 'visible' });
         isDisplayed = await this.carouselDefault.isVisible();
         break;
       default:
