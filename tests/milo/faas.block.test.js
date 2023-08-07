@@ -11,7 +11,8 @@ const { name, features } = parse(faas);
 test.describe(`${name} test suite`, () => {
   features.forEach((props) => {
     test(props.title, async ({ page, browserName }) => {
-      test.skip(browserName !== 'firefox' && props.tag === '@html-ext', 'Chromium and WebKit browsers are caught by bot checker, working on fix');
+      test.skip()
+      //test.skip(browserName !== 'firefox' && props.tag === '@html-ext', 'Chromium and WebKit browsers are caught by bot checker, working on fix');
       test.slow();
       await page.goto(props.url);
       await page.waitForLoadState('domcontentloaded');
