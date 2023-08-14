@@ -396,9 +396,9 @@ test.describe('Aside Block test suite', () => {
       await expect(Aside.h3TitleXLarge).not.toBeVisible();
       await expect(Aside.textFieldMedium).toBeVisible();
       // Check Aside block buttons:
+      await expect(Aside.linkTextCta).toBeVisible();
       await expect(Aside.blueButtonCta).not.toBeVisible();
       await expect(Aside.blackButtonCta).toBeVisible();
-      await expect(Aside.linkTextCta).toBeVisible();
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifSmall.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
@@ -426,9 +426,9 @@ test.describe('Aside Block test suite', () => {
       await expect(Aside.h3TitleSmall).toBeVisible();
       await expect(Aside.textFieldSmall).toBeVisible();
       // Check Aside block buttons:
+      await expect(Aside.linkTextCta).toBeVisible();
       await expect(Aside.blueButtonCta).not.toBeVisible();
       await expect(Aside.blackButtonCta).toBeVisible();
-      await expect(Aside.linkTextCta).toBeVisible();
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifMedium.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
@@ -437,31 +437,91 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Notification Medium Center:
-  test(`${features[13].name}, ${features[13].tags}`, async ({ page, baseURL }) => {
+  test(`${features[14].name}, ${features[14].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[MiloInfo] Checking page: ${baseURL}${features[13].path}`);
+    console.info(`[MiloInfo] Checking page: ${baseURL}${features[14].path}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[13].path}${features[13].browserParams}`);
+      await page.goto(`${baseURL}${features[14].path}${features[14].browserParams}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[13].path}${features[13].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[14].path}${features[14].browserParams}`);
     });
 
     await test.step('Validate Aside block content', async () => {
       await expect(Aside.asideNotifMedium).toBeVisible();
       await expect(Aside.icon).not.toBeVisible();
-      await expect(Aside.image).toBeVisible();
+      await expect(Aside.image).not.toBeVisible();
       await expect(Aside.actionArea).toBeVisible();
       await expect(Aside.detailLabel).not.toBeVisible();
       await expect(Aside.h3TitleSmall).toBeVisible();
       await expect(Aside.textFieldSmall).toBeVisible();
       // Check Aside block buttons:
+      await expect(Aside.linkTextCta).toBeVisible();
       await expect(Aside.blueButtonCta).not.toBeVisible();
       await expect(Aside.blackButtonCta).toBeVisible();
-      await expect(Aside.linkTextCta).toBeVisible();
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifMedium.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
+      expect(bgdColor).toBe('rgb(171, 171, 171)');
+    });
+  });
+
+  // Aside Notification Large:
+  test(`${features[15].name}, ${features[15].tags}`, async ({ page, baseURL }) => {
+    const Aside = new AsideBlock(page);
+    console.info(`[MiloInfo] Checking page: ${baseURL}${features[15].path}`);
+
+    await test.step('Navigate to page with Aside block', async () => {
+      await page.goto(`${baseURL}${features[15].path}${features[15].browserParams}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[15].path}${features[15].browserParams}`);
+    });
+
+    await test.step('Validate Aside block content', async () => {
+      await expect(Aside.asideNotifLarge).toBeVisible();
+      await expect(Aside.icon).not.toBeVisible();
+      await expect(Aside.image).toBeVisible();
+      await expect(Aside.actionArea).toBeVisible();
+      await expect(Aside.detailLabel).not.toBeVisible();
+      await expect(Aside.h3TitleLarge).toBeVisible();
+      await expect(Aside.textFieldMedium).toBeVisible();
+      // Check Aside block buttons:
+      await expect(Aside.linkTextCta).toBeVisible();
+      await expect(Aside.blueButtonCta).not.toBeVisible();
+      await expect(Aside.blackButtonCta).toBeVisible();
+      expect(await Aside.actionButtons.count()).toEqual(1);
+      // Check Aside block background:
+      const bgdColor = await Aside.asideNotifLarge.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
+      expect(bgdColor).toBe('rgb(171, 171, 171)');
+    });
+  });
+
+  // Aside Notification Large Center:
+  test(`${features[16].name}, ${features[16].tags}`, async ({ page, baseURL }) => {
+    const Aside = new AsideBlock(page);
+    console.info(`[MiloInfo] Checking page: ${baseURL}${features[16].path}`);
+
+    await test.step('Navigate to page with Aside block', async () => {
+      await page.goto(`${baseURL}${features[16].path}${features[16].browserParams}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[16].path}${features[16].browserParams}`);
+    });
+
+    await test.step('Validate Aside block content', async () => {
+      await expect(Aside.asideNotifLargeCenter).toBeVisible();
+      await expect(Aside.icon).not.toBeVisible();
+      await expect(Aside.image).not.toBeVisible();
+      await expect(Aside.actionArea).toBeVisible();
+      await expect(Aside.detailLabel).not.toBeVisible();
+      await expect(Aside.h3TitleLarge).toBeVisible();
+      await expect(Aside.textFieldMedium).toBeVisible();
+      // Check Aside block buttons:
+      await expect(Aside.linkTextCta).toBeVisible();
+      await expect(Aside.blueButtonCta).not.toBeVisible();
+      await expect(Aside.blackButtonCta).toBeVisible();
+      expect(await Aside.actionButtons.count()).toEqual(1);
+      // Check Aside block background:
+      const bgdColor = await Aside.asideNotifLargeCenter.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
       expect(bgdColor).toBe('rgb(171, 171, 171)');
     });
   });

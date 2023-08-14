@@ -11,6 +11,8 @@ export default class Aside {
     // ASIDE HEADINGS:
     this.h2TitleXLarge = this.aside.locator('h2.heading-xl');
     this.h3TitleXLarge = this.aside.locator('h3.heading-xl');
+    this.h2TitleLarge = this.aside.locator('h2.heading-l');
+    this.h3TitleLarge = this.aside.locator('h3.heading-l');
     this.h2TitleSmall = this.aside.locator('h2.heading-s');
     this.h3TitleSmall = this.aside.locator('h3.heading-s');
     // ASIDE BLOCK ELEMENTS:
