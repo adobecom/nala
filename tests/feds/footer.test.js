@@ -60,8 +60,9 @@ test.describe('Footer Block test suite', () => {
     await test.step('Analyze page accessibility', async () => {
       // Analyze page accessibility:
       const a11yReport = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
-        .include('header.global-navigation')
+        .withTags(features[0].wcagTags)
+        // eslint-disable-next-line no-underscore-dangle
+        .include(Footer.footerContainer._selector)
         .analyze();
       // Assert there are no page accessibility violations:
       expect.soft(a11yReport.violations.length).toBeLessThan(5);
@@ -129,8 +130,9 @@ test.describe('Footer Block test suite', () => {
     await test.step('Analyze page accessibility', async () => {
       // Analyze page accessibility:
       const a11yReport = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
-        .include('header.global-navigation')
+        .withTags(features[1].wcagTags)
+        // eslint-disable-next-line no-underscore-dangle
+        .include(Footer.footerContainer._selector)
         .analyze();
       // Assert there are no page accessibility violations:
       expect.soft(a11yReport.violations.length).toBeLessThan(5);
@@ -196,8 +198,9 @@ test.describe('Footer Block test suite', () => {
     await test.step('Analyze footer block accessibility', async () => {
       // Analyze page accessibility:
       const a11yReport = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
-        .include('footer.global-footer')
+        .withTags(features[2].wcagTags)
+        // eslint-disable-next-line no-underscore-dangle
+        .include(Footer.footerContainer._selector)
         .analyze();
       // Assert there are no page accessibility violations:
       expect.soft(a11yReport.violations.length).toBeLessThan(5);

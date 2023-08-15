@@ -21,7 +21,6 @@ test.describe(`${features[0].name}`, () => {
         await page.goto(`${baseURL}${a11yUrl}${features[0].browserParams}`);
         // Wait for page to load & stabilize:
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(5000);
         // Check the expected URL was loaded:
         await expect(page).toHaveURL(`${baseURL}${a11yUrl}${features[0].browserParams}`);
       });
@@ -31,7 +30,7 @@ test.describe(`${features[0].name}`, () => {
         await Header.mainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
         // Analyze page accessibility:
         a11yReport = await new AxeBuilder({ page })
-          .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
+          .withTags(features[0].wcagTags)
           .analyze();
         // Assert page violations are limited:
         expect.soft(a11yReport.violations.length).toBeLessThan(5);

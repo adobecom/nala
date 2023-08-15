@@ -3,21 +3,23 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable import/no-extraneous-dependencies */
-import * as path from 'path';
+import path from 'node:path';
 import { promises as fs } from 'fs';
 import { createHtmlReport } from 'axe-html-reporter';
 
 async function generateA11yReport(report, summary, project = 'feds', wcag = 'wcag21aa') {
   // Timestamp reports to track & avoid duplicates:
   const time = new Date();
-  const crtEnv = 'prod';
   const reportDate = time.toLocaleDateString().replace(/\//ig, '-');
   const reportTime = time.toLocaleTimeString().split(' ')[0].replace(/:/g, '-');
 
   // Setup the 'axe-reports' folder:
   const folderName = 'axe-reports';
+  // !Note: Due to PlayWright running checks in paralel, the reports have
+  //        to have a unique ID appended in order to avoid overwriting files.
+  const uniqueId = Math.random().toString(36).slice(2).substring(0, 6);
   const folderPath = path.resolve(`${process.cwd()}/${folderName}`);
-  const reportName = `${project}-a11y-report-${wcag}-${crtEnv}-${reportDate}-${reportTime}.html`;
+  const reportName = `${project}-a11y-report-${wcag}-${reportDate}-${reportTime}-${uniqueId}.html`;
 
   try {
     await access(folderPath);

@@ -26,6 +26,22 @@ test.describe('Consent Component test suite', () => {
       await expect(Consent.oneTrustContainer).toBeVisible();
     });
 
+    await test.step('Analyze consent block accessibility', async () => {
+      // Analyze page accessibility:
+      const a11yReport = await new AxeBuilder({ page })
+        .withTags(features[0].wcagTags)
+        // eslint-disable-next-line no-underscore-dangle
+        .include(Consent.oneTrustContainer._selector)
+        .analyze();
+      // Assert there are no page accessibility violations:
+      expect.soft(a11yReport.violations.length).toBeLessThan(5);
+      // Attach A11y results to test output:
+      await testInfo.attach('a11y-scan-results', {
+        body: JSON.stringify(a11yReport, null, 2),
+        contentType: 'application/json',
+      });
+    });
+
     await test.step('Check consent component integrity', async () => {
       // Check the contents of the consent bar:
       await Consent.checkOneTrustConsentBar();
@@ -69,21 +85,6 @@ test.describe('Consent Component test suite', () => {
       });
       // Check FEDS browser objects (post-consent):
       await Consent.assertOneTrustCookieGroups(1);
-    });
-
-    await test.step('Analyze consent block accessibility', async () => {
-      // Analyze page accessibility:
-      const a11yReport = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
-        .include('#onetrust-banner-sdk')
-        .analyze();
-      // Assert there are no page accessibility violations:
-      expect.soft(a11yReport.violations.length).toBeLessThan(5);
-      // Attach A11y results to test output:
-      await testInfo.attach('a11y-scan-results', {
-        body: JSON.stringify(a11yReport, null, 2),
-        contentType: 'application/json',
-      });
     });
   });
 });

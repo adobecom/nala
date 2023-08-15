@@ -45,8 +45,9 @@ test.describe('Header Block test suite', () => {
     await test.step('Analyze header block accessibility', async () => {
       // Analyze page accessibility:
       const a11yReport = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
-        .include('header.global-navigation')
+        .withTags(features[0].wcagTags)
+        // eslint-disable-next-line no-underscore-dangle
+        .include(Header.headerContainer._selector)
         .analyze();
       // Assert there are no page accessibility violations:
       expect.soft(a11yReport.violations.length).toBeLessThan(5);
