@@ -31,7 +31,7 @@ test.describe('Aside Block test suite', () => {
       const bgdColor = await Aside.asideSmall.evaluate(
         (e) => window.getComputedStyle(e).getPropertyValue('background-color'),
       );
-      expect(bgdColor).toBe('rgb(238, 238, 238)');
+      expect(bgdColor).toBe(Aside.props.background.lightGrey1);
     });
   });
 
@@ -61,7 +61,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideMedium.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(238, 238, 238)');
+      expect(bgdColor).toBe(Aside.props.background.lightGrey1);
     });
   });
 
@@ -91,7 +91,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideLarge.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(238, 238, 238)');
+      expect(bgdColor).toBe(Aside.props.background.lightGrey1);
     });
   });
 
@@ -121,7 +121,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideSplitSmallDark.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(17, 17, 17)');
+      expect(bgdColor).toBe(Aside.props.background.black);
     });
   });
 
@@ -151,7 +151,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideSplitSmallHalfDark.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(17, 17, 17)');
+      expect(bgdColor).toBe(Aside.props.background.black);
     });
   });
 
@@ -181,7 +181,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideSplitMedium.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(249, 249, 249)');
+      expect(bgdColor).toBe(Aside.props.background.lightGrey3);
     });
   });
 
@@ -211,7 +211,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideSplitMedidumHalf.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(249, 249, 249)');
+      expect(bgdColor).toBe(Aside.props.background.lightGrey3);
     });
   });
 
@@ -241,7 +241,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideSplitLarge.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(249, 249, 249)');
+      expect(bgdColor).toBe(Aside.props.background.lightGrey3);
     });
   });
 
@@ -274,7 +274,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideSplitLargeHalfDark.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(17, 17, 17)');
+      expect(bgdColor).toBe(Aside.props.background.black);
     });
   });
 
@@ -304,7 +304,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideInline.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(245, 245, 245)');
+      expect(bgdColor).toBe(Aside.props.background.lightGrey2);
     });
   });
 
@@ -334,7 +334,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideInline.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(17, 17, 17)');
+      expect(bgdColor).toBe(Aside.props.background.black);
     });
   });
 
@@ -369,7 +369,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionLinks.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifExtraSmallDark.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(17, 17, 17)');
+      expect(bgdColor).toBe(Aside.props.background.black);
     });
   });
 
@@ -402,7 +402,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifSmall.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(171, 171, 171)');
+      expect(bgdColor).toBe(Aside.props.background.darkGrey);
     });
   });
 
@@ -432,7 +432,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifMedium.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(171, 171, 171)');
+      expect(bgdColor).toBe(Aside.props.background.darkGrey);
     });
   });
 
@@ -462,7 +462,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifMedium.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(171, 171, 171)');
+      expect(bgdColor).toBe(Aside.props.background.darkGrey);
     });
   });
 
@@ -492,7 +492,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifLarge.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(171, 171, 171)');
+      expect(bgdColor).toBe(Aside.props.background.darkGrey);
     });
   });
 
@@ -522,7 +522,7 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(1);
       // Check Aside block background:
       const bgdColor = await Aside.asideNotifLargeCenter.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe('rgb(171, 171, 171)');
+      expect(bgdColor).toBe(Aside.props.background.darkGrey);
     });
   });
 });

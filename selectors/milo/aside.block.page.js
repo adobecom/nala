@@ -48,5 +48,16 @@ export default class Aside {
     this.asideNotifMediumCenter = page.locator('div.aside.notification.center');
     this.asideNotifLargeCenter = page.locator('div.aside.notification.large.center');
     this.asideNotifExtraSmallDark = page.locator('div.aside.notification.extra-small.dark');
+
+    // ASIDE PROPS:
+    this.props = {
+      background: {
+        black: 'rgb(17, 17, 17)',
+        darkGrey: 'rgb(171, 171, 171)',
+        lightGrey1: 'rgb(238, 238, 238)',
+        lightGrey2: 'rgb(245, 245, 245)',
+        lightGrey3: 'rgb(249, 249, 249)',
+      },
+    };
   }
 }
