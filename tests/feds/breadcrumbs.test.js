@@ -23,10 +23,10 @@ test.describe('Breadcrumbs Component test suite', () => {
       // Check breadcrumbs is displayed:
       await expect(Header.breadcrumbContainer).toBeVisible();
       // Check breadcrumbs structure & content:
-      await expect(Header.breadcrumbElems).toHaveCount(4);
+      await expect(Header.breadcrumbElems).toHaveCount(5);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
       breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
-      expect(breadcrumbs).toEqual('HomeProductsPhotoshopEducation');
+      expect(breadcrumbs).toEqual('HomeProductsPhotoshopEducationBreadcrumbsWithBase');
     });
   });
 
@@ -47,10 +47,10 @@ test.describe('Breadcrumbs Component test suite', () => {
       // Check breadcrumbs is displayed:
       await expect(Header.breadcrumbContainer).toBeVisible();
       // Check breadcrumbs structure & content:
-      await expect(Header.breadcrumbElems).toHaveCount(4);
+      await expect(Header.breadcrumbElems).toHaveCount(5);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
       breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
-      expect(breadcrumbs).toEqual('HomeProductsPhotoshopEducation');
+      expect(breadcrumbs).toEqual('HomeProductsPhotoshopEducationBreadcrumbsFromDocument');
     });
   });
 

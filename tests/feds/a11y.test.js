@@ -34,7 +34,7 @@ test.describe(`${features[0].name}`, () => {
           .withTags(['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'])
           .analyze();
         // Assert page violations are limited:
-        expect(a11yReport.violations.length).toBeLessThan(5);
+        expect.soft(a11yReport.violations.length).toBeLessThan(5);
       });
 
       await test.step('Generate accessibility report for current page', async () => {
