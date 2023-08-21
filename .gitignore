@@ -118,6 +118,7 @@ debug
 reports
 screenshots/*
 !screenshots/visual-compare/
+axe-reports
 /test-results/
 /test-html-results/
 /playwright-report/
