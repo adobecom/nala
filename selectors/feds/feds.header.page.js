@@ -7,11 +7,12 @@ export default class FedsHeader {
 
     // GNAV selectors:
     this.gnavLogo = page.locator('a.gnav-logo');
+    this.headerContainer = page.locator('header.global-navigation');
     this.mainNavLogo = page.locator('a.feds-brand, a.gnav-brand');
     this.mainNavContainer = page.locator('nav.feds-topnav, .gnav-wrapper');
-    this.megaMenuToggle = page.locator('div.feds-navItem--megaMenu, .section-menu');
-    this.megaMenuContainer = page.locator('div.feds-navItem--megaMenu div.feds-popup, .section-menu .gnav-menu-container');
-    this.megaMenuColumn = page.locator('div.feds-navItem--megaMenu div.feds-popup-column');
+    this.megaMenuToggle = page.locator('section.feds-navItem--megaMenu a, .section-menu').first();
+    this.megaMenuContainer = page.locator('section.feds-navItem--megaMenu div.feds-popup, .section-menu .gnav-menu-container');
+    this.megaMenuColumn = page.locator('section.feds-navItem--megaMenu div.feds-menu-section');
 
     // GNAV action selectors:
     this.signInLabel = page.locator('a.feds-signIn, a.gnav-signin');

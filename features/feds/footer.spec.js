@@ -6,6 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-default-footer',
       ],
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
@@ -15,6 +16,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-skinny-footer',
       ],
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
@@ -24,6 +26,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/footer/feds-privacy-footer',
       ],
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @footer @feds-footer',
@@ -33,6 +36,7 @@ module.exports = {
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?hideGeorouting=on',
       envs: '@adobe_prod',
       tags: '@dc @footer @dc-footer',
