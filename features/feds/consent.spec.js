@@ -6,6 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/consent/feds-consent-page',
       ],
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?customPrivacyLocation=de&hideGeorouting=on',
       envs: '@milo_live',
       tags: '@feds @consent @feds-consent',
@@ -15,6 +16,7 @@ module.exports = {
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?customPrivacyLocation=de&hideGeorouting=on',
       envs: '@adobe_prod',
       tags: '@dc @consent @dc-consent',

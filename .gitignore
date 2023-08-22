@@ -116,6 +116,7 @@ dist
 # Debug/Report/Screenshots Local files
 debug
 reports
+axe-reports
 screenshots
 /test-results/
 /test-html-results/
