@@ -239,17 +239,12 @@ test.describe('Aside Block test suite', () => {
       await expect(Aside.blackButtonCta).toBeVisible();
       await expect(Aside.linkTextCta).not.toBeVisible();
       expect(await Aside.actionButtons.count()).toEqual(2);
-      // Check Aside block background:
-      const bgdColor = await Aside.asideSplitLarge.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe(Aside.props.background.lightGrey3);
+      // !Note: Aside Split Large doesn't have default background!
     });
   });
 
-  // !Note: Currently, the aside-split-large-half-dark page cannot
-  //        be published, thus skipping the next test until fixed.
-  //
   // Aside Split Large Half Dark Checks:
-  test.skip(`${features[8].name}, ${features[8].tags}`, async ({ page, baseURL }) => {
+  test(`${features[8].name}, ${features[8].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[8].path}`);
 
