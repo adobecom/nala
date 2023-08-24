@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export class Carousel {
+export default class Carousel {
   constructor(page) {
     this.page = page;
     // carousel types selectors

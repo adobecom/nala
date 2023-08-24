@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class Columns {
+export default class Columns {
   constructor(page) {
     this.page = page;
     // columns  locators
