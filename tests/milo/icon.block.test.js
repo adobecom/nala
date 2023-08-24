@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/icon.block.spec.js';
-import { Icon } from '../../selectors/milo/icon.block.page.js';
+import IconBlock from '../../selectors/milo/icon.block.page.js';
 
 let icon;
 
 test.describe('Milo Icon Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    icon = new Icon(page);
+    icon = new IconBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

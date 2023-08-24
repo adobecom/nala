@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/modal.block.spec.js';
-import { Modal } from '../../selectors/milo/modal.block.page.js';
+import ModalBlock from '../../selectors/milo/modal.block.page.js';
 
 let modal;
 
 test.describe('Milo Modal feature test suite', () => {
   test.beforeEach(async ({ page }) => {
-    modal = new Modal(page);
+    modal = new ModalBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

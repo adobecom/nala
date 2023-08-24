@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/review.block.spec.js';
-import { Review } from '../../selectors/milo/review.block.page.js';
+import ReviewBlock from '../../selectors/milo/review.block.page.js';
 
 let review;
 
@@ -9,7 +9,7 @@ test.describe('Milo Review Block test suite', () => {
     // review block requires clearing cookies
     const context = await browser.newContext();
     await context.clearCookies();
-    review = new Review(page);
+    review = new ReviewBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
