@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/media.block.spec.js';
-import { Media } from '../../selectors/milo/media.block.page.js';
+import MediaBlock from '../../selectors/milo/media.block.page.js';
 
 let media;
 
 test.describe('Milo Media Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    media = new Media(page);
+    media = new MediaBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

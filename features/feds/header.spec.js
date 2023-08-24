@@ -6,7 +6,8 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/header/feds-header-page',
       ],
-      browserParams: '?hideGeorouting=on',
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
+      browserParams: '?georouting=off',
       envs: '@milo_live',
       tags: '@feds @header @feds-header',
     },
@@ -15,7 +16,8 @@ module.exports = {
       path: [
         '/acrobat/online/sign-pdf.html',
       ],
-      browserParams: '?hideGeorouting=on',
+      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
+      browserParams: '?georouting=off',
       envs: '@adobe_prod',
       tags: '@dc @header @dc-header',
     },

@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class Marquee {
+export default class Marquee {
   constructor(page) {
     this.page = page;
     // marquee types locators
@@ -103,8 +103,8 @@ export class Marquee {
         'border-radius': '25px',
         'font-size': '19px',
         'min-height': '28px',
-        'border': '2px solid rgb(0, 0, 0)',
-        'color': 'rgb(0, 0, 0)',
+        'border': '2px solid rgb(44, 44, 44)',
+        'color': 'rgb(44, 44, 44)',
       },
       'filled-l': {
         'padding': '7px 18px 8px',

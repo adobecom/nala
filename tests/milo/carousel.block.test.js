@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/carousel.block.spec.js';
-import { Carousel } from '../../selectors/milo/carousel.block.page.js';
+import CarouselBlock from '../../selectors/milo/carousel.block.page.js';
 
 let carousel;
 
 test.describe('Milo Carousel Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    carousel = new Carousel(page);
+    carousel = new CarouselBlock(page);
 });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

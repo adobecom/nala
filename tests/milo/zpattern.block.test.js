@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/zpattern.block.spec.js';
-import { ZPattern } from '../../selectors/milo/zpattern.block.page.js';
+import ZPatternBlock from '../../selectors/milo/zpattern.block.page.js';
 
 let zpattern;
 
 test.describe('Milo Z Pattern Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    zpattern = new ZPattern(page);
+    zpattern = new ZPatternBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

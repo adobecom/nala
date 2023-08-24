@@ -5,9 +5,12 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/feds/header.spec.js';
 import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+const AxeBuilder = require('@axe-core/playwright').default;
+
 test.describe('Header Block test suite', () => {
   // FEDS Default Header Checks:
-  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }, testInfo) => {
     const Header = new FedsHeader(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
@@ -37,6 +40,22 @@ test.describe('Header Block test suite', () => {
       await expect(Header.megaMenuContainer).toBeVisible();
       await Header.megaMenuToggle.click();
       await expect(Header.megaMenuContainer).not.toBeVisible();
+    });
+
+    await test.step('Analyze header block accessibility', async () => {
+      // Analyze page accessibility:
+      const a11yReport = await new AxeBuilder({ page })
+        .withTags(features[0].wcagTags)
+        // eslint-disable-next-line no-underscore-dangle
+        .include(Header.headerContainer._selector)
+        .analyze();
+      // Assert there are no page accessibility violations:
+      expect.soft(a11yReport.violations.length).toBeLessThan(5);
+      // Attach A11y results to test output:
+      await testInfo.attach('a11y-scan-results', {
+        body: JSON.stringify(a11yReport, null, 2),
+        contentType: 'application/json',
+      });
     });
   });
 });

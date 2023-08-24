@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/text.block.spec.js';
-import { Text } from '../../selectors/milo/text.block.page.js';
+import TextBlock from '../../selectors/milo/text.block.page.js';
 
 let text;
 
 test.describe('Milo Text Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    text = new Text(page);
+    text = new TextBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

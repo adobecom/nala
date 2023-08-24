@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 
-export class Review {
+export default class Review {
   constructor(page) {
     this.page = page;
     // review block locators
