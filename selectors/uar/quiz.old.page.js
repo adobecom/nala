@@ -1,14 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-export class Quiz {
+
+export class QuizOldPage {
   constructor(page) {
     this.page = page;
     this.nextButton = page.getByRole('button', { name: 'Next' });
-    this.resultButton = page.locator('div.quiz-button-container > button');
-    this.uarResult = page.locator('.quiz-results h1');
-    this.uarResult2 = page.locator('//div[contains(@data-path,"marquee-product")]//strong | //div[contains(@data-path,"check-bullet")]//h1 | //div[contains(@data-path,"express-product")]//h1');
-    this.uarResult3 = page.locator('//div[contains(@data-path,"card")]//strong');
+    this.resultButton = page.getByRole('button', { name: 'Get your results' });
+    this.uarResult = page.locator('.uar-result h1');
+    this.uarResult2 = page.locator('.uar-result b, .uar-quiz-result b');
   }
 
   /**
@@ -16,7 +16,7 @@ export class Quiz {
    * @param {String} answer
    */
   async selectAnswer(answer) {
-    const locator = `//*[text()="${answer}"]/ancestor::div[contains(@class,"consonant-OneHalfCard quiz-option")]`;
+    const locator = `//div[text()="${answer}"]/ancestor::div[contains(@class,"quiz-card")]`;
     await this.page.locator(locator).click();
   }
 
@@ -25,6 +25,7 @@ export class Quiz {
    */
   async clickNextButton() {
     await this.nextButton.click();
+    await this.page.waitForTimeout(500);
   }
 
   /**
@@ -71,30 +72,30 @@ export class Quiz {
    * @param {string} name
    */
   async checkResultPage(name) {
-    const newProduct = [];
+    const oldProduct = [];
 
     const acturalProduct = await this.uarResult.nth(0);
     const text = await acturalProduct.innerText();
 
     if (text.includes('We think you\'ll love')) {
       const acturalProduct2 = await this.uarResult2.nth(0);
-      newProduct.push(await acturalProduct2.innerText());
+      oldProduct.push(await acturalProduct2.innerText());
 
       if (name.includes('double') || name.includes('triple')) {
         const acturalProduct3 = await this.uarResult2.nth(1);
-        newProduct.push(await acturalProduct3.innerText());
+        oldProduct.push(await acturalProduct3.innerText());
       }
 
       if (name.includes('triple')) {
         const acturalProduct4 = await this.uarResult2.nth(2);
-        newProduct.push(await acturalProduct4.innerText());
+        oldProduct.push(await acturalProduct4.innerText());
       }
     } else {
-      newProduct.push(text);
+      oldProduct.push(text);
     }
 
-    console.log('==========new============');
-    console.log(newProduct.sort().join(''));
-    return newProduct.sort().join('');
+    console.log('==========old============');
+    console.log(oldProduct.sort().join(''));
+    return oldProduct.sort().join('');
   }
 }
