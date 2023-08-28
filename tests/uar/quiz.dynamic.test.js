@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import { expect } from '@playwright/test';
 import { buildTestData } from '../../libs/uar.js';
@@ -31,27 +32,18 @@ test.describe('Quiz flow test suite', () => {
           console.log(key);
           let oldProduct = '';
           let newProduct = '';
-
-          // test step-1
-          // eslint-disable-next-line no-await-in-loop
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
             await quizOldPage.clickEachAnswer('https://www.adobe.com/creativecloud/quiz-recommender.html', key);
           });
 
-          // test step-2
-          // eslint-disable-next-line no-await-in-loop
           await test.step('Old: Check results on test page', async () => {
             oldProduct = await quizOldPage.checkResultPage(feature.name);
           });
 
-          // test step-1
-          // eslint-disable-next-line no-await-in-loop
           await test.step(`New: Select each answer on test page according to ${key}`, async () => {
             await quiz.clickEachAnswer(url, key);
           });
 
-          // test step-2
-          // eslint-disable-next-line no-await-in-loop
           await test.step('New: Check results on test page', async () => {
             newProduct = await quiz.checkResultPage(feature.name);
           });

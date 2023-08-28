@@ -73,21 +73,21 @@ export class Quiz {
   async checkResultPage(name) {
     const newProduct = [];
 
-    const acturalProduct = await this.uarResult.nth(0);
-    const text = await acturalProduct.innerText();
+    const actualProduct  = await this.uarResult.nth(0);
+    const text = await actualProduct .innerText();
 
     if (text.includes('We think you\'ll love')) {
-      const acturalProduct2 = await this.uarResult2.nth(0);
-      newProduct.push(await acturalProduct2.innerText());
+      const actualProduct 2 = await this.uarResult2.nth(0);
+      newProduct.push(await actualProduct 2.innerText());
 
       if (name.includes('double') || name.includes('triple')) {
-        const acturalProduct3 = await this.uarResult2.nth(1);
-        newProduct.push(await acturalProduct3.innerText());
+        const actualProduct 3 = await this.uarResult2.nth(1);
+        newProduct.push(await actualProduct 3.innerText());
       }
 
       if (name.includes('triple')) {
-        const acturalProduct4 = await this.uarResult2.nth(2);
-        newProduct.push(await acturalProduct4.innerText());
+        const actualProduct 4 = await this.uarResult2.nth(2);
+        newProduct.push(await actualProduct 4.innerText());
       }
     } else {
       newProduct.push(text);
