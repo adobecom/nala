@@ -2,8 +2,8 @@
 /* eslint-disable no-restricted-syntax */
 import { expect } from '@playwright/test';
 import { buildTestData } from '../../libs/uar.js';
-import { QuizOldPage } from '../../selectors/uar/quiz.old.page.js';
-import { Quiz } from '../../selectors/uar/quiz.page.js';
+import QuizOldPage from '../../selectors/uar/quiz.old.page.js';
+import Quiz from '../../selectors/uar/quiz.page.js';
 
 const { test } = require('@playwright/test');
 const QuizSpec = require('../../features/uar/quiz.dynamic.spec.js');

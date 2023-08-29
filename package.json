@@ -11,8 +11,7 @@
     "test:safari": "playwright test --project=webkit --headed",
     "test:chrome-headless": "playwright test --project=chromium",
     "test:firefox-headless": "playwright test --project=firefox",
-    "test:safari-headless": "playwright test --project=webkit",
-    "test:uar": "npx playwright test --config=./configs/uar.config.js --project=uar-live-chrome --headed -g"
+    "test:safari-headless": "playwright test --project=webkit"
   },
   "repository": {
     "type": "git",

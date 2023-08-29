@@ -1,7 +1,6 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-export class Quiz {
+export default class Quiz {
   constructor(page) {
     this.page = page;
     this.nextButton = page.getByRole('button', { name: 'Next' });
