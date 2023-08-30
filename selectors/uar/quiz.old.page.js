@@ -93,8 +93,7 @@ export default class QuizOldPage {
       oldProduct.push(text);
     }
 
-    console.log('==========old============');
-    console.log(oldProduct.sort().join(''));
+    console.log(`==========old============\n${oldProduct.sort().join('')}`);
     return oldProduct.sort().join('');
   }
 }

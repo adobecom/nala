@@ -92,8 +92,7 @@ export default class Quiz {
       newProduct.push(text);
     }
 
-    console.log('==========new============');
-    console.log(newProduct.sort().join(''));
+    console.log(`==========new============\n${newProduct.sort().join('')}`);
     return newProduct.sort().join('');
   }
 }
