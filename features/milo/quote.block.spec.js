@@ -12,7 +12,6 @@ module.exports = {
       },
       tags: '@Quote @smoke @regression @milo',
     },
-
     {
       tcid: '1',
       name: '@Quote (contained)',
@@ -24,7 +23,6 @@ module.exports = {
       },
       tags: '@Quote @quote-contained @smoke @regression @milo',
     },
-
     {
       tcid: '2',
       name: '@Quote (inline,contained)',
@@ -36,7 +34,6 @@ module.exports = {
       },
       tags: '@Quote @quote-inline @smoke @regression @milo,',
     },
-
     {
       tcid: '3',
       name: '@Quote (borders,contained)',
@@ -48,7 +45,6 @@ module.exports = {
       },
       tags: '@Quote @quote-borders @smoke @regression @milo,',
     },
-
     {
       tcid: '4',
       name: '@Quote (contained, align-right)',
@@ -60,7 +56,6 @@ module.exports = {
       },
       tags: '@Quote @quote-align-right @smoke @regression @milo,',
     },
-
     {
       tcid: '5',
       name: '@Quote (xl-spaced)',
