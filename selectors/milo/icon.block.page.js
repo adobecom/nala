@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class Icon {
+export default class Icon {
   constructor(page) {
     this.page = page;
     // Icon block locators

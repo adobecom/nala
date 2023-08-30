@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 import { features } from '../../features/milo/marquee.block.spec.js';
-import { Marquee } from '../../selectors/milo/marquee.block.page.js';
+import MarqueeBlock from '../../selectors/milo/marquee.block.page.js';
 
 let webUtil;
 let marquee;
@@ -9,7 +9,7 @@ let marquee;
 test.describe('Milo Marquee Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
-    marquee = new Marquee(page);
+    marquee = new MarqueeBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
