@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 import { features } from '../../features/milo/howto.block.spec.js';
-import { HowTo } from '../../selectors/milo/howto.block.page.js';
+import HowToBlock from '../../selectors/milo/howto.block.page.js';
 
 let webUtil;
 let howTo;
@@ -9,7 +9,7 @@ let howTo;
 test.describe('Milo HowTo block test suite', () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
-    howTo = new HowTo(page);
+    howTo = new HowToBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

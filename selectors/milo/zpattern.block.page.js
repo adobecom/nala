@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-exports.ZPattern = class ZPattern {
+export default class ZPattern {
   constructor(page) {
     this.page = page;
     // z-pattern  locators

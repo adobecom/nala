@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class Text {
+export default class Text {
   constructor(page) {
     this.page = page;
     // text  locators

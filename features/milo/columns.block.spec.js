@@ -14,7 +14,6 @@ module.exports = {
       },
       tags: '@columns @smoke @regression @milo',
     },
-
     {
       tcid: '1',
       name: '@Columns (contained)',
@@ -27,7 +26,6 @@ module.exports = {
       },
       tags: '@columns @columns-contained @smoke @regression @milo',
     },
-
     {
       tcid: '2',
       name: '@Columns (contained,middle)',
@@ -40,7 +38,6 @@ module.exports = {
       },
       tags: '@columns @columns-contained-middle @smoke @regression @milo',
     },
-
     {
       tcid: '3',
       name: '@Columns (table)',
@@ -55,7 +52,6 @@ module.exports = {
       },
       tags: '@columns @columns-table @smoke @regression @milo',
     },
-
     {
       tcid: '4',
       name: '@Columns (contained,table)',
@@ -70,27 +66,23 @@ module.exports = {
       },
       tags: '@columns @columns-contained-table @smoke @regression @milo',
     },
-
     {
       tcid: '5',
       name: '@Columns (visual comparison)',
       path: '/drafts/nala/blocks/columns/columns',
       tags: '@columns @columns-visual @visual @visual-smoke @visual-regression @milo,',
     },
-
     {
       tcid: '6',
       name: '@Columns (table,visual comparison)',
       path: '/drafts/nala/blocks/columns/columns-table',
       tags: '@columns @columns-table @columns-visual @columns-table-visual @visual @visual-regression @milo,',
     },
-
     {
       tcid: '7',
       name: '@Columns (contained,table,visual comparison)',
       path: '/drafts/nala/blocks/columns/columns-contained-table',
       tags: '@columns @columns-contained-table @columns-visual @columns-contained-table-visual @visual @visual-smoke @visual-regression @milo,',
     },
-
   ],
 };

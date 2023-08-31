@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: Set permissions
+        run: chmod +x ./path/to/run.sh
       - name: Run Nala ${{ inputs.platform }}
         uses: ./
         env:

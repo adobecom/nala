@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/accordion.block.spec.js';
-import { Accordion } from '../../selectors/milo/accordion.block.page.js';
+import AccordionBlock from '../../selectors/milo/accordion.block.page.js';
 
 let accordion;
 
 test.describe('Milo Accordion Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    accordion = new Accordion(page);
+    accordion = new AccordionBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

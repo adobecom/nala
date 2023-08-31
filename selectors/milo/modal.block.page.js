@@ -1,9 +1,9 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
-import { Text } from './text.block.page.js';
-import { Media } from './media.block.page.js';
+import TextBlock from './text.block.page.js';
+import MediaBlock from './media.block.page.js';
 
-export class Modal {
+export default class Modal {
   constructor(page) {
     this.page = page;
     // modal locators
@@ -56,7 +56,7 @@ export class Modal {
           )).toBeTruthy();
 
           // verify modal content (text fragment)
-          text = new Text(this.page);
+          text = new TextBlock(this.page);
           expect(await text.verifyText(modalData.contentType)).toBeTruthy();
 
           // close the modal
@@ -73,7 +73,7 @@ export class Modal {
           )).toBeTruthy();
 
           // verify modal content (media fragment)
-          media = new Media(this.page);
+          media = new MediaBlock(this.page);
           expect(await media.verifyMedia(modalData.contentType)).toBeTruthy();
 
           // close the modal using escape key press.

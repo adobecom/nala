@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class Quote {
+export default class Quote {
   constructor(page) {
     this.page = page;
     // quote  locators

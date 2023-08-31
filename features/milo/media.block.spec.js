@@ -7,14 +7,12 @@ module.exports = {
       path: '/drafts/nala/blocks/media/media-small',
       tags: '@media @media-small @smoke @regression @milo',
     },
-
     {
       tcid: '2',
       name: '@Media',
       path: '/drafts/nala/blocks/media/media',
       tags: '@media @smoke @regression @milo',
     },
-
     {
       tcid: '3',
       name: '@media (large, dark)',
