@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-exports.Media = class Media {
+export default class Media {
   constructor(page) {
     this.page = page;
     // media types

@@ -7,6 +7,7 @@ import { expect } from '@playwright/test';
 const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const yaml = require('js-yaml');
+const { request } = require('@playwright/test');
 
 /**
  * A utility class for common web interactions.

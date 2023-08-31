@@ -16,4 +16,5 @@ module.exports = {
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
   '@cc_live': 'https://main--cc--adobecom.hlx.live',
+  '@uar_live': 'https://uar-integration--milo--adobecom.hlx.live',
 };

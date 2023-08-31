@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class Accordion {
+export default class Accordion {
   constructor(page) {
     this.page = page;
 

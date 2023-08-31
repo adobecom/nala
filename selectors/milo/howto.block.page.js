@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class HowTo {
+export default class HowTo {
   constructor(page) {
     this.page = page;
     // how-to  locators

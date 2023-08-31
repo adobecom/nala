@@ -92,6 +92,30 @@ const config = {
         baseURL: envs['@adobe_prod'],
       },
     },
+
+    {
+      name: 'uar-live-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@uar_live'],
+      },
+    },
+
+    {
+      name: 'uar-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@uar_live'],
+      },
+    },
+
+    {
+      name: 'uar-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@uar_live'],
+      },
+    },
   ],
 };
 module.exports = config;
