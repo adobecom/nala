@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import { Quiz } from '../../selectors/uar/quiz.page.js';
+import Quiz from '../../selectors/uar/quiz.page.js';
 
 const { test } = require('@playwright/test');
 const QuizSpec = require('../../features/uar/quiz.spec.js');
