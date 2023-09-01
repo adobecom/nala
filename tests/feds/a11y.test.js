@@ -6,7 +6,6 @@ import { features } from '../../features/feds/a11y.spec.js';
 import FedsHeader from '../../selectors/feds/feds.header.page.js';
 import a11y from '../../libs/accessibility';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const AxeBuilder = require('@axe-core/playwright').default;
 
 let a11yReport;

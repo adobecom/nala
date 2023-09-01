@@ -16,6 +16,7 @@ export default class FedsHeader {
 
     // GNAV action selectors:
     this.signInLabel = page.locator('a.feds-signIn, a.gnav-signin');
+    this.signInButton = page.locator('button[qa="gnav-ims-sign-in"]');
     this.searchIcon = page.locator('button.feds-search-trigger, button.gnav-search-button');
     this.searchInput = page.locator('input.feds-search-input, input.gnav-search-input');
     this.closeSearch = page.locator('span.feds-search-close, button.gnav-search-button[daa-lh="header|Close"]');
