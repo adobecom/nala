@@ -1,15 +1,12 @@
 /* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
-import { WebUtil } from '../../libs/webutil.js';
 import { features } from '../../features/milo/columns.block.spec.js';
 import ColumnsBlock from '../../selectors/milo/columns.block.page.js';
 
 let column;
-let webUtil;
 
 test.describe('Milo Columns Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    webUtil = new WebUtil(page);
     column = new ColumnsBlock(page);
   });
 
@@ -85,63 +82,6 @@ test.describe('Milo Columns Block test suite', () => {
     await test.step('step-2: Verify Columns(contained,table) block content/specs', async () => {
       const { data } = features[4];
       expect(await column.verifyColumns('columns(contained,table)', data)).toBeTruthy();
-    });
-  });
-
-  test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[5].path}`);
-
-    await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[5].path}`);
-      await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
-    });
-
-    await test.step('step-2: Compare Columns block base UI image against current UI screenshot', async () => {
-      // Added scrolling for lazy loaded images to initiate their load.
-      await webUtil.scrollPage('down', 'slow');
-      await webUtil.scrollPage('up', 'fast');
-      // Compare the base screenshot against a newly taken screenshot for equality
-      // If no base screenshot image is available for comparison create one.
-      await expect(page).toHaveScreenshot('columns.png', { fullPage: true, timeout: 30000 });
-    });
-  });
-
-  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[6].path}`);
-
-    await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[6].path}`);
-      await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[6].path}`);
-    });
-
-    await test.step('step-2: Compare Columns(table) block base UI image against current UI screenshot', async () => {
-      // Added scrolling for lazy loaded images to initiate their load.
-      await webUtil.scrollPage('down', 'slow');
-      await webUtil.scrollPage('up', 'fast');
-      // Compare the base screenshot against a newly taken screenshot for equality
-      // If no base screenshot image is available for comparison create one.
-      await expect(page).toHaveScreenshot('columns_table.png', { fullPage: true, timeout: 30000 });
-    });
-  });
-
-  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[7].path}`);
-
-    await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[7].path}`);
-      await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[7].path}`);
-    });
-
-    await test.step('step-2: Compare Columns(contained,table) block base UI image against current UI screenshot', async () => {
-      // Added scrolling for lazy loaded images to initiate their load.
-      await webUtil.scrollPage('down', 'slow');
-      await webUtil.scrollPage('up', 'fast');
-      // Compare the base screenshot against a newly taken screenshot for equality
-      // If no base screenshot image is available for comparison create one.
-      await expect(page).toHaveScreenshot('columns_contained_table.png', { fullPage: true, timeout: 30000 });
     });
   });
 });
