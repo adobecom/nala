@@ -4,8 +4,6 @@ export default class PageNotFound {
        
     // 404 fragment
     this.fragment = this.page.locator('.fragment').nth(0);
-    this.header1Text = this.fragment.locator('#these-are-uncharted-waters');  
-    
+    this.header1Text = this.fragment.locator('#these-are-uncharted-waters');   
   }
 }
-

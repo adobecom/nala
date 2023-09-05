@@ -24,6 +24,5 @@ test.describe('Blog Home page test suite', () => {
       await expect(fragment.header1Text).toBeVisible();
       await expect(fragment.header1Text).toContainText(data.h1Text);
     });
-
   });
 });

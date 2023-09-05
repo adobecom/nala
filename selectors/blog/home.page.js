@@ -53,8 +53,7 @@ export default class BlogHomePage {
     this.termsOfUseLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(1);
     this.cookiePreferencesLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(2);
     this.doNotSellInformationLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(3);
-    this.adChoicesLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(4);     
-    
+    this.adChoicesLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(4);
   }
 }
 
