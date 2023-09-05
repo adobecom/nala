@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/columns.block.spec.js';
 import ColumnsBlock from '../../selectors/milo/columns.block.page.js';
