@@ -40,7 +40,7 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@blog_live'] || 'https://main--blog--adobe.hlx.live',
+    baseURL: process.env.BASE_URL || envs['@milo_blog_live'] || 'https://main--blog--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
@@ -49,7 +49,7 @@ const config = {
       name: 'blog-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@blog_live'],
+        baseURL: envs['@milo_blog_live'],
       },
     },
 
@@ -57,7 +57,7 @@ const config = {
       name: 'blog-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@blog_live'],
+        baseURL: envs['@milo_blog_live'],
       },
     },
 
@@ -65,31 +65,7 @@ const config = {
       name: 'blog-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@blog_live'],
-      },
-    },
-
-    {
-      name: 'blog-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@blog_prod'],
-      },
-    },
-
-    {
-      name: 'blog-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@blog_prod'],
-      },
-    },
-
-    {
-      name: 'blog-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@blog_prod'],
+        baseURL: envs['@milo_blog_live'],
       },
     },
   ],
