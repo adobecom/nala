@@ -10,12 +10,12 @@ export default class FedsHeader {
     this.headerContainer = page.locator('header.global-navigation');
     this.mainNavLogo = page.locator('a.feds-brand, a.gnav-brand');
     this.mainNavContainer = page.locator('nav.feds-topnav, .gnav-wrapper');
-    this.megaMenuToggle = page.locator('section.feds-navItem--megaMenu a, .section-menu').first();
+    this.megaMenuToggle = page.locator('button.feds-navLink.feds-navLink--hoverCaret, .section-menu').first();
     this.megaMenuContainer = page.locator('section.feds-navItem--megaMenu div.feds-popup, .section-menu .gnav-menu-container');
     this.megaMenuColumn = page.locator('section.feds-navItem--megaMenu div.feds-menu-section');
 
     // GNAV action selectors:
-    this.signInLabel = page.locator('a.feds-signIn, a.gnav-signin');
+    this.signInButton = page.locator('button.feds-signIn').first();
     this.searchIcon = page.locator('button.feds-search-trigger, button.gnav-search-button');
     this.searchInput = page.locator('input.feds-search-input, input.gnav-search-input');
     this.closeSearch = page.locator('span.feds-search-close, button.gnav-search-button[daa-lh="header|Close"]');

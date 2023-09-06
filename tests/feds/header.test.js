@@ -24,9 +24,9 @@ test.describe('Header Block test suite', () => {
       // Wait for FEDS GNAV to be visible:
       await Header.mainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
       // Check HEADER block content:
-      await expect(Header.searchIcon).toBeVisible();
-      await expect(Header.signInLabel).toBeVisible();
       await expect(Header.mainNavLogo).toBeVisible();
+      await expect(Header.searchIcon).toBeVisible();
+      await expect(Header.signInButton).toBeVisible();
     });
 
     await test.step('Check HEADER search component', async () => {
