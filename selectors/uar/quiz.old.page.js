@@ -1,9 +1,11 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
+const { WebUtil } = require('../../libs/webutil.js');
 
 export default class QuizOldPage {
   constructor(page) {
     this.page = page;
+    this.webUtil = new WebUtil(page);
     this.nextButton = page.getByRole('button', { name: 'Next' });
     this.resultButton = page.getByRole('button', { name: 'Get your results' });
     this.uarResult = page.locator('.uar-result h1');
@@ -39,7 +41,7 @@ export default class QuizOldPage {
    * @param {string} url
    * @param {string} originalAnswer
    */
-  async clickEachAnswer(url, originalAnswer) {
+  async clickEachAnswer(url, originalAnswer, keyNumber, isScreenshot = false) {
     await this.page.goto(url);
 
     const answers = originalAnswer.split('>').map((x) => x.trim());
@@ -57,8 +59,28 @@ export default class QuizOldPage {
       }
 
       if (answers.indexOf(answer) < answers.length - 1) {
+        if (isScreenshot) {
+          await this.page.waitForTimeout(500);
+
+          const index = answers.indexOf(answer);
+          const folderPath = 'screenshots/uar';
+          const desktopName = `${keyNumber} - old - desktop - ${index} - ${answer.replace('/', '')}.png`;
+          const tabletName = `${keyNumber} - old - tablet - ${index} - ${answer.replace('/', '')}.png`;
+          const mobileName = `${keyNumber} - old - mobile - ${index} - ${answer.replace('/', '')}.png`;
+
+          await this.webUtil.takeScreenshot(folderPath, desktopName, tabletName, mobileName);
+        }
         // click next button
         await this.clickNextButton();
+      } else if (isScreenshot) {
+        await this.page.waitForTimeout(500);
+        const index = answers.length - 1;
+        const folderPath = 'screenshots/uar';
+        const desktopName = `${keyNumber} - old - desktop - ${index} - ${answer.replace('/', '')}.png`;
+        const tabletName = `${keyNumber} - old - tablet - ${index} - ${answer.replace('/', '')}.png`;
+        const mobileName = `${keyNumber} - old - mobile - ${index} - ${answer.replace('/', '')}.png`;
+
+        await this.webUtil.takeScreenshot(folderPath, desktopName, tabletName, mobileName);
       }
     }
 
@@ -70,7 +92,7 @@ export default class QuizOldPage {
    * Validate products on result page to match with expect products
    * @param {string} name
    */
-  async checkResultPage(name) {
+  async checkResultPage(name, originalAnswer, keyNumber, isScreenshot = false) {
     const oldProduct = [];
 
     const actualProduct = await this.uarResult.nth(0);
@@ -91,6 +113,17 @@ export default class QuizOldPage {
       }
     } else {
       oldProduct.push(text);
+    }
+
+    if (isScreenshot) {
+      await this.page.waitForTimeout(1000);
+
+      const folderPath = 'screenshots/uar';
+      const desktopName = `${keyNumber} - old - desktop - result.png`;
+      const tabletName = `${keyNumber} - old - tablet - result.png`;
+      const mobileName = `${keyNumber} - old - mobile - result.png`;
+
+      await this.webUtil.takeScreenshot(folderPath, desktopName, tabletName, mobileName);
     }
 
     console.log(`==========old============\n${oldProduct.sort().join('')}`);

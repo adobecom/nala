@@ -248,4 +248,18 @@ exports.WebUtil = class WebUtil {
   async disableNetworkLogging() {
     await this.page.unroute('**');
   }
+
+  async takeScreenshot(folderPath, desktopName, tabletName, mobileName) {
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+    await this.page.setViewportSize({ width: 1920, height: 1080 });
+    await this.page.screenshot({ path: `${folderPath}/${desktopName}`, fullPage: true });
+
+    await this.page.setViewportSize({ width: 820, height: 1180 });
+    await this.page.screenshot({ path: `${folderPath}/${tabletName}`, fullPage: true });
+
+    await this.page.setViewportSize({ width: 390, height: 844 });
+    await this.page.screenshot({ path: `${folderPath}/${mobileName}`, fullPage: true });
+  }
 };
