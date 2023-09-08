@@ -18,7 +18,7 @@ test.describe('Blog sitemaps', () => {
       await test.step('step-2: verify hreflang attribute', async () => {
         let lang = path.split('/')[1];
         lang = (lang === 'jp' ? 'ja' : (lang === 'br' ? 'pt' : lang));
-        console.info(lang);
+        console.info(`Hreflang Code: ${lang}`);
         await expect(page.locator('urlset url:nth-child(1) link')).toHaveAttribute('hreflang', lang);
       });
     });
