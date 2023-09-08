@@ -12,7 +12,6 @@ module.exports = {
   '@bacom_prod': 'https://business.adobe.com',
   '@bacom_stage': 'https://business.stage.adobe.com',
   '@blog_prod': 'https://blog.adobe.com',
-  '@blog_live': 'https://main--blog--adobe.hlx.live',
   '@milo_blog_live': 'https://main--blog--adobecom.hlx.live',
   '@cc_live': 'https://main--cc--adobecom.hlx.live',
   '@uar_live': 'https://uar-integration--milo--adobecom.hlx.live',
