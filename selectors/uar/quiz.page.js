@@ -68,7 +68,9 @@ export default class Quiz {
           const tabletName = `${keyNumber} - new - tablet - ${index} - ${answer.replace('/', '')}.png`;
           const mobileName = `${keyNumber} - new - mobile - ${index} - ${answer.replace('/', '')}.png`;
 
-          await this.webUtil.takeScreenshot(folderPath, desktopName, tabletName, mobileName);
+          await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
+          await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
+          await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
         }
 
         // click next button
@@ -81,7 +83,9 @@ export default class Quiz {
         const tabletName = `${keyNumber} - new - tablet - ${index} - ${answer.replace('/', '')}.png`;
         const mobileName = `${keyNumber} - new - mobile - ${index} - ${answer.replace('/', '')}.png`;
 
-        await this.webUtil.takeScreenshot(folderPath, desktopName, tabletName, mobileName);
+        await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
+        await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
+        await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
       }
     }
 
@@ -139,7 +143,9 @@ export default class Quiz {
       const tabletName = `${keyNumber} - new - tablet - result.png`;
       const mobileName = `${keyNumber} - new - mobile - result.png`;
 
-      await this.webUtil.takeScreenshot(folderPath, desktopName, tabletName, mobileName);
+      await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
+      await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
+      await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
     }
 
     console.log(`==========new============\n${newProduct.sort().join('')}`);
