@@ -1,6 +1,8 @@
 // @ts-check
 const { devices } = require('@playwright/test');
 
+const envs = require('./envs/envs.js');
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -50,18 +52,27 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'milo-live-chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo-live'],
+      },
     },
 
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'milo-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@milo-live'],
+      },
     },
 
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: 'milo-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@milo-live'],
+      },
     },
   ],
 };
