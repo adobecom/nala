@@ -13,20 +13,12 @@ test.describe('Blog URL Redirects', () => {
       errors.length = 0;
 
       for (const [url, redirectUrl] of Object.entries(path)) {
-        try {
-          await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
-            console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
-            console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
-            await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
-            await expect(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
-          });
-        } catch (error) {
-          console.info(`Error in Step ${stepCounter} : ${url}`);
-          errors.push(`Error in Step ${stepCounter} : ${url}`);
-        }
-      }
-      if(errors.length > 0) {
-        throw new Error('Test is failed due to issue in one or more url redirects.');
+        await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
+          console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
+          console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
+          await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
+          await expect.soft(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
+        });
       }
     }); 
 
@@ -37,20 +29,12 @@ test.describe('Blog URL Redirects', () => {
       errors.length = 0;
 
       for (const [url, redirectUrl] of Object.entries(path)) {
-        try {
-          await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
-            console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
-            console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
-            await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
-            await expect(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
-          });
-        } catch (error) {
-          console.info(`Error in Step ${stepCounter} : ${url}`);
-          errors.push(`Error in Step ${stepCounter} : ${url}`);
-        }
-      }
-      if(errors.length > 0) {
-        throw new Error('Test is failed due to issue in one or more url redirects.');
+        await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
+          console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
+          console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
+          await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
+          await expect(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
+        });
       }
     }); 
 
@@ -61,20 +45,12 @@ test.describe('Blog URL Redirects', () => {
       errors.length = 0;
 
       for (const [url, redirectUrl] of Object.entries(path)) {
-        try {
-          await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
-            console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
-            console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
-            await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
-            await expect(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
-          });
-        } catch (error) {
-          console.info(`Error in Step ${stepCounter} : ${url}`);
-          errors.push(`Error in Step ${stepCounter} : ${url}`);
-        }
-      }
-      if(errors.length > 0) {
-        throw new Error('Test is failed due to issue in one or more url redirects.');
+        await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
+          console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
+          console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
+          await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
+          await expect(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
+        });
       }
     });
 
@@ -85,20 +61,12 @@ test.describe('Blog URL Redirects', () => {
       errors.length = 0;
 
       for (const [url, redirectUrl] of Object.entries(path)) {
-        try {
-          await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
-            console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
-            console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
-            await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
-            await expect(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
-          });
-        } catch (error) {
-          console.info(`Error in Step ${stepCounter} : ${url}`);
-          errors.push(`Error in Step ${stepCounter} : ${url}`);
-        }
-      }
-      if(errors.length > 0) {
-        throw new Error('Test is failed due to issue in one or more url redirects.');
+        await test.step(`step-${++stepCounter}: verify url '${url}' redirect`, async () => {
+          console.info(`[Test Page ${stepCounter}]: ${baseURL}${url}`);
+          console.info(`[Redirect Url]: ${redirectBlogUrl}${redirectUrl}\n`);
+          await page.goto(`${baseURL}${url}`, { waitUntil: 'domcontentloaded' });
+          await expect(page).toHaveURL(`${redirectBlogUrl}${redirectUrl}`);
+        });
       }
     });
 });
