@@ -41,7 +41,7 @@ class BaseReporter {
     if (retry < retries && status === 'failed') {
       return;
     }
-    this.results.push({     
+    this.results.push({   
       title,
       name,
       tags,
