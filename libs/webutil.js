@@ -248,4 +248,12 @@ exports.WebUtil = class WebUtil {
   async disableNetworkLogging() {
     await this.page.unroute('**');
   }
+
+  async takeScreenshot(folderPath, fileName, width, height) {
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+    await this.page.setViewportSize({ width, height });
+    await this.page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
+  }
 };
