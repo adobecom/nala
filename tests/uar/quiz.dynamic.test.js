@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
-import { buildTestData } from '../../libs/uar.js';
+import { buildTestData } from '../../data/uar/quiz/uar.js';
 import QuizOldPage from '../../selectors/uar/quiz.old.page.js';
 import Quiz from '../../selectors/uar/quiz.page.js';
 

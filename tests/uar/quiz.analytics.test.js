@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import Quiz from '../../selectors/uar/quiz.page.js';
 
-const { test } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 const QuizSpec = require('../../features/uar/quiz.analytics.spec.js');
 
 const { features } = QuizSpec;
@@ -18,7 +18,7 @@ test.describe('Quiz flow test suite', () => {
     networklogs = [];
     page = await browser.newPage();
     webUtil = new WebUtil(page);
-    console.log('Before all tests: Enable network logging');
+    console.info('Before all tests: Enable network logging');
     // Enable network logging
     webUtil.enableNetworkLogging(networklogs);
   });
@@ -52,14 +52,24 @@ test.describe('Quiz flow test suite', () => {
           });
         }
 
-        // To Do: add validation when we have it
-        // console.log(networklogs);
+        // verify network logs
+        let logResult = false;
+        let logNumber = 0;
+        for (const log of networklogs) {
+          if (log.includes('"click":"Filters|cc:app-reco')) {
+            logResult = true;
+            logNumber += 1;
+          }
+        }
+
+        expect(logResult).toBeTruthy();
+        expect(logNumber).toBeGreaterThan(1);
       },
     );
   }
 
   test.afterAll(async () => {
-    console.log('After all tests: Disable network logging');
+    console.info('After all tests: Disable network logging');
     // Disable network logging
     webUtil.disableNetworkLogging();
   });
