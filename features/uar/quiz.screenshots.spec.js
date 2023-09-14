@@ -2,7 +2,7 @@ module.exports = {
   name: 'Quiz Recommender Blocks',
   features: [
     {
-      tcid: '000',
+      tcid: '0',
       name: '@quiz basic',
       path: '/drafts/xiasun/quiz-2/',
       tags: '@cc @uar-quiz-basic @uar-quiz-static',

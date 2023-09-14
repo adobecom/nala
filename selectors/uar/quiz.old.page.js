@@ -132,7 +132,7 @@ export default class QuizOldPage {
       await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
     }
 
-    console.log(`==========old============\n${oldProduct.sort().join('')}`);
+    console.info(`==========old============\n${oldProduct.sort().join('')}`);
     return oldProduct.sort().join('');
   }
 }

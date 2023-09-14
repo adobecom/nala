@@ -148,7 +148,7 @@ export default class Quiz {
       await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
     }
 
-    console.log(`==========new============\n${newProduct.sort().join('')}`);
+    console.info(`==========new============\n${newProduct.sort().join('')}`);
     return newProduct.sort().join('');
   }
 }
