@@ -4,6 +4,14 @@ TAGS=""
 REPORTER=""
 APPS=""
 
+# Extract PR number from GITHUB_REF
+PR_NUMBER=$(echo "$GITHUB_REF" | awk -F'/' '{print $3}')
+echo "PR Number: $PR_NUMBER"
+
+# Extract feature branch name from GITHUB_HEAD_REF
+FEATURE_BRANCH="$GITHUB_HEAD_REF"
+echo "Feature Branch Name: $FEATURE_BRANCH"
+
 # Convert github labels to tags that can be grepped
 for label in ${labels}
 do
