@@ -23,6 +23,16 @@ FEATURE_BRANCH="$GITHUB_HEAD_REF"
 echo "Feature Branch Name: $FEATURE_BRANCH"
 echo "*******************************"
 
+IFS='/' read -ra REPO_PARTS <<< "$GITHUB_REPOSITORY"
+ORG="${REPO_PARTS[0]}"
+REPO="${REPO_PARTS[1]}"
+
+PR_BRANCH_URL="https://$FEATURE_BRANCH--$REPO--$ORG"
+
+echo "PR_BRANCH_URL=$PR_BRANCH_URL" >> "$GITHUB_ENV"
+
+echo "Constructed PR Branch URL: $PR_BRANCH_URL"
+
 # Convert github labels to tags that can be grepped
 for label in ${labels}
 do
