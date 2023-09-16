@@ -7,6 +7,12 @@ APPS=""
 # Extract PR number from GITHUB_REF
 echo "GitHub Ref : $GITHUB_REF"
 echo "GitHub Head Ref: $GITHUB_HEAD_REF"
+echo "GitHub Base Ref: $GITHUB_BASE_REF"
+echo "GitHub Event Name: $GITHUB_EVENT_NAME"
+echo "GitHub Event Path: $GITHUB_EVENT_PATH"
+echo "GitHub Workspace: $GITHUB_WORKSPACE"
+echo "GitHub Repository: $GITHUB_REPOSITORY"
+echo "GitHub Actor: $GITHUB_ACTOR"
 echo "*******************************"
 
 PR_NUMBER=$(echo "$GITHUB_REF" | awk -F'/' '{print $3}')
