@@ -1,13 +1,8 @@
-// @ts-check
 const { devices } = require('@playwright/test');
 
-const envs = require('./envs/envs.js');
+const { isBranchURLValid } = require('./libs/baseurl.js');
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
+const envs = require('./envs/envs.js');
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -46,7 +41,9 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: 'https://main--milo--adobecom.hlx.live',
+    baseURL: process.env.PR_BRANCH_URL
+    ? (isBranchURLValid(process.env.PR_BRANCH_URL) ? process.env.PR_BRANCH_URL : 'https://main--milo--adobecom.hlx.live')
+    : 'https://main--milo--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
@@ -55,7 +52,6 @@ const config = {
       name: 'milo-live-chromium',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@milo-live'],
       },
     },
 
@@ -63,7 +59,6 @@ const config = {
       name: 'milo-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@milo-live'],
       },
     },
 
@@ -71,7 +66,6 @@ const config = {
       name: 'milo-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@milo-live'],
       },
     },
   ],

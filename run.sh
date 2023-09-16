@@ -4,6 +4,35 @@ TAGS=""
 REPORTER=""
 APPS=""
 
+# Extract PR number from GITHUB_REF
+echo "GitHub Ref : $GITHUB_REF"
+echo "GitHub Head Ref: $GITHUB_HEAD_REF"
+echo "GitHub Base Ref: $GITHUB_BASE_REF"
+echo "GitHub Event Name: $GITHUB_EVENT_NAME"
+echo "GitHub Event Path: $GITHUB_EVENT_PATH"
+echo "GitHub Workspace: $GITHUB_WORKSPACE"
+echo "GitHub Repository: $GITHUB_REPOSITORY"
+echo "GitHub Actor: $GITHUB_ACTOR"
+echo "*******************************"
+
+PR_NUMBER=$(echo "$GITHUB_REF" | awk -F'/' '{print $3}')
+echo "PR Number: $PR_NUMBER"
+
+# Extract feature branch name from GITHUB_HEAD_REF
+FEATURE_BRANCH="$GITHUB_HEAD_REF"
+echo "Feature Branch Name: $FEATURE_BRANCH"
+echo "*******************************"
+
+IFS='/' read -ra REPO_PARTS <<< "$GITHUB_REPOSITORY"
+ORG="${REPO_PARTS[0]}"
+REPO="${REPO_PARTS[1]}"
+
+PR_BRANCH_URL="https://$FEATURE_BRANCH--$REPO--$ORG.hlx.live"
+
+echo "PR_BRANCH_URL=$PR_BRANCH_URL" >> "$GITHUB_ENV"
+
+echo "Constructed PR Branch URL: $PR_BRANCH_URL"
+
 # Convert github labels to tags that can be grepped
 for label in ${labels}
 do
