@@ -7,6 +7,7 @@ import { expect } from '@playwright/test';
 const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const yaml = require('js-yaml');
+const { request } = require('@playwright/test');
 
 /**
  * A utility class for common web interactions.
@@ -246,5 +247,13 @@ exports.WebUtil = class WebUtil {
    */
   async disableNetworkLogging() {
     await this.page.unroute('**');
+  }
+
+  async takeScreenshot(folderPath, fileName, width, height) {
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+    await this.page.setViewportSize({ width, height });
+    await this.page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
   }
 };

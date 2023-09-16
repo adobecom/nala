@@ -14,7 +14,6 @@ module.exports = {
       envs: '@bacom_prod',
       tags: '@htmlextn',
     },
-    
     {
       name: '@Html Extn',
       path: '/en/publish/2023/02/01/see-you-in-vegas-adobe-summit-2023-reg-open',

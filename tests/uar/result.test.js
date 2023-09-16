@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-import { Result } from '../../selectors/uar/result.page.js';
+import Result from '../../selectors/uar/result.page.js';
 
 const { test } = require('@playwright/test');
 const ResultSpec = require('../../features/uar/result.spec.js');

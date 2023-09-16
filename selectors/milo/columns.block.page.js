@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
-export class Columns {
+export default class Columns {
   constructor(page) {
     this.page = page;
     // columns  locators
@@ -48,8 +48,8 @@ export class Columns {
       'columns': { 'class': 'columns' },
       'columns-contained': { 'class': 'columns contained' },
       'columns-contained-middle': { 'class': 'columns contained middle' },
-      'columns-table': { 'class': 'columns table' },
-      'columns-contained-table': { 'class': 'columns contained table' },
+      'columns-table': { 'class': 'columns columns-table' },
+      'columns-contained-table': { 'class': 'columns contained columns-table' },
     };
   }
 

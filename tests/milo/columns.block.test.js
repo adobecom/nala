@@ -1,12 +1,13 @@
+/* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/columns.block.spec.js';
-import { Columns } from '../../selectors/milo/columns.block.page.js';
+import ColumnsBlock from '../../selectors/milo/columns.block.page.js';
 
 let column;
 
 test.describe('Milo Columns Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    column = new Columns(page);
+    column = new ColumnsBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

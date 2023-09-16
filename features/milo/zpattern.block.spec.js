@@ -7,7 +7,6 @@ module.exports = {
       path: '/drafts/nala/blocks/zpattern/z-pattern',
       tags: '@zpattern @smoke @regression @milo',
     },
-
     {
       tcid: '1',
       name: '@ZPattern (small)',

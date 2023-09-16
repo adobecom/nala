@@ -116,7 +116,9 @@ dist
 # Debug/Report/Screenshots Local files
 debug
 reports
-screenshots
+screenshots/*
+!screenshots/visual-compare/
+axe-reports
 /test-results/
 /test-html-results/
 /playwright-report/

@@ -6,7 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/breadcrumbs/feds-breadcrumbs-with-base',
       ],
-      browserParams: '?hideGeorouting=on',
+      browserParams: '?georouting=off',
       envs: '@milo_live',
       tags: '@feds @breadcrumbs @feds-breadcrumbs',
     },
@@ -15,7 +15,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/breadcrumbs/feds-breadcrumbs-from-document',
       ],
-      browserParams: '?hideGeorouting=on',
+      browserParams: '?georouting=off',
       envs: '@milo_live',
       tags: '@feds @breadcrumbs @feds-breadcrumbs',
     },
@@ -24,7 +24,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/breadcrumbs/feds-breadcrumbs-hidden-links',
       ],
-      browserParams: '?hideGeorouting=on',
+      browserParams: '?georouting=off',
       envs: '@milo_live',
       tags: '@feds @breadcrumbs @feds-breadcrumbs',
     },
@@ -33,7 +33,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/breadcrumbs/feds-breadcrumbs-no-hidden-links',
       ],
-      browserParams: '?hideGeorouting=on',
+      browserParams: '?georouting=off',
       envs: '@milo_live',
       tags: '@feds @breadcrumbs @feds-breadcrumbs',
     },

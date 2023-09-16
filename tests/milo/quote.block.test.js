@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/quote.block.spec.js';
-import { Quote } from '../../selectors/milo/quote.block.page.js';
+import QuoteBlock from '../../selectors/milo/quote.block.page.js';
 
 let quote;
 
 test.describe('Milo Quote Block test suite', () => {
   test.beforeEach(async ({ page }) => {
-    quote = new Quote(page);
+    quote = new QuoteBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {

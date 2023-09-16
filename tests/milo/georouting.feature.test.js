@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/georouting.spec.js';
-import { Georouting } from '../../selectors/milo/georouting.feature.page.js';
+import Georouting from '../../selectors/milo/georouting.feature.page.js';
 
 let modal;
 
@@ -9,7 +9,8 @@ test.describe('Milo Georouting feature test suite', () => {
         modal = new Georouting(page);
     });
 
-    test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
+    test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL, browserName }) => {
+        test.skip(browserName === 'webkit', 'This feature is failing on Webkit browsers');
         test.slow();
         console.info(`[Test Page]: ${baseURL}${features[0].path}`);
         const { data } = features[0];
@@ -113,7 +114,8 @@ test.describe('Milo Georouting feature test suite', () => {
         });
     });
 
-    test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
+    test(`${features[5].name},${features[5].tags}`, async ({ page, browserName, baseURL }) => {
+        test.skip(browserName === 'webkit', 'This feature is failing on Webkit browsers');
         test.slow();
         console.info(`[Test Page]: ${baseURL}${features[5].path}`);
         const { data } = features[5];

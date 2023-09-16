@@ -13,7 +13,6 @@ module.exports = {
       },
       tags: '@accordion @smoke @regression @milo',
     },
-
     {
       tcid: '1',
       name: '@Accordion (seo)',
@@ -26,7 +25,6 @@ module.exports = {
       },
       tags: '@accordion @accordion-seo @smoke @regression @milo',
     },
-
     {
       tcid: '2',
       name: '@Accordion (quiet, max-width-12-desktop-large)',

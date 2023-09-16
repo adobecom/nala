@@ -14,7 +14,6 @@ module.exports = {
       },
       tags: '@columns @smoke @regression @milo',
     },
-
     {
       tcid: '1',
       name: '@Columns (contained)',
@@ -27,7 +26,6 @@ module.exports = {
       },
       tags: '@columns @columns-contained @smoke @regression @milo',
     },
-
     {
       tcid: '2',
       name: '@Columns (contained,middle)',
@@ -40,7 +38,6 @@ module.exports = {
       },
       tags: '@columns @columns-contained-middle @smoke @regression @milo',
     },
-
     {
       tcid: '3',
       name: '@Columns (table)',
@@ -55,7 +52,6 @@ module.exports = {
       },
       tags: '@columns @columns-table @smoke @regression @milo',
     },
-
     {
       tcid: '4',
       name: '@Columns (contained,table)',
@@ -70,6 +66,5 @@ module.exports = {
       },
       tags: '@columns @columns-contained-table @smoke @regression @milo',
     },
-
   ],
 };

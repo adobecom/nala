@@ -84,4 +84,3 @@ else
   echo "*** No label, default Milo Run***"
   npx playwright test ${TAGS} ${REPORTER}
 fi
-
