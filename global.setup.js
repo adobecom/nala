@@ -4,6 +4,11 @@ const axios = require('axios');
 
 async function globalSetup() {
   console.info('----Running Global setup---------');
+  
+  let prBranchLiveUrl;
+  let localTestLiveUrl;
+  let localOrg; 
+  let localRepo;
 
   // Check if the code is running in a GitHub CI/CD environment
   if (process.env.GITHUB_ACTIONS === 'true') {
@@ -28,13 +33,17 @@ async function globalSetup() {
     const prFromRepoName = process.env.prRepo;
 
     // Construct the pr branch URL
-    const prBranchLiveUrl = `https://${prBranch}--${prFromRepoName}--${prFromOrg}.hlx.live`;
-    const prToBranchLiveUrl = `https://${prBranch}--${toRepoName}--${toRepoOrg}.hlx.live`;
-
+    if (toRepoName === 'nala'){
+      prBranchLiveUrl = `https://main--milo--adobecom.hlx.live`;
+    } else {
+      prBranchLiveUrl = `https://${prBranch}--${prFromRepoName}--${prFromOrg}.hlx.live`;
+    }
+    
     // Validate the pr branch URL by making an HTTP request
     if ( await isBranchURLValid(prBranchLiveUrl)){
       process.env.PR_BRANCH_LIVE_URL_G = prBranchLiveUrl;
     }
+
     console.info('PR Repository : ', repository);
     console.info('PR TO ORG     : ', toRepoOrg);
     console.info('PR TO REPO    : ', toRepoName);
@@ -60,8 +69,9 @@ async function globalSetup() {
         const match = gitRemoteOriginUrl.match(/github\.com\/(.*?)\/(.*?)\.git/);
         console.info('Git Remote Origin : ', gitRemoteOriginUrl );
         if (match) {
-          const localOrg = match[1];
-          const localRepo = match[2];
+          localOrg = match[1];
+          localRepo = match[2];
+
           console.info('Git ORG           : ', localOrg );
           console.info('Git REPO          : ', localRepo );
 
@@ -69,14 +79,16 @@ async function globalSetup() {
           const localBranch = execSync('git rev-parse --abbrev-ref HEAD', { cwd: localGitRootDir, encoding: 'utf-8' }).trim();
           console.info('Local Branch      : ', localBranch );
 
-          const localBranchLiveUrl = `https://${localBranch}--${localRepo}--${localOrg}.hlx.live`; 
-          const localTestLiveUrl = `https://localhost:3000--${localRepo}--${localOrg}.hlx.live`;
+          if ( localRepo === 'janus' || 'nala'){
+            localTestLiveUrl = `https://main--milo--adobecom.hlx.live`;
+          } else {
+            localTestLiveUrl = `https://${localBranch}--${localRepo}--${localOrg}.hlx.live`;
+          }
 
-          // set local branch and test live url env variable
-          process.env.PR_BRANCH_LIVE_URL_G = localBranchLiveUrl;
-          process.env.LOCAL_TEST_LIVE_URL = localTestLiveUrl;
-
-          console.info('Local Branch Live URL  : ', process.env.PR_BRANCH_LIVE_URL_G );
+          // Validate the pr branch URL by making an HTTP request
+          if ( await isBranchURLValid(localTestLiveUrl)){
+            process.env.LOCAL_TEST_LIVE_URL = localTestLiveUrl;
+          }
           console.info('Local Test Live URL    : ', process.env.LOCAL_TEST_LIVE_URL );
         }
       } 
