@@ -53,17 +53,27 @@ test.describe('Quiz flow test suite', () => {
         }
 
         // verify network logs
+        console.info(networklogs);
         let logResult = false;
         let logNumber = 0;
+        let logResult2 = false;
+        let logNumber2 = 0;
         for (const log of networklogs) {
           if (log.includes('"click":"Filters|cc:app-reco')) {
             logResult = true;
             logNumber += 1;
           }
+
+          if (log.includes('Logo|gnav|milo,Search|gnav')) {
+            logResult2 = true;
+            logNumber2 += 1;
+          }
         }
 
         expect(logResult).toBeTruthy();
         expect(logNumber).toBeGreaterThan(1);
+        expect(logResult2).toBeTruthy();
+        expect(logNumber2).toBeGreaterThan(1);
       },
     );
   }
