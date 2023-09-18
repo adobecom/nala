@@ -1,7 +1,5 @@
 const { devices } = require('@playwright/test');
 
-const { isBranchURLValid } = require('./libs/baseurl.js');
-
 const envs = require('./envs/envs.js');
 
 /**
@@ -11,6 +9,7 @@ const envs = require('./envs/envs.js');
 const config = {
   testDir: './tests/milo',
   outputDir: './test-results',
+  globalSetup: './global.setup.js',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {

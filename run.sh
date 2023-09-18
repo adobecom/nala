@@ -13,25 +13,33 @@ echo "GitHub Event Path: $GITHUB_EVENT_PATH"
 echo "GitHub Workspace: $GITHUB_WORKSPACE"
 echo "GitHub Repository: $GITHUB_REPOSITORY"
 echo "GitHub Actor: $GITHUB_ACTOR"
-echo "*******************************"
 
 PR_NUMBER=$(echo "$GITHUB_REF" | awk -F'/' '{print $3}')
 echo "PR Number: $PR_NUMBER"
 
 # Extract feature branch name from GITHUB_HEAD_REF
 FEATURE_BRANCH="$GITHUB_HEAD_REF"
+# Replace "/" characters in the feature branch name with "-"
+FEATURE_BRANCH=$(echo "$FEATURE_BRANCH" | sed 's/\//-/g')
 echo "Feature Branch Name: $FEATURE_BRANCH"
-echo "*******************************"
 
 IFS='/' read -ra REPO_PARTS <<< "$GITHUB_REPOSITORY"
 ORG="${REPO_PARTS[0]}"
 REPO="${REPO_PARTS[1]}"
 
-PR_BRANCH_URL="https://$FEATURE_BRANCH--$REPO--$ORG.hlx.live"
+echo "Base Repo: $REPO"
+echo "Base Org: $REPO"
 
-echo "PR_BRANCH_URL=$PR_BRANCH_URL" >> "$GITHUB_ENV"
+PR_BRANCH_LIVE_URL="https://$FEATURE_BRANCH--$REPO--$ORG.hlx.live"
 
-echo "Constructed PR Branch URL: $PR_BRANCH_URL"
+echo "PR_BRANCH_LIVE_URL=$PR_BRANCH_LIVE_URL" >> "$GITHUB_ENV"
+
+echo "Constructed PR Branch live URL: $PR_BRANCH_LIVE_URL"
+echo "PR-HEAD-ORG: ${prOrg}"
+echo "PR-HEAD-REP: ${prRepo}"
+echo "PR-URL: ${prUrl}"
+
+echo "*******************************"
 
 # Convert github labels to tags that can be grepped
 for label in ${labels}
