@@ -40,9 +40,7 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.PR_BRANCH_URL
-    ? (isBranchURLValid(process.env.PR_BRANCH_URL) ? process.env.PR_BRANCH_URL : 'https://main--milo--adobecom.hlx.live')
-    : 'https://main--milo--adobecom.hlx.live',
+    baseURL: process.env.PR_BRANCH_LIVE_URL || 'https://main--milo--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
