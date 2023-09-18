@@ -9,8 +9,6 @@ echo "GitHub Ref : $GITHUB_REF"
 echo "GitHub Head Ref: $GITHUB_HEAD_REF"
 echo "GitHub Base Ref: $GITHUB_BASE_REF"
 echo "GitHub Event Name: $GITHUB_EVENT_NAME"
-echo "GitHub Event Path: $GITHUB_EVENT_PATH"
-echo "GitHub Workspace: $GITHUB_WORKSPACE"
 echo "GitHub Repository: $GITHUB_REPOSITORY"
 echo "GitHub Actor: $GITHUB_ACTOR"
 
@@ -29,15 +27,16 @@ REPO="${REPO_PARTS[1]}"
 
 echo "Base Repo: $REPO"
 echo "Base Org: $ORG"
+echo "PR-HEAD-ORG: ${prOrg}"
+echo "PR-HEAD-REPO: ${prRepo}"
+echo "PR-URL: ${prUrl}"
 
-PR_BRANCH_LIVE_URL="https://$FEATURE_BRANCH--$REPO--$ORG.hlx.live"
+PR_BRANCH_LIVE_URL="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
 
 echo "PR_BRANCH_LIVE_URL=$PR_BRANCH_LIVE_URL" >> "$GITHUB_ENV"
 
 echo "Constructed PR Branch live URL: $PR_BRANCH_LIVE_URL"
-echo "PR-HEAD-ORG: ${prOrg}"
-echo "PR-HEAD-REPO: ${prRepo}"
-echo "PR-URL: ${prUrl}"
+
 
 echo "*******************************"
 

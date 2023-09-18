@@ -29,7 +29,7 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['./utils/reporters/json-reporter.js'], ['./utils/reporters/api-reporter.js']]
+    ? [['github'], ['./utils/reporters/json-reporter.js']]
     : [['html', { outputFolder: 'test-html-results' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -40,9 +40,7 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.PR_BRANCH_URL
-    ? (isBranchURLValid(process.env.PR_BRANCH_URL) ? process.env.PR_BRANCH_URL : 'https://main--milo--adobecom.hlx.live')
-    : 'https://main--milo--adobecom.hlx.live',
+    baseURL: process.env.PR_BRANCH_LIVE_URL || 'https://main--milo--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
