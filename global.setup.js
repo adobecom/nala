@@ -31,6 +31,7 @@ async function globalSetup() {
     // Get the org and repo from the environment variables
     const prFromOrg = process.env.prOrg;
     const prFromRepoName = process.env.prRepo;
+    const prToBranchLiveUrl = process.env.GITHUB_BASE_REF;
 
     // Construct the pr branch URL
     if (toRepoName === 'nala'){
