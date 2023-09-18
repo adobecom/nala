@@ -28,7 +28,7 @@ ORG="${REPO_PARTS[0]}"
 REPO="${REPO_PARTS[1]}"
 
 echo "Base Repo: $REPO"
-echo "Base Org: $REPO"
+echo "Base Org: $ORG"
 
 PR_BRANCH_LIVE_URL="https://$FEATURE_BRANCH--$REPO--$ORG.hlx.live"
 
@@ -36,7 +36,7 @@ echo "PR_BRANCH_LIVE_URL=$PR_BRANCH_LIVE_URL" >> "$GITHUB_ENV"
 
 echo "Constructed PR Branch live URL: $PR_BRANCH_LIVE_URL"
 echo "PR-HEAD-ORG: ${prOrg}"
-echo "PR-HEAD-REP: ${prRepo}"
+echo "PR-HEAD-REPO: ${prRepo}"
 echo "PR-URL: ${prUrl}"
 
 echo "*******************************"
