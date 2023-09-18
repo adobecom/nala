@@ -7,7 +7,7 @@ const QuizSpec = require('../../features/uar/quiz.analytics.spec.js');
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
 
-let networklogs;
+let networkLogs;
 let page;
 let webUtil;
 
@@ -15,12 +15,12 @@ test.describe('Quiz flow test suite', () => {
   test.skip(({ browserName }) => browserName !== 'firefox', 'firefox only!');
 
   test.beforeAll(async ({ browser }) => {
-    networklogs = [];
+    networkLogs = [];
     page = await browser.newPage();
     webUtil = new WebUtil(page);
     console.info('Before all tests: Enable network logging');
     // Enable network logging
-    webUtil.enableNetworkLogging(networklogs);
+    webUtil.enableNetworkLogging(networkLogs);
   });
 
   for (const feature of features) {
@@ -53,12 +53,12 @@ test.describe('Quiz flow test suite', () => {
         }
 
         // verify network logs
-        console.info(networklogs);
+        console.info(networkLogs);
         let logResult = false;
         let logNumber = 0;
         let logResult2 = false;
         let logNumber2 = 0;
-        for (const log of networklogs) {
+        for (const log of networkLogs) {
           if (log.includes('"click":"Filters|cc:app-reco')) {
             logResult = true;
             logNumber += 1;
