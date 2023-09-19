@@ -34,12 +34,12 @@ export default class Icon {
     // icon blocks attributes
     this.attProperties = {
       'icon': { class: 'icon-block' },
-      'icon-fullwidth-medium': { class: 'icon-block fullwidth medium con-block'},
+      'icon-fullwidth-medium': { class: 'icon-block full-width medium con-block'},
       'icon-fullwidth-medium-intro': {
         class:
-          'icon-block fullwidth medium intro con-block xxxl-spacing-top xl-spacing-static-bottom'
+          'icon-block full-width medium intro con-block xxxl-spacing-top xl-spacing-static-bottom'
       },
-      'icon-fullwidth-large': { class: 'icon-block fullwidth large con-block'},
+      'icon-fullwidth-large': { class: 'icon-block full-width large con-block'},
     };
   }
 

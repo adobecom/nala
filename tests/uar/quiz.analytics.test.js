@@ -1,13 +1,13 @@
 /* eslint-disable no-restricted-syntax */
 import Quiz from '../../selectors/uar/quiz.page.js';
 
-const { test } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 const QuizSpec = require('../../features/uar/quiz.analytics.spec.js');
 
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
 
-let networklogs;
+let networkLogs;
 let page;
 let webUtil;
 
@@ -15,12 +15,12 @@ test.describe('Quiz flow test suite', () => {
   test.skip(({ browserName }) => browserName !== 'firefox', 'firefox only!');
 
   test.beforeAll(async ({ browser }) => {
-    networklogs = [];
+    networkLogs = [];
     page = await browser.newPage();
     webUtil = new WebUtil(page);
-    console.log('Before all tests: Enable network logging');
+    console.info('Before all tests: Enable network logging');
     // Enable network logging
-    webUtil.enableNetworkLogging(networklogs);
+    webUtil.enableNetworkLogging(networkLogs);
   });
 
   for (const feature of features) {
@@ -52,14 +52,34 @@ test.describe('Quiz flow test suite', () => {
           });
         }
 
-        // To Do: add validation when we have it
-        // console.log(networklogs);
+        // verify network logs
+        console.info(networkLogs);
+        let logResult = false;
+        let logNumber = 0;
+        let logResult2 = false;
+        let logNumber2 = 0;
+        for (const log of networkLogs) {
+          if (log.includes('"click":"Filters|cc:app-reco')) {
+            logResult = true;
+            logNumber += 1;
+          }
+
+          if (log.includes('Logo|gnav|milo,Search|gnav')) {
+            logResult2 = true;
+            logNumber2 += 1;
+          }
+        }
+
+        expect(logResult).toBeTruthy();
+        expect(logNumber).toBeGreaterThan(1);
+        expect(logResult2).toBeTruthy();
+        expect(logNumber2).toBeGreaterThan(1);
       },
     );
   }
 
   test.afterAll(async () => {
-    console.log('After all tests: Disable network logging');
+    console.info('After all tests: Disable network logging');
     // Disable network logging
     webUtil.disableNetworkLogging();
   });
