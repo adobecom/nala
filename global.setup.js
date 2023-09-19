@@ -42,7 +42,7 @@ async function globalSetup() {
     
     // Validate the pr branch URL by making an HTTP request
     if ( await isBranchURLValid(prBranchLiveUrl)){
-      process.env.PR_BRANCH_LIVE_URL_G = prBranchLiveUrl;
+      process.env.PR_BRANCH_LIVE_URL = prBranchLiveUrl;
     }
 
     console.info('PR Repository : ', repository);

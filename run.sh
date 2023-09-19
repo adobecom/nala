@@ -33,7 +33,8 @@ echo "PR-URL: ${prUrl}"
 
 PR_BRANCH_LIVE_URL="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
 
-echo "PR_BRANCH_LIVE_URL=$PR_BRANCH_LIVE_URL" >> "$GITHUB_ENV"
+#echo "PR_BRANCH_LIVE_URL=$PR_BRANCH_URL" >> "$GITHUB_ENV"
+export PR_BRANCH_LIVE_URL
 
 echo "Constructed PR Branch live URL: $PR_BRANCH_LIVE_URL"
 
