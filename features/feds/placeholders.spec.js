@@ -11,7 +11,7 @@ module.exports = {
         '/uk/placeholders.json',
       ],
       envs: '@feds_live',
-      tags: '@milo @placeholders @milo-placeholders',
+      tags: '@feds @placeholders @milo-placeholders',
     },
     {
       name: '@FEDS-Placeholder-Checks',
