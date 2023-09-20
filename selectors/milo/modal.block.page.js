@@ -18,7 +18,7 @@ export default class Modal {
     // modal contents attributes
     this.attProperties = {
       'modal-link': {
-        class: 'modal link-block',
+        class: 'modal link-block ',
         'daa-ll': /^link\|(.*)/,
       },
     };
