@@ -34,7 +34,6 @@ async function globalSetup() {
     // Get the org and repo from the environment variables
     const prFromOrg = process.env.prOrg;
     const prFromRepoName = process.env.prRepo;
-    const prToBranchLiveUrl = process.env.GITHUB_BASE_REF;
 
     try {
       // Construct the pr branch URL
@@ -54,10 +53,9 @@ async function globalSetup() {
       console.info('PR From ORG   : ', prFromOrg);
       console.info('PR From REPO  : ', prFromRepoName);
       console.info('PR Branch     : ', branch);
-      console.info('PR Branch Updated: ', prBranch);
-      console.info('PR Number        : ', prNumber);
+      console.info('PR Branch(U)  : ', prBranch);
+      console.info('PR Number     : ', prNumber);
       console.info('PR From Branch live url : ', prBranchLiveUrl);
-      console.info('PR To Branch live url : ', prToBranchLiveUrl);
     } catch (err) {
       console.error(`Error => Error in setting PR Branch test URL : ${prBranchLiveUrl}`);
       console.info(`Note : PR branch test url  ${prBranchLiveUrl} is not valid, Exiting test execution.`);
