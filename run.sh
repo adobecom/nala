@@ -4,14 +4,6 @@ TAGS=""
 REPORTER=""
 APPS=""
 
-# Extract PR number from GITHUB_REF
-echo "GitHub Ref : $GITHUB_REF"
-echo "GitHub Head Ref: $GITHUB_HEAD_REF"
-echo "GitHub Base Ref: $GITHUB_BASE_REF"
-echo "GitHub Event Name: $GITHUB_EVENT_NAME"
-echo "GitHub Repository: $GITHUB_REPOSITORY"
-echo "GitHub Actor: $GITHUB_ACTOR"
-
 PR_NUMBER=$(echo "$GITHUB_REF" | awk -F'/' '{print $3}')
 echo "PR Number: $PR_NUMBER"
 
@@ -19,27 +11,13 @@ echo "PR Number: $PR_NUMBER"
 FEATURE_BRANCH="$GITHUB_HEAD_REF"
 # Replace "/" characters in the feature branch name with "-"
 FEATURE_BRANCH=$(echo "$FEATURE_BRANCH" | sed 's/\//-/g')
-echo "Feature Branch Name: $FEATURE_BRANCH"
 
-IFS='/' read -ra REPO_PARTS <<< "$GITHUB_REPOSITORY"
-ORG="${REPO_PARTS[0]}"
-REPO="${REPO_PARTS[1]}"
+PR_BRANCH_LIVE_URL_GH="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
 
-echo "Base Repo: $REPO"
-echo "Base Org: $ORG"
-echo "PR-HEAD-ORG: ${prOrg}"
-echo "PR-HEAD-REPO: ${prRepo}"
-echo "PR-URL: ${prUrl}"
+# set pr branch url as env
+export PR_BRANCH_LIVE_URL_GH
 
-PR_BRANCH_LIVE_URL="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
-
-#echo "PR_BRANCH_LIVE_URL=$PR_BRANCH_URL" >> "$GITHUB_ENV"
-export PR_BRANCH_LIVE_URL
-echo "PR_BRANCH_LIVE_URL=$PR_BRANCH_URL" >> "$GITHUB_ENV"
-
-echo "Constructed PR Branch live URL: $PR_BRANCH_LIVE_URL"
-
-
+echo "PR Branch live URL: $PR_BRANCH_LIVE_URL_GH"
 echo "*******************************"
 
 # Convert github labels to tags that can be grepped
@@ -68,7 +46,7 @@ done
 REPORTER=$reporter
 [[ ! -z "$REPORTER" ]] && REPORTER="--reporter $REPORTER"
 
-echo "*** Running Nala on $branch ***"
+echo "*** Running Nala on $FEATURE_BRANCH ***"
 echo "Tags : $TAGS"
 echo "APPS : $APPS"
 echo "npx playwright test ${TAGS} ${REPORTER}"
