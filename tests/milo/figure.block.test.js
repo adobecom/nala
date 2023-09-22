@@ -27,7 +27,7 @@ test.describe('Milo Figure Block test suite', () => {
   });
 
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
 
     await test.step('step-1: Go to figure block test page', async () => {
       await page.goto(`${baseURL}${features[1].path}`);
