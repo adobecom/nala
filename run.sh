@@ -13,25 +13,7 @@ FEATURE_BRANCH="$GITHUB_HEAD_REF"
 FEATURE_BRANCH=$(echo "$FEATURE_BRANCH" | sed 's/\//-/g')
 echo "Feature Branch Name: $FEATURE_BRANCH"
 
-IFS='/' read -ra REPO_PARTS <<< "$GITHUB_REPOSITORY"
-ORG="${REPO_PARTS[0]}"
-REPO="${REPO_PARTS[1]}"
-
-echo "Base Repo: $REPO"
-echo "Base Org: $ORG"
-echo "PR-HEAD-ORG: ${prOrg}"
-echo "PR-HEAD-REPO: ${prRepo}"
-echo "PR-URL: ${prUrl}"
-
-PR_BRANCH_LIVE_URL="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
-
 PR_BRANCH_LIVE_URL_GH="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
-
-# set pr branch url as env
-export PR_BRANCH_LIVE_URL_GH
-
-PR_BRANCH_LIVE_URL_GH="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
-
 # set pr branch url as env
 export PR_BRANCH_LIVE_URL_GH
 
