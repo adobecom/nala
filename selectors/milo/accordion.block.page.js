@@ -57,20 +57,17 @@ export default class Accordion {
     this.attProperties = {
       'accordion-container': {
         'class': 'accordion-container con-block max-width-10-desktop',
-        'daa-lh': 'accordion-container|con-block|max-width-10-desktop',
-        'daa-im': 'true',
+        'daa-lh': 'b1|accordion-container|default|default',
       },
 
       'accordion-container seo': {
         'class': 'accordion-container seo con-block max-width-10-desktop',
-        'daa-lh': 'accordion-container|seo|con-block|max-width-10-desktop',
-        'daa-im': 'true',
+        'daa-lh': 'b1|accordion-container|default|default',
       },
 
       'accordion-container-quiet-large': {
         'class': 'accordion-container quiet max-width-12-desktop-large con-block',
-        'daa-lh': 'accordion-container|quiet|max-width-12-desktop-large|con-block',
-        'daa-im': 'true',
+        'daa-lh': 'b1|accordion-container|default|default',
       },
 
       'accordion-trigger': { 'daa-ll': /^link\|(.*)/ },

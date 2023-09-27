@@ -137,63 +137,51 @@ export default class Marquee {
 
     };
 
-    // marquee contents css
+    // marquee attributes
     this.attProperties = {
-      'outline-l': { 'daa-ll': /^outline\|(.*)/ },
-      'filled-l': { 'daa-ll': /^filled\|(.*)/ },
-      'outline-xl': { 'daa-ll': /^outline\|(.*)/ },
-      'filled-xl': { 'daa-ll': /^filled\|(.*)/ },
+      'outline-l': { 'daa-ll': /^Lorem ipsum[-\s]\d+\|(.*)/ },
+      'filled-l': { 'daa-ll': /^Call to action[-\s]\d+\|(.*)/ },
+      'outline-xl': { 'daa-ll': /^Lorem ipsum[-\s]\d+\|(.*)/ },
+      'filled-xl': { 'daa-ll': /^Call to action[-\s]\d+\|(.*)/ },
       'marquee-light': {
-        'daa-lh': 'marquee|light',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
       },
       'marquee-small': {
-        'daa-lh': 'marquee|small',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
       },
       'marquee-small-light': {
-        'daa-lh': 'marquee|small|light',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
       },
       'marquee-large': {
-        'daa-lh': 'marquee|large',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
       },
       'marquee-large-light': {
-        'daa-lh': 'marquee|large|light',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
       },
       'marquee-quiet': {
-        'daa-lh': 'marquee|quiet',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
       },
       'marquee-inline': {
-        'daa-lh': 'marquee|inline',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
       },
       'marquee-split-small': {
-        'daa-lh': 'marquee|split|small',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
         'style': 'background: rgb(0, 0, 0);',
       },
       'marquee-split-large': {
-        'daa-lh': 'marquee|split|large',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
         'style': 'background: rgb(0, 0, 0);',
       },
       'marquee-split-one-third-large-light': {
-        'daa-lh': 'marquee|split|one-third|large|light',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
         'style': 'background: rgb(245, 245, 245);',
       },
       'marquee-split-one-third': {
-        'daa-lh': 'marquee|split|one-third',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
         'style': 'background: rgb(0, 0, 0);',
       },
       'marquee-split-one-third-small-light': {
-        'daa-lh': 'marquee|split|one-third|small|light',
-        'daa-im': 'true',
+        'daa-lh': 'b1|marquee|default|default',
         'style': 'background: rgb(245, 245, 245);',
       },
       'background': {
@@ -451,7 +439,8 @@ export default class Marquee {
       // verify marquee visibility, css, analytics and other attributes
         await expect(await this.marqueeInline).toBeVisible();
         await expect(this.marqueeInline).toHaveCSS('min-height', '360px');
-        await expect(this.marqueeInline).toHaveAttribute('daa-lh', 'marquee|inline');
+        expect(WebUtil.verifyAttributes(this.marqueeInline, this.attProperties['marquee-inline'])).toBeTruthy();
+        //await expect(this.marqueeInline).toHaveAttribute('daa-lh', 'marquee|inline');
 
         return true;
 
