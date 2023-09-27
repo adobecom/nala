@@ -19,7 +19,8 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-2: Verify Text specs', async () => {
-      expect(await text.verifyText('text')).toBeTruthy();
+      const { data } = features[0];
+      expect(await text.verifyText('text', data)).toBeTruthy();
     });
   });
 
@@ -33,7 +34,8 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-2: Verify Text (intro) specs', async () => {
-      expect(await text.verifyText('text (intro)')).toBeTruthy();
+      const { data } = features[1];
+      expect(await text.verifyText('text (intro)', data)).toBeTruthy();
     });
   });
 
@@ -47,7 +49,8 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-2: Verify Text (full width) specs', async () => {
-      expect(await text.verifyText('text (full width)')).toBeTruthy();
+      const { data } = features[2];
+      expect(await text.verifyText('text (full width)', data)).toBeTruthy();
     });
   });
 
@@ -61,7 +64,8 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-2: Verify Text (full-width, large) specs', async () => {
-      expect(await text.verifyText('text (full-width, large)')).toBeTruthy();
+      const { data } = features[3];
+      expect(await text.verifyText('text (full-width, large)', data)).toBeTruthy();
     });
   });
 
@@ -75,21 +79,23 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-2: Verify Text (long form, large) specs', async () => {
-      expect(await text.verifyText('text (long form, large)')).toBeTruthy();
+      const { data } = features[4];
+      expect(await text.verifyText('text (long form, large)', data)).toBeTruthy();
     });
   });
 
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[5].path}`);
 
-    await test.step('step-1: Go to Text (long form, large) block test page', async () => {
+    await test.step('step-1: Go to Text (inset, medium, m-spacing ) block test page', async () => {
       await page.goto(`${baseURL}${features[5].path}`);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
     });
 
     await test.step('step-2: Verify Text (inset, large, m spacing) specs', async () => {
-      expect(await text.verifyText('text (inset, large, m spacing)')).toBeTruthy();
+      const { data } = features[5];
+      expect(await text.verifyText('text (inset, large, m spacing)', data)).toBeTruthy();
     });
   });
 
@@ -103,7 +109,8 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-2: Verify Text (legal) specs', async () => {
-      expect(await text.verifyText('text (legal)')).toBeTruthy();
+      const { data } = features[6];
+      expect(await text.verifyText('text (legal)', data)).toBeTruthy();
     });
   });
   
@@ -117,7 +124,8 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-2: Verify Text (link-farm) specs', async () => {
-      expect(await text.verifyText('text (link-farm)')).toBeTruthy();
+      const { data } = features[7];
+      expect(await text.verifyText('text (link-farm)', data)).toBeTruthy();
     });
   });
 

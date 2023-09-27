@@ -5,6 +5,7 @@ export default class Aside {
     this.page = page;
 
     this.aside = page.locator('.aside');
+    this.textField = this.aside.locator('.text');
     this.textFieldSmall = this.aside.locator('p.body-s').first();
     this.textFieldMedium = this.aside.locator('p.body-m').first();
     this.textFieldLarge = this.aside.locator('p.body-l').first();
@@ -22,7 +23,8 @@ export default class Aside {
     this.iconArea = this.aside.locator('p.icon-area');
     this.detailLabel = this.aside.locator('p.detail-m');
     this.actionArea = this.aside.locator('p.action-area');
-    this.linkTextCta = this.aside.locator('a[daa-ll^="link"]');
+    this.textLink = this.textField.locator('a').first();
+    this.linkTextCta = this.aside.locator('a[daa-ll*="Link"], a[daa-ll*="link"], a[daa-ll*="action"]');
     this.actionLinks = this.aside.locator('div[data-valign="middle"] a');
     this.actionButtons = this.aside.locator('p.action-area a');
     this.blueButtonCta = this.aside.locator('a.con-button.blue');
