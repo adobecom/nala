@@ -19,7 +19,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-2: Verify media (small) block specs', async () => {
-      expect(await media.verifyMedia('media (small)')).toBeTruthy();
+      const { data } = features[0];
+      expect(await media.verifyMedia('media (small)', data)).toBeTruthy();
     });
   });
 
@@ -33,7 +34,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-2: Verify media block specs', async () => {
-      expect(await media.verifyMedia('media')).toBeTruthy();
+      const { data } = features[1];
+      expect(await media.verifyMedia('media', data)).toBeTruthy();
     });
   });
 
@@ -47,7 +49,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-2: Verify media block specs', async () => {
-      expect(await media.verifyMedia('media (large, dark)')).toBeTruthy();
+      const { data } = features[2];
+      expect(await media.verifyMedia('media (large, dark)', data)).toBeTruthy();
     });
   });
 });
