@@ -106,28 +106,18 @@ export default class ZPattern {
       'dark-intro-text-optional': { 'class': 'heading-l headline' },
       'media-medium': {
         'class': 'media medium con-block',
-        'daa-lh': 'media|medium',
-        'daa-im': 'true',
       },
       'small-media-reversed': {
         'class': 'media small media-reversed con-block',
-        'daa-lh': 'media|small|media-reversed',
-        'daa-im': 'true',
       },
       'medium-media-reversed': {
         'class': 'media medium media-reversed con-block',
-        'daa-lh': 'media|medium|media-reversed',
-        'daa-im': 'true',
       },
       'medium-media-reverse-mobile': {
         'class': 'media medium con-block media-reverse-mobile',
-        'daa-lh': 'media|medium|',
-        'daa-im': 'true',
       },
       'large-media-reversed': {
         'class': 'media large media-reversed con-block',
-        'daa-lh': 'media|large|media-reversed',
-        'daa-im': 'true',
       },
       'media-image': {
         'width': '600',

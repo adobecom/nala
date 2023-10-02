@@ -19,9 +19,9 @@ export default class Media {
     this.headingXL = this.media.locator('.heading-xl');
 
     // media body area
-    this.bodyS = this.media.locator('.body-s');
-    this.bodyM = this.media.locator('.body-m');
-    this.bodyXL = this.media.locator('.body-xl');
+    this.bodyS = this.media.locator('.body-s').nth(0);
+    this.bodyM = this.media.locator('.body-m').nth(0);
+    this.bodyXL = this.media.locator('.body-xl').nth(0);
     this.bodyTextM = this.media.locator('p:nth-of-type(2)');
     this.bodyTextS = this.media.locator('p:nth-of-type(2)');
 
@@ -99,22 +99,19 @@ export default class Media {
 
     // media contents attributes
     this.attProperties = {
-      'outline': { 'daa-ll': /^outline\|(.*)/ },
-      'filled': { 'daa-ll': /^filled\|(.*)/ },
+      'learn-more': { 'daa-ll': /^Learn More[-\s]\d+\|(.*)/  },
+      'watch-video': { 'daa-ll': /^Watch the Video[-\s]\d+\|(.*)/ },
       'media-small': {
         'class': 'media small con-block media-reverse-mobile',
-        'daa-lh': 'media|small',
-        'daa-im': 'true',
+        'daa-lh': 'b1|media|default|default',
       },
       'media': {
         'class': 'media con-block',
-        'daa-lh': 'media',
-        'daa-im': 'true',
+        'daa-lh': 'b1|media|default|default',
       },
       'media-large-dark': {
         'class': 'media large dark con-block has-bg media-reverse-mobile',
-        'daa-lh': 'media|large|dark',
-        'daa-im': 'true',
+        'daa-lh': 'b1|media|default|default',
       },
       'media-small-image': {
         'width': '400',
@@ -131,11 +128,18 @@ export default class Media {
  * Possible values are 'media (small)', 'media ', and 'media (large,dark)'.
  * @returns {Promise<boolean>} - Returns true if the specified media block type has the expected values.
  */
-  async verifyMedia(mediaType) {
+  async verifyMedia(mediaType, data) {
     switch (mediaType) {
       case 'media (small)':
-        // verify media (small) visibility, css and attributes values
+        // verify media (small) visibility, content, css and attributes values
         await expect(this.mediaSmall).toBeVisible();
+        
+        await expect(await this.detailM).toContainText(data.detailText);
+        await expect(await this.headingXS).toContainText(data.h2Text);
+        await expect(await this.bodyS).toContainText(data.bodyText);
+        await expect(await this.outlineButton).toContainText(data.outlineButtonText);
+        await expect(await this.blueButton).toContainText(data.blueButtonText);       
+
         expect(await WebUtil.verifyCSS(this.mediaSmall, this.cssProperties.media)).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.detailM, this.cssProperties['detail-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.headingXS, this.cssProperties['heading-xs'])).toBeTruthy();
@@ -145,35 +149,47 @@ export default class Media {
         expect(await WebUtil.verifyCSS(this.blueButton, this.cssProperties.blue)).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.outlineButton, this.cssProperties.outline)).toBeTruthy();
 
-        expect(await WebUtil.verifyAttributes(this.blueButton, this.attProperties.filled)).toBeTruthy();
-        expect(await WebUtil.verifyAttributes(this.outlineButton, this.attProperties.outline)).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(this.blueButton, this.attProperties['learn-more'])).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(this.outlineButton, this.attProperties['watch-video'])).toBeTruthy();
 
         return true;
 
       case 'media':
-        // verify media visibility, css and attributes values
+        // verify media visibility, content, css and attributes values
         await expect(this.media).toBeVisible();
+
+        await expect(await this.detailM).toContainText(data.detailText);
+        await expect(await this.headingM).toContainText(data.h2Text);
+        await expect(await this.bodyS).toContainText(data.bodyText);
+        await expect(await this.blueButton).toContainText(data.blueButtonText); 
+
         expect(await WebUtil.verifyCSS(this.media, this.cssProperties.media)).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.detailM, this.cssProperties['detail-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.headingM, this.cssProperties['heading-m'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.bodyTextS, this.cssProperties['body-s'])).toBeTruthy();
-        expect(await WebUtil.verifyAttributes(this.media, this.attProperties.media)).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(this.media, this.attProperties.media)).toBeTruthy();     
 
         expect(await WebUtil.verifyCSS(this.blueButton, this.cssProperties.blue)).toBeTruthy();
-        expect(await WebUtil.verifyAttributes(this.blueButton, this.attProperties.filled)).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(this.blueButton, this.attProperties['learn-more'])).toBeTruthy();
 
         return true;
 
       case 'media (large, dark)':
-        // verify media (large, dark) visibility, css and attributes values
+        // verify media (large, dark) visibility, content, css and attributes values
         await expect(this.mediaLargeDark).toBeVisible();
+
+        await expect(await this.detailL).toContainText(data.detailText);
+        await expect(await this.headingXL).toContainText(data.h2Text);
+        await expect(await this.bodyM).toContainText(data.bodyText);
+        await expect(await this.blueButton).toContainText(data.blueButtonText); 
+
         expect(await WebUtil.verifyCSS(this.media, this.cssProperties.media)).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.detailL, this.cssProperties['detail-l'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.headingXL, this.cssProperties['heading-xl'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.bodyTextM, this.cssProperties['body-m'])).toBeTruthy();
         expect(await WebUtil.verifyAttributes(this.mediaLargeDark, this.attProperties['media-large-dark'])).toBeTruthy();
 
-        expect(await WebUtil.verifyAttributes(this.blueButton, this.attProperties.filled)).toBeTruthy();
+        expect(await WebUtil.verifyAttributes(this.blueButton, this.attProperties['learn-more'])).toBeTruthy();
         expect(await WebUtil.verifyCSS(this.blueButton, this.cssProperties.blue)).toBeTruthy();
 
         return true;

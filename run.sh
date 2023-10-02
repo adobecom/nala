@@ -11,9 +11,9 @@ echo "PR Number: $PR_NUMBER"
 FEATURE_BRANCH="$GITHUB_HEAD_REF"
 # Replace "/" characters in the feature branch name with "-"
 FEATURE_BRANCH=$(echo "$FEATURE_BRANCH" | sed 's/\//-/g')
+echo "Feature Branch Name: $FEATURE_BRANCH"
 
 PR_BRANCH_LIVE_URL_GH="https://$FEATURE_BRANCH--$prRepo--$prOrg.hlx.live"
-
 # set pr branch url as env
 export PR_BRANCH_LIVE_URL_GH
 
