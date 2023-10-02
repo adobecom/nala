@@ -1,7 +1,5 @@
 import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
-import TextBlock from './text.block.page.js';
-import MediaBlock from './media.block.page.js';
 
 export default class Modal {
   constructor(page) {
@@ -15,11 +13,21 @@ export default class Modal {
     this.marqueeLight = this.page.locator('.marquee.light');
     this.modelSelector = '.dialog-modal';
 
+    // text block
+    this.text = this.modal.locator('.text');
+    this.textHeading = this.text.locator('h2');
+    this.textBodyM = this.text.locator('.body-m');
+
+    // media block
+    this.media = this.modal.locator('.media');
+    this.detailM = this.media.locator('.detail-m');
+    this.textHeadingMedia = this.media.locator('h2');
+    this.textBodySMedia = this.media.locator('.body-s').first();
+
     // modal contents attributes
     this.attProperties = {
       'modal-link': {
         class: 'modal link-block ',
-        'daa-ll': /^link\|(.*)/,
       },
     };
   }
@@ -32,9 +40,6 @@ export default class Modal {
  */
   async verifyModal(modalData) {
     try {
-      let text;
-      let media;
-
       // verify modal link attributes and then click
       const modalLink = await this.page.locator(`a[href="#${modalData.modalId}"]`);
       await expect(await modalLink).toBeVisible();
@@ -56,8 +61,9 @@ export default class Modal {
           )).toBeTruthy();
 
           // verify modal content (text fragment)
-          text = new TextBlock(this.page);
-          expect(await text.verifyText(modalData.contentType)).toBeTruthy();
+          await expect(await this.text).toBeVisible();
+          await expect(await this.textHeading).toContainText(modalData.h2Text);
+          await expect(await this.textBodyM).toContainText(modalData.bodyText);
 
           // close the modal
           await this.modalCloseButton.click();
@@ -73,8 +79,9 @@ export default class Modal {
           )).toBeTruthy();
 
           // verify modal content (media fragment)
-          media = new MediaBlock(this.page);
-          expect(await media.verifyMedia(modalData.contentType)).toBeTruthy();
+          await expect(await this.media).toBeVisible();
+          await expect(await this.textHeadingMedia).toContainText(modalData.h2Text);
+          await expect(await this.textBodySMedia).toContainText(modalData.bodyText);
 
           // close the modal using escape key press.
           await this.page.keyboard.press('Escape');
