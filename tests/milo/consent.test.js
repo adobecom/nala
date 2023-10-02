@@ -22,7 +22,7 @@ test.describe('Consent Component test suite', () => {
       await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
       // Wait for the OneTrust consent bar to appear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       await expect(Consent.oneTrustContainer).toBeVisible();
     });
 
@@ -51,7 +51,7 @@ test.describe('Consent Component test suite', () => {
       await page.reload();
       await page.waitForLoadState('domcontentloaded');
       // Wait for the OneTrust consent bar to reappear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       await expect(Consent.oneTrustContainer).toBeVisible();
     });
 
