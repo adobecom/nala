@@ -24,8 +24,8 @@ test.describe('User Profile Component test suite', () => {
 
     await test.step('Login with a valid Adobe account', async () => {
       // Click 'Sign In' label:
-      await Header.signInLabel.waitFor({ state: 'visible', timeout: 5000 });
-      await Header.signInLabel.click();
+      await Header.signInButton.waitFor({ state: 'visible', timeout: 5000 });
+      await Header.signInButton.click();
       await Login.loginOnAppForm(process.env.IMS_EMAIL, process.env.IMS_PASS);
     });
 

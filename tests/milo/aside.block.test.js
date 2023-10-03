@@ -23,7 +23,7 @@ test.describe('Aside Block test suite', () => {
       await expect(Aside.h2TitleXLarge).toBeVisible();
       await expect(Aside.textFieldSmall).toBeVisible();
       // Check Aside block buttons:
-      await expect(Aside.linkTextCta).toBeVisible();
+      await expect(Aside.textLink).toBeVisible();
       await expect(Aside.blueButtonCta).toBeVisible();
       await expect(Aside.blackButtonCta).toBeVisible();
       expect(await Aside.actionButtons.count()).toEqual(2);
@@ -391,7 +391,7 @@ test.describe('Aside Block test suite', () => {
       await expect(Aside.h3TitleXLarge).not.toBeVisible();
       await expect(Aside.textFieldMedium).toBeVisible();
       // Check Aside block buttons:
-      await expect(Aside.linkTextCta).toBeVisible();
+      await expect(Aside.textLink).toBeVisible();
       await expect(Aside.blueButtonCta).not.toBeVisible();
       await expect(Aside.blackButtonCta).toBeVisible();
       expect(await Aside.actionButtons.count()).toEqual(1);

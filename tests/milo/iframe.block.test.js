@@ -3,7 +3,7 @@ import { features } from '../../features/milo/iframe.block.spec.js';
 import IframeBlock from '../../selectors/milo/iframe.block.page.js';
 
 test.describe('Iframe Block test suite', () => {
-  // Aside Small Checks:
+  // Iframe Block Checks:
   test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Iframe = new IframeBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
