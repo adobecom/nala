@@ -6,36 +6,36 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-default',
       ],
-      browserParams: '?georouting=off',
+      browserParams: '?customPrivacyLocation=de&georouting=off',
       envs: '@milo_live',
-      tags: '@feds @jarvis @feds-jarvis',
+      tags: '@milo @feds @jarvis @smoke @regression',
     },
     {
       name: '@FEDS-Jarvis-Desktop',
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-desktop',
       ],
-      browserParams: '?georouting=off',
+      browserParams: '?customPrivacyLocation=de&georouting=off',
       envs: '@milo_live',
-      tags: '@feds @jarvis @feds-jarvis',
+      tags: '@milo @feds @jarvis @smoke @regression',
     },
     {
       name: '@FEDS-Jarvis-Disabled',
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-disabled',
       ],
-      browserParams: '?georouting=off',
+      browserParams: '?customPrivacyLocation=de&georouting=off',
       envs: '@milo_live',
-      tags: '@feds @jarvis @feds-jarvis',
+      tags: '@milo @feds @jarvis @smoke @regression',
     },
     {
       name: '@FEDS-Jarvis-Mobile',
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-mobile',
       ],
-      browserParams: '?georouting=off',
+      browserParams: '?customPrivacyLocation=de&georouting=off',
       envs: '@milo_live',
-      tags: '@feds @jarvis @feds-jarvis',
+      tags: '@milo @feds @jarvis @smoke @regression',
     },
   ],
 };
