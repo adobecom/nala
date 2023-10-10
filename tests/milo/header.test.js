@@ -2,7 +2,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/feds/header.spec.js';
+import { features } from '../../features/milo/header.spec.js';
 import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
 // eslint-disable-next-line import/no-extraneous-dependencies

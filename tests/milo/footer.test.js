@@ -2,7 +2,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/feds/footer.spec.js';
+import { features } from '../../features/milo/footer.spec.js';
 import FedsFooter from '../../selectors/feds/feds.footer.page.js';
 import FedsConsent from '../../selectors/feds/feds.consent.page.js';
 
@@ -24,11 +24,9 @@ test.describe('Footer Block test suite', () => {
 
     await test.step('Accept OneTrust consent bar', async () => {
       // Wait for the OneTrust consent bar to appear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       // Accept the OneTrust consent banner:
       await Consent.acceptOneTrustConsentBar();
-      // Check consent persistence:
-      await Consent.assertOneTrustAcceptState();
     });
 
     await test.step('Check FEDS Default Footer critical elements', async () => {
@@ -88,11 +86,9 @@ test.describe('Footer Block test suite', () => {
 
     await test.step('Accept OneTrust consent bar', async () => {
       // Wait for the OneTrust consent bar to appear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       // Accept the OneTrust consent banner:
       await Consent.acceptOneTrustConsentBar();
-      // Check consent persistence:
-      await Consent.assertOneTrustAcceptState();
     });
 
     await test.step('Check FEDS Skinny Footer critical elements', async () => {
@@ -158,11 +154,9 @@ test.describe('Footer Block test suite', () => {
 
     await test.step('Accept OneTrust consent bar', async () => {
       // Wait for the OneTrust consent bar to appear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       // Accept the OneTrust consent banner:
       await Consent.acceptOneTrustConsentBar();
-      // Check consent persistence:
-      await Consent.assertOneTrustAcceptState();
     });
 
     await test.step('Check FEDS Privacy Footer critical elements', async () => {

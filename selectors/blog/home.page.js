@@ -1,11 +1,11 @@
 export default class BlogHomePage {
   constructor(page) {
     this.page = page;
-       
+
     // Blog and Adobe Logo
     this.adobeLogo = this.page.locator('.gnav-logo');
     this.blogLogo = this.page.locator('.gnav-brand.no-logo');
-   
+
     // Gnav menu locators
     this.gnavMain = this.page.locator('.gnav-mainnav');
 
@@ -42,12 +42,12 @@ export default class BlogHomePage {
     // Article feed block locators
     this.articleFeedBlock = this.page.locator('.article-feed.appear');
     this.loadMoreArticlesButton = this.articleFeedBlock.locator('.load-more.con-button.outline');
-    
+
     // Footer locators
     this.globalFooter = this.page.locator('.global-footer');
     this.changeLanguageText = this.globalFooter.locator('.feds-regionPicker-text');
     this.changeLanguageButton = this.globalFooter.locator('.feds-regionPicker');
-    this.changeLanguageList = this.globalFooter.locator('.fragment p');    
+    this.changeLanguageList = this.globalFooter.locator('.fragment p');
     this.copywright = this.globalFooter.locator('.feds-footer-privacySection');
     this.privacyLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(0);
     this.termsOfUseLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(1);
@@ -56,4 +56,3 @@ export default class BlogHomePage {
     this.adChoicesLink = this.globalFooter.locator('a.feds-footer-privacyLink').nth(4);
   }
 }
-

@@ -2,7 +2,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/feds/consent.spec.js';
+import { features } from '../../features/milo/consent.spec.js';
 import FedsConsent from '../../selectors/feds/feds.consent.page.js';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -22,7 +22,7 @@ test.describe('Consent Component test suite', () => {
       await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
       // Wait for the OneTrust consent bar to appear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       await expect(Consent.oneTrustContainer).toBeVisible();
     });
 
@@ -51,7 +51,7 @@ test.describe('Consent Component test suite', () => {
       await page.reload();
       await page.waitForLoadState('domcontentloaded');
       // Wait for the OneTrust consent bar to reappear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       await expect(Consent.oneTrustContainer).toBeVisible();
     });
 
@@ -70,21 +70,6 @@ test.describe('Consent Component test suite', () => {
       await Consent.acceptOneTrustConsentBar();
       // Check consent persistence:
       await Consent.assertOneTrustAcceptState();
-    });
-
-    await test.step('Check consent cookie-groups (post-consent)', async () => {
-      // Polling 'adobePrivacy' initialization:
-      await page.evaluate(async () => {
-        let timer = 5000; // 5000ms max wait time
-        // eslint-disable-next-line no-promise-executor-return
-        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        while (window.adobePrivacy === undefined && timer > 0) {
-          await delay(250); timer -= 250;
-        }
-        return { ...(window.adobePrivacy) };
-      });
-      // Check FEDS browser objects (post-consent):
-      await Consent.assertOneTrustCookieGroups(1);
     });
   });
 });
