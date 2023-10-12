@@ -10,4 +10,3 @@ exports.Procedure = class Procedure {
     }
   
   };
-  
