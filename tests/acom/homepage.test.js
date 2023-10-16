@@ -15,7 +15,7 @@ test.describe('Acom Home page test suite', () => {
     webUtil = new WebUtil(page);
   });
 
-  // Verify Jarvis initialization on homepage
+  // Verify Jarvis initialization on acom homepage
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
 
