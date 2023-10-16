@@ -9,17 +9,18 @@ module.exports = {
       wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?customPrivacyLocation=de&georouting=off',
       envs: '@milo_live',
-      tags: '@feds @consent @feds-consent',
+      tags: '@milo @feds @consent @smoke @regression',
     },
-    {
-      name: '@DC-Consent-Checks',
-      path: [
-        '/acrobat/online/sign-pdf.html',
-      ],
-      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
-      browserParams: '?customPrivacyLocation=de&georouting=off',
-      envs: '@adobe_prod',
-      tags: '@dc @consent @dc-consent',
-    },
+    // !Note: To be moved/repurposed in @adobe_prod configured project!
+    // {
+    //   name: '@DC-Consent-Checks',
+    //   path: [
+    //     '/acrobat/online/sign-pdf.html',
+    //   ],
+    //   wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
+    //   browserParams: '?customPrivacyLocation=de&georouting=off',
+    //   envs: '@adobe_prod',
+    //   tags: '@milo @feds @consent @smoke @regression',
+    // },
   ],
 };

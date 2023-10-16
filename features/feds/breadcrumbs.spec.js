@@ -8,7 +8,7 @@ module.exports = {
       ],
       browserParams: '?georouting=off',
       envs: '@milo_live',
-      tags: '@feds @breadcrumbs @feds-breadcrumbs',
+      tags: '@milo @feds @breadcrumbs @smoke @regression',
     },
     {
       name: '@FEDS-Breadcrumbs-From-Document',
@@ -17,7 +17,7 @@ module.exports = {
       ],
       browserParams: '?georouting=off',
       envs: '@milo_live',
-      tags: '@feds @breadcrumbs @feds-breadcrumbs',
+      tags: '@milo @feds @breadcrumbs @smoke @regression',
     },
     {
       name: '@FEDS-Breadcrumbs-Hidden-Links',
@@ -26,7 +26,7 @@ module.exports = {
       ],
       browserParams: '?georouting=off',
       envs: '@milo_live',
-      tags: '@feds @breadcrumbs @feds-breadcrumbs',
+      tags: '@milo @feds @breadcrumbs @smoke @regression',
     },
     {
       name: '@FEDS-Breadcrumbs-No-Hidden-Links',
@@ -35,7 +35,7 @@ module.exports = {
       ],
       browserParams: '?georouting=off',
       envs: '@milo_live',
-      tags: '@feds @breadcrumbs @feds-breadcrumbs',
+      tags: '@milo @feds @breadcrumbs @smoke @regression',
     },
   ],
 };

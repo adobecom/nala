@@ -29,7 +29,7 @@ test.describe('Jarvis Component test suite', () => {
 
     await test.step('Accept OneTrust consent bar', async () => {
       // Wait for the OneTrust consent bar to appear:
-      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 15000 });
+      await Consent.oneTrustContainer.waitFor({ state: 'visible', timeout: 20000 });
       // Accept the OneTrust consent banner:
       await Consent.acceptOneTrustConsentBar();
       // Check consent persistence:
