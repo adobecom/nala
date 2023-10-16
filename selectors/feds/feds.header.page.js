@@ -21,6 +21,7 @@ export default class FedsHeader {
     this.closeSearch = page.locator('span.feds-search-close, button.gnav-search-button[daa-lh="header|Close"]');
     this.searchResults = page.locator('#feds-search-results, .gnav-search-results');
     this.advancedSearchLink = page.locator('#feds-search-results li a, .gnav-search-results li a');
+    this.helpSupportMenu = page.locator('//*[contains(@daa-ll,"Help_Support")]');
 
     this.profileIcon = page.locator('button.feds-profile-button');
     this.profileModal = page.locator('div#feds-profile-menu');
