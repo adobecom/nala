@@ -5,6 +5,15 @@ import { BeforeAfter } from '../../selectors/helpx/procedure.selectors.js';
 let beforeAftr;
 
 test.beforeAll(async({browser})=>{
+  if (process.env.HLX_TKN !== undefined && process.env.HLX_TKN !== "") {
+    // The environment variable is set and has a non-blank value
+    console.log("Environment variable is set and not blank");
+  } else {
+    // The environment variable is either not set or has a blank value
+    const errorMessage = "Environment variable 'HLX_TKN' is not set or blank. Please ensure it is properly configured.";
+    throw new Error(errorMessage);
+  }
+
   const authToken = process.env.HLX_TKN;
   const context = await browser.newContext();
      // Set the authorization token in the header
