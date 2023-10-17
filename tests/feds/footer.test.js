@@ -2,7 +2,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable import/extensions */
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/milo/footer.spec.js';
+import { features } from '../../features/feds/footer.spec.js';
 import FedsFooter from '../../selectors/feds/feds.footer.page.js';
 import FedsConsent from '../../selectors/feds/feds.consent.page.js';
 
