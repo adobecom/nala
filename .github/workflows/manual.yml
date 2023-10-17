@@ -28,6 +28,7 @@ jobs:
           labels: ${{ inputs.tags }}
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
+          HLX_TKN: ${{ secrets.HLX_TKN }}
       - name: Persist JSON Artifact
         uses: actions/upload-artifact@v3
         if: always()
