@@ -92,18 +92,48 @@ exports.WebUtil = class WebUtil {
   }
 
   /**
+ * function to get RGB values.
+ * @param {hex} hex value of a color / background .
+ */
+  static async hexToRgb(hex) {
+    hex = hex.replace(/^#/, '');  
+    // If the hex value is short (e.g., "fff"), expand it to the full format (e.g., "ffffff")
+    if (hex.length === 3) {
+      hex = hex
+        .split('')
+        .map(char => char + char)
+        .join('');
+    }  
+    const bigint = parseInt(hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+  
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  
+
+  /**
  * Verifies that the specified CSS properties of the given locator match the expected values.
  * @param {Object} locator - The locator to verify CSS properties for.
  * @param {Object} cssProps - The CSS properties and expected values to verify.
  * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
  */
   static async verifyCSS(locator, cssProps) {
-    this.locator = locator;
+    this.locator =  locator;
     // Verify the CSS properties and values
     let result = true;
     await Promise.allSettled(
       Object.entries(cssProps).map(async ([property, expectedValue]) => {
         try {
+          const prop = property.toLocaleLowerCase();
+          if (prop.includes('color') || prop.includes('background') || prop.includes('border-color') ) {
+            // Convert the expected color value to RGB if it's in hex format
+            if (expectedValue.startsWith('#')) {
+              expectedValue = await this.hexToRgb(expectedValue);
+            }
+          }
+          //console.log('property : ', property ,'::', expectedValue);
           await expect(this.locator).toHaveCSS(property, expectedValue);
         } catch (error) {
           console.error(`CSS property ${property} not found:`, error);
@@ -130,14 +160,14 @@ exports.WebUtil = class WebUtil {
           // split the string value into individual classes
           const classes = expectedValue.split(' ');
           try {
-            await expect(this.locator).toHaveClass(classes.join(' '));
+            await expect(await this.locator).toHaveClass(classes.join(' '));
           } catch (error) {
             console.error('Attribute class not found:', error);
             result = false;
           }
         } else {
-          try {
-            await expect(this.locator).toHaveAttribute(property, expectedValue);
+          try {   
+            await expect(await this.locator).toHaveAttribute(property, expectedValue);
           } catch (error) {
             console.error(`Attribute ${property} not found:`, error);
             result = false;

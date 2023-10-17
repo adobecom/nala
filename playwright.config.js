@@ -10,6 +10,7 @@ const config = {
   testDir: './tests/milo',
   outputDir: './test-results',
   globalSetup: './global.setup.js',
+  snapshotDir: './snapshots/milo/',  
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -18,6 +19,10 @@ const config = {
      * For example in `await expect(locator).toHaveText();`
      */
     timeout: 5000,
+    toMatchSnapshot: {
+      maxDiffPixels: 100,
+      threshold: 0.3
+    }
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -34,7 +39,7 @@ const config = {
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 60000,
+    actionTimeout: 60000,    
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 
