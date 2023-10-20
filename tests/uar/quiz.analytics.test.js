@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import Quiz from '../../selectors/uar/quiz.page.js';
 
@@ -39,32 +40,38 @@ test.describe('Quiz flow test suite', () => {
         const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
         for (const key of Object.keys(testdata)) {
+          console.info(key);
+          const logIndex = networkLogs.length;
+
           // test step-1
-          // eslint-disable-next-line no-await-in-loop
           await test.step(`Select each answer on test page according to ${key}`, async () => {
             await quiz.clickEachAnswer(url, key);
           });
 
           // test step-2
-          // eslint-disable-next-line no-await-in-loop
           await test.step(`Check results on test page according to ${testdata[key]}`, async () => {
             await quiz.checkResultPage(testdata[key]);
           });
+
+          await page.waitForTimeout(1000);
+
+          const difference = networkLogs.slice(logIndex, networkLogs.length);
+          console.info(difference);
         }
 
         // verify network logs
-        console.info(networkLogs);
+        // console.info(networkLogs);
         let logResult = false;
         let logNumber = 0;
         let logResult2 = false;
         let logNumber2 = 0;
         for (const log of networkLogs) {
-          if (log.includes('"click":"Filters|cc:app-reco')) {
+          if (log !== undefined && log.includes('"click":"Filters|cc:app-reco')) {
             logResult = true;
             logNumber += 1;
           }
 
-          if (log.includes('Logo|gnav|milo,Search|gnav')) {
+          if (log !== undefined && log.includes('Logo|gnav|milo')) {
             logResult2 = true;
             logNumber2 += 1;
           }

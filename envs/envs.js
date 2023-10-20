@@ -17,4 +17,5 @@ module.exports = {
   '@uar_live': 'https://uar-integration--milo--adobecom.hlx.live',
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
+  '@helpxInternal_live':'https://helpx-internal.stage.adobe.com',
 };
