@@ -109,26 +109,50 @@ export default class Quiz {
         newProduct.push(await actualProduct2.innerText());
 
         if (name.includes('double') || name.includes('triple')) {
-          const actualProduct3 = await this.uarResult3.nth(1);
-          newProduct.push(await actualProduct3.innerText());
+          try {
+            const actualProduct3 = await this.uarResult3.nth(1);
+            newProduct.push(await actualProduct3.innerText());
+          } catch (error) {
+            if (error instanceof Error && error.message.includes('waiting for locator')) {
+              console.info('No second product');
+            }
+          }
         }
 
         if (name.includes('triple')) {
-          const actualProduct4 = await this.uarResult3.nth(2);
-          newProduct.push(await actualProduct4.innerText());
+          try {
+            const actualProduct4 = await this.uarResult3.nth(2);
+            newProduct.push(await actualProduct4.innerText());
+          } catch (error) {
+            if (error instanceof Error && error.message.includes('waiting for locator')) {
+              console.info('No third product');
+            }
+          }
         }
       } else {
         const actualProduct2 = await this.uarResult2.nth(0);
         newProduct.push(await actualProduct2.innerText());
 
         if (name.includes('double') || name.includes('triple')) {
-          const actualProduct3 = await this.uarResult2.nth(1);
-          newProduct.push(await actualProduct3.innerText());
+          try {
+            const actualProduct3 = await this.uarResult2.nth(1);
+            newProduct.push(await actualProduct3.innerText());
+          } catch (error) {
+            if (error instanceof Error && error.message.includes('waiting for locator')) {
+              console.info('No second product');
+            }
+          }
         }
 
         if (name.includes('triple')) {
-          const actualProduct4 = await this.uarResult2.nth(2);
-          newProduct.push(await actualProduct4.innerText());
+          try {
+            const actualProduct4 = await this.uarResult2.nth(2);
+            newProduct.push(await actualProduct4.innerText());
+          } catch (error) {
+            if (error instanceof Error && error.message.includes('waiting for locator')) {
+              console.info('No third product');
+            }
+          }
         }
       }
     } else {
