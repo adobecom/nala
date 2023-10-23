@@ -99,8 +99,7 @@ class BaseReporter {
     console.log('# Test Pass          : ', this.passedTests, `(${passPercentage}%)`);
     console.log('# Test Fail          : ', this.failedTests, `(${failPercentage}%)`);
     console.log('# Test Skipped       : ', this.skippedTests);
-    console.log('\n');
-    console.log('** Application URL     : ', envURL);
+      console.log('** Application URL     : ', envURL);
     console.log('** Executed on         : ', exeEnv);  
 
     if (this.failedTests > 0) {
@@ -108,7 +107,7 @@ class BaseReporter {
       this.results
         .filter((result) => result.status === 'failed')
         .forEach((failedTest) => {
-          console.log(`Test: ${failedTest.title.split(',')[0]}`);
+          console.log(`Test: ${failedTest.title.split('@')[1]}`);
           console.log(`Error Message: ${failedTest.errorMessage}`);
           console.log(`Error Stack: ${failedTest.errorStack}`);
           console.log('-------------------------');
