@@ -31,7 +31,7 @@ test.describe('Milo Marquee Block test suite', () => {
  
       await expect(await marquee.marqueeLight).toBeVisible();
 
-      await expect(await marquee.headingXL1).toContainText(data.h2Text);
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
       await expect(await marquee.bodyM).toContainText(data.bodyText);
       await expect(await marquee.outlineButton).toContainText(data.outlineButtonText);
       await expect(await marquee.blueButton).toContainText(data.blueButtonText);
