@@ -99,7 +99,7 @@ class BaseReporter {
     console.log('# Test Pass          : ', this.passedTests, `(${passPercentage}%)`);
     console.log('# Test Fail          : ', this.failedTests, `(${failPercentage}%)`);
     console.log('# Test Skipped       : ', this.skippedTests);
-      console.log('** Application URL     : ', envURL);
+    console.log('** Application URL     : ', envURL);
     console.log('** Executed on         : ', exeEnv);  
 
     if (this.failedTests > 0) {
