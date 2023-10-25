@@ -5,11 +5,16 @@ import MarqueeBlock from '../../selectors/milo/marquee.block.page.js';
 
 let webUtil;
 let marquee;
+let consoleErrors = [];
 
 test.describe('Milo Marquee Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
     marquee = new MarqueeBlock(page);
+
+    page.on('pageerror', (exception) => {
+      consoleErrors.push(exception);
+    });  
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
@@ -21,8 +26,23 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
 
-    await test.step('step-2: Verify marquee(light) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (light)')).toBeTruthy();
+    await test.step('step-2: Verify marquee(light) specs', async () => {
+      const { data } = features[0];
+ 
+      await expect(await marquee.marqueeLight).toBeVisible();
+
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+      await expect(await marquee.outlineButton).toContainText(data.outlineButtonText);
+      await expect(await marquee.blueButton).toContainText(data.blueButtonText);
+
+      await expect(await marquee.backgroundImage).toBeVisible();    
+      expect(await webUtil.verifyAttributes_(marquee.backgroundImage, marquee.attributes['marquee.light']['backgroundImg'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -35,8 +55,22 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (small) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (small)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (small) specs', async () => {
+      const { data } = features[1];
+
+      await expect(await marquee.marqueeSmall).toBeVisible();      
+
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+      await expect(await marquee.blueButton).toContainText(data.blueButtonText);      
+
+      await expect(await marquee.backgroundImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.backgroundImage, marquee.attributes['marquee.small']['backgroundImg'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -49,8 +83,25 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (small, light) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (small, light)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (small, light) specs', async () => {
+      const { data } = features[2];
+
+      await expect(await marquee.marqueeSmallLight).toBeVisible();
+
+      await expect(await marquee.detailM).toContainText(data.detailText);
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+      await expect(await marquee.outlineButton).toContainText(data.outlineButtonText);        
+      await expect(await marquee.blueButton).toContainText(data.blueButtonText);
+      
+      await expect(await marquee.backgroundImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.backgroundImage, marquee.attributes['marquee.small.light']['backgroundImg'])).toBeTruthy();
+      
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -63,8 +114,23 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (large) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (large)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (large) specs', async () => {
+      const { data } = features[3];
+
+      await expect(await marquee.marqueeLarge).toBeVisible();
+
+      await expect(await marquee.headingXXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyXL).toContainText(data.bodyText);
+      await expect(await marquee.outlineButtonXL).toContainText(data.outlineButtonText);      
+      await expect(await marquee.blueButtonXL).toContainText(data.blueButtonText);
+
+      await expect(await marquee.backgroundImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.backgroundImage, marquee.attributes['marquee.large']['backgroundImg'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -77,8 +143,23 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (large, light) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (large, light)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (large, light) specs', async () => {
+      const { data } = features[4];
+
+      await expect(await marquee.marqueeLargeLight).toBeVisible();
+
+      await expect(await marquee.headingXXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyXL).toContainText(data.bodyText);
+      await expect(await marquee.outlineButtonXL).toContainText(data.outlineButtonText);        
+      await expect(await marquee.blueButtonXL).toContainText(data.blueButtonText);
+
+      await expect(await marquee.backgroundImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.backgroundImage, marquee.attributes['marquee.large.light']['backgroundImg'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -91,8 +172,22 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (quiet) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (quiet)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (quiet) specs', async () => {
+      const { data } = features[5];
+
+      await expect(await marquee.marqueeQuiet).toBeVisible();
+
+      await expect(await marquee.detailM).toContainText(data.detailText);
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);   
+      await expect(await marquee.blueButton).toContainText(data.blueButtonText); 
+      
+      await expect(await marquee.backgroundImage).toBeHidden();      
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -106,7 +201,20 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-2: Verify Marquee (inline) specs', async () => {
-      expect(await marquee.verifyMarquee('marquee (inline)')).toBeTruthy();
+      const { data } = features[6];
+
+      await expect(await marquee.marqueeInline).toBeVisible();
+
+      await expect(await marquee.detailM).toContainText(data.detailText);
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+
+      await expect(await marquee.backgroundImage).toBeHidden();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -119,8 +227,23 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[7].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (split, small) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (split, small)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (split, small) specs', async () => {
+      const { data } = features[7];
+
+      await expect(marquee.marqueeSplitSmall).toBeVisible();
+
+      await expect(await marquee.detailM).toContainText(data.detailText);
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+      await expect(await marquee.outlineButton).toContainText(data.outlineButtonText);      
+      await expect(await marquee.blueButton).toContainText(data.blueButtonText);
+
+      expect(await webUtil.verifyAttributes_(marquee.marqueeSplitSmall, marquee.attributes['marquee.split.small']['style'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -133,8 +256,28 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[8].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (split, large) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (split, large)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (split, large) specs ', async () => {
+      const { data } = features[8];
+
+      await expect(await marquee.marqueeSplitLarge).toBeVisible();
+
+      await expect(await marquee.detailL).toContainText(data.detailText);
+      await expect(await marquee.headingXXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyXL).toContainText(data.bodyText);
+      await expect(await marquee.blueButtonXL).toContainText(data.outlineButtonText);      
+      await expect(await marquee.actionLink2).toContainText(data.linkText);
+      
+      await expect(await marquee.iconImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.iconImage, marquee.attributes['marquee.split.large']['iconImg'])).toBeTruthy();
+
+      await expect(await marquee.mediaImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.mediaImage, marquee.attributes['marquee.split.large']['mediaImg'])).toBeTruthy();
+
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -147,8 +290,27 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[9].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (split, one-third, large, light) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (split, one-third, large, light)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (split, one-third, large, light) specs', async () => {
+      const { data } = features[9];
+
+      await expect(marquee.marqueeSplitOneThirdLargeLight).toBeVisible();
+      
+      await expect(await marquee.detailL).toContainText(data.detailText);
+      await expect(await marquee.headingXXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyXL).toContainText(data.bodyText);
+      await expect(await marquee.blueButtonXL).toContainText(data.outlineButtonText);      
+      await expect(await marquee.actionLink2).toContainText(data.linkText);
+
+      await expect(await marquee.iconImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.iconImage, marquee.attributes['marquee.split.one-third-large']['iconImg'])).toBeTruthy();
+
+      await expect(await marquee.mediaImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.mediaImage, marquee.attributes['marquee.split.one-third-large']['mediaImg'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -161,8 +323,27 @@ test.describe('Milo Marquee Block test suite', () => {
       await expect(page).toHaveURL(`${baseURL}${features[10].path}`);
     });
 
-    await test.step('step-2: Verify Marquee (split, one-third) and its content are visibility', async () => {
-      expect(await marquee.verifyMarquee('marquee (split, one-third)')).toBeTruthy();
+    await test.step('step-2: Verify Marquee (split, one-third) specs', async () => {
+      const { data } = features[10];
+            
+      await expect(await marquee.marqueeSplitOneThird).toBeVisible();
+
+      await expect(await marquee.detailM).toContainText(data.detailText);
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+      await expect(await marquee.blueButtonL).toContainText(data.outlineButtonText);      
+      await expect(await marquee.actionLink2).toContainText(data.linkText); 
+
+      await expect(await marquee.iconImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.iconImage, marquee.attributes['marquee.split.one-third']['iconImg'])).toBeTruthy();
+
+      await expect(await marquee.mediaImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.mediaImage, marquee.attributes['marquee.split.one-third']['mediaImg'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 
@@ -176,7 +357,83 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-2: Verify Marquee (split,one-third,small,light) specs', async () => {
-      expect(await marquee.verifyMarquee('marquee (split, one-third, small, light)')).toBeTruthy();
+      const { data } = features[11];
+
+      await expect(marquee.marqueeSplitOneThirdSmallLight).toBeVisible();
+
+      await expect(await marquee.detailM).toContainText(data.detailText);
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+      await expect(await marquee.blueButtonL).toContainText(data.outlineButtonText);
+
+      await expect(await marquee.mediaImage).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.mediaImage, marquee.attributes['marquee.split.one-third']['mediaImg'])).toBeTruthy();
+
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
+    });
+  });
+
+  test(`${features[12].name},${features[12].tags}`, async ({ page, baseURL }) => {
+    console.info(`[Test Page]: ${baseURL}${features[12].path}`);
+
+    await test.step('step-1: Go to Marquee (small) block test page', async () => {
+      await page.goto(`${baseURL}${features[12].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[12].path}`);
+    });
+
+    await test.step('step-2: Verify Marquee (small) specs', async () => {
+      const { data } = features[12];
+
+      await expect(await marquee.marqueeSmall).toBeVisible();      
+
+      await expect(await marquee.headingXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyM).toContainText(data.bodyText);
+      await expect(await marquee.blueButton).toContainText(data.blueButtonText);      
+
+      await expect(await marquee.backgroundVideo).toBeVisible();
+      expect(await webUtil.verifyAttributes_(marquee.backgroundVideo, marquee.attributes['backgroundVideo.inline'])).toBeTruthy();
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
+    });
+  });
+
+  test(`${features[13].name},${features[13].tags}`, async ({ page, baseURL }) => {
+    console.info(`[Test Page]: ${baseURL}${features[13].path}`);
+
+    await test.step('step-1: Go to Marquee (large, light ) block test page', async () => {
+      await page.goto(`${baseURL}${features[13].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[13].path}`);
+    });
+
+    await test.step('step-2: Verify Marquee (large, light) desktop background specs', async () => {
+      const { data } = features[13];
+
+      await expect(await marquee.marqueeLargeLight).toBeVisible();
+
+      await expect(await marquee.headingXXL).toContainText(data.h2Text);
+      await expect(await marquee.bodyXL).toContainText(data.bodyText);       
+      await expect(await marquee.blueButtonXL).toContainText(data.blueButtonText);
+      await expect(await marquee.actionLink2).toContainText(data.linkText); 
+
+      await expect(await marquee.backgroundVideoDesktop).toBeVisible(); 
+      expect(await webUtil.verifyAttributes_(marquee.backgroundVideoDesktop, marquee.attributes['backgroundVideo.inline'])).toBeTruthy();
+
+      const sourceElement = await marquee.backgroundVideoDesktop.locator('source');
+      expect(await sourceElement.getAttribute('src')).toContain('.mp4');
+    });
+
+    await test.step('step-3: Verify and log if any console errors', async () => {
+      consoleErrors.length > 0 && console.log('[Console error]:', consoleErrors);      
+      expect.soft(consoleErrors.length).toBe(0);      
     });
   });
 });

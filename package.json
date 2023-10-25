@@ -25,10 +25,11 @@
   },
   "homepage": "https://github.com/adobecom/nala#readme",
   "dependencies": {
-    "@playwright/test": "^1.37",
     "@axe-core/playwright": "^4.7.0",
+    "@playwright/test": "^1.37",
     "axe-html-reporter": "^2.2.3",
     "axios": "^1.3.4",
+    "css": "^3.0.0",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
