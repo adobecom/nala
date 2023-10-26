@@ -13,7 +13,7 @@ test.describe('Milo Marquee Block test suite', () => {
     webUtil = new WebUtil(page);
     marquee = new MarqueeBlock(page);
 
-    page.on('console', (exception) => {
+    page.on('pageerror', (exception) => {
       if (exception.type() === 'error') {
         consoleErrors.push(exception.text());
       }
@@ -541,7 +541,7 @@ test.describe('Milo Marquee Block test suite', () => {
       const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
       const actionLink2Daalh = data.linkText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
 
-      expect(await webUtil.verifyAttributes_(await marquee.marqueeLargeLight, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
+      expect(await webUtil.verifyAttributes_(marquee.marqueeLargeLight, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
       await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', blueButtonDaalh);  
       await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', actionLink2Daalh);    
     });
