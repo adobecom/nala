@@ -8,7 +8,7 @@ let video;
 let consoleErrors = [];
 const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
 
-test.describe('Milo Accordion Block test suite', () => {
+test.describe('Milo Video Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
     video = new VideoBlock(page);
@@ -125,7 +125,7 @@ test.describe('Milo Accordion Block test suite', () => {
     await test.step('step-2: Verify video block content/specs', async () => {
       await expect(await video.video).toBeVisible();
       await expect(await video.content).toContainText(data.h2Text);
-      await new Promise(resolve => setTimeout(resolve, 15000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       await video.video.hover();
 
       expect(await webUtil.verifyAttributes_(video.video, video.attributes['video.autoplay.once'])).toBeTruthy();
