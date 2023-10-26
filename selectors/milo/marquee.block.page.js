@@ -6,8 +6,10 @@ export default class Marquee {
     this.marqueeLight = page.locator('.marquee.light');
     this.marqueeSmall = page.locator('.marquee.small');
     this.marqueeSmallLight = page.locator('.marquee.small.light');
+    this.marqueeSmallDark = page.locator('.marquee.small.dark');
     this.marqueeLarge = page.locator('.marquee.large');
     this.marqueeLargeLight = page.locator('.marquee.large.light');
+    this.marqueeLargeDark = page.locator('.marquee.large.dark');
     this.marqueeQuiet = page.locator('.marquee.quiet');
     this.marqueeInline = page.locator('.marquee');
     this.marqueeSplitSmall = page.locator('.marquee.split.small');
@@ -170,12 +172,28 @@ export default class Marquee {
         'loop': '',
         'muted': ''
       },
+      'backgroundVideo.loopOnce': {
+        'playsinline': '',
+        'autoplay': '',
+        'muted': ''
+      },
       'backgroundVideo.controls': {
         'controls': '',
         'autoplay': '',
         'loop': '',
         'muted': ''
-      },   
+      },      
+      'analytics': {
+        'marquee.daa-lh': {
+          'daa-lh': /b[1-9]|marquee|default|default/,
+        }, 
+        'section.daa-lh': {
+          'daa-lh': /s[1-9]/,
+        },
+        'content.daa-lh': {
+          'daa-lh': /b[1-9]|content|default|default/,
+        },         
+      },     
     };
   }
 };
