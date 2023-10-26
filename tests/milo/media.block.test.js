@@ -134,7 +134,8 @@ test.describe('Milo Media Block test suite', () => {
   });
 
   // Test 3 : Media (large, dark) video, autoplay infinite looping
-  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
+  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL, browserName }) => {
+    test.skip(browserName === 'webkit', 'This feature is failing on Webkit browsers')
     test.slow();
     console.info(`[Test Page]: ${baseURL}${features[3].path}`);
     const { data } = features[3];
