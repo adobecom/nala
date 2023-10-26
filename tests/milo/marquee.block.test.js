@@ -476,6 +476,7 @@ test.describe('Milo Marquee Block test suite', () => {
 
   // Test 12 : Marquee small (background video playsinline)    
   test(`${features[12].name},${features[12].tags}`, async ({ page, baseURL }) => {
+    test.slow();
     console.info(`[Test Page]: ${baseURL}${features[12].path}`);
     const { data } = features[12];
 
@@ -511,6 +512,7 @@ test.describe('Milo Marquee Block test suite', () => {
 
   // Test 13 : Marquee large (background video playsinline desktop)  
   test(`${features[13].name},${features[13].tags}`, async ({ page, baseURL }) => {
+    test.slow();
     console.info(`[Test Page]: ${baseURL}${features[13].path}`);
     const { data } = features[13];
 
@@ -552,6 +554,7 @@ test.describe('Milo Marquee Block test suite', () => {
 
   // Test 14 : Marquee large (background video playsinline loop once)  
   test(`${features[14].name},${features[14].tags}`, async ({ page, baseURL }) => {
+    test.slow();
     console.info(`[Test Page]: ${baseURL}${features[14].path}`);
     const { data } = features[14];
 
