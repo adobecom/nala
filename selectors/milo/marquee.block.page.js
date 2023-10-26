@@ -6,6 +6,7 @@ export default class Marquee {
     this.marqueeLight = page.locator('.marquee.light');
     this.marqueeSmall = page.locator('.marquee.small');
     this.marqueeSmallLight = page.locator('.marquee.small.light');
+    this.marqueeSmallDark = page.locator('.marquee.small.dark');
     this.marqueeLarge = page.locator('.marquee.large');
     this.marqueeLargeLight = page.locator('.marquee.large.light');
     this.marqueeLargeDark = page.locator('.marquee.large.dark');

@@ -500,7 +500,7 @@ test.describe('Milo Marquee Block test suite', () => {
     await test.step('step-3: Verify analytic attributes', async () => {
       const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
 
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSmall, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
+      expect(await webUtil.verifyAttributes_(marquee.marqueeSmallDark, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
       await expect(await marquee.blueButtonL).toHaveAttribute('daa-ll', blueButtonDaalh);
     });
 
