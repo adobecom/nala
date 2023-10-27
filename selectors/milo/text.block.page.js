@@ -31,9 +31,9 @@ export default class Text {
     this.textLinkColumnOne = this.text.locator('div div:nth-child(1) a');
     this.linkFormText = this.text.locator('p').nth(1);
     
+    this.textBodyXSS = this.text.locator('.body-xxs').first();
     this.textBodyM = this.text.locator('.body-m').first();
-    this.textBodyL = this.text.locator('.body-l').first();
-    this.textBodyM1 = this.text.locator('.body-m').first();
+    this.textBodyL = this.text.locator('.body-l').first(); 
        
     this.textPropertiesHeadingM = this.text.locator('#properties-h3').first();
 
@@ -47,10 +47,10 @@ export default class Text {
     this.textInsetLargeMSpacingList2 = this.page.locator('.text.inset.medium.m-spacing ul').nth(1);
     this.listTwoItems = this.textInsetLargeMSpacingList2.locator('li')
 
-    this.generalTermsOfUse = this.textlegal.locator('.body-m').nth(1);
-    this.publishText = this.textlegal.locator('.body-m').nth(2);
-    this.generalTerms = this.textlegal.locator('.body-m').nth(4);
-    this.legalInfoLink = this.textlegal.locator('.body-m').nth(5);
+    this.generalTermsOfUse = this.textlegal.locator('.body-xxs').nth(1);
+    this.publishText = this.textlegal.locator('.body-xxs').nth(2);
+    this.generalTerms = this.textlegal.locator('.body-xxs').nth(4);
+    this.legalInfoLink = this.textlegal.locator('.body-xxs').nth(5);
 
     // text block contents css
     this.cssProperties = {
@@ -78,13 +78,13 @@ export default class Text {
         'font-size': '36px',
         'line-height': '45px',
       },
+      'body-xss': {
+        'font-size': '12px',
+        'line-height': '18px',
+      },
       'body-m': {
         'font-size': '18px',
         'line-height': '27px',
-      },
-      'body-m1': {
-        'font-size': '12px',
-        'line-height': '18px',
       },
       'body-l': {
         'font-size': '20px',
@@ -251,7 +251,7 @@ export default class Text {
         await expect(await this.legalInfoLink).toContainText(data.linkText);
     
         expect(await WebUtil.verifyAttributes(await this.textlegal, this.attProperties['text-legal'])).toBeTruthy();
-        expect(await WebUtil.verifyCSS(await this.textBodyM1, this.cssProperties['body-m1'])).toBeTruthy();
+        expect(await WebUtil.verifyCSS(await this.textBodyXSS, this.cssProperties['body-xss'])).toBeTruthy();
      
         return true;
 
