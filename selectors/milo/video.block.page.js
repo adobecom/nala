@@ -19,6 +19,8 @@ export default class Video {
     this.modalVideoSource = this.modalVideo.locator('source');
     this.consonantCardsGrid = this.page.locator('.consonant-CardsGrid');
     this.consonantCards = this.consonantCardsGrid.locator('.card.consonant-Card');
+    this.video = this.page.locator('.content video');
+    this.videoSource = this.video.locator('source');
 
     // video block attributes
     this.attributes = {
@@ -59,7 +61,7 @@ export default class Video {
         'scrolling': 'no',
         'allowfullscreen': '',
         'allow': 'encrypted-media; accelerometer; gyroscope; picture-in-picture',
-      },
+      },   
       'analytics': {
         'section.daa-lh': {
           'daa-lh': /s[1-9]/,

@@ -139,7 +139,7 @@ test.describe('Milo Video Block test suite', () => {
     await test.step('step-4: Verify browser console errors', async () => {
       consoleErrors.length > knownConsoleErrors.length && console.log('[Console error]:', consoleErrors);      
       expect.soft(consoleErrors.length).toBeLessThanOrEqual(knownConsoleErrors.length);      
-    });    
+    }); 
   });
   
   // Test 4 : MPC Video
