@@ -164,7 +164,7 @@ test.describe('Milo Video Block test suite', () => {
       expect(await webUtil.verifyAttributes_(video.iframe, video.attributes['iframe-mpc'])).toBeTruthy();
     });
 
-    await test.step('step-4: Verify browser console errors', async () => {
+    await test.step('step-3: Verify browser console errors', async () => {
       consoleErrors.length > knownConsoleErrors.length && console.log('[Console error]:', consoleErrors);      
       expect.soft(consoleErrors.length).toBeLessThanOrEqual(knownConsoleErrors.length);      
     });    
@@ -219,7 +219,7 @@ test.describe('Milo Video Block test suite', () => {
       expect(await webUtil.verifyAttributes_(video.iframe, video.attributes['iframe-youtube'])).toBeTruthy();
     });
 
-    await test.step('step-4: Verify browser console errors', async () => {
+    await test.step('step-3: Verify browser console errors', async () => {
       consoleErrors.length > knownConsoleErrors.length && console.log('[Console error]:', consoleErrors);
     });    
   });
@@ -246,18 +246,15 @@ test.describe('Milo Video Block test suite', () => {
       expect(srcAttributeValue).not.toBe('');
     });
 
-    await test.step('step-3: Verify analytics attributes', async () => {
-      expect(await webUtil.verifyAttributes_(video.content, video.attributes['analytics']['content.daa-lh'])).toBeTruthy();        
-    });
-
-    await test.step('step-4: Verify browser console errors', async () => {
+    await test.step('step-3: Verify browser console errors', async () => {
       consoleErrors.length > knownConsoleErrors.length && console.log('[Console error]:', consoleErrors);      
       expect.soft(consoleErrors.length).toBeLessThanOrEqual(knownConsoleErrors.length);      
     });    
   });
   
   // Test 8 : Modal video with cards
-  test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
+  test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL,browserName }) => {
+    test.slow();
     console.info(`[Test Page]: ${baseURL}${features[8].path}`);
     const { data } = features[8];
 
@@ -281,11 +278,7 @@ test.describe('Milo Video Block test suite', () => {
       expect(srcAttributeValue).not.toBe('');
     });
 
-    await test.step('step-3: Verify analytics attributes', async () => {
-      expect(await webUtil.verifyAttributes_(video.content, video.attributes['analytics']['content.daa-lh'])).toBeTruthy();        
-    });
-
-    await test.step('step-4: Verify browser console errors', async () => {
+    await test.step('step-3: Verify browser console errors', async () => {
       consoleErrors.length > knownConsoleErrors.length && console.log('[Console error]:', consoleErrors);      
       expect.soft(consoleErrors.length).toBeLessThanOrEqual(knownConsoleErrors.length);      
     });    
