@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@Footer',
-      path: '/test/features/blocks/footer',
+      path: '/libs/feds/drafts/qa/footer/feds-default-footer',
       tags: '@footer-visual, @feds-visual, @visual, @visual-smoke, @visual-regression',
     },
   ],

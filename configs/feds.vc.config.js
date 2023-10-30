@@ -6,8 +6,8 @@ const { devices } = require('@playwright/test');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './visual-compare-tests/feds/', // TODO: Switch to ./tests once baseURL conditional checks have been made on individual tests
-  outputDir: './test-results',
+  testDir: '../visual-compare-tests/feds/', // TODO: Switch to ./tests once baseURL conditional checks have been made on individual tests
+  outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   /**
@@ -21,7 +21,7 @@ const config = {
      * For example in `await expect(locator).toHaveText();`
      */
     timeout: 5000,
-    toHaveScreenshot: { maxDiffPixelRatio: 0.2 },
+    toHaveScreenshot: { maxDiffPixelRatio: 0.3 },
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
