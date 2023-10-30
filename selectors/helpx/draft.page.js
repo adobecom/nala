@@ -1,4 +1,7 @@
-exports.Draft = class Draft {
+import { expect } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
+
+export default class Draft {
   constructor(page) {
     this.page = page;
 

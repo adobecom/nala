@@ -1,4 +1,7 @@
-exports.CodeBlock = class CodeBlock {
+import { expect } from '@playwright/test';
+import { WebUtil } from '../../libs/webutil.js';
+
+export default class CodeBlock {
   constructor(page) {
     this.page = page;
 
