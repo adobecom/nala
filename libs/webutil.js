@@ -164,14 +164,14 @@ exports.WebUtil = class WebUtil {
             // split the string value into individual classes
             const classes = expectedValue.split(' ');
             try {
-              await expect(this.locator).toHaveClass(classes.join(' '));
+              await expect(await this.locator).toHaveClass(classes.join(' '));
             } catch (error) {
               console.error('Attribute class not found:', error);
               result = false;
             }
           } else {
             try {
-              await expect(this.locator).toHaveAttribute(property, expectedValue);
+              await expect(await this.locator).toHaveAttribute(property, expectedValue);
             } catch (error) {
               console.error(`Attribute ${property} not found:`, error);
               result = false;
