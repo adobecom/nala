@@ -1,11 +1,12 @@
 module.exports = {
-  name: 'Footer Visual Comparison',
+  name: 'Footer VC Suite',
   features: [
     {
       tcid: '0',
-      name: '@Footer',
+      name: '@Footer-VC-Checks',
       path: '/libs/feds/drafts/qa/footer/feds-default-footer',
       tags: '@footer-visual, @feds-visual, @visual, @visual-smoke, @visual-regression',
+      browserParams: '?georouting=off',
     },
   ],
 };
