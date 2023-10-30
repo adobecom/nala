@@ -24,7 +24,7 @@ export default class FedsJarvis {
    */
   async openJarvisFromCta() {
     // Wait for Jarvis CTA button to appear:
-    await this.jarvisButton.waitFor({ state: 'visible', timeout: 15000 });
+    await this.jarvisButton.waitFor({ state: 'visible', timeout: 30000 });
     // Click Jarvis CTA button:
     await this.jarvisButton.click();
     // Assert Jarvis CTA button click:

@@ -1,7 +1,10 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-loop-func */
 /* eslint-disable no-restricted-syntax */
+import { expect, test } from '@playwright/test';
 import Quiz from '../../selectors/uar/quiz.page.js';
+import QuizOldPage from '../../selectors/uar/quiz.old.page.js';
 
-const { test } = require('@playwright/test');
 const QuizSpec = require('../../features/uar/quiz.spec.js');
 
 const { features } = QuizSpec;
@@ -15,24 +18,37 @@ test.describe('Quiz flow test suite', () => {
       `${feature.name}, ${feature.tags}`,
       async ({ page, baseURL }) => {
         const quiz = new Quiz(page);
+        const quizOldPage = new QuizOldPage(page);
         const url = `${baseURL}${feature.path}`;
         console.info(url);
 
         // load test data from static files
         const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
+        let keyNumber = 0;
+
         for (const key of Object.keys(testdata)) {
-          // test step-1
-          // eslint-disable-next-line no-await-in-loop
-          await test.step(`Select each answer on test page according to ${key}`, async () => {
-            await quiz.clickEachAnswer(url, key);
+          console.log(key);
+          let oldProduct = '';
+          let newProduct = '';
+          keyNumber += 1;
+          await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
+            await quizOldPage.clickEachAnswer('https://www.adobe.com/creativecloud/quiz-recommender.html', key, keyNumber, false);
           });
 
-          // test step-2
-          // eslint-disable-next-line no-await-in-loop
-          await test.step(`Check results on test page according to ${testdata[key]}`, async () => {
-            await quiz.checkResultPage(testdata[key]);
+          await test.step('Old: Check results on test page', async () => {
+            oldProduct = await quizOldPage.checkResultPage(testdata[key], key, keyNumber, false);
           });
+
+          await test.step(`New: Select each answer on test page according to ${key}`, async () => {
+            await quiz.clickEachAnswer(url, key, keyNumber, false);
+          });
+
+          await test.step('New: Check results on test page', async () => {
+            newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, false);
+          });
+
+          expect.soft(newProduct).toContain(oldProduct);
         }
       },
     );

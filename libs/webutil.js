@@ -149,6 +149,40 @@ exports.WebUtil = class WebUtil {
   }
 
   /**
+ * Verifies that the specified attribute properties of the given locator match the expected values.
+ * @param {Object} locator - The locator to verify attributes.
+ * @param {Object} attProps - The attribute properties and expected values to verify.
+ * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
+ */
+    async verifyAttributes_(locator, attProps) {
+      this.locator = locator;
+      let result = true;
+      await Promise.allSettled(
+        Object.entries(attProps).map(async ([property, expectedValue]) => {
+          if (property === 'class' && typeof expectedValue === 'string') {
+            // If the property is 'class' and the expected value is an string,
+            // split the string value into individual classes
+            const classes = expectedValue.split(' ');
+            try {
+              await expect(await this.locator).toHaveClass(classes.join(' '));
+            } catch (error) {
+              console.error('Attribute class not found:', error);
+              result = false;
+            }
+          } else {
+            try {
+              await expect(await this.locator).toHaveAttribute(property, expectedValue);
+            } catch (error) {
+              console.error(`Attribute ${property} not found:`, error);
+              result = false;
+            }
+          }
+        }),
+      );
+      return result;
+    }
+
+  /**
    * Slow/fast scroll of entire page JS evaluation method, aides with lazy loaded content.
    * This wrapper method calls a scroll script in page.evaluate, i.e. page.evaluate(scroll, { dir: 'direction', spd: 'speed' });
    * @param direction string direction you want to scroll on the page

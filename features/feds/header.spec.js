@@ -9,17 +9,18 @@ module.exports = {
       wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
       browserParams: '?georouting=off',
       envs: '@milo_live',
-      tags: '@feds @header @feds-header',
+      tags: '@milo @feds @header @smoke @regression',
     },
-    {
-      name: '@DC-Header-Checks',
-      path: [
-        '/acrobat/online/sign-pdf.html',
-      ],
-      wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
-      browserParams: '?georouting=off',
-      envs: '@adobe_prod',
-      tags: '@dc @header @dc-header',
-    },
+    // !Note: To be moved/repurposed in @adobe_prod configured project!
+    // {
+    //   name: '@DC-Header-Checks',
+    //   path: [
+    //     '/acrobat/online/sign-pdf.html',
+    //   ],
+    //   wcagTags: ['wcag2a', 'wcag2aa', 'wwcag21a', 'wcag21aa'],
+    //   browserParams: '?georouting=off',
+    //   envs: '@adobe_prod',
+    //   tags: '@dc @header @dc-header',
+    // },
   ],
 };
