@@ -35,7 +35,7 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['list'], ['./utils/reporters/base-reporter.js']]
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
     : [
         ['html', { outputFolder: 'test-html-results' }],
         ['list'],
@@ -56,7 +56,7 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'helpx-live-chromium',
+      name: 'helpx-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
       },
