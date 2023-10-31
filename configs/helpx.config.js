@@ -35,8 +35,12 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results' }]],
+    ? [['github'], ['list'], ['./utils/reporters/base-reporter.js']]
+    : [
+        ['html', { outputFolder: 'test-html-results' }],
+        ['list'],
+        ['./utils/reporters/base-reporter.js'],
+      ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -46,107 +50,29 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@helpxInternal_live'] || 'https://helpx-internal.stage.adobe.com',
+    baseURL: process.env.PR_BRANCH_LIVE_URL || ( process.env.LOCAL_TEST_LIVE_URL ||'https://helpx-internal.stage.adobe.com'),
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'helpxInternal-live-chrome',
+      name: 'helpx-live-chromium',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@helpxInternal_live'],
       },
     },
 
     {
-      name: 'helpxInternal-live-firefox',
+      name: 'helpx-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@helpxInternal_live'],
       },
     },
 
     {
-      name: 'helpxInternal-live-webkit',
+      name: 'helpx-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@helpxInternal_live'],
-      },
-    },
-
-    {
-      name: 'helpxInternal-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@helpxInternal_prod'],
-      },
-    },
-
-    {
-      name: 'helpxInternal-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@helpxInternal_prod'],
-      },
-    },
-
-    {
-      name: 'helpxInternal-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@helpxInternal_prod'],
-      },
-    },
-
-    // Added viewport for standardized window testing for visual comparisons
-    {
-      name: 'helpxInternal-live-chrome-visual',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@helpxInternal_live'],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
-
-    {
-      name: 'helpxInternal-live-firefox-visual',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@helpxInternal_live'],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
-
-    {
-      name: 'helpxInternal-live-webkit-visual',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@helpxInternal_live'],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
-
-    /* Test visually against mobile viewports. */
-    {
-      name: 'helpxInternal-live-android-visual',
-      use: {
-        ...devices['Pixel 5'],
-        baseURL: envs['@helpxInternal_live'],
-      },
-    },
-    {
-      name: 'helpxInternal-live-iphone-visual',
-      use: {
-        ...devices['iPhone SE'],
-        baseURL: envs['@helpxInternal_live'],
-      },
-    },
-    {
-      name: 'helpxInternal-live-ipad-visual',
-      use: {
-        ...devices['iPad Mini'],
-        baseURL: envs['@helpxInternal_live'],
       },
     },
   ],

@@ -11,8 +11,6 @@ export default class Draft {
     this.codeBlock = page.locator('.code');
     this.generic = page.locator('.generic');
 
-
-
     // draft blocks css
     this.cssProperties = {
       'beforeAftr': {
@@ -35,8 +33,6 @@ export default class Draft {
       'procedure': { 'class': 'procedure draft' },
       'codeBlock': { 'class': 'code language-as3 line-numbers draft' },
       'generic': { 'class': 'generic draft class1 class2' },
-    };
-  
+    };  
   }
-
 };

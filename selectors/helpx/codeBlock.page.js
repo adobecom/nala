@@ -51,7 +51,5 @@ export default class CodeBlock {
       'codeHideTablet': { 'class': 'code language-php line-numbers hidden-tablet' },
       'codeHideMobile': { 'class': 'code language-sql line-numbers hidden-mobile' },
     };
-
   }
-
 };
