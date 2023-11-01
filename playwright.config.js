@@ -58,7 +58,14 @@ const config = {
         ...devices['Desktop Firefox'],
       },
     },
-
+    /** 
+    {
+      name: 'milo-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+      },
+    }, 
+  */
   ],
 };
 
