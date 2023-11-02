@@ -1,99 +1,64 @@
-import { expect } from '@playwright/test';
-import { WebUtil } from '../../libs/webutil.js';
-
 export default class Modal {
   constructor(page) {
     this.page = page;
     // modal locators
+    this.dialog = this.page.locator('.dialog-modal');
     this.modal = this.page.locator('.dialog-modal');
     this.fragment = this.modal.locator('.fragment');
     this.headingXL = this.page.locator('.heading-xl');
     this.bodyM = this.page.locator('.body-m').nth(2);
     this.modalCloseButton = this.modal.locator('.dialog-close');
-    this.marqueeLight = this.page.locator('.marquee.light');
+    this.dialogCloseButton = this.modal.locator('.dialog-close');
+    this.marqueeLight = this.dialog.locator('.marquee.light');
     this.modelSelector = '.dialog-modal';
-
+    
     // text block
-    this.text = this.modal.locator('.text');
-    this.textHeading = this.text.locator('h2');
-    this.textBodyM = this.text.locator('.body-m');
+    this.textBlock = this.modal.locator('.text');
+    this.textBlockHeading = this.textBlock.locator('h2');
+    this.textBlockBodyM = this.textBlock.locator('.body-m');
 
     // media block
-    this.media = this.modal.locator('.media');
-    this.detailM = this.media.locator('.detail-m');
-    this.textHeadingMedia = this.media.locator('h2');
-    this.textBodySMedia = this.media.locator('.body-s').first();
+    this.mediaBlock = this.modal.locator('.media');
+    this.mediaBlockdetailM = this.mediaBlock.locator('.detail-m');
+    this.mediaBlockTextHeading = this.mediaBlock.locator('h2');
+    this.mediaBlockTextBodyS = this.mediaBlock.locator('.body-s').first();
+
+    // video block
+    this.video = this.modal.locator('video');
 
     // modal contents attributes
-    this.attProperties = {
+    this.attributes = {
       'modal-link': {
-        class: 'modal link-block ',
+        'class': 'modal link-block ',
+      },
+      'video.inline': {
+        'playsinline': '',
+        'autoplay': '',
+        'loop': '',
+        'muted': ''
       },
     };
   }
 
   /**
- * Verifies that a modal with the specified ID can be opened and closed.
- * @param {string} modalData - Modal data required to verify modal.
- * @returns {Promise<boolean>} - A Promise that resolves to true if the verification
- * is successful, or false if an error occurs.
- */
-  async verifyModal(modalData) {
+   * Gets the modal link based on the modal id.
+   * Waits for the link to be visible before returning the locator.
+   * @param {Object} data - The data object containing modalId.
+   * @param {number} [timeout=3000] - Optional timeout for waiting.
+   * @returns {Promise<Locator>} - The locator for the modal link.
+   * @throws Will throw an error if the link is not found within the timeout.
+   */
+  async getModalLink(modalId, timeout = 1000) {
+    if (!modalId) {
+      throw new Error('Invalid data, "modalId" property is required.');
+    }
+    const selector = `a[href="#${modalId}"]`;
+    const modalLink = this.page.locator(selector);
     try {
-      // verify modal link attributes and then click
-      const modalLink = await this.page.locator(`a[href="#${modalData.modalId}"]`);
-      await expect(await modalLink).toBeVisible();
-      expect(await WebUtil.verifyAttributes(
-        modalLink,
-        this.attProperties['modal-link'],
-      )).toBeTruthy();
-
-      await modalLink.click();
-
-      // validate modal content
-      switch (modalData.fragment) {
-        case 'text':
-          await expect(await this.modal).toContainText(modalData.bodyText);
-          await expect(await this.modalCloseButton).toBeVisible();
-          expect(await WebUtil.isModalInViewport(
-            this.page,
-            this.modalSelector,
-          )).toBeTruthy();
-
-          // verify modal content (text fragment)
-          await expect(await this.text).toBeVisible();
-          await expect(await this.textHeading).toContainText(modalData.h2Text);
-          await expect(await this.textBodyM).toContainText(modalData.bodyText);
-
-          // close the modal
-          await this.modalCloseButton.click();
-
-          return true;
-
-        case 'media':
-          await expect(await this.modal).toContainText(modalData.bodyText);
-          await expect(await this.modalCloseButton).toBeVisible();
-          expect(await WebUtil.isModalInViewport(
-            this.page,
-            this.modalSelector,
-          )).toBeTruthy();
-
-          // verify modal content (media fragment)
-          await expect(await this.media).toBeVisible();
-          await expect(await this.textHeadingMedia).toContainText(modalData.h2Text);
-          await expect(await this.textBodySMedia).toContainText(modalData.bodyText);
-
-          // close the modal using escape key press.
-          await this.page.keyboard.press('Escape');
-
-          return true;
-
-        default:
-          throw new Error(`Unsupported Text type: ${this.textType}`);
-      }
+      await modalLink.waitFor({ state: 'visible', timeout });
+      return modalLink;
     } catch (error) {
-      console.error(`Error verifying modal: ${error}`);
-      return false;
+      throw new Error(`The modal link with selector "${selector}" could not be found within ${timeout}ms.`);
     }
   }
 }
