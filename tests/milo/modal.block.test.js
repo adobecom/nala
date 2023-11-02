@@ -19,9 +19,7 @@ test.describe('Milo Modal feature test suite', () => {
     await test.step('step-1: Go to Modal feature test page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
-      console.log('HelpX Token ----------',process.env.HLX_TKN);
-      console.log('HelpX Token ----------',process.env.IMS_EMAIL);      
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);    
     });
 
     await test.step('step-2: Verify Modal text fragment content/specs', async () => {
