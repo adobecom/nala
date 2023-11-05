@@ -18,4 +18,5 @@ module.exports = {
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
   '@helpx_live':'https://helpx-internal.stage.adobe.com',
+  '@webhook_url': 'https://hooks.slack.com/workflows/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',
 };

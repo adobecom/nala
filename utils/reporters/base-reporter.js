@@ -1,3 +1,5 @@
+import { sendSlackMessage } from '../../libs/slack.js';
+const envs = require('../../envs/envs.js');
 // Playwright will include ANSI color characters and regex from below 
 // https://github.com/microsoft/playwright/issues/13522
 // https://github.com/chalk/ansi-regex/blob/main/index.js#L3
@@ -75,8 +77,9 @@ class BaseReporter {
   async onEnd() {
     //this.printPersistingOption();
     //await this.persistData();
-    this.printResultSummary();
-
+    const summary = this.printResultSummary();
+    const resultSummary = { summary };
+    await sendSlackMessage(envs['@webhook_url'], resultSummary);
   }
 
   printResultSummary() {  
@@ -94,13 +97,16 @@ class BaseReporter {
       exeEnv = 'Local Environment';
     }
 
-    console.log('--------Test run summary------------');
-    console.log('Total Test executed  : ', totalTests);
-    console.log('# Test Pass          : ', this.passedTests, `(${passPercentage}%)`);
-    console.log('# Test Fail          : ', this.failedTests, `(${failPercentage}%)`);
-    console.log('# Test Skipped       : ', this.skippedTests);
-    console.log('** Application URL     : ', envURL);
-    console.log('** Executed on         : ', exeEnv);  
+    const summary = `
+    --------Test run summary------------
+    # Total Test executed: ${totalTests}
+    # Test Pass          : ${this.passedTests} (${passPercentage}%)
+    # Test Fail            : ${this.failedTests} (${failPercentage}%)
+    # Test Skipped     : ${this.skippedTests}
+    ** Application URL  : ${envURL}
+    ** Executed on        : ${exeEnv}`;    
+
+    console.log(summary);
 
     if (this.failedTests > 0) {
       console.log('-------- Test Failures --------');
@@ -113,6 +119,7 @@ class BaseReporter {
           console.log('-------------------------');
         });
     }
+    return summary;
   }
 
   /**
