@@ -79,7 +79,7 @@ class BaseReporter {
     //await this.persistData();
     const summary = this.printResultSummary();
     const resultSummary = { summary };
-    await sendSlackMessage(envs['@webhook_url'], resultSummary);
+    //await sendSlackMessage(envs['@webhook_url'], resultSummary);
   }
 
   printResultSummary() {  
