@@ -8,8 +8,8 @@ export default class Merchcard {
     this.plans = this.page.locator('.merch-card.plans').nth(nth);
 
     // inline price and strikethrough price
-    this.inlinePrice1 = this.merchCard.locator('inline-price').nth(0);
-    this.inlinePrice2 = this.merchCard.locator('inline-price').nth(1);
+    this.inlinePrice1 = this.merchCard.locator('span.placeholder-resolved').nth(0);
+    this.inlinePrice2 = this.merchCard.locator('span.placeholder-resolved').nth(1);
     this.price = this.inlinePrice1.locator('.price');
     this.priceCurrencySymbol = this.inlinePrice1.locator('.price-currency-symbol');
     this.priceInteger = this.inlinePrice1.locator('.price-integer');
