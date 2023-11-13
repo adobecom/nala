@@ -197,9 +197,5 @@ test.describe('Milo Table block feature test suite', () => {
       await expect(await table.getSectionRowMerchContent(2)).toContainText(sectionCell.merchContent);
       await expect(await table.getSectionRowMerchContentImg(2)).toBeVisible();
     });
-  });   
-
+  });
 });
-
-
-

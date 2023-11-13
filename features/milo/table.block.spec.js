@@ -97,7 +97,7 @@ module.exports = {
     },
     {
       tcid: '4',
-      name: '@Table  (merch)',
+      name: '@Table (merch)',
       path: '/drafts/nala/blocks/table/table-merch',
       data: {
         rowsCount: 9,        

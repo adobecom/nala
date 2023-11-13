@@ -84,7 +84,7 @@ class BaseReporter {
       try {
         await sendSlackMessage(process.env.SLACK_WH, resultSummary);
       } catch (error){
-        console.log('----Failed to pulish result to slack channel----');
+        console.log('----Failed to publish result to slack channel----');
       }
     }   
   }
