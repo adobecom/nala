@@ -2,7 +2,7 @@ module.exports = {
   BlockName: 'Media Block',
   features: [
     {
-      tcid: '1',
+      tcid: '0',
       name: '@Media (small)',
       path: '/drafts/nala/blocks/media/media-small',
       data: {
@@ -15,7 +15,7 @@ module.exports = {
       tags: '@media @media-small @smoke @regression @milo',
     },
     {
-      tcid: '2',
+      tcid: '1',
       name: '@Media',
       path: '/drafts/nala/blocks/media/media',
       data: {
@@ -27,7 +27,7 @@ module.exports = {
       tags: '@media @smoke @regression @milo',
     },
     {
-      tcid: '3',
+      tcid: '2',
       name: '@media (large, dark)',
       path: '/drafts/nala/blocks/media/media-large-dark',
       data: {
@@ -37,6 +37,30 @@ module.exports = {
         blueButtonText: 'Learn More',
       },
       tags: '@media @media-large-dark @smoke @regression @milo',
+    },
+    {
+      tcid: '3',
+      name: '@media (large, dark) video, autoplay infinite looping',
+      path: '/drafts/nala/blocks/media/media-video-autoplay-infinite-loop',
+      data: {
+        detailText: 'Detail L 16/20',
+        h2Text: 'Heading XL 36/45 Media (large, dark)',
+        bodyText: 'Body M 18/27 Lorem ipsum dolor sit amet,',
+        blueButtonText: 'Learn More',
+      },
+      tags: '@media @media-video @smoke @regression @milo',
+    },
+    {
+      tcid: '4',
+      name: '@media video, autoplay loop once',
+      path: '/drafts/nala/blocks/media/media-video-autoplay-loop-once',
+      data: {
+        detailText: 'Detail L 16/20',
+        h2Text: 'Heading XL 36/45 Media (large, dark)',
+        bodyText: 'Body M 18/27 Lorem ipsum dolor sit amet,',
+        blueButtonText: 'Learn More',
+      },
+      tags: '@media @media-video @smoke @regression @milo',
     },
   ],
 };

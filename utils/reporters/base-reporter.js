@@ -1,3 +1,5 @@
+import { sendSlackMessage } from '../../libs/slack.js';
+const envs = require('../../envs/envs.js');
 // Playwright will include ANSI color characters and regex from below 
 // https://github.com/microsoft/playwright/issues/13522
 // https://github.com/chalk/ansi-regex/blob/main/index.js#L3
@@ -10,7 +12,7 @@ const pattern = [
 const ansiRegex = new RegExp(pattern, 'g');
 
 // limit failed status 
-const failedStatus = ['failed', 'flaky', 'skipped', 'timedOut', 'interrupted'];
+const failedStatus = ['failed', 'flaky', 'timedOut', 'interrupted'];
 
 function stripAnsi(str) {
   if (!str || typeof str !== 'string') return str;
@@ -21,14 +23,18 @@ class BaseReporter {
   constructor(options) {
     this.options = options;
     this.results = [];
+    this.passedTests = 0;
+    this.failedTests = 0;
+    this.skippedTests = 0;
   }
 
   onBegin(config, suite) {
     this.config = config;
     this.rootSuite = suite;
+
   }
 
-  async onTestEnd(test, result) {
+  async onTestEnd(test, result) {    
     const { title, retries, _projectId } = test;    
     const { name, tags, url, browser, env, branch, repo} = this.parseTestTitle(title, _projectId);
     const {
@@ -59,12 +65,61 @@ class BaseReporter {
       duration,
       retry,
     });
+    if (status === 'passed') {
+      this.passedTests++;
+    } else if (failedStatus.includes(status)) {
+      this.failedTests++;
+    } else if (status === 'skipped') {
+      this.skippedTests++;
+    }
   }
 
   async onEnd() {
-    this.printPersistingOption();
-    await this.persistData();
-    console.log('Test run is finished');
+    //this.printPersistingOption();
+    //await this.persistData();
+    const summary = this.printResultSummary();
+    const resultSummary = { summary };
+    //await sendSlackMessage(envs['@webhook_url'], resultSummary);
+  }
+
+  printResultSummary() {  
+    let envURL;
+    let exeEnv
+    const totalTests = this.results.length;
+    const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
+    const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
+
+    if (process.env.GITHUB_ACTIONS === 'true') {
+      envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
+      exeEnv = 'GitHub Actions Environment';
+    } else {
+      envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
+      exeEnv = 'Local Environment';
+    }
+
+    const summary = `
+    --------Test run summary------------
+    # Total Test executed: ${totalTests}
+    # Test Pass          : ${this.passedTests} (${passPercentage}%)
+    # Test Fail            : ${this.failedTests} (${failPercentage}%)
+    # Test Skipped     : ${this.skippedTests}
+    ** Application URL  : ${envURL}
+    ** Executed on        : ${exeEnv}`;    
+
+    console.log(summary);
+
+    if (this.failedTests > 0) {
+      console.log('-------- Test Failures --------');
+      this.results
+        .filter((result) => result.status === 'failed')
+        .forEach((failedTest) => {
+          console.log(`Test: ${failedTest.title.split('@')[1]}`);
+          console.log(`Error Message: ${failedTest.errorMessage}`);
+          console.log(`Error Stack: ${failedTest.errorStack}`);
+          console.log('-------------------------');
+        });
+    }
+    return summary;
   }
 
   /**
@@ -121,6 +176,8 @@ class BaseReporter {
     } else {
       console.log('Not persisting data');
     }
+    //this.branch1 = process.env.GITHUB_REF_NAME ?? 'local';
+    this.branch = process.env.LOCAL_TEST_LIVE_URL;
   }
 
   getPersistedDataObject() {
@@ -140,5 +197,4 @@ class BaseReporter {
     };
   }
 }
-
 module.exports = BaseReporter;

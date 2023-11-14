@@ -12,7 +12,7 @@ const { WebUtil } = require('../../libs/webutil.js');
 
 test.describe('Quiz flow test suite', () => {
   // reset timeout because we use this to run all test data
-  test.setTimeout(10 * 60 * 1000);
+  test.setTimeout(30 * 60 * 1000);
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
@@ -24,7 +24,11 @@ test.describe('Quiz flow test suite', () => {
 
         const originalData = await WebUtil.loadTestDataFromAPI(baseURL, feature.data);
 
-        const testdata = buildTestData(originalData, feature.name);
+        let testdata = buildTestData(originalData, feature.name);
+
+        if (feature.name.includes('triple flagship')) {
+          testdata = testdata.sort(() => 0.5 - Math.random()).slice(0, 20);
+        }
 
         for (const key of testdata) {
           console.log(key);

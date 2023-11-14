@@ -35,6 +35,20 @@ export default class FedsHeader {
     this.breadcrumbList = page.locator('nav.feds-breadcrumbs ul');
     this.breadcrumbElems = page.locator('nav.feds-breadcrumbs li');
     this.breadcrumbContainer = page.locator('nav.feds-breadcrumbs');
+
+    // Promo-bar selectors:
+    this.promoBarContainer = page.locator('div.aside.promobar');
+    this.promoBarBackground = this.promoBarContainer.locator('div.background');
+    this.promoBarForeground = this.promoBarContainer.locator('div.foreground');
+    this.promoBarContent = this.promoBarContainer.locator('div.desktop-up');
+    this.promoBarText = this.promoBarContainer.locator('div.desktop-up p.content-area');
+    this.promoBarBtn = this.promoBarContainer.locator('div.desktop-up p.action-area a');
+    this.promoBarMobileContent = this.promoBarContainer.locator('div.mobile-up');
+    this.promoBarMobileText = this.promoBarContainer.locator('div.mobile-up p.content-area');
+    this.promoBarMobileBtn = this.promoBarContainer.locator('div.mobile-up p.action-area a');
+    this.promoBarTabletContent = this.promoBarContainer.locator('div.tablet-up');
+    this.promoBarTabletText = this.promoBarContainer.locator('div.tablet-up p.content-area');
+    this.promoBarTabletBtn = this.promoBarContainer.locator('div.tablet-up p.action-area a');
   }
 
   /**

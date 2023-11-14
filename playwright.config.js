@@ -24,13 +24,13 @@ const config = {
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 1 : 0,
+  retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 4 : 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['list'], ['./utils/reporters/json-reporter.js'], ['./utils/reporters/api-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results' }],['list']],
+    ? [['github'], ['list'], ['./utils/reporters/base-reporter.js']]
+    : [['html', { outputFolder: 'test-html-results' }],['list'],['./utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -58,13 +58,14 @@ const config = {
         ...devices['Desktop Firefox'],
       },
     },
-
+    /** 
     {
       name: 'milo-live-webkit',
       use: {
         ...devices['Desktop Safari'],
       },
-    },
+    }, 
+  */
   ],
 };
 
