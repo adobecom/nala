@@ -9,6 +9,7 @@ test.describe('Promobar Block Test Suite', () => {
   // FEDS Default Header Checks:
   test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Header = new FedsHeader(page);
+    const { data } = features[0];
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to FEDS Promobar page', async () => {
@@ -26,10 +27,10 @@ test.describe('Promobar Block Test Suite', () => {
       await expect(Header.promoBarContent).toBeVisible();
       await expect(Header.promoBarText).toBeVisible();
       await expect(Header.promoBarBtn).toBeVisible();
-      await expect(Header.promoBarBtn).toHaveText('See offers');
-      await expect(Header.promoBarText).toHaveText('Black Friday 2023 is here! Check out the HOT NEW basketball jerseys from our shop!');
+      await expect(Header.promoBarBtn).toHaveText(data.promoBarBtn);
+      await expect(Header.promoBarText).toHaveText(data.promoBarText);
       // Check promobar action button:
-      expect(await Header.promoBarBtn).toHaveAttribute('href', 'https://adobe.com/');
+      expect(await Header.promoBarBtn).toHaveAttribute('href', data.promoBarBtnLink);
       await Header.promoBarBtn.click();
       await page.waitForLoadState('domcontentloaded');
       await Header.mainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
