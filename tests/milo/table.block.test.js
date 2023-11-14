@@ -81,7 +81,6 @@ test.describe('Milo Table block feature test suite', () => {
     });
   });
 
-
   // Test 2 : Table (sticky)
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[2].path}`);

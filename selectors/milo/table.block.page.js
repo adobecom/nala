@@ -72,6 +72,3 @@ export default class Table {
     return sectionRow.locator(`.col-${colIndex}`)
   }
 }
-
-
-
