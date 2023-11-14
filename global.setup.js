@@ -63,6 +63,15 @@ async function globalSetup() {
     }
    
 
+  } else if (process.env.CIRCLECI) {
+    console.info('----Executing Tests in CircleCI environment  ---------');
+
+    prBranchLiveUrl = 'https://milo.stage.adobe.com';
+    
+    if (await isBranchURLValid(prBranchLiveUrl)) {
+      process.env.PR_BRANCH_LIVE_URL = prBranchLiveUrl;
+    }
+
   } else {
     
     console.info('----Executing Tests in Local environment  ---------');
