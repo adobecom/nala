@@ -125,4 +125,5 @@ axe-reports
 /playwright/.cache/
 Test.pptx
 nala-results.json
+configs/screenshots/
 configs/test-html-results/
