@@ -18,70 +18,60 @@ export default class Table {
     this.sectionRows = this.table.locator('.section-row');
   }
 
-  // get highlight row column locator
   async getHighlightRowColumnTitle(colIndex) {
     return await this.highlightRow.locator(`.col-highlight`).nth(colIndex);
   }
 
-  // get header row column title locator
   async getHeaderColumnTitle(colIndex) {
     const headerColumn =  await this.headingRow.locator(`.col-${colIndex}`);
     return headerColumn.locator(`.tracking-header`);
   }
 
-  // get header row column price ('p') locator
   async getHeaderColumnPricing(colIndex) {
     const headerColumn =  await this.headingRow.locator(`.col-${colIndex}`);
     return headerColumn.locator(`.pricing`);
   }
 
-  // get header row column image (merch-table) locator
   async getHeaderColumnImg(colIndex) {
     const headerColumn =  await this.headingRow.locator(`.col-${colIndex}`);
     return headerColumn.locator(`img`);
   }
 
-  // get header row column additional text price ('p') locator
   async getHeaderColumnAdditionalText(colIndex) {
     const headerColumn =  await this.headingRow.locator(`.col-${colIndex}`);
     return headerColumn.locator(`p`).nth(3);
   }
 
-  // get header row column action buttons (outline) locator
   async getHeaderColumnOutlineButton(colIndex) {
     const headerColumn =  await this.headingRow.locator(`.col-${colIndex}`);
     return headerColumn.locator(`.con-button.outline`);
   }
 
-  // get header row column action buttons (blue) locator
   async getHeaderColumnBlueButton(colIndex) {
     const headerColumn =  await this.headingRow.locator(`.col-${colIndex}`);
     return headerColumn.locator(`.con-button.blue`);
   }
 
-  // get section row title locator
   async getSectionRowTitle(index) {
     const sectionRow = await this.table.locator(`.section-row`).nth(index);
     return sectionRow.locator(`.section-row-title`);     
   }
 
-  // get section row merch content locator
   async getSectionRowMerchContent(index) {
     const sectionRow = await this.table.locator(`.section-row`).nth(index);
     return sectionRow.locator(`.col-merch-content`).nth(0);     
   }
 
-  // get section row merch content locator
   async getSectionRowMerchContentImg(index) {
     const sectionRow = await this.table.locator(`.section-row`).nth(index);
     return sectionRow.locator(`.col-merch-content img`);     
   }
 
-  // get table cell data locator
   async getSectionRowCell(rowIndex, colIndex) {
     const sectionRow = await this.table.locator(`.section-row`).nth(rowIndex);
     return sectionRow.locator(`.col-${colIndex}`)
   }
 }
+
 
 
