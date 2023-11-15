@@ -24,7 +24,7 @@ jobs:
         uses: ./
         env:
           labels: ${{ inputs.tags }}
-          reporter: html    
+          reporter: html
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
           HLX_TKN: ${{ secrets.HLX_TKN }}
