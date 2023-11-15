@@ -91,7 +91,8 @@ class BaseReporter {
 
   printResultSummary() {  
     let envURL;
-    let exeEnv
+    let exeEnv;
+    let runUrl;
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
@@ -99,7 +100,16 @@ class BaseReporter {
     if (process.env.GITHUB_ACTIONS === 'true') {
       envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       exeEnv = 'GitHub Actions Environment';
-    } else {
+      const repo = process.env.GITHUB_REPOSITORY;
+      const runId = process.env.GITHUB_RUN_ID;
+      runUrl = `https://github.com/${repo}/actions/runs/${runId}`; 
+    }else if (process.env.CIRCLECI) {
+      envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
+      exeEnv = 'CircleCI Environment';
+      const workflowId = process.env.CIRCLE_WORKFLOW_ID;
+      const jobNumber = process.env.CIRCLE_BUILD_NUM;
+      runUrl = `https://app.circleci.com/pipelines/github/wcms/nala/10/workflows/${workflowId}/jobs/${jobNumber}`;
+    }else {
       envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
       exeEnv = 'Local Environment';
     }
@@ -111,7 +121,8 @@ class BaseReporter {
     # Test Fail            : ${this.failedTests} (${failPercentage}%)
     # Test Skipped     : ${this.skippedTests}
     ** Application URL  : ${envURL}
-    ** Executed on        : ${exeEnv}`;    
+    ** Executed on        : ${exeEnv}
+    ** Execution details  : ${runUrl}`;    
 
     console.log(summary);
 
