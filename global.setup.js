@@ -8,6 +8,7 @@ async function globalSetup() {
   console.info('----Executing Global setup---------');
   
   let prBranchLiveUrl;
+  let stageBranchLiveUrl;
   let localTestLiveUrl;
   let localOrg; 
   let localRepo;
@@ -15,7 +16,7 @@ async function globalSetup() {
 
   // Check if the code is running in a GitHub CI/CD environment
   if (process.env.GITHUB_ACTIONS === 'true') {
-    console.info('----Executing Tests in GitHub ---------');
+    console.info('---- Running Tests in the GitHub environment ---------');
     
     // get the pr number 
     const prReference = process.env.GITHUB_REF;
@@ -60,21 +61,21 @@ async function globalSetup() {
       console.error(`Error => Error in setting PR Branch test URL : ${prBranchLiveUrl}`);
       console.info(`Note : PR branch test url  ${prBranchLiveUrl} is not valid, Exiting test execution.`);
       process.exit(1);
-    }
-   
-
+    }  
   } else if (process.env.CIRCLECI) {
-    console.info('----Executing Tests in CircleCI environment  ---------');
+    console.info('---- Running Tests in the CircleCI environment ---------');
 
-    prBranchLiveUrl = 'https://milo.stage.adobe.com';
+    stageBranchLiveUrl = 'https://milo.stage.adobe.com';
     
+    // Validate the stage URL by making an HTTP request
     if (await isBranchURLValid(prBranchLiveUrl)) {
-      process.env.PR_BRANCH_LIVE_URL = prBranchLiveUrl;
+      process.env.PR_BRANCH_LIVE_URL = stageBranchLiveUrl;
     }
+    console.info('Stage Branch Live URL : ', stageBranchLiveUrl);
 
   } else {
     
-    console.info('----Executing Tests in Local environment  ---------');
+    console.info('---- Running Tests in the Local environment ---------');
     
     try {
       // Run 'git rev-parse --show-toplevel' to get the root directory of the Git repository
