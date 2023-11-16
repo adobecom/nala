@@ -1,5 +1,5 @@
 export default class ActionItem {
-  constructor(page, type, nth = 0) {
+  constructor(page, nth = 0) {
     this.page = page;
     
     this.actionItem = this.page.locator('.action-item').nth(nth);
