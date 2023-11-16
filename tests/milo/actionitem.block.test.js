@@ -179,11 +179,9 @@ test.describe('Milo Action-Item block test suite', () => {
       await expect(await actionItem.bodyText).toContainText(data.bodyText);
       await expect(await actionItem.libraryContainerEnd).toBeVisible();
 
-      await page.waitForTimeout(1000);
-      await expect(await actionItem.nextButton).toBeVisible();
+      await expect(await actionItem.nextButton).toBeVisible({timeout: 1000});
       await actionItem.nextButton.click();
-      await page.waitForTimeout(1000);
-      await expect(await actionItem.previousButton).toBeVisible();
+      await expect(await actionItem.previousButton).toBeVisible({timeout: 1000});
       await expect(await actionItem.navigationNext).toHaveAttribute('hide-btn','false');
     });
   });  
