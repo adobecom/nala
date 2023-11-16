@@ -108,7 +108,7 @@ class BaseReporter {
       exeEnv = 'CircleCI Environment';
       const workflowId = process.env.CIRCLE_WORKFLOW_ID;
       const jobNumber = process.env.CIRCLE_BUILD_NUM;
-      runUrl = `https://app.circleci.com/pipelines/github/wcms/nala/10/workflows/${workflowId}/jobs/${jobNumber}`;
+      runUrl = `https://app.circleci.adobe.com/pipelines/github/wcms/nala/10/workflows/${workflowId}/jobs/${jobNumber}`;
     }else {
       envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
       exeEnv = 'Local Environment';
