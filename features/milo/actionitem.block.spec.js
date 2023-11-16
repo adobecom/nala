@@ -79,7 +79,7 @@ module.exports = {
       data: {
         bodyText: 'content',
         floatButtonText: 'Edit',
-        actionItemsCount: 7,
+        actionItemsCount: 8,
       },
       tags: '@action-item @smoke @regression @milo',
     }                                                                 
