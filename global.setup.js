@@ -68,7 +68,7 @@ async function globalSetup() {
     stageBranchLiveUrl = 'https://milo.stage.adobe.com';
     
     // Validate the stage URL by making an HTTP request
-    if (await isBranchURLValid(prBranchLiveUrl)) {
+    if (await isBranchURLValid(stageBranchLiveUrl)) {
       process.env.PR_BRANCH_LIVE_URL = stageBranchLiveUrl;
     }
     console.info('Stage Branch Live URL : ', stageBranchLiveUrl);
