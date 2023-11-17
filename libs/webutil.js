@@ -114,6 +114,28 @@ exports.WebUtil = class WebUtil {
     return result;
   }
 
+    /**
+ * Verifies that the specified CSS properties of the given locator match the expected values.
+ * @param {Object} locator - The locator to verify CSS properties for.
+ * @param {Object} cssProps - The CSS properties and expected values to verify.
+ * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
+ */
+    async verifyCSS_(locator, cssProps) {
+      this.locator = locator;
+      let result = true;
+      await Promise.allSettled(
+        Object.entries(cssProps).map(async ([property, expectedValue]) => {
+          try {
+            await expect(this.locator).toHaveCSS(property, expectedValue);
+          } catch (error) {
+            console.error(`CSS property ${property} not found:`, error);
+            result = false;
+          }
+        }),
+      );
+      return result;
+    }
+
   /**
  * Verifies that the specified attribute properties of the given locator match the expected values.
  * @param {Object} locator - The locator to verify attributes.
@@ -290,4 +312,56 @@ exports.WebUtil = class WebUtil {
     await this.page.setViewportSize({ width, height });
     await this.page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
   }
+
+/**
+ * Generates analytic string for a given project.
+ * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
+ * @returns {string} - A string formatted as 'gnav|<project>|nopzn|nopzn'.
+ */  
+  async getGnavDaalh(project=milo) {
+    return 'gnav'+ '|' + project + '|'+ 'nopzn' + '|' + 'nopzn' ;
+  }
+
+/**
+ * Generates analytic string for a section based on a given counter value.
+ * @param {number|string} counter - A counter value used to generate the section identifier.
+ * @returns {string} - A string formatted as 's<counter>'.
+ */
+  async getSectionDaalh(counter) {
+    return 's'+ counter;
+  }
+
+/**
+ * Generates analytic string for a given block name and a counter.
+ * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value i.e. block number.
+ * @returns {string} - A string formatted as 'b<counter>|<slicedBlockName>|nopzn|nopzn'.
+ */  
+  async getBlockDaalh(blockName, counter) {
+    const slicedBlockName = blockName.slice(0, 20);
+    return 'b'+ counter + '|' + slicedBlockName + '|'+ 'nopzn' + '|' + 'nopzn' ;
+  }
+
+/**
+ * Generates analytic string for link or button based on link/button text , a counter, and the last header text.
+ * @param {string} linkText - The text of the link, which is cleaned and sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value used in the identifier.
+ * @param {string} lastHeaderText - The last header text, which is cleaned and sliced to its first 20 characters.
+ * @param {boolean} [pzn=false] - boolean parameter, defaulting to false.(for personalization)
+ * @returns {string} - A string formatted as '<cleanedLinkText>-<counter>--<cleanedLastHeaderText>'.
+ */  
+  async getLinkDaall(linkText, counter, lastHeaderText, pzn = false) {
+    const cleanAndSliceText = (text) => {
+      return text
+        ?.replace(/[^\w\s]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/^_+|_+$/g, '')
+        .trim()
+        .slice(0, 20);
+    }
+    const slicedLinkText = cleanAndSliceText(linkText);
+    const slicedLastHeaderText = cleanAndSliceText(lastHeaderText);
+    return `${slicedLinkText}-${counter}--${slicedLastHeaderText}`;
+  }
+
 };
