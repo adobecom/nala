@@ -11,7 +11,7 @@ module.exports = {
         outlineButtonText: 'Learn more',
         linkText: 'Explore the premium collection',
       },
-      tags: '@text @smoke @tx @regression @milo',
+      tags: '@text @smoke @regression @milo',
     },
     {
       tcid: '1',
@@ -22,7 +22,7 @@ module.exports = {
         h2Text: 'Text (intro)',
         bodyText: 'Body L Regular (20/30) Lorem ipsum dolor sit amet,',
       },
-      tags: '@text @full-intro @smoke @tx @regression @milo',
+      tags: '@text @full-intro @smoke @regression @milo',
     },
     {
       tcid: '2',
@@ -33,7 +33,7 @@ module.exports = {
         bodyText: 'Featuring over 600,000 hand-picked stock photos and graphics, ',
         linkText: 'Explore the premium collection',
       },
-      tags: '@text @full-width @smoke @tx @regression @milo',
+      tags: '@text @full-width @smoke @regression @milo',
     },
     {
       tcid: '3',
@@ -44,7 +44,7 @@ module.exports = {
         bodyText: 'Whether your team is creating multichannel campaign assets,',
         linkText: 'Learn more our solution',
       },
-      tags: '@text @full-width-large @smoke @tx @regression @milo',
+      tags: '@text @full-width-large @smoke @regression @milo',
     },
     {
       tcid: '4',
@@ -55,7 +55,7 @@ module.exports = {
         h2Text: 'Text (long form, large)',
         bodyText: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr,',
       },
-      tags: '@text @long-form-large @tx @smoke @regression @milo',
+      tags: '@text @long-form-large @smoke @regression @milo',
     },
     {
       tcid: '5',
@@ -66,7 +66,7 @@ module.exports = {
         bodyText: 'Lorem ipsum dolor sit amet.',
         listCount1: 3
       },
-      tags: '@text @inset-medium-m-spacing @tx @smoke @regression @milo',
+      tags: '@text @inset-medium-m-spacing @smoke @regression @milo',
     },
     {
       tcid: '6',
@@ -78,7 +78,7 @@ module.exports = {
         generalTermsText: 'These General Terms of Use (“General Terms”), along with any applicable Additional Terms',
         linkText: 'Please read complete legal information',
       },
-      tags: '@text @legal @smoke @tx @regression @milo',
+      tags: '@text @legal @smoke @regression @milo',
     },
     {
       tcid: '7',
