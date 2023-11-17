@@ -13,7 +13,7 @@ test.describe('Milo Marquee Block test suite', () => {
     webUtil = new WebUtil(page);
     marquee = new MarqueeBlock(page);
 
-    page.on('pageerror', (exception) => {
+    page.on('console', (exception) => {
       if (exception.type() === 'error') {
         consoleErrors.push(exception.text());
       }

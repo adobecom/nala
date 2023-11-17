@@ -20,7 +20,7 @@ module.exports = {
       path: '/drafts/nala/blocks/modal/modal-media',
       data: {
         modalId: 'modal-media',
-        detailText: 'DETAIL M 12/15',
+        detailText: 'Detail M 12/15',
         fragment: 'media',
         contentType: 'media',
         h2Text: 'Heading M 24/30 Media',
@@ -28,5 +28,19 @@ module.exports = {
       },
       tags: '@modal @smoke @regression @milo',
     },
+    {
+      tcid: '2',
+      name: '@Modal Autoplay Video',
+      path: '/drafts/nala/blocks/modal/modal-autoplay-video',
+      data: {
+        modalId: 'modal-video-autoplay',
+        detailText: 'Detail M 12/15',
+        fragment: 'media',
+        contentType: 'media',
+        h2Text: 'Heading M 24/30 Media',
+        bodyText: 'Body S 16/24 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed',
+      },
+      tags: '@modal @smoke @regression @milo',
+    },    
   ],
 };
