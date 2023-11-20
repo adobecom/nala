@@ -1,5 +1,5 @@
 import { sendSlackMessage } from '../../libs/slack.js';
-const envs = require('../../envs/envs.js');
+
 // Playwright will include ANSI color characters and regex from below 
 // https://github.com/microsoft/playwright/issues/13522
 // https://github.com/chalk/ansi-regex/blob/main/index.js#L3
@@ -79,12 +79,20 @@ class BaseReporter {
     //await this.persistData();
     const summary = this.printResultSummary();
     const resultSummary = { summary };
-    //await sendSlackMessage(envs['@webhook_url'], resultSummary);
+
+    if (process.env.SLACK_WH) {
+      try {
+        await sendSlackMessage(process.env.SLACK_WH, resultSummary);
+      } catch (error){
+        console.log('----Failed to publish result to slack channel----');
+      }
+    }   
   }
 
   printResultSummary() {  
     let envURL;
-    let exeEnv
+    let exeEnv;
+    let runUrl;
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
@@ -92,7 +100,16 @@ class BaseReporter {
     if (process.env.GITHUB_ACTIONS === 'true') {
       envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       exeEnv = 'GitHub Actions Environment';
-    } else {
+      const repo = process.env.GITHUB_REPOSITORY;
+      const runId = process.env.GITHUB_RUN_ID;
+      runUrl = `https://github.com/${repo}/actions/runs/${runId}`; 
+    }else if (process.env.CIRCLECI) {
+      envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
+      exeEnv = 'CircleCI Environment';
+      const workflowId = process.env.CIRCLE_WORKFLOW_ID;
+      const jobNumber = process.env.CIRCLE_BUILD_NUM;
+      runUrl = `https://app.circle.ci.adobe.com/pipelines/github/wcms/nala/${jobNumber}/workflows/${workflowId}/jobs/${jobNumber}`;
+    }else {
       envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
       exeEnv = 'Local Environment';
     }
@@ -104,7 +121,8 @@ class BaseReporter {
     # Test Fail            : ${this.failedTests} (${failPercentage}%)
     # Test Skipped     : ${this.skippedTests}
     ** Application URL  : ${envURL}
-    ** Executed on        : ${exeEnv}`;    
+    ** Executed on        : ${exeEnv}
+    ** Execution details  : ${runUrl}`;    
 
     console.log(summary);
 
