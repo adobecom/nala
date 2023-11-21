@@ -45,6 +45,7 @@ const config = {
 
   /* Configure projects for major browsers */
   projects: [
+    // adobe stage
     {
       name: 'adobe-stage-chrome',
       use: {
@@ -68,7 +69,7 @@ const config = {
         baseURL: envs['@adobe_stage'],
       },
     },
-
+    // adobe prod
     {
       name: 'adobe-prod-chrome',
       use: {
@@ -90,6 +91,50 @@ const config = {
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@adobe_prod'],
+      },
+    },
+    // milo live 
+    {
+      name: 'milo-live-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    {
+      name: 'milo-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    {
+      name: 'milo-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    // milo prod
+    {
+      name: 'milo-prod-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo_prod'],
+      },
+    },
+    {
+      name: 'milo-prod-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@milo_prod'],
+      },
+    },
+    {
+      name: 'milo-prod-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@milo_prod'],
       },
     },
   ],
