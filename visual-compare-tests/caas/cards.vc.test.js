@@ -19,7 +19,7 @@ test.describe('Milo Caas block visual comparison test suite', () => {
     test(`${feature.name},${feature.tags}`, async ({ baseURL }) => {
       const folderPath = 'screenshots/caas';
       // eslint-disable-next-line max-len
-      await webUtil.takeScreenshotAndCompare(baseURL + feature.urlA, baseURL + feature.urlB, folderPath, feature.name);
+      await webUtil.takeScreenshotAndCompare(baseURL + feature.stable, baseURL + feature.beta, folderPath, feature.name);
     });
   }
 });
