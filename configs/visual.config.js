@@ -8,6 +8,7 @@ const { devices } = require('@playwright/test');
 const config = {
   testDir: '../visual-compare-tests', // TODO: Switch to ./tests once baseURL conditional checks have been made on individual tests
   outputDir: '../test-results',
+  globalSetup: '../global.setup.js',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   /**
@@ -33,8 +34,8 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['./utils/reporters/json-reporter.js'], ['./utils/reporters/api-reporter.js']]
-    : [['list']],
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
+    : [['html', { outputFolder: 'test-html-results' }], ['list'], ['../utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
