@@ -3,6 +3,7 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-import-module-exports
 import { expect } from '@playwright/test';
+import { getComparator } from 'playwright-core/lib/utils';
 
 const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -289,5 +290,28 @@ exports.WebUtil = class WebUtil {
     }
     await this.page.setViewportSize({ width, height });
     await this.page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
+  }
+
+  async takeScreenshotAndCompare(urlA, urlB, folderPath, fileName) {
+    console.info(`[Test Page]: ${urlA}`);
+    await this.page.goto(urlA);
+    await this.page.waitForTimeout(3000);
+    await this.page.screenshot({ path: `${folderPath}/${fileName}-a.png`, fullPage: true });
+    const baseImage = fs.readFileSync(`${folderPath}/${fileName}-a.png`);
+
+    console.info(`[Test Page]: ${urlB}`);
+    await this.page.goto(urlB);
+    await this.page.waitForTimeout(3000);
+    await this.page.waitForSelector('.feds-footer-privacyLink');
+    await this.page.screenshot({ path: `${folderPath}/${fileName}-b.png`, fullPage: true });
+    const currImage = fs.readFileSync(`${folderPath}/${fileName}-b.png`);
+
+    const comparator = getComparator('image/png');
+    const diffImage = comparator(baseImage, currImage);
+
+    if (diffImage) {
+      fs.writeFileSync(`${folderPath}/${fileName}-diff.png`, diffImage.diff);
+      console.info('Differences found');
+    }
   }
 };
