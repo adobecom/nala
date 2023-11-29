@@ -30,6 +30,8 @@ test.describe('Quiz flow test suite', () => {
           console.log(key);
           let oldProduct = '';
           let newProduct = '';
+          let oldProductScreenshots = [];
+          let newProductScreenshots = [];
           keyNumber += 1;
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
             await quizOldPage.clickEachAnswer('https://main--milo--adobecom.hlx.live/drafts/quiz/quiz-2/', key, keyNumber, 'stable', true);
@@ -39,6 +41,9 @@ test.describe('Quiz flow test suite', () => {
             oldProduct = await quizOldPage.checkResultPage(testdata[key], key, keyNumber, 'stable', true);
           });
 
+          oldProductScreenshots = quizOldPage.screenshots.slice();
+          quizOldPage.screenshots = [];
+
           await test.step(`New: Select each answer on test page according to ${key}`, async () => {
             await quiz.clickEachAnswer(url, key, keyNumber, 'beta', true);
           });
@@ -46,6 +51,11 @@ test.describe('Quiz flow test suite', () => {
           await test.step('New: Check results on test page', async () => {
             newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, 'beta', true);
           });
+
+          newProductScreenshots = quiz.screenshots.slice();
+          quiz.screenshots = [];
+
+          WebUtil.compareScreenshots(oldProductScreenshots, newProductScreenshots, 'screenshots/uar');
 
           expect.soft(newProduct).toContain(oldProduct);
         }

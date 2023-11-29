@@ -11,6 +11,7 @@ export default class Quiz {
     this.uarResult = page.locator('.quiz-results h1');
     this.uarResult2 = page.locator('//div[contains(@data-path,"marquee-product")]//strong | //div[contains(@data-path,"check-bullet")]//h1 | //div[contains(@data-path,"express-product")]//h1');
     this.uarResult3 = page.locator('//div[contains(@data-path,"card")]//strong');
+    this.screenshots = [];
   }
 
   /**
@@ -71,6 +72,8 @@ export default class Quiz {
           await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
           await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
           await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+
+          this.screenshots.push(desktopName, tabletName, mobileName);
         }
 
         // click next button
@@ -86,6 +89,8 @@ export default class Quiz {
         await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
         await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
         await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+
+        this.screenshots.push(desktopName, tabletName, mobileName);
       }
     }
 
@@ -170,6 +175,8 @@ export default class Quiz {
       await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
       await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
       await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+
+      this.screenshots.push(desktopName, tabletName, mobileName);
     }
 
     console.info(`==========new============\n${newProduct.sort().join('')}`);
