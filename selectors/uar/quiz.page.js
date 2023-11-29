@@ -41,7 +41,7 @@ export default class Quiz {
    * @param {string} url
    * @param {string} originalAnswer
    */
-  async clickEachAnswer(url, originalAnswer, keyNumber, isScreenshot = false) {
+  async clickEachAnswer(url, originalAnswer, keyNumber, version, isScreenshot = false) {
     await this.page.goto(url);
 
     const answers = originalAnswer.split('>').map((x) => x.trim());
@@ -64,9 +64,9 @@ export default class Quiz {
 
           const index = answers.indexOf(answer);
           const folderPath = 'screenshots/uar';
-          const desktopName = `${keyNumber} - new - desktop - ${index} - ${answer.replace('/', '')}.png`;
-          const tabletName = `${keyNumber} - new - tablet - ${index} - ${answer.replace('/', '')}.png`;
-          const mobileName = `${keyNumber} - new - mobile - ${index} - ${answer.replace('/', '')}.png`;
+          const desktopName = `${keyNumber} - ${version} - desktop - ${index} - ${answer.replace('/', '')}.png`;
+          const tabletName = `${keyNumber} - ${version} - tablet - ${index} - ${answer.replace('/', '')}.png`;
+          const mobileName = `${keyNumber} - ${version} - mobile - ${index} - ${answer.replace('/', '')}.png`;
 
           await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
           await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
@@ -79,9 +79,9 @@ export default class Quiz {
         await this.page.waitForTimeout(500);
         const index = answers.length - 1;
         const folderPath = 'screenshots/uar';
-        const desktopName = `${keyNumber} - new - desktop - ${index} - ${answer.replace('/', '')}.png`;
-        const tabletName = `${keyNumber} - new - tablet - ${index} - ${answer.replace('/', '')}.png`;
-        const mobileName = `${keyNumber} - new - mobile - ${index} - ${answer.replace('/', '')}.png`;
+        const desktopName = `${keyNumber} - ${version} - desktop - ${index} - ${answer.replace('/', '')}.png`;
+        const tabletName = `${keyNumber} - ${version} - tablet - ${index} - ${answer.replace('/', '')}.png`;
+        const mobileName = `${keyNumber} - ${version} - mobile - ${index} - ${answer.replace('/', '')}.png`;
 
         await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
         await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
@@ -97,7 +97,7 @@ export default class Quiz {
    * Validate products on result page to match with expect products
    * @param {string} name
    */
-  async checkResultPage(name, originalAnswer, keyNumber, isScreenshot = false) {
+  async checkResultPage(name, originalAnswer, keyNumber, version, isScreenshot = false) {
     const newProduct = [];
 
     const actualProduct = await this.uarResult.nth(0);
@@ -163,9 +163,9 @@ export default class Quiz {
       await this.page.waitForTimeout(1000);
 
       const folderPath = 'screenshots/uar';
-      const desktopName = `${keyNumber} - new - desktop - result.png`;
-      const tabletName = `${keyNumber} - new - tablet - result.png`;
-      const mobileName = `${keyNumber} - new - mobile - result.png`;
+      const desktopName = `${keyNumber} - ${version} - desktop - result.png`;
+      const tabletName = `${keyNumber} - ${version} - tablet - result.png`;
+      const mobileName = `${keyNumber} - ${version} - mobile - result.png`;
 
       await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
       await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
