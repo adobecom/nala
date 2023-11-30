@@ -292,16 +292,16 @@ exports.WebUtil = class WebUtil {
     await this.page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
   }
 
-  async takeScreenshotAndCompare(urlA, urlB, folderPath, fileName) {
+  async takeScreenshotAndCompare(urlA, callbackA, urlB, callbackB, folderPath, fileName) {
     console.info(`[Test Page]: ${urlA}`);
     await this.page.goto(urlA);
-    await this.page.waitForTimeout(3000);
+    await callbackA();
     await this.page.screenshot({ path: `${folderPath}/${fileName}-a.png`, fullPage: true });
     const baseImage = fs.readFileSync(`${folderPath}/${fileName}-a.png`);
 
     console.info(`[Test Page]: ${urlB}`);
     await this.page.goto(urlB);
-    await this.page.waitForTimeout(3000);
+    await callbackB();
     await this.page.waitForSelector('.feds-footer-privacyLink');
     await this.page.screenshot({ path: `${folderPath}/${fileName}-b.png`, fullPage: true });
     const currImage = fs.readFileSync(`${folderPath}/${fileName}-b.png`);
