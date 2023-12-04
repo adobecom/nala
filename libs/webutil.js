@@ -3,6 +3,7 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-import-module-exports
 import { expect } from '@playwright/test';
+import { getComparator } from 'playwright-core/lib/utils';
 
 const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -136,6 +137,28 @@ exports.WebUtil = class WebUtil {
       return result;
     }
 
+    /**
+ * Verifies that the specified CSS properties of the given locator match the expected values.
+ * @param {Object} locator - The locator to verify CSS properties for.
+ * @param {Object} cssProps - The CSS properties and expected values to verify.
+ * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
+ */
+    async verifyCSS_(locator, cssProps) {
+      this.locator = locator;
+      let result = true;
+      await Promise.allSettled(
+        Object.entries(cssProps).map(async ([property, expectedValue]) => {
+          try {
+            await expect(this.locator).toHaveCSS(property, expectedValue);
+          } catch (error) {
+            console.error(`CSS property ${property} not found:`, error);
+            result = false;
+          }
+        }),
+      );
+      return result;
+    }
+
   /**
  * Verifies that the specified attribute properties of the given locator match the expected values.
  * @param {Object} locator - The locator to verify attributes.
@@ -176,33 +199,33 @@ exports.WebUtil = class WebUtil {
  * @param {Object} attProps - The attribute properties and expected values to verify.
  * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
  */
-    async verifyAttributes_(locator, attProps) {
-      this.locator = locator;
-      let result = true;
-      await Promise.allSettled(
-        Object.entries(attProps).map(async ([property, expectedValue]) => {
-          if (property === 'class' && typeof expectedValue === 'string') {
-            // If the property is 'class' and the expected value is an string,
-            // split the string value into individual classes
-            const classes = expectedValue.split(' ');
-            try {
-              await expect(await this.locator).toHaveClass(classes.join(' '));
-            } catch (error) {
-              console.error('Attribute class not found:', error);
-              result = false;
-            }
-          } else {
-            try {
-              await expect(await this.locator).toHaveAttribute(property, expectedValue);
-            } catch (error) {
-              console.error(`Attribute ${property} not found:`, error);
-              result = false;
-            }
+  async verifyAttributes_(locator, attProps) {
+    this.locator = locator;
+    let result = true;
+    await Promise.allSettled(
+      Object.entries(attProps).map(async ([property, expectedValue]) => {
+        if (property === 'class' && typeof expectedValue === 'string') {
+          // If the property is 'class' and the expected value is an string,
+          // split the string value into individual classes
+          const classes = expectedValue.split(' ');
+          try {
+            await expect(await this.locator).toHaveClass(classes.join(' '));
+          } catch (error) {
+            console.error('Attribute class not found:', error);
+            result = false;
           }
-        }),
-      );
-      return result;
-    }
+        } else {
+          try {
+            await expect(await this.locator).toHaveAttribute(property, expectedValue);
+          } catch (error) {
+            console.error(`Attribute ${property} not found:`, error);
+            result = false;
+          }
+        }
+      }),
+    );
+    return result;
+  }
 
   /**
    * Slow/fast scroll of entire page JS evaluation method, aides with lazy loaded content.
@@ -364,4 +387,46 @@ exports.WebUtil = class WebUtil {
     return `${slicedLinkText}-${counter}--${slicedLastHeaderText}`;
   }
 
+
+  async takeScreenshotAndCompare(urlA, callbackA, urlB, callbackB, folderPath, fileName) {
+    console.info(`[Test Page]: ${urlA}`);
+    await this.page.goto(urlA);
+    await callbackA();
+    await this.page.screenshot({ path: `${folderPath}/${fileName}-a.png`, fullPage: true });
+    const baseImage = fs.readFileSync(`${folderPath}/${fileName}-a.png`);
+
+    console.info(`[Test Page]: ${urlB}`);
+    await this.page.goto(urlB);
+    await callbackB();
+    await this.page.waitForSelector('.feds-footer-privacyLink');
+    await this.page.screenshot({ path: `${folderPath}/${fileName}-b.png`, fullPage: true });
+    const currImage = fs.readFileSync(`${folderPath}/${fileName}-b.png`);
+
+    const comparator = getComparator('image/png');
+    const diffImage = comparator(baseImage, currImage);
+
+    if (diffImage) {
+      fs.writeFileSync(`${folderPath}/${fileName}-diff.png`, diffImage.diff);
+      console.info('Differences found');
+    }
+  }
+
+  static compareScreenshots(stableArray, betaArray, folderPath) {
+    const comparator = getComparator('image/png');
+    for (let i = 0; i < stableArray.length; i += 1) {
+      if (betaArray[i].slice(-10) === stableArray[i].slice(-10)) {
+        const stableImage = fs.readFileSync(`${folderPath}/${stableArray[i]}`);
+        const betaImage = fs.readFileSync(`${folderPath}/${betaArray[i]}`);
+        const diffImage = comparator(stableImage, betaImage);
+
+        if (diffImage) {
+          fs.writeFileSync(`${folderPath}/${stableArray[i]}-diff.png`, diffImage.diff);
+          console.info('Differences found');
+        }
+      } else {
+        console.info('Screenshots are not matched');
+        console.info(`${stableArray[i]} vs ${betaArray[i]}`);
+      }
+    }
+  }
 };
