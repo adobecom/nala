@@ -182,18 +182,7 @@ export default class Marquee {
         'autoplay': '',
         'loop': '',
         'muted': ''
-      },      
-      'analytics': {
-        'marquee.daa-lh': {
-          'daa-lh': /b[1-9]|marquee|default|default/,
-        }, 
-        'section.daa-lh': {
-          'daa-lh': /s[1-9]/,
-        },
-        'content.daa-lh': {
-          'daa-lh': /b[1-9]|content|default|default/,
-        },         
-      },     
+      },    
     };
   }
 };
