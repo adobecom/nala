@@ -25,7 +25,7 @@ export default class Merchcard {
     this.strikethroughPriceRecurrence = this.inlinePrice2.locator('.price-recurrence');
 
     // merch-card segment locators
-    this.segmentRibbon = this.merchCard.locator('.segment-ribbon');
+    this.segmentRibbon = this.merchCard.locator('.segment-badge');
     this.segmentTitle = this.segment.locator('h3[slot="heading-xs"]').nth(0);
     this.segmentDescription1 = this.segment.locator('div[slot="body-xs"] p').nth(0);
     this.segmentDescription2 = this.segment.locator('div[slot="body-xs"] p').nth(1);
@@ -35,7 +35,7 @@ export default class Merchcard {
 
     // merch-card special offers
     this.sepcialOffersImage = this.sepcialOffers.locator('div[slot="bg-image"] img');
-    this.sepcialOffersRibbon = this.merchCard.locator('.special-offers-ribbon');
+    this.sepcialOffersRibbon = this.merchCard.locator('.special-offers-badge');
     this.sepcialOffersTitleH4 = this.sepcialOffers.locator('h5[slot="detail-m"]');
     this.sepcialOffersTitleH5 = this.sepcialOffers.locator('h4[slot="body-xss"]');
     this.sepcialOffersTitleH3 = this.sepcialOffers.locator('h3[slot="heading-xs"]');
@@ -51,7 +51,7 @@ export default class Merchcard {
     // merch-card plans locators
     //this.productIcon = this.plans.locator('#shadow-root div.icons');
     this.productIcon = this.plans.locator('img');
-    this.plansRibbon = this.plans.locator('.plans-ribbon');
+    this.plansRibbon = this.plans.locator('.plans-badge');
     this.plansCardTitleH3 = this.plans.locator('h3[slot="heading-xs"]');
     this.plansCardTitleH5 = this.plans.locator('h5[slot="detail-m"]');
     this.plansCardDescription2 = this.plans.locator('div[slot="body-xs"] p').nth(2);
@@ -70,13 +70,13 @@ export default class Merchcard {
     // merch-card attributes
     this.attributes = {
       'segmentRibbon': {
-        'style': 'background-color: #EDCC2D; color: #000000; ',
+        'style': /background-color:\s*#EDCC2D;\s*color:\s*#000000;\s*/,
       },
       'specialOfferRibbon': {
-        'style': 'background-color: #F68D2E; color: #000000; ',
+        'style': /background-color:\s* #F68D2E;\s*color:\s*#000000;\s*/,
       },
       'plansRibbon': {
-        'style': 'background-color: #EDCC2D; color: #000000; ',
+        'style': /background-color:\s*#EDCC2D;\s*color:\s*#000000;\s*/,
       },
     };
   }

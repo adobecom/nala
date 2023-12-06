@@ -31,7 +31,7 @@ module.exports = {
       tcid: '2',
       name: '@Insert Content After',
       desc: 'Personalization with action=insertContentAfter',
-      path: '/drafts/nala/features/personalization/pzn-insertcontent-before',
+      path: '/drafts/nala/features/personalization/pzn-insertcontent-after',
       data: {
         target: 'textpersonlization',
         pznExpName:'param-target=textpersonlization',
