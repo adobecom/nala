@@ -346,6 +346,15 @@ exports.WebUtil = class WebUtil {
   }
 
 /**
+ * Generates analytic string for a given project.
+ * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
+ * @returns {string} - A string formatted as 'gnav|<project>|nopzn|nopzn'.
+ */  
+async getPznGnavDaalh(project=milo, ) {
+  return 'gnav'+ '|' + project + '|'+ 'nopzn' + '|' + 'nopzn' ;
+}  
+
+/**
  * Generates analytic string for a section based on a given counter value.
  * @param {number|string} counter - A counter value used to generate the section identifier.
  * @returns {string} - A string formatted as 's<counter>'.
@@ -364,6 +373,40 @@ exports.WebUtil = class WebUtil {
     const slicedBlockName = blockName.slice(0, 20);
     return 'b'+ counter + '|' + slicedBlockName + '|'+ 'nopzn' + '|' + 'nopzn' ;
   }
+
+/**
+ * Generates personalization analytic string for a given block name and a counter.
+ * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value i.e. block number.
+ * @param {string} pznExpName - Personalized experience name, which is sliced to its first 15 characters.
+ * @param {string} pznExpName - Manifest filename, which is sliced to its first 20 characters.
+ * @returns {string} - A string formatted as 'b<counter>|<slicedBlockName>|<pznExpName>|<pznExpName>'.
+ */  
+async getPznBlockDaalh(blockName, counter, pznExpName, pznFileName) {
+  const slicedBlockName = blockName.slice(0, 20);
+  const slicedExpName = pznExpName.slice(0, 15);
+  const slicedFileName = pznFileName.slice(0, 15);
+  return 'b'+ counter + '|' + slicedBlockName + '|'+ slicedExpName + '|' + slicedFileName ;
+}  
+
+/**
+ * Generates an analytic string for a given block name and a counter.
+ * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value, i.e., block number.
+ * @param {boolean} [pzn=false] - A boolean flag indicating whether to use pzntext.
+ * @param {string} [pzntext='nopzn'] - The pzntext to use when pzn is true, sliced to its first 15 characters.
+ * @returns {string} - A formatted string.
+ */
+async getBlockDaalh(blockName, counter, pzn = false, pzntext = 'nopzn') {
+  const slicedBlockName = blockName.slice(0, 20);
+  const slicedPzntext = pzntext.slice(0, 15);
+  if (pzn) {
+    return 'b' + counter + '|' + slicedBlockName + '|' + slicedPzntext + '|' + 'nopzn';
+  } else {
+    return 'b' + counter + '|' + slicedBlockName + '|' + 'nopzn' + '|' + 'nopzn';
+  }
+}
+
 
 /**
  * Generates analytic string for link or button based on link/button text , a counter, and the last header text.
