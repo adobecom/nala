@@ -39,6 +39,6 @@ module.exports = {
         h3Text: 'Text'
       },
       tags: '@pzn @smoke @regression @milo ',
-    },   
+    },  
   ],
 };
