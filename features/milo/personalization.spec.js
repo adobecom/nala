@@ -26,6 +26,19 @@ module.exports = {
         h3Text: 'Text'
       },
       tags: '@pzn @smoke @regression @milo ',
-    },    
+    },
+    {
+      tcid: '2',
+      name: '@Insert Content After',
+      desc: 'Personalization with action=insertContentAfter',
+      path: '/drafts/nala/features/personalization/pzn-insertcontent-before',
+      data: {
+        target: 'textpersonlization',
+        pznExpName:'param-target=textpersonlization',
+        pznFileName:'insert-content-before',
+        h3Text: 'Text'
+      },
+      tags: '@pzn @smoke @regression @milo ',
+    },   
   ],
 };

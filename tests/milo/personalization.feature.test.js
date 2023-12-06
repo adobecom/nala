@@ -40,7 +40,7 @@ test.describe('Milo Personalization feature test suite', () => {
       await expect(await text.text).toBeVisible();
       await expect(await text.headline).toContainText(data.h3Text);
 
-      const blockDll = await webUtil.getPznBlockDaalh('text', 1,data.pznExpName, data.pznFileName)
+      const blockDll = await webUtil.getPznBlockDaalh('text', 1, data.pznExpName, data.pznFileName)
       await expect(await text.text).toHaveAttribute('daa-lh', blockDll);
     });
 
@@ -74,12 +74,12 @@ test.describe('Milo Personalization feature test suite', () => {
       await expect(await text.headline).toContainText(data.h3Text);
 
       // text block Dll analytics
-      const textBlockDll = await webUtil.getPznBlockDaalh('text', 1,data.pznExpName, data.pznFileName)
+      const textBlockDll = await webUtil.getPznBlockDaalh('text', 1, data.pznExpName, data.pznFileName)
       await expect(await text.text).toHaveAttribute('daa-lh', textBlockDll);
 
       // Marquee block Dll analytics
       await expect(await marquee.marquee).toBeVisible();
-      const marqueeBlockDll = await webUtil.getPznBlockDaalh('marquee', 2,data.pznExpName, data.pznFileName)
+      const marqueeBlockDll = await webUtil.getPznBlockDaalh('marquee', 2, data.pznExpName, data.pznFileName)
       await expect(await marquee.marquee).toHaveAttribute('daa-lh', marqueeBlockDll);
     });
 

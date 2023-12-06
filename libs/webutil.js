@@ -348,10 +348,14 @@ exports.WebUtil = class WebUtil {
 /**
  * Generates analytic string for a given project.
  * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
- * @returns {string} - A string formatted as 'gnav|<project>|nopzn|nopzn'.
+ * @param {string} pznExpName - Personalized experience name, which is sliced to its first 15 characters.
+ * @param {string} pznFileName - Manifest filename, which is sliced to its first 20 characters.
+ * @returns {string} - A string formatted as 'gnav|<project>|<pznExpName>|<pznFileName>'.
  */  
-async getPznGnavDaalh(project=milo, ) {
-  return 'gnav'+ '|' + project + '|'+ 'nopzn' + '|' + 'nopzn' ;
+async getPznGnavDaalh(project=milo, pznExpName, pznFileName) {
+  const slicedExpName = pznExpName.slice(0, 15);
+  const slicedFileName = pznFileName.slice(0, 15);
+  return 'gnav'+ '|' + project + '|'+ slicedExpName + '|' + slicedFileName ;
 }  
 
 /**
