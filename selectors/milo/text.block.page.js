@@ -2,10 +2,10 @@ import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
 export default class Text {
-  constructor(page) {
+  constructor(page, nth = 0) {
     this.page = page;
     // text  locators
-    this.text = page.locator('.text');
+    this.text = page.locator('.text').nth(nth);
     this.textIntro = this.page.locator('.text.intro');
     this.textFullWidth = this.page.locator('.text.full-width');
     this.textFullWidthLarge = this.page.locator('.text.full-width.large');
