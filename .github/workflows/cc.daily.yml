@@ -2,9 +2,7 @@ name: CC Nala Daily Run
 
 on:
   schedule:
-    - cron: "0 15 * * *"
-  pull_request:
-    branches: [main]
+    - cron: '*/10 * * * *'
 
 jobs:
   platform_matrix:
