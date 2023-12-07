@@ -8,6 +8,10 @@ CONFIG_FILE_PATH="./configs/${PROJECT_NAME}.config.js"
 
 # Check if the config.js file exists
 if [ -f "${CONFIG_FILE_PATH}" ]; then
+    echo "*** Installing playwright dependencies ***"
+    cd "$GITHUB_ACTION_PATH" || exit
+    npm ci
+    npx playwright install --with-deps    
     echo "*** Running Playwright tests with config: ${CONFIG_FILE_PATH} ***"
     npx playwright test --config="${CONFIG_FILE_PATH}" --project="${PROJECT_NAME}-live-chrome"
     npx playwright test --config="${CONFIG_FILE_PATH}" --project="${PROJECT_NAME}-live-firefox"
