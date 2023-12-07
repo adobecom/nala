@@ -10,6 +10,7 @@ const envs = require('../envs/envs.js');
 const config = {
   testDir: '../tests/cc',
   outputDir: '../test-results',
+  globalSetup: '../global.setup.js',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
