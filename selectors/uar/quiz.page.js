@@ -1,5 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
+import { expect } from '@playwright/test';
+
 const { WebUtil } = require('../../libs/webutil.js');
 
 export default class Quiz {
@@ -42,7 +44,7 @@ export default class Quiz {
    * @param {string} url
    * @param {string} originalAnswer
    */
-  async clickEachAnswer(url, originalAnswer, keyNumber, version, isScreenshot = false) {
+  async clickEachAnswer(url, originalAnswer, keyNumber, version, isScreenshot = false, folderPath = 'screenshots/uar') {
     await this.page.goto(url);
 
     const answers = originalAnswer.split('>').map((x) => x.trim());
@@ -64,7 +66,6 @@ export default class Quiz {
           await this.page.waitForTimeout(500);
 
           const index = answers.indexOf(answer);
-          const folderPath = 'screenshots/uar';
           const desktopName = `${keyNumber} - ${version} - desktop - ${index} - ${answer.replace('/', '')}.png`;
           const tabletName = `${keyNumber} - ${version} - tablet - ${index} - ${answer.replace('/', '')}.png`;
           const mobileName = `${keyNumber} - ${version} - mobile - ${index} - ${answer.replace('/', '')}.png`;
@@ -81,7 +82,6 @@ export default class Quiz {
       } else if (isScreenshot) {
         await this.page.waitForTimeout(500);
         const index = answers.length - 1;
-        const folderPath = 'screenshots/uar';
         const desktopName = `${keyNumber} - ${version} - desktop - ${index} - ${answer.replace('/', '')}.png`;
         const tabletName = `${keyNumber} - ${version} - tablet - ${index} - ${answer.replace('/', '')}.png`;
         const mobileName = `${keyNumber} - ${version} - mobile - ${index} - ${answer.replace('/', '')}.png`;
@@ -102,7 +102,7 @@ export default class Quiz {
    * Validate products on result page to match with expect products
    * @param {string} name
    */
-  async checkResultPage(name, originalAnswer, keyNumber, version, isScreenshot = false) {
+  async checkResultPage(name, originalAnswer, keyNumber, version, isScreenshot = false, folderPath = 'screenshots/uar') {
     const newProduct = [];
 
     const actualProduct = await this.uarResult.nth(0);
@@ -167,7 +167,6 @@ export default class Quiz {
     if (isScreenshot) {
       await this.page.waitForTimeout(1000);
 
-      const folderPath = 'screenshots/uar';
       const desktopName = `${keyNumber} - ${version} - desktop - result.png`;
       const tabletName = `${keyNumber} - ${version} - tablet - result.png`;
       const mobileName = `${keyNumber} - ${version} - mobile - result.png`;
@@ -181,5 +180,22 @@ export default class Quiz {
 
     console.info(`==========new============\n${newProduct.sort().join('')}`);
     return newProduct.sort().join('');
+  }
+
+  async checkResultPageDX(value, keyNumber, version, isScreenshot = false, folderPath = 'screenshots/uar') {
+    expect.soft(await this.page.url()).toContain(value);
+    if (isScreenshot) {
+      await this.page.waitForTimeout(1000);
+
+      const desktopName = `${keyNumber} - ${version} - desktop - result.png`;
+      const tabletName = `${keyNumber} - ${version} - tablet - result.png`;
+      const mobileName = `${keyNumber} - ${version} - mobile - result.png`;
+
+      await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
+      await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
+      await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+
+      this.screenshots.push(desktopName, tabletName, mobileName);
+    }
   }
 }
