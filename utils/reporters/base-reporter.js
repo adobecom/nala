@@ -98,7 +98,11 @@ class BaseReporter {
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
 
     if (process.env.GITHUB_ACTIONS === 'true') {
-      envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
+      if(process.env.DAILY_RUN === 'true'){
+        envURL = this.config.projects[0].use.baseURL;
+      }else{
+        envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
+      }      
       exeEnv = 'GitHub Actions Environment';
       const repo = process.env.GITHUB_REPOSITORY;
       const runId = process.env.GITHUB_RUN_ID;
@@ -112,6 +116,8 @@ class BaseReporter {
     }else {
       envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
       exeEnv = 'Local Environment';
+      envURL = this.config.projects[0].use.baseURL;
+      runUrl = 'Local Environment'
     }
 
     const summary = `
