@@ -3,6 +3,7 @@ name: CC Nala Daily Run
 on:
   schedule:
     - cron: '*/10 * * * *'
+  workflow_dispatch:
 
 jobs:
   platform_matrix:
