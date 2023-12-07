@@ -1,4 +1,4 @@
-name: Run Nala Daily
+name: Milo Nala Daily Run
 
 on:
   schedule:
