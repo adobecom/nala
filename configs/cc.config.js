@@ -66,30 +66,6 @@ const config = {
         ...devices['Desktop Safari'],
       },
     },
-
-    {
-      name: 'cc-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@cc_prod'],
-      },
-    },
-
-    {
-      name: 'cc-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@cc_prod'],
-      },
-    },
-
-    {
-      name: 'cc-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@cc_prod'],
-      },
-    },
   ],
 };
 export default config;
