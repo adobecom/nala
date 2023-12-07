@@ -25,7 +25,7 @@ jobs:
           node-version: lts/*
         
       - name: Run Nala ${{ matrix.os }}
-        uses: bash dailyrun.sh cc
+        run: bash dailyrun.sh cc
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
