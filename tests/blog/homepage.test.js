@@ -81,7 +81,7 @@ test.describe('Blog Home page test suite', () => {
       await expect(homePage.loadMoreArticlesButton).toBeVisible();
     });
 
-    await test.step.skip('step-4: Verify Footer', async () => {
+    await test.step('step-4: Verify Footer', async () => {
       // Change Language
       await expect(homePage.changeLanguageText).toBeVisible();
       await expect(homePage.changeLanguageButton).toBeVisible();
