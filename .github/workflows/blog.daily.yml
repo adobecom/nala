@@ -14,7 +14,7 @@ jobs:
     name: Running tests
     runs-on: ${{ matrix.os }}
     env:
-      WORKFLOW_NAME: 'CC Nala Daily Run'
+      WORKFLOW_NAME: 'Blog Nala Daily Run'
       DAILY_RUN: 'true'
 
     steps:
