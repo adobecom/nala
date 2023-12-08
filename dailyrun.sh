@@ -13,8 +13,7 @@ if [ -f "${CONFIG_FILE_PATH}" ]; then
     npm ci
     npx playwright install --with-deps    
     echo "*** Running Playwright tests with config: ${CONFIG_FILE_PATH} ***"
-    npx playwright test --config="${CONFIG_FILE_PATH}" --project="${PROJECT_NAME}-live-chrome"
-    npx playwright test --config="${CONFIG_FILE_PATH}" --project="${PROJECT_NAME}-live-firefox"
+    npx playwright test --config="${CONFIG_FILE_PATH}"
 else
     echo "Config file: ${CONFIG_FILE_PATH} not found, running default tests"
     exit 1

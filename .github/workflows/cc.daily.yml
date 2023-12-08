@@ -15,6 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       WORKFLOW_NAME: 'CC Nala Daily Run'
+      DAILY_RUN: 'true'
 
     steps:
       - name: Check out repository
