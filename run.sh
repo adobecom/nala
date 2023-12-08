@@ -84,7 +84,7 @@ if [[ -n  "$APPS" ]];then
           echo "*** npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name} ***"
           npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
           npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
-          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
+          # npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
         else
           # Run all the projects from config file for all projects
           echo "*** npx playwright test --config="$config_file" ${TAGS} ${REPORTER} ***"

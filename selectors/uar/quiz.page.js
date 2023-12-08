@@ -1,5 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
+import { expect } from '@playwright/test';
+
 const { WebUtil } = require('../../libs/webutil.js');
 
 export default class Quiz {
@@ -11,6 +13,7 @@ export default class Quiz {
     this.uarResult = page.locator('.quiz-results h1');
     this.uarResult2 = page.locator('//div[contains(@data-path,"marquee-product")]//strong | //div[contains(@data-path,"check-bullet")]//h1 | //div[contains(@data-path,"express-product")]//h1');
     this.uarResult3 = page.locator('//div[contains(@data-path,"card")]//strong');
+    this.screenshots = [];
   }
 
   /**
@@ -41,7 +44,7 @@ export default class Quiz {
    * @param {string} url
    * @param {string} originalAnswer
    */
-  async clickEachAnswer(url, originalAnswer, keyNumber, isScreenshot = false) {
+  async clickEachAnswer(url, originalAnswer, keyNumber, version, isScreenshot = false, folderPath = 'screenshots/uar') {
     await this.page.goto(url);
 
     const answers = originalAnswer.split('>').map((x) => x.trim());
@@ -63,14 +66,13 @@ export default class Quiz {
           await this.page.waitForTimeout(500);
 
           const index = answers.indexOf(answer);
-          const folderPath = 'screenshots/uar';
-          const desktopName = `${keyNumber} - new - desktop - ${index} - ${answer.replace('/', '')}.png`;
-          const tabletName = `${keyNumber} - new - tablet - ${index} - ${answer.replace('/', '')}.png`;
-          const mobileName = `${keyNumber} - new - mobile - ${index} - ${answer.replace('/', '')}.png`;
-
-          await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
-          await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
-          await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+          await this.takeScreenshotsOnThreeDimensions(
+            keyNumber,
+            version,
+            index,
+            answer,
+            folderPath,
+          );
         }
 
         // click next button
@@ -78,14 +80,13 @@ export default class Quiz {
       } else if (isScreenshot) {
         await this.page.waitForTimeout(500);
         const index = answers.length - 1;
-        const folderPath = 'screenshots/uar';
-        const desktopName = `${keyNumber} - new - desktop - ${index} - ${answer.replace('/', '')}.png`;
-        const tabletName = `${keyNumber} - new - tablet - ${index} - ${answer.replace('/', '')}.png`;
-        const mobileName = `${keyNumber} - new - mobile - ${index} - ${answer.replace('/', '')}.png`;
-
-        await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
-        await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
-        await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+        await this.takeScreenshotsOnThreeDimensions(
+          keyNumber,
+          version,
+          index,
+          answer,
+          folderPath,
+        );
       }
     }
 
@@ -93,11 +94,33 @@ export default class Quiz {
     await this.clickResultButton();
   }
 
+  async takeScreenshotsOnThreeDimensions(keyNumber, version, index, answer, folderPath) {
+    let desktopName;
+    let tabletName;
+    let mobileName;
+
+    if (answer === 'result') {
+      desktopName = `${keyNumber} - ${version} - desktop - result.png`;
+      tabletName = `${keyNumber} - ${version} - tablet - result.png`;
+      mobileName = `${keyNumber} - ${version} - mobile - result.png`;
+    } else {
+      desktopName = `${keyNumber} - ${version} - desktop - ${index} - ${answer.replace('/', '')}.png`;
+      tabletName = `${keyNumber} - ${version} - tablet - ${index} - ${answer.replace('/', '')}.png`;
+      mobileName = `${keyNumber} - ${version} - mobile - ${index} - ${answer.replace('/', '')}.png`;
+    }
+
+    await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
+    await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
+    await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+
+    this.screenshots.push(desktopName, tabletName, mobileName);
+  }
+
   /**
    * Validate products on result page to match with expect products
    * @param {string} name
    */
-  async checkResultPage(name, originalAnswer, keyNumber, isScreenshot = false) {
+  async checkResultPage(name, originalAnswer, keyNumber, version, isScreenshot = false, folderPath = 'screenshots/uar') {
     const newProduct = [];
 
     const actualProduct = await this.uarResult.nth(0);
@@ -162,17 +185,31 @@ export default class Quiz {
     if (isScreenshot) {
       await this.page.waitForTimeout(1000);
 
-      const folderPath = 'screenshots/uar';
-      const desktopName = `${keyNumber} - new - desktop - result.png`;
-      const tabletName = `${keyNumber} - new - tablet - result.png`;
-      const mobileName = `${keyNumber} - new - mobile - result.png`;
-
-      await this.webUtil.takeScreenshot(folderPath, desktopName, 1920, 1080);
-      await this.webUtil.takeScreenshot(folderPath, tabletName, 768, 1024);
-      await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
+      await this.takeScreenshotsOnThreeDimensions(
+        keyNumber,
+        version,
+        0,
+        'result',
+        folderPath,
+      );
     }
 
     console.info(`==========new============\n${newProduct.sort().join('')}`);
     return newProduct.sort().join('');
+  }
+
+  async checkResultPageDX(value, keyNumber, version, isScreenshot = false, folderPath = 'screenshots/dx') {
+    expect.soft(await this.page.url()).toContain(value);
+    if (isScreenshot) {
+      await this.page.waitForTimeout(1000);
+
+      await this.takeScreenshotsOnThreeDimensions(
+        keyNumber,
+        version,
+        0,
+        'result',
+        folderPath,
+      );
+    }
   }
 }

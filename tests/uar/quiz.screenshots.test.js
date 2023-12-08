@@ -41,11 +41,11 @@ test.describe('Quiz flow test suite', () => {
           });
 
           await test.step(`New: Select each answer on test page according to ${key}`, async () => {
-            await quiz.clickEachAnswer(url, key, keyNumber, true);
+            await quiz.clickEachAnswer(url, key, keyNumber, 'new', true);
           });
 
           await test.step('New: Check results on test page', async () => {
-            newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, true);
+            newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, 'new', true);
           });
 
           expect.soft(newProduct).toContain(oldProduct);

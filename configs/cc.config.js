@@ -10,6 +10,7 @@ const envs = require('../envs/envs.js');
 const config = {
   testDir: '../tests/cc',
   outputDir: '../test-results',
+  globalSetup: '../global.setup.js',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -30,7 +31,7 @@ const config = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
     ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results' }]],
+    : [['html', { outputFolder: 'test-html-results' }],['list'],['../utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -49,7 +50,6 @@ const config = {
       name: 'cc-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@cc-live'],
       },
     },
 
@@ -57,7 +57,6 @@ const config = {
       name: 'cc-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@cc-live'],
       },
     },
 
@@ -65,31 +64,6 @@ const config = {
       name: 'cc-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@cc-live'],
-      },
-    },
-
-    {
-      name: 'cc-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@cc_prod'],
-      },
-    },
-
-    {
-      name: 'cc-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@cc_prod'],
-      },
-    },
-
-    {
-      name: 'cc-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@cc_prod'],
       },
     },
   ],

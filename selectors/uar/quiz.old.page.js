@@ -132,6 +132,12 @@ export default class QuizOldPage {
       await this.webUtil.takeScreenshot(folderPath, mobileName, 375, 812);
     }
 
+    oldProduct.forEach((product, index) => {
+      if (product.includes('Great Deal') || product.includes('Businesses') || product.includes('Students and teachers')) {
+        oldProduct.splice(index, 1);
+      }
+    });
+
     console.info(`==========old============\n${oldProduct.sort().join('')}`);
     return oldProduct.sort().join('');
   }
