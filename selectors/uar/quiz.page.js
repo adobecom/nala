@@ -12,7 +12,7 @@ export default class Quiz {
     this.resultButton = page.locator('div.quiz-button-container > button');
     this.uarResult = page.locator('.quiz-results h1');
     this.uarResult2 = page.locator('//div[contains(@data-path,"marquee-product")]//strong | //div[contains(@data-path,"check-bullet")]//h1 | //div[contains(@data-path,"express-product")]//h1');
-    this.uarResult3 = page.locator('//div[contains(@data-path,"card")]//strong');
+    this.uarResult3 = page.locator('//div[contains(@data-path,"card")]//h3');
     this.screenshots = [];
   }
 
