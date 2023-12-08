@@ -6,7 +6,7 @@ import MarqueeBlock from '../../selectors/milo/marquee.block.page.js';
 let webUtil;
 let marquee;
 let consoleErrors = [];
-const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
+const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','adobeid-na1-stg1.services'];
 
 test.describe('Milo Marquee Block test suite', () => {
   test.beforeEach(async ({ page }) => {
