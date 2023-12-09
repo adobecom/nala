@@ -40,6 +40,6 @@
     "eslint": "8.37.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",
-    "saucectl":"0.164.2"
+    "saucectl": "0.168.0"
   }
 }
