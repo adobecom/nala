@@ -93,7 +93,7 @@ class BaseReporter {
     let envURL;
     let exeEnv;
     let runUrl;
-    let runName = '';
+    let runName = 'Nala PR Run';
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
@@ -101,7 +101,7 @@ class BaseReporter {
     if (process.env.GITHUB_ACTIONS === 'true') {
       if(process.env.DAILY_RUN === 'true'){
         envURL = this.config.projects[0].use.baseURL;
-        runName = process.env.WORKFLOW_NAME || ''
+        runName = process.env.WORKFLOW_NAME || 'Nala Daily Run'
       }else{
         envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       }      
