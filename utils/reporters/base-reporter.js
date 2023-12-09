@@ -109,7 +109,7 @@ class BaseReporter {
       const repo = process.env.GITHUB_REPOSITORY;
       const runId = process.env.GITHUB_RUN_ID;
       runUrl = `https://github.com/${repo}/actions/runs/${runId}`;
-      runName = 'Nala PR Run' + `(${process.env.PR_NUMBER})`; 
+      runName = 'Nala PR Run' + `( ${process.env.GITHUB_REF.split('/')[2]} )`; 
     }else if (process.env.CIRCLECI) {
       envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       exeEnv = 'CircleCI Environment';
