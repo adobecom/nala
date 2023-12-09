@@ -10,85 +10,85 @@ sauce:
   metadata:
     tags:
       - e2e
-      - release team
-      - other tag
+      - nala
+      - milo
   tunnel:
-    name: tunnel-name
-    owner: tunnel-owner-username
+    name: sso-acs-mauchley_tunnel_name
+    owner: sso-acs-mauchley
 playwright:
   version: package.json # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/#supported-testing-platforms for a list of supported versions.
   configFile: configs/milo.config.js # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/yaml/#configfile for a list of supported configuration files.
 # Controls what files are available in the context of a test run (unless explicitly excluded by .sauceignore).
 rootDir: ./
-env:
-  my_var: $MY_VAR
+# Send in specific environment variables to your tests by adding them here.
+#env:
+#  my_var: $MY_VAR
 suites:
   - name: "Firefox Win"
-    platformName: "Windows 10"
+    platformName: "Windows 11"
     screenResolution: "1440x900"
-    testMatch: ["**/*.js"]
+    testMatch: ['.tests.*.js']
     smartRetry:
       failedOnly: true
     params:
       browserName: "firefox"
-      project: "firefox"  # Runs the project that's defined in `playwright.config.js`
+      project: "milo-live-firefox"  # Runs the project that's defined in `configs/milo.config.js`
       headless: true
-      #updateSnapshots: true
   - name: "Chromium Win"
-    platformName: "Windows 10"
+    platformName: "Windows 11"
     screenResolution: "1440x900"
-    testMatch: ["**/*.js"]
+    testMatch: ['.tests.*.js']
     smartRetry:
       failedOnly: true
     params:
       browserName: "chromium"
-      project: "chromium"
+      project: "milo-live-chrome"
       headless: true
   - name: "Webkit Win"
-    platformName: "Windows 10"
+    platformName: "Windows 11"
     screenResolution: "1440x900"
-    testMatch: ["**/*.js"]
+    testMatch: ['.tests.*.js']
     smartRetry:
       failedOnly: true
     params:
       browserName: "webkit"
-      project: "webkit"
+      project: "milo-live-webkit"
       headless: true
   - name: "Firefox Mac"
-    platformName: "macOS 12"
+    platformName: "macOS 13"
     screenResolution: "1440x900"
-    testMatch: ["**/*.js"]
+    testMatch: ['.tests.*.js']
     smartRetry:
       failedOnly: true
     params:
       browserName: "firefox"
-      project: "firefox"  # Runs the project that's defined in `playwright.config.js`
+      project: "milo-live-firefox"
       headless: true
   - name: "Chromium Mac"
-    platformName: "macOS 12"
+    platformName: "macOS 13"
     screenResolution: "1440x900"
-    testMatch: ["**/*.js"]
+    testMatch: ['.tests.*.js']
     smartRetry:
       failedOnly: true
     params:
       browserName: "chromium"
-      project: "chromium"
+      project: "milo-live-chrome"
       headless: true
   - name: "Webkit Mac"
-    platformName: "macOS 12"
+    platformName: "macOS 13"
     screenResolution: "1440x900"
-    testMatch: ["**/*.js"]
+    testMatch: ['.tests.*.js']
     smartRetry:
       failedOnly: true
     params:
       browserName: "webkit"
-      project: "webkit"
+      project: "milo-live-webkit"
       headless: true
 reporters:
   json:
     enabled: true
     filename: saucectl-report.json
-    webhookURL: url
+    #webhookURL: url  # Slack webhook URL can come here for test reports
 # Controls what artifacts to fetch when the suites have finished.
 artifacts:
   cleanup: true

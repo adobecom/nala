@@ -30,7 +30,7 @@ const config = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
     ? [['github'], ['list'], ['./utils/reporters/base-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results' }],['list'],['./utils/reporters/base-reporter.js']],
+    : [['html', { outputFolder: 'test-html-results' }], ['list'], ['./utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -40,31 +40,27 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.PR_BRANCH_LIVE_URL || ( process.env.LOCAL_TEST_LIVE_URL || 'https://main--milo--adobecom.hlx.live'),
+    baseURL: process.env.PR_BRANCH_LIVE_URL || (process.env.LOCAL_TEST_LIVE_URL || 'https://main--milo--adobecom.hlx.live'),
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'milo-live-chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'milo-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
+      use: { ...devices['Desktop Firefox'] },
     },
-    /** 
+    /**
     {
       name: 'milo-live-webkit',
       use: {
         ...devices['Desktop Safari'],
       },
-    }, 
+    },
   */
   ],
 };
