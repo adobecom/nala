@@ -101,7 +101,7 @@ class BaseReporter {
     if (process.env.GITHUB_ACTIONS === 'true') {
       if(process.env.DAILY_RUN === 'true'){
         envURL = this.config.projects[0].use.baseURL;
-        runName = process.env.WORKFLOW_NAME
+        runName = process.env.WORKFLOW_NAME || ''
       }else{
         envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       }      
@@ -131,7 +131,7 @@ class BaseReporter {
     ** Application URL  : ${envURL}
     ** Executed on        : ${exeEnv}
     ** Execution details  : ${runUrl}
-    ** Run Workflow       : ${runName}`;    
+    ** Run Workflow       : ${runName}` ;    
 
     console.log(summary);
 
