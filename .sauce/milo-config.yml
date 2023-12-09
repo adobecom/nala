@@ -12,78 +12,85 @@ sauce:
       - e2e
       - nala
       - milo
+  sauceignore: .sauceignore
   tunnel:
     name: sso-acs-mauchley_tunnel_name
     owner: sso-acs-mauchley
 playwright:
   version: package.json # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/#supported-testing-platforms for a list of supported versions.
   configFile: configs/milo.config.js # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/yaml/#configfile for a list of supported configuration files.
-# Controls what files are available in the context of a test run (unless explicitly excluded by .sauceignore).
-rootDir: ./
 # Send in specific environment variables to your tests by adding them here.
 #env:
 #  my_var: $MY_VAR
 suites:
-  - name: "Firefox Win"
-    platformName: "Windows 11"
-    screenResolution: "1440x900"
-    testMatch: ['.tests.*.js']
+  - name: Firefox Win
+    platformName: Windows 11
+    screenResolution: 1440x900
+    testMatch:
+    - .*.test.js
     smartRetry:
       failedOnly: true
     params:
-      browserName: "firefox"
-      project: "milo-live-firefox"  # Runs the project that's defined in `configs/milo.config.js`
+      browserName: firefox
+      project: milo-live-firefox  # Runs the project that's defined in `configs/milo.config.js`
       headless: true
-  - name: "Chromium Win"
-    platformName: "Windows 11"
-    screenResolution: "1440x900"
-    testMatch: ['.tests.*.js']
+  - name: Chromium Win
+    platformName: Windows 11
+    screenResolution: 1440x900
+    testMatch:
+    - .*.test.js
     smartRetry:
       failedOnly: true
     params:
-      browserName: "chromium"
-      project: "milo-live-chrome"
+      browserName: chromium
+      project: milo-live-chrome
       headless: true
-  - name: "Webkit Win"
-    platformName: "Windows 11"
-    screenResolution: "1440x900"
-    testMatch: ['.tests.*.js']
+  - name: Webkit Win
+    platformName: Windows 11
+    screenResolution: 1440x900
+    testMatch:
+    - .*.test.js
     smartRetry:
       failedOnly: true
     params:
-      browserName: "webkit"
-      project: "milo-live-webkit"
+      browserName: webkit
+      project: milo-live-webkit
       headless: true
-  - name: "Firefox Mac"
-    platformName: "macOS 13"
-    screenResolution: "1440x900"
-    testMatch: ['.tests.*.js']
+  - name: Firefox Mac
+    platformName: macOS 13
+    screenResolution: 1440x900
+    testMatch:
+    - .*.test.js
     smartRetry:
       failedOnly: true
     params:
-      browserName: "firefox"
-      project: "milo-live-firefox"
+      browserName: firefox
+      project: milo-live-firefox
       headless: true
-  - name: "Chromium Mac"
-    platformName: "macOS 13"
-    screenResolution: "1440x900"
-    testMatch: ['.tests.*.js']
+  - name: Chromium Mac
+    platformName: macOS 13
+    screenResolution: 1440x900
+    testMatch:
+    - .*.test.js
     smartRetry:
       failedOnly: true
     params:
-      browserName: "chromium"
-      project: "milo-live-chrome"
+      browserName: chromium
+      project: milo-live-chrome
       headless: true
-  - name: "Webkit Mac"
-    platformName: "macOS 13"
-    screenResolution: "1440x900"
-    testMatch: ['.tests.*.js']
+  - name: Webkit Mac
+    platformName: macOS 13
+    screenResolution: 1440x900
+    testMatch:
+    - .*.test.js
     smartRetry:
       failedOnly: true
     params:
-      browserName: "webkit"
-      project: "milo-live-webkit"
+      browserName: webkit
+      project: milo-live-webkit
       headless: true
+# Controls what files are available in the context of a test run (unless explicitly excluded by .sauceignore).
+rootDir: .
 reporters:
   json:
     enabled: true
@@ -93,7 +100,7 @@ reporters:
 artifacts:
   cleanup: true
   download:
-    when: fail
+    when: always
     match:
-      - console.log
+      - '*'
     directory: ./artifacts/
