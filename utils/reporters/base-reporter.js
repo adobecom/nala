@@ -93,6 +93,7 @@ class BaseReporter {
     let envURL;
     let exeEnv;
     let runUrl;
+    let runName = 'Nala PR Run';
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
@@ -100,35 +101,41 @@ class BaseReporter {
     if (process.env.GITHUB_ACTIONS === 'true') {
       if(process.env.DAILY_RUN === 'true'){
         envURL = this.config.projects[0].use.baseURL;
+        runName = process.env.WORKFLOW_NAME || 'Nala Daily Run'
       }else{
         envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       }      
       exeEnv = 'GitHub Actions Environment';
       const repo = process.env.GITHUB_REPOSITORY;
       const runId = process.env.GITHUB_RUN_ID;
-      runUrl = `https://github.com/${repo}/actions/runs/${runId}`; 
+      const prNumber = process.env.GITHUB_REF.split('/')[2];
+      runUrl = `https://github.com/${repo}/actions/runs/${runId}`;
+      runName = 'Nala PR Run' + ` (${prNumber}) `; 
     }else if (process.env.CIRCLECI) {
       envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       exeEnv = 'CircleCI Environment';
       const workflowId = process.env.CIRCLE_WORKFLOW_ID;
       const jobNumber = process.env.CIRCLE_BUILD_NUM;
       runUrl = `https://app.circleci.adobe.com/pipelines/github/wcms/nala/${jobNumber}/workflows/${workflowId}/jobs/${jobNumber}`;
+      runName = 'Nala CirclCI/Stage Run';
     }else {
       envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
       exeEnv = 'Local Environment';
       envURL = this.config.projects[0].use.baseURL;
-      runUrl = 'Local Environment'
+      runUrl = 'Local Environment';
+      runName = 'Nala Local Run';
     }
 
     const summary = `
-    --------Test run summary------------
+    ---------Nala Test Run Summary------------
     # Total Test executed: ${totalTests}
     # Test Pass          : ${this.passedTests} (${passPercentage}%)
     # Test Fail            : ${this.failedTests} (${failPercentage}%)
     # Test Skipped     : ${this.skippedTests}
     ** Application URL  : ${envURL}
     ** Executed on        : ${exeEnv}
-    ** Execution details  : ${runUrl}`;    
+    ** Execution details  : ${runUrl}
+    ** Workflow name      : ${runName}` ;    
 
     console.log(summary);
 

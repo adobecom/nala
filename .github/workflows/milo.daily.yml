@@ -13,12 +13,15 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     name: Running tests
     runs-on: ${{ matrix.os }}
+    env:
+      WORKFLOW_NAME: 'Milo Nala Daily Run'
+      DAILY_RUN: 'true'
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
       - name: Run Nala ${{ matrix.os }}
-        uses: ../
+        uses: ./
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
