@@ -108,7 +108,7 @@ class BaseReporter {
       exeEnv = 'GitHub Actions Environment';
       const repo = process.env.GITHUB_REPOSITORY;
       const runId = process.env.GITHUB_RUN_ID;
-      const prNumber = process.env.GITHUB_REF.split('/')[2]
+      const prNumber = process.env.GITHUB_REF.split('/')[2];
       runUrl = `https://github.com/${repo}/actions/runs/${runId}`;
       runName = 'Nala PR Run' + ` (${prNumber}) `; 
     }else if (process.env.CIRCLECI) {
