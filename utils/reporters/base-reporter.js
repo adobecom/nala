@@ -108,18 +108,21 @@ class BaseReporter {
       exeEnv = 'GitHub Actions Environment';
       const repo = process.env.GITHUB_REPOSITORY;
       const runId = process.env.GITHUB_RUN_ID;
-      runUrl = `https://github.com/${repo}/actions/runs/${runId}`; 
+      runUrl = `https://github.com/${repo}/actions/runs/${runId}`;
+      runName = 'Nala PR Run' + `(${process.env.PR_NUMBER})`; 
     }else if (process.env.CIRCLECI) {
       envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       exeEnv = 'CircleCI Environment';
       const workflowId = process.env.CIRCLE_WORKFLOW_ID;
       const jobNumber = process.env.CIRCLE_BUILD_NUM;
       runUrl = `https://app.circleci.adobe.com/pipelines/github/wcms/nala/${jobNumber}/workflows/${workflowId}/jobs/${jobNumber}`;
+      runName = 'Nala CirclCI/Stage Run';
     }else {
       envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
       exeEnv = 'Local Environment';
       envURL = this.config.projects[0].use.baseURL;
-      runUrl = 'Local Environment'
+      runUrl = 'Local Environment';
+      runName = 'Nala Local Run';
     }
 
     const summary = `
