@@ -93,6 +93,7 @@ class BaseReporter {
     let envURL;
     let exeEnv;
     let runUrl;
+    let runName = '';
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
@@ -100,6 +101,7 @@ class BaseReporter {
     if (process.env.GITHUB_ACTIONS === 'true') {
       if(process.env.DAILY_RUN === 'true'){
         envURL = this.config.projects[0].use.baseURL;
+        runName = process.env.WORKFLOW_NAME
       }else{
         envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       }      
@@ -121,14 +123,15 @@ class BaseReporter {
     }
 
     const summary = `
-    --------Test run summary------------
+    ---------Nala Test Run Summary------------
     # Total Test executed: ${totalTests}
     # Test Pass          : ${this.passedTests} (${passPercentage}%)
     # Test Fail            : ${this.failedTests} (${failPercentage}%)
     # Test Skipped     : ${this.skippedTests}
     ** Application URL  : ${envURL}
     ** Executed on        : ${exeEnv}
-    ** Execution details  : ${runUrl}`;    
+    ** Execution details  : ${runUrl}
+    ** Run Workflow       : ${runName}`;    
 
     console.log(summary);
 
