@@ -29,8 +29,8 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
-    : [['list']],
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
+    : [['list'],['./utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -46,61 +46,12 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'adobe-stage-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@adobe_stage'],
-      },
-    },
-
-    {
-      name: 'adobe-stage-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@adobe_stage'],
-      },
-    },
-
-    {
-      name: 'adobe-stage-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@adobe_stage'],
-      },
-    },
-
-    {
-      name: 'adobe-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@adobe_prod'],
-      },
-    },
-
-    {
-      name: 'adobe-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@adobe_prod'],
-      },
-    },
-
-    {
-      name: 'adobe-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@adobe_prod'],
-      },
-    },
-
-    {
       name: 'uar-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@uar_live'],
       },
     },
-
     {
       name: 'uar-live-firefox',
       use: {
@@ -108,7 +59,6 @@ const config = {
         baseURL: envs['@uar_live'],
       },
     },
-
     {
       name: 'uar-live-webkit',
       use: {

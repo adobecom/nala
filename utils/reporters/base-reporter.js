@@ -93,7 +93,7 @@ class BaseReporter {
     let envURL;
     let exeEnv;
     let runUrl;
-    let runName = 'Nala PR Run';
+    let runName;
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
@@ -110,7 +110,7 @@ class BaseReporter {
       const runId = process.env.GITHUB_RUN_ID;
       const prNumber = process.env.GITHUB_REF.split('/')[2];
       runUrl = `https://github.com/${repo}/actions/runs/${runId}`;
-      runName = 'Nala PR Run' + ` (${prNumber}) `; 
+      runName = runName + ` (${prNumber}) `; 
     }else if (process.env.CIRCLECI) {
       envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       exeEnv = 'CircleCI Environment';
