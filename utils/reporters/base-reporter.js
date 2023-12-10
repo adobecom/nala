@@ -104,6 +104,7 @@ class BaseReporter {
         runName = process.env.WORKFLOW_NAME || 'Nala Daily Run'
       }else{
         envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
+        runName ='Nala PR Run';
       }      
       exeEnv = 'GitHub Actions Environment';
       const repo = process.env.GITHUB_REPOSITORY;
