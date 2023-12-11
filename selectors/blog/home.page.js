@@ -29,15 +29,38 @@ export default class BlogHomePage {
     this.gnavProfile = this.page.locator('.gnav-profile');
     this.signIn = this.gnavProfile.locator('.gnav-signin');
 
+    // Marquee block locators
+    this.marquee = this.page.locator('.marquee.dark').nth(0);
+    this.marqueeTextH1 = this.marquee.locator('h1').nth(0);
+    this.marqueeActionBlueButton = this.marquee.locator('a').nth(0);
+
     // Featured article block locators
     this.featuredArticleBlock = this.page.locator('.featured-article');
     this.featuredArticleCard = this.featuredArticleBlock.locator('.featured-article-card');
     this.featuredArticleImage = this.featuredArticleBlock.locator('.featured-article-card-image');
 
     // Text block locators
-    this.textBlock = this.page.locator('.text.text-block.con-block');
-    this.textBlockHeader = this.textBlock.locator('#the-latest-news');
-    this.readMoreNewsButton = this.textBlock.locator('.con-button.outline');
+    this.textBlock1 = this.page.locator('.text.text-block.con-block').nth(0);
+    this.textBlock1Header = this.textBlock1.locator('h3');
+    this.textBlock1OutlineButton = this.textBlock1.locator('.con-button.outline');
+    this.readMoreNewsButton = this.textBlock1.locator('.con-button.outline');
+
+    // Consonant Card locators
+    this.consonantCard1 = this.page.locator('.card.consonant-Card').nth(0);
+    this.consonantCard1Image = this.consonantCard1.locator('.consonant-OneHalfCard-img').nth(0);
+    this.consonantCard1H3Text = this.consonantCard1.locator('.consonant-OneHalfCard-inner h3');
+    this.consonantCard1Text = this.consonantCard1.locator('.consonant-OneHalfCard-text');
+
+    this.consonantCard2 = this.page.locator('.card.consonant-Card').nth(1);
+    this.consonantCard2Image = this.consonantCard2.locator('.consonant-OneHalfCard-img').nth(0);
+    this.consonantCard2H3Text = this.consonantCard2.locator('.consonant-OneHalfCard-inner h3');
+    this.consonantCard2Text = this.consonantCard2.locator('.consonant-OneHalfCard-text');
+
+    this.consonantCard3 = this.page.locator('.card.consonant-Card').nth(2);
+    this.consonantCard3Image = this.consonantCard3.locator('.consonant-OneHalfCard-img').nth(0);
+    this.consonantCard3H3Text = this.consonantCard3.locator('.consonant-OneHalfCard-inner h3');
+    this.consonantCard3Text = this.consonantCard3.locator('.consonant-OneHalfCard-text');
+
 
     // Article feed block locators
     this.articleFeedBlock = this.page.locator('.article-feed.appear');

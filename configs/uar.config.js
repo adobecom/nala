@@ -27,18 +27,16 @@ const config = {
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 2 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  /* Reporter to use.*/
   reporter: process.env.CI
-    ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
-    : [['list']],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
+    : [['list'],['./utils/reporters/base-reporter.js']],
+  /* Shared settings for all the projects below*/
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 15000,
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://localhost:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Collect trace when retrying the failed test*/
     trace: 'on-first-retry',
     baseURL: process.env.BASE_URL || envs['@adobe_stage'] || 'https://www.stage.adobe.com',
   },
@@ -46,61 +44,12 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'adobe-stage-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@adobe_stage'],
-      },
-    },
-
-    {
-      name: 'adobe-stage-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@adobe_stage'],
-      },
-    },
-
-    {
-      name: 'adobe-stage-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@adobe_stage'],
-      },
-    },
-
-    {
-      name: 'adobe-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@adobe_prod'],
-      },
-    },
-
-    {
-      name: 'adobe-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@adobe_prod'],
-      },
-    },
-
-    {
-      name: 'adobe-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@adobe_prod'],
-      },
-    },
-
-    {
       name: 'uar-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@uar_live'],
       },
     },
-
     {
       name: 'uar-live-firefox',
       use: {
@@ -108,7 +57,6 @@ const config = {
         baseURL: envs['@uar_live'],
       },
     },
-
     {
       name: 'uar-live-webkit',
       use: {

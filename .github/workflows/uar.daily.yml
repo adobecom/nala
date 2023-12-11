@@ -1,8 +1,8 @@
-name: CC Nala Daily Run
+name: UAR Nala Daily Run
 
 on:
   schedule:
-    - cron: "30 15 * * *"
+    - cron: "0 9 * * *"
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
     name: Running tests
     runs-on: ${{ matrix.os }}
     env:
-      WORKFLOW_NAME: 'CC Nala Daily Run'
+      WORKFLOW_NAME: 'UAR Nala Daily Run'
       DAILY_RUN: 'true'
 
     steps:
@@ -27,7 +27,7 @@ jobs:
           node-version: lts/*
         
       - name: Run Nala ${{ matrix.os }}
-        run: bash dailyrun.sh cc
+        run: bash dailyrun.sh uar
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}

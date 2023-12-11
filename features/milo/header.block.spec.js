@@ -6,7 +6,7 @@ module.exports = {
       path: [
         '/drafts/nala/blocks/header/feds-header-page',
       ],
-      tags: '@milo @feds @header @smoke @regression',
+      tags: '@milo @feds @header @nopr @smoke @regression',
     },
   ],
 };

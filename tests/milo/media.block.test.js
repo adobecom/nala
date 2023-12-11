@@ -6,7 +6,7 @@ import MediaBlock from '../../selectors/milo/media.block.page.js';
 let webUtil;
 let media;
 let consoleErrors = [];
-const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
+const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','adobeid-na1-stg1.services'];
 
 test.describe('Milo Media Block test suite', () => {
   test.beforeEach(async ({ page }) => {
