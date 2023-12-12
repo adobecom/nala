@@ -30,7 +30,7 @@ const config = {
   /* Reporter to use.*/
   reporter: process.env.CI
     ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
-    : [['list'],['./utils/reporters/base-reporter.js']],
+    : [['list'],['../utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below*/
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
