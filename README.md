@@ -4,33 +4,35 @@
 
 Automated E2E and integration testing of Milo-based projects.
 
-## Get started
+## Getting started
 
-### 1. GitHub repositoy 
-- Scenario A : I / We want to use existing Nala repo, learn, explore and contribute to Nala test automation 
-  - step-1 : Fork [Nala](https://github.com/adobecom/nala) repository
-  - step-2 : Clone, and set the remote URLs (Upstream and Origin)
+## Scenario A: I wanto to contribute to Nala framework and Milo Test Automation
 
-- Scenario B : I / We want to onboard to Nala for our application test automation
-  - step-1 : Follow Scenario A 
-  - step-2 : Your first PR should include adding your project folder(s) under features, selectors and test folders.
-  - step-3 : Create your project `.config.js` under `configs` folder, and add your application url's in `.env.js`, thats it you are ready to go!!
-  
-    - Note: The folder structure in Nala is designed to make it easy to migrate your tests to your repository seamlessly when Nala becomes a consuming tool,
-### 2. Nala Dry run test :
-- Run following command in your IDE or VSCode terminal
+### 1. Nala repositoy 
+
+  - step-1 : Fork the Nala repository
+    - Begin by forking the [Nala](https://github.com/adobecom/nala) repository
+  - step-2 : Clone and Set Remote URLs
+    - After forking, clone the repository to your local machine
+    - Configure the remote URLs for both Upstream (original repository) and Origin (your fork).
+
+### 2. Performing a Dry Run Test in Nala
+    - Open the Nala codebase in Visual Studio Code (VSCode).
+    - Execute the following sample command in the terminal to run the 'Quote' block tests
 ```bash
 npx playwright test -g@quote
 ```
-- If any errors, then run following commands to install dependencies defined in the [`package.json`](https://github.com/adobecom/nala/blob/main/package.json) and then re run above command, now it should run the Quote block test scripts
+- If you encounter any errors, install the necessary dependencies as defined in the [`package.json`](https://github.com/adobecom/nala/blob/main/package.json) Use the following commands:
 ```bash
  - npm install
  - npm fund 
 ```
+- After installing the dependencies, re-run the above command to execute the Quote block test scripts. The tests should now run successfully
+ 
 ### 3. Start Nala automation test script creation
 Nala automation script creation involves following three simple steps.
-- #### Step-1 : Create [`feature.spec.js`](https://github.com/adobecom/nala/tree/main/features) under the `features` folder and add test cases and data
-  - Please refer sample template for creating test cases
+- #### Step-1 : Create [`<block or feature name>.spec.js`](https://github.com/adobecom/nala/tree/main/features) under the `features` folder and add test cases and data
+  - Please refer below sample template for creating a test case.
 ```bash
 module.exports = {
   FeatureName: 'Quote Block',
@@ -52,8 +54,8 @@ module.exports = {
 <img width="1100" alt="nala spec" src="https://user-images.githubusercontent.com/22153717/245921315-f404404f-0b10-4735-a434-e329767f76aa.png">
 ----
 
-- #### Step-2 : Create [`selector.page.js`](https://github.com/adobecom/nala/tree/main/selectors) under the `selectors` folder and add selectors
-  - Please refer sample template for creating selector page object
+- #### Step-2 : Create [`<block or feature name>.page.js`](https://github.com/adobecom/nala/tree/main/selectors) page object under the `selectors` folder and add locators
+  - Please refer below sample template for creating a selector page object
 ```bash
 export default class Quote {
   constructor(page) {
@@ -71,7 +73,7 @@ export default class Quote {
 <img width="1100" alt="nala pom" src="https://user-images.githubusercontent.com/22153717/245926484-e587de5b-6d66-4d0e-860d-c7a8a9d6fc26.png">
 ---
 
-- #### Step-3 : Create [`<block_name>.test.js`](https://github.com/adobecom/nala-template/blob/main/tests/quote.block.test.js) under the `tests` folder, and add tests
+- #### Step-3 : Create [`<block or feature name>.test.js`](https://github.com/adobecom/nala-template/blob/main/tests/quote.block.test.js) under the `tests` folder, and add tests
   - Please refer sample template for creating tests. Also please refer [Nala onboarding wiki](https://github.com/adobecom/nala/wiki/Onboarding#tests)
 ```bash
 // Quote block tests
@@ -115,7 +117,7 @@ test.describe('Milo Quote block test suite', () => {
 <img width="1100" alt="nala pom" src="https://user-images.githubusercontent.com/22153717/245931730-f976d196-4074-4718-be51-c568d2365b45.png">
 ---
 
-### 4. Running Nala tests
+## 4 Running Nala tests
 - Nala offers a range of flexible options to suit your testing needs. Please refer to the following choices for running your tests:
 - By default Nala is configured to runs all tests in parallel in headless mode on following browsers 
   - Chrome
@@ -175,63 +177,64 @@ npx playwright test -g@quote|@marquee|@accordion --project=milo-live-chrome
 ```
 - Note : To run tests using tags, make sure in `.spec.js` file `@tags` are specified 
 
-#### 4.4 : Run Tests on my localhost (ex: @local3000': 'http://localhost:3000',) 
-##### To run Nala tests on your local host, please make sure you have following configs set
-  - Add your local host url parameter in[`.env.js`](https://github.com/adobecom/nala/blob/main/envs/envs.js)
-    - `'@local3000': 'http://localhost:3000',`
-  - Please add a local project and local baseURL in [`playwright.config.js`](https://github.com/adobecom/nala/blob/main/playwright.config.js)
+
+### 5 : Run Tests on my localhost (i.e. 'http://localhost:3000',) 
+
+  - To run Nala tests on your local host server, make sure you add or have following project object in [`playwright.config.js`](https://github.com/adobecom/nala/blob/main/playwright.config.js)
     ```bash
-        {
-      name: 'local-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@local3000'],
+      {
+        name: 'local-chrome',
+        use: {
+          ...devices['Desktop Chrome'],
+          baseURL: envs['@local3000'],
+        },
       },
-    },
     ```
 ##### Now, you are all set to run Nala tests on your local host
-  - Example-1 : I want to run all tests on my local environments or projects (i.e [local-chrome]('http://localhost:3000')) on chrome browser in headless mode
+  - Example-1 : I want to run all tests on my local server or on project name = local-chrome on chrome browser in headless mode
 ```bash
 npx playwright test --project=local-chrome
 ```
-  - Example-2: I want to run all smoke test suite on my local all environment or projects on chrome browser in headless mode
+  - Example-2: I want to run all smoke test suite on my local server or on project name = local-chrome on chrome browser in headless mode
 ```bash
 npx playwright test -g@smoke --project=local-chrome
 ```
-- Note: Please refer other options of section-4, for various run methods  
+- Note: Please refer above section-4, for various run options.
 
 
-#### 4.4 : Run Tests on GitHub using using GitHub actions.
-##### To run nala tests on GitHub upon Pull Requests (PR), PR should follow below labeling options
-  - Example-1 : This PR affects Quote block functionality so i want to test Quote block tests on Milo environments 
+## 6 : Run tests on PR
+##### To run nala tests on pull requests (PRs) please following below labeling options, 
+
+  - Example-1 : This PR affects Quote block functionality so i want to test Quote block tests on Milo 
 ```bash
-  PR Label = @quote @run-on-milo 
+  PR Label = @quote @run-nala 
 ```
 - Example-2 : As part of this PR i want to verify all smoke tests on Milo 
 ```bash
-  PR Label = @smoke @run-on-milo
+  PR Label = @smoke @run-nala
 ```
-Example-2 : As part of this PR i want to verify all regression tests on Milo 
+Example-3 : As part of this PR i want to verify all regression tests on Milo 
 ```bash
-  PR Label = @regression @run-on-milo
+  PR Label = @regression @run-nala
 ```
-- Example-3 : As part of this PR i want to verify accordion, marquee block tests on Milo 
+- Example-4 : As part of this PR i want to verify accordion and marquee block tests on Milo 
 ```bash
   PR Label = @accordion @marquee @run-on-milo
 ```
-Example-4 : As part of this PR i want to verify smokes tests on Milo and Bcom applications / urls 
-  - Note : For this requirement please make sure tests pages with correct paths are available and published in both the application sharepoint directories
+Example-5 : As part of this PR i want to verify smokes tests on Milo and Bcom applications 
 ```bash
   PR Label = @smoke @run-on-milo @run-on-bcom
 ```
 - Note: PR should have label of the format :  `@tag(s) @run-on-<app name>`
-##### All nala tests are schedule to run daily at 9:30 am PST 
-  - Please refer [`daily.yml`](https://github.com/adobecom/nala/blob/main/.github/workflows/daily.yml) for daily run workflow 
+
+## 7 : Daily Runs
+##### All Milo and Consuming applications tests are scheduled to run between 6:00 to 9:30 AM PST 
+  - Please refer [`<APP-Nala-Daily-Run.ymls`](https://github.com/adobecom/nala/blob/main/.github/workflows/) for daily run workflows 
   - Tests are run on following platerforms
     - Linux OS ( ubuntu-latests) with browsers = [Chrome, Firefox, and WebKit]
     - Windows OS ( windows-latests) with browsers = [Chrome, Firefox, and WebKit]
     - Mac OS ( macos-latests) with browsers = [Chrome, Firefox, and WebKit]
 
-#### 4.5 : Nala wiki.
+## 8: Nala wiki.
 
   - Please refer [Nala onboarding wiki](https://github.com/adobecom/nala/wiki/Onboarding) for more information
