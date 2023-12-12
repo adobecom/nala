@@ -257,7 +257,7 @@ test.describe('Milo Modal feature test suite', () => {
 
   });
   
-  // Test 6 : Merch Card (plans, secure) with badge
+  // Test 7 : Merch Card (plans, secure) with badge
   // Note: skipping the test as there were failures, informed the team
   test.skip(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[7].path}`);
@@ -300,7 +300,124 @@ test.describe('Milo Modal feature test suite', () => {
       
       await expect(await merchCard.footerOutlineButton).toBeVisible();       
       await expect(await merchCard.footerOutlineButton).toContainText(data.footerOutlineButtonText);   
-    });    
+    });   
+  });
+  
+  // Test 8 : Merch Card (catalog)
+  test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
+    console.info(`[Test Page]: ${baseURL}${features[8].path}`);
+    const data = features[8].data;
 
-  });   
+    await test.step('step-1: Go to Merch Card feature test page', async () => {
+      await page.goto(`${baseURL}${features[8].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[8].path}`);    
+    });
+
+    await test.step('step-2: Verify Merch Card catalog content/specs', async () => {
+      await expect(await merchCard.catalog).toBeVisible();
+      await expect(await merchCard.catalogCardTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.catalogCardTitleH4).toContainText(data.titleH4);
+
+      //await expect(await merchCard.price).toContainText(data.price);
+
+      await expect(await merchCard.catalogCardDescription2).toContainText(data.description);
+      await expect(await merchCard.seeWhatsIncludedTextLink).toContainText(data.link1Text);
+      await expect(await merchCard.learnMoreTextLink).toContainText(data.link2Text);
+
+      await expect(await merchCard.footer).toBeVisible();
+
+      await expect(await merchCard.footerBlueButton).toBeVisible();      
+      await expect(await merchCard.footerBlueButton).toContainText(data.footerBlueButton1Text);
+
+      await expect(await merchCard.footerOutlineButton).toBeVisible();      
+      await expect(await merchCard.footerOutlineButton).toContainText(data.footerOutlineButtonText);
+    });   
+  }); 
+  
+  // Test 9 : Merch Card (catalog) with badge
+  test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
+    console.info(`[Test Page]: ${baseURL}${features[9].path}`);
+    const data = features[9].data;
+
+    await test.step('step-1: Go to Merch Card feature test page', async () => {
+      await page.goto(`${baseURL}${features[9].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[9].path}`);    
+    });
+
+    await test.step('step-2: Verify Merch Card catalog with badge content/specs', async () => {
+      await expect(await merchCard.catalog).toBeVisible();
+      
+      await expect(await merchCard.catalog).toHaveAttribute('badge-background-color', data.badgeBgColor);
+      await expect(await merchCard.catalog).toHaveAttribute('badge-color', data.badgeColor);;
+      await expect(await merchCard.catalog).toHaveAttribute('badge-text', data.badgeText);
+
+      await expect(await merchCard.catalogCardTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.catalogCardTitleH4).toContainText(data.titleH4);
+
+      //await expect(await merchCard.price).toContainText(data.price);
+      
+      await expect(await merchCard.catalogCardDescription2).toContainText(data.description);
+      await expect(await merchCard.seeWhatsIncludedTextLink).toContainText(data.link1Text);
+      await expect(await merchCard.learnMoreTextLink).toContainText(data.link2Text);
+
+      await expect(await merchCard.footer).toBeVisible();
+
+      await expect(await merchCard.footerBlueButton).toBeVisible();      
+      await expect(await merchCard.footerBlueButton).toContainText(data.footerBlueButton1Text);
+
+      await expect(await merchCard.footerOutlineButton).toBeVisible();      
+      await expect(await merchCard.footerOutlineButton).toContainText(data.footerOutlineButtonText);
+    });   
+  });
+
+  // Test 10 : Merch Card (catalog) with more info and badge
+  test(`${features[10].name},${features[10].tags}`, async ({ page, baseURL }) => {
+    console.info(`[Test Page]: ${baseURL}${features[10].path}`);
+    const data = features[10].data;
+
+    await test.step('step-1: Go to Merch Card feature test page', async () => {
+      await page.goto(`${baseURL}${features[10].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[10].path}`);    
+    });
+
+    await test.step('step-2: Verify Merch Card catalog with badge content/specs', async () => {
+      await expect(await merchCard.catalog).toBeVisible();
+      
+      await expect(await merchCard.catalog).toHaveAttribute('badge-background-color', data.badgeBgColor);
+      await expect(await merchCard.catalog).toHaveAttribute('badge-color', data.badgeColor);;
+      await expect(await merchCard.catalog).toHaveAttribute('badge-text', data.badgeText);
+
+      await expect(await merchCard.catalogCardTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.catalogCardTitleH4).toContainText(data.titleH4);
+
+      //await expect(await merchCard.price).toContainText(data.price);
+      
+      await expect(await merchCard.catalogCardDescription2).toContainText(data.description);
+      await expect(await merchCard.seeWhatsIncludedTextLink).toContainText(data.link1Text);
+      await expect(await merchCard.learnMoreTextLink).toContainText(data.link2Text);
+
+      await expect(await merchCard.footer).toBeVisible();
+
+      await expect(await merchCard.footerBlueButton).toBeVisible();      
+      await expect(await merchCard.footerBlueButton).toContainText(data.footerBlueButton1Text);
+
+      await expect(await merchCard.footerOutlineButton).toBeVisible();      
+      await expect(await merchCard.footerOutlineButton).toContainText(data.footerOutlineButtonText);
+    }); 
+    
+    await test.step('step-3: click more info link and verify action menu list', async () => {
+      await merchCard.catalog.hover();
+      await merchCard.catalog.click();
+      await page.waitForTimeout(1000);
+
+      await expect(await merchCard.catalogActionMenuList).toHaveCount(data.actionMenuListCount); 
+      await expect(await merchCard.catalogActionMenuPText1).toContainText(data.actionMenuText1);
+      await expect(await merchCard.catalogActionMenuPText2).toContainText(data.actionMenuText2);
+      await expect(await merchCard.catalogActionMenuPText3).toContainText(data.actionMenuText3);
+    });
+  });  
+
 });

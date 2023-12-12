@@ -6,6 +6,7 @@ export default class Merchcard {
     this.segment = this.page.locator('.merch-card.segment').nth(nth);
     this.sepcialOffers = this.page.locator('.merch-card.special-offers').nth(nth);
     this.plans = this.page.locator('.merch-card.plans').nth(nth);
+    this.catalog = this.page.locator('.merch-card.catalog').nth(nth);
 
     // inline price and strikethrough price
     this.inlinePrice1 = this.merchCard.locator('span.placeholder-resolved').nth(0);
@@ -56,6 +57,25 @@ export default class Merchcard {
     this.plansCardTitleH5 = this.plans.locator('h5[slot="detail-m"]');
     this.plansCardDescription2 = this.plans.locator('div[slot="body-xs"] p').nth(2);
     this.seePlansTextLink = this.merchCard.locator('a:has-text("See plan & pricing details")');
+
+    // merch-card catalog 
+    this.catalogProductIcon = this.catalog.locator('#shadow-root div.icons');
+    this.catalogRibbon = this.catalog.locator('.catalog-badge');
+    this.catalogActionMenu = this.catalog.locator('div[slot="action-menu-content"]');
+    this.catalogActionMenuList = this.catalogActionMenu.locator('ul li');
+    this.catalogActionMenuPText1 = this.catalogActionMenu.locator('p').nth(0);
+    this.catalogActionMenuPText2 = this.catalogActionMenu.locator('p').nth(1);
+    this.catalogActionMenuPText3 = this.catalogActionMenu.locator('p').nth(2);
+    this.catalogActionMenuPText4 = this.catalogActionMenu.locator('p').nth(3);
+    this.catalogActionMenuPText5 = this.catalogActionMenu.locator('p ').nth(4);
+    this.systemRequirementTextLink = this.merchCard.locator('a:has-text("See system requirements")');  
+
+    this.catalogCardTitleH3 = this.catalog.locator('h3[slot="heading-xs"]');
+    this.catalogCardTitleH4 = this.catalog.locator('h4[slot="body-xxs"]');
+    this.catalogCardDescription2 = this.catalog.locator('div[slot="body-xs"] p').nth(2);
+    this.seeWhatsIncludedTextLink = this.merchCard.locator('a:has-text("See what’s included")');
+    this.learnMoreTextLink = this.merchCard.locator('a:has-text("Learn more")');
+
     
     // merch-card footer sections
     this.footer = this.merchCard.locator('div[slot="footer"]');  
@@ -63,7 +83,8 @@ export default class Merchcard {
     this.footerCheckboxLabel = this.merchCard.locator('#stock-checkbox');
     this.secureTransactionIcon = this.merchCard.locator('.secure-transaction-icon');
     this.secureTransactionLabel = this.merchCard.locator('.secure-transaction-label');
-    this.footerOutlineButton = this.merchCard.locator('a.con-button.outline'); 
+    this.footerOutlineButton = this.merchCard.locator('a.con-button.outline');
+    this.footerOutlineButton2 = this.merchCard.locator('a.con-button.outline').nth(1); 
     this.footerBlueButton = this.merchCard.locator('a.con-button.blue').nth(0);
     this.footerBlueButton2 = this.merchCard.locator('a.con-button.blue').nth(1);
 
