@@ -56,7 +56,7 @@ module.exports = {
 ----
 
 - #### Step-2 : Create [`<block or feature name>.page.js`](https://github.com/adobecom/nala/tree/main/selectors) page object under the `selectors` folder and add locators
-  - Please refer below sample template for creating a selector page object
+  - Please refer to the sample template for creating a selector page object
 ```bash
 export default class Quote {
   constructor(page) {
