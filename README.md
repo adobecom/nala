@@ -6,7 +6,7 @@ Automated E2E and integration testing of Milo-based projects.
 
 ## Getting started
 
-## Scenario A: I wanto to contribute to Nala framework and Milo Test Automation
+## Scenario : I wanto to contribute to Nala framework and Milo Test Automation
 
 ### 1. Nala repositoy 
 
@@ -16,18 +16,19 @@ Automated E2E and integration testing of Milo-based projects.
     - After forking, clone the repository to your local machine
     - Configure the remote URLs for both Upstream (original repository) and Origin (your fork).
 
-### 2. Performing a Dry Run Test in Nala
+### 2. Performing a Dry Run Test
+
     - Open the Nala codebase in Visual Studio Code (VSCode).
     - Execute the following sample command in the terminal to run the 'Quote' block tests
 ```bash
 npx playwright test -g@quote
 ```
-- If you encounter any errors, install the necessary dependencies as defined in the [`package.json`](https://github.com/adobecom/nala/blob/main/package.json) Use the following commands:
+- If you encounter any errors, install the necessary dependencies as defined in the [`package.json`](https://github.com/adobecom/nala/blob/main/package.json), use the following commands:
 ```bash
  - npm install
  - npm fund 
 ```
-- After installing the dependencies, re-run the above command to execute the Quote block test scripts. The tests should now run successfully
+- After installing the dependencies, re-run the above command to execute the Quote block test scripts. The tests should now run successfully.
  
 ### 3. Start Nala automation test script creation
 Nala automation script creation involves following three simple steps.
@@ -202,7 +203,7 @@ npx playwright test -g@smoke --project=local-chrome
 - Note: Please refer above section-4, for various run options.
 
 
-## 6 : Run tests on PR
+## 6 : Run tests on PRs
 ##### To run nala tests on pull requests (PRs) please following below labeling options, 
 
   - Example-1 : This PR affects Quote block functionality so i want to test Quote block tests on Milo 
