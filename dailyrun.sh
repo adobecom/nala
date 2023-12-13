@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # get the input argument i.e. config.js file name
-PROJECT_NAME=$1 
+PROJECT_NAME=$1
+Tag=$2 
 
 # Construct the full path to the config.js file
 CONFIG_FILE_PATH="./configs/${PROJECT_NAME}.config.js"
@@ -13,7 +14,14 @@ if [ -f "${CONFIG_FILE_PATH}" ]; then
     npm ci
     npx playwright install --with-deps    
     echo "*** Running Playwright tests with config: ${CONFIG_FILE_PATH} ***"
-    npx playwright test --config="${CONFIG_FILE_PATH}"
+    if [ -n "$Tag" ]; then
+        echo "Tag: ${Tag}"
+        npx playwright test --config="${CONFIG_FILE_PATH}" --grep="${Tag}"
+        exit 0
+    else
+      npx playwright test --config="${CONFIG_FILE_PATH}"
+      exit 0
+    fi   
 else
     echo "Config file: ${CONFIG_FILE_PATH} not found, running default tests"
     exit 1
