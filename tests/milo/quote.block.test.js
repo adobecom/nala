@@ -145,8 +145,6 @@ test.describe('Milo Quote Block test suite', () => {
       expect(await webUtil.verifyAttributes_(await quote.sectionDark, quote.attProperties['section-dark'])).toBeTruthy();
       expect(await webUtil.verifyAttributes_(await quote.quote, quote.attProperties['quote-xl-spacing'])).toBeTruthy();
       expect(await webUtil.verifyCSS_(await quote.quote, quote.cssProperties.quote)).toBeTruthy();
-
-      //expect(await quote.verifyQuote('quote (xl-spaced)', data)).toBeTruthy();
     });
   });
 });

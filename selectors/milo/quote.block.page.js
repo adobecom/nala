@@ -62,7 +62,6 @@ export default class Quote {
       'quote-align-right': { 'class': 'quote contained align-right con-block' },
       'quote-xl-spacing': { 'class': 'quote contained xl-spacing con-block' },
       'section-dark': { 'style': 'background: rgb(102, 102, 102);' },
-
     };
   }
 }
