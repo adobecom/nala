@@ -28,6 +28,7 @@ jobs:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
           HLX_TKN: ${{ secrets.HLX_TKN }}
+          SLACK_WH: ${{ secrets.SLACK_WH }}
           SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
           SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
       - name: Persist JSON Artifact
