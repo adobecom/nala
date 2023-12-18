@@ -1,6 +1,5 @@
 // @ts-check
 const { devices } = require('@playwright/test');
-const { base } = require('../utils/reporters/base-reporter.js');
 const envs = require('../envs/envs.js');
 
 /**
