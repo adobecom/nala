@@ -6,7 +6,8 @@ module.exports = {
       path: [
         '/placeholders.json',
         '/de/placeholders.json',
-        '/fr/placeholders.json',
+        // !Note: FR locale placeholders currently broken (known issue).
+        // '/fr/placeholders.json',
         '/jp/placeholders.json',
         '/uk/placeholders.json',
       ],
@@ -18,7 +19,8 @@ module.exports = {
       path: [
         '/placeholders.json',
         '/de/placeholders.json',
-        '/fr/placeholders.json',
+        // !Note: FR locale placeholders currently broken (known issue).
+        // '/fr/placeholders.json',
         '/jp/placeholders.json',
         '/uk/placeholders.json',
       ],
