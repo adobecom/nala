@@ -1,8 +1,14 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/helpx/codeBlock.spec.js';
-import { CodeBlock } from '../../selectors/helpx/codeBlock.page.js';
+import CodeBlock from '../../selectors/helpx/codeBlock.page.js';
+import config from '../../configs/helpx.config.js';
+import { WebUtil } from '../../libs/webutil.js';
+
 
 let codeBlk;
+let page;
+let codeblocktag = features[0].path;
+
 
 test.beforeAll(async ({ browser }) => {
   if (process.env.HLX_TKN !== undefined && process.env.HLX_TKN !== '') {
@@ -19,38 +25,48 @@ test.beforeAll(async ({ browser }) => {
   const context = await browser.newContext();
   // Set the authorization token in the header
   await context.setExtraHTTPHeaders({ authorization: `token ${authToken}` });
-  const page = await context.newPage();
+  page = await context.newPage();
   codeBlk = new CodeBlock(page);
-  await page.goto(`${baseURL}${features[0].path}`);
+
+
+  await page.goto(`${config.use?.baseURL}${codeblocktag}`);
   await page.waitForLoadState('networkidle');
 });
 
 test.describe('CodeBlock sanity test suite', () => {
   // CodeBlock Sanity Checks:
-  test(`${features[0].name}, ${features[0].tags}`, async ({
-    page,
-    baseURL,
-  }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+  test(`verify Code Block Page Elements`, async ({baseURL}) => {
+    console.info(`[Test Page]: ${baseURL}${codeblocktag}`);
     await test.step('Navigate to CodeBlock page', async () => {
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${codeblocktag}.html`);
     });
 
     // Check for different codeBlock formats present
-    await expect(codeBlk.codeBlockA3).toBeVisible();
+    await expect(codeBlk.codeA3).toBeVisible();
     await expect(codeBlk.codeFusion).toBeVisible();
     await expect(codeBlk.codeC).toBeVisible();
     await expect(codeBlk.codeCss).toBeVisible();
     await expect(codeBlk.codeJava).toBeVisible();
-    await expect(codeBlk.codeJS).toBeVisible();
-    await expect(codeBlk.codePhp).toBeVisible();
+    await expect(codeBlk.codeJS).toHaveCount(4);
+    await expect(codeBlk.codePhp).toHaveCount(5);
     await expect(codeBlk.codePlain).toBeVisible();
-    await expect(codeBlk.codeSql).toBeVisible();
-    await expect(codeBlk.codeXml).toBeVisible();
+    await expect(codeBlk.codeSql).toHaveCount(3);
+    await expect(codeBlk.codeXml).toHaveCount(2);
     await expect(codeBlk.codeMxml).toBeVisible();
 
-    // Check different InLineNumber codeBlock formats present
-    await expect(codeBlk.codeBlockA3Num).toBeVisible();
+    //verify Code block css Properties
+    expect(await WebUtil.verifyCSS(await codeBlk.codeHideDsktop.first(), codeBlk.cssProperties['codeHideDsktop'])).toBeTruthy();
+    expect(await WebUtil.verifyCSS(await codeBlk.codeHideTablet.first(), codeBlk.cssProperties['codeHideTablet'])).toBeTruthy();
+    expect(await WebUtil.verifyCSS(await codeBlk.codeHideMobile.first(), codeBlk.cssProperties['codeHideMobile'])).toBeTruthy();
+    
+    //Verify code Block Attribute Properties
+    expect(await WebUtil.verifyAttributes(await codeBlk.codeHideDsktop.first(), codeBlk.attProperties['codeHideDsktop'])).toBeTruthy();
+    expect(await WebUtil.verifyAttributes(await codeBlk.codeHideTablet.first(), codeBlk.attProperties['codeHideTablet'])).toBeTruthy();
+    expect(await WebUtil.verifyAttributes(await codeBlk.codeHideMobile.first(), codeBlk.attProperties['codeHideMobile'])).toBeTruthy();
+    
+
+    //Check different InLineNumber codeBlock formats present
+    await expect(codeBlk.codeA3Num).toBeVisible();
     await expect(codeBlk.codeFusionNum).toBeVisible();
     await expect(codeBlk.codeCNum).toBeVisible();
     await expect(codeBlk.codeCssNum).toBeVisible();
@@ -61,43 +77,5 @@ test.describe('CodeBlock sanity test suite', () => {
     await expect(codeBlk.codeSqlNum).toBeVisible();
     await expect(codeBlk.codeXmlNum).toBeVisible();
     await expect(codeBlk.codeMxmlNum).toBeVisible();
-
-    expect(
-      await WebUtil.verifyCSS(
-        await this.codeHideDsktop,
-        this.cssProperties['codeHideDsktop']
-      )
-    ).toBeTruthy();
-    expect(
-      await WebUtil.verifyCSS(
-        await this.codeHideTablet,
-        this.cssProperties['codeHideTablet']
-      )
-    ).toBeTruthy();
-    expect(
-      await WebUtil.verifyCSS(
-        await this.codeHideMobile,
-        this.cssProperties['codeHideMobile']
-      )
-    ).toBeTruthy();
-
-    expect(
-      await WebUtil.verifyAttributes(
-        await this.codeHideDsktop,
-        this.attProperties['codeHideDsktop']
-      )
-    ).toBeTruthy();
-    expect(
-      await WebUtil.verifyAttributes(
-        await this.codeHideTablet,
-        this.attProperties['codeHideTablet']
-      )
-    ).toBeTruthy();
-    expect(
-      await WebUtil.verifyAttributes(
-        await this.codeHideMobile,
-        this.attProperties['codeHideMobile']
-      )
-    ).toBeTruthy();
   });
 });

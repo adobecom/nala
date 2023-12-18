@@ -1,13 +1,13 @@
 // @ts-check
 const { devices } = require('@playwright/test');
-
+const { base } = require('../utils/reporters/base-reporter.js');
 const envs = require('../envs/envs.js');
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
-const config = {
+const helpxconfig = {
   testDir: '../tests/helpx',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
@@ -35,11 +35,11 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
+    ? [['github'], ['list']]
     : [
         ['html', { outputFolder: 'test-html-results' }],
         ['list'],
-        ['./utils/reporters/base-reporter.js'],
+        
       ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -59,6 +59,10 @@ const config = {
       name: 'helpx-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        launchOptions: {
+          args: ['--disable-web-security', '--disable-gpu'],
+        },
       },
     },
 
@@ -77,4 +81,4 @@ const config = {
     },
   ],
 };
-export default config;
+export default helpxconfig;
