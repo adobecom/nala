@@ -17,7 +17,7 @@ sauce:
 #    owner: sso-acs-mauchley
 playwright:
   version: package.json # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/#supported-testing-platforms for a list of supported versions.
-  configFile: ./configs/milo.config.js # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/yaml/#configfile for a list of supported configuration files.
+  configFile: ./configs/milo.sauce.config.js # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/yaml/#configfile for a list of supported configuration files.
 # Send in specific environment variables to your tests by adding them here. These parameters are only neccessary if running locally.
 #env:
 #  IMS_EMAIL: $IMS_EMAIL_LOCAL
@@ -45,7 +45,7 @@ suites:
   - name: "Firefox Win"
     platformName: "Windows 11"
     screenResolution: "1440x900"
-    testMatch: ['.*.js']
+    testMatch: [".*.js"]
     smartRetry:
       failedOnly: true
     params:
@@ -56,7 +56,7 @@ suites:
   - name: "Chromium Win"
     platformName: "Windows 11"
     screenResolution: "1440x900"
-    testMatch: ['.*.js']
+    testMatch: [".*.js"]
     smartRetry:
       failedOnly: true
     params:
@@ -67,7 +67,7 @@ suites:
   - name: "Webkit Win"
     platformName: "Windows 11"
     screenResolution: "1440x900"
-    testMatch: ['.*.js']
+    testMatch: [".*.js"]
     smartRetry:
       failedOnly: true
     params:
@@ -78,7 +78,7 @@ suites:
   - name: "Firefox Mac"
     platformName: "macOS 13"
     screenResolution: "1440x900"
-    testMatch: ['.*.js']
+    testMatch: [".*.js"]
     smartRetry:
       failedOnly: true
     params:
@@ -89,7 +89,7 @@ suites:
   - name: "Chromium Mac"
     platformName: "macOS 13"
     screenResolution: "1440x900"
-    testMatch: ['.*.js']
+    testMatch: [".*.js"]
     smartRetry:
       failedOnly: true
     params:
@@ -100,7 +100,7 @@ suites:
   - name: "Webkit Mac"
     platformName: "macOS 13"
     screenResolution: "1440x900"
-    testMatch: ['.*.js']
+    testMatch: [".*.js"]
     smartRetry:
       failedOnly: true
     params:
