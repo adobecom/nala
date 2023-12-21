@@ -2,10 +2,10 @@ import { expect } from '@playwright/test';
 import { WebUtil } from '../../libs/webutil.js';
 
 export default class Quote {
-  constructor(page) {
+  constructor(page, nth = 0) {
     this.page = page;
     // quote  locators
-    this.quote = this.page.locator('.quote');
+    this.quote = this.page.locator('.quote').nth(nth);
     this.quoteImage = this.quote.locator('.quote-image');
     this.quoteCopy = this.quote.locator('p.quote-copy');
     this.quoteFigCaption = this.quote.locator('p.figcaption');
