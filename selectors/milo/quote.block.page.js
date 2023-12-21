@@ -1,6 +1,3 @@
-import { expect } from '@playwright/test';
-import { WebUtil } from '../../libs/webutil.js';
-
 export default class Quote {
   constructor(page, nth = 0) {
     this.page = page;
