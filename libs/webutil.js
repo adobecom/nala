@@ -3,6 +3,7 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-import-module-exports
 import { expect } from '@playwright/test';
+import { getComparator } from 'playwright-core/lib/utils';
 
 const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -114,6 +115,50 @@ exports.WebUtil = class WebUtil {
     return result;
   }
 
+    /**
+ * Verifies that the specified CSS properties of the given locator match the expected values.
+ * @param {Object} locator - The locator to verify CSS properties for.
+ * @param {Object} cssProps - The CSS properties and expected values to verify.
+ * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
+ */
+    async verifyCSS_(locator, cssProps) {
+      this.locator = locator;
+      let result = true;
+      await Promise.allSettled(
+        Object.entries(cssProps).map(async ([property, expectedValue]) => {
+          try {
+            await expect(this.locator).toHaveCSS(property, expectedValue);
+          } catch (error) {
+            console.error(`CSS property ${property} not found:`, error);
+            result = false;
+          }
+        }),
+      );
+      return result;
+    }
+
+    /**
+ * Verifies that the specified CSS properties of the given locator match the expected values.
+ * @param {Object} locator - The locator to verify CSS properties for.
+ * @param {Object} cssProps - The CSS properties and expected values to verify.
+ * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
+ */
+    async verifyCSS_(locator, cssProps) {
+      this.locator = locator;
+      let result = true;
+      await Promise.allSettled(
+        Object.entries(cssProps).map(async ([property, expectedValue]) => {
+          try {
+            await expect(this.locator).toHaveCSS(property, expectedValue);
+          } catch (error) {
+            console.error(`CSS property ${property} not found:`, error);
+            result = false;
+          }
+        }),
+      );
+      return result;
+    }
+
   /**
  * Verifies that the specified attribute properties of the given locator match the expected values.
  * @param {Object} locator - The locator to verify attributes.
@@ -154,33 +199,33 @@ exports.WebUtil = class WebUtil {
  * @param {Object} attProps - The attribute properties and expected values to verify.
  * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
  */
-    async verifyAttributes_(locator, attProps) {
-      this.locator = locator;
-      let result = true;
-      await Promise.allSettled(
-        Object.entries(attProps).map(async ([property, expectedValue]) => {
-          if (property === 'class' && typeof expectedValue === 'string') {
-            // If the property is 'class' and the expected value is an string,
-            // split the string value into individual classes
-            const classes = expectedValue.split(' ');
-            try {
-              await expect(await this.locator).toHaveClass(classes.join(' '));
-            } catch (error) {
-              console.error('Attribute class not found:', error);
-              result = false;
-            }
-          } else {
-            try {
-              await expect(await this.locator).toHaveAttribute(property, expectedValue);
-            } catch (error) {
-              console.error(`Attribute ${property} not found:`, error);
-              result = false;
-            }
+  async verifyAttributes_(locator, attProps) {
+    this.locator = locator;
+    let result = true;
+    await Promise.allSettled(
+      Object.entries(attProps).map(async ([property, expectedValue]) => {
+        if (property === 'class' && typeof expectedValue === 'string') {
+          // If the property is 'class' and the expected value is an string,
+          // split the string value into individual classes
+          const classes = expectedValue.split(' ');
+          try {
+            await expect(await this.locator).toHaveClass(classes.join(' '));
+          } catch (error) {
+            console.error('Attribute class not found:', error);
+            result = false;
           }
-        }),
-      );
-      return result;
-    }
+        } else {
+          try {
+            await expect(await this.locator).toHaveAttribute(property, expectedValue);
+          } catch (error) {
+            console.error(`Attribute ${property} not found:`, error);
+            result = false;
+          }
+        }
+      }),
+    );
+    return result;
+  }
 
   /**
    * Slow/fast scroll of entire page JS evaluation method, aides with lazy loaded content.
@@ -289,5 +334,146 @@ exports.WebUtil = class WebUtil {
     }
     await this.page.setViewportSize({ width, height });
     await this.page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
+  }
+
+/**
+ * Generates analytic string for a given project.
+ * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
+ * @returns {string} - A string formatted as 'gnav|<project>|nopzn|nopzn'.
+ */  
+  async getGnavDaalh(project=milo) {
+    return 'gnav'+ '|' + project + '|'+ 'nopzn' + '|' + 'nopzn' ;
+  }
+
+/**
+ * Generates analytic string for a given project.
+ * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
+ * @param {string} pznExpName - Personalized experience name, which is sliced to its first 15 characters.
+ * @param {string} pznFileName - Manifest filename, which is sliced to its first 20 characters.
+ * @returns {string} - A string formatted as 'gnav|<project>|<pznExpName>|<pznFileName>'.
+ */  
+async getPznGnavDaalh(project=milo, pznExpName, pznFileName) {
+  const slicedExpName = pznExpName.slice(0, 15);
+  const slicedFileName = pznFileName.slice(0, 15);
+  return 'gnav'+ '|' + project + '|'+ slicedExpName + '|' + slicedFileName ;
+}  
+
+/**
+ * Generates analytic string for a section based on a given counter value.
+ * @param {number|string} counter - A counter value used to generate the section identifier.
+ * @returns {string} - A string formatted as 's<counter>'.
+ */
+  async getSectionDaalh(counter) {
+    return 's'+ counter;
+  }
+
+/**
+ * Generates analytic string for a given block name and a counter.
+ * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value i.e. block number.
+ * @returns {string} - A string formatted as 'b<counter>|<slicedBlockName>|nopzn|nopzn'.
+ */  
+  async getBlockDaalh(blockName, counter) {
+    const slicedBlockName = blockName.slice(0, 20);
+    return 'b'+ counter + '|' + slicedBlockName + '|'+ 'nopzn' + '|' + 'nopzn' ;
+  }
+
+/**
+ * Generates personalization analytic string for a given block name and a counter.
+ * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value i.e. block number.
+ * @param {string} pznExpName - Personalized experience name, which is sliced to its first 15 characters.
+ * @param {string} pznExpName - Manifest filename, which is sliced to its first 20 characters.
+ * @returns {string} - A string formatted as 'b<counter>|<slicedBlockName>|<pznExpName>|<pznExpName>'.
+ */  
+async getPznBlockDaalh(blockName, counter, pznExpName, pznFileName) {
+  const slicedBlockName = blockName.slice(0, 20);
+  const slicedExpName = pznExpName.slice(0, 15);
+  const slicedFileName = pznFileName.slice(0, 15);
+  return 'b'+ counter + '|' + slicedBlockName + '|'+ slicedExpName + '|' + slicedFileName ;
+}  
+
+/**
+ * Generates an analytic string for a given block name and a counter.
+ * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value, i.e., block number.
+ * @param {boolean} [pzn=false] - A boolean flag indicating whether to use pzntext.
+ * @param {string} [pzntext='nopzn'] - The pzntext to use when pzn is true, sliced to its first 15 characters.
+ * @returns {string} - A formatted string.
+ */
+async getBlockDaalh(blockName, counter, pzn = false, pzntext = 'nopzn') {
+  const slicedBlockName = blockName.slice(0, 20);
+  const slicedPzntext = pzntext.slice(0, 15);
+  if (pzn) {
+    return 'b' + counter + '|' + slicedBlockName + '|' + slicedPzntext + '|' + 'nopzn';
+  } else {
+    return 'b' + counter + '|' + slicedBlockName + '|' + 'nopzn' + '|' + 'nopzn';
+  }
+}
+
+
+/**
+ * Generates analytic string for link or button based on link/button text , a counter, and the last header text.
+ * @param {string} linkText - The text of the link, which is cleaned and sliced to its first 20 characters.
+ * @param {number|string} counter - A counter value used in the identifier.
+ * @param {string} lastHeaderText - The last header text, which is cleaned and sliced to its first 20 characters.
+ * @param {boolean} [pzn=false] - boolean parameter, defaulting to false.(for personalization)
+ * @returns {string} - A string formatted as '<cleanedLinkText>-<counter>--<cleanedLastHeaderText>'.
+ */  
+  async getLinkDaall(linkText, counter, lastHeaderText, pzn = false) {
+    const cleanAndSliceText = (text) => {
+      return text
+        ?.replace(/[^\w\s]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/^_+|_+$/g, '')
+        .trim()
+        .slice(0, 20);
+    }
+    const slicedLinkText = cleanAndSliceText(linkText);
+    const slicedLastHeaderText = cleanAndSliceText(lastHeaderText);
+    return `${slicedLinkText}-${counter}--${slicedLastHeaderText}`;
+  }
+
+
+  async takeScreenshotAndCompare(urlA, callbackA, urlB, callbackB, folderPath, fileName) {
+    console.info(`[Test Page]: ${urlA}`);
+    await this.page.goto(urlA);
+    await callbackA();
+    await this.page.screenshot({ path: `${folderPath}/${fileName}-a.png`, fullPage: true });
+    const baseImage = fs.readFileSync(`${folderPath}/${fileName}-a.png`);
+
+    console.info(`[Test Page]: ${urlB}`);
+    await this.page.goto(urlB);
+    await callbackB();
+    await this.page.waitForSelector('.feds-footer-privacyLink');
+    await this.page.screenshot({ path: `${folderPath}/${fileName}-b.png`, fullPage: true });
+    const currImage = fs.readFileSync(`${folderPath}/${fileName}-b.png`);
+
+    const comparator = getComparator('image/png');
+    const diffImage = comparator(baseImage, currImage);
+
+    if (diffImage) {
+      fs.writeFileSync(`${folderPath}/${fileName}-diff.png`, diffImage.diff);
+      console.info('Differences found');
+    }
+  }
+
+  static compareScreenshots(stableArray, betaArray, folderPath) {
+    const comparator = getComparator('image/png');
+    for (let i = 0; i < stableArray.length; i += 1) {
+      if (betaArray[i].slice(-10) === stableArray[i].slice(-10)) {
+        const stableImage = fs.readFileSync(`${folderPath}/${stableArray[i]}`);
+        const betaImage = fs.readFileSync(`${folderPath}/${betaArray[i]}`);
+        const diffImage = comparator(stableImage, betaImage);
+
+        if (diffImage) {
+          fs.writeFileSync(`${folderPath}/${stableArray[i]}-diff.png`, diffImage.diff);
+          console.info('Differences found');
+        }
+      } else {
+        console.info('Screenshots are not matched');
+        console.info(`${stableArray[i]} vs ${betaArray[i]}`);
+      }
+    }
   }
 };

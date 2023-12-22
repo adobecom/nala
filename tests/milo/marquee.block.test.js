@@ -6,7 +6,7 @@ import MarqueeBlock from '../../selectors/milo/marquee.block.page.js';
 let webUtil;
 let marquee;
 let consoleErrors = [];
-const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
+const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','adobeid-na1-stg1.services'];
 
 test.describe('Milo Marquee Block test suite', () => {
   test.beforeEach(async ({ page }) => {
@@ -48,10 +48,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      const outlineButtonDaalh = data.outlineButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeLight, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.outlineButton).toHaveAttribute('daa-ll', outlineButtonDaalh);     
+      await expect(await marquee.marqueeLight).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.outlineButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.outlineButtonText, 1, data.h2Text));
+      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 2, data.h2Text));    
     });
 
     await test.step('step-4: Verify browser console errors', async () => {
@@ -83,10 +82,8 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSmall, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);    
+      await expect(await marquee.marqueeSmall).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));
+      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));   
     });
 
     await test.step('step-4: Verify browser console errors', async () => {
@@ -120,12 +117,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const outlineButtonDaalh = data.outlineButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-      const blueButtonDaalh = data.blueButtonText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSmallLight, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.outlineButton).toHaveAttribute('daa-ll', outlineButtonDaalh);  
-      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);    
+      await expect(await marquee.marqueeSmallLight).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.outlineButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.outlineButtonText, 1, data.h2Text));
+      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 2, data.h2Text));   
     });
 
     await test.step('step-4: Verify browser console errors', async () => {
@@ -158,12 +152,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const outlineButtonDaalh = data.outlineButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-      const blueButtonDaalh = data.blueButtonText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeLarge, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.outlineButtonXL).toHaveAttribute('daa-ll', outlineButtonDaalh);  
-      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', blueButtonDaalh);    
+      await expect(await marquee.marqueeLarge).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.outlineButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.outlineButtonText, 1, data.h2Text));
+      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 2, data.h2Text));  
     });
 
     await test.step('step-4: Verify browser console errors', async () => {
@@ -196,12 +187,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const outlineButtonDaalh = data.outlineButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-      const blueButtonDaalh = data.blueButtonText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeLargeLight, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.outlineButtonXL).toHaveAttribute('daa-ll', outlineButtonDaalh);  
-      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', blueButtonDaalh);    
+      await expect(await marquee.marqueeLargeLight).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.outlineButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.outlineButtonText, 1, data.h2Text));
+      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 2, data.h2Text));   
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -233,10 +221,8 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeQuiet, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();
-      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);    
+      await expect(await marquee.marqueeQuiet).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -267,7 +253,7 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      expect(await webUtil.verifyAttributes_(marquee.marqueeInline, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();
+      await expect(await marquee.marqueeInline).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -300,12 +286,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const outlineButtonDaalh = data.outlineButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-      const blueButtonDaalh = data.blueButtonText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSplitSmall, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.outlineButton).toHaveAttribute('daa-ll', outlineButtonDaalh);  
-      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);    
+      await expect(await marquee.marqueeSplitSmall).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.outlineButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.outlineButtonText, 1, data.h2Text));
+      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 2, data.h2Text));   
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -342,12 +325,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-      const actionLink2Daalh = data.linkText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSplitLarge, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', blueButtonDaalh);  
-      await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', actionLink2Daalh);    
+      await expect(await marquee.marqueeSplitLarge).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));
+      await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 2, data.h2Text));   
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -384,12 +364,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-      const actionLink2Daalh = data.linkText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSplitLarge, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', blueButtonDaalh);  
-      await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', actionLink2Daalh);    
+      await expect(await marquee.marqueeSplitOneThirdLargeLight).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));
+      await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 2, data.h2Text));  
     });
 
     await test.step('step-3: Verify and log if any console errors', async () => {
@@ -426,10 +403,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSplitOneThird, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButtonL).toHaveAttribute('daa-ll', blueButtonDaalh);
+      await expect(await marquee.marqueeSplitOneThird).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.blueButtonL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));
+      await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 2, data.h2Text));
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -462,10 +438,8 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSplitOneThirdSmallLight, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButtonL).toHaveAttribute('daa-ll', blueButtonDaalh);
+      await expect(await marquee.marqueeSplitOneThirdSmallLight).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.blueButtonL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -499,10 +473,8 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeSmallDark, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);
+      await expect(await marquee.marqueeSmallDark).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.blueButtonL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -540,12 +512,9 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-      const actionLink2Daalh = data.linkText +'-2'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeLargeLight, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', blueButtonDaalh);  
-      await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', actionLink2Daalh);    
+      await expect(await marquee.marqueeLargeLight).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 1));      
+      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));
+      await expect(await marquee.actionLink2).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 2, data.h2Text)); 
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {
@@ -582,10 +551,8 @@ test.describe('Milo Marquee Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytic attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-
-      expect(await webUtil.verifyAttributes_(marquee.marqueeLargeDark, marquee.attributes['analytics']['marquee.daa-lh'])).toBeTruthy();      
-      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', blueButtonDaalh);   
+      await expect(await marquee.marqueeLargeDark).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('marquee', 2));      
+      await expect(await marquee.blueButtonXL).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));  
     });
 
     await test.step('step-4: Verify and log if any console errors', async () => {

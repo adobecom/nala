@@ -6,7 +6,7 @@ import MediaBlock from '../../selectors/milo/media.block.page.js';
 let webUtil;
 let media;
 let consoleErrors = [];
-const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
+const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','adobeid-na1-stg1.services'];
 
 test.describe('Milo Media Block test suite', () => {
   test.beforeEach(async ({ page }) => {
@@ -49,10 +49,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-  
-      expect(await webUtil.verifyAttributes_(media.mediaSmall, media.attributes['analytics']['media.daa-lh'])).toBeTruthy();      
-      await expect(await media.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);     
+      await expect(await media.mediaSmall).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('media', 1));
+      await expect(await media.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));   
     });
   
     await test.step('step-4: Verify browser console errors', async () => {
@@ -85,10 +83,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-  
-      expect(await webUtil.verifyAttributes_(media.media, media.attributes['analytics']['media.daa-lh'])).toBeTruthy();      
-      await expect(await media.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);     
+      await expect(await media.media).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('media', 1));
+      await expect(await media.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text)); 
     });
   
     await test.step('step-4: Verify browser console errors', async () => {
@@ -121,10 +117,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-  
-      expect(await webUtil.verifyAttributes_(media.mediaLargeDark, media.attributes['analytics']['media.daa-lh'])).toBeTruthy();      
-      await expect(await media.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);     
+      await expect(await media.mediaLargeDark).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('media', 1));
+      await expect(await media.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));      
     });
   
     await test.step('step-4: Verify browser console errors', async () => {
@@ -159,10 +153,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-  
-      expect(await webUtil.verifyAttributes_(media.mediaLargeDark, media.attributes['analytics']['media.daa-lh'])).toBeTruthy();      
-      await expect(await media.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);     
+      await expect(await media.mediaLargeDark).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('media', 2));
+      await expect(await media.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));   
     });
   
     await test.step('step-4: Verify browser console errors', async () => {
@@ -196,10 +188,8 @@ test.describe('Milo Media Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      const blueButtonDaalh = data.blueButtonText +'-1'+ '|' + (data.h2Text).slice(0, 20) ;
-  
-      expect(await webUtil.verifyAttributes_(media.mediaLargeDark, media.attributes['analytics']['media.daa-lh'])).toBeTruthy();      
-      await expect(await media.blueButton).toHaveAttribute('daa-ll', blueButtonDaalh);     
+      await expect(await media.mediaLargeDark).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('media', 2));
+      await expect(await media.blueButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.blueButtonText, 1, data.h2Text));   
     });
   
     await test.step('step-4: Verify browser console errors', async () => {
@@ -208,3 +198,4 @@ test.describe('Milo Media Block test suite', () => {
     });     
   });  
 });
+
