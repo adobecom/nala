@@ -12,6 +12,7 @@ test.describe('Milo HowTo block test suite', () => {
     howTo = new HowToBlock(page);
   });
 
+// Test 0 : HowTo default block  
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
 
@@ -22,10 +23,16 @@ test.describe('Milo HowTo block test suite', () => {
     });
 
     await test.step('step-2: Verify HowTo specs', async () => {
-      expect(await howTo.verifyHowTo('how-to', 4)).toBeTruthy();
+      await expect(howTo.howTo).toBeVisible();
+      await expect(await howTo.list).toHaveCount(4);
+
+      expect(await webUtil.verifyCSS_(howTo.foreground, howTo.cssProperties['.how-to .foreground'])).toBeTruthy();
+      expect(await webUtil.verifyCSS_(howTo.heading, howTo.cssProperties['body-m'])).toBeTruthy();
+      expect(await webUtil.verifyCSS_(howTo.image, howTo.cssProperties['how-to-image'])).toBeTruthy();
     });
   });
 
+// Test 1 : how-to (large) block    
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[1].path}`);
 
@@ -36,10 +43,16 @@ test.describe('Milo HowTo block test suite', () => {
     });
 
     await test.step('step-2: Verify HowTo large specs', async () => {
-      expect(await howTo.verifyHowTo('how-to (large)', 4)).toBeTruthy();
+      await expect(howTo.howToLarge).toBeVisible();
+      await expect(await howTo.list).toHaveCount(4);
+
+      expect(await webUtil.verifyCSS_(howTo.heading, howTo.cssProperties['body-m'])).toBeTruthy();
+      expect(await webUtil.verifyCSS_(howTo.howToLarge, howTo.cssProperties['how-to-large-image'])).toBeTruthy();
+      expect(await webUtil.verifyAttributes_(await howTo.largeImage, howTo.attProperties['how-to-large-image'])).toBeTruthy();
     });
   });
 
+// Test 2 : how-to (seo) block   
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[2].path}`);
 
@@ -50,7 +63,11 @@ test.describe('Milo HowTo block test suite', () => {
     });
 
     await test.step('step-2: Verify HowTo SEO specs', async () => {
-      expect(await howTo.verifyHowTo('how-to (seo)', 4)).toBeTruthy();
+      await expect(howTo.howToSeo).toBeVisible();
+      await expect(await howTo.list).toHaveCount(4);
+
+      expect(await webUtil.verifyCSS_(howTo.heading, howTo.cssProperties['body-m'])).toBeTruthy();
+      expect(await webUtil.verifyCSS_(howTo.howToSeo, howTo.cssProperties['how-to-seo'])).toBeTruthy();
     });
   });
 });
