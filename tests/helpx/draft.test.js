@@ -8,6 +8,8 @@ import { WebUtil } from '../../libs/webutil.js';
 let draft;
 let page;
 let draftTag= features[0].path;
+let cssProps; 
+const helpxbaseURL = config.use?.baseURL;
 
 test.beforeAll(async ({ browser }) => {
   if (process.env.HLX_TKN !== undefined && process.env.HLX_TKN !== '') {
@@ -26,16 +28,18 @@ test.beforeAll(async ({ browser }) => {
   await context.setExtraHTTPHeaders({ authorization: `token ${authToken}` });
   page = await context.newPage();
   draft = new Draft(page);
-  await page.goto(`${config.use?.baseURL}${draftTag}`);
-  await page.waitForLoadState('networkidle');
+  cssProps = new WebUtil(page);
+
 });
 
 test.describe('Draft sanity test suite', () => {
   // Draft Sanity Checks:
   test(`Verify Draft component`, async ({baseURL}) => {
+    await page.goto(`${helpxbaseURL}${draftTag}`);
+    await page.waitForLoadState('networkidle');
     console.log(`[Test Page]: ${baseURL}${draftTag}.html`);
     await test.step('Navigate to Draft page', async () => {
-      await expect(page).toHaveURL(`${baseURL}${draftTag}.html`);
+    await expect(page).toHaveURL(`${baseURL}${draftTag}.html`);
     });
 
     // Check procedure present
@@ -51,16 +55,80 @@ test.describe('Draft sanity test suite', () => {
     await expect(draft.generic).not.toBeVisible();
 
     //verify CSS property of a Draft page
-    expect(await WebUtil.verifyCSS(await draft.procedure, draft.cssProperties['procedure'])).toBeTruthy();
-    expect(await WebUtil.verifyCSS(await draft.beforeAftr, draft.cssProperties['beforeAftr'])).toBeTruthy();
-    expect(await WebUtil.verifyCSS(await draft.codeBlock, draft.cssProperties['codeBlock'])).toBeTruthy();
-    expect(await WebUtil.verifyCSS(await draft.generic, draft.cssProperties['generic'])).toBeTruthy();
+    expect(await cssProps.verifyCSS_(await draft.procedure, draft.cssProperties['procedure'])).toBeTruthy();
+    expect(await cssProps.verifyCSS_(await draft.beforeAftr, draft.cssProperties['beforeAftr'])).toBeTruthy();
+    expect(await cssProps.verifyCSS_(await draft.codeBlock, draft.cssProperties['codeBlock'])).toBeTruthy();
+    expect(await cssProps.verifyCSS_(await draft.generic, draft.cssProperties['generic'])).toBeTruthy();
     
     //Verify Attribute of a Draft Page
-    expect(await WebUtil.verifyAttributes(await draft.procedure, draft.attProperties['procedure'])).toBeTruthy();
-    expect(await WebUtil.verifyAttributes(await draft.beforeAftr, draft.attProperties['beforeAftr'])).toBeTruthy();
-    expect(await WebUtil.verifyAttributes(await draft.codeBlock, draft.attProperties['codeBlock'])).toBeTruthy();
-    expect(await WebUtil.verifyAttributes(await draft.generic, draft.attProperties['generic'])).toBeTruthy();
+    expect(await cssProps.verifyAttributes_(await draft.procedure, draft.attProperties['procedure'])).toBeTruthy();
+    expect(await cssProps.verifyAttributes_(await draft.beforeAftr, draft.attProperties['beforeAftr'])).toBeTruthy();
+    expect(await cssProps.verifyAttributes_(await draft.codeBlock, draft.attProperties['codeBlock'])).toBeTruthy();
+    expect(await cssProps.verifyAttributes_(await draft.generic, draft.attProperties['generic'])).toBeTruthy();
     
   });
 });
+
+
+test.describe('Draft on Before After Component',()=>{
+
+  let baname= `${features[1].name}`;
+  test(baname, async () => {
+    const BeforeAfterurl = `${helpxbaseURL}${features[1].path}`;
+    await page.goto(BeforeAfterurl);
+    await page.waitForLoadState('networkidle');
+    await console.log("BeforeAfterurl: "+BeforeAfterurl);
+
+    //verify components are not visible
+    await expect(draft.codeAs3LineNumbersDraft).not.toBeVisible();
+    await expect(draft.beforeAfterSlider).not.toBeVisible();
+    await expect(draft.horizontalBeforeAfterSlider).not.toBeVisible();
+    await expect(draft.beforeAfterSliderDraft).not.toBeVisible();
+    await expect(draft.beforeAfterSliderDraftHorizontal).not.toBeVisible();
+    await expect(draft.as3CodeSnippet).not.toBeVisible();
+
+    
+  });
+});
+
+test.describe('Draft on Code Block Component',()=>{
+
+  let baname= `${features[2].name}`;
+  test(baname, async () => {
+    const codeblockdrafturl = `${helpxbaseURL}${features[2].path}`;
+    await page.goto(codeblockdrafturl);
+    await page.waitForLoadState('networkidle');
+    await console.log("CodeBlockDrafturl: "+codeblockdrafturl);
+
+    //verify components are not visible
+    await expect(draft.codeAs3LineNumbersDraft).not.toBeVisible();
+    await expect(draft.codeColdFusionDraft).not.toBeVisible();
+    await expect(draft.codeCPlusPlusDraft).not.toBeVisible();
+    await expect(draft.codeCSSLineNumbersDraft).not.toBeVisible();
+    await expect(draft.codeJavaLineNumbersDraft).not.toBeVisible();
+    await expect(draft.codeJavaScriptDraft).not.toBeVisible();
+    await expect(draft.codePHPDraft).not.toBeVisible();
+    await expect(draft.codeSQLDraft).toBeVisible();
+    await expect(draft.codeXMLDraft).not.toBeVisible();
+    await expect(draft.codeShellDraft).not.toBeVisible();
+    await expect(draft.codePlainDraft).not.toBeVisible();
+  });
+});
+
+test.describe('Draft Component on Generic',()=>{
+
+  let baname= `${features[3].name}`;
+  test(baname, async () => {
+    const genericDraftURl = `${helpxbaseURL}${features[3].path}`;
+    await page.goto(genericDraftURl);
+    await page.waitForLoadState('networkidle');
+    await console.log("genericDraftURl: "+genericDraftURl);
+
+    await expect(draft.genericComponentsDraft).toBeVisible();
+    await expect(draft.genericImageDraft1).not.toBeVisible();
+    await expect(draft.genericImageDraft2).not.toBeVisible();
+    await expect(draft.genericTextDraft).not.toBeVisible();
+      
+  });
+});
+
