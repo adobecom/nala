@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@draft',
-      path: '/automation/blocks/Drafts/draft-test',
+      path: '/automation/blocks/Draft/draft-test.html',
       tags: '@draft @regression @helpx',
     },
     {

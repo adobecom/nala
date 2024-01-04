@@ -37,9 +37,9 @@ test.describe('Draft sanity test suite', () => {
   test(`Verify Draft component`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${draftTag}`);
     await page.waitForLoadState('networkidle');
-    console.log(`[Test Page]: ${baseURL}${draftTag}.html`);
+    console.log(`[Test Page]: ${baseURL}${draftTag}`);
     await test.step('Navigate to Draft page', async () => {
-    await expect(page).toHaveURL(`${baseURL}${draftTag}.html`);
+    await expect(page).toHaveURL(`${baseURL}${draftTag}`);
     });
 
     // Check procedure present
