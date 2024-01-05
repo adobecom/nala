@@ -34,7 +34,7 @@ test.beforeAll(async ({ browser }) => {
 
 test.describe('Draft sanity test suite', () => {
   // Draft Sanity Checks:
-  test(`Verify Draft component`, async ({baseURL}) => {
+  test(`${features[0].name}, ${features[0].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${draftTag}`);
     await page.waitForLoadState('networkidle');
     console.log(`[Test Page]: ${baseURL}${draftTag}`);
@@ -72,8 +72,8 @@ test.describe('Draft sanity test suite', () => {
 
 test.describe('Draft on Before After Component',()=>{
 
-  let baname= `${features[1].name}`;
-  test(baname, async () => {
+
+  test(`${features[1].name}, ${features[1].tags}`, async () => {
     const BeforeAfterurl = `${helpxbaseURL}${features[1].path}`;
     await page.goto(BeforeAfterurl);
     await page.waitForLoadState('networkidle');
@@ -93,8 +93,8 @@ test.describe('Draft on Before After Component',()=>{
 
 test.describe('Draft on Code Block Component',()=>{
 
-  let baname= `${features[2].name}`;
-  test(baname, async () => {
+
+  test(`${features[2].name}, ${features[2].tags}`, async () => {
     const codeblockdrafturl = `${helpxbaseURL}${features[2].path}`;
     await page.goto(codeblockdrafturl);
     await page.waitForLoadState('networkidle');
@@ -117,8 +117,8 @@ test.describe('Draft on Code Block Component',()=>{
 
 test.describe('Draft Component on Generic',()=>{
 
-  let baname= `${features[3].name}`;
-  test(baname, async () => {
+
+  test(`${features[3].name}, ${features[3].tags}`, async () => {
     const genericDraftURl = `${helpxbaseURL}${features[3].path}`;
     await page.goto(genericDraftURl);
     await page.waitForLoadState('networkidle');

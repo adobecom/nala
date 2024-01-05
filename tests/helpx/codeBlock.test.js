@@ -27,18 +27,19 @@ test.beforeAll(async ({ browser }) => {
   await context.setExtraHTTPHeaders({ authorization: `token ${authToken}` });
   page = await context.newPage();
   codeBlk = new CodeBlock(page);
-
-
-  await page.goto(`${config.use?.baseURL}${codeblocktag}`);
-  await page.waitForLoadState('networkidle');
 });
 
 test.describe('CodeBlock sanity test suite', () => {
   // CodeBlock Sanity Checks:
-  test(`verify Code Block Page Elements`, async ({baseURL}) => {
-    console.info(`[Test Page]: ${baseURL}${codeblocktag}`);
+  test(`${features[0].name}, ${features[0].tags}`, async ({}) => {
+    //Go to CodeBlock Page
+    await page.goto(`${config.use?.baseURL}${codeblocktag}`);
+    await page.waitForLoadState('networkidle');
+    console.info(`[Test Page]: ${config.use?.baseURL}${codeblocktag}`);
+
+    //verify its navigating to code block page only
     await test.step('Navigate to CodeBlock page', async () => {
-      await expect(page).toHaveURL(`${baseURL}${codeblocktag}.html`);
+      await expect(page).toHaveURL(`${config.use?.baseURL}${codeblocktag}.html`);
     });
 
     // Check for different codeBlock formats present

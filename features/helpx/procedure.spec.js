@@ -7,6 +7,12 @@ module.exports = {
         path: '/automation/blocks/procedure',
         tags: '@procedure @regression @helpx',
       },
+      {
+        tcid: '1',
+        name: '@procedureAndStepValidation',
+        path: '/automation/blocks/procedure/procedure-step-component',
+        tags: '@procedure @regression @helpx',
+      },
     ],
   };
   

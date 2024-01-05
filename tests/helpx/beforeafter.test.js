@@ -5,7 +5,6 @@ import config from '../../configs/helpx.config.js';
 
 let beforeAftr;
 let page;
-let BeforeAfterTag = features[0].path;
 
 test.beforeAll(async ({ browser }) => {
   if (process.env.HLX_TKN !== undefined && process.env.HLX_TKN !== '') {
@@ -24,14 +23,17 @@ test.beforeAll(async ({ browser }) => {
   await context.setExtraHTTPHeaders({ authorization: `token ${authToken}` });
   page = await context.newPage();
   beforeAftr = new BeforeAfter(page);
-  await page.goto(`${config.use?.baseURL}${BeforeAfterTag}`);
-  await page.waitForLoadState('networkidle');
+
 });
+
 
 test.describe('BeforeAfter Sanity test suite', () => {
 
-  // Procedure Sanity Checks:
-  test(`Verify before After Page validation`, async ({ baseURL }) => {
+  // Before After Sanity Checks:
+  test(`${features[0].name}, ${features[0].tags}`, async ({ baseURL }) => {
+    const BeforeAfterTag = features[0].path;
+    await page.goto(`${config.use?.baseURL}${BeforeAfterTag}`);
+    await page.waitForLoadState('networkidle');
     console.log(`[Test Page]: ${baseURL}${BeforeAfterTag}`);
     //I verify url of the page
     await test.step('Navigate to beforeAfter page', async () => {
