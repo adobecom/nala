@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import features from '../../features/helpx/procedure.spec.js';
+import { features } from '../../features/helpx/procedure.spec.js';
 import Procedure from '../../selectors/helpx/procedure.page.js';
 import helpxconfig from '../../configs/helpx.config.js';
 
@@ -30,7 +30,7 @@ test.beforeAll(async ({ browser }) => {
 test.describe('Procedure Sanity test suite', () => {
   //Procedure Sanity Checks:
   test(`${features[0].name}, ${features[0].tags}`, async ({ baseURL }) => {
-    let procedureTag = features.features[0].path;
+    let procedureTag = features[0].path;
     await page.goto(`${helpxconfig.use?.baseURL}${procedureTag}`);
     await page.waitForLoadState('networkidle');
     console.log(`[Test Page]: ${baseURL}${procedureTag}`);
@@ -56,7 +56,7 @@ test.describe('Procedure Sanity test suite', () => {
 
 async function launchprocedurepage(){
   //All Components page
- let procedureTag = features.features[1].path;
+ let procedureTag = features[1].path;
  await page.goto(`${helpxconfig.use?.baseURL}${procedureTag}`);
  await page.waitForLoadState('networkidle');
  console.log(`[All component procedure Page]: ${helpxconfig.use?.baseURL}${procedureTag}`);
@@ -85,24 +85,24 @@ test.describe("All Components in Procedure component",()=>{
      await expect(procedureTitle).toHaveText("Procedure and Step Component")
    });
  
-   test(`${features[1].name}, ${features[1].tags}`, async()=>{
+   test(`${features[2].name}, ${features[2].tags}`, async()=>{
     await launchprocedurepage();
      await expect(procedure.procedurecapitalLetter).toBeVisible();
      await expect(procedure.secondProcedureElement).toBeVisible();
      await expect(procedure.thirdProcedureElement).toBeVisible();
    })
  
-   test(`${features[1].name}, ${features[1].tags}`, async()=>{
+   test(`${features[3].name}, ${features[3].tags}`, async()=>{
     await launchprocedurepage();
      await expect(procedure.failedProcedureElement).toBeVisible();
    })
  
-   test(`${features[1].name}, ${features[1].tags}`, async () => {
+   test(`${features[4].name}, ${features[4].tags}`, async () => {
     await launchprocedurepage();
      await expect(procedure.draftProcedure).toBeVisible();
    });
  
-   test(`${features[1].name}, ${features[1].tags}`, async()=>{
+   test(`${features[5].name}, ${features[5].tags}`, async()=>{
     await launchprocedurepage();
      // Verifying visibility for each element
      await expect(procedure.textInProcedureComponent).toBeVisible();
@@ -116,7 +116,7 @@ test.describe("All Components in Procedure component",()=>{
    })
  
  
-   test(`${features[1].name}, ${features[1].tags}`, async()=>{
+   test(`${features[6].name}, ${features[6].tags}`, async()=>{
      await launchprocedurepage();
      const scrollToHeight = 4500;
  
@@ -129,7 +129,7 @@ test.describe("All Components in Procedure component",()=>{
      await expect(procedure.youtubevideoinprocedure).toBeVisible();
    })
  
-   test(`${features[1].name}, ${features[1].tags}`, async()=>{
+   test(`${features[7].name}, ${features[7].tags}`, async()=>{
     await launchprocedurepage(); 
     const scrollToHeight = 4700;
  
@@ -144,7 +144,7 @@ test.describe("All Components in Procedure component",()=>{
  
    })
  
-   test(`${features[1].name}, ${features[1].tags}`,async()=>{
+   test(`${features[8].name}, ${features[8].tags}`,async()=>{
     await launchprocedurepage(); 
     const scrollToHeight = 5000;
  
@@ -160,7 +160,7 @@ test.describe("All Components in Procedure component",()=>{
    })
  
  
-   test(`${features[1].name}, ${features[1].tags}`,async()=>{
+   test(`${features[9].name}, ${features[9].tags}`,async()=>{
     await launchprocedurepage();    
      const scrollToHeight = 6000;
  
@@ -176,7 +176,7 @@ test.describe("All Components in Procedure component",()=>{
    })
  
  
-   test(`${features[1].name}, ${features[1].tags}`,async()=>{
+   test(`${features[10].name}, ${features[10].tags}`,async()=>{
     await launchprocedurepage();
      const scrollToHeight = 7500;
  
@@ -197,7 +197,7 @@ test.describe("All Components in Procedure component",()=>{
  
    })
  
-   test(`${features[1].name}, ${features[1].tags}`, async()=>{
+   test(`${features[11].name}, ${features[11].tags}`, async()=>{
     await launchprocedurepage();
     const scrollToHeight = 2500;
     await page.evaluate((scrollToHeight) => {
