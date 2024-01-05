@@ -6,7 +6,7 @@ const envs = require('../envs/envs.js');
  * @see https://playwright.dev/docs/test-configuration
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
-const helpxconfig = {
+const config = {
   testDir: '../tests/helpx',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
@@ -80,4 +80,4 @@ const helpxconfig = {
     },
   ],
 };
-export default helpxconfig;
+export default config;
