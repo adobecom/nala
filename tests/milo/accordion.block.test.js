@@ -6,6 +6,7 @@ import AccordionBlock from '../../selectors/milo/accordion.block.page.js';
 let webUtil;
 let accordion;
 let consoleErrors = [];
+let miloLib = '?milolibs=stage';
 const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
 
 test.describe('Milo Accordion Block test suite', () => {
@@ -26,13 +27,13 @@ test.describe('Milo Accordion Block test suite', () => {
 
   // Test 0 : Accordion
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLib}`);
     const { data } = features[0];
 
     await test.step('step-1: Go to Accordion block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLib}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLib}`);
     });
 
     await test.step('step-2: Verify Accrodion block content/specs', async () => {
