@@ -6,7 +6,7 @@ import AccordionBlock from '../../selectors/milo/accordion.block.page.js';
 let webUtil;
 let accordion;
 let consoleErrors = [];
-let miloLibs = process.env.MILO_LIBS;
+let miloLibs = process.env.MILO_LIBS || '';
 const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
 
 test.describe('Milo Accordion Block test suite', () => {
