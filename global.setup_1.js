@@ -22,10 +22,12 @@ async function getGitHubPRBranchLiveUrl() {
   const prFromOrg = process.env.prOrg;
   const prFromRepoName = process.env.prRepo;
 
+  
   let prBranchLiveUrl;
 
   if (toRepoName === 'nala' || toRepoName === 'janus') {
     prBranchLiveUrl = `https://main--milo--adobecom.hlx.live`;
+    
   } else {
     prBranchLiveUrl = `https://${prBranch}--${prFromRepoName}--${prFromOrg}.hlx.live`;
   }
@@ -61,8 +63,7 @@ async function getGitHubMiloLibsBranchLiveUrl() {
 
   try {
     if (await isBranchURLValid(prBranchLiveUrl)) {
-      process.env.PR_BRANCH_LIVE_URL = prBranchLiveUrl;
-      process.env.MILO_LIBS = prBranchLiveUrl;
+      process.env.PR_BRANCH_LIVE_URL = prBranchLiveUrl;     
     }
     console.info('PR Repository : ', repository);
     console.info('PR Branch live url : ', prBranchLiveUrl);
