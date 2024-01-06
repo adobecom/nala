@@ -24,17 +24,19 @@ jobs:
   action:
     name: Running tests
     runs-on: ${{ inputs.platform }}
+    env:
+      WORKFLOW_NAME: 'Milo Libs Run'
+      MILO_LIBS_RUN: 'true'
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Set permissions
-        run: chmod +x ./path/to/run.sh
+
       - name: Set environment variables
         run: |
-          echo "PR_BRANCH_LIVE_URL_GH=${{ github.event.inputs.branch }}" >> $GITHUB_ENV
+          echo "PR_BRANCH_MILOLIBS_LIVE_URL=${{ github.event.inputs.branch }}" >> $GITHUB_ENV
           echo "MILO_LIBS=${{ github.event.inputs.milolibs }}" >> $GITHUB_ENV
-          
+
       - name: Run Nala ${{ inputs.platform }}
         uses: ./
         env:
