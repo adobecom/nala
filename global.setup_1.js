@@ -3,6 +3,10 @@ const { execSync } = require('child_process');
 const { isBranchURLValid } = require('./libs/baseurl.js');
 const axios = require('axios');
 
+const MAIN_BRANCH_LIVE_URL = 'https://main--milo--adobecom.hlx.live';
+const STAGE_BRANCH_URL = 'https://milo.stage.adobe.com';
+const LOCALHOST_URL = 'http://localhost:3000';
+
 async function getGitHubPRBranchLiveUrl() {
   // get the pr number
   const prReference = process.env.GITHUB_REF;
@@ -26,8 +30,7 @@ async function getGitHubPRBranchLiveUrl() {
   let prBranchLiveUrl;
 
   if (toRepoName === 'nala' || toRepoName === 'janus') {
-    prBranchLiveUrl = `https://main--milo--adobecom.hlx.live`;
-    
+    prBranchLiveUrl = MAIN_BRANCH_LIVE_URL;
   } else {
     prBranchLiveUrl = `https://${prBranch}--${prFromRepoName}--${prFromOrg}.hlx.live`;
   }
@@ -76,7 +79,7 @@ async function getGitHubMiloLibsBranchLiveUrl() {
 }
 
 async function getCircleCIBranchLiveUrl() {
-  const stageBranchLiveUrl = 'https://milo.stage.adobe.com';
+  const stageBranchLiveUrl = STAGE_BRANCH_URL;
 
   try {
     if (await isBranchURLValid(stageBranchLiveUrl)) {
@@ -104,10 +107,9 @@ async function getLocalBranchLiveUrl() {
         let localTestLiveUrl;
 
         if (localRepo === 'nala' || localRepo === 'janus') {
-          localTestLiveUrl = `https://main--milo--adobecom.hlx.live`;
-          process.env.MILO_LIBS = '?milolibs=stage';
+          localTestLiveUrl = MAIN_BRANCH_LIVE_URL;
         } else {
-          localTestLiveUrl = `http://localhost:3000`;
+          localTestLiveUrl = LOCALHOST_URL;
         }
 
         if (await isBranchURLValid(localTestLiveUrl)) {
