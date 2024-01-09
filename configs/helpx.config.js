@@ -1,6 +1,5 @@
 // @ts-check
 const { devices } = require('@playwright/test');
-
 const envs = require('../envs/envs.js');
 
 /**
@@ -39,7 +38,7 @@ const config = {
     : [
         ['html', { outputFolder: 'test-html-results' }],
         ['list'],
-        ['./utils/reporters/base-reporter.js'],
+        ['../utils/reporters/base-reporter.js']
       ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -59,6 +58,10 @@ const config = {
       name: 'helpx-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        launchOptions: {
+          args: ['--disable-web-security', '--disable-gpu'],
+        },
       },
     },
 
