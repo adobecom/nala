@@ -6,6 +6,8 @@ import MerchCard from '../../selectors/milo/merchcard.block.page.js';
 let merchCard;
 let webUtil;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Modal feature test suite', () => {
   test.beforeEach(async ({ page }) => {
     merchCard = new MerchCard(page);
@@ -14,13 +16,13 @@ test.describe('Milo Modal feature test suite', () => {
 
   // Test 0 : Merch Card (Segment)
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const data = features[0].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card content/specs', async () => {
@@ -46,13 +48,13 @@ test.describe('Milo Modal feature test suite', () => {
 
   // Test 1 : Merch Card (Segment) with Badge
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const data = features[1].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card with Badge content/specs', async () => {
@@ -85,13 +87,13 @@ test.describe('Milo Modal feature test suite', () => {
 
   // Test 2 : Merch Card (Special Offers) 
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const data = features[2].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
@@ -113,13 +115,13 @@ test.describe('Milo Modal feature test suite', () => {
   
   // Test 3 : Merch Card (Special Offers) with badge 
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const data = features[3].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[3].path}`);
+      await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
@@ -151,13 +153,13 @@ test.describe('Milo Modal feature test suite', () => {
  
   // Test 4 : Merch Card (plans)
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const data = features[4].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[4].path}`);
+      await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
@@ -180,13 +182,13 @@ test.describe('Milo Modal feature test suite', () => {
   
   // Test 5 : Merch Card (plans) with badge
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[5].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
     const data = features[5].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[5].path}`);
+      await page.goto(`${baseURL}${features[5].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[5].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[5].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
@@ -213,13 +215,13 @@ test.describe('Milo Modal feature test suite', () => {
   // Test 6 : Merch Card (plans) with secure
   // Note: skipping the test as there were failures, informed the team
   test.skip(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[6].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
     const data = features[6].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[6].path}`);
+      await page.goto(`${baseURL}${features[6].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[6].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[6].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
@@ -260,13 +262,13 @@ test.describe('Milo Modal feature test suite', () => {
   // Test 7 : Merch Card (plans, secure) with badge
   // Note: skipping the test as there were failures, informed the team
   test.skip(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[7].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
     const data = features[7].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[7].path}`);
+      await page.goto(`${baseURL}${features[7].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[7].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[7].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
@@ -305,13 +307,13 @@ test.describe('Milo Modal feature test suite', () => {
   
   // Test 8 : Merch Card (catalog)
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[8].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[8].path}${miloLibs}`);
     const data = features[8].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[8].path}`);
+      await page.goto(`${baseURL}${features[8].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[8].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[8].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card catalog content/specs', async () => {
@@ -337,13 +339,13 @@ test.describe('Milo Modal feature test suite', () => {
   
   // Test 9 : Merch Card (catalog) with badge
   test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[9].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[9].path}${miloLibs}`);
     const data = features[9].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[9].path}`);
+      await page.goto(`${baseURL}${features[9].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[9].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[9].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card catalog with badge content/specs', async () => {
@@ -374,13 +376,13 @@ test.describe('Milo Modal feature test suite', () => {
 
   // Test 10 : Merch Card (catalog) with more info and badge
   test(`${features[10].name},${features[10].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[10].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[10].path}${miloLibs}`);
     const data = features[10].data;
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[10].path}`);
+      await page.goto(`${baseURL}${features[10].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[10].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[10].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Merch Card catalog with badge content/specs', async () => {

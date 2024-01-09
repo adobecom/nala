@@ -5,16 +5,18 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/header.block.spec.js';
 import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Header Block Test Suite', () => {
   // FEDS Default Header Checks:
   test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Header = new FedsHeader(page);
-    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
+    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}${miloLibs}`);
 
     await test.step('Navigate to FEDS HEADER page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('Check HEADER block content', async () => {

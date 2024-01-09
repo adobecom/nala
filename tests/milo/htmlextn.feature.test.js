@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/htmlextn.spec.js'
 
 const envList = require('../../envs/envs.js');
+const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Milo Html Extension feature test suite', () => {
 

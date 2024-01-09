@@ -1,14 +1,14 @@
-name: Run Nala on Milo Libs Manually
+name: Run Nala on Milo Libs
 
 on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Provide the branch url'
+        description: 'Provide the live branch url. ex: https://main--cc--adobecom.hlx.live'
         required: false
         type: string
       milolibs:
-        description: 'Provide MiloLibs param'
+        description: 'Provide MiloLibs param. ex: ?milolibs=marquee-static-hover'
         required: false
         type: string
       tags:

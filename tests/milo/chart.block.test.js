@@ -4,6 +4,8 @@ import ChartBlock from '../../selectors/milo/chart.block.page.js';
 
 let chart;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Chart feature test suite', () => {
   test.beforeEach(async ({ page }) => {
     chart = new ChartBlock(page);

@@ -4,6 +4,8 @@ import Georouting from '../../selectors/milo/georouting.feature.page.js';
 
 let modal;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Georouting feature test suite', () => {
     test.beforeEach(async ({ page }) => {
         modal = new Georouting(page);

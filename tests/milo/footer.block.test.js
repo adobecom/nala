@@ -5,16 +5,18 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/footer.block.spec.js';
 import FedsFooter from '../../selectors/feds/feds.footer.page.js';
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Footer Block Test Suite', () => {
   // FEDS Default Footer Checks:
   test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Footer = new FedsFooter(page);
-    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
+    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}${miloLibs}`);
 
     await test.step('Navigate to FEDS Default Footer page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('Check FEDS Default Footer critical elements', async () => {
@@ -47,12 +49,12 @@ test.describe('Footer Block Test Suite', () => {
   // FEDS Skinny Footer Checks:
   test(`${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }) => {
     const Footer = new FedsFooter(page);
-    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[1].path}`);
+    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[1].path}${miloLibs}`);
 
     await test.step('Navigate to FEDS Skinny Footer page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('Check FEDS Skinny Footer critical elements', async () => {
@@ -91,12 +93,12 @@ test.describe('Footer Block Test Suite', () => {
   // FEDS Privacy Footer Checks:
   test(`${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }) => {
     const Footer = new FedsFooter(page);
-    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[2].path}`);
+    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[2].path}${miloLibs}`);
 
     await test.step('Navigate to FEDS Privacy Footer page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('Check FEDS Privacy Footer critical elements', async () => {

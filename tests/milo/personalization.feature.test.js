@@ -11,6 +11,8 @@ let marquee;
 let text;
 let pznUrl;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Personalization feature test suite', () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
@@ -18,16 +20,16 @@ test.describe('Milo Personalization feature test suite', () => {
 
   // Test 0 : Personalization (Replace content)
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const data = features[0].data;
     text = new TextBlock(page);
     marquee = new MarqueeBlock(page);
-    pznUrl = `${baseURL}${features[0].path}${'?target='}${data.target}`
+    pznUrl = `${baseURL}${features[0].path}${miloLibs}${'?target='}${data.target}`
 
     await test.step('step-1: Go to default test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify default test page content/specs', async () => {
@@ -51,16 +53,16 @@ test.describe('Milo Personalization feature test suite', () => {
 
   // Test 1 : Personalization (Insert Content Before)
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const data = features[1].data;
     text = new TextBlock(page);
     marquee = new MarqueeBlock(page);
-    pznUrl = `${baseURL}${features[1].path}${'?target='}${data.target}`
+    pznUrl = `${baseURL}${features[1].path}${miloLibs}${'?target='}${data.target}`
 
     await test.step('step-1: Go to default test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify default test page content/specs', async () => {
@@ -90,16 +92,16 @@ test.describe('Milo Personalization feature test suite', () => {
   
   // Test 2 : Personalization (Insert Content After)
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const data = features[2].data;
     text = new TextBlock(page);
     howto = new Howto(page);
-    pznUrl = `${baseURL}${features[2].path}${'?target='}${data.target}`
+    pznUrl = `${baseURL}${features[2].path}${miloLibs}${'?target='}${data.target}`
 
     await test.step('step-1: Go to default test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify default test page content/specs', async () => {
