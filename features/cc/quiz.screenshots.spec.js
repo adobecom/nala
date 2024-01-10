@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@quiz screenshots',
-      path: '/cc-shared/uar/plan-recommender/',
+      path: '/creativecloud/plan-recommender/',
       tags: '@cc @uar-quiz-screenshots @uar-quiz-static',
       data: 'data/cc/quiz/quiz-basic.yml',
     },
