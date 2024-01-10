@@ -13,8 +13,8 @@ sauce:
       - nala
       - milo
 #  tunnel:
-#    name: sso-acs-mauchley_tunnel_name
-#    owner: sso-acs-mauchley
+#    name: tunnel_name
+#    owner: tunnel_owner
 playwright:
   version: package.json # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/#supported-testing-platforms for a list of supported versions.
   configFile: ./configs/milo.sauce.config.js # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/yaml/#configfile for a list of supported configuration files.
