@@ -14,14 +14,14 @@ test.describe('Milo Georouting feature test suite', () => {
     test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL, browserName }) => {
         test.skip(browserName === 'webkit', 'This feature is failing on Webkit browsers');
         test.slow();
-        console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+        console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
         const { data } = features[0];
 
         await test.step('step-1: Clear cookies and access "DE" page from "US" region', async () => {
             await page.context().clearCookies();
-            await page.goto(`${baseURL}${features[0].path}`);
+            await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
             await page.waitForLoadState('domcontentloaded');
-            await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+            await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
             await modal.geoModal.waitFor({ state: 'visible', timeout: 30000 });
         });
 
@@ -38,14 +38,14 @@ test.describe('Milo Georouting feature test suite', () => {
 
     test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
         test.slow();
-        console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+        console.info(`[Test Page]: ${baseURL}${features[1].path}&${miloLibs}`);
         const { data } = features[1];
 
         await test.step('step-1: Clear cookies and access "US" page with query param (akamailLocale=DE)', async () => {
             await page.context().clearCookies();
-            await page.goto(`${baseURL}${features[1].path}`);
+            await page.goto(`${baseURL}${features[1].path}&${miloLibs}`);
             await page.waitForLoadState('domcontentloaded');
-            await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+            await expect(page).toHaveURL(`${baseURL}${features[1].path}&${miloLibs}`);
             await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
         });
 
@@ -61,14 +61,14 @@ test.describe('Milo Georouting feature test suite', () => {
 
     test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
         test.slow();
-        console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+        console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
         const { data } = features[2];
 
         await test.step('step-1: Clear cookies and access "US" page', async () => {
             await page.context().clearCookies();
-            await page.goto(`${baseURL}${features[2].path}`);
+            await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
             await page.waitForLoadState('domcontentloaded');
-            await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+            await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
         });
 
         await test.step('step-2: Click "Change region" link from footer and navigate to "Deutschland" page', async () => {
@@ -84,14 +84,14 @@ test.describe('Milo Georouting feature test suite', () => {
 
     test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
         test.slow();
-        console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+        console.info(`[Test Page]: ${baseURL}${features[3].path}&${miloLibs}`);
         const { data } = features[3];
 
         await test.step('step-1: Clear cookies and access "US" page', async () => {
             await page.context().clearCookies();
-            await page.goto(`${baseURL}${features[3].path}`);
+            await page.goto(`${baseURL}${features[3].path}&${miloLibs}`);
             await page.waitForLoadState('domcontentloaded');
-            await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
+            await expect(page).toHaveURL(`${baseURL}${features[3].path}&${miloLibs}`);
             await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
         });
 
@@ -101,14 +101,14 @@ test.describe('Milo Georouting feature test suite', () => {
     });
 
     test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-        console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+        console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
         const { data } = features[4];
 
         await test.step('step-1: Clear cookies and access given "DE" page', async () => {
             await page.context().clearCookies();
-            await page.goto(`${baseURL}${features[4].path}`);
+            await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
             await page.waitForLoadState('domcontentloaded');
-            await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
+            await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);
         });
 
         await test.step('step-2: Verify that georouting modal is not shown', async () => {
@@ -119,14 +119,14 @@ test.describe('Milo Georouting feature test suite', () => {
     test(`${features[5].name},${features[5].tags}`, async ({ page, browserName, baseURL }) => {
         test.skip(browserName === 'webkit', 'This feature is failing on Webkit browsers');
         test.slow();
-        console.info(`[Test Page]: ${baseURL}${features[5].path}`);
+        console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
         const { data } = features[5];
 
         await test.step('step-1: Clear cookies and access given "DE" page', async () => {
             await page.context().clearCookies();
-            await page.goto(`${baseURL}${features[5].path}`);
+            await page.goto(`${baseURL}${features[5].path}${miloLibs}`);
             await page.waitForLoadState('domcontentloaded');
-            await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
+            await expect(page).toHaveURL(`${baseURL}${features[5].path}${miloLibs}`);
             await modal.geoModal.waitFor({ state: 'visible', timeout: 10000 });
         });
 
