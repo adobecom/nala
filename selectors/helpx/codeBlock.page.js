@@ -1,12 +1,9 @@
-import { expect } from '@playwright/test';
-import { WebUtil } from '../../libs/webutil.js';
-
 export default class CodeBlock {
   constructor(page) {
     this.page = page;
 
     // CodeBlock Selectors:
-    this.codeA3 = page.locator('div.language-as3');
+    this.codeA3 = page.locator("//div[@class='code language-as3']");
     this.codeFusion = page.locator('div.language-coldfusion');
     this.codeC = page.locator('div.language-c');
     this.codeCss = page.locator('div.language-css');
@@ -17,6 +14,7 @@ export default class CodeBlock {
     this.codeSql = page.locator('div.language-sql');
     this.codeXml = page.locator('div.language-xml');
     this.codeMxml = page.locator('div.language-mxml');
+    //language Selectors
     this.codeA3Num = page.locator('.language-as3.line-numbers');
     this.codeFusionNum = page.locator('.language-coldfusion.line-numbers');
     this.codeCNum = page.locator('.language-c.line-numbers');
@@ -28,6 +26,7 @@ export default class CodeBlock {
     this.codeSqlNum = page.locator('.language-sql.line-numbers');
     this.codeXmlNum = page.locator('.language-xml.line-numbers');
     this.codeMxmlNum = page.locator('.language-mxml.line-numbers');
+    //Hidden Value Selectors
     this.codeHideDsktop = page.locator('.hidden-desktop');
     this.codeHideTablet = page.locator('.hidden-tablet');
     this.codeHideMobile = page.locator('.hidden-mobile');
