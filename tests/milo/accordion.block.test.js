@@ -6,6 +6,8 @@ import AccordionBlock from '../../selectors/milo/accordion.block.page.js';
 let webUtil;
 let accordion;
 let consoleErrors = [];
+
+const miloLibs = process.env.MILO_LIBS || '';
 const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
 
 test.describe('Milo Accordion Block test suite', () => {
@@ -26,13 +28,13 @@ test.describe('Milo Accordion Block test suite', () => {
 
   // Test 0 : Accordion
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const { data } = features[0];
 
     await test.step('step-1: Go to Accordion block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Accrodion block content/specs', async () => {
@@ -68,13 +70,13 @@ test.describe('Milo Accordion Block test suite', () => {
 
   // Test 1 : Accordion (seo) 
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const { data } = features[1];
 
     await test.step('step-1: Go to Accordion block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Accrodion seo block specs', async () => {      
@@ -102,13 +104,13 @@ test.describe('Milo Accordion Block test suite', () => {
 
 // Test 2 : Accordion (quiet, max-width-12-desktop-large)  
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const { data } = features[2];
 
     await test.step('step-1: Go to Accordion block test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Accrodion block content/specs', async () => {
