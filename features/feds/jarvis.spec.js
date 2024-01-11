@@ -6,7 +6,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-default',
       ],
-      browserParams: '?skipConsent=true&georouting=off',
+      browserParams: '?skipConsent=true&env=prod&georouting=off',
       envs: '@milo_live',
       tags: '@milo @feds @jarvis @smoke @regression',
     },
@@ -15,7 +15,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-desktop',
       ],
-      browserParams: '?skipConsent=true&georouting=off',
+      browserParams: '?skipConsent=true&env=prod&georouting=off',
       envs: '@milo_live',
       tags: '@milo @feds @jarvis @smoke @regression',
     },
@@ -24,7 +24,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-disabled',
       ],
-      browserParams: '?skipConsent=true&georouting=off',
+      browserParams: '?skipConsent=true&env=prod&georouting=off',
       envs: '@milo_live',
       tags: '@milo @feds @jarvis @smoke @regression',
     },
@@ -33,7 +33,7 @@ module.exports = {
       path: [
         '/libs/feds/drafts/qa/jarvis/feds-jarvis-mobile',
       ],
-      browserParams: '?skipConsent=true&georouting=off',
+      browserParams: '?skipConsent=true&env=prod&georouting=off',
       envs: '@milo_live',
       tags: '@milo @feds @jarvis @smoke @regression',
     },
