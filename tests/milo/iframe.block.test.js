@@ -11,9 +11,9 @@ test.describe('Iframe Block test suite', () => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
 
     await test.step('Navigate to page with Iframe block', async () => {
-      await page.goto(`${baseURL}${features[0].path}${miloLibs}&${features[0].browserParams}`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}&${features[0].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Iframe block content', async () => {

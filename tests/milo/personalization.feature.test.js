@@ -24,7 +24,7 @@ test.describe('Milo Personalization feature test suite', () => {
     const data = features[0].data;
     text = new TextBlock(page);
     marquee = new MarqueeBlock(page);
-    pznUrl = `${baseURL}${features[0].path}${miloLibs}&${'target='}${data.target}`
+    pznUrl = `${baseURL}${features[0].path}${'?target='}${data.target}&${miloLibs}`
 
     await test.step('step-1: Go to default test page', async () => {
       await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
@@ -57,7 +57,7 @@ test.describe('Milo Personalization feature test suite', () => {
     const data = features[1].data;
     text = new TextBlock(page);
     marquee = new MarqueeBlock(page);
-    pznUrl = `${baseURL}${features[1].path}${miloLibs}&${'target='}${data.target}`
+    pznUrl = `${baseURL}${features[1].path}${'?target='}${data.target}&${miloLibs}`
 
     await test.step('step-1: Go to default test page', async () => {
       await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
@@ -96,7 +96,7 @@ test.describe('Milo Personalization feature test suite', () => {
     const data = features[2].data;
     text = new TextBlock(page);
     howto = new Howto(page);
-    pznUrl = `${baseURL}${features[2].path}${miloLibs}&${'target='}${data.target}`
+    pznUrl = `${baseURL}${features[2].path}${'?target='}${data.target}&${miloLibs}`
 
     await test.step('step-1: Go to default test page', async () => {
       await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
