@@ -15,7 +15,8 @@ test.describe('Milo Html Extension feature test suite', () => {
       for (const path of paths) {
         console.info('[Test Page]\n:', envList[env]+`${path}`);
         const url = envList[env]+ path;
-        await page.goto(url);       
+        await page.goto(url);    
+        await page.waitForLoadState('domcontentloaded');
 
         if (!page.url().match(/@blog/) && (page.url().match(/customer-success-stories/))) {
           expect(page.url()).toContain('.html'); 
@@ -36,6 +37,7 @@ test.describe('Milo Html Extension feature test suite', () => {
         console.info('[Test Page]\n:', envList[env]+`${path}`);
         const url = envList[env]+ path;
         await page.goto(url);
+        await page.waitForLoadState('domcontentloaded');
 
         if (!page.url().match(/@blog/) && (page.url().match(/customer-success-stories/))) {
           expect(page.url()).toContain('.html'); 
