@@ -6,6 +6,7 @@ import MediaBlock from '../../selectors/milo/media.block.page.js';
 let webUtil;
 let media;
 let consoleErrors = [];
+const miloLibs = process.env.MILO_LIBS || '';
 const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','adobeid-na1-stg1.services'];
 
 test.describe('Milo Media Block test suite', () => {
@@ -26,13 +27,13 @@ test.describe('Milo Media Block test suite', () => {
 
   // Test 0 : Media (small)
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const { data } = features[0];
 
     await test.step('step-1: Go to Media (small) block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify media (small) block specs', async () => {
@@ -61,13 +62,13 @@ test.describe('Milo Media Block test suite', () => {
 
   // Test 1 : Media 
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const { data } = features[1];
 
     await test.step('step-1: Go to media block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify media block specs', async () => {
@@ -95,13 +96,13 @@ test.describe('Milo Media Block test suite', () => {
 
   // Test 2 : Media (large, dark) 
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const { data } = features[2];
 
     await test.step('step-1: Go to media block test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify media (large, dark) block specs', async () => {
@@ -131,13 +132,13 @@ test.describe('Milo Media Block test suite', () => {
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL, browserName }) => {
     test.skip(browserName === 'webkit', 'This feature is failing on Webkit browsers')
     test.slow();
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const { data } = features[3];
 
     await test.step('step-1: Go to media block test page', async () => {
-      await page.goto(`${baseURL}${features[3].path}`);
+      await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify media (large, dark) block specs', async () => {
@@ -166,13 +167,13 @@ test.describe('Milo Media Block test suite', () => {
   // Test 5 : Media (large, dark) video, autoplay loop once
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     test.slow();
-    console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const { data } = features[4];
 
     await test.step('step-1: Go to media block test page', async () => {
-      await page.goto(`${baseURL}${features[4].path}`);
+      await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify media (large, dark) block specs', async () => {

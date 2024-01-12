@@ -6,6 +6,7 @@ import VideoBlock from '../../selectors/milo/video.block.page.js';
 let webUtil;
 let video;
 let consoleErrors = [];
+const miloLibs = process.env.MILO_LIBS || '';
 const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
 
 test.describe('Milo Video Block test suite', () => {
@@ -26,13 +27,13 @@ test.describe('Milo Video Block test suite', () => {
 
   // Test 0 : Video default
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const { data } = features[0];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -51,13 +52,13 @@ test.describe('Milo Video Block test suite', () => {
 
   // Test 1 : Video autoplay loop
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const { data } = features[1];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -76,13 +77,13 @@ test.describe('Milo Video Block test suite', () => {
 
   // Test 2 : Video autoplay loop once
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const { data } = features[2];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -101,13 +102,13 @@ test.describe('Milo Video Block test suite', () => {
   
   // Test 3 : Video hover play
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const { data } = features[3];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[3].path}`);
+      await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -129,13 +130,13 @@ test.describe('Milo Video Block test suite', () => {
   // Test 4 : MPC Video
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     test.slow();
-    console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const { data } = features[4];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[4].path}`);
+      await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -158,13 +159,13 @@ test.describe('Milo Video Block test suite', () => {
   // Test 5 : MPC Video Autoplay Looping
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     test.slow();
-    console.info(`[Test Page]: ${baseURL}${features[5].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
     const { data } = features[5];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[5].path}`);
+      await page.goto(`${baseURL}${features[5].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[5].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -186,13 +187,13 @@ test.describe('Milo Video Block test suite', () => {
   // Test 6 : Youtube Video
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     test.slow();
-    console.info(`[Test Page]: ${baseURL}${features[6].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
     const { data } = features[6];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[6].path}`);
+      await page.goto(`${baseURL}${features[6].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[6].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[6].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -214,13 +215,13 @@ test.describe('Milo Video Block test suite', () => {
   // Test 7 : Modal Video default
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     test.slow();
-    console.info(`[Test Page]: ${baseURL}${features[7].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
     const { data } = features[7];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[7].path}`);
+      await page.goto(`${baseURL}${features[7].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[7].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[7].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
@@ -243,13 +244,13 @@ test.describe('Milo Video Block test suite', () => {
   // Test 8 : Modal video with cards
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL,browserName }) => {
     test.slow();
-    console.info(`[Test Page]: ${baseURL}${features[8].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[8].path}${miloLibs}`);
     const { data } = features[8];
 
     await test.step('step-1: Go to video block test page', async () => {
-      await page.goto(`${baseURL}${features[8].path}`);
+      await page.goto(`${baseURL}${features[8].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[8].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[8].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify consonant cards with modal video block content/specs', async () => {

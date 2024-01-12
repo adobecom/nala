@@ -6,6 +6,8 @@ import TextBlock from '../../selectors/milo/text.block.page.js';
 let text;
 let webUtil;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Text Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     text = new TextBlock(page);
@@ -14,13 +16,13 @@ test.describe('Milo Text Block test suite', () => {
 
   // Test 0 : Text
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const { data } = features[0];
 
     await test.step('step-1: Go to Text block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text specs', async () => {
@@ -43,13 +45,13 @@ test.describe('Milo Text Block test suite', () => {
 
   // Test 1 : Text (intro)  
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const { data } = features[1];
 
     await test.step('step-1: Go to Text (intro) block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text (intro) specs', async () => {
@@ -70,13 +72,13 @@ test.describe('Milo Text Block test suite', () => {
 
   // Test 2 : Text (full-width)   
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const { data } = features[2];
 
     await test.step('step-1: Go to Text (full width) block test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text (full width) specs', async () => {
@@ -100,13 +102,13 @@ test.describe('Milo Text Block test suite', () => {
 
   // Test 3 : Text (full-width, large) 
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const { data } = features[3];
 
     await test.step('step-1: Go to text (full-width, large) block test page', async () => {
-      await page.goto(`${baseURL}${features[3].path}`);
+      await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text (full-width, large) specs', async () => {
@@ -129,13 +131,13 @@ test.describe('Milo Text Block test suite', () => {
 
   // Test 4 : Text (long-form, large)   
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const { data } = features[4];
 
     await test.step('step-1: Go to Text (long form, large) block test page', async () => {
-      await page.goto(`${baseURL}${features[4].path}`);
+      await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text (long form, large) specs', async () => {
@@ -158,13 +160,13 @@ test.describe('Milo Text Block test suite', () => {
 
   // Test 5 : Text (inset, medium, m-spacing)  
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[5].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
     const { data } = features[5];
 
     await test.step('step-1: Go to Text (inset, medium, m-spacing ) block test page', async () => {
-      await page.goto(`${baseURL}${features[5].path}`);
+      await page.goto(`${baseURL}${features[5].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[5].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[5].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text (inset, large, m spacing) specs', async () => {
@@ -187,13 +189,13 @@ test.describe('Milo Text Block test suite', () => {
 
   // Test 6 : Text (legal)    
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[6].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
     const { data } = features[6];
 
     await test.step('step-1: Go to Text (legal) block test page', async () => {
-      await page.goto(`${baseURL}${features[6].path}`);
+      await page.goto(`${baseURL}${features[6].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[6].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[6].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text (legal) specs', async () => {
@@ -214,13 +216,13 @@ test.describe('Milo Text Block test suite', () => {
   });
   
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[7].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
     const { data } = features[7];
 
     await test.step('step-1: Go to Text (link-farm) block test page', async () => {
-      await page.goto(`${baseURL}${features[7].path}`);
+      await page.goto(`${baseURL}${features[7].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[7].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[7].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Text (link-farm) specs', async () => {
