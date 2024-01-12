@@ -9,7 +9,7 @@ const envs = require('./envs/envs.js');
 const config = {
   testDir: './tests/milo',
   outputDir: './test-results',
-  globalSetup: './global.setup_1.js',
+  globalSetup: './global.setup.js',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {

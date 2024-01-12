@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/htmlextn.spec.js'
 
 const envList = require('../../envs/envs.js');
+const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Milo Html Extension feature test suite', () => {
 
@@ -14,7 +15,8 @@ test.describe('Milo Html Extension feature test suite', () => {
       for (const path of paths) {
         console.info('[Test Page]\n:', envList[env]+`${path}`);
         const url = envList[env]+ path;
-        await page.goto(url);       
+        await page.goto(url);    
+        await page.waitForLoadState('domcontentloaded');
 
         if (!page.url().match(/@blog/) && (page.url().match(/customer-success-stories/))) {
           expect(page.url()).toContain('.html'); 
@@ -35,6 +37,7 @@ test.describe('Milo Html Extension feature test suite', () => {
         console.info('[Test Page]\n:', envList[env]+`${path}`);
         const url = envList[env]+ path;
         await page.goto(url);
+        await page.waitForLoadState('domcontentloaded');
 
         if (!page.url().match(/@blog/) && (page.url().match(/customer-success-stories/))) {
           expect(page.url()).toContain('.html'); 

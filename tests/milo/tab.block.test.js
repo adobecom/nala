@@ -4,6 +4,8 @@ import TabBlock from '../../selectors/milo/tabs.block.page.js';
 
 let tab;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Tab block feature test suite', () => {
   test.beforeEach(async ({ page }) => {
     tab = new TabBlock(page);
@@ -11,13 +13,13 @@ test.describe('Milo Tab block feature test suite', () => {
 
   // Test 0 : Tabs (xl-spacing)
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const data = features[0].data;
 
     await test.step('step-1: Go to Tabs block feature test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify tabs content/specs', async () => {
@@ -43,13 +45,13 @@ test.describe('Milo Tab block feature test suite', () => {
 
   // Test 1 : Tabs (Quiet, Dark, Center)
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const data = features[1].data;
 
     await test.step('step-1: Go to Tabs block feature test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify tabs content/specs', async () => {
