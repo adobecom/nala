@@ -7,7 +7,7 @@ module.exports = {
       desc: 'User accessing DE page from US locale.',
       path: '/de/drafts/nala/features/georouting/georouting',
       data: {
-        title: 'This Adobe site doesn\'t match your location.',
+        title: /This Adobe site doesn[' ’]t match your location./,
         text: 'Based on your location, we think you may prefer the United States website',
         button: 'United States',
         link: 'Deutschland',

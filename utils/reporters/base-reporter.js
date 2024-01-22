@@ -1,3 +1,5 @@
+import { sendSlackMessage } from '../../libs/slack.js';
+
 // Playwright will include ANSI color characters and regex from below 
 // https://github.com/microsoft/playwright/issues/13522
 // https://github.com/chalk/ansi-regex/blob/main/index.js#L3
@@ -75,32 +77,56 @@ class BaseReporter {
   async onEnd() {
     //this.printPersistingOption();
     //await this.persistData();
-    this.printResultSummary();
+    const summary = this.printResultSummary();
+    const resultSummary = { summary };
 
+    if (process.env.SLACK_WH) {
+      try {
+        await sendSlackMessage(process.env.SLACK_WH, resultSummary);
+      } catch (error){
+        console.log('----Failed to publish result to slack channel----');
+      }
+    }   
   }
 
   printResultSummary() {  
-    let envURL;
-    let exeEnv
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
-
+    const miloLibs = process.env.MILO_LIBS || '';
+    const prBranchUrl = process.env.PR_BRANCH_LIVE_URL + miloLibs
+    let envURL = prBranchUrl || this.config.projects[0].use.baseURL;
+    let exeEnv = 'Local Environment';
+    let runUrl = 'Local Environment';
+    let runName = 'Nala Local Run';
+  
     if (process.env.GITHUB_ACTIONS === 'true') {
-      envURL = process.env.PR_BRANCH_LIVE_URL || 'N/A';
       exeEnv = 'GitHub Actions Environment';
-    } else {
-      envURL = process.env.LOCAL_TEST_LIVE_URL || 'N/A';
-      exeEnv = 'Local Environment';
+      const repo = process.env.GITHUB_REPOSITORY;
+      const runId = process.env.GITHUB_RUN_ID;
+      const prNumber = process.env.GITHUB_REF.split('/')[2];
+      runUrl = `https://github.com/${repo}/actions/runs/${runId}`;      
+      runName = `${process.env.WORKFLOW_NAME ? (process.env.WORKFLOW_NAME || 'Nala Daily Run') : 'Nala PR Run'} (${prNumber})`;
+    } else if (process.env.CIRCLECI) {
+      exeEnv = 'CircleCI Environment';
+      const workflowId = process.env.CIRCLE_WORKFLOW_ID;
+      const jobNumber = process.env.CIRCLE_BUILD_NUM;
+      runUrl = `https://app.circleci.adobe.com/pipelines/github/wcms/nala/${jobNumber}/workflows/${workflowId}/jobs/${jobNumber}`;
+      runName = 'Nala CircleCI/Stage Run';
     }
 
-    console.log('--------Test run summary------------');
-    console.log('Total Test executed  : ', totalTests);
-    console.log('# Test Pass          : ', this.passedTests, `(${passPercentage}%)`);
-    console.log('# Test Fail          : ', this.failedTests, `(${failPercentage}%)`);
-    console.log('# Test Skipped       : ', this.skippedTests);
-    console.log('** Application URL     : ', envURL);
-    console.log('** Executed on         : ', exeEnv);  
+    const summary = `
+    ---------Nala Test Run Summary------------
+    # Total Test executed: ${totalTests}
+    # Test Pass          : ${this.passedTests} (${passPercentage}%)
+    # Test Fail            : ${this.failedTests} (${failPercentage}%)
+    # Test Skipped     : ${this.skippedTests}
+    ** Application URL  : ${envURL}
+    ** Executed on        : ${exeEnv}
+    ** Execution details  : ${runUrl}
+    ** Workflow name      : ${runName}` ;    
+
+    console.log(summary);
 
     if (this.failedTests > 0) {
       console.log('-------- Test Failures --------');
@@ -113,6 +139,7 @@ class BaseReporter {
           console.log('-------------------------');
         });
     }
+    return summary;
   }
 
   /**

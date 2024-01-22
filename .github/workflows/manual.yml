@@ -20,8 +20,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Set permissions
-        run: chmod +x ./path/to/run.sh
+
       - name: Run Nala ${{ inputs.platform }}
         uses: ./
         env:
@@ -29,6 +28,7 @@ jobs:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
           HLX_TKN: ${{ secrets.HLX_TKN }}
+          SLACK_WH: ${{ secrets.SLACK_WH }}          
       - name: Persist JSON Artifact
         uses: actions/upload-artifact@v3
         if: always()

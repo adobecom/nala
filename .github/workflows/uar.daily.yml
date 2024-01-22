@@ -1,0 +1,46 @@
+name: UAR Nala Daily Run
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  platform_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    name: Running tests
+    runs-on: ${{ matrix.os }}
+    env:
+      WORKFLOW_NAME: 'UAR Nala Daily Run'
+      DAILY_RUN: 'true'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+        
+      - name: Run Nala ${{ matrix.os }}
+        run: bash dailyrun.sh uar @uar-quiz-basic
+        env:
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+          HLX_TKN: ${{ secrets.HLX_TKN }}
+          SLACK_WH: ${{ secrets.SLACK_WH }}
+      
+      - name: Display workflow name
+        run: echo "The workflow name is $WORKFLOW_NAME"
+        
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: nala-results
+          path: nala-results.json
+          retention-days: 30
