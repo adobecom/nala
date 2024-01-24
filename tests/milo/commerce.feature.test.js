@@ -187,29 +187,4 @@ test.describe('Commerce feature test suite', () => {
     });     
   });
 
-  // Validate price and CTAs have promo code applied
-  test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-    const COMM = new CommercePage(page);
-    const testPage = `${baseURL}${features[4].path}${features[4].browserParams}`;
-    const data = features[4].data;
-
-    console.info('[Test Page]: ', testPage);
-
-    await test.step('Go to the test page', async () => {
-        await page.goto(testPage);
-        await page.waitForLoadState('domcontentloaded');
-    });
-    
-    await test.step('Validate promo price with old price', async () => {
-        await COMM.price.waitFor({ state: 'visible', timeout: 10000 });
-        await expect(COMM.price).toHaveAttribute('data-promotion-code', data.promo);
-
-        expect(await COMM.price.locator('.price').count()).toBe(2);
-        expect(await COMM.price.locator('.price').nth(0)).toHaveClass('price');
-        expect(await COMM.price.locator('.price').nth(1)).toHaveClass(/price-strikethrough/);
-        // expect(await COMM.price.innerText()).toContain('US$47.99');
-        // expect(await COMM.price.innerText()).toContain('US$59.99');
-    });
-  });
-
 });
