@@ -45,6 +45,7 @@ const config = {
 
   /* Configure projects for major browsers */
   projects: [
+    // adobe stage
     {
       name: 'adobe-stage-chrome',
       use: {
@@ -68,7 +69,7 @@ const config = {
         baseURL: envs['@adobe_stage'],
       },
     },
-
+    // adobe prod
     {
       name: 'adobe-prod-chrome',
       use: {
