@@ -80,9 +80,7 @@ test.describe('OST page test suite', () => {
   });
 
   // Verify OST offer price options display
-  test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(browserName === 'firefox', 'Feature if failing in firefox');
-
+  test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[2].path}`);
 
@@ -117,12 +115,12 @@ test.describe('OST page test suite', () => {
 
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("milo.adobe.com/tools/ost");
-        expect(clipboardText).toContain("type=price");
-        expect(clipboardText).toContain("term=true");
-        expect(clipboardText).toContain("seat=true");
-        expect(clipboardText).toContain("tax=false");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("milo.adobe.com/tools/ost");
+        expect(await clipboardText).toContain("type=price");
+        expect(await clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("exclusive=false");
     });
 
     await test.step('Validate Offer optical price option', async () => {
@@ -136,12 +134,12 @@ test.describe('OST page test suite', () => {
 
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("milo.adobe.com/tools/ost");
-        expect(clipboardText).toContain("type=priceOptical");
-        expect(clipboardText).toContain("term=true");
-        expect(clipboardText).toContain("seat=true");
-        expect(clipboardText).toContain("tax=false");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("milo.adobe.com/tools/ost");
+        expect(await clipboardText).toContain("type=priceOptical");
+        expect(await clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("exclusive=false");
     });
 
     await test.step('Validate Offer strikethrough price option', async () => {
@@ -155,19 +153,17 @@ test.describe('OST page test suite', () => {
         
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("milo.adobe.com/tools/ost");
-        expect(clipboardText).toContain("type=priceStrikethrough");
-        expect(clipboardText).toContain("term=true");
-        expect(clipboardText).toContain("seat=true");
-        expect(clipboardText).toContain("tax=false");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("milo.adobe.com/tools/ost");
+        expect(await clipboardText).toContain("type=priceStrikethrough");
+        expect(await clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("exclusive=false");
     });
   });
 
   // Verify OST enebalement for price term text
-  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(browserName === 'firefox', 'Feature if failing in firefox');
-
+  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[3].path}`);
 
@@ -202,20 +198,20 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).toContain(data.term);               
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=price");
-        expect(clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("type=price");
+        expect(await clipboardText).toContain("term=true");
 
         expect(await OST.priceOptical.innerText()).toContain(data.opticalTerm);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceOptical");
-        expect(clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("type=priceOptical");
+        expect(await clipboardText).toContain("term=true");
 
         expect(await OST.priceStrikethrough.innerText()).toContain(data.term);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceStrikethrough");
-        expect(clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("type=priceStrikethrough");
+        expect(await clipboardText).toContain("term=true");
 
         //Check term checkbox
         await OST.termCheckbox.click();
@@ -223,17 +219,17 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).not.toContain(data.term);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("term=false");
+        expect(await clipboardText).toContain("term=false");
 
         expect(await OST.priceOptical.innerText()).not.toContain(data.opticalTerm);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("term=false");
+        expect(await clipboardText).toContain("term=false");
 
         expect(await OST.priceStrikethrough.innerText()).not.toContain(data.term);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("term=false");
+        expect(await clipboardText).toContain("term=false");
         
         //Uncheck term checkbox
         await OST.termCheckbox.click();
@@ -241,24 +237,22 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).toContain(data.term);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("term=true");
 
         expect(await OST.priceOptical.innerText()).toContain(data.opticalTerm);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("term=true");
+        expect(await clipboardText).toContain("term=true");
 
         expect(await OST.priceStrikethrough.innerText()).toContain(data.term);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("term=true");        
+        expect(await clipboardText).toContain("term=true");        
     });
   });
 
   // Verify OST enebalement for price unit text
-  test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(browserName === 'firefox', 'Feature if failing in firefox');
-
+  test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[4].path}`);
 
@@ -293,20 +287,20 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).toContain(data.unit);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=price");
-        expect(clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("type=price");
+        expect(await clipboardText).toContain("seat=true");
 
         expect(await OST.priceOptical.innerText()).toContain(data.unit);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceOptical");
-        expect(clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("type=priceOptical");
+        expect(await clipboardText).toContain("seat=true");
 
         expect(await OST.priceStrikethrough.innerText()).toContain(data.unit);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceStrikethrough");
-        expect(clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("type=priceStrikethrough");
+        expect(await clipboardText).toContain("seat=true");
 
         //Check unit checkbox
         await OST.unitCheckbox.click();
@@ -314,17 +308,17 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).not.toContain(data.unit);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("seat=false");
+        expect(await clipboardText).toContain("seat=false");
 
         expect(await OST.priceOptical.innerText()).not.toContain(data.unit);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("seat=false");
+        expect(await clipboardText).toContain("seat=false");
 
         expect(await OST.priceStrikethrough.innerText()).not.toContain(data.unit);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("seat=false");
+        expect(await clipboardText).toContain("seat=false");
 
         //Uncheck unit checkbox
         await OST.unitCheckbox.click();
@@ -332,25 +326,23 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).toContain(data.unit);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("seat=true");
 
         expect(await OST.priceOptical.innerText()).toContain(data.unit);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("seat=true");
 
         expect(await OST.priceStrikethrough.innerText()).toContain(data.unit);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("seat=true");
+        expect(await clipboardText).toContain("seat=true");
 
     });
   });
 
   // Verify OST enebalement for price tax label
-  test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(browserName === 'firefox', 'Feature if failing in firefox');
-
+  test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[5].path}`);
 
@@ -386,20 +378,20 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).not.toContain(data.taxLabel);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=price");
-        expect(clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("type=price");
+        expect(await clipboardText).toContain("tax=false");
 
         expect(await OST.priceOptical.innerText()).not.toContain(data.taxLabel);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceOptical");
-        expect(clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("type=priceOptical");
+        expect(await clipboardText).toContain("tax=false");
 
         expect(await OST.priceStrikethrough.innerText()).not.toContain(data.taxLabel);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceStrikethrough");
-        expect(clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("type=priceStrikethrough");
+        expect(await clipboardText).toContain("tax=false");
 
         //Check tax label checkbox
         await OST.taxlabelCheckbox.click();
@@ -407,17 +399,17 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).toContain(data.taxLabel);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("tax=true");
+        expect(await clipboardText).toContain("tax=true");
 
         expect(await OST.priceOptical.innerText()).toContain(data.taxLabel);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("tax=true");
+        expect(await clipboardText).toContain("tax=true");
 
         expect(await OST.priceStrikethrough.innerText()).toContain(data.taxLabel);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("tax=true");
+        expect(await clipboardText).toContain("tax=true");
 
         //Uncheck tax label checkbox
         await OST.taxlabelCheckbox.click();
@@ -425,24 +417,22 @@ test.describe('OST page test suite', () => {
         expect(await OST.price.innerText()).not.toContain(data.taxLabel);
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("tax=false");
 
         expect(await OST.priceOptical.innerText()).not.toContain(data.taxLabel);
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("tax=false");
 
         expect(await OST.priceStrikethrough.innerText()).not.toContain(data.taxLabel);
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("tax=false");
+        expect(await clipboardText).toContain("tax=false");
     });
   });
 
   // Verify OST enebalement for tax inclusivity in the price
-  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(browserName === 'firefox', 'Feature if failing in firefox');
-
+  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[6].path}`);
 
@@ -476,60 +466,57 @@ test.describe('OST page test suite', () => {
 
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=price");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("type=price");
+        expect(await clipboardText).toContain("exclusive=false");
 
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceOptical");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("type=priceOptical");
+        expect(await clipboardText).toContain("exclusive=false");
 
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("type=priceStrikethrough");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("type=priceStrikethrough");
+        expect(await clipboardText).toContain("exclusive=false");
 
         //Check tax label checkbox
         await OST.taxInlcusivityCheckbox.click();
 
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("exclusive=true");
+        expect(await clipboardText).toContain("exclusive=true");
 
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("exclusive=true");
+        expect(await clipboardText).toContain("exclusive=true");
 
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("exclusive=true");
-
+        expect(await clipboardText).toContain("exclusive=true");
 
         //Uncheck tax label checkbox
         await OST.taxInlcusivityCheckbox.click();
 
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("exclusive=false");
 
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("exclusive=false");
 
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain("exclusive=false");
+        expect(await clipboardText).toContain("exclusive=false");
     });
   });
 
   // Verify OST offer price promo 
-  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(browserName === 'firefox', 'Feature if failing in firefox');
-
+  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[7].path}`);
 
-    const testPage = `${baseURL}${features[7].path}${features[2].browserParams}${authToken}`;
+    const testPage = `${baseURL}${features[7].path}${features[7].browserParams}${authToken}`;
     const data = features[7].data;
 
     let clipboardText;
@@ -561,45 +548,45 @@ test.describe('OST page test suite', () => {
 
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).not.toContain("promo=");
+        expect(await clipboardText).not.toContain("promo=");
 
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).not.toContain("promo=");
+        expect(await clipboardText).not.toContain("promo=");
 
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).not.toContain("promo="); 
+        expect(await clipboardText).not.toContain("promo="); 
 
         // Add promo
         await OST.promoField.fill(data.promo);
 
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain(`promo=${data.promo}`);
+        expect(await clipboardText).toContain(`promo=${data.promo}`);
 
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain(`promo=${data.promo}`);
+        expect(await clipboardText).toContain(`promo=${data.promo}`);
 
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).toContain(`promo=${data.promo}`); 
+        expect(await clipboardText).toContain(`promo=${data.promo}`); 
 
         // Cancel promo
         await OST.cancelPromo.click();
 
         await OST.priceUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).not.toContain("promo=");
+        expect(await clipboardText).not.toContain("promo=");
 
         await OST.priceOpticalUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).not.toContain("promo=");
+        expect(await clipboardText).not.toContain("promo=");
 
         await OST.priceStrikethroughUse.click();
         clipboardText = await page.evaluate("navigator.clipboard.readText()");
-        expect(clipboardText).not.toContain("promo="); 
+        expect(await clipboardText).not.toContain("promo="); 
     });
   });
   

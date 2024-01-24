@@ -71,6 +71,7 @@ const config = {
           firefoxUserPrefs: {
             'dom.events.asyncClipboard.readText': true,
             'dom.events.testing.asyncClipboard': true,
+            'dom.events.asyncClipboard.clipboardItem': true,
           },
         },
       },

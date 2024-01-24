@@ -28,9 +28,20 @@ module.exports = {
       name: '@Commerce-Promo',
       path: '/drafts/nala/features/commerce/promo-placeholders',
       data: {
-        promo: 'testpromo',
+        promo: 'nicopromo',
       },
       envs: '@milo_live',
+      tags: '@commerce',
+    },
+    {
+      tcid: '4',
+      name: '@Commerce-Promo-Oldprice',
+      path: '/drafts/nala/features/commerce/promo-placeholders',
+      data: {
+        promo: 'nicopromo',
+      },
+      envs: '@milo_live',
+      browserParams: '?commerce.env=stage',
       tags: '@commerce',
     },
   ],
