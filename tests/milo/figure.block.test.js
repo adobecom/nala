@@ -4,18 +4,20 @@ import FigureBlock from '../../selectors/milo/figure.block.page.js';
 
 let figureBlock;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Figure Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     figureBlock = new FigureBlock(page);
   });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
 
     await test.step('step-1: Go to figure Block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify figure block ', async () => {
@@ -27,12 +29,12 @@ test.describe('Milo Figure Block test suite', () => {
   });
 
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
 
     await test.step('step-1: Go to figure block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify figure block multiple images with caption ', async () => {

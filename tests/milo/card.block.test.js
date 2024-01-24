@@ -6,6 +6,8 @@ import ConsonantCard from '../../selectors/milo/card.block.page.js';
 let card;
 let webUtil;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Consonant card feature test suite', () => {
   test.beforeEach(async ({ page }) => {
     card = new ConsonantCard(page);
@@ -14,13 +16,13 @@ test.describe('Milo Consonant card feature test suite', () => {
 
   // Test 0 : Card
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const data = features[0].data;
 
     await test.step('step-1: Go to Consonant Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Card content/specs', async () => {
@@ -42,13 +44,13 @@ test.describe('Milo Consonant card feature test suite', () => {
   
   // Test 1 : Card (half-card, border)
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const data = features[1].data;
 
     await test.step('step-1: Go to Consonant Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Half Card with Boarder content/specs', async () => {
@@ -72,13 +74,13 @@ test.describe('Milo Consonant card feature test suite', () => {
 
   // Test 2 : card (double-width-card, border)
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const data = features[2].data;
 
     await test.step('step-2: Go to Consonant Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify card (double-width-card, border) content/specs', async () => {
@@ -95,13 +97,13 @@ test.describe('Milo Consonant card feature test suite', () => {
   
   // Test 3 : Card (product-card, border) 
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const data = features[3].data;
 
     await test.step('step-2: Go to Consonant Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[3].path}`);
+      await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Card (product-card, border) content/specs', async () => {
@@ -124,13 +126,13 @@ test.describe('Milo Consonant card feature test suite', () => {
   
   // Test 4 : Card (half-height-card, border) 
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const data = features[4].data;
 
     await test.step('step-2: Go to Consonant Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[4].path}`);
+      await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Card (half-height-card, border) content/specs', async () => {
@@ -147,13 +149,13 @@ test.describe('Milo Consonant card feature test suite', () => {
   
   // Test 5 : Card-horizontal 
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[5].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
     const data = features[5].data;
 
     await test.step('step-2: Go to Consonant Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[5].path}`);
+      await page.goto(`${baseURL}${features[5].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[5].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[5].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Card-horizontal content/specs', async () => {
@@ -171,13 +173,13 @@ test.describe('Milo Consonant card feature test suite', () => {
   
   // Test 6 : Card-horizontal (tile) 
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[6].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
     const data = features[6].data;
 
     await test.step('step-2: Go to Consonant Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[6].path}`);
+      await page.goto(`${baseURL}${features[6].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[6].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[6].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Card-horizontal (tile) content/specs', async () => {

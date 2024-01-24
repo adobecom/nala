@@ -93,7 +93,9 @@ class BaseReporter {
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
-    let envURL = process.env.PR_BRANCH_LIVE_URL || this.config.projects[0].use.baseURL;
+    const miloLibs = process.env.MILO_LIBS || '';
+    const prBranchUrl = process.env.PR_BRANCH_LIVE_URL + miloLibs
+    let envURL = prBranchUrl || this.config.projects[0].use.baseURL;
     let exeEnv = 'Local Environment';
     let runUrl = 'Local Environment';
     let runName = 'Nala Local Run';

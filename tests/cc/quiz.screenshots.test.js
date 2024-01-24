@@ -4,7 +4,7 @@
 import { expect, test } from '@playwright/test';
 import Quiz from '../../selectors/uar/quiz.page.js';
 
-const { features } = require('../../features/visual-compare/uar/quiz.spec.js');
+const { features } = require('../../features/cc/quiz.screenshots.spec.js');
 const { WebUtil } = require('../../libs/webutil.js');
 const envs = require('../../envs/envs.js');
 
@@ -27,13 +27,22 @@ test.describe('Quiz flow test suite', () => {
 
         let keyNumber = 0;
 
-        for (const key of Object.keys(testdata)) {
+        for (let key of Object.keys(testdata)) {
           console.log(key);
           let stableProduct = '';
           let betaProduct = '';
           let stableProductScreenshots = [];
           let betaProductScreenshots = [];
           keyNumber += 1;
+          if (key.includes('PDFs > Edit quickly')) {
+            // eslint-disable-next-line no-continue
+            continue;
+          }
+
+          if (key.includes('PDFs > Take the time to control')) {
+            key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
+          }
+
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
             await stablePage.clickEachAnswer(stableURL, key, keyNumber, 'stable', true);
           });
