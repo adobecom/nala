@@ -64,6 +64,13 @@ const config = {
         baseURL: envs['@uar_live'],
       },
     },
+    {
+      name: 'adobe-stage-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@adobe_stage'],
+      },
+    },
   ],
 };
 module.exports = config;
