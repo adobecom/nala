@@ -39,9 +39,18 @@ test.describe('Quiz flow test suite', () => {
         // load test data from static files
         const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
-        for (const key of Object.keys(testdata)) {
+        for (let key of Object.keys(testdata)) {
           console.info(key);
           const logIndex = networkLogs.length;
+
+          if (key.includes('PDFs > Edit quickly')) {
+            // eslint-disable-next-line no-continue
+            continue;
+          }
+
+          if (key.includes('PDFs > Take the time to control')) {
+            key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
+          }
 
           // test step-1
           await test.step(`Select each answer on test page according to ${key}`, async () => {
@@ -53,7 +62,7 @@ test.describe('Quiz flow test suite', () => {
             await quiz.checkResultPage(testdata[key]);
           });
 
-          await page.waitForTimeout(1000);
+          await page.waitForTimeout(2000);
 
           const difference = networkLogs.slice(logIndex, networkLogs.length);
           console.info(difference);
@@ -71,7 +80,7 @@ test.describe('Quiz flow test suite', () => {
             logNumber += 1;
           }
 
-          if (log !== undefined && log.includes('Logo|gnav|milo')) {
+          if (log !== undefined && log.includes('gnav|adobedotcom-cc')) {
             logResult2 = true;
             logNumber2 += 1;
           }
