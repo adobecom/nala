@@ -368,17 +368,6 @@ async getPznGnavDaalh(project=milo, pznExpName, pznFileName) {
   }
 
 /**
- * Generates analytic string for a given block name and a counter.
- * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
- * @param {number|string} counter - A counter value i.e. block number.
- * @returns {string} - A string formatted as 'b<counter>|<slicedBlockName>|nopzn|nopzn'.
- */  
-  async getBlockDaalh(blockName, counter) {
-    const slicedBlockName = blockName.slice(0, 20);
-    return 'b'+ counter + '|' + slicedBlockName + '|'+ 'nopzn' + '|' + 'nopzn' ;
-  }
-
-/**
  * Generates personalization analytic string for a given block name and a counter.
  * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
  * @param {number|string} counter - A counter value i.e. block number.
@@ -407,7 +396,7 @@ async getBlockDaalh(blockName, counter, pzn = false, pzntext = 'nopzn') {
   if (pzn) {
     return 'b' + counter + '|' + slicedBlockName + '|' + slicedPzntext + '|' + 'nopzn';
   } else {
-    return 'b' + counter + '|' + slicedBlockName + '|' + 'nopzn' + '|' + 'nopzn';
+    return 'b' + counter + '|' + slicedBlockName;
   }
 }
 
