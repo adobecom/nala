@@ -2,6 +2,8 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/aside.block.spec.js';
 import AsideBlock from '../../selectors/milo/aside.block.page.js';
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Aside Block test suite', () => {
   // Aside Small Checks:
   test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
@@ -9,9 +11,9 @@ test.describe('Aside Block test suite', () => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}`);
+      await page.goto(`${baseURL}${features[0].path}${features[0].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${features[0].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -38,12 +40,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Medium Checks:
   test(`${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[1].path}${features[1].browserParams}`);
+      await page.goto(`${baseURL}${features[1].path}${features[1].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}${features[1].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${features[1].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -68,12 +70,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Large Checks:
   test(`${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[2].path}${features[2].browserParams}`);
+      await page.goto(`${baseURL}${features[2].path}${features[2].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}${features[2].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${features[2].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -98,12 +100,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Split Small Dark Checks:
   test(`${features[3].name}, ${features[3].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[3].path}${features[3].browserParams}`);
+      await page.goto(`${baseURL}${features[3].path}${features[3].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}${features[3].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${features[3].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -128,12 +130,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Split Small Half Dark Checks:
   test(`${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[4].path}${features[4].browserParams}`);
+      await page.goto(`${baseURL}${features[4].path}${features[4].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}${features[4].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[4].path}${features[4].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -158,12 +160,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Split Medium Checks:
   test(`${features[5].name}, ${features[5].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[5].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[5].path}${features[5].browserParams}`);
+      await page.goto(`${baseURL}${features[5].path}${features[5].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[5].path}${features[5].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[5].path}${features[5].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -188,12 +190,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Split Medium Half Checks:
   test(`${features[6].name}, ${features[6].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[6].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[6].path}${features[6].browserParams}`);
+      await page.goto(`${baseURL}${features[6].path}${features[6].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[6].path}${features[6].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[6].path}${features[6].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -218,12 +220,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Split Large Checks:
   test(`${features[7].name}, ${features[7].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[7].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[7].path}${features[7].browserParams}`);
+      await page.goto(`${baseURL}${features[7].path}${features[7].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[7].path}${features[7].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[7].path}${features[7].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -246,12 +248,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Split Large Half Dark Checks:
   test(`${features[8].name}, ${features[8].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[8].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[8].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[8].path}${features[8].browserParams}`);
+      await page.goto(`${baseURL}${features[8].path}${features[8].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[8].path}${features[8].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[8].path}${features[8].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -276,12 +278,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Inline Checks:
   test(`${features[9].name}, ${features[9].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[9].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[9].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[9].path}${features[9].browserParams}`);
+      await page.goto(`${baseURL}${features[9].path}${features[9].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[9].path}${features[9].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[9].path}${features[9].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -306,12 +308,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Inline Dark Checks:
   test(`${features[10].name}, ${features[10].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[10].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[10].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[10].path}${features[10].browserParams}`);
+      await page.goto(`${baseURL}${features[10].path}${features[10].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[10].path}${features[10].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[10].path}${features[10].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -336,12 +338,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Notification Extra Small Dark:
   test(`${features[11].name}, ${features[11].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[11].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[11].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[11].path}${features[11].browserParams}`);
+      await page.goto(`${baseURL}${features[11].path}${features[11].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[11].path}${features[11].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[11].path}${features[11].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -371,12 +373,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Notification Small:
   test(`${features[12].name}, ${features[12].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[12].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[12].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[12].path}${features[12].browserParams}`);
+      await page.goto(`${baseURL}${features[12].path}${features[12].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[12].path}${features[12].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[12].path}${features[12].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -404,12 +406,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Notification Medium:
   test(`${features[13].name}, ${features[13].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[13].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[13].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[13].path}${features[13].browserParams}`);
+      await page.goto(`${baseURL}${features[13].path}${features[13].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[13].path}${features[13].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[13].path}${features[13].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -434,12 +436,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Notification Medium Center:
   test(`${features[14].name}, ${features[14].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[14].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[14].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[14].path}${features[14].browserParams}`);
+      await page.goto(`${baseURL}${features[14].path}${features[14].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[14].path}${features[14].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[14].path}${features[14].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -464,12 +466,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Notification Large:
   test(`${features[15].name}, ${features[15].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[15].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[15].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[15].path}${features[15].browserParams}`);
+      await page.goto(`${baseURL}${features[15].path}${features[15].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[15].path}${features[15].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[15].path}${features[15].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {
@@ -494,12 +496,12 @@ test.describe('Aside Block test suite', () => {
   // Aside Notification Large Center:
   test(`${features[16].name}, ${features[16].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
-    console.info(`[Test Page]: ${baseURL}${features[16].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[16].path}${miloLibs}`);
 
     await test.step('Navigate to page with Aside block', async () => {
-      await page.goto(`${baseURL}${features[16].path}${features[16].browserParams}`);
+      await page.goto(`${baseURL}${features[16].path}${features[16].browserParams}&${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[16].path}${features[16].browserParams}`);
+      await expect(page).toHaveURL(`${baseURL}${features[16].path}${features[16].browserParams}&${miloLibs}`);
     });
 
     await test.step('Validate Aside block content', async () => {

@@ -3,12 +3,10 @@
 /* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import Quiz from '../../selectors/uar/quiz.page.js';
-import QuizOldPage from '../../selectors/uar/quiz.old.page.js';
 
-const QuizSpec = require('../../features/cc/quiz.screenshots.spec.js');
-
-const { features } = QuizSpec;
+const { features } = require('../../features/cc/quiz.screenshots.spec.js');
 const { WebUtil } = require('../../libs/webutil.js');
+const envs = require('../../envs/envs.js');
 
 test.describe('Quiz flow test suite', () => {
   // reset timeout because we use this to run all test data
@@ -16,11 +14,13 @@ test.describe('Quiz flow test suite', () => {
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
-      async ({ page, baseURL }) => {
-        const quiz = new Quiz(page);
-        const quizOldPage = new QuizOldPage(page);
-        const url = `${baseURL}${feature.path}`;
-        console.info(url);
+      async ({ page }) => {
+        const stablePage = new Quiz(page);
+        const betaPage = new Quiz(page);
+        const stableURL = `${envs[feature.stable]}${feature.path}`;
+        console.info(stableURL);
+        const betaURL = `${envs[feature.beta]}${feature.path}`;
+        console.info(betaURL);
 
         // load test data from static files
         const testdata = await WebUtil.loadTestData(`${feature.data}`);
@@ -29,17 +29,11 @@ test.describe('Quiz flow test suite', () => {
 
         for (let key of Object.keys(testdata)) {
           console.log(key);
-          let oldProduct = '';
-          let newProduct = '';
+          let stableProduct = '';
+          let betaProduct = '';
+          let stableProductScreenshots = [];
+          let betaProductScreenshots = [];
           keyNumber += 1;
-          await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
-            await quizOldPage.clickEachAnswer('https://www.adobe.com/creativecloud/quiz-recommender.html', key, keyNumber, true);
-          });
-
-          await test.step('Old: Check results on test page', async () => {
-            oldProduct = await quizOldPage.checkResultPage(testdata[key], key, keyNumber, true);
-          });
-
           if (key.includes('PDFs > Edit quickly')) {
             // eslint-disable-next-line no-continue
             continue;
@@ -49,15 +43,31 @@ test.describe('Quiz flow test suite', () => {
             key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
           }
 
+          await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
+            await stablePage.clickEachAnswer(stableURL, key, keyNumber, 'stable', true);
+          });
+
+          await test.step('Old: Check results on test page', async () => {
+            stableProduct = await stablePage.checkResultPage(testdata[key], key, keyNumber, 'stable', true);
+          });
+
+          stableProductScreenshots = stablePage.screenshots.slice();
+          stablePage.screenshots = [];
+
           await test.step(`New: Select each answer on test page according to ${key}`, async () => {
-            await quiz.clickEachAnswer(url, key, keyNumber, 'new', true);
+            await betaPage.clickEachAnswer(betaURL, key, keyNumber, 'beta', true);
           });
 
           await test.step('New: Check results on test page', async () => {
-            newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, 'new', true);
+            betaProduct = await betaPage.checkResultPage(testdata[key], key, keyNumber, 'beta', true);
           });
 
-          // expect.soft(newProduct).toContain(oldProduct);
+          betaProductScreenshots = betaPage.screenshots.slice();
+          betaPage.screenshots = [];
+
+          WebUtil.compareScreenshots(stableProductScreenshots, betaProductScreenshots, 'screenshots/uar');
+
+          // expect.soft(betaProduct).toContain(stableProduct);
         }
       },
     );

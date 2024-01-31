@@ -7,6 +7,8 @@ import ColumnsBlock from '../../selectors/milo/columns.block.page.js';
 let column;
 let webUtil;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Columns Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     column = new ColumnsBlock(page);
@@ -15,13 +17,13 @@ test.describe('Milo Columns Block test suite', () => {
 
   // Test 0 : Column default block
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const { data } = features[0];
 
     await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Columns block content/specs', async () => {
@@ -43,13 +45,13 @@ test.describe('Milo Columns Block test suite', () => {
 
   // Test 1 : Columns (contained) block  
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const { data } = features[1];
 
     await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Columns(contained) block content/specs', async () => {
@@ -70,13 +72,13 @@ test.describe('Milo Columns Block test suite', () => {
 
   // Test 2 : Columns (contained,middle) block    
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const { data } = features[2];
 
     await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Columns(contained,middle) block content/specs', async () => {
@@ -97,13 +99,13 @@ test.describe('Milo Columns Block test suite', () => {
 
   // Test 3 : Columns (table) block   
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const { data } = features[3];
 
     await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[3].path}`);
+      await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Columns(table) block content/specs', async () => {
@@ -128,13 +130,13 @@ test.describe('Milo Columns Block test suite', () => {
 
   // Test 4 : Columns (contained,table) block   
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[4].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const { data } = features[4];
 
     await test.step('step-1: Go to Columns block test page', async () => {
-      await page.goto(`${baseURL}${features[4].path}`);
+      await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Columns(contained,table) block content/specs', async () => {

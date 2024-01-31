@@ -6,6 +6,8 @@ import ZPatternBlock from '../../selectors/milo/zpattern.block.page.js';
 let webUtil;
 let zpattern;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Z Pattern Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
@@ -14,13 +16,13 @@ test.describe('Milo Z Pattern Block test suite', () => {
 
 // Test 0 : ZPattern default block  
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
     const { data } = features[0];
 
     await test.step('step-1: Go to Z Pattern block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Z Pattern block specs', async () => {
@@ -53,13 +55,13 @@ test.describe('Milo Z Pattern Block test suite', () => {
 
   // Test 1 :ZPattern (small) block   
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const { data } = features[1];
 
     await test.step('step-1: Go to z-pattern (small) block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify z-pattern (small) block specs', async () => {
@@ -92,13 +94,13 @@ test.describe('Milo Z Pattern Block test suite', () => {
 
   // Test 2 :Zpattern (large) block 
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const { data } = features[2];
 
     await test.step('step-1: Go to z-pattern (large) block test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify z-pattern (large) block specs', async () => {
@@ -131,13 +133,13 @@ test.describe('Milo Z Pattern Block test suite', () => {
 
   // Test 3 :Zpattern (dark) block   
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[3].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const { data } = features[3];
 
     await test.step('step-1: Go to z-pattern (large) block test page', async () => {
-      await page.goto(`${baseURL}${features[3].path}`);
+      await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[3].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify z-pattern (dark) block specs', async () => {
