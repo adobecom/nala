@@ -36,7 +36,7 @@ test.describe(`Verify Note text with bullet points`, () => {
   // Note Text Sanity Checks:
   test(`${features[0].name}, ${features[0].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
@@ -77,7 +77,7 @@ test.describe(`Verify caution text with bullet points`, () => {
   // Note Text Sanity Checks:
   test(`${features[1].name}, ${features[1].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
@@ -118,7 +118,7 @@ test.describe(`Verify Alert text with bullet points`, () => {
   // Note Text Sanity Checks:
   test(`${features[2].name}, ${features[2].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
@@ -158,7 +158,7 @@ test.describe(`Verify Tip text with bullet points`, () => {
   // Note Text Sanity Checks:
   test(`${features[3].name}, ${features[3].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
@@ -198,7 +198,7 @@ test.describe(`Verify caution text with serial numbers`, () => {
   // Note Text Sanity Checks:
   test(`${features[4].name}, ${features[4].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
@@ -238,7 +238,7 @@ test.describe(`Verify Note text with Numbered list`, () => {
   // Note Text Sanity Checks:
   test(`${features[5].name}, ${features[5].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
@@ -278,7 +278,7 @@ test.describe(`Verify Alert text with bullet list`, () => {
   // Note Text Sanity Checks:
   test(`${features[6].name}, ${features[6].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
@@ -318,7 +318,7 @@ test.describe(`Verify All other Styles of Note Text`, () => {
   // Note Text Sanity Checks:
   test(`${features[7].name}, ${features[7].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${textTag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${textTag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${textTag}`);
