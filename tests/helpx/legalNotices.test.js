@@ -37,7 +37,7 @@ test.describe(`Verify legal Notices is present on the page`, () => {
 
   test(`${features[0].name}, ${features[0].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${legalnoticestag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${legalnoticestag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${legalnoticestag}`);
@@ -64,7 +64,7 @@ test.describe(`Verify legal Notices on Adding component in the table`, () => {
 
   test(`${features[1].name}, ${features[1].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${legalnoticestag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${legalnoticestag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${legalnoticestag}`);
@@ -89,7 +89,7 @@ test.describe(`Verify legal Notices Text in capital letters`, () => {
 
   test(`${features[2].name}, ${features[2].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${legalnoticestag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${legalnoticestag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${legalnoticestag}`);
@@ -119,7 +119,7 @@ test.describe(`Verify legal Notices on Adding text in the table with Text in cap
 
   test(`${features[3].name}, ${features[3].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${legalnoticestag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${legalnoticestag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${legalnoticestag}`);
@@ -145,7 +145,7 @@ test.describe(`Verify legal Notices on Adding original component format in the t
 
   test(`${features[4].name}, ${features[4].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${legalnoticestag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${legalnoticestag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${legalnoticestag}`);
@@ -180,7 +180,7 @@ test.describe(`Verify legal Notices on Adding full text in the table`, () => {
 
   test(`${features[5].name}, ${features[5].tags}`, async ({baseURL}) => {
     await page.goto(`${helpxbaseURL}${legalnoticestag}`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${legalnoticestag}`);
     await test.step('Navigate to text component page', async () => {
     await expect(page).toHaveURL(`${baseURL}${legalnoticestag}`);
