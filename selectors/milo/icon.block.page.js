@@ -21,7 +21,6 @@ export default class Icon {
         display: 'block',
         width: /^\d+px$/,
         position: 'relative',
-        overflow: 'hidden',
       },
       '.con-block.xl-spacing-static-bottom': {
         'padding-bottom': '56px',
