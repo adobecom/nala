@@ -33,18 +33,6 @@ export default class Marketo {
   }
 
   /**
-   * @description Form ID: MCZ Short Form (2259)
-   */
-  async submitShortForm() {
-    await this.country.selectOption('United States');
-    await this.firstName.fill('TestFirstName');
-    await this.lastName.fill('TestLastName');
-    await this.email.fill('test@adobe.com');
-    await this.company.fill('Adobe');
-    await this.submitButton.click();
-  }
-
-  /**
    * @description Form ID: MCZ Production (2277)
    */
   async submitProductionForm() {

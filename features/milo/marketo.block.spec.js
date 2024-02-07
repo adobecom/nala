@@ -7,11 +7,6 @@ module.exports = {
       tags: '@marketo @marketoProductionForm @milo @smoke @regression',
     },
     {
-      name: '@marketo short form',
-      path: '/drafts/nala/blocks/marketo/marketo-mcz-short-form-2259',
-      tags: '@marketo @marketoShortForm @milo @smoke @regression',
-    },
-    {
       name: '@marketo rfi template',
       path: '/drafts/nala/blocks/marketo/content-rfi-template',
       tags: '@marketo @marketoRFITemplate @milo @smoke @regression',
