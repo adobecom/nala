@@ -50,6 +50,39 @@ export default class Marketo {
     await this.submitButton.click();
   }
 
+  async submitRFITemplateForm() {
+    await this.functionalArea.selectOption('Other', { timeout: 10000 });
+    await this.country.selectOption('United States');
+    await this.jobTitle.selectOption('Other');
+    await this.primaryProductInterest.selectOption('Digital marketing');
+    await this.state.selectOption('California');
+    await this.company.fill('Adobe');
+    await this.firstName.fill('TestFirstName');
+    await this.lastName.fill('TestLastName');
+    await this.email.fill('test@adobe.com');
+    await this.phone.fill('415-111-2222');
+    await this.postalCode.fill('94111');
+    await this.submitButton.click();
+  }
+
+  async submitDiscoverTemplateForm() {
+    await this.company.fill('Adobe');
+    await this.country.selectOption('United States', { timeout: 10000 });
+    await this.email.fill('test@adobe.com');
+    await this.submitButton.click();
+  }
+
+  async submitExploreTemplateForm() {
+    await this.company.fill('Adobe');
+    await this.functionalArea.selectOption('Other');
+    await this.country.selectOption('United States');
+    await this.jobTitle.selectOption('Other');
+    await this.firstName.fill('TestFirstName');
+    await this.lastName.fill('TestLastName');
+    await this.email.fill('test@adobe.com');
+    await this.submitButton.click();
+  }
+
   async submitEvaluateTemplateForm() {
     await this.company.fill('Adobe');
     await this.functionalArea.selectOption('Other', { timeout: 10000 });
