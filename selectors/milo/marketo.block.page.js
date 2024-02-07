@@ -9,7 +9,7 @@ export default class Marketo {
     this.lastName = this.marketo.locator('#LastName');
     this.email = this.marketo.locator('#Email');
     this.phone = this.marketo.locator('#Phone');
-    this.company = this.marketo.locator('#mktoFormsCompany');
+    this.company = this.marketo.locator('#mktoFormsCompany_ignore');
     this.functionalArea = this.marketo.locator('#mktoFormsFunctionalArea');
     this.country = this.marketo.locator('#Country');
     this.state = this.marketo.locator('#State');
@@ -58,6 +58,81 @@ export default class Marketo {
     await this.email.fill('test@adobe.com');
     await this.phone.fill('415-111-2222');
     await this.company.fill('Adobe');
+    await this.postalCode.fill('94111');
+    await this.submitButton.click();
+  }
+
+  async submitRFITemplateForm() {
+    await this.functionalArea.selectOption('Other', { timeout: 10000 });
+    await this.country.selectOption('United States');
+    await this.jobTitle.selectOption('Other');
+    await this.primaryProductInterest.selectOption('Digital marketing');
+    await this.state.selectOption('California');
+    await this.company.fill('Adobe');
+    await this.firstName.fill('TestFirstName');
+    await this.lastName.fill('TestLastName');
+    await this.email.fill('test@adobe.com');
+    await this.phone.fill('415-111-2222');
+    await this.postalCode.fill('94111');
+    await this.submitButton.click();
+  }
+
+  async submitDiscoverTemplateForm() {
+    await this.company.fill('Adobe');
+    await this.country.selectOption('United States', { timeout: 10000 });
+    await this.email.fill('test@adobe.com');
+    await this.submitButton.click();
+  }
+
+  async submitExploreTemplateForm() {
+    await this.company.fill('Adobe');
+    await this.functionalArea.selectOption('Other');
+    await this.country.selectOption('United States');
+    await this.jobTitle.selectOption('Other');
+    await this.firstName.fill('TestFirstName');
+    await this.lastName.fill('TestLastName');
+    await this.email.fill('test@adobe.com');
+    await this.submitButton.click();
+  }
+
+  async submitEvaluateTemplateForm() {
+    await this.company.fill('Adobe');
+    await this.functionalArea.selectOption('Other', { timeout: 10000 });
+    await this.country.selectOption('United States');
+    await this.jobTitle.selectOption('Other');
+    await this.state.selectOption('California');
+    await this.firstName.fill('TestFirstName');
+    await this.lastName.fill('TestLastName');
+    await this.email.fill('test@adobe.com');
+    await this.phone.fill('415-111-2222');
+    await this.postalCode.fill('94111');
+    await this.submitButton.click();
+  }
+
+  async submitWebinarTemplateForm() {
+    await this.company.fill('Adobe');
+    await this.functionalArea.selectOption('Other', { timeout: 10000 });
+    await this.country.selectOption('United States');
+    await this.jobTitle.selectOption('Other');
+    await this.state.selectOption('California');
+    await this.firstName.fill('TestFirstName');
+    await this.lastName.fill('TestLastName');
+    await this.email.fill('test@adobe.com');
+    await this.phone.fill('415-111-2222');
+    await this.postalCode.fill('94111');
+    await this.submitButton.click();
+  }
+
+  async submitTrialTemplateForm() {
+    await this.functionalArea.selectOption('Other', { timeout: 10000 });
+    await this.country.selectOption('United States');
+    await this.jobTitle.selectOption('Other');
+    await this.state.selectOption('California');
+    await this.company.fill('Adobe');
+    await this.firstName.fill('TestFirstName');
+    await this.lastName.fill('TestLastName');
+    await this.email.fill('test@adobe.com');
+    await this.phone.fill('415-111-2222');
     await this.postalCode.fill('94111');
     await this.submitButton.click();
   }
