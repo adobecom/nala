@@ -4,7 +4,6 @@ module.exports = {
     {
       name: '@Acom-Homepage-Jarvis',
       path: '',
-      envs: '@adobe_prod @adobe_stage',
       tags: '@homepage @smoke @regression @acom',
     },
   ],

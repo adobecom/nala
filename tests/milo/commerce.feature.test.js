@@ -1,14 +1,14 @@
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/commerce.spec.js';
 import CommercePage from '../../selectors/milo/commerce.feature.page.js';
-import ims from '../../libs/imslogin.js';
 
+const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Commerce feature test suite', () => {
   // Validate price with term display
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
-    const testPage = `${baseURL}${features[0].path}`;
+    const testPage = `${baseURL}${features[0].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -55,7 +55,7 @@ test.describe('Commerce feature test suite', () => {
   // Validate price with term and unit display
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
-    const testPage = `${baseURL}${features[1].path}`;
+    const testPage = `${baseURL}${features[1].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -102,7 +102,7 @@ test.describe('Commerce feature test suite', () => {
   // Validate price with term, unit and tax label display
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
-    const testPage = `${baseURL}${features[2].path}`;
+    const testPage = `${baseURL}${features[2].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -149,7 +149,7 @@ test.describe('Commerce feature test suite', () => {
   // Validate price and CTAs have promo code applied
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
-    const testPage = `${baseURL}${features[3].path}`;
+    const testPage = `${baseURL}${features[3].path}${miloLibs}`;
     const data = features[3].data;
 
     console.info('[Test Page]: ', testPage);
