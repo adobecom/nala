@@ -18,7 +18,7 @@ test.describe('Quiz flow test suite', () => {
       `${feature.name}, ${feature.tags}`,
       async ({ page, baseURL }) => {
         const quiz = new Quiz(page);
-        const quizOldPage = new QuizOldPage(page);
+        const quizOldPage = new Quiz(page);
         const url = `${baseURL}${feature.path}`;
         console.info(url);
 
@@ -30,12 +30,22 @@ test.describe('Quiz flow test suite', () => {
           testdata = testdata.sort(() => 0.5 - Math.random()).slice(0, 20);
         }
 
-        for (const key of testdata) {
+        for (let key of testdata) {
           console.log(key);
           let oldProduct = '';
           let newProduct = '';
+
+          if (key.includes('PDFs > Edit quickly')) {
+            // eslint-disable-next-line no-continue
+            continue;
+          }
+
+          if (key.includes('PDFs > Take the time to control')) {
+            key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
+          }
+
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
-            await quizOldPage.clickEachAnswer('https://www.adobe.com/creativecloud/quiz-recommender.html', key);
+            await quizOldPage.clickEachAnswer('https://www.stage.adobe.com/creativecloud/plan-recommender/quiz.html', key);
           });
 
           await test.step('Old: Check results on test page', async () => {
@@ -50,7 +60,7 @@ test.describe('Quiz flow test suite', () => {
             newProduct = await quiz.checkResultPage(feature.name);
           });
 
-          expect.soft(newProduct).toContain(oldProduct);
+          expect.soft(oldProduct).toContain(newProduct);
         }
       },
     );

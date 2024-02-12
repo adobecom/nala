@@ -34,22 +34,22 @@ test.describe('Quiz flow test suite', () => {
           let stableProductScreenshots = [];
           let betaProductScreenshots = [];
           keyNumber += 1;
-          await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
+          await test.step(`Stable: Select each answer on test page according to ${key}`, async () => {
             await stablePage.clickEachAnswer(stableURL, key, keyNumber, 'stable', true);
           });
 
-          await test.step('Old: Check results on test page', async () => {
+          await test.step('Stable: Check results on test page', async () => {
             stableProduct = await stablePage.checkResultPage(testdata[key], key, keyNumber, 'stable', true);
           });
 
           stableProductScreenshots = stablePage.screenshots.slice();
           stablePage.screenshots = [];
 
-          await test.step(`New: Select each answer on test page according to ${key}`, async () => {
+          await test.step(`Beta: Select each answer on test page according to ${key}`, async () => {
             await betaPage.clickEachAnswer(betaURL, key, keyNumber, 'beta', true);
           });
 
-          await test.step('New: Check results on test page', async () => {
+          await test.step('Beta: Check results on test page', async () => {
             betaProduct = await betaPage.checkResultPage(testdata[key], key, keyNumber, 'beta', true);
           });
 
