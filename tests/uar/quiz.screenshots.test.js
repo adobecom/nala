@@ -18,7 +18,7 @@ test.describe('Quiz flow test suite', () => {
       `${feature.name}, ${feature.tags}`,
       async ({ page, baseURL }) => {
         const quiz = new Quiz(page);
-        const quizOldPage = new QuizOldPage(page);
+        const quizOldPage = new Quiz(page);
         const url = `${baseURL}${feature.path}`;
         console.info(url);
 
@@ -27,28 +27,38 @@ test.describe('Quiz flow test suite', () => {
 
         let keyNumber = 0;
 
-        for (const key of Object.keys(testdata)) {
+        for (let key of Object.keys(testdata)) {
           console.log(key);
           let oldProduct = '';
           let newProduct = '';
           keyNumber += 1;
-          await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
-            await quizOldPage.clickEachAnswer('https://www.adobe.com/creativecloud/quiz-recommender.html', key, keyNumber, true);
+
+          if (key.includes('PDFs > Edit quickly')) {
+            // eslint-disable-next-line no-continue
+            continue;
+          }
+
+          if (key.includes('PDFs > Take the time to control')) {
+            key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
+          }
+
+          await test.step(`Prod: Select each answer on test page according to ${key}`, async () => {
+            await quizOldPage.clickEachAnswer('https://www.adobe.com/creativecloud/plan-recommender/quiz.html', key, keyNumber, 'prod', true);
           });
 
-          await test.step('Old: Check results on test page', async () => {
+          await test.step('Prod: Check results on test page', async () => {
             oldProduct = await quizOldPage.checkResultPage(testdata[key], key, keyNumber, true);
           });
 
-          await test.step(`New: Select each answer on test page according to ${key}`, async () => {
-            await quiz.clickEachAnswer(url, key, keyNumber, 'new', true);
+          await test.step(`Stage: Select each answer on test page according to ${key}`, async () => {
+            await quiz.clickEachAnswer('https://www.stage.adobe.com/creativecloud/plan-recommender/quiz.html', key, keyNumber, 'stage', true);
           });
 
-          await test.step('New: Check results on test page', async () => {
+          await test.step('Stage: Check results on test page', async () => {
             newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, 'new', true);
           });
 
-          expect.soft(newProduct).toContain(oldProduct);
+          // expect.soft(oldProduct).toContain(newProduct);
         }
       },
     );

@@ -12,18 +12,18 @@ export default class Procedure {
     //Title
     this.procedureTitle = page.locator("//h1[@id='procedure-and-step-component']");
     //First procedure Component
-    this.procedureforb2 = page.locator("//div[contains(@daa-lh,'b2|procedure|nopzn|nopzn')]");
-    this.procedureforb2Ol = page.locator("//div[@daa-lh='b2|procedure|nopzn|nopzn']/child::ol");
-    this.procedureforb2liFirst = page.locator("//div[@daa-lh='b2|procedure|nopzn|nopzn']/child::ol/li[contains(@class,'step')][1]");
+    this.procedureforb2 = page.locator("//div[contains(@daa-lh,'b2|procedure')]");
+    this.procedureforb2Ol = page.locator("//div[@daa-lh='b2|procedure']/child::ol");
+    this.procedureforb2liFirst = page.locator("//div[@daa-lh='b2|procedure']/child::ol/li[contains(@class,'step')][1]");
     
 
     //procedure is not case sensitive
-    const xpathWithDaaLh = "//div[contains(@daa-lh, 'b4|procedure|nopzn|nopzn')]/ol[@class='stepList']/li[@class='step']/div[contains(text(), 'PROCEDURE-Capital letter')]";
+    const xpathWithDaaLh = "//div[contains(@daa-lh, 'b4|procedure')]/ol[@class='stepList']/li[@class='step']/div[contains(text(), 'PROCEDURE-Capital letter')]";
     this.procedurecapitalLetter = page.locator(xpathWithDaaLh).first();
-    const xpathForSecondElement = "//div[contains(@daa-lh, 'b5|procedure|nopzn|nopzn')]/ol[@class='stepList']/li[@class='step']/div[contains(.,'PROCEDURE- Capital Letter - Bold -Italic')]";
+    const xpathForSecondElement = "//div[contains(@daa-lh, 'b5|procedure')]/ol[@class='stepList']/li[@class='step']/div[contains(.,'PROCEDURE- Capital Letter - Bold -Italic')]";
     this.secondProcedureElement = page.locator(xpathForSecondElement).first();
 
-    const xpathForThirdElement = "//div[contains(@daa-lh, 'b6|procedure|nopzn|nopzn')]/ol[@class='stepList']/li[@class='step']//div[contains(.,'PROCEDURE-Capital Letter - Bold -Italic-Underline')]";
+    const xpathForThirdElement = "//div[contains(@daa-lh, 'b6|procedure')]/ol[@class='stepList']/li[@class='step']//div[contains(.,'PROCEDURE-Capital Letter - Bold -Italic-Underline')]";
     this.thirdProcedureElement = page.locator(xpathForThirdElement).first();
 
     //Incorrect Procedure Name
@@ -35,22 +35,22 @@ export default class Procedure {
     this.draftProcedure = page.locator(procedureDraft).first();  
 
     //Text  in procedure
-    this.textInProcedureComponent = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[1]/div/p[contains(.,'Some copy-paste features that you can try out with this latest updated workflow are given here.')]");
-    this.StrongtextInProcedureComponent = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[2]/div/strong[contains(text(),'Continue')]");
-    this.thirdStepLink = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[3]/div/strong/a[contains(@href,'https://account.adobe.com/plans')]");
-    this.iconinprocedureComponet = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[6]/div/ol/li/span[contains(@class,'icon icon-objectives margin-left margin-right')]");
-    this.notealertinprocedure = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[6]/child::div/child::div[contains(@class,'note alert')]");
-    this.noteiconinprocedure = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[6]/child::div/child::div[contains(@class,'note alert')]/span[contains(@class,'note-icon')]");
-    this.notecautionInprocedure = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[8]/div/div[contains(@class,'note caution')]");
-    this.notetipinProcedure = page.locator("//div[contains(@daa-lh,'b11|procedure|nopzn|nopzn')]/ol/li[8]/div/div[contains(@class,'note tip')]");
+    this.textInProcedureComponent = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[1]/div/p[contains(.,'Some copy-paste features that you can try out with this latest updated workflow are given here.')]");
+    this.StrongtextInProcedureComponent = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[2]/div/strong[contains(text(),'Continue')]");
+    this.thirdStepLink = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[3]/div/strong/a[contains(@href,'https://account.adobe.com/plans')]");
+    this.iconinprocedureComponet = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[6]/div/ol/li/span[contains(@class,'icon icon-objectives margin-left margin-right')]");
+    this.notealertinprocedure = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[6]/child::div/child::div[contains(@class,'note alert')]");
+    this.noteiconinprocedure = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[6]/child::div/child::div[contains(@class,'note alert')]/span[contains(@class,'note-icon')]");
+    this.notecautionInprocedure = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[8]/div/div[contains(@class,'note caution')]");
+    this.notetipinProcedure = page.locator("//div[contains(@daa-lh,'b11|procedure')]/ol/li[8]/div/div[contains(@class,'note tip')]");
   
     //Images in procedure
     this.webpImageinProcedure = page.locator("//div[@class='procedure']/ol[@class='stepList']/li[@class='step'][1]//img[@title='attach_email_mfa']");
     this.pngImageInprocedure = page.locator("(//img[@loading='lazy'])[1]");
-    const xpathLocator = "//div[contains(@daa-lh,'b13|procedure|nopzn|nopzn')]/ol/li[3]/div/p/em[contains(text(),'Great. I will process this for you now')]";
+    const xpathLocator = "//div[contains(@daa-lh,'b13|procedure')]/ol/li[3]/div/p/em[contains(text(),'Great. I will process this for you now')]";
     this.textBeforeImageInProcedure = page.locator(xpathLocator);
     this.imageafterTextInProcedure = page.locator(`${xpathLocator}/following::p[1]`);
-    this.urlBasedURLInProcedure = page.locator("//div[contains(@daa-lh,'b13|procedure|nopzn|nopzn')]/ol/li[4]/descendant::a[contains(@href,'/automation/blocks/procedure/')]");
+    this.urlBasedURLInProcedure = page.locator("//div[contains(@daa-lh,'b13|procedure')]/ol/li[4]/descendant::a[contains(@href,'/automation/blocks/procedure/')]");
 
 
     //Videos In Procedure
