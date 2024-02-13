@@ -26,7 +26,7 @@ test.beforeAll(async ({ browser }) => {
     await page.waitForTimeout(3000);
 
     authToken = await page.evaluate(() => {return adobeIMS.getAccessToken().token});
-    console.log('token: ', authToken);
+    console.log('token: ', authToken.toString().length);
 });
 
 test.describe('OST page test suite', () => {
