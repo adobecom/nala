@@ -5,14 +5,12 @@ module.exports = {
       tcid: '0',
       name: '@Commerce-Price-Term',
       path: '/drafts/nala/features/commerce/prices-with-term',
-      envs: '@milo_live',
       tags: '@commerce',
     },
     {
       tcid: '1',
       name: '@Commerce-Price-Unit-Term',
       path: '/drafts/nala/features/commerce/prices-with-term-unit',
-      envs: '@milo_live',
       tags: '@commerce',
 
     },
@@ -20,7 +18,6 @@ module.exports = {
       tcid: '2',
       name: '@Commerce-Price-Taxlabel-Unit-Term',
       path: '/drafts/nala/features/commerce/prices-with-term-unit-taxlabel',
-      envs: '@milo_live',
       tags: '@commerce',
     },
     {
@@ -30,7 +27,6 @@ module.exports = {
       data: {
         promo: 'nicopromo',
       },
-      envs: '@milo_live',
       tags: '@commerce',
     },
   ],
