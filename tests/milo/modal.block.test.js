@@ -66,7 +66,7 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await modalLink).toHaveAttribute('class', modal.attributes['modal-link']['class']);
 
       //click the modal link
-      await modalLink.click();
+      await modalLink.click();      
       await expect(await modal.dialog).toBeVisible();
 
       await expect(await modal.mediaBlock).toBeVisible();
@@ -100,7 +100,7 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await modalLink).toHaveAttribute('class', modal.attributes['modal-link']['class']);
 
       //click the modal link and verify video autoplay
-      await modalLink.click();
+      await modalLink.click();      
       await expect(await modal.dialog).toBeVisible();
       expect(await WebUtil.isModalInViewport(modal.page, modal.modalSelector)).toBeTruthy();
 
