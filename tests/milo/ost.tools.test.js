@@ -4,8 +4,7 @@ import OSTPage from '../../selectors/milo/ost.tools.page.js';
 import ims from '../../libs/imslogin.js';
 
 let authToken;
-// const miloLibs = process.env.MILO_LIBS || '';
-const miloLibs = 'milolibs=mili';
+const miloLibs = process.env.MILO_LIBS || '';
 
 test.beforeAll(async ({ browser }) => {
     test.slow();
