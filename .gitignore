@@ -113,6 +113,11 @@ dist
 .vscode/launch.json
 .vscode/settings.json
 
+# SauceLabs files
+artifacts/
+sauce-app-payload*
+saucectl-report.json
+
 # Debug/Report/Screenshots Local files
 debug
 reports

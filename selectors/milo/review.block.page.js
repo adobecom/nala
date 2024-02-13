@@ -26,11 +26,11 @@ export default class Review {
 
       // Expected values review checkboxes
       const expectedValues = [
-        { tooltip: 'Poor', ariaLabel: '1 Star', value: '1' },
-        { tooltip: 'Below Average', ariaLabel: '2 Star', value: '2' },
-        { tooltip: 'Good', ariaLabel: '3 Star', value: '3' },
-        { tooltip: 'Very Good', ariaLabel: '4 Star', value: '4' },
-        { tooltip: 'Outstanding', ariaLabel: '5 Star', value: '5' },
+        { tooltip: 'Poor', ariaLabel: 'Poor 1 Star', value: '1' },
+        { tooltip: 'Below Average', ariaLabel: 'Below Average 2 Star', value: '2' },
+        { tooltip: 'Good', ariaLabel: 'Good 3 Star', value: '3' },
+        { tooltip: 'Very Good', ariaLabel: 'Very Good 4 Star', value: '4' },
+        { tooltip: 'Outstanding', ariaLabel: 'Outstanding 5 Star', value: '5' },
       ];
       const reviewCheckBoxes = await this.reviewFieldSet.all();
       const checkBoxes = await Promise.all(reviewCheckBoxes.map(async (el) => el));
