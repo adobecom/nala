@@ -8,7 +8,6 @@ export default class Marketo {
     this.lastName = this.marketo.locator('input[name="LastName"]');
     this.email = this.marketo.locator('input[name="Email"]');
     this.phone = this.marketo.locator('input[name="Phone"]');
-    // this.company = this.marketo.locator('#mktoFormsCompany_ignore');
     this.company = this.marketo.locator('input[name="mktoFormsCompany"]');
     this.functionalArea = this.marketo.locator('select[name="mktoFormsFunctionalArea"]');
     this.country = this.marketo.locator('select[name="Country"]');
@@ -17,21 +16,6 @@ export default class Marketo {
     this.jobTitle = this.marketo.locator('select[name="mktoFormsJobTitle"]');
     this.primaryProductInterest = this.marketo.locator('select[name="mktoFormsPrimaryProductInterest"]');
     this.submitButton = this.marketo.locator('#mktoButton_new');
-
-    // this.marketo = this.page.locator('.marketo');
-    // this.firstName = this.marketo.locator('#FirstName');
-    // this.lastName = this.marketo.locator('#LastName');
-    // this.email = this.marketo.locator('#Email');
-    // this.phone = this.marketo.locator('#Phone');
-    // // this.company = this.marketo.locator('#mktoFormsCompany_ignore');
-    // this.company = this.marketo.locator('input[name="mktoFormsCompany"]');
-    // this.functionalArea = this.marketo.locator('#mktoFormsFunctionalArea');
-    // this.country = this.marketo.locator('#Country');
-    // this.state = this.marketo.locator('#State');
-    // this.postalCode = this.marketo.locator('#PostalCode');
-    // this.jobTitle = this.marketo.locator('#mktoFormsJobTitle');
-    // this.primaryProductInterest = this.marketo.locator('#mktoFormsPrimaryProductInterest');
-    // this.submitButton = this.marketo.locator('#mktoButton_new');
   }
 
   /**
