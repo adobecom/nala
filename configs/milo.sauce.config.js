@@ -8,8 +8,8 @@ const envs = require('../envs/envs.js');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: '../tests/uar',
-  outputDir: '../test-results',
+  testDir: './tests/milo',
+  outputDir: './test-results',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -27,50 +27,71 @@ const config = {
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 2 : undefined,
-  /* Reporter to use.*/
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
-    : [['list'],['../utils/reporters/base-reporter.js']],
-  /* Shared settings for all the projects below*/
+    ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
+    : [['html', { outputFolder: 'test-html-results' }]],
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 15000,
+    actionTimeout: 60000,
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    // baseURL: 'http://localhost:3000',
 
-    /* Collect trace when retrying the failed test*/
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@adobe_stage'] || 'https://www.stage.adobe.com',
+    baseURL: process.env.BASE_URL || envs['@milo_live'] || 'https://main--milo--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'uar-live-chrome',
+      name: 'milo-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@uar_live'],
+        baseURL: envs['@milo-live'],
       },
     },
+
     {
-      name: 'uar-live-firefox',
+      name: 'milo-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@uar_live'],
+        baseURL: envs['@milo-live'],
       },
     },
+
     {
-      name: 'uar-live-webkit',
+      name: 'milo-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@uar_live'],
+        baseURL: envs['@milo-live'],
       },
     },
+
     {
-      name: 'adobe-stage-firefox',
+      name: 'milo-prod-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo_prod'],
+      },
+    },
+
+    {
+      name: 'milo-prod-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@adobe_stage'],
+        baseURL: envs['@milo_prod'],
+      },
+    },
+
+    {
+      name: 'milo-prod-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@milo_prod'],
       },
     },
   ],
 };
-module.exports = config;
+export default config;

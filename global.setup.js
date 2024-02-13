@@ -107,7 +107,7 @@ async function getLocalBranchLiveUrl() {
         let localTestLiveUrl;
 
         if (localRepo === 'nala' || localRepo === 'janus') {
-          localTestLiveUrl = MAIN_BRANCH_LIVE_URL;
+          localTestLiveUrl = process.env.FEATURE_BRANCH_LIVE_URL || MAIN_BRANCH_LIVE_URL;
         } else {
           localTestLiveUrl = LOCALHOST_URL;
         }

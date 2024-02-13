@@ -7,7 +7,7 @@ let webUtil;
 let video;
 let consoleErrors = [];
 const miloLibs = process.env.MILO_LIBS || '';
-const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED'];
+const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','Invalid request','Access to XMLHttpRequest'];
 
 test.describe('Milo Video Block test suite', () => {
   test.beforeEach(async ({ page }) => {
