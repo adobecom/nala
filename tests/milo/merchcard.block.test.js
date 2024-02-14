@@ -134,7 +134,7 @@ test.describe('Milo Modal feature test suite', () => {
       //await expect(await merchCard.sepcialOffersTitleH4).toContainText(data.titleH4);
       await expect(await merchCard.sepcialOffersTitleH3).toContainText(data.titleH3);
 
-      await expect(await merchCard.sepcialOffersDescription3).toContainText(data.description);
+      await expect(await merchCard.sepcialOffersDescription2).toContainText(data.description);
       await expect(await merchCard.seeTermsTextLink).toContainText(data.link1Text);
 
       await expect(await merchCard.footer).toBeVisible();
