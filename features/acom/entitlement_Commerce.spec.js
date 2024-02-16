@@ -18,7 +18,6 @@ module.exports = {
         TrialCTATitle: 'Free trial',
         DownloadUrl: 'download/photoshop',
       },
-      envs: '@milo_live',
       tags: '@smoke @regression @plans @milo',
     },
   ],
