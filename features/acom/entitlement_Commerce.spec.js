@@ -6,7 +6,6 @@ module.exports = {
       name: '@Upgrade-Sanity-Check',
       path: '/drafts/nala/features/commerce/checkout-links',
       data: { UpgradeCTATitle: 'Upgrade now' },
-      envs: '@milo_live',
       tags: '@smoke @regression @plans @milo',
     },
     {
