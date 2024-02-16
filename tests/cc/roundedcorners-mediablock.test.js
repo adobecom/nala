@@ -4,9 +4,11 @@ import { features } from '../../features/cc/roundedcorners-mediablock.spec.js';
 import Mediaroundcorners from '../../selectors/cc/roundedcorners-mediablock.page.js';
 
 let roundcorners;
+let webutilities;
 test.describe('verify media rounder corners features for media block and its images' , () =>  {
 test.beforeEach(async ({ page }) => {
 roundcorners = new Mediaroundcorners(page);
+webutilities = new WebUtil(page);
 });
 // test 4x corner style for image in media block
  test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
@@ -20,7 +22,7 @@ roundcorners = new Mediaroundcorners(page);
  await page.waitForLoadState();  
  expect (await roundcorners.mediaRoundedCornerImageGroup).toBeTruthy();
  expect (await roundcorners.image_SmallRoundedCorners).toBeTruthy();
- expect (await WebUtil.verifyCSS(roundcorners.image_SmallRoundedCorners, roundcorners.cssProperties['smallRoundedCorners'])).toBeTruthy();
+ expect (await webutilities.verifyCSS_(roundcorners.image_SmallRoundedCorners, roundcorners.cssProperties['smallRoundedCorners'])).toBeTruthy();
  });
  });
  // test medium 8x styling corner style for image in media block
@@ -35,7 +37,7 @@ roundcorners = new Mediaroundcorners(page);
  await page.waitForLoadState(); 
  expect (await roundcorners.mediaRoundedCornerImageGroup).toBeTruthy(); 
  expect (await roundcorners.image_MediumRoundedCorners).toBeTruthy();
- expect (await WebUtil.verifyCSS(roundcorners.image_MediumRoundedCorners, roundcorners.cssProperties['mediumRoundedCorners'])).toBeTruthy();
+ expect (await webutilities.verifyCSS_(roundcorners.image_MediumRoundedCorners, roundcorners.cssProperties['mediumRoundedCorners'])).toBeTruthy();
  });
  });
  // test large styling corner style for image in media block
@@ -50,7 +52,7 @@ roundcorners = new Mediaroundcorners(page);
  await page.waitForLoadState();  
  expect (await roundcorners.mediaRoundedCornerImageGroup).toBeTruthy();
  expect (await roundcorners.image_LargeRoundedCorners).toBeTruthy();
- expect (await WebUtil.verifyCSS(roundcorners.image_LargeRoundedCorners, roundcorners.cssProperties['largeRoundedCorners'])).toBeTruthy();
+ expect (await webutilities.verifyCSS_(roundcorners.image_LargeRoundedCorners, roundcorners.cssProperties['largeRoundedCorners'])).toBeTruthy();
  });
  });
  // test large styling corner style for media block
@@ -65,7 +67,7 @@ roundcorners = new Mediaroundcorners(page);
  await page.waitForLoadState();  
  expect (await roundcorners.mediaRoundedBlockGroup).toBeTruthy();
  expect (await roundcorners.firstMediaBlock).toBeTruthy();
- expect (await WebUtil.verifyCSS(roundcorners.firstMediaBlock, roundcorners.cssProperties['largeRoundedCorners'])).toBeTruthy();
+ expect (await webutilities.verifyCSS_(roundcorners.firstMediaBlock, roundcorners.cssProperties['largeRoundedCorners'])).toBeTruthy();
  });
  });
  // test medium corner style for media block and small corner style for image within block
@@ -80,8 +82,8 @@ roundcorners = new Mediaroundcorners(page);
  await page.waitForLoadState();  
  expect (await roundcorners.mediaRoundedBlockGroup).toBeTruthy();
  expect (await roundcorners.secondMediaBlock).toBeTruthy();
- expect (await WebUtil.verifyCSS(roundcorners.secondMediaBlock, roundcorners.cssProperties['mediumRoundedCorners'])).toBeTruthy();
- expect (await WebUtil.verifyCSS(roundcorners.imageWithInBlock, roundcorners.cssProperties['smallRoundedCorners'])).toBeTruthy();
+ expect (await webutilities.verifyCSS_(roundcorners.secondMediaBlock, roundcorners.cssProperties['mediumRoundedCorners'])).toBeTruthy();
+ expect (await webutilities.verifyCSS_(roundcorners.imageWithInBlock, roundcorners.cssProperties['smallRoundedCorners'])).toBeTruthy();
  });
  });
  // test full rounded style for block
@@ -95,7 +97,7 @@ roundcorners = new Mediaroundcorners(page);
  await test.step('full rounded coner style for block', async () => {
  await page.waitForLoadState();  
  expect (await roundcorners.fullRoundedCornersBlock).toBeTruthy();
- expect (await WebUtil.verifyCSS(roundcorners.fullRoundedcornerimage, roundcorners.cssProperties['fullRoundedCorners'])).toBeTruthy();
+ expect (await webutilities.verifyCSS_(roundcorners.fullRoundedcornerimage, roundcorners.cssProperties['fullRoundedCorners'])).toBeTruthy();
  });
  });
 });
