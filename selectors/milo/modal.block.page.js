@@ -8,23 +8,23 @@ export default class Modal {
     this.headingXL = this.page.locator('.heading-xl');
     this.bodyM = this.page.locator('.body-m').nth(2);
     this.modalCloseButton = this.modal.locator('.dialog-close');
-    this.dialogCloseButton = this.modal.locator('.dialog-close');
+    this.dialogCloseButton = this.modal.locator('.dialog-close').nth(0);
     this.marqueeLight = this.dialog.locator('.marquee.light');
     this.modelSelector = '.dialog-modal';
     
     // text block
-    this.textBlock = this.modal.locator('.text');
+    this.textBlock = this.modal.locator('.text').nth(0);
     this.textBlockHeading = this.textBlock.locator('h2');
     this.textBlockBodyM = this.textBlock.locator('.body-m');
 
     // media block
-    this.mediaBlock = this.modal.locator('.media');
+    this.mediaBlock = this.modal.locator('.media').nth(0);
     this.mediaBlockdetailM = this.mediaBlock.locator('.detail-m');
     this.mediaBlockTextHeading = this.mediaBlock.locator('h2');
     this.mediaBlockTextBodyS = this.mediaBlock.locator('.body-s').first();
 
     // video block
-    this.video = this.modal.locator('video');
+    this.video = this.modal.locator('video').nth(0);
 
     // modal contents attributes
     this.attributes = {
