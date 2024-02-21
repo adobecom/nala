@@ -24,25 +24,20 @@ test.describe('Header Block Test Suite', () => {
       await Header.mainNavContainer.waitFor({ state: 'visible', timeout: 5000 });
       // Check HEADER block content:
       await expect(Header.mainNavLogo).toBeVisible();
- 
-      //skipping the step for PR branch runs 
-      // working on better workaround soloution      
+      // !Note: Assertion currently skipped for PR branch runs.
       // await expect(Header.signInButton).toBeVisible();
     });
 
     await test.step('Check HEADER search component', async () => {
-      
-      // adding the below check to accommodate testing on consuming sites
       const isSearchIconVisible = await Header.searchIcon.isVisible();
       if (isSearchIconVisible) {
-          await test.step('Check HEADER search component', async () => {
-              await Header.openSearchBar();
-              await Header.closeSearchBar();
-          });
+        await test.step('Check HEADER search component', async () => {
+          await Header.openSearchBar();
+          await Header.closeSearchBar();
+        });
       } else {
-          console.info('Search icon is not visible, skipping the search component test.');
+        console.info('Search icon is not visible, skipping the search component test.');
       }
-
     });
 
     await test.step('Check HEADER block mega menu component', async () => {
