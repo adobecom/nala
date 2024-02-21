@@ -29,55 +29,46 @@ test.beforeAll(async ({ browser }) => {
   
 });
 
+const vpsTag = features[7].path;
 test.describe('Verify hidden Tablet and mobile and Desktop for video in Viewport specific container', () => {
 
   test(`${features[7].name}, ${features[7].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[7].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
 
-                // Wait for 1000 milliseconds
           await page.waitForTimeout(1000);
           await expect(vps.vpsForHiddenTabletMobileB26).not.toBeVisible();
           await expect(vps.linkForHiddenTabletMobileB26).not.toBeVisible();
   
           // Set viewport size for mobile
-          await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+          await page.setViewportSize({ width: 375, height: 812 }); 
           await expect(vps.vpsForHiddenTabletMobileB26).not.toBeVisible();
           await expect(vps.linkForHiddenTabletMobileB26).not.toBeVisible();
 
-          // Wait for 1000 milliseconds
           await page.waitForTimeout(1000);
-
           // Set viewport size for tablet
-          await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+          await page.setViewportSize({ width: 768, height: 1024 }); 
           await expect(vps.vpsForHiddenTabletMobileB26).not.toBeVisible();
           await expect(vps.linkForHiddenTabletMobileB26).not.toBeVisible();
-
-
-
   });
 });
 
 test.describe('Verify hidden desktop in Viewport specific container', () => {
 
   test(`${features[0].name}, ${features[0].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[0].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
-    await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
+    await page.setViewportSize({ width: 1280, height: 800 }); 
 
     //Hidden Desktop
     await expect(vps.vpsForHiddenDesktop).not.toBeVisible();
@@ -86,13 +77,13 @@ test.describe('Verify hidden desktop in Viewport specific container', () => {
 
        await page.waitForTimeout(1000);
       // Set viewport size for mobile
-      await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+      await page.setViewportSize({ width: 375, height: 812 }); 
       await expect(vps.vpsForHiddenDesktop).toBeVisible();
       
       
       await page.waitForTimeout(1000)
       // Set viewport size for tablet
-      await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+      await page.setViewportSize({ width: 768, height: 1024 }); 
       await expect(vps.vpsForHiddenDesktop).toBeVisible();
 
      
@@ -103,36 +94,29 @@ test.describe('Verify hidden desktop in Viewport specific container', () => {
 test.describe('Verify hidden tablet in Viewport specific container', () => {
 
   test(`${features[1].name}, ${features[1].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[1].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
     await page.waitForTimeout(1000);
-
-    await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
+    await page.setViewportSize({ width: 1280, height: 800 }); 
 
     //Hidden Desktop
     await expect(vps.vpsForHiddenTabletB4).toBeVisible();
     await expect(vps.vpsForImginHiddenTabletB4).toBeVisible();
 
-       await page.waitForTimeout(1000);
-      // Set viewport size for mobile
-      await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+      await page.waitForTimeout(1000);
+      await page.setViewportSize({ width: 375, height: 812 }); 
       await expect(vps.vpsForHiddenTabletB4).toBeVisible();
       
       
       await page.waitForTimeout(1000)
-      // Set viewport size for tablet
-      await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+      await page.setViewportSize({ width: 768, height: 1024 }); 
       await expect(vps.vpsForHiddenTabletB4).not.toBeVisible();
-      await expect(vps.vpsForHiddenTabletB4).toHaveCSS("display","none")
-
-     
+      await expect(vps.vpsForHiddenTabletB4).toHaveCSS("display","none")  
 
   });
 });
@@ -140,57 +124,47 @@ test.describe('Verify hidden tablet in Viewport specific container', () => {
 test.describe('Verify hidden mobile in Viewport specific container', () => {
 
   test(`${features[2].name}, ${features[2].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[2].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
     await page.waitForTimeout(1000);
-    await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
+    await page.setViewportSize({ width: 1280, height: 800 }); 
 
       // Hidden Mobile Assertions
       await expect(vps.vpsForHiddenMobileB6).toBeVisible();
       await expect(vps.vpsForImginHiddenMobileB6).toBeVisible();
 
-      // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Set viewport size for mobile
-      await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+      await page.setViewportSize({ width: 375, height: 812 }); 
       await expect(vps.vpsForHiddenMobileB6).not.toBeVisible();
       await expect(vps.vpsForHiddenMobileB6).toHaveCSS("display","none");
 
 
-      // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Set viewport size for tablet
-      await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+      await page.setViewportSize({ width: 768, height: 1024 }); 
       await expect(vps.vpsForHiddenMobileB6).toBeVisible();
-
-     
-
   });
 });
 
 test.describe('Verify hidden desktop and tablet in Viewport specific container', () => {
 
   test(`${features[3].name}, ${features[3].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[3].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
-    await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
-    // Wait for 1000 milliseconds
+    await page.setViewportSize({ width: 1280, height: 800 }); 
     await page.waitForTimeout(1000);
 
     // Hidden Desktop and Tablet Assertions
@@ -199,18 +173,16 @@ test.describe('Verify hidden desktop and tablet in Viewport specific container',
     await expect(vps.vpsForHiddenDesktopTabletB8).toHaveCSS("display", "none");
 
 
-    // Wait for 1000 milliseconds
     await page.waitForTimeout(1000);
 
     // Set viewport size for mobile
-    await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+    await page.setViewportSize({ width: 375, height: 812 }); 
     await expect(vps.vpsForHiddenDesktopTabletB8).toBeVisible();
 
-    // Wait for 1000 milliseconds
     await page.waitForTimeout(1000);
 
     // Set viewport size for tablet
-    await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+    await page.setViewportSize({ width: 768, height: 1024 }); 
     await expect(vps.vpsForHiddenDesktopTabletB8).not.toBeVisible();
     await expect(vps.vpsForHiddenDesktopTabletB8).toHaveCSS("display", "none");
 
@@ -221,18 +193,15 @@ test.describe('Verify hidden desktop and tablet in Viewport specific container',
 test.describe('Verify hidden desktop and mobile in Viewport specific container', () => {
 
   test(`${features[4].name}, ${features[4].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[4].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
-    await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
+    await page.setViewportSize({ width: 1280, height: 800 }); 
   
-    // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Hidden Desktop and Mobile Assertions
@@ -240,19 +209,17 @@ test.describe('Verify hidden desktop and mobile in Viewport specific container',
       await expect(vps.vpsForImginHiddenDesktopMobileB10).not.toBeVisible();
 
 
-      // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Set viewport size for mobile
-      await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+      await page.setViewportSize({ width: 375, height: 812 }); 
       await expect(vps.vpsForHiddenDesktopMobileB10).not.toBeVisible();
       await expect(vps.vpsForHiddenDesktopMobileB10).toHaveCSS("display", "none");
 
-      // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Set viewport size for tablet
-      await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+      await page.setViewportSize({ width: 768, height: 1024 }); 
       await expect(vps.vpsForHiddenDesktopMobileB10).toBeVisible();
 
   });
@@ -261,37 +228,32 @@ test.describe('Verify hidden desktop and mobile in Viewport specific container',
 test.describe('Verify hidden Tablet and mobile in Viewport specific container', () => {
 
   test(`${features[5].name}, ${features[5].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[5].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
-    await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
+    await page.setViewportSize({ width: 1280, height: 800 }); 
 
-      // Wait for 1000 milliseconds
         await page.waitForTimeout(1000);
 
         // Hidden Tablet and Mobile Assertions
         await expect(vps.vpsForHiddenTabletMobileB12).toBeVisible();
         await expect(vps.vpsForImginHiddenTabletMobileB12).toBeVisible();
 
-        // Wait for 1000 milliseconds
-        await page.waitForTimeout(1000);
+          await page.waitForTimeout(1000);
 
         // Set viewport size for mobile
-        await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+        await page.setViewportSize({ width: 375, height: 812 }); 
         await expect(vps.vpsForHiddenTabletMobileB12).not.toBeVisible();
         await expect(vps.vpsForHiddenTabletMobileB12).toHaveCSS("display", "none");
 
-        // Wait for 1000 milliseconds
-        await page.waitForTimeout(1000);
+          await page.waitForTimeout(1000);
 
         // Set viewport size for tablet
-        await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+        await page.setViewportSize({ width: 768, height: 1024 }); 
         await expect(vps.vpsForHiddenTabletMobileB12).not.toBeVisible();
         await expect(vps.vpsForHiddenTabletMobileB12).toHaveCSS("display", "none");
 
@@ -301,39 +263,34 @@ test.describe('Verify hidden Tablet and mobile in Viewport specific container', 
 test.describe('Verify hidden Tablet and mobile and Desktop in Viewport specific container', () => {
 
   test(`${features[6].name}, ${features[6].tags}`, async ({ baseURL }) => {
-    let vpsTag = features[6].path;
-    await page.goto(`${helpxconfig.use?.baseURL}${vpsTag}`);
+    await page.goto(`${baseURL}${vpsTag}`);
     await page.waitForLoadState('domcontentloaded');
     console.log(`[Test Page]: ${baseURL}${vpsTag}`);
-    //I verify url of the page
     await test.step('Navigate to Viewport specific container page', async () => {
       await expect(page).toHaveURL(`${baseURL}${vpsTag}`);
     });
 
 
-    await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
+    await page.setViewportSize({ width: 1280, height: 800 }); 
 
-      // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Set viewport size for mobile
-      await page.setViewportSize({ width: 375, height: 812 }); // iPhone X viewport size
+      await page.setViewportSize({ width: 375, height: 812 }); 
       await expect(vps.vpsForHiddenTabletMobileDesktopB14).not.toBeVisible();
       await expect(vps.vpsForHiddenTabletMobileDesktopB14).toHaveCSS("display", "none");
 
-      // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Set viewport size for tablet
-      await page.setViewportSize({ width: 768, height: 1024 }); // iPad viewport size
+      await page.setViewportSize({ width: 768, height: 1024 }); 
       await expect(vps.vpsForHiddenTabletMobileDesktopB14).not.toBeVisible();
       await expect(vps.vpsForHiddenTabletMobileDesktopB14).toHaveCSS("display", "none");
 
-      // Wait for 1000 milliseconds
       await page.waitForTimeout(1000);
 
       // Set viewport size for desktop
-      await page.setViewportSize({ width: 1280, height: 800 }); // Typical desktop viewport size
+      await page.setViewportSize({ width: 1280, height: 800 }); 
       await expect(vps.vpsForHiddenTabletMobileDesktopB14).not.toBeVisible();
       await expect(vps.vpsForHiddenTabletMobileDesktopB14).toHaveCSS("display", "none");
     
