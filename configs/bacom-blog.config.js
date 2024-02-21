@@ -46,74 +46,45 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'bacom-live-chrome',
+      name: 'bacomblog-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_live'],
+        baseURL: envs['@bacomblog_live'],
       },
     },
-
     {
-      name: 'bacom-live-firefox',
+      name: 'bacomblog-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_live'],
+        baseURL: envs['@bacomblog_live'],
       },
     },
-
     {
-      name: 'bacom-live-webkit',
+      name: 'bacomblog-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_live'],
+        baseURL: envs['@bacomblog_live'],
       },
     },
-
     {
-      name: 'bacom-stage-chrome',
+      name: 'bacomblog-prod-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_stage'],
+        baseURL: envs['@bacomblog_prod'],
       },
     },
-
     {
-      name: 'bacom-stage-firefox',
+      name: 'bacomblog-prod-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_stage'],
+        baseURL: envs['@bacomblog_prod'],
       },
     },
-
     {
-      name: 'bacom-stage-webkit',
+      name: 'bacomblog-prod-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_prod'],
+        baseURL: envs['@bacomblog_prod'],
       },
     },
   ],
