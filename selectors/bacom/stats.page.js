@@ -1,4 +1,4 @@
-exports.Stats = class Stats {
+export default class Stats {
   constructor(page) {
     this.page = page;
     this.statsLink = page.locator('.stat > div > p > strong > a');
@@ -18,4 +18,4 @@ exports.Stats = class Stats {
   async clickSolutionsLink() {
     await this.solutionsLink.click();
   }
-};
+}
