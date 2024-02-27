@@ -100,7 +100,7 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await merchCard.sepcialOffers).toBeVisible();
       await expect(await merchCard.sepcialOffersImage).toBeVisible();
 
-      //await expect(await merchCard.sepcialOffersTitleH4).toBeVisible();
+      await expect(await merchCard.sepcialOffersTitleH4).toBeVisible();
       await expect(await merchCard.sepcialOffersTitleH4).toContainText(data.titleH4);
       await expect(await merchCard.sepcialOffersTitleH3).toContainText(data.titleH3);
 
@@ -131,10 +131,10 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await merchCard.sepcialOffersRibbon).toBeVisible();
       await expect(await merchCard.sepcialOffersRibbon).toContainText(data.badgeText);
 
-      //await expect(await merchCard.sepcialOffersTitleH4).toContainText(data.titleH4);
       await expect(await merchCard.sepcialOffersTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.sepcialOffersTitleH4).toContainText(data.titleH4);
 
-      await expect(await merchCard.sepcialOffersDescription2).toContainText(data.description);
+      await expect(await merchCard.sepcialOffersDescription1).toContainText(data.description);
       await expect(await merchCard.seeTermsTextLink).toContainText(data.link1Text);
 
       await expect(await merchCard.footer).toBeVisible();
@@ -170,7 +170,7 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await merchCard.plansCardTitleH5).toContainText(data.titleH5);
 
       //await expect(await merchCard.price).toContainText(data.price);
-      await expect(await merchCard.plansCardDescription2).toContainText(data.description);
+      await expect(await merchCard.plansCardDescription1).toContainText(data.description);
       await expect(await merchCard.seePlansTextLink).toContainText(data.link1Text);
 
       await expect(await merchCard.footer).toBeVisible();
@@ -199,7 +199,7 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await merchCard.plansRibbon).toContainText(data.badgeText);      
 
       await expect(await merchCard.plansCardTitleH3).toContainText(data.titleH3);      
-      await expect(await merchCard.plansCardTitleH5).toContainText(data.titleH5);
+      await expect(await merchCard.plansCardTitleH4).toContainText(data.titleH4);
 
       //await expect(await merchCard.price).toContainText(data.price);
       await expect(await merchCard.plansCardDescription2).toContainText(data.description);

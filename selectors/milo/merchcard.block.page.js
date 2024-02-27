@@ -37,13 +37,12 @@ export default class Merchcard {
     // merch-card special offers
     this.sepcialOffersImage = this.sepcialOffers.locator('div[slot="bg-image"] img');
     this.sepcialOffersRibbon = this.merchCard.locator('.special-offers-badge');
-    this.sepcialOffersTitleH4 = this.sepcialOffers.locator('h5[slot="detail-m"]');
-    this.sepcialOffersTitleH5 = this.sepcialOffers.locator('h4[slot="body-xss"]');
-    this.sepcialOffersTitleH3 = this.sepcialOffers.locator('h3[slot="heading-xs"]');
+    this.sepcialOffersTitleH4 = this.sepcialOffers.locator('h4[slot="heading-xs"]');
+    this.sepcialOffersTitleH5 = this.sepcialOffers.locator('h5[slot="body-xs"]');
+    this.sepcialOffersTitleH3 = this.sepcialOffers.locator('h3[slot="detail-m"]');
 
     this.sepcialOffersDescription1 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(1);
     this.sepcialOffersDescription2 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(2);
-
     this.sepcialOffersDescription3 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(3);
     this.sepcialOffersLinkText3 = this.sepcialOffersDescription3.locator('a').nth(0);
 
@@ -54,7 +53,9 @@ export default class Merchcard {
     this.productIcon = this.plans.locator('img');
     this.plansRibbon = this.plans.locator('.plans-badge');
     this.plansCardTitleH3 = this.plans.locator('h3[slot="heading-xs"]');
-    this.plansCardTitleH5 = this.plans.locator('h5[slot="detail-m"]');
+    this.plansCardTitleH4 = this.plans.locator('h4[slot="body-xxs"]');
+    this.plansCardTitleH5 = this.plans.locator('h5[slot="body-xxs"]');
+    this.plansCardDescription1 = this.plans.locator('div[slot="body-xs"] p').nth(1);
     this.plansCardDescription2 = this.plans.locator('div[slot="body-xs"] p').nth(2);
     this.seePlansTextLink = this.merchCard.locator('a:has-text("See plan & pricing details")');
 
