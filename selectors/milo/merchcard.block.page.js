@@ -49,7 +49,6 @@ export default class Merchcard {
     this.seeTermsTextLink = this.merchCard.locator('a:has-text("See terms")');
 
     // merch-card plans locators
-    //this.productIcon = this.plans.locator('#shadow-root div.icons');
     this.productIcon = this.plans.locator('img');
     this.plansRibbon = this.plans.locator('.plans-badge');
     this.plansCardTitleH3 = this.plans.locator('h3[slot="heading-xs"]');
@@ -59,7 +58,7 @@ export default class Merchcard {
     this.plansCardDescription2 = this.plans.locator('div[slot="body-xs"] p').nth(2);
     this.seePlansTextLink = this.merchCard.locator('a:has-text("See plan & pricing details")');
 
-    // merch-card catalog 
+    // merch-card catalog
     this.catalogProductIcon = this.catalog.locator('#shadow-root div.icons');
     this.catalogRibbon = this.catalog.locator('.catalog-badge');
     this.catalogActionMenu = this.catalog.locator('div[slot="action-menu-content"]');
@@ -69,7 +68,7 @@ export default class Merchcard {
     this.catalogActionMenuPText3 = this.catalogActionMenu.locator('p').nth(2);
     this.catalogActionMenuPText4 = this.catalogActionMenu.locator('p').nth(3);
     this.catalogActionMenuPText5 = this.catalogActionMenu.locator('p ').nth(4);
-    this.systemRequirementTextLink = this.merchCard.locator('a:has-text("See system requirements")');  
+    this.systemRequirementTextLink = this.merchCard.locator('a:has-text("See system requirements")');
 
     this.catalogCardTitleH3 = this.catalog.locator('h3[slot="heading-xs"]');
     this.catalogCardTitleH4 = this.catalog.locator('h4[slot="body-xxs"]');
@@ -77,29 +76,22 @@ export default class Merchcard {
     this.seeWhatsIncludedTextLink = this.merchCard.locator('a:has-text("See what’s included")');
     this.learnMoreTextLink = this.merchCard.locator('a:has-text("Learn more")');
 
-    
     // merch-card footer sections
-    this.footer = this.merchCard.locator('div[slot="footer"]');  
+    this.footer = this.merchCard.locator('div[slot="footer"]');
     this.footerCheckbox = this.page.locator('#stock-checkbox input[type="checkbox"]');
     this.footerCheckboxLabel = this.merchCard.locator('#stock-checkbox');
     this.secureTransactionIcon = this.merchCard.locator('.secure-transaction-icon');
     this.secureTransactionLabel = this.merchCard.locator('.secure-transaction-label');
     this.footerOutlineButton = this.merchCard.locator('a.con-button.outline');
-    this.footerOutlineButton2 = this.merchCard.locator('a.con-button.outline').nth(1); 
+    this.footerOutlineButton2 = this.merchCard.locator('a.con-button.outline').nth(1);
     this.footerBlueButton = this.merchCard.locator('a.con-button.blue').nth(0);
     this.footerBlueButton2 = this.merchCard.locator('a.con-button.blue').nth(1);
 
     // merch-card attributes
     this.attributes = {
-      'segmentRibbon': {
-        'style': /background-color:\s*#EDCC2D;\s*color:\s*#000000;\s*/,
-      },
-      'specialOfferRibbon': {
-        'style': /background-color:\s* #F68D2E;\s*color:\s*#000000;\s*/,
-      },
-      'plansRibbon': {
-        'style': /background-color:\s*#EDCC2D;\s*color:\s*#000000;\s*/,
-      },
+      segmentRibbon: { style: /background-color:\s*#EDCC2D;\s*color:\s*#000000;\s*/ },
+      specialOfferRibbon: { style: /background-color:\s* #F68D2E;\s*color:\s*#000000;\s*/ },
+      plansRibbon: { style: /background-color:\s*#EDCC2D;\s*color:\s*#000000;\s*/ },
     };
   }
 }
