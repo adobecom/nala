@@ -2,7 +2,6 @@
 /* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import { buildTestData } from '../../data/uar/quiz/uar.js';
-import QuizOldPage from '../../selectors/uar/quiz.old.page.js';
 import Quiz from '../../selectors/uar/quiz.page.js';
 
 const QuizSpec = require('../../features/uar/quiz.dynamic.spec.js');
@@ -30,22 +29,13 @@ test.describe('Quiz flow test suite', () => {
           testdata = testdata.sort(() => 0.5 - Math.random()).slice(0, 20);
         }
 
-        for (let key of testdata) {
+        for (const key of testdata) {
           console.log(key);
           let oldProduct = '';
           let newProduct = '';
 
-          if (key.includes('PDFs > Edit quickly')) {
-            // eslint-disable-next-line no-continue
-            continue;
-          }
-
-          if (key.includes('PDFs > Take the time to control')) {
-            key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
-          }
-
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
-            await quizOldPage.clickEachAnswer('https://www.stage.adobe.com/creativecloud/plan-recommender/quiz.html', key);
+            await quizOldPage.clickEachAnswer(`https://stage--milo--adobecom.hlx.live${feature.path}`, key);
           });
 
           await test.step('Old: Check results on test page', async () => {

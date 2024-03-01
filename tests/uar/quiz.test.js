@@ -3,7 +3,6 @@
 /* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import Quiz from '../../selectors/uar/quiz.page.js';
-import QuizOldPage from '../../selectors/uar/quiz.old.page.js';
 
 const QuizSpec = require('../../features/uar/quiz.spec.js');
 
@@ -18,7 +17,7 @@ test.describe('Quiz flow test suite', () => {
       `${feature.name}, ${feature.tags}`,
       async ({ page, baseURL }) => {
         const quiz = new Quiz(page);
-        const quizOldPage = new QuizOldPage(page);
+        const quizOldPage = new Quiz(page);
         const url = `${baseURL}${feature.path}`;
         console.info(url);
 
@@ -33,7 +32,7 @@ test.describe('Quiz flow test suite', () => {
           let newProduct = '';
           keyNumber += 1;
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
-            await quizOldPage.clickEachAnswer('https://www.adobe.com/creativecloud/quiz-recommender.html', key, keyNumber, false);
+            await quizOldPage.clickEachAnswer(`https://stage--milo--adobecom.hlx.live${feature.path}`, key, keyNumber, false);
           });
 
           await test.step('Old: Check results on test page', async () => {
