@@ -32,11 +32,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(
-      browserName === 'firefox',
-      "There's an issue with company being cleared on firefox after selecting a country.",
-    );
+  test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[1].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -93,11 +89,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(
-      browserName === 'firefox',
-      "There's an issue with company being cleared on firefox after selecting a country.",
-    );
+  test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[4].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -116,11 +108,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(
-      browserName === 'firefox',
-      "There's an issue with company being cleared on firefox after selecting a country.",
-    );
+  test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[5].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -139,11 +127,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(
-      browserName === 'firefox',
-      "There's an issue with company being cleared on firefox after selecting a country.",
-    );
+  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[6].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
