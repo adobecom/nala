@@ -15,17 +15,7 @@
     "test.sauce.us": "saucectl run --region us-west-1",
     "test.sauce.eu": "saucectl run",
     "postinstall": "npm update browserstack-node-sdk",
-    "test:browserstack": "npx browserstack-node-sdk playwright test",
-    "test:bstack-acom": "npx browserstack-node-sdk playwright test --config='./configs/acom.config.js'",
-    "test:bstack-bacom-blog": "npx browserstack-node-sdk playwright test --config='./configs/bacom-blog.config.js'",
-    "test:bstack-bacom": "npx browserstack-node-sdk playwright test --config='./configs/bacom.config.js'",
-    "test:bstack-blog": "npx browserstack-node-sdk playwright test --config='./configs/blog.config.js'",
-    "test:bstack-cc": "npx browserstack-node-sdk playwright test --config='./configs/cc.config.js'",
-    "test:bstack-dc": "npx browserstack-node-sdk playwright test --config='./configs/dc.config.js'",
-    "test:bstack-feds": "npx browserstack-node-sdk playwright test --config='./configs/feds.config.js'",
-    "test:bstack-helpx": "npx browserstack-node-sdk playwright test --config='./configs/helpx.config.js'",
-    "test:bstack-milo": "npx browserstack-node-sdk playwright test --config='./configs/milo.config.js'",
-    "test:bstack-uar": "npx browserstack-node-sdk playwright test --config='./configs/uar.config.js'"
+    "test:bstack": "npx browserstack-node-sdk playwright test"
   },
   "repository": {
     "type": "git",
