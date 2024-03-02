@@ -33,20 +33,20 @@ test.describe('Quiz flow test suite', () => {
           let newProduct = '';
           keyNumber += 1;
 
-          await test.step(`Stage: Select each answer on test page according to ${key}`, async () => {
-            await quizOldPage.clickEachAnswer(`${envs['@milo_stage']}${feature.path}`, key, keyNumber, 'stage', true);
+          await test.step(`Stable: Select each answer on test page according to ${key}`, async () => {
+            await quizOldPage.clickEachAnswer(`${envs['@milo_stage']}${feature.path}`, key, keyNumber, 'stable', true);
           });
 
-          await test.step('Stage: Check results on test page', async () => {
-            oldProduct = await quizOldPage.checkResultPage(testdata[key], key, keyNumber, 'stage', true);
+          await test.step('Stable: Check results on test page', async () => {
+            oldProduct = await quizOldPage.checkResultPage(testdata[key], key, keyNumber, 'stable', true);
           });
 
-          await test.step(`New: Select each answer on test page according to ${key}`, async () => {
-            await quiz.clickEachAnswer(url, key, keyNumber, 'new', true);
+          await test.step(`Beta: Select each answer on test page according to ${key}`, async () => {
+            await quiz.clickEachAnswer(url, key, keyNumber, 'beta', true);
           });
 
-          await test.step('New: Check results on test page', async () => {
-            newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, 'new', true);
+          await test.step('Beta: Check results on test page', async () => {
+            newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, 'beta', true);
           });
 
           expect.soft(oldProduct).toContain(newProduct);
