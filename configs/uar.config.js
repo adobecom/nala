@@ -71,6 +71,13 @@ const config = {
         baseURL: envs['@adobe_stage'],
       },
     },
+    {
+      name: 'milo-stage-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@milo_stage'],
+      },
+    },
   ],
 };
 module.exports = config;
