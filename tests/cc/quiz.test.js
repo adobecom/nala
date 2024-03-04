@@ -57,7 +57,7 @@ test.describe('Quiz flow test suite', () => {
             newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, false);
           });
 
-          expect.soft(newProduct.replaceAll('[', '').replaceAll(']', '')).toContain(oldProduct.replaceAll('[', '').replaceAll(']', ''));
+          expect.soft(newProduct.replace(/[[\]]/g, '')).toContain(oldProduct.replace(/[[\]]/g, ''));
         }
       },
     );
