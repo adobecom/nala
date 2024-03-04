@@ -27,7 +27,7 @@ test.describe('Quiz flow test suite', () => {
 
         let keyNumber = 0;
 
-        for (let key of Object.keys(testdata)) {
+        for (const key of Object.keys(testdata)) {
           console.log(key);
           let oldProduct = '';
           let newProduct = '';

@@ -43,7 +43,6 @@ test.describe('Quiz flow test suite', () => {
             key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
           }
 
-
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
             await quizOldPage.clickEachAnswer(url, key);
           });
