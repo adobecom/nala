@@ -30,7 +30,7 @@ module.exports = {
       data: 'data/uar/quiz/quiz-triple-template.yml',
     },
     {
-      tcid: '3',
+      tcid: '4',
       name: '@quiz single flagship photo',
       path: '/creativecloud/plan-recommender/quiz',
       tags: '@cc @uar-quiz-single-flagship-photo @uar-quiz-static',
