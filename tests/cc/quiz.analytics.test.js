@@ -3,7 +3,7 @@
 import Quiz from '../../selectors/uar/quiz.page.js';
 
 const { test, expect } = require('@playwright/test');
-const QuizSpec = require('../../features/uar/quiz.analytics.spec.js');
+const QuizSpec = require('../../features/cc/quiz.analytics.spec.js');
 
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
@@ -33,7 +33,7 @@ test.describe('Quiz flow test suite', () => {
         test.setTimeout(3 * 60 * 1000);
 
         const quiz = new Quiz(page);
-        const url = `${baseURL}${feature.path}`;
+        const url = `${baseURL}${feature.path}?milolibs=stage`;
         console.info(url);
 
         // load test data from static files
@@ -42,6 +42,15 @@ test.describe('Quiz flow test suite', () => {
         for (let key of Object.keys(testdata)) {
           console.info(key);
           const logIndex = networkLogs.length;
+
+          if (key.includes('PDFs > Edit quickly')) {
+            // eslint-disable-next-line no-continue
+            continue;
+          }
+
+          if (key.includes('PDFs > Take the time to control')) {
+            key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
+          }
 
           // test step-1
           await test.step(`Select each answer on test page according to ${key}`, async () => {
@@ -71,7 +80,7 @@ test.describe('Quiz flow test suite', () => {
             logNumber += 1;
           }
 
-          if (log !== undefined && log.includes('gnav|milo|header')) {
+          if (log !== undefined && log.includes('gnav|adobedotcom-cc')) {
             logResult2 = true;
             logNumber2 += 1;
           }

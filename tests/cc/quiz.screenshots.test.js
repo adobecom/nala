@@ -19,7 +19,7 @@ test.describe('Quiz flow test suite', () => {
         const betaPage = new Quiz(page);
         const stableURL = `${envs[feature.stable]}${feature.path}`;
         console.info(stableURL);
-        const betaURL = `${envs[feature.beta]}${feature.path}`;
+        const betaURL = `${envs[feature.beta]}${feature.path}?milolibs=stage`;
         console.info(betaURL);
 
         // load test data from static files
@@ -67,7 +67,7 @@ test.describe('Quiz flow test suite', () => {
 
           WebUtil.compareScreenshots(stableProductScreenshots, betaProductScreenshots, 'screenshots/uar');
 
-          // expect.soft(betaProduct).toContain(stableProduct);
+          expect.soft(betaProduct.replace(/[[\]]/g, '')).toContain(stableProduct.replace(/[[\]]/g, ''));
         }
       },
     );
