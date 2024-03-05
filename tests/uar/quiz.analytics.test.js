@@ -39,7 +39,7 @@ test.describe('Quiz flow test suite', () => {
         // load test data from static files
         const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
-        for (let key of Object.keys(testdata)) {
+        for (const key of Object.keys(testdata)) {
           console.info(key);
           const logIndex = networkLogs.length;
 
