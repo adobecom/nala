@@ -7,6 +7,6 @@ export default class EntitlementCommerce {
     this.ccAllAppsCTA = page.locator('//*[contains(@daa-ll,"CC All Apps")]');
     this.photoshopBuyCTA = page.locator('//*[contains(@daa-ll,"Buy now-1--Photoshop")]');
     this.photoshopFreeCTA = page.locator('//*[contains(@daa-ll,"Free trial-2--Photoshop")]');
-    this.switchModalIframe = page.locator('#upgrade-modal > iframe');
+    this.switchModalIframe = page.locator('#switch-modal > div > iframe');
   }
 }
