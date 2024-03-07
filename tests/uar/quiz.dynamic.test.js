@@ -26,7 +26,7 @@ test.describe('Quiz flow test suite', () => {
 
         let testdata = buildTestData(originalData, feature.name);
 
-        if (feature.name.includes('triple flagship')) {
+        if (feature.name.includes('triple flagship') || feature.name.includes('double 3D') || feature.name.includes('triple 3D')) {
           testdata = testdata.sort(() => 0.5 - Math.random()).slice(0, 20);
         }
 
