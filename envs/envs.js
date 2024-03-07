@@ -1,6 +1,7 @@
 module.exports = {
   '@milo_live': 'https://main--milo--adobecom.hlx.live',
   '@milo_prod': 'https://milo.adobe.com',
+  '@milo_stage': 'https://stage--milo--adobecom.hlx.live',
   '@feds_live': 'https://gnav--milo--adobecom.hlx.live',
   '@stock_live': 'https://main--stock--adobecom.hlx.live',
   '@adobestock_live': 'https://main--adobestock--adobecom.hlx.live',

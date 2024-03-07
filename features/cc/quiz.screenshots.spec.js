@@ -5,7 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@quiz screenshots',
       path: '/creativecloud/plan-recommender/quiz',
-      stable: '@adobe_stage',
+      stable: '@cc_live',
       beta: '@cc_live',
       tags: '@cc @uar-quiz-screenshots @uar-quiz-static',
       data: 'data/cc/quiz/quiz-basic.yml',
