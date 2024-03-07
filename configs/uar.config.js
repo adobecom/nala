@@ -78,6 +78,27 @@ const config = {
         baseURL: envs['@milo_stage'],
       },
     },
+    {
+      name: 'milo-live-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    {
+      name: 'milo-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    {
+      name: 'milo-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@milo_live'],
+      },
+    },
   ],
 };
 module.exports = config;
