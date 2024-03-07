@@ -46,7 +46,7 @@ platforms:
   - os: OS X
     osVersion: Sonoma
     browserName: Chrome
-    browserVersion: latest
+    browserVersion: 121.0
   - os: OS X
     osVersion: Sonoma
     browserName: playwright-firefox
