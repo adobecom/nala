@@ -41,7 +41,7 @@ platforms:
     browserVersion: latest
   - os: OS X
     osVersion: Sonoma
-    browserName: playwright-webkit
+    browserName: playwright-chromium
     browserVersion: latest
   - os: OS X
     osVersion: Sonoma
@@ -49,7 +49,7 @@ platforms:
     browserVersion: latest
   - os: OS X
     osVersion: Sonoma
-    browserName: playwright-chromium
+    browserName: playwright-webkit
     browserVersion: latest
 
 # =======================
