@@ -13,7 +13,9 @@
     "test:firefox-headless": "playwright test --project=firefox",
     "test:safari-headless": "playwright test --project=webkit",
     "test.sauce.us": "saucectl run --region us-west-1",
-    "test.sauce.eu": "saucectl run"
+    "test.sauce.eu": "saucectl run",
+    "postinstall": "npm update browserstack-node-sdk",
+    "test:bstack": "npx browserstack-node-sdk playwright test"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@babel/core": "7.21.3",
     "@babel/eslint-parser": "7.21.3",
+    "browserstack-node-sdk": "^1.31.24",
     "eslint": "8.37.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",
