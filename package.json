@@ -13,8 +13,7 @@
     "test:firefox-headless": "playwright test --project=firefox",
     "test:safari-headless": "playwright test --project=webkit",
     "test.sauce.us": "saucectl run --region us-west-1",
-    "test.sauce.eu": "saucectl run",
-    "test:bstack": "npx browserstack-node-sdk playwright test"
+    "test.sauce.eu": "saucectl run"
   },
   "repository": {
     "type": "git",
@@ -32,7 +31,6 @@
     "@playwright/test": "^1.42",
     "axe-html-reporter": "^2.2.3",
     "axios": "^1.6.5",
-    "browserstack-node-sdk": "^1.31.25",
     "css": "^3.0.0",
     "js-yaml": "^4.1.0"
   },
