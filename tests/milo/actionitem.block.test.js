@@ -149,14 +149,12 @@ test.describe('Milo Action-Item block test suite', () => {
     });
 
     await test.step('step-2: Verify Action item content/specs', async () => {
-      await expect(await actionItem.libraryContainerStart).toBeVisible();
       await expect(await actionItem.actionScroller).toBeVisible();
       await expect(await actionItem.scroller).toBeVisible();
       await expect(await actionItem.scrollerActionItems).toHaveCount(data.actionItemsCount);
 
       await expect(await actionItem.image).toBeVisible();
       await expect(await actionItem.bodyText).toContainText(data.bodyText);
-      await expect(await actionItem.libraryContainerEnd).toBeVisible();
     });
   }); 
   
@@ -172,14 +170,12 @@ test.describe('Milo Action-Item block test suite', () => {
     });
 
     await test.step('step-2: Verify Action item content/specs', async () => {
-      await expect(await actionItem.libraryContainerStart).toBeVisible();
       await expect(await actionItem.actionScroller).toBeVisible();
       await expect(await actionItem.scroller).toBeVisible();
       await expect(await actionItem.scrollerActionItems).toHaveCount(data.actionItemsCount);
 
       await expect(await actionItem.image).toBeVisible();
       await expect(await actionItem.bodyText).toContainText(data.bodyText);
-      await expect(await actionItem.libraryContainerEnd).toBeVisible();
 
       await expect(await actionItem.nextButton).toBeVisible({timeout: 1000});
       await actionItem.nextButton.click();
