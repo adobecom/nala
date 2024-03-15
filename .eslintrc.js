@@ -20,6 +20,7 @@ module.exports = {
       ImportDeclaration: { multiline: true, minProperties: 6 },
       ExportDeclaration: { multiline: true, minProperties: 6 },
     }],
+    'max-len': ['error', 120],
   },
   ignorePatterns: [],
 };
