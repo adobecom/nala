@@ -52,7 +52,6 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
     {
       name: 'bacom-live-firefox',
       use: {
@@ -60,7 +59,6 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
     {
       name: 'bacom-live-webkit',
       use: {
@@ -68,54 +66,27 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
-    {
-      name: 'bacom-stage-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-stage-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-stage-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
+    // {
+    //   name: 'bacom-prod-chrome',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
+    // {
+    //   name: 'bacom-prod-firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
+    // {
+    //   name: 'bacom-prod-webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
   ],
 };
 module.exports = config;
