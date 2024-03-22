@@ -123,8 +123,20 @@ export default class Quiz {
   async checkResultPage(name, originalAnswer, keyNumber, version, isScreenshot = false, folderPath = 'screenshots/uar') {
     const newProduct = [];
 
-    const actualProduct = await this.uarResult.nth(0);
-    const text = await actualProduct.innerText();
+    let currentUrl = await this.page.url();
+
+    let actualProduct = await this.uarResult.nth(0);
+    let text = await actualProduct.innerText();
+
+    if (currentUrl.includes('milolibs=stage')) {
+      currentUrl = await this.page.url();
+      await this.page.goto(`${currentUrl}&milolibs=stage`);
+      actualProduct = await this.uarResult.nth(0);
+      text = await actualProduct.innerText();
+    }
+
+    currentUrl = await this.page.url();
+    console.info(`currentUrl: ${currentUrl}`);
 
     if (text.includes('We think you\'ll love')) {
       if (name.includes('3D')) {

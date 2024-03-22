@@ -1,6 +1,6 @@
 import { sendSlackMessage } from '../../libs/slack.js';
 
-// Playwright will include ANSI color characters and regex from below 
+// Playwright will include ANSI color characters and regex from below
 // https://github.com/microsoft/playwright/issues/13522
 // https://github.com/chalk/ansi-regex/blob/main/index.js#L3
 
@@ -11,7 +11,7 @@ const pattern = [
 
 const ansiRegex = new RegExp(pattern, 'g');
 
-// limit failed status 
+// limit failed status
 const failedStatus = ['failed', 'flaky', 'timedOut', 'interrupted'];
 
 function stripAnsi(str) {
@@ -34,8 +34,8 @@ class BaseReporter {
 
   }
 
-  async onTestEnd(test, result) {    
-    const { title, retries, _projectId } = test;    
+  async onTestEnd(test, result) {
+    const { title, retries, _projectId } = test;
     const { name, tags, url, browser, env, branch, repo} = this.parseTestTitle(title, _projectId);
     const {
       status,
@@ -43,7 +43,7 @@ class BaseReporter {
       error: { message: errorMessage, value: errorValue, stack: errorStack } = {},
       retry,
     } = result;
-  
+
     if (retry < retries && status === 'failed') {
       return;
     }
@@ -52,7 +52,7 @@ class BaseReporter {
       name,
       tags,
       url,
-      env,      
+      env,
       browser,
       branch,
       repo,
@@ -86,10 +86,10 @@ class BaseReporter {
       } catch (error){
         console.log('----Failed to publish result to slack channel----');
       }
-    }   
+    }
   }
 
-  printResultSummary() {  
+  printResultSummary() {
     const totalTests = this.results.length;
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
@@ -99,19 +99,19 @@ class BaseReporter {
     let exeEnv = 'Local Environment';
     let runUrl = 'Local Environment';
     let runName = 'Nala Local Run';
-  
+
     if (process.env.GITHUB_ACTIONS === 'true') {
       exeEnv = 'GitHub Actions Environment';
       const repo = process.env.GITHUB_REPOSITORY;
       const runId = process.env.GITHUB_RUN_ID;
       const prNumber = process.env.GITHUB_REF.split('/')[2];
-      runUrl = `https://github.com/${repo}/actions/runs/${runId}`;      
+      runUrl = `https://github.com/${repo}/actions/runs/${runId}`;
       runName = `${process.env.WORKFLOW_NAME ? (process.env.WORKFLOW_NAME || 'Nala Daily Run') : 'Nala PR Run'} (${prNumber})`;
     } else if (process.env.CIRCLECI) {
       exeEnv = 'CircleCI Environment';
       const workflowId = process.env.CIRCLE_WORKFLOW_ID;
       const jobNumber = process.env.CIRCLE_BUILD_NUM;
-      runUrl = `https://app.circleci.adobe.com/pipelines/github/wcms/nala/${jobNumber}/workflows/${workflowId}/jobs/${jobNumber}`;
+      runUrl = `https://app.circle.ci.adobe.com/pipelines/github/wcms/nala/${jobNumber}/workflows/${workflowId}/jobs/${jobNumber}`;
       runName = 'Nala CircleCI/Stage Run';
     }
 
@@ -124,7 +124,7 @@ class BaseReporter {
     ** Application URL  : ${envURL}
     ** Executed on        : ${exeEnv}
     ** Execution details  : ${runUrl}
-    ** Workflow name      : ${runName}` ;    
+    ** Workflow name      : ${runName}` ;
 
     console.log(summary);
 
@@ -145,7 +145,7 @@ class BaseReporter {
   /**
   This method takes test title and projectId strings and then processes it .
   @param {string, string} str - The input string to be processed
-  @returns {'name', 'tags', 'url', 'browser', 'env', 'branch' and 'repo'}  
+  @returns {'name', 'tags', 'url', 'browser', 'env', 'branch' and 'repo'}
   */
   parseTestTitle(title, projectId) {
     let env = 'live';
@@ -153,19 +153,19 @@ class BaseReporter {
     let branch;
     let repo;
     let url;
-  
+
     const titleParts = title.split('@');
     const name = titleParts[1].trim();
     const tags = titleParts.slice(2).map(tag => tag.trim());
-  
+
     const projectConfig = this.config.projects.find(project => project.name === projectId);
 
     // Get baseURL from project config
     if (projectConfig?.use?.baseURL) {
       ({ baseURL: url, defaultBrowserType: browser } = projectConfig.use);
     } else if (this.config.baseURL) {
-      url = this.config.baseURL;     
-    }   
+      url = this.config.baseURL;
+    }
     // Get environment from baseURL
     if (url.includes('prod')) {
       env = 'prod';

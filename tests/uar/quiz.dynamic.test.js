@@ -2,13 +2,13 @@
 /* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 import { buildTestData } from '../../data/uar/quiz/uar.js';
-import QuizOldPage from '../../selectors/uar/quiz.old.page.js';
 import Quiz from '../../selectors/uar/quiz.page.js';
 
 const QuizSpec = require('../../features/uar/quiz.dynamic.spec.js');
 
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
+const envs = require('../../envs/envs.js');
 
 test.describe('Quiz flow test suite', () => {
   // reset timeout because we use this to run all test data
@@ -26,26 +26,15 @@ test.describe('Quiz flow test suite', () => {
 
         let testdata = buildTestData(originalData, feature.name);
 
-        if (feature.name.includes('triple flagship')) {
-          testdata = testdata.sort(() => 0.5 - Math.random()).slice(0, 20);
-        }
+        testdata = testdata.sort(() => 0.5 - Math.random()).slice(0, 20);
 
-        for (let key of testdata) {
+        for (const key of testdata) {
           console.log(key);
           let oldProduct = '';
           let newProduct = '';
 
-          if (key.includes('PDFs > Edit quickly')) {
-            // eslint-disable-next-line no-continue
-            continue;
-          }
-
-          if (key.includes('PDFs > Take the time to control')) {
-            key = key.replace('PDFs > Take the time to control every detail', 'PDFs');
-          }
-
           await test.step(`Old: Select each answer on test page according to ${key}`, async () => {
-            await quizOldPage.clickEachAnswer('https://www.stage.adobe.com/creativecloud/plan-recommender/quiz.html', key);
+            await quizOldPage.clickEachAnswer(`${envs['@milo_stage']}${feature.path}`, key);
           });
 
           await test.step('Old: Check results on test page', async () => {
