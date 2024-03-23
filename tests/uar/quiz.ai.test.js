@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-loop-func */
 /* eslint-disable no-restricted-syntax */
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 
 const QuizSpec = require('../../features/uar/quiz.ai.spec.js');
 
@@ -12,19 +12,19 @@ const ENDPOINT = 'acom-prd-recom-v3';
 const API_KEY = 'CCHomeMLRepo1';
 
 const validFiCodes = ['acrobat_dc_pro',
-      'aftereffects_cc',
-      'audition_cc',
-      'characteranimator_cc',
-      'illustrator_cc',
-      'indesign_cc',
-      'lightroom_cc',
-      'photoshop_cc',
-      'premierepro_cc',
-      'sbst_stager',
-      'sbst_painter',
-      'sbst_alchemist',
-      'sbst_shaper',
-      'sbst_designer'];
+  'aftereffects_cc',
+  'audition_cc',
+  'characteranimator_cc',
+  'illustrator_cc',
+  'indesign_cc',
+  'lightroom_cc',
+  'photoshop_cc',
+  'premierepro_cc',
+  'sbst_stager',
+  'sbst_painter',
+  'sbst_alchemist',
+  'sbst_shaper',
+  'sbst_designer'];
 
 // Define the function to be executed within the browser context
 const fetchFiCodes = async ([input, numberOfItems, endPoint, fiCodes, apiKey]) => {
