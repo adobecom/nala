@@ -15,11 +15,7 @@
     "test.sauce.us": "saucectl run --region us-west-1",
     "test.sauce.eu": "saucectl run",
     "postinstall": "npm update browserstack-node-sdk",
-    "test:bstack": "npx browserstack-node-sdk playwright test",
-    "test:uar": "npx playwright test --config=./configs/uar.config.js --project=uar-live-chrome --headed -g",
-    "test:uar-firefox": "npx playwright test --config=./configs/uar.config.js --project=uar-live-firefox --headed -g",
-    "test:uar-safari": "npx playwright test --config=./configs/uar.config.js --project=uar-live-webkit --headed -g",
-    "test:cc-quiz": "npx playwright test --config=./configs/cc.config.js --project=cc-live-chrome --headed -g"
+    "test:bstack": "npx browserstack-node-sdk playwright test"
   },
   "repository": {
     "type": "git",
