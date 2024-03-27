@@ -9,7 +9,7 @@ test.describe('BACOM Stats Block Test Suite', () => {
       const stats = new StatsBlock(page);
       const testPage = `${baseURL}${features[0].path}`;
       await page.goto(testPage);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
 
       await test.step('Selecting a stats link', async () => {
         await stats.clickStatsLink();
@@ -18,7 +18,7 @@ test.describe('BACOM Stats Block Test Suite', () => {
 
       await test.step('Go to test page', async () => {
         await page.goto(testPage);
-        await page.waitForLoadState('domcontentloaded');
+        await page.waitForLoadState('networkidle');
       });
 
       await test.step('Selecting a solutions link', async () => {

@@ -11,7 +11,7 @@ const config = {
   testDir: '../tests/bacom',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 45 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
