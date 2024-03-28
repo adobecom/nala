@@ -379,7 +379,6 @@ test.describe('Promotions feature test suite', () => {
         await expect(await PROMO.marqueeReplace).not.toBeVisible();
         await expect(await PROMO.textReplace).not.toBeVisible();
     });    
-
-});
+  });
 
 });
