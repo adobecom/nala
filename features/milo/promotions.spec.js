@@ -27,9 +27,7 @@ module.exports = {
       tcid: '2',
       name: '@Promo-remove',
       path: '/drafts/nala/features/promotions/promo-remove',
-      data: {
-        textMarquee: 'Promo test page',
-      },
+      data: { textMarquee: 'Promo test page' },
       tags: '@promo @commerce @regression',
     },
     {
@@ -48,9 +46,7 @@ module.exports = {
       tcid: '4',
       name: '@Promo-replace-fragment',
       path: '/drafts/nala/features/promotions/promo-with-fragments',
-      data: {
-        textReplaceMarquee: 'Marquee promo replace',
-      },
+      data: { textReplaceMarquee: 'Marquee promo replace' },
       tags: '@promo @commerce @regression',
     },
     {
@@ -64,7 +60,7 @@ module.exports = {
         textFuture: 'Future promo text insert',
         status: 'Scheduled - inactive',
         manifestFile: 'promo-insert-future.json',
-     },
+      },
       tags: '@promo @commerce @regression',
     },
     {
@@ -88,7 +84,7 @@ module.exports = {
         textBeforeText: 'Promo text insert',
       },
       tags: '@promo @commerce @regression',
-    }, 
+    },
     {
       tcid: '8',
       name: '@Promo-preview',
@@ -107,8 +103,8 @@ module.exports = {
         inactiveStatus: 'Scheduled - inactive',
         manifestInsertFile: 'promo-insert.json',
         manifestReplaceFile: 'promo-replace.json',
-     },
+      },
       tags: '@promo @commerce @regression',
-    },     
+    },
   ],
 };
