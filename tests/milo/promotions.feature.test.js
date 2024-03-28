@@ -9,7 +9,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[0].path}${miloLibs}`;
-    const data = features[0].data;
+    const { data } = features[0];
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -40,7 +40,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[1].path}${miloLibs}`;
-    const data = features[1].data;
+    const { data } = features[1];
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -68,7 +68,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[2].path}${miloLibs}`;
-    const data = features[2].data;
+    const { data } = features[2];
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -91,7 +91,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[3].path}${miloLibs}`;
-    const data = features[3].data;
+    const { data } = features[3];
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -129,7 +129,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[4].path}${miloLibs}`;
-    const data = features[4].data;
+    const { data } = features[4];
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -151,7 +151,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[5].path}${miloLibs}`;
-    const data = features[5].data;
+    const { data } = features[5];
     const previewPage = `${baseURL}${features[5].path}${'?mep='}${data.mepPath}&${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -201,7 +201,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[6].path}${miloLibs}`;
-    const data = features[6].data;
+    const { data } = features[6];
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -230,7 +230,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[7].path}${miloLibs}`;
-    const data = features[7].data;
+    const { data } = features[7];
     console.info('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
@@ -259,7 +259,7 @@ test.describe('Promotions feature test suite', () => {
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
     const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[8].path}${miloLibs}`;
-    const data = features[8].data;
+    const { data } = features[8];
     let previewPage;
     console.info('[Test Page]: ', testPage);
 
