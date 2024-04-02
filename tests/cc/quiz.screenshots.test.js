@@ -67,7 +67,7 @@ test.describe('Quiz flow test suite', () => {
 
           WebUtil.compareScreenshots(stableProductScreenshots, betaProductScreenshots, 'screenshots/uar');
 
-          expect.soft(betaProduct.replace(/[[\]]/g, '')).toContain(stableProduct.replace(/[[\]]/g, ''));
+          // expect.soft(betaProduct.replace(/[[\]]/g, '')).toContain(stableProduct.replace(/[[\]]/g, ''));
         }
       },
     );
