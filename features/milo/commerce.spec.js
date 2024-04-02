@@ -5,7 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@Commerce-Price-Term',
       path: '/drafts/nala/features/commerce/prices-with-term',
-      tags: '@commerce @smoke @regression @nopr' ,
+      tags: '@commerce @smoke @regression @nopr',
     },
     {
       tcid: '1',
@@ -24,9 +24,7 @@ module.exports = {
       tcid: '3',
       name: '@Commerce-Promo',
       path: '/drafts/nala/features/commerce/promo-placeholders',
-      data: {
-        promo: 'nicopromo',
-      },
+      data: { promo: 'nicopromo' },
       tags: '@commerce @smoke @regression @nopr',
     },
     {
