@@ -1,0 +1,26 @@
+version: 1.0
+
+snow:
+  - id: 546014 # Milo Test Automation (nala)
+
+notifications:
+  jira:
+    default:
+      project: MWPW # Mandatory
+      filters:
+        include:
+          risk_rating: R5
+      fields:
+        assignee:
+          name: nateekar
+        customfield_11800: MWPW-140779 #epic link
+        watchers:
+          - casalino
+          - jmichnow
+          - mauchley
+        labels:
+          - "OriginatingProcess=Kodiak"
+          - "security"
+          - "kodiak-ticket"
+        components:
+          - name: "DevOps Security"
