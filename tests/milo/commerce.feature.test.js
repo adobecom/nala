@@ -5,9 +5,8 @@ import ims from '../../libs/imslogin.js';
 
 
 test.describe('Commerce feature test suite', () => {
-  // Validate price with term display
-  // skipping the commerce test, due to price rendering issue on pr branchs
-  test.skip(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
+  // @Commerce-Price-Term - Validate price with term display 
+  test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[0].path}`;
     console.info('[Test Page]: ', testPage);
@@ -53,8 +52,8 @@ test.describe('Commerce feature test suite', () => {
     });
   });
 
-  // Validate price with term and unit display
-  test.skip(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
+  // @Commerce-Price-Unit-Term - Validate price with term and unit display
+  test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[1].path}`;
     console.info('[Test Page]: ', testPage);
@@ -100,8 +99,8 @@ test.describe('Commerce feature test suite', () => {
     });  
   });
 
-  // Validate price with term, unit and tax label display
-  test.skip(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
+  // @Commerce-Price-Taxlabel-Unit-Term - Validate price with term, unit and tax label display
+  test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[2].path}`;
     console.info('[Test Page]: ', testPage);
@@ -147,8 +146,8 @@ test.describe('Commerce feature test suite', () => {
     });  
   });
 
-  // Validate price and CTAs have promo code applied
-  test.skip(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
+  // @Commerce-Promo - Validate price and CTAs have promo code applied
+  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[3].path}`;
     const data = features[3].data;

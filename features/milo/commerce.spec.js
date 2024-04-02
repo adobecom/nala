@@ -1,27 +1,24 @@
 module.exports = {
-  name: 'Offer Selector Tool',
+  name: 'Commerce',
   features: [
     {
       tcid: '0',
       name: '@Commerce-Price-Term',
       path: '/drafts/nala/features/commerce/prices-with-term',
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @regression @nopr' ,
     },
     {
       tcid: '1',
       name: '@Commerce-Price-Unit-Term',
       path: '/drafts/nala/features/commerce/prices-with-term-unit',
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @regression @nopr',
 
     },
     {
       tcid: '2',
       name: '@Commerce-Price-Taxlabel-Unit-Term',
       path: '/drafts/nala/features/commerce/prices-with-term-unit-taxlabel',
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @regression @nopr',
     },
     {
       tcid: '3',
@@ -30,8 +27,7 @@ module.exports = {
       data: {
         promo: 'nicopromo',
       },
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @regression @nopr',
     },
   ],
 };
