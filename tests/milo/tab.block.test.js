@@ -81,7 +81,7 @@ test.describe('Milo Tab block feature test suite', () => {
     await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
     await page.waitForLoadState('networkidle');
 
-    test.step('checking the setup', async () => {
+    await test.step('checking the setup', async () => {
       await expect(tab.tab1).toBeVisible();
       await expect(tab.tab1Panel).toBeVisible();
       await expect(tab.tab9).toBeVisible();
