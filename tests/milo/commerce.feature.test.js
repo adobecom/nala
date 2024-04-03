@@ -6,10 +6,12 @@ import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
 const miloLibs = process.env.MILO_LIBS || '';
 
+let COMM;
+test.beforeEach(async ({ page }) => { COMM = new CommercePage(page); });
+
 test.describe('Commerce feature test suite', () => {
   // @Commerce-Price-Term - Validate price with term display
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[0].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -58,7 +60,6 @@ test.describe('Commerce feature test suite', () => {
 
   // @Commerce-Price-Unit-Term - Validate price with term and unit display
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[1].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -107,7 +108,6 @@ test.describe('Commerce feature test suite', () => {
 
   // @Commerce-Price-Taxlabel-Unit-Term - Validate price with term, unit and tax label display
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[2].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -156,7 +156,6 @@ test.describe('Commerce feature test suite', () => {
 
   // @Commerce-Promo - Validate price and CTAs have promo code applied
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[3].path}${miloLibs}`;
     const { data } = features[3];
 
@@ -197,7 +196,6 @@ test.describe('Commerce feature test suite', () => {
 
   // @Commerce-Upgrade-Entitlement - Validate Upgrade commerce flow
   test(`${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {
-    const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[4].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -213,10 +211,8 @@ test.describe('Commerce feature test suite', () => {
 
     // Login with Adobe test account:
     await test.step('Login with a valid Adobe account', async () => {
-      await Header.signInButton.waitFor({ state: 'visible', timeout: 10000 });
       await Header.signInButton.click();
       if (COMM.loginType.isVisible()) {
-        await COMM.loginType.waitFor({ state: 'visible', timeout: 10000 });
         await COMM.loginType.click();
       }
       await Login.loginOnAppForm(process.env.IMS_EMAIL_PAID_PS, process.env.IMS_PASS_PAID_PS);
@@ -239,7 +235,6 @@ test.describe('Commerce feature test suite', () => {
 
   // @Commerce-Download-Entitlement - Validate Download commerce flow
   test(`${features[5].name}, ${features[5].tags}`, async ({ page, baseURL }) => {
-    const COMM = new CommercePage(page);
     const testPage = `${baseURL}${features[5].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
     const { data } = features[5];
@@ -254,10 +249,8 @@ test.describe('Commerce feature test suite', () => {
 
     // Login with Adobe test account:
     await test.step('Login with a valid Adobe account', async () => {
-      await Header.signInButton.waitFor({ state: 'visible', timeout: 10000 });
       await Header.signInButton.click();
       if (COMM.loginType.isVisible()) {
-        await COMM.loginType.waitFor({ state: 'visible', timeout: 10000 });
         await COMM.loginType.click();
       }
       await Login.loginOnAppForm(process.env.IMS_EMAIL_PAID_PS, process.env.IMS_PASS_PAID_PS);
