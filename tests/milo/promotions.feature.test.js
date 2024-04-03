@@ -4,10 +4,12 @@ import PromoPage from '../../selectors/milo/promotions.feature.page.js';
 
 const miloLibs = process.env.MILO_LIBS || '';
 
+let PROMO;
+test.beforeEach(async ({ page }) => { PROMO = new PromoPage(page); });
+
 test.describe('Promotions feature test suite', () => {
   // @Promo-insert - Validate promo insert text after marquee and before text component
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[0].path}${miloLibs}`;
     const { data } = features[0];
     console.info('[Test Page]: ', testPage);
@@ -38,7 +40,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-replace - Validate promo replaces marquee and text component
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[1].path}${miloLibs}`;
     const { data } = features[1];
     console.info('[Test Page]: ', testPage);
@@ -66,7 +67,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-remove - Validate promo removes text component
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[2].path}${miloLibs}`;
     const { data } = features[2];
     console.info('[Test Page]: ', testPage);
@@ -89,7 +89,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-two-manifests - Validate 2 active manifests on the page
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[3].path}${miloLibs}`;
     const { data } = features[3];
     console.info('[Test Page]: ', testPage);
@@ -127,7 +126,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-replace-fragment - Validate fragment marquee replace
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[4].path}${miloLibs}`;
     const { data } = features[4];
     console.info('[Test Page]: ', testPage);
@@ -149,7 +147,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-future - Validate active promo scheduled in the future
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[5].path}${miloLibs}`;
     const { data } = features[5];
     const previewPage = `${baseURL}${features[5].path}${'?mep='}${data.mepPath}&${miloLibs}`;
@@ -161,7 +158,6 @@ test.describe('Promotions feature test suite', () => {
     });
 
     await test.step('Validate manifest is on served on the page but inactive', async () => {
-      await PROMO.mepMenuOpen.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepMenuOpen.click();
       await expect(await PROMO.mepManifestList).toBeVisible();
       await expect(await PROMO.mepManifestList).toContainText(data.status);
@@ -199,7 +195,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-with-personalization - Validate promo together with personalization and target OFF
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[6].path}${miloLibs}`;
     const { data } = features[6];
     console.info('[Test Page]: ', testPage);
@@ -228,7 +223,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-with-personalization-and-target - Validate promo together with personalization and target ON
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[7].path}${miloLibs}`;
     const { data } = features[7];
     console.info('[Test Page]: ', testPage);
@@ -257,7 +251,6 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-preview - Validate preview functionality
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
-    const PROMO = new PromoPage(page);
     const testPage = `${baseURL}${features[8].path}${miloLibs}`;
     const { data } = features[8];
     let previewPage;
@@ -269,7 +262,6 @@ test.describe('Promotions feature test suite', () => {
     });
 
     await test.step('Validate all manifests are served and active on the page', async () => {
-      await PROMO.mepMenuOpen.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepMenuOpen.click();
       await expect(await PROMO.mepManifestList).toBeVisible();
       await expect(await PROMO.mepManifestList).not.toContainText(data.inactiveStatus);
@@ -295,9 +287,7 @@ test.describe('Promotions feature test suite', () => {
     });
 
     await test.step('Disable insert manifest and preview', async () => {
-      await PROMO.mepInsertDefault.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepInsertDefault.click();
-      await PROMO.mepPreviewButton.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepPreviewButton.click();
 
       await page.waitForLoadState('domcontentloaded');
@@ -320,13 +310,9 @@ test.describe('Promotions feature test suite', () => {
     });
 
     await test.step('Enable insert and disable replace manifest and preview', async () => {
-      await PROMO.mepMenuOpen.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepMenuOpen.click();
-      await PROMO.mepInsertAll.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepInsertAll.click();
-      await PROMO.mepReplaceDefault.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepReplaceDefault.click();
-      await PROMO.mepPreviewButton.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepPreviewButton.click();
 
       await page.waitForLoadState('domcontentloaded');
@@ -351,13 +337,9 @@ test.describe('Promotions feature test suite', () => {
     });
 
     await test.step('Desable all manifests and preview', async () => {
-      await PROMO.mepMenuOpen.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepMenuOpen.click();
-      await PROMO.mepInsertDefault.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepInsertDefault.click();
-      await PROMO.mepReplaceDefault.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepReplaceDefault.click();
-      await PROMO.mepPreviewButton.waitFor({ state: 'visible', timeout: 10000 });
       await PROMO.mepPreviewButton.click();
 
       await page.waitForLoadState('domcontentloaded');
