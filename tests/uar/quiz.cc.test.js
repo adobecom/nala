@@ -4,7 +4,7 @@
 import { expect, test } from '@playwright/test';
 import Quiz from '../../selectors/uar/quiz.page.js';
 
-const QuizSpec = require('../../features/cc/quiz.spec.js');
+const QuizSpec = require('../../features/uar/quiz.cc.spec.js');
 
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
@@ -18,7 +18,8 @@ test.describe('Quiz flow test suite', () => {
       async ({ page, baseURL }) => {
         const quiz = new Quiz(page);
         const quizOldPage = new Quiz(page);
-        const url = `${baseURL}${feature.path}`;
+        // const url = `${baseURL}${feature.path}`;
+        const url = 'https://main--cc--adobecom.hlx.live/creativecloud/plan-recommender/quiz';
         console.info(url);
 
         // load test data from static files
