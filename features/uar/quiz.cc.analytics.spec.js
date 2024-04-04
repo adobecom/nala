@@ -3,10 +3,10 @@ module.exports = {
   features: [
     {
       tcid: '0',
-      name: '@quiz basic',
+      name: '@quiz analytics',
       path: '/creativecloud/plan-recommender/quiz',
-      tags: '@cc @uar-quiz-basic @uar-quiz-static',
-      data: 'data/uar/quiz/quiz-basic.yml',
+      tags: '@cc @uar-quiz-analytics-cc @uar-quiz-static',
+      data: 'data/uar/quiz/quiz-cc-basic.yml',
     },
   ],
 };

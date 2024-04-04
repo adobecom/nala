@@ -1,9 +1,16 @@
 name: UAR Nala Daily Run
 
 on:
-  schedule:
-    - cron: "0 9 * * *"
   workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test scenario tags, if empty all tests will run. i.e., @marquee'
+        required: false
+        type: string
+      platform:
+        description: 'Platform to run tests on; select one, options: [ubuntu-latest, windows-latest, macos-latest]'
+        required: true
+        type: string
 
 jobs:
   platform_matrix:

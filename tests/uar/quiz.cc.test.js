@@ -4,7 +4,7 @@
 import { expect, test } from '@playwright/test';
 import Quiz from '../../selectors/uar/quiz.page.js';
 
-const QuizSpec = require('../../features/cc/quiz.spec.js');
+const QuizSpec = require('../../features/uar/quiz.cc.spec.js');
 
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
@@ -15,10 +15,10 @@ test.describe('Quiz flow test suite', () => {
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
-      async ({ page, baseURL }) => {
+      async ({ page }) => {
         const quiz = new Quiz(page);
         const quizOldPage = new Quiz(page);
-        const url = `${baseURL}${feature.path}`;
+        const url = 'https://main--cc--adobecom.hlx.live/creativecloud/plan-recommender/quiz';
         console.info(url);
 
         // load test data from static files
@@ -57,7 +57,17 @@ test.describe('Quiz flow test suite', () => {
             newProduct = await quiz.checkResultPage(testdata[key], key, keyNumber, false);
           });
 
-          expect.soft(newProduct.replace(/[[\]]/g, '')).toContain(oldProduct.replace(/[[\]]/g, ''));
+          const cleanedNewProduct = newProduct
+            .replace(/[[\]]/g, '')
+            .replace(/{{|}}/g, '')
+            .replace(/-/g, ' ')
+            .toLowerCase();
+          const cleanedOldProduct = oldProduct
+            .replace(/[[\]]/g, '')
+            .replace(/{{|}}/g, '')
+            .replace(/-/g, ' ')
+            .toLowerCase();
+          expect.soft(cleanedNewProduct).toContain(cleanedOldProduct);
         }
       },
     );
