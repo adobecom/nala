@@ -10,7 +10,7 @@ module.exports = {
         activeTab: 2,
         tab1Text: 'Here is tab 1 content',
         tab2Text: 'Here is tab 2 content and it is active tab',
-        tab3Text: 'Here is tab 3 content',        
+        tab3Text: 'Here is tab 3 content',
       },
       tags: '@tabs @smoke @regression @milo',
     },
@@ -23,11 +23,15 @@ module.exports = {
         activeTab: 2,
         tab1Text: 'Here is tab 1 content',
         tab2Text: 'Here is tab 2 content and it is active tab',
-        tab3Text: 'Here is tab 3 content',        
+        tab3Text: 'Here is tab 3 content',
       },
       tags: '@tabs @smoke @t1 @regression @milo',
-    },                                     
+    },
+    {
+      tcid: '2',
+      name: 'Tabs scrolling',
+      path: '/drafts/nala/blocks/tabs/tabs-scrolling',
+      tags: '@tabs @tabs-scrolling @smoke @regression @milo @bacom',
+    },
   ],
 };
-
-
