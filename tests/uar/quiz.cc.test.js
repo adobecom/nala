@@ -18,7 +18,6 @@ test.describe('Quiz flow test suite', () => {
       async ({ page }) => {
         const quiz = new Quiz(page);
         const quizOldPage = new Quiz(page);
-        // const url = `${baseURL}${feature.path}`;
         const url = 'https://main--cc--adobecom.hlx.live/creativecloud/plan-recommender/quiz';
         console.info(url);
 

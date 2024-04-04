@@ -33,7 +33,6 @@ test.describe('Quiz flow test suite', () => {
         test.setTimeout(3 * 60 * 1000);
 
         const quiz = new Quiz(page);
-        // const url = `${baseURL}${feature.path}?milolibs=stage`;
         const url = 'https://main--cc--adobecom.hlx.live/creativecloud/plan-recommender/quiz?milolibs=stage';
         console.info(url);
 
