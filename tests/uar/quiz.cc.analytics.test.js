@@ -28,7 +28,7 @@ test.describe('Quiz flow test suite', () => {
     test(
       `${feature.name}, ${feature.tags}`,
       // eslint-disable-next-line no-loop-func
-      async ({ baseURL }) => {
+      async () => {
         // reset timeout because we use this to run all test data
         test.setTimeout(3 * 60 * 1000);
 

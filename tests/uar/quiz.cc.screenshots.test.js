@@ -6,7 +6,7 @@ import Quiz from '../../selectors/uar/quiz.page.js';
 
 const { features } = require('../../features/uar/quiz.cc.screenshots.spec.js');
 const { WebUtil } = require('../../libs/webutil.js');
-const envs = require('../../envs/envs.js');
+// const envs = require('../../envs/envs.js');
 
 test.describe('Quiz flow test suite', () => {
   // reset timeout because we use this to run all test data
