@@ -15,10 +15,10 @@ test.describe('Quiz flow test suite', () => {
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
-      async ({ page }) => {
+      async ({ page, baseURL }) => {
         const quiz = new Quiz(page);
         const quizOldPage = new Quiz(page);
-        const url = 'https://main--cc--adobecom.hlx.live/creativecloud/plan-recommender/quiz';
+        const url = `${baseURL}${feature.path}`;
         console.info(url);
 
         // load test data from static files

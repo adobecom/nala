@@ -13,10 +13,10 @@ test.describe('Quiz flow test suite', () => {
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
-      async ({ page }) => {
+      async ({ page, baseURL }) => {
         const stablePage = new Quiz(page);
         const betaPage = new Quiz(page);
-        const stableURL = 'https://main--cc--adobecom.hlx.live/creativecloud/plan-recommender/quiz';
+        const stableURL = `${baseURL}${feature.path}`;
         console.info(stableURL);
         const betaURL = `${stableURL}?milolibs=stage`;
         console.info(betaURL);

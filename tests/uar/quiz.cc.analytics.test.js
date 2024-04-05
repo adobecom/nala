@@ -28,12 +28,12 @@ test.describe('Quiz flow test suite', () => {
     test(
       `${feature.name}, ${feature.tags}`,
       // eslint-disable-next-line no-loop-func
-      async () => {
+      async ({ baseURL }) => {
         // reset timeout because we use this to run all test data
         test.setTimeout(3 * 60 * 1000);
 
         const quiz = new Quiz(page);
-        const url = 'https://main--cc--adobecom.hlx.live/creativecloud/plan-recommender/quiz?milolibs=stage';
+        const url = `${baseURL}${feature.path}`;
         console.info(url);
 
         // load test data from static files
