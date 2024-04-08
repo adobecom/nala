@@ -6,18 +6,21 @@ export default class Tabs {
     this.xlTab = this.page.locator('.tabs.xl-spacing').nth(nth);
     this.queitDarkTab = this.page.locator('.tabs.quiet.dark.center').nth(nth);
     // tabs list
-    this.tabList = this.tab.locator('.tablist');
-    this.tabListContainer = this.tab.locator('.tab-list-container');
+    this.tabList = this.tab.locator('.tabList');
+    this.tabListContainer = this.tabList.locator('.tab-list-container');
     this.tabsCount = this.tabListContainer.locator('button[role="tab"]');
-    this.tab1 = this.tabListContainer.locator('button[role="tab"]').nth(0)
-    this.tab2 = this.tabListContainer.locator('button[role="tab"]').nth(1)
-    this.tab3 = this.tabListContainer.locator('button[role="tab"]').nth(2)
+    this.tab1 = this.tabListContainer.locator('button[role="tab"]').nth(0);
+    this.tab2 = this.tabListContainer.locator('button[role="tab"]').nth(1);
+    this.tab3 = this.tabListContainer.locator('button[role="tab"]').nth(2);
+    this.tab9 = this.tabListContainer.locator('button[role="tab"]:nth-child(9)');
     // tabs panel and content
-    this.tabContent = this.tab.locator('.tab-content');
-    this.tab1Panel = this.tabContent.locator('div[role="tabpanel"]').nth(0)
-    this.tab2Panel = this.tabContent.locator('div[role="tabpanel"]').nth(1)
-    this.tab3Panel = this.tabContent.locator('div[role="tabpanel"]').nth(2)
+    this.tabContent = this.tab.locator('.tab-content > .tab-content-container');
+    this.tab1Panel = this.tabContent.locator('div[role="tabpanel"]:nth-child(1)');
+    this.tab2Panel = this.tabContent.locator('div[role="tabpanel"]:nth-child(2)');
+    this.tab3Panel = this.tabContent.locator('div[role="tabpanel"]:nth-child(3)');
+    this.tab9Panel = this.tabContent.locator('div[role="tabpanel"]:nth-child(9)');
+
+    this.leftArrow = this.tab.locator('.tab-paddles > .paddle-left');
+    this.rightArrow = this.tab.locator('.tab-paddles > .paddle-right');
   }
 }
-
-

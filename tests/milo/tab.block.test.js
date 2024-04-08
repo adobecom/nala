@@ -5,6 +5,7 @@ import TabBlock from '../../selectors/milo/tabs.block.page.js';
 let tab;
 
 const miloLibs = process.env.MILO_LIBS || '';
+const INTERVALS = [2, 4, 6, 8, 10, 12];
 
 test.describe('Milo Tab block feature test suite', () => {
   test.beforeEach(async ({ page }) => {
@@ -14,30 +15,30 @@ test.describe('Milo Tab block feature test suite', () => {
   // Test 0 : Tabs (xl-spacing)
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
-    const data = features[0].data;
+    const { data } = features[0];
 
     await test.step('step-1: Go to Tabs block feature test page', async () => {
       await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify tabs content/specs', async () => {
       await expect(await tab.xlTab).toBeVisible();
       await expect(await tab.tabsCount).toHaveCount(data.tabsCount);
-      //verify default tab contents
-      await expect(await tab.tab2).toHaveAttribute('aria-selected', 'true')
+      // verify default tab contents
+      await expect(await tab.tab2).toHaveAttribute('aria-selected', 'true');
       await expect(await tab.tab2Panel).toBeVisible();
-      await expect(await tab.tab2Panel).toContainText(data.tab2Text)
+      await expect(await tab.tab2Panel).toContainText(data.tab2Text);
 
-      //click tabs and verify contents
-      await expect(await tab.tab1).toHaveAttribute('aria-selected', 'false')
-      await tab.tab1.click()
+      // click tabs and verify contents
+      await expect(await tab.tab1).toHaveAttribute('aria-selected', 'false');
+      await tab.tab1.click();
       await expect(await tab.tab1Panel).toBeVisible();
       await expect(await tab.tab1Panel).toContainText(data.tab1Text);
-      
-      await expect(await tab.tab3).toHaveAttribute('aria-selected', 'false')
-      await tab.tab3.click()
+
+      await expect(await tab.tab3).toHaveAttribute('aria-selected', 'false');
+      await tab.tab3.click();
       await expect(await tab.tab3Panel).toBeVisible();
       await expect(await tab.tab3Panel).toContainText(data.tab3Text);
     });
@@ -46,36 +47,83 @@ test.describe('Milo Tab block feature test suite', () => {
   // Test 1 : Tabs (Quiet, Dark, Center)
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
-    const data = features[1].data;
+    const { data } = features[1];
 
     await test.step('step-1: Go to Tabs block feature test page', async () => {
       await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify tabs content/specs', async () => {
       await expect(await tab.queitDarkTab).toBeVisible();
       await expect(await tab.tabsCount).toHaveCount(data.tabsCount);
-      //verify default tab contents
-      await expect(await tab.tab2).toHaveAttribute('aria-selected', 'true')
+      // verify default tab contents
+      await expect(await tab.tab2).toHaveAttribute('aria-selected', 'true');
       await expect(await tab.tab2Panel).toBeVisible();
-      await expect(await tab.tab2Panel).toContainText(data.tab2Text)
+      await expect(await tab.tab2Panel).toContainText(data.tab2Text);
 
-      //click tabs and verify contents
-      await expect(await tab.tab1).toHaveAttribute('aria-selected', 'false')
-      await tab.tab1.click()
+      // click tabs and verify contents
+      await expect(await tab.tab1).toHaveAttribute('aria-selected', 'false');
+      await tab.tab1.click();
       await expect(await tab.tab1Panel).toBeVisible();
       await expect(await tab.tab1Panel).toContainText(data.tab1Text);
-      
-      await expect(await tab.tab3).toHaveAttribute('aria-selected', 'false')
-      await tab.tab3.click()
+
+      await expect(await tab.tab3).toHaveAttribute('aria-selected', 'false');
+      await tab.tab3.click();
       await expect(await tab.tab3Panel).toBeVisible();
       await expect(await tab.tab3Panel).toContainText(data.tab3Text);
     });
   });
 
+  test(`Tabs scrolling with arrow buttons, ${features[2].tags}`, async ({ page, baseURL }) => {
+    console.log(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
+    await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
+    await page.waitForLoadState('networkidle');
+
+    await test.step('checking the setup', async () => {
+      await expect(tab.tab1).toBeVisible();
+      await expect(tab.tab1Panel).toBeVisible();
+      await expect(tab.tab9).toBeVisible();
+      await expect(tab.tab9Panel).not.toBeVisible();
+      await expect(tab.tab1).toBeInViewport();
+      await expect(tab.tab9).not.toBeInViewport();
+      await expect(await tab.tab1.getAttribute('aria-selected')).toBe('true');
+      await expect(await tab.tab9.getAttribute('aria-selected')).toBe('false');
+    });
+
+    await test.step('select the right tab arrow to get to the last tab', async () => {
+      await expect(async () => {
+        await tab.rightArrow.click();
+        await expect(tab.tab9).toBeInViewport({ timeout: 500 });
+      }).toPass({ intervals: INTERVALS });
+
+      await tab.tab9.click();
+
+      await expect(await tab.tab1.getAttribute('aria-selected')).toBe('false');
+      await expect(await tab.tab9.getAttribute('aria-selected')).toBe('true');
+      await expect(tab.tab1).not.toBeInViewport();
+      await expect(tab.tab9).toBeInViewport();
+      await expect(tab.tab1Panel).not.toBeVisible();
+      await expect(tab.tab9Panel).toBeVisible();
+    });
+
+    await test.step('select the left tab arrow to get back to the first tab', async () => {
+      await tab.leftArrow.click();
+
+      await expect(async () => {
+        await tab.leftArrow.click();
+        await expect(tab.tab1).toBeInViewport({ timeout: 500 });
+      }).toPass({ intervals: INTERVALS });
+
+      await tab.tab1.click();
+
+      await expect(await tab.tab1.getAttribute('aria-selected')).toBe('true');
+      await expect(await tab.tab9.getAttribute('aria-selected')).toBe('false');
+      await expect(tab.tab1).toBeInViewport();
+      await expect(tab.tab9).not.toBeInViewport();
+      await expect(tab.tab1Panel).toBeVisible();
+      await expect(tab.tab9Panel).not.toBeVisible();
+    });
+  });
 });
-
-
-
