@@ -7,8 +7,8 @@ module.exports = {
       path: '/creativecloud/plan-recommender/quiz',
       stable: '@cc_live',
       beta: '@cc_live',
-      tags: '@cc @uar-quiz-screenshots @uar-quiz-static',
-      data: 'data/cc/quiz/quiz-basic.yml',
+      tags: '@cc @uar-quiz-screenshots-cc @uar-quiz-static',
+      data: 'data/uar/quiz/quiz-cc-basic.yml',
     },
   ],
 };
