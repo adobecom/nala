@@ -131,7 +131,7 @@ test.describe('Milo Table block feature test suite', () => {
       // verify sticky table header and attributes
       await expect(await table.collapseStickyTable).toBeVisible();
 
-      expect(await table.highlightRow).toHaveAttribute('class', 'row row-1 row-highlight top-border-transparent');
+      expect(await table.highlightRow).toHaveAttribute('class', 'row row-1 row-highlight');
 
       expect(await table.stickyRow.getAttribute('class')).toContain('row row-2 row-heading');
 
