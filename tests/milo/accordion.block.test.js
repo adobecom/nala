@@ -8,7 +8,7 @@ let accordion;
 let consoleErrors = [];
 
 const miloLibs = process.env.MILO_LIBS || '';
-const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','Invalid request'];
+const knownConsoleErrors = ['Access-Control-Allow-Origin','Failed to load resource: net::ERR_FAILED','Invalid request','Attestation check for Topics'];
 
 test.describe('Milo Accordion Block test suite', () => {
   test.beforeEach(async ({ page }) => {
