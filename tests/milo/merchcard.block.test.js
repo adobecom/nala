@@ -6,7 +6,7 @@ let merchCard;
 
 const miloLibs = process.env.MILO_LIBS || '';
 
-test.describe('Milo Modal feature test suite', () => {
+test.describe('Milo Merchcard block test suite', () => {
   test.beforeEach(async ({ page }) => {
     merchCard = new MerchCard(page);
   });
