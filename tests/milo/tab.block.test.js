@@ -5,7 +5,7 @@ import TabBlock from '../../selectors/milo/tabs.block.page.js';
 let tab;
 
 const miloLibs = process.env.MILO_LIBS || '';
-const INTERVALS = [2, 4, 6, 8, 10, 12];
+const INTERVALS = [2, 4, 6, 8, 10, 12, 500, 1000, 1500];
 
 test.describe('Milo Tab block feature test suite', () => {
   test.beforeEach(async ({ page }) => {
