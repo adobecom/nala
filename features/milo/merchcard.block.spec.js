@@ -39,8 +39,8 @@ module.exports = {
       name: '@Merch-card (special-offers) ',
       path: '/drafts/nala/blocks/merch-card/merch-card-special-offers',
       data: {
-        titleH3: 'INDIVIDUALS',
-        titleH4: 'Save over 30% on Creative Cloud All Apps.',
+        titleH4: 'INDIVIDUALS',
+        titleH3: 'Save over 30% on Creative Cloud All Apps.',
         description1: 'Get 20+ creative apps and save big when you choose a yearly plan instead of a monthly plan.',
         description2: 'Create gorgeous images, rich graphics, and incredible art. Save 10% for the first year. Ends Mar 20.',
         footerBlueButtonText: 'Save now',
@@ -52,8 +52,8 @@ module.exports = {
       name: '@Merch-card (special-offers) with badge',
       path: '/drafts/nala/blocks/merch-card/merch-card-special-offers-with-badge',
       data: {
-        titleH3: 'INDIVIDUALS',
-        titleH4: 'Get 10% off Photoshop.',
+        titleH4: 'INDIVIDUALS',
+        titleH3: 'Get 10% off Photoshop.',
         badgeText: 'LIMITED TIME WEEKLY OFFER',
         price: 'US$383.88/yr',
         strikethroughPrice: 'US$32.99/mo',
