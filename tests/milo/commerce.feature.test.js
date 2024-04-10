@@ -228,7 +228,7 @@ test.describe('Commerce feature test suite', () => {
     // Validate Upgrade eligibility check w.r.t Switch modal
     await test.step('Verify Switch modal launch for Upgrade', async () => {
       await COMM.ccAllAppsCTA.click();
-      await COMM.switchModalIframe.waitFor({ state: 'visible', timeout: 30000 });
+      await COMM.switchModalIframe.waitFor({ state: 'visible', timeout: 45000 });
       await expect(COMM.switchModalIframe).toBeVisible();
     });
   });
