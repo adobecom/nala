@@ -57,6 +57,7 @@ export default class Merchcard {
     this.plansCardTitleH5 = this.plans.locator('h5[slot="body-xxs"]');
     this.plansCardDescription1 = this.plans.locator('div[slot="body-xs"] p').nth(1);
     this.plansCardDescription2 = this.plans.locator('div[slot="body-xs"] p').nth(2);
+    this.plansCardDescription3 = this.plans.locator('div[slot="body-xs"] p').nth(3);
     this.seePlansTextLink = this.merchCard.locator('a:has-text("See plan & pricing details")');
 
     // merch-card catalog

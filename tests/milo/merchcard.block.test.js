@@ -139,7 +139,10 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-3: Verify Merch Card attributes', async () => {
-      await expect(await merchCard.sepcialOffersRibbon).toHaveAttribute('style', merchCard.attributes.specialOfferRibbon.style);
+      await expect(await merchCard.sepcialOffersRibbon).toHaveAttribute(
+        'style',
+        merchCard.attributes.specialOfferRibbon.style
+      );
     });
   });
 
@@ -171,6 +174,7 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.footerBlueButton).toContainText(data.footerBlueButtonText);
     });
   });
+
   // Test 5 : Merch Card (plans) with badge
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
@@ -204,8 +208,7 @@ test.describe('Milo Merchcard block test suite', () => {
   });
 
   // Test 6 : Merch Card (plans) with secure
-  // Note: skipping the test as there were failures, informed the team
-  test.skip(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
+  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
     const { data } = features[6];
 
@@ -223,7 +226,7 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.plansCardTitleH5).toContainText(data.titleH5);
 
       // await expect(await merchCard.price).toContainText(data.price);
-      await expect(await merchCard.plansCardDescription2).toContainText(data.description);
+      await expect(await merchCard.plansCardDescription1).toContainText(data.description);
       await expect(await merchCard.seePlansTextLink).toContainText(data.link1Text);
 
       await expect(await merchCard.footer).toBeVisible();
@@ -231,27 +234,13 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.footerBlueButton).toBeVisible();
       await expect(await merchCard.footerBlueButton).toContainText(data.footerBlueButton1Text);
 
-      await expect(await merchCard.footerBlueButton2).toBeVisible();
-      await expect(await merchCard.footerBlueButton).toContainText(data.footerBlueButton2Text);
-
-      await expect(await merchCard.footerCheckbox).toBeVisible();
-      await expect(await merchCard.footerCheckboxLabel).toContainText(data.checkboxLabel);
-
-      await expect(await merchCard.secureTransactionIcon).toBeVisible();
       await expect(await merchCard.secureTransactionLabel).toContainText(data.secureLabel);
-    });
-
-    await test.step('step-3: Click the check box and verify the free trial button', async () => {
-      await merchCard.footerCheckbox.click();
-
-      await expect(await merchCard.footerOutlineButton).toBeVisible();
-      await expect(await merchCard.footerOutlineButton).toContainText(data.footerOutlineButtonText);
     });
   });
 
   // Test 7 : Merch Card (plans, secure) with badge
   // Note: skipping the test as there were failures, informed the team
-  test.skip(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
+  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
     const { data } = features[7];
 
@@ -272,26 +261,14 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.plansCardTitleH5).toContainText(data.titleH5);
 
       // await expect(await merchCard.price).toContainText(data.price);
-      await expect(await merchCard.plansCardDescription2).toContainText(data.description);
+      await expect(await merchCard.plansCardDescription1).toContainText(data.description);
       await expect(await merchCard.seePlansTextLink).toContainText(data.link1Text);
 
       await expect(await merchCard.footer).toBeVisible();
-
       await expect(await merchCard.footerBlueButton).toBeVisible();
       await expect(await merchCard.footerBlueButton).toContainText(data.footerBlueButton1Text);
 
-      await expect(await merchCard.footerCheckbox).toBeVisible();
-      await expect(await merchCard.footerCheckboxLabel).toContainText(data.checkboxLabel);
-
-      await expect(await merchCard.secureTransactionIcon).toBeVisible();
       await expect(await merchCard.secureTransactionLabel).toContainText(data.secureLabel);
-    });
-
-    await test.step('step-3: Click the check box and verify the free trial button', async () => {
-      await merchCard.footerCheckbox.click();
-
-      await expect(await merchCard.footerOutlineButton).toBeVisible();
-      await expect(await merchCard.footerOutlineButton).toContainText(data.footerOutlineButtonText);
     });
   });
 

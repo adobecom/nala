@@ -99,7 +99,7 @@ module.exports = {
       path: '/drafts/nala/blocks/merch-card/merch-card-plans-secure',
       data: {
         titleH3: 'Acrobat',
-        titleH5: 'Desktop + mobile',
+        titleH5: 'Desktop + Mobile',
         price: 'US$79.99/mo',
         description: 'The complete PDF solution for working anywhere (includes desktop, web, and mobile access).',
         link1Text: 'See plan & pricing details',
