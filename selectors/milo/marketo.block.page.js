@@ -42,7 +42,7 @@ export default class Marketo {
     await this.state.selectOption('California');
     await this.firstName.fill('TestFirstName');
     await this.lastName.fill('TestLastName');
-    await this.email.fill('test@adobe.com');
+    await this.email.fill('test+nosub@adobetest.com');
     await this.phone.fill('415-111-2222');
     await this.company.fill('Adobe');
     await this.postalCode.fill('94111');
@@ -58,7 +58,7 @@ export default class Marketo {
     await this.company.fill('Adobe');
     await this.firstName.fill('TestFirstName');
     await this.lastName.fill('TestLastName');
-    await this.email.fill('test@adobe.com');
+    await this.email.fill('test+nosub@adobetest.com');
     await this.phone.fill('415-111-2222');
     await this.postalCode.fill('94111');
     await this.submitButton.click();
@@ -66,7 +66,7 @@ export default class Marketo {
 
   async submitDiscoverTemplateForm() {
     await this.country.selectOption('United States', { timeout: 10000 });
-    await this.email.fill('test@adobe.com');
+    await this.email.fill('test+nosub@adobetest.com');
     await this.company.fill('Adobe');
     await this.submitButton.click();
   }
@@ -77,7 +77,7 @@ export default class Marketo {
     await this.jobTitle.selectOption('Other');
     await this.firstName.fill('TestFirstName');
     await this.lastName.fill('TestLastName');
-    await this.email.fill('test@adobe.com');
+    await this.email.fill('test+nosub@adobetest.com');
     await this.company.fill('Adobe');
     await this.submitButton.click();
   }
@@ -89,7 +89,7 @@ export default class Marketo {
     await this.state.selectOption('California');
     await this.firstName.fill('TestFirstName');
     await this.lastName.fill('TestLastName');
-    await this.email.fill('test@adobe.com');
+    await this.email.fill('test+nosub@adobetest.com');
     await this.company.fill('Adobe');
     await this.phone.fill('415-111-2222');
     await this.postalCode.fill('94111');
@@ -103,7 +103,7 @@ export default class Marketo {
     await this.state.selectOption('California');
     await this.firstName.fill('TestFirstName');
     await this.lastName.fill('TestLastName');
-    await this.email.fill('test@adobe.com');
+    await this.email.fill('test+nosub@adobetest.com');
     await this.phone.fill('415-111-2222');
     await this.company.fill('Adobe');
     await this.postalCode.fill('94111');
@@ -117,7 +117,7 @@ export default class Marketo {
     await this.state.selectOption('California');
     await this.firstName.fill('TestFirstName');
     await this.lastName.fill('TestLastName');
-    await this.email.fill('test@adobe.com');
+    await this.email.fill('test+nosub@adobetest.com');
     await this.phone.fill('415-111-2222');
     await this.company.fill('Adobe');
     await this.postalCode.fill('94111');
