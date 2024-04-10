@@ -56,9 +56,7 @@ const config = {
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@milo-live'],
-        contextOptions: {
-          permissions: ['clipboard-read', 'clipboard-write'],
-        },
+        contextOptions: { permissions: ['clipboard-read', 'clipboard-write'] },
       },
     },
 
@@ -90,9 +88,7 @@ const config = {
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@milo_prod'],
-        contextOptions: {
-          permissions: ['clipboard-read', 'clipboard-write'],
-        },
+        contextOptions: { permissions: ['clipboard-read', 'clipboard-write'] },
       },
     },
 
