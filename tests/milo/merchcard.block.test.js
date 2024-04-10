@@ -239,7 +239,6 @@ test.describe('Milo Merchcard block test suite', () => {
   });
 
   // Test 7 : Merch Card (plans, secure) with badge
-  // Note: skipping the test as there were failures, informed the team
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
     const { data } = features[7];
