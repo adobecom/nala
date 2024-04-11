@@ -3,13 +3,14 @@ import { features } from '../../features/milo/marketo.block.spec.js';
 import MarketoBlock from '../../selectors/milo/marketo.block.page.js';
 
 let marketoBlock;
+const WAIT_TIME = 10000;
 
 test.describe('Marketo block test suite', () => {
   test.beforeEach(async ({ page }) => {
     marketoBlock = new MarketoBlock(page);
   });
 
-  test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`@marketo production form, ${features[0].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[0].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -24,6 +25,7 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-3: Fill in and submit the Marketo production form', async () => {
+      await page.waitForTimeout(WAIT_TIME);
       await marketoBlock.submitProductionForm();
     });
 
@@ -32,7 +34,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
+  test(`@marketo rfi template, ${features[1].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[1].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -43,6 +45,7 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: Verify that the expected fields display', async () => {
+      await page.waitForTimeout(WAIT_TIME);
       await marketoBlock.submitRFITemplateForm();
     });
 
@@ -51,7 +54,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
+  test(`@marketo discover template, ${features[2].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[2].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -62,6 +65,7 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: Verify that the expected fields display', async () => {
+      await page.waitForTimeout(WAIT_TIME);
       await marketoBlock.submitDiscoverTemplateForm();
     });
 
@@ -70,7 +74,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
+  test(`@marketo explore template, ${features[3].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[3].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -81,6 +85,7 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: Verify that the expected fields display', async () => {
+      await page.waitForTimeout(WAIT_TIME);
       await marketoBlock.submitExploreTemplateForm();
     });
 
@@ -89,7 +94,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
+  test(`@marketo evaluate template, ${features[4].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[4].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -100,6 +105,7 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: Verify that the expected fields display', async () => {
+      await page.waitForTimeout(WAIT_TIME);
       await marketoBlock.submitEvaluateTemplateForm();
     });
 
@@ -108,7 +114,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
+  test(`@marketo webinar template, ${features[5].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[5].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -119,6 +125,7 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: Verify that the expected fields display', async () => {
+      await page.waitForTimeout(WAIT_TIME);
       await marketoBlock.submitWebinarTemplateForm();
     });
 
@@ -127,7 +134,7 @@ test.describe('Marketo block test suite', () => {
     });
   });
 
-  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
+  test(`@marketo trial template, ${features[6].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[6].path}`;
     console.info(`[Test Page]: ${testPage}`);
 
@@ -138,6 +145,7 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: Verify that the expected fields display', async () => {
+      await page.waitForTimeout(WAIT_TIME);
       await marketoBlock.submitTrialTemplateForm();
     });
 
