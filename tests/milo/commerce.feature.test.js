@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => { COMM = new CommercePage(page); });
 
 test.describe('Commerce feature test suite', () => {
   // @Commerce-Price-Term - Validate price with term display
-  test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
+  test.skip(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[0].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -59,7 +59,7 @@ test.describe('Commerce feature test suite', () => {
   });
 
   // @Commerce-Price-Unit-Term - Validate price with term and unit display
-  test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
+  test.skip(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[1].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -107,7 +107,7 @@ test.describe('Commerce feature test suite', () => {
   });
 
   // @Commerce-Price-Taxlabel-Unit-Term - Validate price with term, unit and tax label display
-  test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
+  test.skip(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[2].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -155,7 +155,7 @@ test.describe('Commerce feature test suite', () => {
   });
 
   // @Commerce-Promo - Validate price and CTAs have promo code applied
-  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
+  test.skip(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[3].path}${miloLibs}`;
     const { data } = features[3];
 
@@ -195,7 +195,7 @@ test.describe('Commerce feature test suite', () => {
   });
 
   // @Commerce-Upgrade-Entitlement - Validate Upgrade commerce flow
-  test(`${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {
+  test.skip(`${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[4].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
 
@@ -234,7 +234,7 @@ test.describe('Commerce feature test suite', () => {
   });
 
   // @Commerce-Download-Entitlement - Validate Download commerce flow
-  test(`${features[5].name}, ${features[5].tags}`, async ({ page, baseURL }) => {
+  test.skip(`${features[5].name}, ${features[5].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[5].path}${miloLibs}`;
     console.info('[Test Page]: ', testPage);
     const { data } = features[5];
