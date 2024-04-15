@@ -40,7 +40,7 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@bacom_live'] || 'https://main--bacom--adobecom.hlx.live',
+    baseURL: process.env.BASE_URL || envs['@bacomblog_live'] || 'https://main--bacom-blog--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
