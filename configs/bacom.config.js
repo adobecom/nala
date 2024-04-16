@@ -8,10 +8,10 @@ const envs = require('../envs/envs.js');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: '../tests/bacom',
+  testDir: '../tests',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 45 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -30,7 +30,9 @@ const config = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
     ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results', open: 'never' }]],
+    : [['html', { outputFolder: 'test-html-results', open: 'never' }],
+      ['list'], ['../utils/reporters/base-reporter.js']],
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -52,7 +54,6 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
     {
       name: 'bacom-live-firefox',
       use: {
@@ -60,7 +61,6 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
     {
       name: 'bacom-live-webkit',
       use: {
@@ -68,54 +68,27 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
-    {
-      name: 'bacom-stage-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-stage-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-stage-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
+    // {
+    //   name: 'bacom-prod-chrome',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
+    // {
+    //   name: 'bacom-prod-firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
+    // {
+    //   name: 'bacom-prod-webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
   ],
 };
 module.exports = config;

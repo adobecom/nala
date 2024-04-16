@@ -3,7 +3,7 @@
 import Quiz from '../../selectors/uar/quiz.page.js';
 
 const { test, expect } = require('@playwright/test');
-const QuizSpec = require('../../features/cc/quiz.analytics.spec.js');
+const QuizSpec = require('../../features/uar/quiz.cc.analytics.spec.js');
 
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
@@ -33,7 +33,7 @@ test.describe('Quiz flow test suite', () => {
         test.setTimeout(3 * 60 * 1000);
 
         const quiz = new Quiz(page);
-        const url = `${baseURL}${feature.path}?milolibs=stage`;
+        const url = `${baseURL}${feature.path}`;
         console.info(url);
 
         // load test data from static files

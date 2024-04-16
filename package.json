@@ -13,7 +13,9 @@
     "test:firefox-headless": "playwright test --project=firefox",
     "test:safari-headless": "playwright test --project=webkit",
     "test.sauce.us": "saucectl run --region us-west-1",
-    "test.sauce.eu": "saucectl run"
+    "test.sauce.eu": "saucectl run",
+    "postinstall": "npm update browserstack-node-sdk",
+    "test:bstack": "npx browserstack-node-sdk playwright test"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,7 @@
   "homepage": "https://github.com/adobecom/nala#readme",
   "dependencies": {
     "@axe-core/playwright": "^4.7.0",
-    "@playwright/test": "^1.37",
+    "@playwright/test": "^1.42",
     "axe-html-reporter": "^2.2.3",
     "axios": "^1.6.5",
     "css": "^3.0.0",
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@babel/core": "7.21.3",
     "@babel/eslint-parser": "7.21.3",
+    "browserstack-node-sdk": "^1.31.24",
     "eslint": "8.37.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",

@@ -1,37 +1,49 @@
 module.exports = {
-  name: 'Offer Selector Tool',
+  name: 'Commerce',
   features: [
     {
       tcid: '0',
       name: '@Commerce-Price-Term',
       path: '/drafts/nala/features/commerce/prices-with-term',
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @smoke @regression @nopr',
     },
     {
       tcid: '1',
       name: '@Commerce-Price-Unit-Term',
       path: '/drafts/nala/features/commerce/prices-with-term-unit',
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @smoke @regression @nopr',
 
     },
     {
       tcid: '2',
       name: '@Commerce-Price-Taxlabel-Unit-Term',
       path: '/drafts/nala/features/commerce/prices-with-term-unit-taxlabel',
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @smoke @regression @nopr',
     },
     {
       tcid: '3',
       name: '@Commerce-Promo',
       path: '/drafts/nala/features/commerce/promo-placeholders',
+      data: { promo: 'nicopromo' },
+      tags: '@commerce @smoke @regression @nopr',
+    },
+    {
+      tcid: '4',
+      name: '@Commerce-Upgrade-Entitlement',
+      path: '/drafts/nala/features/commerce/checkout-links',
+      data: { UpgradeCTATitle: 'Upgrade now' },
+      tags: '@commerce @entitlement @smoke @regression @nopr',
+    },
+    {
+      tcid: '5',
+      name: '@Commerce-Download-Entitlement',
+      path: '/drafts/nala/features/commerce/checkout-links',
       data: {
-        promo: 'nicopromo',
+        DownloadCTATitle: 'Download',
+        TrialCTATitle: 'Free trial',
+        DownloadUrl: 'download/photoshop',
       },
-      envs: '@milo_live',
-      tags: '@commerce',
+      tags: '@commerce @entitlement @smoke @regression @nopr',
     },
   ],
 };

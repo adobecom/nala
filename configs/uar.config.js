@@ -27,16 +27,16 @@ const config = {
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 2 : undefined,
-  /* Reporter to use.*/
+  /* Reporter to use. */
   reporter: process.env.CI
     ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
-    : [['list'],['../utils/reporters/base-reporter.js']],
-  /* Shared settings for all the projects below*/
+    : [['list'], ['../utils/reporters/base-reporter.js']],
+  /* Shared settings for all the projects below */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 15000,
 
-    /* Collect trace when retrying the failed test*/
+    /* Collect trace when retrying the failed test */
     trace: 'on-first-retry',
     baseURL: process.env.BASE_URL || envs['@adobe_stage'] || 'https://www.stage.adobe.com',
   },
@@ -65,17 +65,31 @@ const config = {
       },
     },
     {
-      name: 'adobe-stage-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@adobe_stage'],
-      },
-    },
-    {
       name: 'milo-stage-firefox',
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@milo_stage'],
+      },
+    },
+    {
+      name: 'milo-live-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    {
+      name: 'milo-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    {
+      name: 'milo-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@milo_live'],
       },
     },
   ],
