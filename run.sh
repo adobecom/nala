@@ -3,7 +3,7 @@
 TAGS=""
 REPORTER=""
 APPS=""
-EXCLUDE_TAGS="--grep-invert '@nopr'"
+EXCLUDE_TAGS="--grep-invert nopr"
 
 PR_NUMBER=$(echo "$GITHUB_REF" | awk -F'/' '{print $3}')
 echo "PR Number: $PR_NUMBER"
