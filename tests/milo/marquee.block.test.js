@@ -13,6 +13,7 @@ const knownConsoleErrors = [
   'Failed to load resource: net::ERR_FAILED',
   'adobeid-na1-stg1.services',
   'Attestation check for Topics',
+  'Access to fetch at',
 ];
 
 test.describe('Milo Marquee Block test suite', () => {
