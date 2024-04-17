@@ -15,7 +15,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @smoke @regression @milo ',
+      tags: '@georouting @smoke @regression @milo @nopr',
     },
     {
       tcid: '1',
@@ -98,7 +98,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @georouting-close @regression @milo ',
+      tags: '@georouting @georouting-close @regression @milo @nopr',
     },
   ],
 };
