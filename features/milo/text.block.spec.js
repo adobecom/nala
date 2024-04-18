@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 module.exports = {
   BlockName: 'Text Block',
   features: [
@@ -64,7 +66,7 @@ module.exports = {
       data: {
         h3Text: 'Text (inset, large, m spacing)',
         bodyText: 'Lorem ipsum dolor sit amet.',
-        listCount1: 3
+        listCount1: 3,
       },
       tags: '@text @inset-medium-m-spacing @smoke @regression @milo',
     },
