@@ -3,6 +3,7 @@
 TAGS=""
 REPORTER=""
 APPS=""
+EXCLUDE_TAGS="--grep-invert nopr"
 
 PR_NUMBER=$(echo "$GITHUB_REF" | awk -F'/' '{print $3}')
 echo "PR Number: $PR_NUMBER"
@@ -50,7 +51,7 @@ REPORTER=$reporter
 echo "*** Running Nala on $FEATURE_BRANCH ***"
 echo "Tags : $TAGS"
 echo "APPS : $APPS"
-echo "npx playwright test ${TAGS} ${REPORTER}"
+echo "npx playwright test ${TAGS} ${EXCLUDE_TAGS} ${REPORTER}"
 
 cd "$GITHUB_ACTION_PATH" || exit
 npm ci
@@ -73,8 +74,8 @@ if [[ -n  "$APPS" ]];then
       if [[ "$conf_name" == "nala" && -z "$project_name" ]]; then
         # Run default run-nala execution
         echo "*** Default nala-run config ***"
-        echo "npx playwright test ${TAGS} ${REPORTER}" 
-        npx playwright test ${TAGS} ${REPORTER}
+        echo "npx playwright test ${TAGS} ${EXCLUDE_TAGS} ${REPORTER}" 
+        npx playwright test ${TAGS} ${EXCLUDE_TAGS} ${REPORTER}
 
       elif [ ! -f "$config_file" ]; then        
         echo "Config file : $config_file is not found"
@@ -82,17 +83,17 @@ if [[ -n  "$APPS" ]];then
       else
         if [[ -n "$project_name" ]];then
           # Run on all three browsers, configured as projects in corresponding .config.js file
-          echo "*** npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name} ***"
-          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-chrome ${REPORTER}
-          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-firefox ${REPORTER} 
-          # npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} --project=${app_name}-webkit ${REPORTER}
+          echo "*** npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} ${EXCLUDE_TAGS} --project=${app_name} ***"
+          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} ${EXCLUDE_TAGS} --project=${app_name}-chrome ${REPORTER}
+          npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} ${EXCLUDE_TAGS} --project=${app_name}-firefox ${REPORTER} 
+          # npx playwright test --config=./configs/${conf_name}.config.js ${TAGS} ${EXCLUDE_TAGS} --project=${app_name}-webkit ${REPORTER}
         else
           # Run all the projects from config file for all projects
-          echo "*** npx playwright test --config="$config_file" ${TAGS} ${REPORTER} ***"
-          npx playwright test --config="$config_file" ${TAGS} ${REPORTER}
+          echo "*** npx playwright test --config="$config_file" ${TAGS} ${EXCLUDE_TAGS} ${REPORTER} ***"
+          npx playwright test --config="$config_file" ${TAGS} ${EXCLUDE_TAGS} ${REPORTER}
         fi
       fi
     done
 else
-  npx playwright test ${TAGS} ${REPORTER}
+  npx playwright test ${TAGS} ${EXCLUDE_TAGS} ${REPORTER}
 fi
