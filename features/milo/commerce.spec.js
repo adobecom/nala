@@ -55,12 +55,12 @@ module.exports = {
       tcid: '7',
       name: '@Commerce-Localized',
       path: '/de/drafts/nala/features/commerce/promo-placeholders',
-      data: { 
+      data: {
         promo: 'nicopromo',
         CO: 'co=DE',
         lang: 'lang=de',
       },
       tags: '@commerce @smoke @regression @nopr',
-    },  
+    },
   ],
 };

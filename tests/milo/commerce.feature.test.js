@@ -276,7 +276,7 @@ test.describe('Commerce feature test suite', () => {
   // @Commerce-KitchenSink-Smoke - Validate commerce CTA and checkout placeholders
   test(`${features[6].name}, ${features[6].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[6].path}${miloLibs}`;
-    let webUtil = new WebUtil(page);
+    const webUtil = new WebUtil(page);
 
     console.info('[Test Page]: ', testPage);
 
@@ -288,21 +288,19 @@ test.describe('Commerce feature test suite', () => {
 
     // Validate there are no unresolved commerce placeholders
     await test.step('Validate wcs placeholders', async () => {
-      await COMM.merchCard.first().waitFor({ state: 'visible', timeout: 30000});
+      await COMM.merchCard.first().waitFor({ state: 'visible', timeout: 30000 });
       await webUtil.scrollPage('down', 'slow');
-      let unresolvedPlaceholders =  await page.evaluate(() => {
-        return [...document.querySelectorAll('[data-wcs-osi]')].filter(el => !el.classList.contains('placeholder-resolved'));
-      });
+      const unresolvedPlaceholders = await page.evaluate(() => [...document.querySelectorAll('[data-wcs-osi]')]
+      .filter((el) => !el.classList.contains('placeholder-resolved')));
       expect(unresolvedPlaceholders.length).toBe(0);
     });
 
     // Validate commerce checkout links are indeed commerce
     await test.step('Validate checkout links', async () => {
-      let invalidCheckoutLinks =  await page.evaluate(() => {
-        return [...document.querySelectorAll('[data-wcs-osi][is="checkout-link"]')].filter(el => !el.getAttribute('href').includes('commerce'));
-      });
+      const invalidCheckoutLinks = await page.evaluate(() => [...document.querySelectorAll('[data-wcs-osi][is="checkout-link"]')]
+      .filter((el) => !el.getAttribute('href').includes('commerce')));
       expect(invalidCheckoutLinks.length).toBe(0);
-    }); 
+    });
   });
 
   // @Commerce-Localized - Validate commerce CTA and checkout placeholders
