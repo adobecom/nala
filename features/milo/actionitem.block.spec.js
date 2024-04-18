@@ -30,7 +30,7 @@ module.exports = {
         imgMinHeight: '104px',
       },
       tags: '@action-item @smoke @regression @milo',
-    }, 
+    },
     {
       tcid: '3',
       name: '@Action-item (center) ',
@@ -47,7 +47,7 @@ module.exports = {
       path: '/drafts/nala/blocks/action-item/action-item-rounded',
       data: {
         bodyText: 'Border radius 4px',
-        borderRadius: '4px',        
+        borderRadius: '4px',
       },
       tags: '@action-item @smoke @regression @milo',
     },
@@ -57,7 +57,7 @@ module.exports = {
       path: '/drafts/nala/blocks/action-item/action-item-float-button',
       data: {
         bodyText: 'Float button',
-        floatButtonText: 'Edit',        
+        floatButtonText: 'Edit',
       },
       tags: '@action-item @smoke @regression @milo',
     },
@@ -68,7 +68,7 @@ module.exports = {
       data: {
         bodyText: 'content',
         floatButtonText: 'Edit',
-        actionItemsCount: 6,        
+        actionItemsCount: 6,
       },
       tags: '@action-item @smoke @regression @milo',
     },
@@ -82,8 +82,6 @@ module.exports = {
         actionItemsCount: 8,
       },
       tags: '@action-item @smoke @regression @milo',
-    }                                                                 
+    },
   ],
 };
-
-

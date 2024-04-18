@@ -60,7 +60,7 @@ module.exports = {
             blueButtonText: 'learn more',
           },
         ],
-      },    
+      },
       tags: '@zpattern @zpattern-small @smoke @regression @milo',
     },
 
@@ -92,7 +92,7 @@ module.exports = {
             blueButtonText: 'learn more',
           },
         ],
-      },      
+      },
       tags: '@zpattern @zpattern-large @smoke @regression @milo',
     },
 
@@ -124,7 +124,7 @@ module.exports = {
             blueButtonText: 'Learn More',
           },
         ],
-      },      
+      },
       tags: '@zpattern @zpattern-dark @smoke @regression @milo',
     },
   ],
