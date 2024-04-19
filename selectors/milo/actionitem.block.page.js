@@ -1,15 +1,15 @@
 export default class ActionItem {
   constructor(page, nth = 0) {
     this.page = page;
-    
+
     this.actionItem = this.page.locator('.action-item').nth(nth);
     this.small = this.page.locator('.action-item.small').nth(nth);
     this.medium = this.page.locator('.action-item.medium').nth(nth);
     this.large = this.page.locator('.action-item.large').nth(nth);
     this.center = this.page.locator('.action-item.center').nth(nth);
     this.rounded = this.page.locator('.action-item.rounded').nth(nth);
-    this.floatIcon = this.page.locator('.action-item.float-icon').nth(nth);
-    this.floatButton = this.page.locator('.action-item.float-button').nth(nth);
+    this.actionItemFloat = this.page.locator('.action-item.float-button').nth(nth);
+    this.floatButton = this.page.locator('.action-item.float-button > div > div> p > a');
     this.libraryContainerStart = this.page.locator('.library-container-start').nth(nth);
     this.libraryContainerEnd = this.page.locator('.library-container-end').nth(nth);
     this.actionScroller = this.page.locator('.action-scroller').nth(nth);
@@ -28,8 +28,6 @@ export default class ActionItem {
     this.image = this.mainImage.locator('img').nth(0);
     this.bodyText = this.actionItem.locator('p').nth(1);
     this.bodyTextLink = this.actionItem.locator('a').nth(0);
-    this.floatOutlineButton = this.mainImage.locator('a')
+    this.floatOutlineButton = this.mainImage.locator('a');
   }
 }
-
-
