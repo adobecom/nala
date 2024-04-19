@@ -5,8 +5,8 @@ function displayHelp() {
 Usage: node run.js [options]
 
 Options:
--p, --project       Specify the project to run tests on, e.g., milo-live-chrome.
--c, --config        Specify name of configuration file, e.g., milo.
+-p, --project       Specify the project to run tests on, e.g., milo-live-chrome (required).
+-c, --config        Specify name of configuration file, e.g., milo (required).
 -g, --grep          Filter tests by grep pattern, e.g., '@milo'.
 -r, --reporter      Specify the reporter to use, e.g., 'html'.
 -h, --help          Display this help message and exit.
