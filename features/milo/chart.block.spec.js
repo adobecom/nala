@@ -48,7 +48,7 @@ module.exports = {
         footNote: 'Footnote lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
       },
       tags: '@chart @smoke @regression @milo',
-    }, 
+    },
     {
       tcid: '4',
       name: '@Chart (line, border)',
@@ -60,7 +60,7 @@ module.exports = {
         footNote: 'Footnote lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
       },
       tags: '@chart @smoke @regression @milo',
-    }, 
+    },
     {
       tcid: '5',
       name: '@Chart (oversized-number, border)',
@@ -86,8 +86,6 @@ module.exports = {
         footNote: 'Footnote lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
       },
       tags: '@chart @smoke @regression @milo',
-    },                                                                   
+    },
   ],
 };
-
-
