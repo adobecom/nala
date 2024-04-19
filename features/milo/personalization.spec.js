@@ -8,9 +8,9 @@ module.exports = {
       path: '/drafts/nala/features/personalization/pzn-replacecontent',
       data: {
         target: 'textpersonlization',
-        pznExpName:'param-target=textpersonlization',
-        pznFileName:'pzn1',
-        h3Text: 'Text'
+        pznExpName: 'param-target=textpersonlization',
+        pznFileName: 'pzn1',
+        h3Text: 'Text',
       },
       tags: '@pzn @smoke @regression @milo ',
     },
@@ -21,9 +21,9 @@ module.exports = {
       path: '/drafts/nala/features/personalization/pzn-insertcontent-before',
       data: {
         target: 'textpersonlization',
-        pznExpName:'param-target=textpersonlization',
-        pznFileName:'insert-content-before',
-        h3Text: 'Text'
+        pznExpName: 'param-target=textpersonlization',
+        pznFileName: 'insert-content-before',
+        h3Text: 'Text',
       },
       tags: '@pzn @smoke @regression @milo ',
     },
@@ -34,11 +34,11 @@ module.exports = {
       path: '/drafts/nala/features/personalization/pzn-insertcontent-after',
       data: {
         target: 'textpersonlization',
-        pznExpName:'param-target=textpersonlization',
-        pznFileName:'insert-content-before',
-        h3Text: 'Text'
+        pznExpName: 'param-target=textpersonlization',
+        pznFileName: 'insert-content-before',
+        h3Text: 'Text',
       },
       tags: '@pzn @smoke @regression @milo ',
-    },  
+    },
   ],
 };

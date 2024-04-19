@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 module.exports = {
   FeatureName: 'Consonant Card Block',
   features: [
@@ -12,7 +14,7 @@ module.exports = {
         footerBlueButtonText: 'Learn more',
       },
       tags: '@card @smoke @regression @milo',
-    }, 
+    },
     {
       tcid: '1',
       name: '@Card (half-card, border)',
@@ -34,7 +36,7 @@ module.exports = {
         text: 'Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis',
       },
       tags: '@card @smoke @regression @milo',
-    }, 
+    },
     {
       tcid: '3',
       name: '@Card (product-card, border) ',
@@ -45,17 +47,15 @@ module.exports = {
         footerOutlineButtonText: 'Learn more',
         footerBlueButtonText: 'Sign up',
       },
-      tags: '@card @smoke @regression @milo',      
+      tags: '@card @smoke @regression @milo',
     },
     {
       tcid: '4',
       name: '@Card (half-height-card, border)',
       path: '/drafts/nala/blocks/card/half-height-card-border',
-      data: {
-        titleH3: 'Lorem ipsum dolor sit amet',
-      },
+      data: { titleH3: 'Lorem ipsum dolor sit amet' },
       tags: '@card @smoke @regression @milo',
-    }, 
+    },
     {
       tcid: '5',
       name: '@Card-horizontal',
@@ -79,7 +79,6 @@ module.exports = {
         imgHeight: '78',
       },
       tags: '@card @smoke @regression @milo',
-    },                                          
+    },
   ],
 };
-
