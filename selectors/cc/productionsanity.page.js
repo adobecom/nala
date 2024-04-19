@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export default class productionsanity {
   constructor(page) {
     this.page = page;
@@ -15,6 +16,7 @@ export default class productionsanity {
     this.localNav = this.Gnav.locator('feds-nav');
     this.magaMenuItems = this.Gnav.locator('.feds-navItem.feds-navItem--section.feds-navItem--megaMenu');
     this.localNavActiveItem = page.locator('//a[@daa-ll="After Effects-2"]');
+    // eslint-disable-next-line max-len
     this.afterEffectProductPriceInMarquee = page.locator('//span[@aria-label="US$22.99 per month" and @class="price"]').nth(0);
     this.buyNowAECTA = page.locator('.con-button.blue.button-xl.button-justified-mobile');
     // creative cloud pricing page elements
@@ -43,5 +45,23 @@ export default class productionsanity {
     this.panelSubScriptionPick1 = page.locator('//span[@class="price" and @aria-label="US$22.99 per month per license"]').nth(1);
     this.panelSubScriptionPick2 = page.locator('//span[@class="price" and @aria-label="US$263.88 per year per license"]').nth(0);
     this.purchaseCTA = page.locator('.spectrum-Button.spectrum-Button--cta');
+    // CC UK locale page locators
+    this.UKGnavPriceCTA = this.Gnav.locator('.feds-cta.feds-cta--primary').nth(0);
+    this.breadCrumbUKAnimationLink = this.breadCrumb.locator('//a[@href="/uk/creativecloud/animation-software.html"]');
+    this.LearnMoreLink = page.locator('//a[@href="/uk/creativecloud/animation/discover/animation.html" and @daa-ll="Learn more-1--Ultimate beginner s "]');
+    // CC DE locale page locators
+    this.DEGnavPriceCTA = this.Gnav.locator('.feds-cta.feds-cta--primary').nth(2);
+    this.ExpandableGnavMenuItems = this.Gnav.locator('.feds-navLink.feds-navLink--hoverCaret').nth(0);
+    this.NavLocalizaedItems1 = this.Gnav.locator('//a[@class="feds-navLink" and @daa-ll="Für Unternehmen-5"]');
+    this.consonantCards = page.locator('.consonant-HalfHeightCard-img').nth(0);
+    // CC JP locale page locators
+    this.JPExpandableMegaMenu = this.Gnav.locator('.feds-navItem.feds-navItem--section.feds-navItem--active.feds-navItem--megaMenu');
+    this.LocalizedNavLinks = this.Gnav.locator('//a[@class="feds-navLink" and @daa-ll="新機能-4"]');
+    this.CCJPAllAppsPrice = page.locator('//span[@class="price" and @aria-label="7,780 &#20870; 毎月"]');
+    this.checkOutLink = page.locator('//a[@is="checkout-link"]').nth(0);
+    this.JPGnavPriceCTA = this.Gnav.locator('.feds-cta.feds-cta--primary').nth(2);
+    // CC FR locale page locators
+    this.FRLocalizedNavLinks = this.Gnav.locator('//a[@class="feds-navLink" and @daa-ll="Nouveautés-4"]');
+    this.marqueeCTAFR = page.locator('//a[@daa-ll="Explorer les outils -1--Qu est ce que l anim"]');
   }
 }

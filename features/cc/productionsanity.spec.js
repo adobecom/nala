@@ -41,5 +41,33 @@ module.exports = {
       path: '/products/premiere.html#marqueectatwp',
       tags: '@cc @cc-prodsanity @cc-CCpricemodelsanity',
     },
+    {
+      tcid: '6',
+      name: '@CCUKpagesanitycheck',
+      path: '/uk/creativecloud/animation/discover.html?georouting=off',
+      tags: '@cc @cc-prodsanity @cc-CCUKPagesanity',
+      url: 'https://www.adobe.com/uk/creativecloud/animation/discover/animation.html',
+    },
+    {
+      tcid: '7',
+      name: '@CCDEpagesanitycheck',
+      path: '/de/creativecloud/tools.html?georouting=off',
+      tags: '@cc @cc-prodsanity @cc-CCDEPagesanity',
+      url: 'https://www.adobe.com/de/creativecloud/plans.html',
+    },
+    {
+      tcid: '8',
+      name: '@CCJPpagesanitycheck',
+      path: '/jp/creativecloud/file-types/image.html?georouting=off',
+      tags: '@cc @cc-prodsanity @cc-CCJPPagesanity',
+      url: 'https://www.adobe.com/jp/creativecloud/plans.html',
+    },
+    {
+      tcid: '9',
+      name: '@CCFRpagesanitycheck',
+      path: '/fr/creativecloud/animation/discover/claymation.html?georouting=off',
+      tags: '@cc @cc-prodsanity @cc-CCFRPagesanity',
+      marqueelink: 'https://www.adobe.com/fr/creativecloud/animation-software.html',
+    },
   ],
 };
