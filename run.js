@@ -84,6 +84,12 @@ function runPlaywrightTests() {
   const command = 'npx playwright test';
   const options = [];
 
+  if (Object.keys(argv).length === 0) {
+    console.log('No options provided, displaying help.');
+    displayHelp();
+    process.exit(0);
+  }
+
   // Add options dynamically based on argv
   if (argv.headed) {
     options.push('--headed');
