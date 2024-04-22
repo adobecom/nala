@@ -31,7 +31,7 @@ export default class productionsanity {
     this.CCBusinessGnavLink = this.Gnav.locator('//a[@daa-ll="Creative Cloud for business-2"]');
     this.CCTBuynowCTA = this.Gnav.locator('//a[@daa-ll="Buy now-9"]');
     this.supportContact = this.Gnav.locator('//a[@daa-ll="800 915 9428-10"]');
-    this.CCTeamsSingleAppPrice = page.locator('//span[@aria-label="US$37.99 per month per license" and @class="price"]'); 
+    this.CCTeamsSingleAppPrice = page.locator('//span[@aria-label="US$37.99 per month per license" and @class="price"]');
     // CC Priceing model with all plans
     this.modelNavList = page.locator('.navList');
     this.individualPlanTab = page.locator('//span[@data-analytics-navlist-label="individualplanTab"]');
