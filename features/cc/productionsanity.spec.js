@@ -5,8 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@creativecloudhomepage',
       path: '/creativecloud.html?georouting=off',
-      tags: '@cc @cc-prodsanity @cc-homepagesanity',
-      commerceurl: 'https://commerce.adobe.com/store/commitment?items%5B0%5D%5Bid%5D=81DE7D1C91A201AB690BC4741B32F0C0&cli=adobe_com&ctx=fp&co=US&lang=en',
+      tags: '@cc @cc-prodsanity @cc-homepagesanity',      
     },
     {
       tcid: '1',
