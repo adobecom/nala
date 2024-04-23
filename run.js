@@ -96,7 +96,14 @@ function runPlaywrightTests() {
   }
 
   if (argv.project) {
-    options.push(`--project=${argv.project}`);
+    if (argv.project === 'all') {
+      console.log('Running tests for all projects');
+    } else {
+      const projectArray = argv.project.split(',');
+      projectArray.forEach((project) => {
+        options.push(`--project=${project}`);
+      });
+    }
   } else {
     console.error('Error: -p (project) is required');
     process.exit(1);
