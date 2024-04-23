@@ -290,15 +290,19 @@ test.describe('Commerce feature test suite', () => {
     await test.step('Validate wcs placeholders', async () => {
       await COMM.merchCard.first().waitFor({ state: 'visible', timeout: 30000 });
       await webUtil.scrollPage('down', 'slow');
-      const unresolvedPlaceholders = await page.evaluate(() => [...document.querySelectorAll('[data-wcs-osi]')]
-      .filter((el) => !el.classList.contains('placeholder-resolved')));
+      const unresolvedPlaceholders = await page.evaluate(
+        () => [...document.querySelectorAll('[data-wcs-osi]')].filter(
+          (el) => !el.classList.contains('placeholder-resolved')
+        ));
       expect(unresolvedPlaceholders.length).toBe(0);
     });
 
     // Validate commerce checkout links are indeed commerce
     await test.step('Validate checkout links', async () => {
-      const invalidCheckoutLinks = await page.evaluate(() => [...document.querySelectorAll('[data-wcs-osi][is="checkout-link"]')]
-      .filter((el) => !el.getAttribute('href').includes('commerce')));
+      const invalidCheckoutLinks = await page.evaluate(
+        () => [...document.querySelectorAll('[data-wcs-osi][is="checkout-link"]')].filter(
+          (el) => !el.getAttribute('href').includes('commerce')
+        ));
       expect(invalidCheckoutLinks.length).toBe(0);
     });
   });
