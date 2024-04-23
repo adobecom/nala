@@ -1,5 +1,17 @@
 import { expect } from '@playwright/test';
 
+const FIRST_NAME = 'firstNameTest';
+const LAST_NAME = 'lastNameTest';
+const PHONE = '415-123-4567';
+const EMAIL = 'test+nosub@adobetest.com';
+const COMPANY = 'Adobe';
+const COUNTRY = 'United States';
+const STATE = 'California';
+const POSTAL_CODE = '94111';
+const JOB_TITLE = 'Other';
+const PRIMARY_PRODUCT_INTEREST = 'Digital marketing';
+const FUNCTIONAL_AREA = 'Other';
+
 export default class Marketo {
   constructor(page) {
     this.page = page;
@@ -35,92 +47,127 @@ export default class Marketo {
    * @description Form ID: MCZ Production (2277)
    */
   async submitProductionForm() {
-    await this.country.selectOption('United States');
-    await this.functionalArea.selectOption('Other');
-    await this.jobTitle.selectOption('Other');
-    await this.primaryProductInterest.selectOption('Digital marketing');
-    await this.state.selectOption('California');
-    await this.firstName.fill('TestFirstName');
-    await this.lastName.fill('TestLastName');
-    await this.email.fill('test+nosub@adobetest.com');
-    await this.phone.fill('415-111-2222');
-    await this.company.fill('Adobe');
-    await this.postalCode.fill('94111');
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.primaryProductInterest.selectOption(`${PRIMARY_PRODUCT_INTEREST}`);
+    await this.state.selectOption(`${STATE}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.phone.fill(`${PHONE}`);
+    await this.company.fill(`${COMPANY}`);
+    await this.postalCode.fill(`${POSTAL_CODE}`);
     await this.submitButton.click();
   }
 
   async submitRFITemplateForm() {
-    await this.country.selectOption('United States');
-    await this.functionalArea.selectOption('Other', { timeout: 10000 });
-    await this.jobTitle.selectOption('Other');
-    await this.primaryProductInterest.selectOption('Digital marketing');
-    await this.state.selectOption('California');
-    await this.company.fill('Adobe');
-    await this.firstName.fill('TestFirstName');
-    await this.lastName.fill('TestLastName');
-    await this.email.fill('test+nosub@adobetest.com');
-    await this.phone.fill('415-111-2222');
-    await this.postalCode.fill('94111');
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.primaryProductInterest.selectOption(`${PRIMARY_PRODUCT_INTEREST}`);
+    await this.state.selectOption(`${STATE}`);
+    await this.company.fill(`${COMPANY}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.phone.fill(`${PHONE}`);
+    await this.postalCode.fill(`${POSTAL_CODE}`);
     await this.submitButton.click();
   }
 
   async submitDiscoverTemplateForm() {
-    await this.country.selectOption('United States', { timeout: 10000 });
-    await this.email.fill('test+nosub@adobetest.com');
-    await this.company.fill('Adobe');
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.company.fill(`${COMPANY}`);
     await this.submitButton.click();
   }
 
   async submitExploreTemplateForm() {
-    await this.country.selectOption('United States');
-    await this.functionalArea.selectOption('Other');
-    await this.jobTitle.selectOption('Other');
-    await this.firstName.fill('TestFirstName');
-    await this.lastName.fill('TestLastName');
-    await this.email.fill('test+nosub@adobetest.com');
-    await this.company.fill('Adobe');
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.company.fill(`${COMPANY}`);
     await this.submitButton.click();
   }
 
   async submitEvaluateTemplateForm() {
-    await this.country.selectOption('United States');
-    await this.functionalArea.selectOption('Other', { timeout: 10000 });
-    await this.jobTitle.selectOption('Other');
-    await this.state.selectOption('California');
-    await this.firstName.fill('TestFirstName');
-    await this.lastName.fill('TestLastName');
-    await this.email.fill('test+nosub@adobetest.com');
-    await this.company.fill('Adobe');
-    await this.phone.fill('415-111-2222');
-    await this.postalCode.fill('94111');
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.state.selectOption(`${STATE}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.company.fill(`${COMPANY}`);
+    await this.phone.fill(`${PHONE}`);
+    await this.postalCode.fill(`${POSTAL_CODE}`);
     await this.submitButton.click();
   }
 
   async submitWebinarTemplateForm() {
-    await this.country.selectOption('United States');
-    await this.functionalArea.selectOption('Other', { timeout: 10000 });
-    await this.jobTitle.selectOption('Other');
-    await this.state.selectOption('California');
-    await this.firstName.fill('TestFirstName');
-    await this.lastName.fill('TestLastName');
-    await this.email.fill('test+nosub@adobetest.com');
-    await this.phone.fill('415-111-2222');
-    await this.company.fill('Adobe');
-    await this.postalCode.fill('94111');
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.state.selectOption(`${STATE}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.phone.fill(`${PHONE}`);
+    await this.company.fill(`${COMPANY}`);
+    await this.postalCode.fill(`${POSTAL_CODE}`);
     await this.submitButton.click();
   }
 
   async submitTrialTemplateForm() {
-    await this.functionalArea.selectOption('Other', { timeout: 10000 });
-    await this.country.selectOption('United States');
-    await this.jobTitle.selectOption('Other');
-    await this.state.selectOption('California');
-    await this.firstName.fill('TestFirstName');
-    await this.lastName.fill('TestLastName');
-    await this.email.fill('test+nosub@adobetest.com');
-    await this.phone.fill('415-111-2222');
-    await this.company.fill('Adobe');
-    await this.postalCode.fill('94111');
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.state.selectOption(`${STATE}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.phone.fill(`${PHONE}`);
+    await this.company.fill(`${COMPANY}`);
+    await this.postalCode.fill(`${POSTAL_CODE}`);
+    await this.submitButton.click();
+  }
+
+  async submitFullTemplateForm() {
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.primaryProductInterest.selectOption(`${PRIMARY_PRODUCT_INTEREST}`);
+    await this.state.selectOption(`${STATE}`);
+    await this.company.fill(`${COMPANY}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.phone.fill(`${PHONE}`);
+    await this.postalCode.fill(`${POSTAL_CODE}`);
+    await this.submitButton.click();
+  }
+
+  async submitExpandedTemplateForm() {
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.functionalArea.selectOption(`${FUNCTIONAL_AREA}`);
+    await this.jobTitle.selectOption(`${JOB_TITLE}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.company.fill(`${COMPANY}`);
+    await this.submitButton.click();
+  }
+
+  async submitEssentialTemplateForm() {
+    await this.country.selectOption(`${COUNTRY}`);
+    await this.firstName.fill(`${FIRST_NAME}`);
+    await this.lastName.fill(`${LAST_NAME}`);
+    await this.email.fill(`${EMAIL}`);
+    await this.company.fill(`${COMPANY}`);
     await this.submitButton.click();
   }
 }

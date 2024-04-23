@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 module.exports = {
   FeatureName: 'Quote Block',
   features: [

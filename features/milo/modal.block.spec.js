@@ -41,6 +41,6 @@ module.exports = {
         bodyText: 'Body S 16/24 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed',
       },
       tags: '@modal @smoke @regression @milo',
-    },    
+    },
   ],
 };
