@@ -45,5 +45,22 @@ module.exports = {
       },
       tags: '@commerce @entitlement @smoke @regression @nopr',
     },
+    {
+      tcid: '6',
+      name: '@Commerce-KitchenSink-Smoke',
+      path: '/docs/library/kitchen-sink/merch-card',
+      tags: '@commerce @kitchensink @smoke @regression @nopr',
+    },
+    {
+      tcid: '7',
+      name: '@Commerce-Localized',
+      path: '/de/drafts/nala/features/commerce/promo-placeholders',
+      data: {
+        promo: 'nicopromo',
+        CO: 'co=DE',
+        lang: 'lang=de',
+      },
+      tags: '@commerce @smoke @regression @nopr',
+    },
   ],
 };
