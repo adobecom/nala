@@ -390,7 +390,7 @@ test.describe('Promotions feature test suite', () => {
     });
   });
 
-  // @Promo-page-filter-replace - Validate promo page filter with replace action 
+  // @Promo-page-filter-replace - Validate promo page filter with replace action
   test(`${features[10].name},${features[10].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[10].path}${miloLibs}`;
     const { data } = features[10];
@@ -418,7 +418,7 @@ test.describe('Promotions feature test suite', () => {
     });
   });
 
-  // @Promo-page-filter-geo - Validate promo page filter in default, de and fr locales 
+  // @Promo-page-filter-geo - Validate promo page filter in default, de and fr locales
   test(`${features[11].name},${features[11].tags}`, async ({ page, baseURL }) => {
     let testPage = `${baseURL}${features[11].path}${miloLibs}`;
     const { data } = features[11];
@@ -462,7 +462,7 @@ test.describe('Promotions feature test suite', () => {
       await expect(await PROMO.textInsertAfterMarquee).not.toBeVisible();
       await expect(await PROMO.marqueeReplace).not.toBeVisible();
     });
-    
+
     await test.step('Go to the test page in FR locale', async () => {
       testPage = `${baseURL}${data.CO_FR}${features[11].path}${miloLibs}`;
       console.info('[Test Page][FR]: ', testPage);
@@ -521,5 +521,4 @@ test.describe('Promotions feature test suite', () => {
       await expect(await PROMO.textInsertBeforeText).toContainText(data.textBeforeMarquee);
     });
   });
-
 });
