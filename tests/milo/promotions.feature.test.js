@@ -359,4 +359,166 @@ test.describe('Promotions feature test suite', () => {
       await expect(await PROMO.textReplace).not.toBeVisible();
     });
   });
+
+  // @Promo-page-filter-insert - Validate promo page filter with insert action
+  test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
+    const testPage = `${baseURL}${features[9].path}${miloLibs}`;
+    const { data } = features[9];
+    console.info('[Test Page]: ', testPage);
+
+    await test.step('Go to the test page', async () => {
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify default test page content', async () => {
+      await expect(await PROMO.marqueeDefault).toBeVisible();
+      await expect(await PROMO.marqueeDefault).toContainText(data.textMarquee);
+
+      await expect(await PROMO.textDefault).toBeVisible();
+      await expect(await PROMO.textDefault).toContainText(data.textDefault);
+    });
+
+    await test.step('Validate content insert after marquee', async () => {
+      await expect(await PROMO.textInsertAfterMarquee).toBeVisible();
+      await expect(await PROMO.textInsertAfterMarquee).toContainText(data.textAfterMarquee);
+    });
+
+    await test.step('Validate other promo filter actions are not applied', async () => {
+      await expect(await PROMO.textInsertBeforeCommon).not.toBeVisible();
+      await expect(await PROMO.marqueeReplace).not.toBeVisible();
+    });
+  });
+
+  // @Promo-page-filter-replace - Validate promo page filter with replace action
+  test(`${features[10].name},${features[10].tags}`, async ({ page, baseURL }) => {
+    const testPage = `${baseURL}${features[10].path}${miloLibs}`;
+    const { data } = features[10];
+    console.info('[Test Page]: ', testPage);
+
+    await test.step('Go to the test page', async () => {
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify default content', async () => {
+      await expect(await PROMO.marqueeDefault).not.toBeVisible();
+      await expect(await PROMO.textDefault).toBeVisible();
+      await expect(await PROMO.textDefault).toContainText(data.textDefault);
+    });
+
+    await test.step('Validate marque replace', async () => {
+      await expect(await PROMO.marqueeReplace).toBeVisible();
+      await expect(await PROMO.marqueeReplace).toContainText(data.textReplaceMarquee);
+    });
+
+    await test.step('Validate other promo filter actions are not applied', async () => {
+      await expect(await PROMO.textInsertBeforeCommon).not.toBeVisible();
+      await expect(await PROMO.textInsertAfterMarquee).not.toBeVisible();
+    });
+  });
+
+  // @Promo-page-filter-geo - Validate promo page filter in default, de and fr locales
+  test(`${features[11].name},${features[11].tags}`, async ({ page, baseURL }) => {
+    let testPage = `${baseURL}${features[11].path}${miloLibs}`;
+    const { data } = features[11];
+    console.info('[Test Page]: ', testPage);
+
+    await test.step('Go to the test page', async () => {
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify default test page content', async () => {
+      await expect(await PROMO.marqueeDefault).toBeVisible();
+      await expect(await PROMO.marqueeDefault).toContainText(data.textMarquee);
+
+      await expect(await PROMO.textDefault).toBeVisible();
+      await expect(await PROMO.textDefault).toContainText(data.textDefault);
+    });
+
+    await test.step('Validate content insert before text', async () => {
+      await expect(await PROMO.textInsertBeforeCommon).toBeVisible();
+      await expect(await PROMO.textInsertBeforeCommon).toContainText(data.textBeforeText);
+    });
+
+    await test.step('Validate other promo filter actions are not applied', async () => {
+      await expect(await PROMO.textInsertAfterMarquee).not.toBeVisible();
+      await expect(await PROMO.marqueeReplace).not.toBeVisible();
+    });
+
+    await test.step('Go to the test page in DE locale', async () => {
+      testPage = `${baseURL}${data.CO_DE}${features[11].path}${miloLibs}`;
+      console.info('[Test Page][DE]: ', testPage);
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify page filter on DE page', async () => {
+      await expect(await PROMO.marqueeDefault).toBeVisible();
+      await expect(await PROMO.textDefault).toBeVisible();
+      await expect(await PROMO.textInsertBeforeCommonDE).toBeVisible();
+      await expect(await PROMO.textInsertBeforeCommonDE).toContainText(data.textBeforeTextDE);
+      await expect(await PROMO.textInsertAfterMarquee).not.toBeVisible();
+      await expect(await PROMO.marqueeReplace).not.toBeVisible();
+    });
+
+    await test.step('Go to the test page in FR locale', async () => {
+      testPage = `${baseURL}${data.CO_FR}${features[11].path}${miloLibs}`;
+      console.info('[Test Page][FR]: ', testPage);
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify page filter on FR page', async () => {
+      await expect(await PROMO.marqueeDefault).toBeVisible();
+      await expect(await PROMO.textDefault).toBeVisible();
+      await expect(await PROMO.textInsertBeforeCommonFR).toBeVisible();
+      await expect(await PROMO.textInsertBeforeCommonFR).toContainText(data.textBeforeTextFR);
+      await expect(await PROMO.textInsertAfterMarquee).not.toBeVisible();
+      await expect(await PROMO.marqueeReplace).not.toBeVisible();
+    });
+  });
+
+  // @Promo-remove-fragment - Validate fragment marquee remove
+  test(`${features[12].name},${features[12].tags}`, async ({ page, baseURL }) => {
+    const testPage = `${baseURL}${features[12].path}${miloLibs}`;
+    console.info('[Test Page]: ', testPage);
+
+    await test.step('Go to the test page', async () => {
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify default test page content is not visible', async () => {
+      await expect(await PROMO.marqueeFragment).not.toBeVisible();
+    });
+  });
+
+  // @Promo-insert-fragment - Validate promo insert text after and before fragment
+  test(`${features[13].name},${features[13].tags}`, async ({ page, baseURL }) => {
+    const testPage = `${baseURL}${features[13].path}${miloLibs}`;
+    const { data } = features[13];
+    console.info('[Test Page]: ', testPage);
+
+    await test.step('Go to the test page', async () => {
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify default test page content', async () => {
+      await expect(await PROMO.marqueeFragment).toBeVisible();
+      await expect(await PROMO.marqueeFragment).toContainText(data.textMarquee);
+    });
+
+    await test.step('Validate content insert after marquee', async () => {
+      await expect(await PROMO.textInsertAfterMarquee).toBeVisible();
+      await expect(await PROMO.textInsertAfterMarquee).toContainText(data.textAfterMarquee);
+    });
+
+    await test.step('Validate content insert before text component', async () => {
+      await expect(await PROMO.textInsertBeforeText).toBeVisible();
+      await expect(await PROMO.textInsertBeforeText).toContainText(data.textBeforeMarquee);
+    });
+  });
 });
