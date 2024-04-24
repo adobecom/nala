@@ -360,7 +360,7 @@ test.describe('Promotions feature test suite', () => {
     });
   });
 
-  // @Promo-page-filter-insert - Validate promo page filter with insert action 
+  // @Promo-page-filter-insert - Validate promo page filter with insert action
   test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[9].path}${miloLibs}`;
     const { data } = features[9];
