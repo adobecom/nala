@@ -5,7 +5,7 @@ export default class Accordion {
     // accordion locators
     this.accordion = this.page.locator('.accordion-container').nth(nth);
     this.accordionForeground = this.accordion.locator('.foreground');
-    this.accordionHeaders = this.accordion.locator('dt[role=heading1]');
+    this.accordionHeaders = this.accordion.locator('dt[role=heading]');
     this.accordionButtons = this.accordion.locator('dt button');
     this.accordionButtonIcons = this.accordion.locator('.accordion-icon');
 
