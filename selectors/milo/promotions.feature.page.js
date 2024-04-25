@@ -9,8 +9,11 @@ export default class CommercePage {
     this.textDefault = page.locator('.text #default-text');
     this.textReplace = page.locator('.text #promo-text-replace');
     this.textInsertAfterMarquee = page.locator('.text #marquee-promo-text-insert');
-    this.textInsertBeforeText = page.locator('.text #promo-text-insert');
+    this.textInsertBeforeText = page.locator('.text #text-promo-text-insert');
     this.textInsertFuture = page.locator('.text #future-promo-text-insert');
+    this.textInsertBeforeCommon = page.locator('.text #common-promo');
+    this.textInsertBeforeCommonDE = page.locator('.text #german-promo');
+    this.textInsertBeforeCommonFR = page.locator('.text #french-promo');
     this.mepMenuOpen = page.locator('.mep-open');
     this.mepPreviewButton = page.locator('//a[contains(text(),"Preview")]');
     this.mepManifestList = page.locator('.mep-manifest-list');
