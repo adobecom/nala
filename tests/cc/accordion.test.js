@@ -7,7 +7,7 @@ test.describe('verify accordion showing up with authored question and answers wi
   test.beforeEach(async ({ page }) => {
     accordion = new Accordion(page);
   });
-  // erify accordion showing up with authored question and answers and UI
+  // Verify accordion showing up with authored question and answers and UI
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
     await test.step('accordion UI', async () => {
