@@ -7,6 +7,7 @@ export default class CommercePage {
     this.priceStrikethrough = page.locator('//span[@data-template="strikethrough"]');
     this.buyNowCta = page.locator('//a[contains(@daa-ll, "Buy now")]');
     this.freeTrialCta = page.locator('//a[contains(@daa-ll, "Free trial")]');
+    this.merchCard = page.locator('merch-card');
     // universal nav login account type
     this.loginType = page.locator('div.feds-profile > div > div > ul > li:nth-child(5) > button');
     // entitlement block locators
