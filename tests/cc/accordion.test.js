@@ -11,9 +11,9 @@ test.describe('verify accordion showing up with authored question and answers wi
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
     await test.step('accordion UI', async () => {
-await page.goto(`${baseURL}${features[0].path}`);
-await page.waitForLoadState('domcontentloaded');
-await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
     await test.step('accordion ui with expected elements', async () => {
       await page.waitForLoadState();  
@@ -78,7 +78,6 @@ await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
       await accordion.accordionQuestion1.click();
       expect(await accordion.accordexpanded).toBeTruthy();
       await accordion.firstQuestionLink.click();
-      await page.waitForTimeout(1000);
       await expect(page).toHaveURL(url);
     });
   });
