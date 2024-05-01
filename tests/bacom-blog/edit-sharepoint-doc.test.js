@@ -19,7 +19,7 @@ test.describe('Sharepoint editing', { tag: '@sp' }, async () => {
     // TODO: Automated okta login
     // For now, we need to sign into okta manually
     await page.goto(sharepointBacomBlogDrafts);
-    await page.waitForTimeout(40000);
+    await page.waitForTimeout(160000);
   });
 
   testPages.forEach(async (url) => {
