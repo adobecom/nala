@@ -3,11 +3,11 @@ module.exports = {
   features: [
     {
       tcid: '0',
-      name: '@quiz screenshots',
+      name: '@quiz-visual',
       path: '/drafts/quiz/quiz-2/',
       stable: '@milo_live',
-      beta: '@uar_live',
-      tags: '@cc @uar-quiz-stable-vs-beta @uar-quiz-static',
+      beta: '@milo_stage',
+      tags: '@quiz-visual @visual @uar-screenshots',
       data: 'data/uar/quiz/quiz-basic.yml',
     },
   ],
