@@ -5,6 +5,10 @@ import { getComparator } from 'playwright-core/lib/utils';
 
 const fs = require('fs');
 
+async function take(page, folderPath, fileName) {
+  await page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
+}
+
 async function takeOne(page, url, callback, folderPath, fileName, isFullPage = true) {
   const urls = [];
   const result = {};
@@ -100,4 +104,4 @@ function compareScreenshots(stableArray, betaArray, folderPath) {
   }
 }
 
-module.exports = { takeTwoAndCompare, compareScreenshots, takeOne, takeTwo };
+module.exports = { takeTwoAndCompare, compareScreenshots, takeOne, takeTwo, take };
