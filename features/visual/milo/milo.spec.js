@@ -11,7 +11,7 @@ module.exports = {
       tcid: '1',
       name: '@marquee-visual',
       path: '/test/features/blocks/marquee',
-      tags: '@marquee-visua  @visual @milo-screenshots',
+      tags: '@marquee-visual @visual @milo-screenshots',
     },
   ],
 };
