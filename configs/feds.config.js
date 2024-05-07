@@ -40,7 +40,8 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@milo_live'] || 'https://main--milo--adobecom.hlx.live',
+    /*baseURL: process.env.BASE_URL || envs['@milo_live'] || 'https://main--milo--adobecom.hlx.live',*/
+    baseURL: process.env.BASE_URL || envs['@adobe_prod'] || 'https://www.adobe.com'
   },
 
   /* Configure projects for major browsers */
@@ -49,7 +50,7 @@ const config = {
       name: 'feds-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@milo_live'],
+        /*baseURL: envs['@milo_live'],*/
       },
     },
     {
