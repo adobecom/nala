@@ -84,6 +84,14 @@ module.exports = {
             name: '@United-StatesHomePageGnavCheck',
             path: '/?georouting=off',
             tags: '@gnavsanity @gnavhomeunitedstates',
+            unavElements: ['adobelogo', 'gnavCC', 'gnavDC', 'gnavEC', 'gnavHelpX', 'appSwitcher', 'signInButton'],
+            ccElements: ['whatIsCCUS', 'schoolsAndUniversitiesUS', 'viewPlansAndPricesUS', 'photoshopUS', 'AdobeStockUS', 'photoUS', 'pdfUS', 'AIOverviewCCUS', 'adobeFireflyUS'],
+            dcElements: ['adobeAcrobatUS', 'acrobatPlansAndPricingUS', 'acrobatReaderUS', 'businessUS', 'governmentUS', 'AIOverviewDCUS', 'AIinAcrobatUS', 'pdfToWordUS', 'wordToPDFUS', 'developerResourcesUS', 'eventsAndWebinarsUS'],
+            ecElements: ['adobeExperienceCloudUS', 'customerDataPlatformUS', 'marketingAutomationUS', 'viewAllProductsECUS', 'adobeGenStudioUS', 'AIAssistantUS', 'adobeExperiencePlatformUS', 'adobeGenAIUS', 'findProductUS', 'resourceCentreUS', 'customerSuccessStoriesUS', 'servicesAndSupportUS', 'trainingUS'],
+            helpXElements: ['helpCentreUS', 'downloadAndInstallUS', 'contactUS', 'manageMyAccountUS', 'subscribeToAdobeStatusUS', 'creativeCloudTutorialsUS', 'adobeExperienceLeagueUS'],
+            footerElements: ['footerCreativeCloudUS', 'footerViewAllProductsUS', 'footerCreativeCloudForBusinessUS', 'footerAcrobatForBusinessUS', 'footerDiscountsForStudentsAndTeachersUS', 'footerDigitalLearningSolutionsUS', 'footerAppsforiOSUS', 'footerAppsforAndroidUS', 'footerWhatIsExperienceCloudUS', 'footerTermsOfUseUS',
+                'footerDownloadAndInstallUS', 'footerGenuineSoftwareUS', 'footerAdobeBlogUS', 'footerAdobeDeveloperUS', 'footerLogInToYourAccountUS', 'footerAboutUS', 'footerIntegrityUS', 'footerAdobeAcrobatReaderlogo', 'footerAdobeExpresslogo', 'footerPhotoshoplogo', 'footerIllustratorlogo', 'changeRegion', 'facebookLogo',
+                'instagramLogo', 'twitterlogo', 'linkedinLogo', 'copyright', 'privacyPolicy', 'termsOfUse', 'cookies', 'protectMyPersonalData', 'adChoices']
         },
         {
             tcid: '14',

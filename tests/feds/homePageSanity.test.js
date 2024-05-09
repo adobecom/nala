@@ -2,227 +2,40 @@ import { expect, test } from "@playwright/test";
 import { features } from "../../features/feds/homePageSanity.spec";
 import HomePageSanity from "../../selectors/feds/feds.homepagesanity.page.js"
 
-test.describe('Home Page Component test suite', () => {
-
-    test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
-        const home = new HomePageSanity(page);
-        console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
-
-        await test.step('Validating Argentina locale Home page', async () => {
-            await page.goto(`${baseURL}${features[0].path}`);
-            await page.waitForLoadState('domcontentloaded');
-            await expect.soft(page).toHaveURL(`${baseURL}${features[0].path}`);
-
-            //Validating Brand logo and label
-            await expect(home.adobelogo).toBeVisible();
-
-            //Validating U-Nav
-            await expect(home.loginButton).toBeVisible();
-
-            //Validating G-Nav Creative Cloud
-            await expect(home.gnavCC).toBeVisible();
-            await home.gnavCC.click();
-            await home.gnavCC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.whatIsCC).toBeVisible();
-            await expect(home.collegesAndUniversities).toBeVisible();
-            await expect(home.viewPlansAndPrices).toBeVisible();
-            await expect(home.photoshop).toBeVisible();
-            await expect(home.AdobeStock).toBeVisible();
-            await expect(home.photo).toBeVisible();
-            await expect(home.pdf).toBeVisible();
-            await expect(home.AIOverviewCC).toBeVisible();
-            await expect(home.adobeFirefly).toBeVisible();
-
-            //Validating G-Nav Document cloud
-            await home.gnavDC.click();
-            await home.gnavDC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.adobeAcrobat).toBeVisible();
-            await expect(home.acrobatPlansAndPricing).toBeVisible();
-            await expect(home.acrobatReader).toBeVisible();
-            await expect(home.companies).toBeVisible();
-            await expect(home.homeAndPersonal).toBeVisible();
-            await expect(home.AIOverviewDC).toBeVisible();
-            await expect(home.AIinAcrobat).toBeVisible();
-            await expect(home.pdfToWord).toBeVisible();
-            await expect(home.wordToPDF).toBeVisible();
-            await expect(home.developerResources).toBeVisible();
-            await expect(home.eventsAndWebinars).toBeVisible();
-
-            //Validating G-Nav Experience Cloud
-            await home.gnavEC.click();
-            await home.gnavEC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.adobeExperienceCloud).toBeVisible();
-            await expect(home.customerDataPlatform).toBeVisible();
-            await expect(home.requestDemo).toBeVisible();
-            await expect(home.Analytics).toBeVisible();
-            await expect(home.experienceAssetManager).toBeVisible();
-            await expect(home.AIOverviewEC).toBeVisible();
-            await expect(home.senseiGenAI).toBeVisible();
-            await expect(home.resourceCentre).toBeVisible();
-            await expect(home.experienceCloudBlog).toBeVisible();
-            await expect(home.training).toBeVisible();
-            await expect(home.parteners).toBeVisible();
-            await expect(home.adobeSummit).toBeVisible();
-
-            //Validating G-Nav Help-X 
-            await home.gnavHelpX.click();
-            await home.gnavHelpX.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.helpCentre).toBeVisible();
-            await expect(home.downloadAndInstall).toBeVisible();
-            await expect(home.contact).toBeVisible();
-            await expect(home.manageMyAccount).toBeVisible();
-            await expect(home.subscribeToAdobeStatus).toBeVisible();
-            await expect(home.creativeCloudTutorials).toBeVisible();
-            await expect(home.adobeExperienceLeague).toBeVisible();
-            await home.gnavHelpX.click();
-
-            //Validating Footer
-            await expect(home.footerCreativeCloud).toBeVisible();
-            await expect(home.footerSeeAllProducts).toBeVisible();
-            await expect(home.footerCreativeCloudForBusiness).toBeVisible();
-            await expect(home.footerAcrobatForBusiness).toBeVisible();
-            await expect(home.footerDiscountsForStudentsAndTeachers).toBeVisible();
-            await expect(home.footerDigitalLearning).toBeVisible();
-            await expect(home.footeriOSApps).toBeVisible();
-            await expect(home.footerAndroidApps).toBeVisible();
-            await expect(home.footerWhatIsExperienceCloud).toBeVisible();
-            await expect(home.footerTermsOfUse).toBeVisible();
-            await expect(home.footerDownloadAndInstall).toBeVisible();
-            await expect(home.footerOriginalSoftware).toBeVisible();
-            await expect(home.footerAdobeBlog).toBeVisible();
-            await expect(home.footerAdobeDeveloper).toBeVisible();
-            await expect(home.footerLogInToYourAccount).toBeVisible();
-            await expect(home.footerAbout).toBeVisible();
-            await expect(home.footerIntegrity).toBeVisible();
-            //Featued Products
-            await expect(home.footerAdobeAcrobatReaderlogo).toBeVisible();
-            await expect(home.footerAdobeExpresslogo).toBeVisible();
-            await expect(home.footerPhotoshoplogo).toBeVisible();
-            await expect(home.footerIllustratorlogo).toBeVisible();
-            //ChangeRegion
-            await expect(home.changeRegion).toBeVisible();
-            await expect(home.facebookLogo).toBeVisible();
-            await expect(home.instagramLogo).toBeVisible();
-            await expect(home.twitterlogo).toBeVisible();
-            await expect(home.linkedinLogo).toBeVisible();
-            await expect(home.copyright).toBeVisible();
-            await expect(home.privacyPolicy).toBeVisible();
-            await expect(home.termsOfUse).toBeVisible();
-            await expect(home.cookies).toBeVisible();
-            await expect(home.protectMyPersonalData).toBeVisible();
-            await expect(home.adChoices).toBeVisible();
-        });
-    });
+test.describe('Test Suite for Home Page Components', () => {
 
     test(`${features[13].name}, ${features[13].tags}`, async ({ page, baseURL }) => {
         const home = new HomePageSanity(page);
         console.info(`[FEDSInfo] Checking page: ${baseURL}${features[13].path}`);
 
-        await test.step('Validating United States Locale Home page', async () => {
-            await page.goto(`${baseURL}${features[13].path}`);
-            await page.waitForLoadState('domcontentloaded');
-            await expect(page).toHaveURL(`${baseURL}${features[13].path}`);
+        await test.step('Validation of United States Home Page', async () => {
+            const pageURL = `${baseURL}${features[13].path}`;
+            await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
+            await expect(page).toHaveURL(pageURL);
 
-            //Validating Brand logo and label
-            await expect(home.adobelogo).toBeVisible();
+            // Verifying the visibility of UNAV Elements
+            await Promise.all(features[13].unavElements.map(element => expect(home[element]).toBeVisible()));
 
-            //Validating U-Nav
-            await expect(home.appSwitcher).toBeVisible();
-            await expect(home.signInButton).toBeVisible();
+            // Verifying the visibility of Creative Cloud Elements
+            await home.gnavCC.click({ timeout: 5000 });
+            await Promise.all(features[13].ccElements.map(element => expect(home[element]).toBeVisible()));
 
-            //Validating G-Nav Creative Cloud
-            await expect(home.gnavCC).toBeVisible();
-            await home.gnavCC.click();
-            await home.gnavCC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.whatIsCCUS).toBeVisible();
-            await expect(home.schoolsAndUniversitiesUS).toBeVisible();
-            await expect(home.viewPlansAndPricesUS).toBeVisible();
-            await expect(home.photoshopUS).toBeVisible();
-            await expect(home.AdobeStockUS).toBeVisible();
-            await expect(home.photoUS).toBeVisible();
-            await expect(home.pdfUS).toBeVisible();
-            await expect(home.AIOverviewCCUS).toBeVisible();
-            await expect(home.adobeFireflyUS).toBeVisible();
+            // Verifying the visibility of Document cloud Elements
+            await home.gnavDC.click({ timeout: 5000 });
+            await Promise.all(features[13].dcElements.map(element => expect(home[element]).toBeVisible()));
 
-            //Validating G-Nav Document cloud
-            await home.gnavDC.click();
-            await home.gnavDC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.adobeAcrobatUS).toBeVisible();
-            await expect(home.acrobatPlansAndPricingUS).toBeVisible();
-            await expect(home.acrobatReaderUS).toBeVisible();
-            await expect(home.businessUS).toBeVisible();
-            await expect(home.governmentUS).toBeVisible();
-            await expect(home.AIOverviewDCUS).toBeVisible();
-            await expect(home.AIinAcrobatUS).toBeVisible();
-            await expect(home.pdfToWordUS).toBeVisible();
-            await expect(home.wordToPDFUS).toBeVisible();
-            await expect(home.developerResourcesUS).toBeVisible();
-            await expect(home.eventsAndWebinarsUS).toBeVisible();
+            // Verifying the visibility of Experience Cloud Elements
+            await home.gnavEC.click({ timeout: 5000 });
+            await Promise.all(features[13].ecElements.map(element => expect(home[element]).toBeVisible()));
 
-            //Validating G-Nav Experience Cloud
-            await home.gnavEC.click();
-            await home.gnavEC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.adobeExperienceCloudUS).toBeVisible();
-            await expect(home.customerDataPlatformUS).toBeVisible();
-            await expect(home.marketingAutomationUS).toBeVisible();
-            await expect(home.viewAllProductsECUS).toBeVisible();
-            await expect(home.adobeGenStudioUS).toBeVisible();
-            await expect(home.AIAssistantUS).toBeVisible();
-            await expect(home.adobeExperiencePlatformUS).toBeVisible();
-            await expect(home.adobeGenAIUS).toBeVisible();
-            await expect(home.findProductUS).toBeVisible();
-            await expect(home.resourceCentreUS).toBeVisible();
-            await expect(home.customerSuccessStoriesUS).toBeVisible();
-            await expect(home.servicesAndSupportUS).toBeVisible();
-            await expect(home.trainingUS).toBeVisible();
+            // Verifying the visibility of Help-X Elements
+            await home.gnavHelpX.click({ timeout: 5000 });
+            await Promise.all(features[13].helpXElements.map(element => expect(home[element]).toBeVisible()));
+            await home.gnavHelpX.click({ timeout: 5000 });
 
-            //Validating G-Nav Help-X 
-            await home.gnavHelpX.click();
-            await home.gnavHelpX.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.helpCentreUS).toBeVisible();
-            await expect(home.downloadAndInstallUS).toBeVisible();
-            await expect(home.contactUS).toBeVisible();
-            await expect(home.manageMyAccountUS).toBeVisible();
-            await expect(home.subscribeToAdobeStatusUS).toBeVisible();
-            await expect(home.creativeCloudTutorialsUS).toBeVisible();
-            await expect(home.adobeExperienceLeagueUS).toBeVisible();
-            await home.gnavHelpX.click();
-
-            //Validating Footer
-            await expect(home.footerCreativeCloudUS).toBeVisible();
-            await expect(home.footerViewAllProductsUS).toBeVisible();
-            await expect(home.footerCreativeCloudForBusinessUS).toBeVisible();
-            await expect(home.footerAcrobatForBusinessUS).toBeVisible();
-            await expect(home.footerDiscountsForStudentsAndTeachersUS).toBeVisible();
-            await expect(home.footerDigitalLearningSolutionsUS).toBeVisible();
-            await expect(home.footerAppsforiOSUS).toBeVisible();
-            await expect(home.footerAppsforAndroidUS).toBeVisible();
-            await expect(home.footerWhatIsExperienceCloudUS).toBeVisible();
-            await expect(home.footerTermsOfUseUS).toBeVisible();
-            await expect(home.footerDownloadAndInstallUS).toBeVisible();
-            await expect(home.footerGenuineSoftwareUS).toBeVisible();
-            await expect(home.footerAdobeBlogUS).toBeVisible();
-            await expect(home.footerAdobeDeveloperUS).toBeVisible();
-            await expect(home.footerLogInToYourAccountUS).toBeVisible();
-            await expect(home.footerAboutUS).toBeVisible();
-            await expect(home.footerIntegrityUS).toBeVisible();
-            //Featued Products
-            await expect(home.footerAdobeAcrobatReaderlogo).toBeVisible();
-            await expect(home.footerAdobeExpresslogo).toBeVisible();
-            await expect(home.footerPhotoshoplogo).toBeVisible();
-            await expect(home.footerIllustratorlogo).toBeVisible();
-            //ChangeRegion
-            await expect(home.changeRegion).toBeVisible();
-            await expect(home.facebookLogo).toBeVisible();
-            await expect(home.instagramLogo).toBeVisible();
-            await expect(home.twitterlogo).toBeVisible();
-            await expect(home.linkedinLogo).toBeVisible();
-            await expect(home.copyright).toBeVisible();
-            await expect(home.privacyPolicy).toBeVisible();
-            await expect(home.termsOfUse).toBeVisible();
-            await expect(home.cookies).toBeVisible();
-            await expect(home.protectMyPersonalData).toBeVisible();
-            await expect(home.adChoices).toBeVisible();
+            // Verifying the visibility of Footer Elements
+            await home.changeRegion.scrollIntoViewIfNeeded();
+            await Promise.all(features[13].footerElements.map(element => expect(home[element]).toBeVisible()));
         });
     });
 
@@ -653,6 +466,116 @@ test.describe('Home Page Component test suite', () => {
             await expect(home.footerLogInToYourAccountIt).toBeVisible();
             await expect(home.footerInformationIt).toBeVisible();
             await expect(home.footerIntegrityIt).toBeVisible();
+            //Featued Products
+            await expect(home.footerAdobeAcrobatReaderlogo).toBeVisible();
+            await expect(home.footerAdobeExpresslogo).toBeVisible();
+            await expect(home.footerPhotoshoplogo).toBeVisible();
+            await expect(home.footerIllustratorlogo).toBeVisible();
+            //ChangeRegion
+            await expect(home.changeRegion).toBeVisible();
+            await expect(home.facebookLogo).toBeVisible();
+            await expect(home.instagramLogo).toBeVisible();
+            await expect(home.twitterlogo).toBeVisible();
+            await expect(home.linkedinLogo).toBeVisible();
+            await expect(home.copyright).toBeVisible();
+            await expect(home.privacyPolicy).toBeVisible();
+            await expect(home.termsOfUse).toBeVisible();
+            await expect(home.cookies).toBeVisible();
+            await expect(home.protectMyPersonalData).toBeVisible();
+            await expect(home.adChoices).toBeVisible();
+        });
+    });
+
+    test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
+        const home = new HomePageSanity(page);
+        console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);
+
+        await test.step('Validating Argentina locale Home page', async () => {
+            await page.goto(`${baseURL}${features[0].path}`);
+            await page.waitForLoadState('domcontentloaded');
+            await expect.soft(page).toHaveURL(`${baseURL}${features[0].path}`);
+
+            //Validating Brand logo and label
+            await expect(home.adobelogo).toBeVisible();
+
+            //Validating U-Nav
+            await expect(home.loginButton).toBeVisible();
+
+            //Validating G-Nav Creative Cloud
+            await expect(home.gnavCC).toBeVisible();
+            await home.gnavCC.click();
+            await home.gnavCC.waitFor({ state: 'visible', timeout: 5000 });
+            await expect(home.whatIsCC).toBeVisible();
+            await expect(home.collegesAndUniversities).toBeVisible();
+            await expect(home.viewPlansAndPrices).toBeVisible();
+            await expect(home.photoshop).toBeVisible();
+            await expect(home.AdobeStock).toBeVisible();
+            await expect(home.photo).toBeVisible();
+            await expect(home.pdf).toBeVisible();
+            await expect(home.AIOverviewCC).toBeVisible();
+            await expect(home.adobeFirefly).toBeVisible();
+
+            //Validating G-Nav Document cloud
+            await home.gnavDC.click();
+            await home.gnavDC.waitFor({ state: 'visible', timeout: 5000 });
+            await expect(home.adobeAcrobat).toBeVisible();
+            await expect(home.acrobatPlansAndPricing).toBeVisible();
+            await expect(home.acrobatReader).toBeVisible();
+            await expect(home.companies).toBeVisible();
+            await expect(home.homeAndPersonal).toBeVisible();
+            await expect(home.AIOverviewDC).toBeVisible();
+            await expect(home.AIinAcrobat).toBeVisible();
+            await expect(home.pdfToWord).toBeVisible();
+            await expect(home.wordToPDF).toBeVisible();
+            await expect(home.developerResources).toBeVisible();
+            await expect(home.eventsAndWebinars).toBeVisible();
+
+            //Validating G-Nav Experience Cloud
+            await home.gnavEC.click();
+            await home.gnavEC.waitFor({ state: 'visible', timeout: 5000 });
+            await expect(home.adobeExperienceCloud).toBeVisible();
+            await expect(home.customerDataPlatform).toBeVisible();
+            await expect(home.requestDemo).toBeVisible();
+            await expect(home.Analytics).toBeVisible();
+            await expect(home.experienceAssetManager).toBeVisible();
+            await expect(home.AIOverviewEC).toBeVisible();
+            await expect(home.senseiGenAI).toBeVisible();
+            await expect(home.resourceCentre).toBeVisible();
+            await expect(home.experienceCloudBlog).toBeVisible();
+            await expect(home.training).toBeVisible();
+            await expect(home.parteners).toBeVisible();
+            await expect(home.adobeSummit).toBeVisible();
+
+            //Validating G-Nav Help-X 
+            await home.gnavHelpX.click();
+            await home.gnavHelpX.waitFor({ state: 'visible', timeout: 5000 });
+            await expect(home.helpCentre).toBeVisible();
+            await expect(home.downloadAndInstall).toBeVisible();
+            await expect(home.contact).toBeVisible();
+            await expect(home.manageMyAccount).toBeVisible();
+            await expect(home.subscribeToAdobeStatus).toBeVisible();
+            await expect(home.creativeCloudTutorials).toBeVisible();
+            await expect(home.adobeExperienceLeague).toBeVisible();
+            await home.gnavHelpX.click();
+
+            //Validating Footer
+            await expect(home.footerCreativeCloud).toBeVisible();
+            await expect(home.footerSeeAllProducts).toBeVisible();
+            await expect(home.footerCreativeCloudForBusiness).toBeVisible();
+            await expect(home.footerAcrobatForBusiness).toBeVisible();
+            await expect(home.footerDiscountsForStudentsAndTeachers).toBeVisible();
+            await expect(home.footerDigitalLearning).toBeVisible();
+            await expect(home.footeriOSApps).toBeVisible();
+            await expect(home.footerAndroidApps).toBeVisible();
+            await expect(home.footerWhatIsExperienceCloud).toBeVisible();
+            await expect(home.footerTermsOfUse).toBeVisible();
+            await expect(home.footerDownloadAndInstall).toBeVisible();
+            await expect(home.footerOriginalSoftware).toBeVisible();
+            await expect(home.footerAdobeBlog).toBeVisible();
+            await expect(home.footerAdobeDeveloper).toBeVisible();
+            await expect(home.footerLogInToYourAccount).toBeVisible();
+            await expect(home.footerAbout).toBeVisible();
+            await expect(home.footerIntegrity).toBeVisible();
             //Featued Products
             await expect(home.footerAdobeAcrobatReaderlogo).toBeVisible();
             await expect(home.footerAdobeExpresslogo).toBeVisible();
@@ -1693,7 +1616,6 @@ test.describe('Home Page Component test suite', () => {
             await home.gnavDC.click();
             await home.gnavDC.waitFor({ state: 'visible', timeout: 5000 });
             await expect(home.adobeAcrobatMx).toBeVisible();
-            await expect(home.acrobatPlansAndPricingMx).toBeVisible();
             await expect(home.acrobatReaderMx).toBeVisible();
             await expect(home.companiesMx).toBeVisible();
             await expect(home.homeAndPersonalUseMx).toBeVisible();
@@ -3232,7 +3154,7 @@ test.describe('Home Page Component test suite', () => {
             //Validating G-Nav Document cloud
             await home.gnavDC.click();
             await home.gnavDC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.adobeAcrobatIe).toBeVisible(); 
+            await expect(home.adobeAcrobatIe).toBeVisible();
             await expect(home.acrobatPlansAndPricingIe).toBeVisible();
             await expect(home.acrobatReaderIe).toBeVisible();
             await expect(home.businessIe).toBeVisible();
@@ -5800,7 +5722,7 @@ test.describe('Home Page Component test suite', () => {
             await expect(home.gnavCC).toBeVisible();
             await home.gnavCC.click();
             await home.gnavCC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.whatIsCCCz).toBeVisible(); 
+            await expect(home.whatIsCCCz).toBeVisible();
             await expect(home.photoshopCz).toBeVisible();
             await expect(home.photoCz).toBeVisible();
             await expect(home.anOverviewOfArtificialIntelligenceCCCz).toBeVisible();
@@ -6703,7 +6625,7 @@ test.describe('Home Page Component test suite', () => {
             await expect(home.gnavCC).toBeVisible();
             await home.gnavCC.click();
             await home.gnavCC.waitFor({ state: 'visible', timeout: 5000 });
-            await expect(home.whatIsCCAu).toBeVisible(); 
+            await expect(home.whatIsCCAu).toBeVisible();
             await expect(home.photoshopAu).toBeVisible();
             await expect(home.photoAu).toBeVisible();
             await expect(home.aiOverviewCCAu).toBeVisible();

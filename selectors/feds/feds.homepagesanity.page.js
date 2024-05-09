@@ -913,7 +913,6 @@ export default class HomePageSanity {
 
         //Mexico
         this.adobeAcrobatMx = page.locator("(//a[contains(@daa-ll,'Adobe Acrobat')])[1]");
-        this.acrobatPlansAndPricingMx = page.locator("//a[contains(@daa-ll,'Planes y precios de Acrobat')]");
         this.acrobatReaderMx = page.locator("(//a[contains(@daa-ll,'Acrobat Reader')])[1]");
         this.companiesMx = page.locator("//div[@class='feds-menu-items']/descendant::a[contains(@daa-ll,'Empresas')]");
         this.homeAndPersonalUseMx = page.locator("//div[@class='feds-menu-items']/descendant::a[contains(@daa-ll,'Uso doméstico y personal')]");
