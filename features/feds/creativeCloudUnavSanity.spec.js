@@ -6,15 +6,22 @@ module.exports = {
             name: '@UnitedStatesCCUnavPageCheck',
             path: '/creativecloud.html?georouting=off',
             tags: '@ccunavpagesanity @ccunavUnitedStates',
-            unavElements: ['creativityAndDesign', 'adobeCreativeCloud', 'explore', 'features',
-                'forBusiness', 'comparePlans', 'learnAndSupport', 'buyNowButton',
-                'appSwitcher', 'signInButton']
+            unavElements: ['creativityAndDesign', 'adobeCreativeCloud', 'explore', 'features', 'forBusiness', 'comparePlans', 'learnAndSupport', 'buyNowButton', 'appSwitcher', 'signInButton']
         },
         {
             tcid: '1',
             name: '@GermanyCCUnavPageCheck',
             path: '/de/creativecloud.html?georouting=off',
             tags: '@ccunavpagesanity @ccunavGermany',
+            unavElementsDe: ['photoVideoAndDesignDe', 'creativeCloudDe', 'programsDe', 'subjectAreasDe', 'pricesAndSubscriptionsDe', 'subscriptionInfoDe', 'appRecomendationDe', 'buyNowDe', 'appSwitcher', 'signInButton'],
+            pvdElements: ['whatIsCDe', 'photographersDe', 'pupilsStudentsTeachersDe', 'individualsUsersDe', 'businessDe', 'schoolsAndCollegesDe', 'subscriptionOptionsAndPricesDe', 'photoshopDe', 'adobeExpressDe',
+                'premiereProDe', 'illustratorDe', 'lightroomDe', 'adobeStockDe', 'viewAllProductsDe', 'editPhotosDe', 'createGraphicDesignsDe', 'cutAndEditVideosDe', 'vectorizeIllustrationsDe', 'createSocialMediaPostDe',
+                'designThreeDModelsDe', 'workWithDocumentsDe', 'adobeFireflyDe', 'adobeComDe', 'photoVideoDesignSubDe', 'pdfsAndeSignaturesDe', 'marketingAndCommerceDe', 'helpAndSupportDe'],
+            programsElements: ['acrobatProDe'],
+            subjectAreasElements: ['videoDe', 'contactDe'],
+            footerElements: ['footerCreativeCloudDe', 'footerCreativeCloudForBusinessDe', 'footerdiscountForPupilsStudentsTeachersDe', 'footerMobileAppsForiOSDe', 'footerWhatIsExperienceCloudDe', 'footerDownloadAndInstallDe',
+                'footerAdobeBlogDe', 'footerLoginToYourAccountDe', 'footerAboutAdobeDe', 'footerAdobeReaderlogoAem', 'footerAdobeExpresslogoAem', 'footerPhotoshoplogoAem', 'footerIllustratorlogoAem', 'changeRegionAem', 'facebookLogoAem',
+                'twitterlogoAem', 'linkedinLogoAem', 'instagramLogoAem', 'copyrightAem', 'imprintAem', 'dataProtectionAem', 'termsOfUseAem', 'cookieSettingsAem', 'myPersonalInformationAem', 'adServicesAem']
         },
         {
             tcid: '2',

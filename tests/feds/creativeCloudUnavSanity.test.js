@@ -20,9 +20,6 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
             // await creativeCloud.checkVisibilityOfUnavElements();
             await Promise.all(features[0].unavElements.map(element => expect(creativeCloud[element]).toBeVisible()));
 
-            // closing the Promo button
-            await creativeCloud.closePromoButton.click({ timeout: 5000 });
-
             // Verifying the visibility of Creativity & Design Elements
             await creativeCloud.checkVisibilityOfCreativityAndDesignElements();
 
@@ -32,10 +29,14 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
             // Verifying the visibility of Learn & Support  
             await creativeCloud.checkVisibilityOfLearnAndSupportElements();
 
+            // closing the Promo button
+            await creativeCloud.closePromoButton.click({ timeout: 5000 });
+
             // Verifying the visibility of Footer Elements
             await creativeCloud.checkVisibilityOfFooterElements();
 
             // Verifying and clicking the "Buy Now" button
+            await creativeCloud.buyNowButton.click({ timeout: 5000 });
             await creativeCloud.verifyBuyNowButton(page);
         });
     });
