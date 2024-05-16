@@ -14,17 +14,26 @@ export default class HomePageSanity {
         this.signInButton = page.locator('#unav-profile');
         this.loginButton = page.locator('.feds-signIn');
         this.Tologin = page.locator('.profile-signed-out>button');
+        this.gnavCCPP = page.locator('.feds-navItem:nth-child(1)');
+        this.gnavSpecialOffers = page.locator('.feds-navItem:nth-child(2)');
 
         // Creative Cloud Elements
-        this.whatIsCC = page.locator('.feds-popup a[href$="creativecloud.html"]');
+        this.whatIsCC = page.locator('.feds-popup a[href*="creativecloud.html"]');
         this.schoolsAndUniversities = page.locator('.feds-popup a[href$="education.html"]');
-        this.viewPlansAndPrices = page.locator('.feds-cta.feds-cta--primary[href*="plans.html"]');
+        this.viewPlansAndPrices = page.locator('.feds-cta.feds-cta--primary[href*="plans.html"]').nth(0);
         this.photoshop = page.locator('.feds-popup a[href*="photoshop.html"]');
         this.AdobeStock = page.locator('.feds-popup a[href*="stock.adobe.com"]');
         this.photo = page.locator('a[href$="promoid=D8F91JW4&mv=other"]');
         this.pdf = page.locator('a[href*="acrobat-pro-cc.html"]');
         this.aIOverviewCC = page.locator('.feds-popup a[href*="ai/overview.html"]').nth(0);
         this.adobeFirefly = page.locator('a[href*="firefly.html"]');
+
+        this.individuals = page.locator('.feds-navLink[href*="all-apps.html"]');
+        this.companies = page.locator('.feds-navLink[href*="promoid=KH8NV9ZS&mv=other"]');
+        this.allApsOverview = page.locator('.feds-navLink[href*="?promoid=HVQ7WXK7&mv=other"]');
+        this.seeAllProducts = page.locator('.feds-cta.feds-cta--primary[href*="?promoid=JVLHVXNY&mv=other"]');
+        this.seePlansAndPrices = page.locator('.feds-cta.feds-cta--secondary[href*="?promoid=KLZPV68R&mv=other"]');
+        this.viewAllProductsCC = page.locator('.feds-navLink.feds-navLink--blue[href*="creativity-design"]');
 
         // Document Cloud Elements
         this.adobeAcrobat = page.locator('a[href$="acrobat.html"] .feds-navLink-content');
@@ -40,6 +49,7 @@ export default class HomePageSanity {
         this.eventsAndWebinars = page.locator('a[href$="webinars.html"]');
 
         this.AIOverviewDCTwo = page.locator('.feds-popup a[href$="/ai/overview.html"]').nth(0);
+        this.consultationBeforePurchase = page.locator('.feds-popup a[href$="0120-693-724"]');
 
         // Experience Cloud Elements
         this.adobeExperienceCloud = page.locator('.feds-popup a[href*="business.adobe.com"]').nth(0);
@@ -62,7 +72,10 @@ export default class HomePageSanity {
         this.analytics = page.locator('.feds-popup a[href$="adobe-analytics.html"]');
         this.experienceManagerAssets = page.locator('.feds-popup a[href$="aem-assets.html"]');
         this.aiProgramOverview = page.locator('.feds-popup a[href*="ai/overview.html"]').nth(1);
+        this.aiProgramOverviewTwo = page.locator('.feds-popup a[href*="ai/overview.html"]').nth(2);
+        this.aiOverview = page.locator('.feds-popup a[href*="ai/overview.html"]');
         this.adobeSummit = page.locator('a[href*="summit.adobe.com"]');
+        this.senseiGenAI = page.locator('.feds-navLink[href*="adobe-sensei-genai.html"]');
 
         // Help-X Elements
         this.helpCentre = page.locator('.feds-popup a[href$="support.html"]:nth-child(1)');
@@ -74,17 +87,19 @@ export default class HomePageSanity {
         this.adobeExperienceLeague = page.locator("a[href*='experienceleague']:nth-child(4)");
 
         this.helpCentreTwo = page.locator('.feds-popup a[href$="support.html"]:nth-child(1)').nth(0);
+        this.helpCentreThree = page.locator('.feds-popup a[href$="support.html"]:nth-child(2)');
         this.accountManagementTwo = page.locator('.feds-popup a[href$="account.adobe.com/"]').nth(1);
         this.showAllHelpTopics = page.locator('.feds-popup li a[href$="support.html"]');
+        this.getInfoAboutTipsTutorialsSpecialOffers = page.locator('.feds-popup a[href$="?promoid=TKZTL9PK%20"]');
 
         // Footer Elements
-        this.footerCreativeCloud = page.locator("a[href$='creativecloud.html']:last-of-type");
+        this.footerCreativeCloud = page.locator(".feds-footer-wrapper a[href*='creativecloud.html']");
         this.footerViewAllProducts = page.locator(".feds-navLink[href*='/products/catalog.html?']");
-        this.footerCreativeCloudForBusiness = page.locator(".feds-navLink[href$='creativecloud/business.html']:last-of-type");
+        this.footerCreativeCloudForBusiness = page.locator(".feds-footer-wrapper [href$='creativecloud/business.html']").nth(0);
         this.footerAcrobatForBusiness = page.locator(".feds-footer-wrapper a[href$='acrobat/business.html']");
         this.footerDiscountsForStudentsAndTeachers = page.locator(".feds-footer-wrapper a[href$='buy/students.html']");
         this.footerDigitalLearningSolutions = page.locator("a[href$='/elearning.html']");
-        this.footerAppsforiOS = page.locator("a[href$='id852473028']");
+        this.footerAppsforiOS = page.locator("a[href*='id852473028']");
         this.footerAppsforAndroid = page.locator("a[href*='id=com.adobe.cc']");
         this.footerWhatIsExperienceCloud = page.locator('.feds-footer-wrapper a[href*="business.adobe.com"]').nth(0);
         this.footerTermsOfUse = page.locator('a[href*="experiencecloudterms"]');
@@ -92,8 +107,8 @@ export default class HomePageSanity {
         this.footerGenuineSoftware = page.locator('a[href*="genuine.html"]');
         this.footerAdobeBlog = page.locator('.feds-navLink[href*="blog.adobe"]');
         this.footerAdobeDeveloper = page.locator('a[href*="developer.adobe"]');
-        this.footerLogInToYourAccount = page.locator('.feds-footer-wrapper a[href*="account.adobe"]');
-        this.footerAbout = page.locator('a[href*="about-adobe.html"]');
+        this.footerLogInToYourAccount = page.locator('.feds-footer-wrapper a[href*="account.adobe"]').nth(0);
+        this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]');
         this.footerIntegrity = page.locator('a[href*="integrity.html"]');
 
         // Featured Products

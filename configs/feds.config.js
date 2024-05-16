@@ -68,6 +68,28 @@ const config = {
         baseURL: envs['@adobe_prod'],
       },
     },
+    {
+      name: 'feds-live-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+    {
+      name: 'feds-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@milo_live'],
+      },
+    },
+
+    {
+      name: 'feds-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@milo_live'],
+      },
+    },
   ],
 };
 module.exports = config;
