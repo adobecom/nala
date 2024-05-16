@@ -1,7 +1,8 @@
 /* eslint-disable import/named */
 import { expect, test } from '@playwright/test';
 import { features } from '../../../features/visual/feds/feds.spec.js';
-import { takeOne, writeResultsToFile } from '../../../libs/screenshot/take.js';
+import { takeOne } from '../../../libs/screenshot/take.js';
+import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
 import FedsHeader from '../../../selectors/feds/feds.header.page.js';
 
 const folderPath = 'screenshots/feds';

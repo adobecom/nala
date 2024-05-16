@@ -20,7 +20,13 @@ async function downloadImage(url, localPath) {
 }
 
 async function getSavedImages(s3Url, curEntries) {
-  const response = await axios.get(`${s3Url}/results.json`);
+  let response;
+  try {
+    response = await axios.get(`${s3Url}/results.json`);
+  } catch (error) {
+    console.error(`Failed to get previous results.json from ${s3Url}`);
+    process.exit(1);
+  }
   const preEntries = response.data;
 
   if (Object.keys(curEntries).length !== Object.keys(preEntries).length) {
@@ -36,7 +42,8 @@ async function getSavedImages(s3Url, curEntries) {
     }
 
     const basename = path.basename(preEntries[key][0].a);
-    entry.a = `${preEntries[key][0].a}`.replace('.png', '-a.png');
+    entry.a = `${preEntries[key][0].a.includes('-a.png')
+      ? preEntries[key][0].a : preEntries[key][0].a.replace('.png', '-a.png')}`;
     console.log(`Downloading ${s3Url}/${basename}`);
     // eslint-disable-next-line no-await-in-loop
     await downloadImage(`${s3Url}/${basename}`, entry.a);
@@ -45,44 +52,53 @@ async function getSavedImages(s3Url, curEntries) {
 
 async function main() {
   const localPath = process.argv[2];
-  const s3Url = `${S3URL}/${localPath}`;
 
-  if (!localPath || !s3Url) {
-    console.log('Usage: node compare.js <localPath>');
+  if (!localPath) {
+    console.log('Usage: node compare.mjs <localPath>');
     process.exit(1);
   }
 
   const curEntries = JSON.parse(fs.readFileSync(`${localPath}/results.json`));
 
-  if (s3Url) {
-    await getSavedImages(s3Url, curEntries);
+  const firstEntry = Object.values(curEntries)[0][0];
+
+  if (firstEntry.a && !firstEntry.b) {
+    const s3Url = `${S3URL}/${localPath}`;
+
+    if (s3Url) {
+      await getSavedImages(s3Url, curEntries);
+    }
   }
 
   const results = {};
 
   // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of Object.entries(curEntries)) {
-    const result = {};
-    const entry = value[0];
-    console.log(entry);
+    const resultsArray = [];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const entry of value) {
+      const result = {};
+      console.log(entry);
 
-    const baseImage = fs.readFileSync(entry.a);
-    const currImage = fs.readFileSync(entry.b);
-    result.order = 1;
-    result.a = entry.a;
-    result.b = entry.b;
-    result.urls = entry.urls;
+      const baseImage = fs.readFileSync(entry.a);
+      const currImage = fs.readFileSync(entry.b);
+      result.order = 1;
+      result.a = entry.a;
+      result.b = entry.b;
+      result.urls = entry.urls;
 
-    const comparator = getComparator('image/png');
-    const diffImage = comparator(baseImage, currImage);
+      const comparator = getComparator('image/png');
+      const diffImage = comparator(baseImage, currImage);
 
-    if (diffImage) {
-      const diffName = `${entry.b}`.replace('.png', '-diff.png');
-      fs.writeFileSync(diffName, diffImage.diff);
-      result.diff = diffName;
-      console.info('Differences found');
+      if (diffImage) {
+        const diffName = `${entry.b}`.replace('.png', '-diff.png');
+        fs.writeFileSync(diffName, diffImage.diff);
+        result.diff = diffName;
+        console.info('Differences found');
+      }
+      resultsArray.push(result);
     }
-    results[key] = [result];
+    results[key] = resultsArray;
   }
 
   fs.writeFileSync(`${localPath}/results.json`, JSON.stringify(results, null, 2));

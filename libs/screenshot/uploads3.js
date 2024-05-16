@@ -106,6 +106,16 @@ async function main() {
 
   console.log('Upload results.json');
   await uploadFile(resultsPath, bucket, s3Path, creds, resultsPath, 'application/json');
+
+  const timestampPath = path.join(dir, 'timestamp.json');
+
+  fs.writeFileSync(
+    timestampPath,
+    JSON.stringify([(new Date()).toLocaleString()], null, 2),
+  );
+
+  console.log('Upload timestamp.json');
+  await uploadFile(timestampPath, bucket, s3Path, creds, timestampPath, 'application/json');
 }
 
 main();

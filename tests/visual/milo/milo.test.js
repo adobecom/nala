@@ -1,7 +1,8 @@
 /* eslint-disable import/named */
 import { test } from '@playwright/test';
 import { features } from '../../../features/visual/milo/milo.spec.js';
-import { takeOne, writeResultsToFile } from '../../../libs/screenshot/take.js';
+import { takeOne } from '../../../libs/screenshot/take.js';
+import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
 
 const folderPath = 'screenshots/milo';
 const results = {};

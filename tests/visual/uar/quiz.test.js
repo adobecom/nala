@@ -6,7 +6,7 @@ import Quiz from '../../../selectors/uar/quiz.page.js';
 
 const { features } = require('../../../features/visual/uar/quiz.spec.js');
 const { WebUtil } = require('../../../libs/webutil.js');
-const { compareScreenshots, writeResultsToFile } = require('../../../libs/screenshot/take.js');
+const { compareScreenshots, writeResultsToFile } = require('../../../libs/screenshot/utils.js');
 const envs = require('../../../envs/envs.js');
 
 const folderPath = 'screenshots/uar';
