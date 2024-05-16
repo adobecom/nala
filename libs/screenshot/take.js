@@ -5,11 +5,30 @@ import { getComparator } from 'playwright-core/lib/utils';
 
 const fs = require('fs');
 
-async function take(page, folderPath, fileName) {
-  await page.screenshot({ path: `${folderPath}/${fileName}`, fullPage: true });
+/**
+  * Take a screenshot of a page
+  * @param {Page} page - The page object
+  * @param {string} folderPath - The folder path to save the screenshot, e.g., screenshots/milo
+  * @param {string} fileName - The file name of the screenshot
+  * @param {object} options - The screenshot options, see https://playwright.dev/docs/api/class-page#page-screenshot
+*/
+async function take(page, folderPath, fileName, options = {}) {
+  const urls = [];
+  const result = {};
+  const name = `${folderPath}/${fileName}.png`;
+  urls.push(page.url());
+  options.path = name;
+  if (options.selector) {
+    await page.locator(options.selector).screenshot(options);
+  } else {
+    await page.screenshot(options);
+  }
+  result.a = name;
+  result.urls = urls.join(' | ');
+  return result;
 }
 
-async function takeOne(page, url, callback, folderPath, fileName, isFullPage = true) {
+async function takeOne(page, url, callback, folderPath, fileName, options = {}) {
   const urls = [];
   const result = {};
 
@@ -18,8 +37,14 @@ async function takeOne(page, url, callback, folderPath, fileName, isFullPage = t
   urls.push(url);
   if (typeof callback === 'function') { await callback(); }
   const name = `${folderPath}/${fileName}.png`;
-  await page.screenshot({ path: name, fullPage: isFullPage });
+  options.path = name;
+  if (options.selector) {
+    await page.locator(options.selector).screenshot(options);
+  } else {
+    await page.screenshot(options);
+  }
 
+  result.order = 1;
   result.a = name;
   result.urls = urls.join(' | ');
   return result;
@@ -35,6 +60,7 @@ async function takeTwo(page, urlStable, callbackStable, urlBeta, callbackBeta, f
   if (typeof callbackStable === 'function') { await callbackStable(); }
   const nameStable = `${folderPath}/${fileName}-a.png`;
   await page.screenshot({ path: nameStable, fullPage: true });
+  result.order = 1;
   result.a = nameStable;
 
   console.info(`[Test Page]: ${urlBeta}`);
@@ -60,6 +86,7 @@ async function takeTwoAndCompare(page, urlStable, callbackStable, urlBeta, callb
   const nameStable = `${folderPath}/${fileName}-a.png`;
   await page.screenshot({ path: nameStable, fullPage: true });
   const baseImage = fs.readFileSync(nameStable);
+  result.order = 1;
   result.a = nameStable;
 
   console.info(`[Test Page]: ${urlBeta}`);
@@ -85,23 +112,47 @@ async function takeTwoAndCompare(page, urlStable, callbackStable, urlBeta, callb
   return result;
 }
 
-function compareScreenshots(stableArray, betaArray, folderPath) {
+function compareScreenshots(stableArray, betaArray) {
+  const results = [];
   const comparator = getComparator('image/png');
   for (let i = 0; i < stableArray.length; i += 1) {
-    if (betaArray[i].slice(-10) === stableArray[i].slice(-10)) {
-      const stableImage = fs.readFileSync(`${folderPath}/${stableArray[i]}`);
-      const betaImage = fs.readFileSync(`${folderPath}/${betaArray[i]}`);
+    if (betaArray[i].a.slice(-10) === stableArray[i].a.slice(-10)) {
+      const result = {};
+      const urls = [];
+      result.order = i + 1;
+      result.a = `${stableArray[i].a}`;
+      result.b = `${betaArray[i].a}`;
+      urls.push(stableArray[i].urls);
+      urls.push(betaArray[i].urls);
+      const stableImage = fs.readFileSync(`${stableArray[i].a}`);
+      const betaImage = fs.readFileSync(`${betaArray[i].a}`);
       const diffImage = comparator(stableImage, betaImage);
 
       if (diffImage) {
-        fs.writeFileSync(`${folderPath}/${stableArray[i]}-diff.png`, diffImage.diff);
+        result.diff = `${stableArray[i].a}-diff.png`;
+        fs.writeFileSync(`${stableArray[i].a}-diff.png`, diffImage.diff);
         console.info('Differences found');
       }
+      result.urls = urls.join(' | ');
+      results.push(result);
     } else {
       console.info('Screenshots are not matched');
-      console.info(`${stableArray[i]} vs ${betaArray[i]}`);
+      console.info(`${stableArray[i].a} vs ${betaArray[i].a}`);
     }
   }
+  return results;
 }
 
-module.exports = { takeTwoAndCompare, compareScreenshots, takeOne, takeTwo, take };
+function writeResultsToFile(folderPath, testInfo, results) {
+  const resultFilePath = `${folderPath}/results-${testInfo.workerIndex}.json`;
+  fs.writeFileSync(resultFilePath, JSON.stringify(results, null, 2));
+}
+
+module.exports = {
+  takeTwoAndCompare,
+  compareScreenshots,
+  takeOne,
+  takeTwo,
+  take,
+  writeResultsToFile,
+};

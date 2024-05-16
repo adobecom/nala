@@ -6,7 +6,7 @@ import Quiz from '../../../selectors/uar/quiz.page.js';
 
 const { features } = require('../../../features/visual/uar/quiz.spec.js');
 const { WebUtil } = require('../../../libs/webutil.js');
-const { compareScreenshots } = require('../../../libs/visualutil.js');
+const { compareScreenshots, writeResultsToFile } = require('../../../libs/screenshot/take.js');
 const envs = require('../../../envs/envs.js');
 
 const folderPath = 'screenshots/uar';
@@ -29,6 +29,7 @@ test.describe('Quiz flow test suite', () => {
         const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
         let keyNumber = 0;
+        const results = {};
 
         for (const key of Object.keys(testdata)) {
           console.log(key);
@@ -59,8 +60,12 @@ test.describe('Quiz flow test suite', () => {
           betaProductScreenshots = betaPage.screenshots.slice();
           betaPage.screenshots = [];
 
-          compareScreenshots(stableProductScreenshots, betaProductScreenshots, folderPath);
+          const result = compareScreenshots(stableProductScreenshots, betaProductScreenshots);
+          const name = `${key}-${project}`;
+          results[name] = result;
         }
+
+        writeResultsToFile(folderPath, testInfo, results);
       },
     );
   }
