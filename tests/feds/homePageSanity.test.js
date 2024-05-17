@@ -15,8 +15,9 @@ test.describe('Test Suite for Home Page Components', () => {
             await expect(page).toHaveURL(pageURL);
 
             // Verifying the visibility of UNAV Elements
+            await page.waitForLoadState('domcontentloaded');
             await Promise.all(homePage.locales[locale].unavElements.map(element => expect(home[element]).toBeVisible()));
-            
+
             // Verifying the visibility of Creative Cloud Elements
             await home.gnavCC.click({ timeout: 5000 });
             await Promise.all(homePage.locales[locale].ccElements.map(element => expect(home[element]).toBeVisible()));
@@ -33,7 +34,7 @@ test.describe('Test Suite for Home Page Components', () => {
             await home.gnavHelpX.click({ timeout: 5000 });
             await Promise.all(homePage.locales[locale].helpXElements.map(element => expect(home[element]).toBeVisible()));
             await home.gnavHelpX.click({ timeout: 5000 });
-            
+
             // Verifying the visibility of Footer Elements
             await home.changeRegion.scrollIntoViewIfNeeded();
             await Promise.all(homePage.locales[locale].footerElements.map(element => expect(home[element]).toBeVisible()));
@@ -59,7 +60,7 @@ test.describe('Test Suite for Home Page Components', () => {
     test(`${features[89].name}, ${features[89].tags}`, async ({ page, baseURL }) => {
         await validateLocalePage(page, baseURL, 89, "Japan");
     });
-    
+
     test(`${features[30].name}, ${features[30].tags}`, async ({ page, baseURL }) => {
         await validateLocalePage(page, baseURL, 30, "Italy");
     });
@@ -131,15 +132,7 @@ test.describe('Test Suite for Home Page Components', () => {
     test(`${features[17].name}, ${features[17].tags}`, async ({ page, baseURL }) => {
         await validateLocalePage(page, baseURL, 17, "Belgium Nederlands");
     });
-    /*
-    test(`${features[18].name}, ${features[18].tags}`, async ({ page, baseURL }) => {
-        await validateLocalePage(page, baseURL, 18, "CIS English");
-    });
-
-    test(`${features[19].name}, ${features[19].tags}`, async ({ page, baseURL }) => {
-        await validateLocalePage(page, baseURL, 19, "CIS Russian");
-    });
-    */
+    
     test(`${features[20].name}, ${features[20].tags}`, async ({ page, baseURL }) => {
         await validateLocalePage(page, baseURL, 20, "Denmark");
     });
@@ -294,5 +287,142 @@ test.describe('Test Suite for Home Page Components', () => {
 
     test(`${features[62].name}, ${features[62].tags}`, async ({ page, baseURL }) => {
         await validateLocalePage(page, baseURL, 62, "Ukraine");
+    });
+
+    test(`${features[63].name}, ${features[63].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 63, "Israel Hebrew");
+    });
+
+    test(`${features[64].name}, ${features[64].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 64, "UAE");
+    });
+
+    test(`${features[65].name}, ${features[65].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 65, "Middle East And North Africa");
+    });
+
+    test(`${features[66].name}, ${features[66].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 66, "Kingdom Of Saudi Arabia");
+    });
+
+    test(`${features[67].name}, ${features[67].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 67, "Egypt");
+    });
+
+    test(`${features[68].name}, ${features[68].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 68, "Kuwait");
+    });
+
+    test(`${features[69].name}, ${features[69].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 69, "Qatar");
+    });
+
+    test(`${features[70].name}, ${features[70].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 70, "Australia");
+    });
+
+    test(`${features[71].name}, ${features[71].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 71, "Hong Kong China");
+    });
+
+    test(`${features[72].name}, ${features[72].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 72, "India");
+    });
+
+    test(`${features[73].name}, ${features[73].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 73, "Indonesia");
+    });
+
+    test(`${features[74].name}, ${features[74].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 74, "Indonesia English");
+    });
+
+    test(`${features[75].name}, ${features[75].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 75, "Malaysia");
+    });
+
+    test(`${features[76].name}, ${features[76].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 76, "Malaysia English");
+    });
+
+    test(`${features[77].name}, ${features[77].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 77, "New Zealand");
+    });
+
+    test(`${features[78].name}, ${features[78].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 78, "Philippines English");
+    });
+
+    test(`${features[79].name}, ${features[79].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 79, "Philippines");
+    });
+
+    test(`${features[80].name}, ${features[80].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 80, "Singapore");
+    });
+
+    test(`${features[81].name}, ${features[81].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 81, "Thailand English");
+    });
+
+    test(`${features[82].name}, ${features[82].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 82, "Vietnam English");
+    });
+
+    test(`${features[83].name}, ${features[83].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 83, "Vietnam");
+    });
+
+    test(`${features[84].name}, ${features[84].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 84, "India Hindi");
+    });
+
+    test(`${features[85].name}, ${features[85].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 85, "Thailand");
+    });
+
+    test(`${features[87].name}, ${features[87].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 87, "Hong Kong");
+    });
+
+    test(`${features[88].name}, ${features[88].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 88, "Taiwan");
+    });
+
+    test(`${features[90].name}, ${features[90].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 90, "Korea");
+    });
+});
+
+test.describe('Test Suite for CIS and China Home Page Components', () => {
+
+    const validateLocalePage = async (page, baseURL, featureIndex, locale) => {
+        const home = new HomePageSanity(page);
+        console.info(`[FEDSInfo] Checking page: ${baseURL}${features[featureIndex].path}`);
+
+        await test.step(`Validating ${locale} Locale page`, async () => {
+            const pageURL = `${baseURL}${features[featureIndex].path}`;
+            await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
+            await expect(page).toHaveURL(pageURL);
+
+            // Verifying the visibility of UNAV Elements
+            await Promise.all(homePage.locales[locale].unavElements.map(element => expect(home[element]).toBeVisible()));
+
+            // Verifying the visibility of Footer Elements
+            await home.changeRegion.scrollIntoViewIfNeeded();
+            await Promise.all(homePage.locales[locale].footerElements.map(element => expect(home[element]).toBeVisible()));
+        });
+    };
+
+    test(`${features[18].name}, ${features[18].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 18, "CIS English");
+    });
+
+    test(`${features[19].name}, ${features[19].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 19, "CIS Russian");
+    });
+
+    test(`${features[86].name}, ${features[86].tags}`, async ({ page, baseURL }) => {
+        await validateLocalePage(page, baseURL, 86, "China");
     });
 });

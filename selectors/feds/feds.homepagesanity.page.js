@@ -18,7 +18,7 @@ export default class HomePageSanity {
         this.gnavSpecialOffers = page.locator('.feds-navItem:nth-child(2)');
 
         // Creative Cloud Elements
-        this.whatIsCC = page.locator('.feds-popup a[href*="creativecloud.html"]');
+        this.whatIsCC = page.locator('.feds-popup a[href*="creativecloud.html"]').nth(0);
         this.schoolsAndUniversities = page.locator('.feds-popup a[href$="education.html"]');
         this.viewPlansAndPrices = page.locator('.feds-cta.feds-cta--primary[href*="plans.html"]').nth(0);
         this.photoshop = page.locator('.feds-popup a[href*="photoshop.html"]');
@@ -35,6 +35,15 @@ export default class HomePageSanity {
         this.seePlansAndPrices = page.locator('.feds-cta.feds-cta--secondary[href*="?promoid=KLZPV68R&mv=other"]');
         this.viewAllProductsCC = page.locator('.feds-navLink.feds-navLink--blue[href*="creativity-design"]');
 
+        this.removeBackground = page.locator('.feds-popup a[href*="remove-background"]');
+        this.createQRCode = page.locator('.feds-popup a[href*="qr-code-generator"]');
+        this.seeAllQuickActions = page.locator('.feds-popup a[href*="H822XKN9&mv=other"]');
+        this.resume = page.locator('.feds-popup a[href*="resume"]');
+        this.youTubeVideo = page.locator('.feds-popup a[href*="youtube"]');
+        this.createNow = page.locator('.feds-popup a[href*="J7XBWKS1&mv=other"]');
+        this.illustrator = page.locator('.feds-popup a[href*="HZG8WTXS&mv=other"]');
+        this.seePlansAndPricing = page.locator('.feds-popup a[href*="WXYGHWCC&mv=other"]');
+
         // Document Cloud Elements
         this.adobeAcrobat = page.locator('a[href$="acrobat.html"] .feds-navLink-content');
         this.acrobatPlansAndPricing = page.locator('.feds-cta.feds-cta--primary[href$="/pricing.html"]');
@@ -50,6 +59,9 @@ export default class HomePageSanity {
 
         this.AIOverviewDCTwo = page.locator('.feds-popup a[href$="/ai/overview.html"]').nth(0);
         this.consultationBeforePurchase = page.locator('.feds-popup a[href$="0120-693-724"]');
+
+        this.smallBusiness = page.locator('.feds-popup a[href*="small-business.html"]');
+        this.homeAndPersonal = page.locator('.feds-popup a[href*="personal-document-management.html"]');
 
         // Experience Cloud Elements
         this.adobeExperienceCloud = page.locator('.feds-popup a[href*="business.adobe.com"]').nth(0);

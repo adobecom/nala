@@ -399,7 +399,7 @@ module.exports = {
         },
         {
             tcid: '66',
-            name: '@SaudiArabiaPageGnavCheck',
+            name: '@KingdomOfSaudiArabiaPageGnavCheck',
             path: '/sa_ar/?georouting=off',
             tags: '@gnavsanity @gnavhomeSaudiArabia',
         },
