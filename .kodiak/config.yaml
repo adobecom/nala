@@ -16,7 +16,6 @@ notifications:
         customfield_11800: MWPW-140779 #epic link
         watchers:
           - casalino
-          - jmichnow
           - mauchley
         labels:
           - "OriginatingProcess=Kodiak"
