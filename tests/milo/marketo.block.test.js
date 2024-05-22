@@ -4,6 +4,7 @@ import MarketoBlock from '../../selectors/milo/marketo.block.page.js';
 
 let marketoBlock;
 const WAIT_TIME = 10000;
+const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Marketo block test suite', () => {
   test.beforeEach(async ({ page }) => {
@@ -11,7 +12,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`0: @marketo production form, ${features[0].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[0].path}`;
+    const testPage = `${baseURL}${features[0].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block test page', async () => {
@@ -35,7 +36,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`1: @marketo rfi template, ${features[1].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[1].path}`;
+    const testPage = `${baseURL}${features[1].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block RFI Template test page', async () => {
@@ -55,7 +56,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`2: @marketo discover template, ${features[2].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[2].path}`;
+    const testPage = `${baseURL}${features[2].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block discover template test page', async () => {
@@ -75,7 +76,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`3: @marketo explore template, ${features[3].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[3].path}`;
+    const testPage = `${baseURL}${features[3].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block explore template test page', async () => {
@@ -95,7 +96,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`4: @marketo evaluate template, ${features[4].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[4].path}`;
+    const testPage = `${baseURL}${features[4].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block evaluate template test page', async () => {
@@ -115,7 +116,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`5: @marketo webinar template, ${features[5].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[5].path}`;
+    const testPage = `${baseURL}${features[5].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block webinar template test page', async () => {
@@ -135,7 +136,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`6: @marketo trial template, ${features[6].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[6].path}`;
+    const testPage = `${baseURL}${features[6].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block content discover template test page', async () => {
@@ -155,7 +156,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`7: @marketo full template, ${features[7].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[7].path}`;
+    const testPage = `${baseURL}${features[7].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block full template test page', async () => {
@@ -175,7 +176,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`8: @marketo expanded template, ${features[8].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[8].path}`;
+    const testPage = `${baseURL}${features[8].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block expanded template test page', async () => {
@@ -195,7 +196,7 @@ test.describe('Marketo block test suite', () => {
   });
 
   test(`9: @marketo essential template, ${features[9].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[9].path}`;
+    const testPage = `${baseURL}${features[9].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
     await test.step('step-1: Go to the Marketo block essential template test page', async () => {
