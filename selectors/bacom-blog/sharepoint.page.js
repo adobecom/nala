@@ -25,7 +25,8 @@ export default class Sharepoint {
    */
   async getDialogText() {
     if (await this.dialogText.isVisible()) {
-      return this.dialogText.textContent();
+      const dialogText = await this.dialogText.textContent();
+      return dialogText;
     }
     return '';
   }
