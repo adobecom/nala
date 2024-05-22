@@ -2,12 +2,14 @@ import { expect, test } from '@playwright/test';
 import { features } from '../../features/bacom/stats.spec.js';
 import StatsBlock from '../../selectors/bacom/stats.page.js';
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('BACOM Stats Block Test Suite', () => {
   test(
     `${features[0].name}, ${features[0].tags}`,
     async ({ page, baseURL }) => {
       const stats = new StatsBlock(page);
-      const testPage = `${baseURL}${features[0].path}`;
+      const testPage = `${baseURL}${features[0].path}${miloLibs}`;
       await page.goto(testPage);
       await page.waitForLoadState('networkidle');
 
