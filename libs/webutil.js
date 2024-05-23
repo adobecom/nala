@@ -314,7 +314,16 @@ exports.WebUtil = class WebUtil {
         networklogs.push(url);
         const firstEvent = route.request().postDataJSON().events[0];
         // eslint-disable-next-line no-underscore-dangle
-        networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.primaryEvent));
+        if (firstEvent.data._adobe_corpnew.digitalData.primaryEvent) {
+          // eslint-disable-next-line no-underscore-dangle
+          networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.primaryEvent));
+        }
+
+        // eslint-disable-next-line no-underscore-dangle
+        if (firstEvent.data._adobe_corpnew.digitalData.search) {
+          // eslint-disable-next-line no-underscore-dangle
+          networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.search));
+        }
       }
       route.continue();
     });
