@@ -65,9 +65,23 @@ const config = {
       },
     },
     {
+      name: 'milo-stage-chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@milo_stage'],
+      },
+    },
+    {
       name: 'milo-stage-firefox',
       use: {
         ...devices['Desktop Firefox'],
+        baseURL: envs['@milo_stage'],
+      },
+    },
+    {
+      name: 'milo-stage-webkit',
+      use: {
+        ...devices['Desktop Safari'],
         baseURL: envs['@milo_stage'],
       },
     },
