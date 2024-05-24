@@ -2,13 +2,16 @@ import { test } from '@playwright/test';
 import { features } from '../../features/bacom/event-speakers.spec.js';
 import EventSpeakers from '../../selectors/bacom/event-speakers.page.js';
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Bacom Event Speakers Test Suite', () => {
   test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    const testPage = `${baseURL}${features[0].path}${miloLibs}`;
+    console.info(`[Test Page]: ${testPage}`);
     const eventSpeakers = new EventSpeakers(page);
 
     await test.step('Go to test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(testPage);
       await page.waitForLoadState('domcontentloaded');
     });
 

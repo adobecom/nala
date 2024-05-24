@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { features } from "../../features/feds/homePageSanity.spec";
 
 export default class HomePageSanity {
     constructor(page) {
@@ -141,5 +142,41 @@ export default class HomePageSanity {
         this.cookies = page.locator('.feds-footer-legalWrapper a:nth-of-type(3)');
         this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
         this.adChoices = page.locator('.feds-footer-legalWrapper a:nth-of-type(5)');
+    };
+
+    async validateGnavHomePage(page, baseURL, featureIndex, locale, homePage, home) {
+
+        console.info(`[FEDSInfo] Checking page: ${baseURL}${features[featureIndex].path}`);
+
+        await test.step(`Validating ${locale} Locale page`, async () => {
+            const pageURL = `${baseURL}${features[featureIndex].path}`;
+            await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
+            await expect(page).toHaveURL(pageURL);
+
+            // Verifying the visibility of UNAV Elements
+            await page.waitForLoadState('domcontentloaded');
+            await Promise.all(homePage.locales[locale].unavElements.map(element => expect(home[element]).toBeVisible()));
+
+            // Verifying the visibility of Creative Cloud Elements
+            await this.gnavCC.click({ timeout: 5000 });
+            await Promise.all(homePage.locales[locale].ccElements.map(element => expect(home[element]).toBeVisible()));
+
+            // Verifying the visibility of Document cloud Elements
+            await this.gnavDC.click({ timeout: 5000 });
+            await Promise.all(homePage.locales[locale].dcElements.map(element => expect(home[element]).toBeVisible()));
+
+            // Verifying the visibility of Experience Cloud Elements
+            await this.gnavEC.click({ timeout: 5000 });
+            await Promise.all(homePage.locales[locale].ecElements.map(element => expect(home[element]).toBeVisible()));
+
+            // Verifying the visibility of Help-X Elements
+            await this.gnavHelpX.click({ timeout: 5000 });
+            await Promise.all(homePage.locales[locale].helpXElements.map(element => expect(home[element]).toBeVisible()));
+            await this.gnavHelpX.click({ timeout: 5000 });
+
+            // Verifying the visibility of Footer Elements
+            await this.changeRegion.scrollIntoViewIfNeeded();
+            await Promise.all(homePage.locales[locale].footerElements.map(element => expect(home[element]).toBeVisible()));
+        });
     };
 };
