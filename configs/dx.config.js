@@ -1,3 +1,4 @@
+// @ts-check
 const { devices } = require('@playwright/test');
 
 const envs = require('../envs/envs.js');
@@ -66,5 +67,4 @@ const config = {
     },
   ],
 };
-
 module.exports = config;
