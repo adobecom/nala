@@ -48,6 +48,7 @@ const config = {
         baseURL: envs['@dx_stage'],
       },
     },
+
     {
       name: 'dx-live-firefox',
       use: {
@@ -55,6 +56,7 @@ const config = {
         baseURL: envs['@dx_stage'],
       },
     },
+
     {
       name: 'dx-live-webkit',
       use: {
