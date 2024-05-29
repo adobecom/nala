@@ -14,7 +14,6 @@ test.describe('Validate news page for public users', () => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
-      await page.waitForTimeout(2000);
     });
   });
 });

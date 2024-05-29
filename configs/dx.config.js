@@ -48,14 +48,20 @@ const config = {
         baseURL: envs['@dx_stage'],
       },
     },
-
-    // {
-    //   name: 'dx-live-firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //     baseURL: envs['@dx_stage'],
-    //   },
-    // },
+    {
+      name: 'dx-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@dx_stage'],
+      },
+    },
+    {
+      name: 'dx-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@dx_stage'],
+      },
+    },
   ],
 };
 
