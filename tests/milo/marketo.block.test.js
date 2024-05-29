@@ -163,14 +163,27 @@ test.describe('Marketo block test suite', () => {
       await page.goto(testPage);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(testPage);
+
+      // Need this wait to avoid failed form submission during parallel runs
+      await page.waitForTimeout(WAIT_TIME);
     });
 
-    await test.step('step-2: Submit the form with valid inputs', async () => {
-      await page.waitForTimeout(WAIT_TIME);
+    await test.step('step-2: check the input field placeholders', async () => {
+      await marketoBlock.checkInputPlaceholders(
+        marketoBlock.firstName,
+        marketoBlock.lastName,
+        marketoBlock.email,
+        marketoBlock.company,
+        marketoBlock.phone,
+        marketoBlock.postalCode,
+      )
+    })
+
+    await test.step('step-3: Submit the form with valid inputs', async () => {
       await marketoBlock.submitFullTemplateForm();
     });
 
-    await test.step('step-3: Verify the form submission redirect', async () => {
+    await test.step('step-4: Verify the form submission redirect', async () => {
       await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
     });
   });
@@ -183,14 +196,27 @@ test.describe('Marketo block test suite', () => {
       await page.goto(testPage);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(testPage);
+
+      // Need this wait to avoid failed form submission during parallel runs
+      await page.waitForTimeout(WAIT_TIME);
     });
 
-    await test.step('step-2: Submit the form with valid inputs', async () => {
-      await page.waitForTimeout(WAIT_TIME);
+    await test.step('step-2: check the input field placeholders', async () => {
+      await marketoBlock.checkInputPlaceholders(
+        marketoBlock.firstName,
+        marketoBlock.lastName,
+        marketoBlock.email,
+        marketoBlock.company,
+        marketoBlock.phone,
+        marketoBlock.postalCode,
+      )
+    })
+
+    await test.step('step-3: Submit the form with valid inputs', async () => {
       await marketoBlock.submitFullTemplateForm('Adobe Advertising Cloud');
     });
 
-    await test.step('step-3: Verify the form submission redirect', async () => {
+    await test.step('step-4: Verify the form submission redirect', async () => {
       await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
     });
   });
@@ -204,14 +230,25 @@ test.describe('Marketo block test suite', () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
         await expect(page).toHaveURL(testPage);
+
+        // Need this wait to avoid failed form submission during parallel runs        
+        await page.waitForTimeout(WAIT_TIME);
       });
 
-      await test.step('step-2: Submit the form with valid inputs', async () => {
-        await page.waitForTimeout(WAIT_TIME);
+      await test.step('step-2: check the input field placeholders', async () => {
+        await marketoBlock.checkInputPlaceholders(
+          marketoBlock.firstName,
+          marketoBlock.lastName,
+          marketoBlock.email,
+          marketoBlock.company,
+        )
+      })
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
         await marketoBlock.submitExpandedTemplateForm();
       });
 
-      await test.step('step-3: Verify the form submission redirect', async () => {
+      await test.step('step-4: Verify the form submission redirect', async () => {
         await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
@@ -226,14 +263,25 @@ test.describe('Marketo block test suite', () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
         await expect(page).toHaveURL(testPage);
+
+        // Need this wait to avoid failed form submission during parallel runs
+        await page.waitForTimeout(WAIT_TIME);
       });
 
-      await test.step('step-2: Submit the form with valid inputs', async () => {
-        await page.waitForTimeout(WAIT_TIME);
+      await test.step('step-2: check the input field placeholders', async () => {
+        await marketoBlock.checkInputPlaceholders(
+          marketoBlock.firstName,
+          marketoBlock.lastName,
+          marketoBlock.email,
+          marketoBlock.company,
+        )
+      })
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
         await marketoBlock.submitEssentialTemplateForm();
       });
 
-      await test.step('step-3: Verify the form submission redirect', async () => {
+      await test.step('step-4: Verify the form submission redirect', async () => {
         await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
