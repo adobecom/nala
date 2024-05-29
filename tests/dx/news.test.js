@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import { test, expect } from '@playwright/test';
 
 const News = require('../../features/dx/news.spec.js');

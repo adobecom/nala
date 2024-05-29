@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export default class NewsPage {
   constructor(page) {
     this.page = page;
