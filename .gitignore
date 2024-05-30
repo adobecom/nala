@@ -138,3 +138,5 @@ configs/test-html-results/
 browserstackSetupConfig.json
 configs/playwright-browserstack-sdk.config.js
 playwright-browserstack-sdk.config.temp.json
+
+.auth/

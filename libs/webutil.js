@@ -120,43 +120,22 @@ exports.WebUtil = class WebUtil {
  * @param {Object} cssProps - The CSS properties and expected values to verify.
  * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
  */
-    async verifyCSS_(locator, cssProps) {
-      this.locator = locator;
-      let result = true;
-      await Promise.allSettled(
-        Object.entries(cssProps).map(async ([property, expectedValue]) => {
-          try {
-            await expect(this.locator).toHaveCSS(property, expectedValue);
-          } catch (error) {
-            console.error(`CSS property ${property} not found:`, error);
-            result = false;
-          }
-        }),
-      );
-      return result;
-    }
-
-  /**
- * Verifies that the specified CSS properties of the given locator match the expected values.
- * @param {Object} locator - The locator to verify CSS properties for.
- * @param {Object} cssProps - The CSS properties and expected values to verify.
- * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
- */
-    async verifyCSS_(locator, cssProps) {
-      this.locator = locator;
-      let result = true;
-      await Promise.allSettled(
-        Object.entries(cssProps).map(async ([property, expectedValue]) => {
-          try {
-            await expect(this.locator).toHaveCSS(property, expectedValue);
-          } catch (error) {
-            console.error(`CSS property ${property} not found:`, error);
-            result = false;
-          }
-        }),
-      );
-      return result;
-    }
+  // eslint-disable-next-line no-underscore-dangle
+  async verifyCSS_(locator, cssProps) {
+    this.locator = locator;
+    let result = true;
+    await Promise.allSettled(
+      Object.entries(cssProps).map(async ([property, expectedValue]) => {
+        try {
+          await expect(this.locator).toHaveCSS(property, expectedValue);
+        } catch (error) {
+          console.error(`CSS property ${property} not found:`, error);
+          result = false;
+        }
+      }),
+    );
+    return result;
+  }
 
   /**
  * Verifies that the specified attribute properties of the given locator match the expected values.
@@ -198,6 +177,7 @@ exports.WebUtil = class WebUtil {
  * @param {Object} attProps - The attribute properties and expected values to verify.
  * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
  */
+  // eslint-disable-next-line no-underscore-dangle
   async verifyAttributes_(locator, attProps) {
     this.locator = locator;
     let result = true;
@@ -314,7 +294,16 @@ exports.WebUtil = class WebUtil {
         networklogs.push(url);
         const firstEvent = route.request().postDataJSON().events[0];
         // eslint-disable-next-line no-underscore-dangle
-        networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.primaryEvent));
+        if (firstEvent.data._adobe_corpnew.digitalData.primaryEvent) {
+          // eslint-disable-next-line no-underscore-dangle
+          networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.primaryEvent));
+        }
+
+        // eslint-disable-next-line no-underscore-dangle
+        if (firstEvent.data._adobe_corpnew.digitalData.search) {
+          // eslint-disable-next-line no-underscore-dangle
+          networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.search));
+        }
       }
       route.continue();
     });
@@ -332,48 +321,52 @@ exports.WebUtil = class WebUtil {
  * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
  * @returns {string} - A string formatted as 'gnav|<project>|nopzn|nopzn'.
  */
-  async getGnavDaalh(project=milo) {
-    return 'gnav'+ '|' + project + '|'+ 'nopzn' + '|' + 'nopzn' ;
+  // eslint-disable-next-line class-methods-use-this
+  async getGnavDaalh(project = milo) {
+    return `gnav|${project}|nopzn|nopzn`;
   }
 
-/**
+  /**
  * Generates analytic string for a given project.
  * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
  * @param {string} pznExpName - Personalized experience name, which is sliced to its first 15 characters.
  * @param {string} pznFileName - Manifest filename, which is sliced to its first 20 characters.
  * @returns {string} - A string formatted as 'gnav|<project>|<pznExpName>|<pznFileName>'.
- */  
-async getPznGnavDaalh(project=milo, pznExpName, pznFileName) {
-  const slicedExpName = pznExpName.slice(0, 15);
-  const slicedFileName = pznFileName.slice(0, 15);
-  return 'gnav'+ '|' + project + '|'+ slicedExpName + '|' + slicedFileName ;
-}  
+ */
+  // eslint-disable-next-line class-methods-use-this, default-param-last
+  async getPznGnavDaalh(project = milo, pznExpName, pznFileName) {
+    const slicedExpName = pznExpName.slice(0, 15);
+    const slicedFileName = pznFileName.slice(0, 15);
+    return `gnav|${project}|${slicedExpName}|${slicedFileName}`;
+  }
 
-/**
+  /**
  * Generates analytic string for a section based on a given counter value.
  * @param {number|string} counter - A counter value used to generate the section identifier.
  * @returns {string} - A string formatted as 's<counter>'.
  */
+  // eslint-disable-next-line class-methods-use-this
   async getSectionDaalh(counter) {
-    return 's'+ counter;
+    return `s${counter}`;
   }
 
-/**
+  /**
  * Generates personalization analytic string for a given block name and a counter.
  * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
  * @param {number|string} counter - A counter value i.e. block number.
  * @param {string} pznExpName - Personalized experience name, which is sliced to its first 15 characters.
  * @param {string} pznExpName - Manifest filename, which is sliced to its first 20 characters.
  * @returns {string} - A string formatted as 'b<counter>|<slicedBlockName>|<pznExpName>|<pznExpName>'.
- */  
-async getPznBlockDaalh(blockName, counter, pznExpName, pznFileName) {
-  const slicedBlockName = blockName.slice(0, 20);
-  const slicedExpName = pznExpName.slice(0, 15);
-  const slicedFileName = pznFileName.slice(0, 15);
-  return 'b'+ counter + '|' + slicedBlockName + '|'+ slicedExpName + '|' + slicedFileName ;
-}  
+ */
+  // eslint-disable-next-line class-methods-use-this
+  async getPznBlockDaalh(blockName, counter, pznExpName, pznFileName) {
+    const slicedBlockName = blockName.slice(0, 20);
+    const slicedExpName = pznExpName.slice(0, 15);
+    const slicedFileName = pznFileName.slice(0, 15);
+    return `b${counter}|${slicedBlockName}|${slicedExpName}|${slicedFileName}`;
+  }
 
-/**
+  /**
  * Generates an analytic string for a given block name and a counter.
  * @param {string} blockName - The name of the block, which is sliced to its first 20 characters.
  * @param {number|string} counter - A counter value, i.e., block number.
@@ -381,34 +374,32 @@ async getPznBlockDaalh(blockName, counter, pznExpName, pznFileName) {
  * @param {string} [pzntext='nopzn'] - The pzntext to use when pzn is true, sliced to its first 15 characters.
  * @returns {string} - A formatted string.
  */
-async getBlockDaalh(blockName, counter, pzn = false, pzntext = 'nopzn') {
-  const slicedBlockName = blockName.slice(0, 20);
-  const slicedPzntext = pzntext.slice(0, 15);
-  if (pzn) {
-    return 'b' + counter + '|' + slicedBlockName + '|' + slicedPzntext + '|' + 'nopzn';
-  } else {
-    return 'b' + counter + '|' + slicedBlockName;
+  // eslint-disable-next-line class-methods-use-this
+  async getBlockDaalh(blockName, counter, pzn = false, pzntext = 'nopzn') {
+    const slicedBlockName = blockName.slice(0, 20);
+    const slicedPzntext = pzntext.slice(0, 15);
+    if (pzn) {
+      return `b${counter}|${slicedBlockName}|${slicedPzntext}|nopzn`;
+    }
+    return `b${counter}|${slicedBlockName}`;
   }
-}
 
-
-/**
+  /**
  * Generates analytic string for link or button based on link/button text , a counter, and the last header text.
  * @param {string} linkText - The text of the link, which is cleaned and sliced to its first 20 characters.
  * @param {number|string} counter - A counter value used in the identifier.
  * @param {string} lastHeaderText - The last header text, which is cleaned and sliced to its first 20 characters.
  * @param {boolean} [pzn=false] - boolean parameter, defaulting to false.(for personalization)
  * @returns {string} - A string formatted as '<cleanedLinkText>-<counter>--<cleanedLastHeaderText>'.
- */  
+ */
+  // eslint-disable-next-line class-methods-use-this
   async getLinkDaall(linkText, counter, lastHeaderText, pzn = false) {
-    const cleanAndSliceText = (text) => {
-      return text
-        ?.replace(/[^\w\s]+/g, ' ')
-        .replace(/\s+/g, ' ')
-        .replace(/^_+|_+$/g, '')
-        .trim()
-        .slice(0, 20);
-    }
+    const cleanAndSliceText = (text) => text
+      ?.replace(/[^\w\s]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .replace(/^_+|_+$/g, '')
+      .trim()
+      .slice(0, 20);
     const slicedLinkText = cleanAndSliceText(linkText);
     const slicedLastHeaderText = cleanAndSliceText(lastHeaderText);
     return `${slicedLinkText}-${counter}--${slicedLastHeaderText}`;
