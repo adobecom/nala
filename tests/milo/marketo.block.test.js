@@ -169,15 +169,15 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: check the input field placeholders', async () => {
-      await marketoBlock.checkInputPlaceholders(
+      await MarketoBlock.checkInputPlaceholders(
         marketoBlock.firstName,
         marketoBlock.lastName,
         marketoBlock.email,
         marketoBlock.company,
         marketoBlock.phone,
         marketoBlock.postalCode,
-      )
-    })
+      );
+    });
 
     await test.step('step-3: Submit the form with valid inputs', async () => {
       await marketoBlock.submitFullTemplateForm();
@@ -202,15 +202,15 @@ test.describe('Marketo block test suite', () => {
     });
 
     await test.step('step-2: check the input field placeholders', async () => {
-      await marketoBlock.checkInputPlaceholders(
+      await MarketoBlock.checkInputPlaceholders(
         marketoBlock.firstName,
         marketoBlock.lastName,
         marketoBlock.email,
         marketoBlock.company,
         marketoBlock.phone,
         marketoBlock.postalCode,
-      )
-    })
+      );
+    });
 
     await test.step('step-3: Submit the form with valid inputs', async () => {
       await marketoBlock.submitFullTemplateForm('Adobe Advertising Cloud');
@@ -231,18 +231,18 @@ test.describe('Marketo block test suite', () => {
         await page.waitForLoadState('domcontentloaded');
         await expect(page).toHaveURL(testPage);
 
-        // Need this wait to avoid failed form submission during parallel runs        
+        // Need this wait to avoid failed form submission during parallel runs
         await page.waitForTimeout(WAIT_TIME);
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
-        await marketoBlock.checkInputPlaceholders(
+        await MarketoBlock.checkInputPlaceholders(
           marketoBlock.firstName,
           marketoBlock.lastName,
           marketoBlock.email,
           marketoBlock.company,
-        )
-      })
+        );
+      });
 
       await test.step('step-3: Submit the form with valid inputs', async () => {
         await marketoBlock.submitExpandedTemplateForm();
@@ -269,13 +269,13 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
-        await marketoBlock.checkInputPlaceholders(
+        await MarketoBlock.checkInputPlaceholders(
           marketoBlock.firstName,
           marketoBlock.lastName,
           marketoBlock.email,
           marketoBlock.company,
-        )
-      })
+        );
+      });
 
       await test.step('step-3: Submit the form with valid inputs', async () => {
         await marketoBlock.submitEssentialTemplateForm();

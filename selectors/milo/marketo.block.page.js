@@ -23,17 +23,17 @@ export default class Marketo {
     this.phone = this.marketo.locator('input[name="Phone"]');
     this.company = this.marketo.locator('input[name="mktoFormsCompany"]');
     this.functionalArea = this.marketo.locator(
-      'select[name="mktoFormsFunctionalArea"]'
+      'select[name="mktoFormsFunctionalArea"]',
     );
     this.country = this.marketo.locator('select[name="Country"]');
     this.state = this.marketo.locator('select[name="State"]');
     this.postalCode = this.marketo.locator('input[name="PostalCode"]');
     this.jobTitle = this.marketo.locator('select[name="mktoFormsJobTitle"]');
     this.primaryProductInterest = this.marketo.locator(
-      'select[name="mktoFormsPrimaryProductInterest"]'
+      'select[name="mktoFormsPrimaryProductInterest"]',
     );
     this.companyType = this.marketo.locator(
-      'select[name="mktoFormsCompanyType"]'
+      'select[name="mktoFormsCompanyType"]',
     );
     this.submitButton = this.marketo.locator('#mktoButton_new');
   }
@@ -184,7 +184,7 @@ export default class Marketo {
 
   async getPOI() {
     const poi = await this.page.evaluate(
-      'window.mcz_marketoForm_pref.program.poi'
+      'window.mcz_marketoForm_pref.program.poi',
     );
     return poi;
   }
@@ -203,11 +203,11 @@ export default class Marketo {
    * and that the value isn't empty.
    * @param  {...any} inputFields the input fields of the form being tested.
    */
-  async checkInputPlaceholders(...inputFields) {
+  static async checkInputPlaceholders(...inputFields) {
     inputFields.forEach(async (el) => {
-      expect(el).toHaveAttribute('placeholder')
-      const placeholder = await el.getAttribute('placeholder')
+      expect(el).toHaveAttribute('placeholder');
+      const placeholder = await el.getAttribute('placeholder');
       expect(placeholder.length).toBeGreaterThan(1);
-    })
+    });
   }
 }
