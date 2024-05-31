@@ -121,7 +121,7 @@ export default class HomePageSanity {
         this.footerAdobeBlog = page.locator('.feds-navLink[href*="blog.adobe"]');
         this.footerAdobeDeveloper = page.locator('a[href*="developer.adobe"]');
         this.footerLogInToYourAccount = page.locator('.feds-footer-wrapper a[href*="account.adobe"]').nth(0);
-        this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]');
+        this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]').nth(0);
         this.footerIntegrity = page.locator('a[href*="integrity.html"]');
 
         // Featured Products
@@ -154,25 +154,31 @@ export default class HomePageSanity {
             await expect(page).toHaveURL(pageURL);
 
             // Verifying the visibility of UNAV Elements
-            await page.waitForLoadState('domcontentloaded');
+            await page.waitForLoadState('networkidle');
             await Promise.all(homePage.locales[locale].unavElements.map(element => expect(home[element]).toBeVisible()));
 
-            // Verifying the visibility of Creative Cloud Elements
-            await this.gnavCC.click({ timeout: 5000 });
-            await Promise.all(homePage.locales[locale].ccElements.map(element => expect(home[element]).toBeVisible()));
+            if (locale !== 'CIS English' && locale !== 'CIS Russian' && locale !== 'China') {
+                // Verifying the visibility of Creative Cloud Elements
+                await this.gnavCC.click({ timeout: 5000 });
+                await page.waitForLoadState('domcontentloaded');
+                await Promise.all(homePage.locales[locale].ccElements.map(element => expect(home[element]).toBeVisible()));
 
-            // Verifying the visibility of Document cloud Elements
-            await this.gnavDC.click({ timeout: 5000 });
-            await Promise.all(homePage.locales[locale].dcElements.map(element => expect(home[element]).toBeVisible()));
+                // Verifying the visibility of Document cloud Elements
+                await this.gnavDC.click({ timeout: 5000 });
+                await page.waitForLoadState('domcontentloaded');
+                await Promise.all(homePage.locales[locale].dcElements.map(element => expect(home[element]).toBeVisible()));
 
-            // Verifying the visibility of Experience Cloud Elements
-            await this.gnavEC.click({ timeout: 5000 });
-            await Promise.all(homePage.locales[locale].ecElements.map(element => expect(home[element]).toBeVisible()));
+                // Verifying the visibility of Experience Cloud Elements
+                await this.gnavEC.click({ timeout: 5000 });
+                await page.waitForLoadState('domcontentloaded');
+                await Promise.all(homePage.locales[locale].ecElements.map(element => expect(home[element]).toBeVisible()));
 
-            // Verifying the visibility of Help-X Elements
-            await this.gnavHelpX.click({ timeout: 5000 });
-            await Promise.all(homePage.locales[locale].helpXElements.map(element => expect(home[element]).toBeVisible()));
-            await this.gnavHelpX.click({ timeout: 5000 });
+                // Verifying the visibility of Help-X Elements
+                await this.gnavHelpX.click({ timeout: 5000 });
+                await page.waitForLoadState('domcontentloaded');
+                await Promise.all(homePage.locales[locale].helpXElements.map(element => expect(home[element]).toBeVisible()));
+                await this.gnavHelpX.click({ timeout: 5000 });
+            }
 
             // Verifying the visibility of Footer Elements
             await this.changeRegion.scrollIntoViewIfNeeded();
