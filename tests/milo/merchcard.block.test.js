@@ -24,7 +24,6 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-2: Verify Merch Card content/specs', async () => {
       await expect(await merchCard.segment).toBeVisible();
-      await page.screenshot({ path: 'step-2-screenshot.png', fullPage: true});
       await expect(await merchCard.segmentTitle).toContainText(data.title);
 
       // await expect(await merchCard.price).toContainText(data.price);
