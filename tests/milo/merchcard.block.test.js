@@ -18,12 +18,13 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Merch Card content/specs', async () => {
       await expect(await merchCard.segment).toBeVisible();
+      await page.screenshot({ path: 'step-2-screenshot.png', fullPage: true});
       await expect(await merchCard.segmentTitle).toContainText(data.title);
 
       // await expect(await merchCard.price).toContainText(data.price);
@@ -47,7 +48,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
@@ -85,7 +86,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
@@ -113,7 +114,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);
     });
 
@@ -153,7 +154,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);
     });
 
@@ -182,7 +183,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[5].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[5].path}${miloLibs}`);
     });
 
@@ -214,7 +215,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[6].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[6].path}${miloLibs}`);
     });
 
@@ -245,7 +246,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[7].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[7].path}${miloLibs}`);
     });
 
@@ -278,7 +279,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[8].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[8].path}${miloLibs}`);
     });
 
@@ -310,7 +311,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[9].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[9].path}${miloLibs}`);
     });
 
@@ -347,7 +348,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[10].path}${miloLibs}`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.waitForLoadState('networkidle');
       await expect(page).toHaveURL(`${baseURL}${features[10].path}${miloLibs}`);
     });
 

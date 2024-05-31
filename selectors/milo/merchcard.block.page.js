@@ -3,11 +3,11 @@ export default class Merchcard {
     this.page = page;
 
     // modal locators
-    this.merchCard = this.page.locator('.merch-card').nth(nth);
-    this.segment = this.page.locator('.merch-card.segment').nth(nth);
-    this.sepcialOffers = this.page.locator('.merch-card.special-offers').nth(nth);
-    this.plans = this.page.locator('.merch-card.plans').nth(nth);
-    this.catalog = this.page.locator('.merch-card.catalog').nth(nth);
+    this.merchCard = this.page.locator('merch-card').nth(nth);
+    this.segment = this.page.locator('merch-card.segment').nth(nth);
+    this.sepcialOffers = this.page.locator('merch-card.special-offers').nth(nth);
+    this.plans = this.page.locator('merch-card.plans').nth(nth);
+    this.catalog = this.page.locator('merch-card.catalog').nth(nth);
 
     // inline price and strikethrough price
     this.inlinePrice1 = this.merchCard.locator('span.placeholder-resolved').nth(0);
