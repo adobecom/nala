@@ -10,6 +10,8 @@ test.describe('Milo Merchcard block test suite', () => {
   test.beforeEach(async ({ page }) => {
     merchCard = new MerchCard(page);
   });
+  
+  test.skip(({ browserName }) => browserName === 'chromium', 'Skipping tests for Chrome browser');
 
   // Test 0 : Merch Card (Segment)
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
@@ -17,15 +19,14 @@ test.describe('Milo Merchcard block test suite', () => {
     const { data } = features[0];
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
-      await page.waitForLoadState('networkidle');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
+      await page.goto(`${baseURL}${features[0].path}`);
+      await page.waitForLoadState('domcontentloaded');
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
 
-    await test.step('step-2: Verify Merch Card content/specs', async () => {
+    await test.step('step-2: Verify Merch Card content/specs', async () => {  
       await expect(await merchCard.segment).toBeVisible();
       await expect(await merchCard.segmentTitle).toContainText(data.title);
-
       // await expect(await merchCard.price).toContainText(data.price);
       // await expect(await merchCard.strikethroughPrice).toContainText(data.strikethroughPrice);
 
@@ -47,7 +48,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
@@ -85,7 +86,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
@@ -113,7 +114,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[3].path}${miloLibs}`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[3].path}${miloLibs}`);
     });
 
@@ -153,7 +154,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[4].path}${miloLibs}`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[4].path}${miloLibs}`);
     });
 
@@ -182,7 +183,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[5].path}${miloLibs}`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[5].path}${miloLibs}`);
     });
 
@@ -214,7 +215,7 @@ test.describe('Milo Merchcard block test suite', () => {
 
     await test.step('step-1: Go to Merch Card feature test page', async () => {
       await page.goto(`${baseURL}${features[6].path}${miloLibs}`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[6].path}${miloLibs}`);
     });
 

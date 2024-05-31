@@ -2,7 +2,7 @@ export default class Merchcard {
   constructor(page, nth = 0) {
     this.page = page;
 
-    // modal locators
+    // merch card locators
     this.merchCard = this.page.locator('.merch-card').nth(nth);
     this.segment = this.page.locator('.merch-card.segment').nth(nth);
     this.sepcialOffers = this.page.locator('.merch-card.special-offers').nth(nth);
