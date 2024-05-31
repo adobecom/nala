@@ -27,7 +27,7 @@ const config = {
   retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 4 : 3,
-  /* Reporter to use.*/
+  /* Reporter to use. */
   reporter: process.env.CI
     ? [['github'], ['list'], ['./utils/reporters/base-reporter.js']]
     : [['html', { outputFolder: 'test-html-results' }], ['list'], ['./utils/reporters/base-reporter.js']],
@@ -37,6 +37,7 @@ const config = {
     actionTimeout: 60000,
 
     trace: 'on-first-retry',
+    // eslint-disable-next-line max-len
     baseURL: process.env.PR_BRANCH_LIVE_URL || (process.env.LOCAL_TEST_LIVE_URL || 'https://main--milo--adobecom.hlx.live'),
   },
 
