@@ -23,6 +23,8 @@ module.exports = {
     'max-len': ['error', 120],
     'no-await-in-loop': 'off',
     'no-restricted-syntax': 'off',
+    'import/named': 'off',
+    'no-underscore-dangle': 'off',
   },
   ignorePatterns: [],
 };
