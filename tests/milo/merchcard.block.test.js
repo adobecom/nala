@@ -23,7 +23,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card content/specs', async () => {
-      await expect(await merchCard.segment).toBeVisible();
+      await expect(await merchCard.segment).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.segmentTitle).toContainText(data.title);
 
       // await expect(await merchCard.price).toContainText(data.price);
@@ -52,7 +52,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card with Badge content/specs', async () => {
-      await expect(await merchCard.segment).toBeVisible();
+      await expect(await merchCard.segment).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.segmentTitle).toContainText(data.title);
 
       await expect(await merchCard.segmentRibbon).toBeVisible();
@@ -90,7 +90,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
-      await expect(await merchCard.sepcialOffers).toBeVisible();
+      await expect(await merchCard.sepcialOffers).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.sepcialOffersImage).toBeVisible();
 
       await expect(await merchCard.sepcialOffersTitleH4).toBeVisible();
@@ -118,7 +118,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
-      await expect(await merchCard.sepcialOffers).toBeVisible();
+      await expect(await merchCard.sepcialOffers).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.sepcialOffersImage).toBeVisible();
 
       await expect(await merchCard.sepcialOffersRibbon).toBeVisible();
@@ -158,7 +158,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
-      await expect(await merchCard.plans).toBeVisible();
+      await expect(await merchCard.plans).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.productIcon).toBeVisible();
 
       await expect(await merchCard.plansCardTitleH3).toContainText(data.titleH3);
@@ -187,7 +187,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
-      await expect(await merchCard.plans).toBeVisible();
+      await expect(await merchCard.plans).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.productIcon).toBeVisible();
 
       await expect(await merchCard.plansRibbon).toBeVisible();
@@ -219,7 +219,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
-      await expect(await merchCard.plans).toBeVisible();
+      await expect(await merchCard.plans).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.productIcon).toBeVisible();
 
       await expect(await merchCard.plansCardTitleH3).toContainText(data.titleH3);
@@ -250,7 +250,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card special offers content/specs', async () => {
-      await expect(await merchCard.plans).toBeVisible();
+      await expect(await merchCard.plans).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.productIcon).toBeVisible();
 
       await expect(await merchCard.plansRibbon).toBeVisible();
@@ -283,7 +283,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card catalog content/specs', async () => {
-      await expect(await merchCard.catalog).toBeVisible();
+      await expect(await merchCard.catalog).toBeVisible({ timeout: 2000 });
       await expect(await merchCard.catalogCardTitleH3).toContainText(data.titleH3);
       await expect(await merchCard.catalogCardTitleH4).toContainText(data.titleH4);
 
@@ -315,7 +315,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card catalog with badge content/specs', async () => {
-      await expect(await merchCard.catalog).toBeVisible();
+      await expect(await merchCard.catalog).toBeVisible({ timeout: 2000 });
 
       await expect(await merchCard.catalog).toHaveAttribute('badge-background-color', data.badgeBgColor);
       await expect(await merchCard.catalog).toHaveAttribute('badge-color', data.badgeColor);
@@ -352,7 +352,7 @@ test.describe('Milo Merchcard block test suite', () => {
     });
 
     await test.step('step-2: Verify Merch Card catalog with badge content/specs', async () => {
-      await expect(await merchCard.catalog).toBeVisible();
+      await expect(await merchCard.catalog).toBeVisible({ timeout: 2000 });
 
       await expect(await merchCard.catalog).toHaveAttribute('badge-background-color', data.badgeBgColor);
       await expect(await merchCard.catalog).toHaveAttribute('badge-color', data.badgeColor);

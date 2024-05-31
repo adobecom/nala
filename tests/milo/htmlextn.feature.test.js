@@ -17,6 +17,7 @@ test.describe('Milo Html Extension feature test suite', () => {
         const url = envList[env]+ path;
         await page.goto(url);    
         await page.waitForLoadState('domcontentloaded');
+        await page.waitForLoadState('networkidle');
 
         if (!page.url().match(/@blog/) && (page.url().match(/customer-success-stories/))) {
           expect(page.url()).toContain('.html'); 
