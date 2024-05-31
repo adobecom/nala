@@ -1,6 +1,6 @@
 const { devices } = require('@playwright/test');
 
-const envs = require('./envs/envs.js');
+// const envs = require('./envs/envs.js');
 
 /**
  * @see https://playwright.dev/docs/test-configuration
