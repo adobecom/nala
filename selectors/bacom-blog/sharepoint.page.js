@@ -65,6 +65,7 @@ export default class Sharepoint {
       await expect(this.insertPageBreakButton).toBeVisible({ timeout: 1000 });
     }).toPass();
 
+    await this.page.waitForTimeout(1000);
     // We can not trust the button to work immediately
     await expect(async () => {
       if (await this.insertPageBreakButton.isDisabled()) {
