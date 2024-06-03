@@ -3,25 +3,14 @@ export default class NewsPage {
     this.page = page;
     this.resultNumber = page.locator('.partner-cards-cards-results').nth(0);
     this.firstCardTitle = page.locator('.card-title').nth(0);
-  }
-
-  async clickSearchField() {
-    await this.searchField.click();
-  }
-
-  /**
-   * @returns get result number
-   */
-  async getResultNumber() {
-    const text = await this.resultNumber.textContent();
-    return text;
-  }
-
-  /**
-   * @returns get first card text
-   */
-  async getFirstCardTitle() {
-    const text = await this.firstCardTitle.textContent();
-    return text;
+    this.searchField = page.locator('.input');
+    this.clearSearchSelector = page.locator('[aria-label="Reset"]');
+    this.clearAllSelector = page.locator('[aria-label="Clear all"]');
+    this.sortBtn = page.locator('.sort-btn');
+    this.oldestOption = page.getByRole('button', { name: 'Date: oldest' });
+    this.paginationText = page.locator('.pagination-total-results');
+    this.loadMore = page.locator('[aria-label="Load more"]');
+    this.firstCardDate = page.locator('.card-date').nth(0);
+    this.lastCardDate = page.locator('.card-date').nth(5);
   }
 }
