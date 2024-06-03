@@ -3,7 +3,7 @@
 /* eslint-disable no-restricted-syntax */
 import { expect, test } from '@playwright/test';
 
-const QuizSpec = require('../../features/uar/quiz.ai.spec.js');
+const QuizSpec = require('../../features/uar/quiz.ai.api.spec.js');
 
 const { features } = QuizSpec;
 const { WebUtil } = require('../../libs/webutil.js');
@@ -33,7 +33,7 @@ const fetchFiCodes = async ([input, numberOfItems, endPoint, fiCodes, clientId])
   const getConfig = () => ({ env: 'dev' });
 
   const { env } = getConfig();
-  const subdomain = env === 'prod' ? 'cchome-dev' : 'cchome-dev';
+  const subdomain = env === 'prod' ? 'cchome' : 'cchome-dev';
   const apiUrl = `https://${subdomain}.adobe.io/int/v1/models`;
 
   const params = {

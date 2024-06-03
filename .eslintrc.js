@@ -21,6 +21,10 @@ module.exports = {
       ExportDeclaration: { multiline: true, minProperties: 6 },
     }],
     'max-len': ['error', 120],
+    'no-await-in-loop': 'off',
+    'no-restricted-syntax': 'off',
+    'import/named': 'off',
+    'no-underscore-dangle': 'off',
   },
   ignorePatterns: [],
 };
