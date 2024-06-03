@@ -163,55 +163,127 @@ test.describe('Marketo block test suite', () => {
       await page.goto(testPage);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(testPage);
+
+      // Need this wait to avoid failed form submission during parallel runs
+      await page.waitForTimeout(WAIT_TIME);
     });
 
-    await test.step('step-2: Submit the form with valid inputs', async () => {
-      await page.waitForTimeout(WAIT_TIME);
+    await test.step('step-2: check the input field placeholders', async () => {
+      await MarketoBlock.checkInputPlaceholders(
+        marketoBlock.firstName,
+        marketoBlock.lastName,
+        marketoBlock.email,
+        marketoBlock.company,
+        marketoBlock.phone,
+        marketoBlock.postalCode,
+      );
+    });
+
+    await test.step('step-3: Submit the form with valid inputs', async () => {
       await marketoBlock.submitFullTemplateForm();
     });
 
-    await test.step('step-3: Verify the form submission redirect', async () => {
+    await test.step('step-4: Verify the form submission redirect', async () => {
       await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
     });
   });
 
-  test(`8: @marketo expanded template, ${features[8].tags}`, async ({ page, baseURL }) => {
+  test(`8: @marketo full template with company type, ${features[8].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[8].path}${miloLibs}`;
     console.info(`[Test Page]: ${testPage}`);
 
-    await test.step('step-1: Go to the Marketo block expanded template test page', async () => {
+    await test.step('step-1: Go to the Marketo block full template test page', async () => {
       await page.goto(testPage);
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(testPage);
-    });
 
-    await test.step('step-2: Submit the form with valid inputs', async () => {
+      // Need this wait to avoid failed form submission during parallel runs
       await page.waitForTimeout(WAIT_TIME);
-      await marketoBlock.submitExpandedTemplateForm();
     });
 
-    await test.step('step-3: Verify the form submission redirect', async () => {
+    await test.step('step-2: check the input field placeholders', async () => {
+      await MarketoBlock.checkInputPlaceholders(
+        marketoBlock.firstName,
+        marketoBlock.lastName,
+        marketoBlock.email,
+        marketoBlock.company,
+        marketoBlock.phone,
+        marketoBlock.postalCode,
+      );
+    });
+
+    await test.step('step-3: Submit the form with valid inputs', async () => {
+      await marketoBlock.submitFullTemplateForm('Adobe Advertising Cloud');
+    });
+
+    await test.step('step-4: Verify the form submission redirect', async () => {
       await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
     });
   });
 
-  test(`9: @marketo essential template, ${features[9].tags}`, async ({ page, baseURL }) => {
-    const testPage = `${baseURL}${features[9].path}${miloLibs}`;
-    console.info(`[Test Page]: ${testPage}`);
+  features[9].path.forEach((path) => {
+    test(`9: @marketo expanded template, ${features[9].tags}}, path: ${path}`, async ({ page, baseURL }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`;
+      console.info(`[Test Page]: ${testPage}`);
 
-    await test.step('step-1: Go to the Marketo block essential template test page', async () => {
-      await page.goto(testPage);
-      await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(testPage);
+      await test.step('step-1: Go to the Marketo block expanded template test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page).toHaveURL(testPage);
+
+        // Need this wait to avoid failed form submission during parallel runs
+        await page.waitForTimeout(WAIT_TIME);
+      });
+
+      await test.step('step-2: check the input field placeholders', async () => {
+        await MarketoBlock.checkInputPlaceholders(
+          marketoBlock.firstName,
+          marketoBlock.lastName,
+          marketoBlock.email,
+          marketoBlock.company,
+        );
+      });
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
+        await marketoBlock.submitExpandedTemplateForm();
+      });
+
+      await test.step('step-4: Verify the form submission redirect', async () => {
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
+      });
     });
+  });
 
-    await test.step('step-2: Submit the form with valid inputs', async () => {
-      await page.waitForTimeout(WAIT_TIME);
-      await marketoBlock.submitEssentialTemplateForm();
-    });
+  features[10].path.forEach((path) => {
+    test(`10: @marketo essential template, ${features[10].tags}, path: ${path}`, async ({ page, baseURL }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`;
+      console.info(`[Test Page]: ${testPage}`);
 
-    await test.step('step-3: Verify the form submission redirect', async () => {
-      await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
+      await test.step('step-1: Go to the Marketo block essential template test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page).toHaveURL(testPage);
+
+        // Need this wait to avoid failed form submission during parallel runs
+        await page.waitForTimeout(WAIT_TIME);
+      });
+
+      await test.step('step-2: check the input field placeholders', async () => {
+        await MarketoBlock.checkInputPlaceholders(
+          marketoBlock.firstName,
+          marketoBlock.lastName,
+          marketoBlock.email,
+          marketoBlock.company,
+        );
+      });
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
+        await marketoBlock.submitEssentialTemplateForm();
+      });
+
+      await test.step('step-4: Verify the form submission redirect', async () => {
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
+      });
     });
   });
 });
