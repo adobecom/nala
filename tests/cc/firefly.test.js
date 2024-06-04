@@ -19,7 +19,6 @@ test.describe('firefly integration', () => {
       expect(await firefly.searchPromptBox).toBeTruthy();
       expect(await firefly.generateCTA).toBeTruthy();
       await firefly.searchPromptBox.fill(features[0].term);
-      // await page.waitForTimeout(2000);
       await firefly.generateCTA.click();
       await firefly.stage_login(process.env.IMS_EMAIL, process.env.IMS_PASS);
       await expect(page).toHaveURL(/.*firefly/);
