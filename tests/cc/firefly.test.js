@@ -48,7 +48,7 @@ test.describe('firefly integration', () => {
       await page.waitForLoadState('domcontentloaded');
       await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
     });
-    await test.step('user hits serach CTA with out search prompt', async () => {
+    await test.step('user hits serach CTA without search prompt', async () => {
       expect(await firefly.FFInteractiveCards).toBeTruthy();
       expect(await firefly.FFEntisement).toBeTruthy();
       expect(await firefly.searchPromptBox).toBeTruthy();
