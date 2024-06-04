@@ -15,7 +15,6 @@ test.describe('firefly integration', () => {
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
     await test.step('search term take use to IMS and post login to FF product page', async () => {
-      await page.waitForLoadState();
       const searchtext = features[0].term;
       expect(await firefly.searchPromptBox).toBeTruthy();
       expect(await firefly.generateCTA).toBeTruthy();
