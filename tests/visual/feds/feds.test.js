@@ -20,8 +20,10 @@ test.describe('Feds blocks visual comparison test suite', () => {
       page,
       baseURL + features[0].path + features[0].browserParams,
       async () => {
-        await page.waitForLoadState('domcontentloaded');
-        await Header.megaMenuToggle.waitFor({ state: 'visible', timeout: 5000 });
+        await page.waitForSelector('.feds-footer-privacyLink');
+        if (testInfo.project.name === 'ipad' || testInfo.project.name === 'iphone') {
+          await page.locator('.feds-toggle').click();
+        }
         await Header.megaMenuToggle.click();
         await expect(Header.megaMenuContainer).toBeVisible();
       },
