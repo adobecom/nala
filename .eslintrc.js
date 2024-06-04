@@ -12,7 +12,7 @@ module.exports = {
     // allow reassigning param
     'no-console': 'off',
     'no-param-reassign': [2, { props: false }],
-    'linebreak-style': ['error', 'unix', 'windows'],
+    'linebreak-style': ['error', 'unix'],
     'import/extensions': ['error', { js: 'always' }],
     'object-curly-newline': ['error', {
       ObjectExpression: { multiline: true, minProperties: 6 },
@@ -21,6 +21,10 @@ module.exports = {
       ExportDeclaration: { multiline: true, minProperties: 6 },
     }],
     'max-len': ['error', 120],
+    'no-await-in-loop': 'off',
+    'no-restricted-syntax': 'off',
+    'import/named': 'off',
+    'no-underscore-dangle': 'off',
   },
   ignorePatterns: [],
 };

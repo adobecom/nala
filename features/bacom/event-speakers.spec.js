@@ -6,7 +6,7 @@ module.exports = {
       name: '@event-speakers',
       path: '/test/features/blocks/event-speakers',
       speakerIdx: 1,
-      tags: '@event-speakers @smoke @regression @bacom',
+      tags: '@event-speakers @smoke @regression @bacom @bacomSmoke',
     },
   ],
 };
