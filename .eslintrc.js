@@ -12,7 +12,7 @@ module.exports = {
     // allow reassigning param
     'no-console': 'off',
     'no-param-reassign': [2, { props: false }],
-    'linebreak-style': ['error', 'unix', 'windows'],
+    'linebreak-style': ['error', 'unix'],
     'import/extensions': ['error', { js: 'always' }],
     'object-curly-newline': ['error', {
       ObjectExpression: { multiline: true, minProperties: 6 },
