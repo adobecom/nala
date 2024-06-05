@@ -64,14 +64,12 @@ test.describe('Validate news block', () => {
       await newsPage.sortBtn.click();
       await newsPage.oldestOption.click();
       const paginationText = await newsPage.paginationText.textContent();
-      console.log('page test', paginationText);
       await expect(paginationText.toLowerCase()).toBe('1 - 3 of 6 results');
     });
 
     await test.step('Load more cards', async () => {
       await newsPage.loadMore.click();
       const paginationText = await newsPage.paginationText.textContent();
-      console.log('page test', paginationText);
       await expect(paginationText.toLowerCase()).toBe('1 - 6 of 6 results');
       await expect(await newsPage.loadMore).not.toBeVisible();
       const firstCardDate = new Date(await newsPage.firstCardDate.textContent()).getTime();
@@ -102,7 +100,7 @@ test.describe('Validate news block', () => {
       await newsPage.clickFilterOptions('Analytics');
       const resultAfterAnalyticsFilterApplied = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterAnalyticsFilterApplied.split(' ')[0], 10)).toBe(2);
-      await newsPage.clearApplicationsFilter.click();
+      await newsPage.clearFilter('Applications', '2');
       const resultAfterClearingApplicationsFilter = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterClearingApplicationsFilter.split(' ')[0], 10)).toBe(6);
       await newsPage.expandFilterOptions('Applications');
@@ -113,7 +111,7 @@ test.describe('Validate news block', () => {
       await newsPage.clickFilterOptions('Technical');
       const resultAfterTechnical = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterTechnical.split(' ')[0], 10)).toBe(1);
-      await newsPage.clearSideBarFilterButtonTechnical.click();
+      await newsPage.clearSideBarFilterButton('Technical');
       const resultAfterClearingFilter = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterClearingFilter.split(' ')[0], 10)).toBe(6);
       await newsPage.expandFilterOptions('Audience');
