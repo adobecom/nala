@@ -14,9 +14,9 @@ export default class HowTo {
     // howto contents css
     this.cssProperties = {
       '.how-to .foreground': {
-        'padding': '80px 0px',
+        padding: '80px 0px',
         'max-width': /%$/,
-        'display': 'grid',
+        display: 'grid',
       },
       'how-to-media': {
         'align-self': 'center',
@@ -28,15 +28,15 @@ export default class HowTo {
         'line-height': '27px',
       },
       'how-to-large': {
-        'padding': '80px 24px',
+        padding: '80px 24px',
         'max-width': '700px',
       },
       'how-to-large-image': {
-        'display': 'block',
+        display: 'block',
         'grid-template-areas': 'none',
       },
       'how-to-seo': {
-        'display': 'block',
+        display: 'block',
         'grid-template-areas': 'none',
       },
     };
@@ -44,9 +44,9 @@ export default class HowTo {
     // howto contents attributes
     this.attProperties = {
       'how-to-large-image': {
-        'width': '600',
-        'height': '300',
+        width: '600',
+        height: '300',
       },
     };
   }
-};
+}
