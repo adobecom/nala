@@ -64,14 +64,12 @@ test.describe('Validate news block', () => {
       await newsPage.sortBtn.click();
       await newsPage.oldestOption.click();
       const paginationText = await newsPage.paginationText.textContent();
-      console.log('page test', paginationText);
       await expect(paginationText.toLowerCase()).toBe('1 - 3 of 6 results');
     });
 
     await test.step('Load more cards', async () => {
       await newsPage.loadMore.click();
       const paginationText = await newsPage.paginationText.textContent();
-      console.log('page test', paginationText);
       await expect(paginationText.toLowerCase()).toBe('1 - 6 of 6 results');
       await expect(await newsPage.loadMore).not.toBeVisible();
       const firstCardDate = new Date(await newsPage.firstCardDate.textContent()).getTime();
