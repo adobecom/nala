@@ -3,8 +3,8 @@ module.exports = {
     features: [
         {
         tcid: '0',
-        name: '@CAAS collection',
-        path: '/drafts/nala/blocks/caas/caascollection',
+        name: '@Card Collection',
+        path: '/drafts/nala/features/caas/caascollection',
         data: {
             cardsPerPage: 4,
             caasTitle: 'Consonant Card Collection Title',
