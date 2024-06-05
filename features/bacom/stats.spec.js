@@ -5,7 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@BACOM-Stats',
       path: '/customer-success-stories/adobe-content-hub-case-study',
-      tags: '@stats @bacom @smoke @regression',
+      tags: '@stats @bacom @smoke @regression @bacomSmoke',
     },
   ],
 };
