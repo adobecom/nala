@@ -82,7 +82,7 @@ async function main() {
 
       const baseImage = fs.readFileSync(entry.a);
       const currImage = fs.readFileSync(entry.b);
-      result.order = 1;
+      result.order = entry.order;
       result.a = entry.a;
       result.b = entry.b;
       result.urls = entry.urls;
