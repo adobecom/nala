@@ -7,9 +7,9 @@ export default class HowTo {
     this.howToLarge = this.page.locator('.how-to.large-image').nth(nth);
     this.howToSeo = this.page.locator('.how-to.seo').nth(nth);
     this.heading = this.howTo.locator('.how-to-heading');
-    this.image = this.howTo.locator('.how-to-image');
+    this.image = this.howTo.locator('.how-to-media');
     this.list = this.howTo.locator('li');
-    this.largeImage = page.locator('.how-to-image img');
+    this.largeImage = page.locator('.how-to-media img');
 
     // howto contents css
     this.cssProperties = {
@@ -18,7 +18,7 @@ export default class HowTo {
         'max-width': /%$/,
         'display': 'grid',
       },
-      'how-to-image': {
+      'how-to-media': {
         'align-self': 'center',
         'justify-self': 'center',
         'min-height': '100%',
