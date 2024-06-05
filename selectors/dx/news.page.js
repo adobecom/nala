@@ -12,9 +12,6 @@ export default class NewsPage {
     this.loadMore = page.locator('[aria-label="Load more"]');
     this.firstCardDate = page.locator('.card-date').nth(0);
     this.lastCardDate = page.locator('.card-date').nth(5);
-
-    this.clearApplicationsFilter = page.locator('[aria-label="2"]');
-    this.clearSideBarFilterButtonTechnical = page.locator('[aria-label="Technical"]');
   }
 
   async expandFilterOptions(filterSection) {
@@ -23,5 +20,13 @@ export default class NewsPage {
 
   async clickFilterOptions(filterOption) {
     await this.page.locator(`sp-checkbox:text-is("${filterOption}")`).click();
+  }
+
+  async clearSideBarFilterButton(filterButton) {
+    await this.page.locator(`[aria-label="${filterButton}"]`).click();
+  }
+
+  async clearFilter(filter, number) {
+    await this.page.locator(`[aria-label="${filter}"] + [aria-label="${number}"]`).click();
   }
 }
