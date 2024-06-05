@@ -12,5 +12,16 @@ export default class NewsPage {
     this.loadMore = page.locator('[aria-label="Load more"]');
     this.firstCardDate = page.locator('.card-date').nth(0);
     this.lastCardDate = page.locator('.card-date').nth(5);
+
+    this.clearApplicationsFilter = page.locator('[aria-label="2"]');
+    this.clearSideBarFilterButtonTechnical = page.locator('[aria-label="Technical"]');
+  }
+
+  async expandFilterOptions(filterSection) {
+    await this.page.locator(`[aria-label="${filterSection}"]`).click();
+  }
+
+  async clickFilterOptions(filterOption) {
+    await this.page.locator(`sp-checkbox:text-is("${filterOption}")`).click();
   }
 }
