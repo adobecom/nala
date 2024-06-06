@@ -65,7 +65,7 @@ async function takeOne(page, url, callback, folderPath, fileName, options = {}) 
  * @param {string} fileName - The file name of the screenshots
  * @returns {object} The screenshot results
  */
-async function takeTwo(page, urlStable, callbackStable, urlBeta, callbackBeta, folderPath, fileName) {
+async function takeTwo(page, urlStable, callbackStable, urlBeta, callbackBeta, folderPath, fileName, options = {}) {
   const urls = [];
   const result = {};
 
@@ -74,7 +74,12 @@ async function takeTwo(page, urlStable, callbackStable, urlBeta, callbackBeta, f
   urls.push(urlStable);
   if (typeof callbackStable === 'function') { await callbackStable(); }
   const nameStable = `${folderPath}/${fileName}-a.png`;
-  await page.screenshot({ path: nameStable, fullPage: true });
+  options.path = nameStable;
+  if (options.selector) {
+    await page.locator(options.selector).screenshot(options);
+  } else {
+    await page.screenshot(options);
+  }
   result.order = 1;
   result.a = nameStable;
 
@@ -83,7 +88,12 @@ async function takeTwo(page, urlStable, callbackStable, urlBeta, callbackBeta, f
   urls.push(urlBeta);
   if (typeof callbackBeta === 'function') { await callbackBeta(); }
   const nameBeta = `${folderPath}/${fileName}-b.png`;
-  await page.screenshot({ path: nameBeta, fullPage: true });
+  options.path = nameBeta;
+  if (options.selector) {
+    await page.locator(options.selector).screenshot(options);
+  } else {
+    await page.screenshot(options);
+  }
 
   result.b = nameBeta;
   result.urls = urls.join(' | ');
