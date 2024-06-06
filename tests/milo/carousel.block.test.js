@@ -9,7 +9,7 @@ const miloLibs = process.env.MILO_LIBS || '';
 test.describe('Milo Carousel Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     carousel = new CarouselBlock(page);
-});
+  });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);

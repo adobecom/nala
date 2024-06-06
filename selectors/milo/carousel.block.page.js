@@ -1,5 +1,3 @@
-import { expect } from '@playwright/test';
-
 export default class Carousel {
   constructor(page) {
     this.page = page;
@@ -201,11 +199,11 @@ export default class Carousel {
         isDisplayed = await this.carouselLightbox.isVisible();
         break;
       case 'carouselFullpage':
-        await this.carouselFullpage.waitFor({ state: 'visible', timeout});
+        await this.carouselFullpage.waitFor({ state: 'visible', timeout });
         isDisplayed = await this.carouselFullpage.isVisible();
         break;
       case 'carouselContainer':
-        await this.carouselContainer.waitFor({ state: 'visible', timeout});
+        await this.carouselContainer.waitFor({ state: 'visible', timeout });
         isDisplayed = await this.carouselContainer.isVisible();
         break;
       case 'carouselShow-2':
@@ -221,4 +219,4 @@ export default class Carousel {
     }
     return isDisplayed;
   }
-};
+}
