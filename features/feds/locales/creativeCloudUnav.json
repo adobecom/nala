@@ -1,173 +1,173 @@
 {
-    "locales": {
-        "United States": {
-            "unavElements": "validatingUnavElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Germany": {
-            "unavElements": "validatingUnavSecondSetOfElements",
-            "photoVideoAndDesignElements": "validatingPhotoVideoAndDesignElements",
-            "programElements": "validatingProgramElements",
-            "subjectAreaElements": "validatingSubjectAreaElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElementsSecondSet"
-        },
-        "France": {
-            "unavElements": "validatingUnavElements",
-            "photoVideoAndDesignElements": "validatingPhotoVideoAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElementsSecondSet"
-        },
-        "Italy": {
-            "unavElements": "validatingUnavSecondSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "programElements": "validatingProgramElements",
-            "subjectAreaElements": "validatingSubjectAreaElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "United Kingdom": {
-            "unavElements": "validatingUnavThirdSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElementsSecondSet",
-            "programElements": "validatingProgramElements",
-            "subjectAreaElements": "validatingSubjectAreaElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElementsThirdSet"
-        },
-        "Middle East And North Africa": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Japan": {
-            "unavElements": "validatingUnavSecondSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElementsThirdSet",
-            "programElements": "validatingProgramElements",
-            "subjectAreaElements": "validatingSubjectAreaElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "India": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElementsSeventhSet",
-            "exploreElements": "validatingExploreElementsSecondSet",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Spain": {
-            "unavElements": "validatingUnavSecondSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElementsFourthSet",
-            "programElements": "validatingProgramSecondSetOfElements",
-            "subjectAreaElements": "validatingSubjectAreaSecondSetOfElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Canada English": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Korea": {
-            "unavElements": "validatingUnavElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElementsFifthSet",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Canada French": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Poland": {
-            "unavElements": "validatingUnavElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElementsSixthSet",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Mexico": {
-            "unavElements": "validatingUnavThirdSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "programElements": "validatingProgramElements",
-            "subjectAreaElements": "validatingSubjectAreaElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Australia": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Indonesia": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Indonesia English": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Turkey": {
-            "unavElements": "validatingUnavSecondSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "programElements": "validatingProgramElements",
-            "subjectAreaElements": "validatingSubjectAreaElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Thailand English": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Thailand": {
-            "unavElements": "validatingUnavThirdSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "programElements": "validatingProgramElements",
-            "subjectAreaElements": "validatingSubjectAreaElements",
-            "trainingAndSupportElements": "validatingTrainingAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Singapore": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Philippines": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        },
-        "Philippines English": {
-            "unavElements": "validatingUnavFourthSetOfElements",
-            "creativityAndDesignElements": "validatingCreativityAndDesignElements",
-            "exploreElements": "validatingExploreElements",
-            "learnAndSupportElements": "validatingLearnAndSupportElements",
-            "footerElements": "validatingFooterElements"
-        }
+  "locales": {
+    "United States": {
+      "unavElements": "validatingUnavElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Germany": {
+      "unavElements": "validatingUnavSecondSetOfElements",
+      "photoVideoAndDesignElements": "validatingPhotoVideoAndDesignElements",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "France": {
+      "unavElements": "validatingUnavElements",
+      "photoVideoAndDesignElements": "validatingPhotoVideoAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Italy": {
+      "unavElements": "validatingUnavSecondSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "United Kingdom": {
+      "unavElements": "validatingUnavThirdSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Middle East And North Africa": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Japan": {
+      "unavElements": "validatingUnavSecondSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElementsSecondSet",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "India": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElementsFourthSet",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Spain": {
+      "unavElements": "validatingUnavSecondSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElementsThirdSet",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Canada English": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Korea": {
+      "unavElements": "validatingUnavElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Canada French": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Poland": {
+      "unavElements": "validatingUnavElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Mexico": {
+      "unavElements": "validatingUnavThirdSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Australia": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Indonesia": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Indonesia English": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Turkey": {
+      "unavElements": "validatingUnavSecondSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Thailand English": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Thailand": {
+      "unavElements": "validatingUnavThirdSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "programElements": "validatingProgramElements",
+      "subjectAreaElements": "validatingSubjectAreaElements",
+      "trainingAndSupportElements": "validatingTrainingAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Singapore": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Philippines": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
+    },
+    "Philippines English": {
+      "unavElements": "validatingUnavFourthSetOfElements",
+      "creativityAndDesignElements": "validatingCreativityAndDesignElements",
+      "exploreElements": "validatingExploreElements",
+      "learnAndSupportElements": "validatingLearnAndSupportElements",
+      "footerElements": "validatingFooterElements"
     }
+  }
 }
