@@ -146,7 +146,9 @@ export default class CreativeCloudUnavSanity {
   // UNAV
   async validatingUnavElements() {
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobeLogo, this.creativityAndDesign, this.adobeCreativeCloud, this.explore, this.features, this.forBusiness, this.comparePlans,
+    const elements = [
+      this.adobeLogo, this.creativityAndDesign, this.adobeCreativeCloud, this.explore,
+      this.features, this.forBusiness, this.comparePlans,
       this.learnAndSupport, this.buyNowButton, this.appSwitcher, this.signInButton];
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
@@ -154,24 +156,29 @@ export default class CreativeCloudUnavSanity {
 
   async validatingUnavSecondSetOfElements() {
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobeLogo, this.photoVideoAndDesign, this.creativeCloud, this.program, this.subjectArea, this.trainingAndSupport,
-      this.pricesAndSubscriptions, this.aboInfo, this.appRecomendation, this.buyNowButton, this.appSwitcher, this.signInButton];
+    const elements = [
+      this.adobeLogo, this.photoVideoAndDesign, this.creativeCloud, this.program,
+      this.subjectArea, this.trainingAndSupport, this.pricesAndSubscriptions, this.aboInfo,
+      this.appRecomendation, this.buyNowButton, this.appSwitcher, this.signInButton];
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
   }
 
   async validatingUnavThirdSetOfElements() {
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobeLogo, this.creativityAndDesign, this.creativeCloud, this.program, this.subjectArea, this.trainingAndSupport,
-      this.pricesAndSubscriptions, this.aboInfo, this.appRecomendation, this.buyNowButton, this.signInButtonTwo];
+    const elements = [
+      this.adobeLogo, this.creativityAndDesign, this.creativeCloud, this.program, this.subjectArea,
+      this.trainingAndSupport, this.pricesAndSubscriptions, this.aboInfo, this.appRecomendation,
+      this.buyNowButton, this.signInButtonTwo];
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
   }
 
   async validatingUnavFourthSetOfElements() {
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobeLogo, this.creativityAndDesign, this.adobeCreativeCloud, this.explore, this.features, this.forBusiness, this.comparePlans,
-      this.learnAndSupport, this.buyNowButton, this.signInButtonTwo];
+    const elements = [
+      this.adobeLogo, this.creativityAndDesign, this.adobeCreativeCloud, this.explore, this.features, this.forBusiness,
+      this.comparePlans, this.learnAndSupport, this.buyNowButton, this.signInButtonTwo];
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
   }
@@ -180,9 +187,11 @@ export default class CreativeCloudUnavSanity {
   async validatingCreativityAndDesignElements(locale) {
     await this.creativityAndDesign.click({ timeout: 5000 });
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals, this.business, this.schoolsAndUniversities,
-      this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.lightroom, this.illustrator, this.premierePro, this.adobeStock, this.viewAllProducts,
-      this.photo, this.graphicDesign, this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC, this.adobeFirefly,
+    const elements = [
+      this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals, this.business,
+      this.schoolsAndUniversities, this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.lightroom,
+      this.illustrator, this.premierePro, this.adobeStock, this.viewAllProducts, this.photo, this.graphicDesign,
+      this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC, this.adobeFirefly,
       this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport, this.adobeFireflyCC];
 
     const promises = elements.map(async (element) => {
@@ -208,10 +217,13 @@ export default class CreativeCloudUnavSanity {
   async validatingCreativityAndDesignElementsSecondSet() {
     await this.creativityAndDesign.click({ timeout: 5000 });
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals, this.business, this.schoolsAndUniversities,
-      this.forGovernmentAgencies, this.benifitsForCreativeCloudPaidMembers, this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.lightroom,
-      this.illustrator, this.premierePro, this.adobeStock, this.adobeFireflyPro, this.viewAllProducts, this.photo, this.graphicDesign, this.Video, this.illustration,
-      this.socialMedia, this.threeDAndAR, this.pdf, this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
+    const elements = [
+      this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals, this.business,
+      this.schoolsAndUniversities, this.forGovernmentAgencies, this.benifitsForCreativeCloudPaidMembers,
+      this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.lightroom, this.illustrator,
+      this.premierePro, this.adobeStock, this.adobeFireflyPro, this.viewAllProducts, this.photo,
+      this.graphicDesign, this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf,
+      this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
 
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
@@ -221,9 +233,12 @@ export default class CreativeCloudUnavSanity {
   async validatingCreativityAndDesignElementsThirdSet() {
     await this.creativityAndDesign.click({ timeout: 5000 });
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.whatIsCC, this.photoshop, this.adobeExpress, this.adobePro, this.illustrator, this.premierePro, this.adobeStockTwo, this.seeAllProducts,
-      this.individuals, this.photographers, this.studentsAndTeachers, this.business, this.seePlansAndPricing, this.photo, this.graphicDesign, this.Video, this.illustration,
-      this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC, this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
+    const elements = [
+      this.whatIsCC, this.photoshop, this.adobeExpress, this.adobePro, this.illustrator, this.premierePro,
+      this.adobeStockTwo, this.seeAllProducts, this.individuals, this.photographers, this.studentsAndTeachers,
+      this.business, this.seePlansAndPricing, this.photo, this.graphicDesign, this.Video, this.illustration,
+      this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC, this.adobeFirefly, this.adobecom,
+      this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
 
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
@@ -233,9 +248,12 @@ export default class CreativeCloudUnavSanity {
   async validatingCreativityAndDesignElementsFourthSet() {
     await this.creativityAndDesign.click({ timeout: 5000 });
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.removeBackground, this.resizeImage, this.covertImageToSVG, this.covertVideoToGIF, this.createQRCode, this.seeAllQuickActions, this.resume,
-      this.posters, this.card, this.instagramPost, this.youTubeVideo, this.createNow, this.whatIsCC, this.adobeExpressIn, this.photoshop, this.premierePro,
-      this.illustrator, this.seePlansAndPricing, this.adobeFireflyCC, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
+    const elements = [
+      this.removeBackground, this.resizeImage, this.covertImageToSVG, this.covertVideoToGIF, this.createQRCode,
+      this.seeAllQuickActions, this.resume, this.posters, this.card, this.instagramPost, this.youTubeVideo,
+      this.createNow, this.whatIsCC, this.adobeExpressIn, this.photoshop, this.premierePro, this.illustrator,
+      this.seePlansAndPricing, this.adobeFireflyCC, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce,
+      this.helpAndSupport];
 
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
@@ -246,9 +264,11 @@ export default class CreativeCloudUnavSanity {
   async validatingPhotoVideoAndDesignElements() {
     this.photoVideoAndDesign.click({ timeout: 5000 });
     await this.page.waitForLoadState('networkidle');
-    const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.educationInstitutions, this.business, this.schoolsAndUniversities,
-      this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.premierePro, this.illustrator, this.lightroom, this.adobeStock, this.viewAllProducts,
-      this.photo, this.graphicDesign, this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC, this.adobeFirefly,
+    const elements = [
+      this.whatIsCC, this.photographers, this.studentsAndTeachers, this.educationInstitutions, this.business,
+      this.schoolsAndUniversities, this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.premierePro,
+      this.illustrator, this.lightroom, this.adobeStock, this.viewAllProducts, this.photo, this.graphicDesign,
+      this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC, this.adobeFirefly,
       this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
 
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
@@ -336,11 +356,15 @@ export default class CreativeCloudUnavSanity {
 
   // Footer
   async validatingFooterElements(locale) {
-    const elements = [this.footerCreativeCloud, this.footerCreativeCloudForBusiness, this.footerdiscountForStudentsAndTeachers, this.footerappsForiOS,
-      this.footerDownloadAndInstall, this.footerAdobeBlog, this.footerLoginToYourAccount, this.footerAbout, this.footerAdobeAcrobatReaderlogo,
-      this.footerAdobeExpresslogo, this.footerPhotoshoplogo, this.footerIllustratorlogo, this.changeRegion, this.facebookLogo, this.instagramLogo,
-      this.twitterlogo, this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies, this.protectMyPersonalData, this.adChoices,
-      locale === 'Germany' || locale === 'France' ? this.footerWhatIsExperienceCloudTwo : this.footerWhatIsExperienceCloud];
+    const elements = [
+      this.footerCreativeCloud, this.footerCreativeCloudForBusiness, this.footerdiscountForStudentsAndTeachers,
+      this.footerappsForiOS, this.footerDownloadAndInstall, this.footerAdobeBlog, this.footerLoginToYourAccount,
+      this.footerAbout, this.footerAdobeAcrobatReaderlogo, this.footerAdobeExpresslogo, this.footerPhotoshoplogo,
+      this.footerIllustratorlogo, this.changeRegion, this.facebookLogo, this.instagramLogo, this.twitterlogo,
+      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies, this.protectMyPersonalData,
+      this.adChoices,
+      locale === 'Germany' || locale === 'France'
+        ? this.footerWhatIsExperienceCloudTwo : this.footerWhatIsExperienceCloud];
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
   }
@@ -355,7 +379,7 @@ export default class CreativeCloudUnavSanity {
   }
 
   // Test Script
-  async validatingCreativeCloudUnavPages(page, baseURL, featureIndex, locale, creativeCloudUnav, creativeCloud) {
+  async validatingCreativeCloudUnavPages(page, baseURL, featureIndex, locale, creativeCloudUnav) {
     console.info(`[FEDSInfo] Checking Page: ${baseURL}${features[featureIndex].path}`);
 
     await test.step(`Validating ${locale} Locale Page`, async () => {
@@ -369,7 +393,9 @@ export default class CreativeCloudUnavSanity {
       if (unavElements) await this[unavElements]();
 
       // Verifying the visibility of Elements for each Section
-      const elementsToVerify = ['creativityAndDesignElements', 'photoVideoAndDesignElements', 'exploreElements', 'learnAndSupportElements',
+      const elementsToVerify = [
+        'creativityAndDesignElements', 'photoVideoAndDesignElements',
+        'exploreElements', 'learnAndSupportElements',
         'programElements', 'subjectAreaElements', 'trainingAndSupportElements'];
 
       for (const element of elementsToVerify) {

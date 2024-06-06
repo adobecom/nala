@@ -161,6 +161,6 @@ module.exports = {
       path: '/ph_fil/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavPhilippinesEnglish',
       country: 'Philippines English',
-    }
-  ]
-}
+    },
+  ],
+};

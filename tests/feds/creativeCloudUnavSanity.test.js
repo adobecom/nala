@@ -7,7 +7,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
   features.forEach((props) => {
     test(`${props.name}, ${props.tags}`, async ({ page, baseURL }) => {
       const creativeCloud = new CreativeCloudUnavSanity(page);
-      await creativeCloud.validatingCreativeCloudUnavPages(page, baseURL, props.tcid, props.country, creativeCloudUnav, creativeCloud);
+      await creativeCloud.validatingCreativeCloudUnavPages(page, baseURL, props.tcid, props.country, creativeCloudUnav);
     });
   });
 });
