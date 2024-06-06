@@ -1,19 +1,24 @@
 const fs = require('fs');
 const path = require('path');
+const { validatePath } = require('./utils.js');
 
 function mergeResults(folderPath) {
   try {
-    const resultsFiles = fs.readdirSync(folderPath).filter((file) => file.startsWith('results-'));
+    const resultsFiles = fs.readdirSync(validatePath(folderPath, { allowDirectory: true }))
+      .filter((file) => file.startsWith('results-'));
     let finalResults = {};
 
     // eslint-disable-next-line no-restricted-syntax
     for (const file of resultsFiles) {
-      const content = JSON.parse(fs.readFileSync(path.join(folderPath, file), 'utf-8'));
+      const content = JSON.parse(fs.readFileSync(validatePath(path.join(folderPath, file)), 'utf-8'));
       finalResults = { ...finalResults, ...content };
     }
 
     // Write the final merged results
-    fs.writeFileSync(`${folderPath}/results.json`, JSON.stringify(finalResults, null, 2));
+    fs.writeFileSync(
+      validatePath(`${folderPath}/results.json`, { forWriting: true }),
+      JSON.stringify(finalResults, null, 2),
+    );
 
     // Optionally, clean up individual files
     resultsFiles.forEach((file) => fs.unlinkSync(path.join(folderPath, file)));
