@@ -205,7 +205,7 @@ export default class CreativeCloudUnavSanity {
           await expect(element).toBeVisible();
           break;
         case this.adobeFireflyCC:
-          if (locale === 'Poland') { await expect(element).toBeVisible(); } else { }
+          if (locale === 'Poland') { await expect(element).toBeVisible(); }
           break;
         default: await expect(element).toBeVisible();
       }
@@ -287,7 +287,7 @@ export default class CreativeCloudUnavSanity {
           await expect(element).toBeVisible();
           break;
         case this.graphicDesignExploreIn:
-          if (locale === 'India') { await expect(element).toBeVisible(); } else { }
+          if (locale === 'India') { await expect(element).toBeVisible(); }
           break;
         default: await expect(element).toBeVisible();
       }
@@ -316,7 +316,7 @@ export default class CreativeCloudUnavSanity {
           await expect(element).toBeVisible();
           break;
         case this.photoshopAp:
-          if (locale === 'Spain') { await expect(element).toBeVisible(); } else { }
+          if (locale === 'Spain') { await expect(element).toBeVisible(); }
           break;
         default: await expect(element).toBeVisible();
       }
@@ -336,7 +336,7 @@ export default class CreativeCloudUnavSanity {
           await expect(element).toBeVisible();
           break;
         case this.photoCa:
-          if (locale === 'Spain') { await expect(element).toBeVisible(); } else { }
+          if (locale === 'Spain') { await expect(element).toBeVisible(); }
           break;
         default: await expect(element).toBeVisible();
       }
