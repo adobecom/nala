@@ -1,5 +1,3 @@
-import { expect } from '@playwright/test';
-
 export default class Carousel {
   constructor(page) {
     this.page = page;
@@ -193,27 +191,27 @@ export default class Carousel {
  * @return {Promise<boolean>} Returns a Promise that resolves to true or false.
  * @throws {Error} Throws an error if an invalid carousel type is provided.
  */
-  async isCarouselDisplayed(type) {
+  async isCarouselDisplayed(type, timeout = 3000) {
     let isDisplayed;
     switch (type) {
       case 'carouselLightbox':
-        await this.carouselLightbox.waitFor({ state: 'visible' });
+        await this.carouselLightbox.waitFor({ state: 'visible', timeout });
         isDisplayed = await this.carouselLightbox.isVisible();
         break;
       case 'carouselFullpage':
-        await this.carouselFullpage.waitFor({ state: 'visible' });
+        await this.carouselFullpage.waitFor({ state: 'visible', timeout });
         isDisplayed = await this.carouselFullpage.isVisible();
         break;
       case 'carouselContainer':
-        await this.carouselContainer.waitFor({ state: 'visible' });
+        await this.carouselContainer.waitFor({ state: 'visible', timeout });
         isDisplayed = await this.carouselContainer.isVisible();
         break;
       case 'carouselShow-2':
-        await this.carouselContainerShow2.waitFor({ state: 'visible' });
+        await this.carouselContainerShow2.waitFor({ state: 'visible', timeout });
         isDisplayed = await this.carouselContainerShow2.isVisible();
         break;
       case 'carousel':
-        await this.carouselDefault.waitFor({ state: 'visible' });
+        await this.carouselDefault.waitFor({ state: 'visible', timeout });
         isDisplayed = await this.carouselDefault.isVisible();
         break;
       default:
@@ -221,4 +219,4 @@ export default class Carousel {
     }
     return isDisplayed;
   }
-};
+}
