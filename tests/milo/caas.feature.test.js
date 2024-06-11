@@ -1,19 +1,19 @@
-import { expect, test } from "@playwright/test";
-import { WebUtil } from "../../libs/webutil.js";
-import { features } from "../../features/milo/caas.spec.js";
-import Caas from "../../selectors/milo/caas.feature.page.js";
+import { expect, test } from '@playwright/test';
+//import { WebUtil } from '../../libs/webutil.js';
+import { features } from '../../features/milo/caas.spec.js';
+import Caas from '../../selectors/milo/caas.feature.page.js';
 
-let webUtil;
+//let webUtil;
 let caas;
 let consoleErrors = [];
 
-test.describe("Milo CAAS Feature test suite", () => {
+test.describe('Milo CAAS Feature test suite', () => {
   test.beforeEach(async ({ page }) => {
-    webUtil = new WebUtil(page);
+    //webUtil = new WebUtil(page);
     caas = new Caas(page);
 
-    page.on("console", (exception) => {
-      if (exception.type() === "error") {
+    page.on('console', (exception) => {
+      if (exception.type() === 'error') {
         consoleErrors.push(exception.text());
       }
     });

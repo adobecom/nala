@@ -7,4 +7,4 @@ export default class Caas {
     this.caasTitle = this.page.locator('.consonant-FiltersInfo-title');
     this.caasPaginator = this.page.locator('.consonant-Pagination-summary');
   }
-};
+}
