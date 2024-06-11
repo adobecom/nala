@@ -23,7 +23,7 @@ test.describe('Milo CAAS Feature test suite', () => {
   // Test 0 : Card Collection
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
-    const {data} = features[0];
+    const { data } = features[0];
 
     await test.step('step-1: Go to CAAS collection test page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
