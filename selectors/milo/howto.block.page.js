@@ -7,18 +7,18 @@ export default class HowTo {
     this.howToLarge = this.page.locator('.how-to.large-image').nth(nth);
     this.howToSeo = this.page.locator('.how-to.seo').nth(nth);
     this.heading = this.howTo.locator('.how-to-heading');
-    this.image = this.howTo.locator('.how-to-media');
+    this.image = this.howTo.locator('.how-to-image');
     this.list = this.howTo.locator('li');
-    this.largeImage = page.locator('.how-to-media img');
+    this.largeImage = page.locator('.how-to-image img');
 
     // howto contents css
     this.cssProperties = {
       '.how-to .foreground': {
-        padding: '80px 0px',
+        'padding': '80px 0px',
         'max-width': /%$/,
-        display: 'grid',
+        'display': 'grid',
       },
-      'how-to-media': {
+      'how-to-image': {
         'align-self': 'center',
         'justify-self': 'center',
         'min-height': '100%',
@@ -28,15 +28,15 @@ export default class HowTo {
         'line-height': '27px',
       },
       'how-to-large': {
-        padding: '80px 24px',
+        'padding': '80px 24px',
         'max-width': '700px',
       },
       'how-to-large-image': {
-        display: 'block',
+        'display': 'block',
         'grid-template-areas': 'none',
       },
       'how-to-seo': {
-        display: 'block',
+        'display': 'block',
         'grid-template-areas': 'none',
       },
     };
@@ -44,9 +44,9 @@ export default class HowTo {
     // howto contents attributes
     this.attProperties = {
       'how-to-large-image': {
-        width: '600',
-        height: '300',
+        'width': '600',
+        'height': '300',
       },
     };
   }
-}
+};

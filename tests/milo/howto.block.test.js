@@ -14,7 +14,7 @@ test.describe('Milo HowTo block test suite', () => {
     howTo = new HowToBlock(page);
   });
 
-  // Test 0 : HowTo default block
+// Test 0 : HowTo default block  
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
 
@@ -30,11 +30,11 @@ test.describe('Milo HowTo block test suite', () => {
 
       expect(await webUtil.verifyCSS_(howTo.foreground, howTo.cssProperties['.how-to .foreground'])).toBeTruthy();
       expect(await webUtil.verifyCSS_(howTo.heading, howTo.cssProperties['body-m'])).toBeTruthy();
-      expect(await webUtil.verifyCSS_(howTo.image, howTo.cssProperties['how-to-media'])).toBeTruthy();
+      expect(await webUtil.verifyCSS_(howTo.image, howTo.cssProperties['how-to-image'])).toBeTruthy();
     });
   });
 
-  // Test 1 : how-to (large) block
+// Test 1 : how-to (large) block    
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
 
@@ -50,12 +50,11 @@ test.describe('Milo HowTo block test suite', () => {
 
       expect(await webUtil.verifyCSS_(howTo.heading, howTo.cssProperties['body-m'])).toBeTruthy();
       expect(await webUtil.verifyCSS_(howTo.howToLarge, howTo.cssProperties['how-to-large-image'])).toBeTruthy();
-      // eslint-disable-next-line max-len
       expect(await webUtil.verifyAttributes_(await howTo.largeImage, howTo.attProperties['how-to-large-image'])).toBeTruthy();
     });
   });
 
-  // Test 2 : how-to (seo) block
+// Test 2 : how-to (seo) block   
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
 
