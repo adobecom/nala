@@ -25,7 +25,7 @@ test.describe("Milo CAAS Feature test suite", () => {
     consoleErrors = [];
   });
     
-      // Test 0 : Card Collection
+    // Test 0 : Card Collection
       test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
         console.info(`[Test Page]: ${baseURL}${features[0].path}`);
         const {data} = features[0];
@@ -37,8 +37,8 @@ test.describe("Milo CAAS Feature test suite", () => {
         });
 
         await test.step('step-2: Verify CAAS collection content/specs', async () => {
-            await expect(await caas.caasCards).toBeVisible();
-            //await expect(await caas.caasCards).toHaveCount(data.cardsPerPage);
+            //verify number of cards in the collection
+            await expect(await caas.caasCards).toHaveCount(data.cardsPerPage);
 
             // verify caas title and paginator
             await expect(await caas.caasTitle).toContainText(data.caasTitle);
