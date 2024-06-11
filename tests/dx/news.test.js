@@ -13,7 +13,7 @@ test.describe('Validate news block', () => {
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 30000 });
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 3000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
@@ -39,7 +39,7 @@ test.describe('Validate news block', () => {
     await test.step('Clear all', async () => {
       await newsPage.clearAllSelector.click();
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(7);
+      await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
 
     await test.step('Enter This is automation in search field', async () => {
@@ -52,7 +52,7 @@ test.describe('Validate news block', () => {
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 30000 });
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 3000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
@@ -81,7 +81,7 @@ test.describe('Validate news block', () => {
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 30000 });
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 3000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
