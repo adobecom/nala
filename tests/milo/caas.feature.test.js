@@ -7,8 +7,6 @@ let webUtil;
 let caas;
 let consoleErrors = [];
 
-//const miloLibs = process.env.MILO_LIBS || '';
-
 test.describe("Milo CAAS Feature test suite", () => {
   test.beforeEach(async ({ page }) => {
     webUtil = new WebUtil(page);
