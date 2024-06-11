@@ -1,0 +1,119 @@
+{
+	"locales": {
+		"United States": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Germany": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElementsSecondSet",
+			"footerElements": "validatingfooterElements"
+		},
+		"France": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElementsSecondSet",
+			"footerElements": "validatingfooterElements"
+		},
+		"Italy": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElementsSecondSet",
+			"footerElements": "validatingfooterElements"
+		},
+		"United Kingdom": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Middle East And North Africa": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Japan": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElementsThirdSet",
+			"footerElements": "validatingfooterElements"
+		},
+		"India": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElementsFourthSet",
+			"footerElements": "validatingfooterElements"
+		},
+		"Spain": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElementsFifthSet",
+			"footerElements": "validatingfooterElements"
+		},
+		"Canada English": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Korea": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Canada French": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Poland": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Mexico": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Australia": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Indonesia": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Indonesia English": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Turkey": {
+			"unavElements": "validatingunavElements",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Thailand English": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Thailand": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Singapore": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Philippines": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		},
+		"Philippines English": {
+			"unavElements": "validatingunavElementsSecondSet",
+			"creativityAndDesignElements": "validatingCreativityAndDesignElements",
+			"footerElements": "validatingfooterElements"
+		}
+	}
+}
