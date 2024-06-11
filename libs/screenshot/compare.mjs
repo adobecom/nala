@@ -5,7 +5,7 @@ import path from 'path';
 import fs from 'fs';
 
 const S3URL = 'https://s3-sj3.corp.adobe.com/milo';
-const ALLOWED_BASE_DIRECTORY = 'screenshots/';
+const ALLOWED_BASE_DIRECTORY = 'screenshots';
 
 function sanitizeAndValidateFilePath(filePath) {
   if (typeof filePath !== 'string') {

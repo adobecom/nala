@@ -4,7 +4,7 @@ const { getComparator } = require('playwright-core/lib/utils');
 const fs = require('fs');
 const path = require('path');
 
-const ALLOWED_BASE_DIRECTORY = 'screenshots/';
+const ALLOWED_BASE_DIRECTORY = 'screenshots';
 
 function validatePath(filePath, options = { allowDirectory: false, forWriting: false }) {
   if (typeof filePath !== 'string') {
@@ -64,7 +64,7 @@ function compareScreenshots(stableArray, betaArray) {
 
       if (diffImage) {
         result.diff = `${stableArray[i].a}-diff.png`;
-        fs.writeFileSync(validatePath(`${stableArray[i].a}-diff.png`), diffImage.diff);
+        fs.writeFileSync(validatePath(`${stableArray[i].a}-diff.png`, { forWriting: true }), diffImage.diff);
         console.info('Differences found');
       }
       result.urls = urls.join(' | ');
