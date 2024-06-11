@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 const { WebUtil } = require('../../libs/webutil.js');
-const { take } = require('../../libs/visualutil.js');
+const { take } = require('../../libs/screenshot/take.js');
 
 export default class Quiz {
   constructor(page) {
@@ -104,14 +104,17 @@ export default class Quiz {
     let fileName;
 
     if (answer === 'result') {
-      fileName = `${keyNumber} - ${version} - ${project} - result.png`;
+      fileName = `${keyNumber} - ${version} - ${project} - result`;
     } else {
-      fileName = `${keyNumber} - ${version} - ${project} - ${index} - ${answer.replace('/', '')}.png`;
+      fileName = `${keyNumber} - ${version} - ${project} - ${index} - ${answer.replace('/', '')}`;
     }
 
-    await take(this.page, folderPath, fileName);
+    const result = await take(this.page, folderPath, fileName, {
+      fullPage: true,
+      style: '.global-navigation,.global-footer { display: none; }',
+    });
 
-    this.screenshots.push(fileName);
+    this.screenshots.push(result);
   }
 
   /**
