@@ -12,7 +12,7 @@ test.describe('Validate news block', () => {
   });
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
-      console.log('url: ', ${baseURL}${features[0].path});
+      console.log('url: ', baseURL + features[0].path);
       await page.goto(`${baseURL}${features[0].path}`);
       await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 3000 });
       const result = await newsPage.resultNumber.textContent();
