@@ -19,5 +19,11 @@ module.exports = {
       path: '/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression',
     },
+    {
+      tcid: '4',
+      name: '@login-news',
+      path: '/solutionpartners/drafts/automation/regression/partner-news',
+      tags: '@dx-news @regression @login',
+    },
   ],
 };
