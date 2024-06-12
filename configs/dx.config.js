@@ -37,7 +37,7 @@ const config = {
     actionTimeout: 60000,
 
     trace: 'on-first-retry',
-    baseURL: process.env.PR_BRANCH_LIVE_URL || envs['@dx_stage'] || 'https://stage--dx-partners--adobecom.hlx.live',
+    baseURL: process.env.PR_BRANCH_LIVE_URL_GH || envs['@dx_stage'] || 'https://stage--dx-partners--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
