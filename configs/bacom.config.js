@@ -30,15 +30,21 @@ const config = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 20ed0a3 (PR comments: re-adding base reporter, removing bacom-page)
     ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
     : [['html', {
       outputFolder: 'test-html-results',
       open: 'never',
     }], ['list'], ['../utils/reporters/base-reporter.js']],
+<<<<<<< HEAD
 =======
     ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
     : [['html', { outputFolder: 'test-html-results', open: 'never' }]],
 >>>>>>> d040b6f (Additional changes)
+=======
+>>>>>>> 20ed0a3 (PR comments: re-adding base reporter, removing bacom-page)
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -54,13 +60,6 @@ const config = {
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'bacom-page-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_page'],
-      },
-    },
     {
       name: 'bacom-page-firefox',
       use: {

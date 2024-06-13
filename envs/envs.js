@@ -8,7 +8,6 @@ module.exports = {
   '@dc_live': 'https://main--dc--adobecom.hlx.live',
   '@adobe_stage': 'https://www.stage.adobe.com',
   '@adobe_prod': 'https://www.adobe.com',
-  '@bacom_page': 'https://main--bacom--adobecom.hlx.page',
   '@bacom_live': 'https://main--bacom--adobecom.hlx.live',
   '@bacom_prod': 'https://business.adobe.com',
   '@bacom_stage': 'https://business.stage.adobe.com',
