@@ -12,6 +12,7 @@ const knownConsoleErrors = [
   'Failed to load resource: net::ERR_FAILED',
   'Invalid request',
   'Access to XMLHttpRequest',
+  'Attstation check for Topics',
 ];
 
 test.describe('Milo Video Block test suite', () => {

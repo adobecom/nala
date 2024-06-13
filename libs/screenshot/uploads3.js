@@ -2,6 +2,7 @@
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 const fs = require('fs');
 const path = require('path');
+const { validatePath } = require('./utils.js');
 
 const S3REGION = 'us-west-1';
 const S3ENDPOINT = 'https://s3-sj3.corp.adobe.com';
@@ -32,7 +33,7 @@ async function uploadFile(fileName, s3Bucket, s3Path, credentials, s3Key, mimeTy
   const baseName = path.basename(fileName);
   const key = path.join(s3Path, s3Key || baseName).replace(/\\/g, '/');
 
-  const fileContent = fs.readFileSync(fileName);
+  const fileContent = fs.readFileSync(validatePath(fileName));
 
   const params = {
     Bucket: s3Bucket,
@@ -56,7 +57,7 @@ async function main() {
   }
 
   const resultsPath = path.join(dir, 'results.json');
-  const entries = JSON.parse(fs.readFileSync(resultsPath));
+  const entries = JSON.parse(fs.readFileSync(validatePath(resultsPath)));
 
   console.log(entries);
 
@@ -110,7 +111,7 @@ async function main() {
   const timestampPath = path.join(dir, 'timestamp.json');
 
   fs.writeFileSync(
-    timestampPath,
+    validatePath(timestampPath, { forWriting: true }),
     JSON.stringify([(new Date()).toLocaleString()], null, 2),
   );
 

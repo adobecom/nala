@@ -37,33 +37,24 @@ const config = {
     actionTimeout: 60000,
 
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@dx_stage'] || 'https://stage--dx-partners--adobecom.hlx.live',
+    baseURL: process.env.PR_BRANCH_LIVE_URL || envs['@dx_stage'] || 'https://stage--dx-partners--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'dx-live-chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@dx_stage'],
-      },
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'dx-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@dx_stage'],
-      },
+      use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'dx-live-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@dx_stage'],
-      },
+      use: { ...devices['Desktop Safari'] },
     },
   ],
 };
