@@ -165,6 +165,10 @@ test.describe('Validate news block', () => {
       await expect(userName).toBe('Yugo-SPP-Stage Platinum');
     });
 
-    // TODO: logout
+    await test.step('Logout', async () => {
+      await newsPage.logoutButton.click();
+      const signInButton = await newsPage.signInButton;
+      await expect(signInButton).toBeVisible();
+    });
   });
 });

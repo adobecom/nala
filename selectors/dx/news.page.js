@@ -22,6 +22,7 @@ export default class NewsPage {
     this.passwordPageContinueButton = page.locator('//button[@data-id="PasswordPage-ContinueButton"]');
     this.profileIconButton = page.locator('.feds-profile-button');
     this.profileName = page.locator('.feds-profile-name');
+    this.logoutButton = page.locator('[daa-ll="Sign Out"]');
   }
 
   async expandFilterOptions(filterSection) {
