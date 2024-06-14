@@ -140,7 +140,6 @@ test.describe('Validate news block', () => {
     });
   });
 
-
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     await test.step('Click Sign In', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
