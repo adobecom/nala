@@ -12,6 +12,17 @@ export default class NewsPage {
     this.loadMore = page.locator('[aria-label="Load more"]');
     this.firstCardDate = page.locator('.card-date').nth(0);
     this.lastCardDate = page.locator('.card-date').nth(5);
+
+    this.signInButton = page.locator('button[daa-ll="Sign In"].feds-signIn');
+    this.IMSEmailPage = page.locator('form#EmailForm');
+    this.emailField = page.locator('#EmailPage-EmailField');
+    this.emailPageContinueButton = page.locator('//button[@data-id="EmailPage-ContinueButton"]');
+    this.IMSPasswordPage = page.locator('form#PasswordForm');
+    this.passwordField = page.locator('#PasswordPage-PasswordField');
+    this.passwordPageContinueButton = page.locator('//button[@data-id="PasswordPage-ContinueButton"]');
+    this.profileIconButton = page.locator('.feds-profile-button');
+    this.profileName = page.locator('.feds-profile-name');
+    this.logoutButton = page.locator('[daa-ll="Sign Out"]');
   }
 
   async expandFilterOptions(filterSection) {

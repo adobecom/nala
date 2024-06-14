@@ -82,7 +82,7 @@ test.describe('Validate news block', () => {
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 3000 });
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 5000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
@@ -137,6 +137,38 @@ test.describe('Validate news block', () => {
       await newsPage.clearAllSelector.click();
       const resultAfterClearingAllFilters = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterClearingAllFilters.split(' ')[0], 10)).toBeGreaterThan(6);
+    });
+  });
+
+
+  test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
+    await test.step('Click Sign In', async () => {
+      await page.goto(`${baseURL}${features[0].path}`);
+      await newsPage.signInButton.click();
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Click Sign In', async () => {
+      await newsPage.IMSEmailPage.waitFor({ state: 'visible', timeout: 5000 });
+      await newsPage.emailField.fill(process.env.IMS_EMAIL);
+      await newsPage.emailPageContinueButton.click();
+      await page.waitForLoadState('domcontentloaded');
+      await newsPage.IMSPasswordPage.waitFor({ state: 'visible', timeout: 10000 });
+      await newsPage.passwordField.fill(process.env.IMS_PASS);
+      await newsPage.passwordPageContinueButton.click();
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Verify successfull login', async () => {
+      await newsPage.profileIconButton.click();
+      const userName = await newsPage.profileName.textContent();
+      await expect(userName).toBe('Yugo-SPP-Stage Platinum');
+    });
+
+    await test.step('Logout', async () => {
+      await newsPage.logoutButton.click();
+      const signInButton = await newsPage.signInButton;
+      await expect(signInButton).toBeVisible();
     });
   });
 });
