@@ -26,8 +26,8 @@ test.describe('Sharepoint editing', { tag: '@sp' }, async () => {
     await page.waitForURL(sharepointBacomDrafts, { timeout: 1000 * 60 * 2 });
 
     // For now, we need to sign into sidekick manually
-    await page.goto("https://admin.hlx.page/login/adobecom/bacom/main");
-    await page.waitForURL("https://admin.hlx.page/profile/adobecom/bacom/main", { timeout: 1000 * 60 * 2 });
+    await page.goto('https://admin.hlx.page/login/adobecom/bacom/main');
+    await page.waitForURL('https://admin.hlx.page/profile/adobecom/bacom/main', { timeout: 1000 * 60 * 2 });
 
     await context.storageState({ path: authFile });
   });
