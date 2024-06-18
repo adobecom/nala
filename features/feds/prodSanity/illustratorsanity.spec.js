@@ -150,14 +150,14 @@ module.exports = {
     },
     {
       tcid: '21',
-      name: '@PhilippinesillustratorPageCheck',
+      name: '@PhilippineillustratorPageCheck',
       path: '/ph_fil/products/illustrator.html?georouting=off',
       tags: '@illustratorpagesanity @illustratorPhilippines',
       country: 'Philippines',
     },
     {
       tcid: '22',
-      name: '@PhilippinesEnglishillustratorPageCheck',
+      name: '@PhilippineEnglishillustratorPageCheck',
       path: '/ph_fil/products/illustrator.html?georouting=off',
       tags: '@illustratorpagesanity @illustratorPhilippinesEnglish',
       country: 'Philippines English',

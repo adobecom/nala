@@ -1,5 +1,4 @@
-import { expect, test } from '@playwright/test';
-import { features } from '../../features/feds/prodSanity/illustratorsanity.spec.js';
+import { expect } from '@playwright/test';
 
 export default class IllustratorPageSanity {
   constructor(page) {
@@ -7,12 +6,13 @@ export default class IllustratorPageSanity {
 
     // U-NAV Elements
     this.adobe = page.locator('.feds-brand');
-    this.creativityAndDesign = page.locator('.feds-navItem:nth-child(1) button');
-    this.illustrator = page.locator('.feds-navItem:nth-child(2) a');
-    this.features = page.locator('.feds-navItem:nth-child(3) a');
-    this.comparePlans = page.locator('.feds-navItem:nth-child(4) a');
-    this.freeTrialDetails = page.locator('.feds-navItem:nth-child(5) a');
-    this.tryItForFree = page.locator('.feds-navItem:nth-child(6) div');
+    this.fedsNav = page.locator('.feds-nav');
+    this.creativityAndDesign = this.fedsNav.locator('.feds-navItem button').nth(0);
+    this.illustrator = this.fedsNav.locator('.feds-navItem').nth(1);
+    this.features = this.fedsNav.locator('.feds-navItem').nth(2);
+    this.comparePlans = this.fedsNav.locator('.feds-navItem').nth(3);
+    this.freeTrialDetails = this.fedsNav.locator('.feds-navItem').nth(4);
+    this.tryItForFree = this.fedsNav.locator('.feds-navItem').nth(5);
     this.appSwitcher = page.locator('#unav-app-switcher');
     this.signInButton = page.locator('#unav-profile div');
     this.signInButtonTwo = page.locator('.feds-signIn');
@@ -110,38 +110,11 @@ export default class IllustratorPageSanity {
     this.privacySection = page.locator('.feds-footer-privacySection:nth-child(2)');
   }
 
-  // U-NAV
-  async validatingunavElements(locale) {
-    await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features, this.comparePlans,
-      this.freeTrialDetails, this.tryItForFree, this.appSwitcher, this.signInButton];
-    const promises = elements.map(async (element) => {
-      switch (element) {
-        case this.tryItForFree:
-          if (locale === 'Germany') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        default:
-          await expect(element).toBeVisible();
-          break;
-      }
-    });
-    await Promise.all(promises);
-  }
-
-  async validatingunavElementsSecondSet() {
-    await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features,
-      this.comparePlans, this.freeTrialDetails, this.signInButtonTwo];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
-  }
-
   // Creativity & Design
-  async validatingCreativityAndDesignElements(locale) {
-    await this.creativityAndDesign.click({ timeout: 5000 });
+  async validatingCreativityAndDesignElements(country) {
+    await this.creativityAndDesign.click();
     await this.page.waitForLoadState('networkidle');
+
     const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals,
       this.business, this.schoolsAndUniversities, this.viewPlansAndPricing, this.photoshop, this.adobeExpress,
       this.lightroom, this.illustratorCd, this.premierePro, this.adobeStock, this.viewAllProducts, this.photo,
@@ -149,80 +122,134 @@ export default class IllustratorPageSanity {
       this.aiOverviewCC, this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce,
       this.helpAndSupport, this.seeSpecialOffers, this.adobeFireflyMp];
 
-    const promises = elements.map(async (element) => {
+    await Promise.all(elements.map(async (element) => {
       switch (element) {
         case this.seeSpecialOffers:
-          if (locale === 'United Kingdom') { await expect(element).toBeVisible(); }
+          if (country === 'United Kingdom') {
+            await expect(element).toBeVisible();
+          }
           break;
         case this.adobeFirefly:
-          if (locale !== 'Poland') { return; }
+          if (country !== 'Poland') {
+            return;
+          }
           await expect(element).toBeVisible();
           break;
         case this.adobeFireflyMp:
-          if (locale === 'Poland') { await expect(element).toBeVisible(); }
+          if (country === 'Poland') {
+            await expect(element).toBeVisible();
+          }
           break;
-        default: await expect(element).toBeVisible();
+        default:
+          await expect(element).toBeVisible();
       }
-    });
-    await Promise.all(promises);
-    await this.creativityAndDesign.click({ timeout: 5000 });
+    }));
+
+    await this.creativityAndDesign.click();
   }
 
   async validatingCreativityAndDesignElementsSecondSet() {
-    await this.creativityAndDesign.click({ timeout: 5000 });
+    await this.creativityAndDesign.click();
     await this.page.waitForLoadState('networkidle');
+
     const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.schoolsAndUniversities,
       this.business, this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.premierePro,
       this.illustratorCd, this.lightroom, this.adobeStock, this.viewAllProducts, this.photo, this.graphicDesign,
       this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC,
       this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
-    await this.creativityAndDesign.click({ timeout: 5000 });
+
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+
+    await this.creativityAndDesign.click();
   }
 
   async validatingCreativityAndDesignElementsThirdSet() {
-    await this.creativityAndDesign.click({ timeout: 5000 });
+    await this.creativityAndDesign.click();
     await this.page.waitForLoadState('networkidle');
+
     const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals, this.business,
       this.schoolsAndUniversities, this.governmentAgencies, this.benifitsForCC, this.viewPlansAndPricing,
       this.photoshop, this.adobeExpress, this.lightroom, this.illustratorCd, this.premierePro, this.adobeStock,
       this.adobeFireflyMp, this.viewAllProducts, this.photo, this.graphicDesign, this.Video, this.illustration,
       this.socialMedia, this.threeDAndAR, this.pdf, this.adobeFirefly, this.adobecom, this.pdfAndESignatures,
       this.marketingAndCommerce, this.helpAndSupport];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
-    await this.creativityAndDesign.click({ timeout: 5000 });
+
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+
+    await this.creativityAndDesign.click();
   }
 
   async validatingCreativityAndDesignElementsFourthSet() {
-    await this.creativityAndDesign.click({ timeout: 5000 });
+    await this.creativityAndDesign.click();
     await this.page.waitForLoadState('networkidle');
+
     const elements = [this.removeBackground, this.resizeImage, this.covertImageToSVG, this.covertVideoToGIF,
       this.createQRCode, this.seeAllQuickActions, this.resume, this.posters, this.card, this.instagramPost,
       this.youTubeVideo, this.createNow, this.whatIsCC, this.adobeExpressIn, this.photoshop, this.premierePro,
       this.illustratorCd, this.seePlansAndPricing, this.adobeFireflyMp, this.adobecom, this.pdfAndESignatures,
       this.marketingAndCommerce, this.helpAndSupport];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
-    await this.creativityAndDesign.click({ timeout: 5000 });
+
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+
+    await this.creativityAndDesign.click();
   }
 
   async validatingCreativityAndDesignElementsFifthSet() {
-    await this.creativityAndDesign.click({ timeout: 5000 });
+    await this.creativityAndDesign.click();
     await this.page.waitForLoadState('networkidle');
+
     const elements = [this.whatIsCC, this.photoshop, this.adobeExpress, this.acrobatPro, this.illustratorCd,
       this.premierePro, this.adobeStockEs, this.seeAllProducts, this.individuals, this.photographers,
       this.studentsAndTeachers, this.business, this.seePlansAndPricingEs, this.photo, this.graphicDesign,
       this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC,
       this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
-    await this.creativityAndDesign.click({ timeout: 5000 });
+
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+
+    await this.creativityAndDesign.click();
+  }
+
+  // U-NAV
+  async validatingunavElements(country) {
+    await this.page.waitForLoadState('networkidle');
+    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features, this.comparePlans,
+      this.freeTrialDetails, this.tryItForFree, this.appSwitcher, this.signInButton];
+
+    await Promise.all(elements.map(async (element) => {
+      switch (element) {
+        case this.tryItForFree:
+          if (country === 'Germany') {
+            await expect(element).toBeVisible();
+          }
+          break;
+        default:
+          await expect(element).toBeVisible();
+          break;
+      }
+    }));
+  }
+
+  async validatingunavElementsSecondSet() {
+    await this.page.waitForLoadState('networkidle');
+
+    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features,
+      this.comparePlans, this.freeTrialDetails, this.signInButtonTwo];
+
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
   }
 
   // Footer
-  async validatingfooterElements(locale) {
+  async validatingfooterElements(country) {
     await this.page.waitForLoadState('networkidle');
     const elements = [this.footerCreativeCloud, this.footerCreativeCloudForBusiness,
       this.footerdiscountForStudentsAndTeachers, this.footerappsForiOS, this.footerWhatIsExperienceCloud,
@@ -232,40 +259,16 @@ export default class IllustratorPageSanity {
       this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
       this.protectMyPersonalData, this.adChoices, this.privacySection];
 
-    const promises = elements.map(async (element) => {
+    await Promise.all(elements.map(async (element) => {
       switch (element) {
         case this.privacySection:
-          if (locale === 'Korea') {
+          if (country === 'Korea') {
             await expect(element).toBeVisible();
           }
           break;
-        default: await expect(element).toBeVisible();
+        default:
+          await expect(element).toBeVisible();
       }
-    });
-    await Promise.all(promises);
-  }
-
-  // Test Script
-  async validatingIllustratorPage(page, baseURL, featureIndex, locale, illustrator) {
-    console.info(`[FEDSInfo] Checking Page: ${baseURL}${features[featureIndex].path}`);
-
-    await test.step(`Validating ${locale} Locale Page`, async () => {
-      const pageURL = `${baseURL}${features[featureIndex].path}`;
-      await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
-      await expect(page).toHaveURL(pageURL);
-
-      // Verifying the visibility of U-NAV Elements
-      const { unavElements } = illustrator.locales[locale];
-      if (unavElements) await this[unavElements]();
-
-      // Verifying the Visibility of Creativity & Design Elemants
-      const { creativityAndDesignElements } = illustrator.locales[locale];
-      if (creativityAndDesignElements) await this[creativityAndDesignElements]();
-
-      // Verifying the visibility of Footer Elements
-      await this.changeRegion.scrollIntoViewIfNeeded();
-      const { footerElements } = illustrator.locales[locale];
-      if (footerElements) await this[footerElements]();
-    });
+    }));
   }
 }
