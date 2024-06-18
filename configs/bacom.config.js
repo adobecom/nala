@@ -29,11 +29,11 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['list'], ['./utils/reporters/base-reporter.js']]
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
     : [['html', {
       outputFolder: 'test-html-results',
       open: 'never',
-    }], ['list'], ['./utils/reporters/base-reporter.js']],
+    }], ['list'], ['../utils/reporters/base-reporter.js']],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
