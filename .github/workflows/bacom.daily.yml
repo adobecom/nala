@@ -27,7 +27,7 @@ jobs:
           node-version: lts/*
 
       - name: Run Nala ${{ matrix.os }}
-        run: bash dailyrun.sh bacom bacom
+        run: bash dailyrun.sh bacom @bacomSmoke
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
