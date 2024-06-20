@@ -110,6 +110,46 @@ export default class IllustratorPageSanity {
     this.privacySection = page.locator('.feds-footer-privacySection:nth-child(2)');
   }
 
+  // U-NAV
+  async validatingUnavElements(country) {
+    await this.page.waitForLoadState('networkidle');
+    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features,
+      this.comparePlans, this.freeTrialDetails, this.tryItForFree, this.appSwitcher,
+      this.signInButton, this.signInButtonTwo];
+
+    await Promise.all(elements.map(async (element) => {
+      switch (element) {
+        case this.tryItForFree:
+          if (country === 'Germany') {
+            await expect(element).toBeVisible();
+          }
+          break;
+        case this.appSwitcher:
+        case this.signInButton:
+          if (country !== 'United Kingdom' || country !== 'India' || country !== 'Canada English'
+            || country !== 'Canada French' || country !== 'Mexico' || country !== 'Australia'
+            || country !== 'Indonesia' || country !== 'Indonesia English' || country !== 'Thailand English'
+            || country !== 'Thailand' || country !== 'Singapore' || country !== 'Philippines'
+            || country !== 'Philippines English' || country !== 'Middle East And North Africa') {
+            return;
+          }
+          await expect(element).toBeVisible();
+          break;
+        case this.signInButtonTwo:
+          if (country === 'United Kingdom' || country === 'India' || country === 'Canada English'
+            || country === 'Canada French' || country === 'Mexico' || country === 'Australia'
+            || country === 'Indonesia' || country === 'Indonesia English' || country === 'Thailand English'
+            || country === 'Thailand' || country === 'Singapore' || country === 'Philippines'
+            || country === 'Philippines English' || country === 'Middle East And North Africa') {
+            await expect(element).toBeVisible();
+          }
+          break;
+        default:
+          await expect(element).toBeVisible();
+      }
+    }));
+  }
+
   // Creativity & Design
   async validatingCreativityAndDesignElements(country) {
     await this.creativityAndDesign.click();
@@ -120,7 +160,8 @@ export default class IllustratorPageSanity {
       this.lightroom, this.illustratorCd, this.premierePro, this.adobeStock, this.viewAllProducts, this.photo,
       this.graphicDesign, this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf,
       this.aiOverviewCC, this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce,
-      this.helpAndSupport, this.seeSpecialOffers, this.adobeFireflyMp];
+      this.helpAndSupport, this.seeSpecialOffers, this.adobeFireflyMp, this.governmentAgencies, this.benifitsForCC,
+      this.acrobatPro, this.adobeStockEs, this.seeAllProducts, this.seePlansAndPricingEs];
 
     await Promise.all(elements.map(async (element) => {
       switch (element) {
@@ -130,15 +171,52 @@ export default class IllustratorPageSanity {
           }
           break;
         case this.adobeFirefly:
-          if (country !== 'Poland') {
+          if (country !== 'Poland' || country !== 'Japan') {
             return;
           }
           await expect(element).toBeVisible();
           break;
         case this.adobeFireflyMp:
-          if (country === 'Poland') {
+          if (country === 'Poland' || country === 'Japan') {
             await expect(element).toBeVisible();
           }
+          break;
+        case this.individuals:
+          if (country !== 'Germany' || country !== 'France' || country !== 'Italy') {
+            return;
+          }
+          await expect(element).toBeVisible();
+          break;
+        case this.governmentAgencies:
+        case this.benifitsForCC:
+          if (country === 'Japan') {
+            await expect(element).toBeVisible();
+          }
+          break;
+        case this.aiOverviewCC:
+          if (country !== 'Japan') {
+            return;
+          }
+          await expect(element).toBeVisible();
+          break;
+        case this.acrobatPro:
+        case this.adobeStockEs:
+        case this.seeAllProducts:
+        case this.seePlansAndPricingEs:
+          if (country === 'Spain') {
+            await expect(element).toBeVisible();
+          }
+          break;
+        case this.schoolsAndUniversities:
+        case this.viewPlansAndPricing:
+        case this.illustratorCd:
+        case this.viewAllProducts:
+        case this.lightroom:
+        case this.adobeStock:
+          if (country !== 'Spain') {
+            return;
+          }
+          await expect(element).toBeVisible();
           break;
         default:
           await expect(element).toBeVisible();
@@ -149,41 +227,6 @@ export default class IllustratorPageSanity {
   }
 
   async validatingCreativityAndDesignElementsSecondSet() {
-    await this.creativityAndDesign.click();
-    await this.page.waitForLoadState('networkidle');
-
-    const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.schoolsAndUniversities,
-      this.business, this.viewPlansAndPricing, this.photoshop, this.adobeExpress, this.premierePro,
-      this.illustratorCd, this.lightroom, this.adobeStock, this.viewAllProducts, this.photo, this.graphicDesign,
-      this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC,
-      this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
-
-    await Promise.all(elements.map(async (element) => {
-      await expect(element).toBeVisible();
-    }));
-
-    await this.creativityAndDesign.click();
-  }
-
-  async validatingCreativityAndDesignElementsThirdSet() {
-    await this.creativityAndDesign.click();
-    await this.page.waitForLoadState('networkidle');
-
-    const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals, this.business,
-      this.schoolsAndUniversities, this.governmentAgencies, this.benifitsForCC, this.viewPlansAndPricing,
-      this.photoshop, this.adobeExpress, this.lightroom, this.illustratorCd, this.premierePro, this.adobeStock,
-      this.adobeFireflyMp, this.viewAllProducts, this.photo, this.graphicDesign, this.Video, this.illustration,
-      this.socialMedia, this.threeDAndAR, this.pdf, this.adobeFirefly, this.adobecom, this.pdfAndESignatures,
-      this.marketingAndCommerce, this.helpAndSupport];
-
-    await Promise.all(elements.map(async (element) => {
-      await expect(element).toBeVisible();
-    }));
-
-    await this.creativityAndDesign.click();
-  }
-
-  async validatingCreativityAndDesignElementsFourthSet() {
     await this.creativityAndDesign.click();
     await this.page.waitForLoadState('networkidle');
 
@@ -200,56 +243,8 @@ export default class IllustratorPageSanity {
     await this.creativityAndDesign.click();
   }
 
-  async validatingCreativityAndDesignElementsFifthSet() {
-    await this.creativityAndDesign.click();
-    await this.page.waitForLoadState('networkidle');
-
-    const elements = [this.whatIsCC, this.photoshop, this.adobeExpress, this.acrobatPro, this.illustratorCd,
-      this.premierePro, this.adobeStockEs, this.seeAllProducts, this.individuals, this.photographers,
-      this.studentsAndTeachers, this.business, this.seePlansAndPricingEs, this.photo, this.graphicDesign,
-      this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf, this.aiOverviewCC,
-      this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce, this.helpAndSupport];
-
-    await Promise.all(elements.map(async (element) => {
-      await expect(element).toBeVisible();
-    }));
-
-    await this.creativityAndDesign.click();
-  }
-
-  // U-NAV
-  async validatingunavElements(country) {
-    await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features, this.comparePlans,
-      this.freeTrialDetails, this.tryItForFree, this.appSwitcher, this.signInButton];
-
-    await Promise.all(elements.map(async (element) => {
-      switch (element) {
-        case this.tryItForFree:
-          if (country === 'Germany') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        default:
-          await expect(element).toBeVisible();
-          break;
-      }
-    }));
-  }
-
-  async validatingunavElementsSecondSet() {
-    await this.page.waitForLoadState('networkidle');
-
-    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features,
-      this.comparePlans, this.freeTrialDetails, this.signInButtonTwo];
-
-    await Promise.all(elements.map(async (element) => {
-      await expect(element).toBeVisible();
-    }));
-  }
-
   // Footer
-  async validatingfooterElements(country) {
+  async validatingFooterElements(country) {
     await this.page.waitForLoadState('networkidle');
     const elements = [this.footerCreativeCloud, this.footerCreativeCloudForBusiness,
       this.footerdiscountForStudentsAndTeachers, this.footerappsForiOS, this.footerWhatIsExperienceCloud,
