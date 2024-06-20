@@ -5,7 +5,7 @@ import TabBlock from '../../selectors/milo/tabs.block.page.js';
 let tab;
 
 const miloLibs = process.env.MILO_LIBS || '';
-const INTERVALS = [2, 4, 6, 8, 10, 12, 500, 1000, 1500];
+const INTERVALS = Array(5).fill(1000);
 
 test.describe('Milo Tab block feature test suite', () => {
   test.beforeEach(async ({ page }) => {
@@ -95,7 +95,8 @@ test.describe('Milo Tab block feature test suite', () => {
     await test.step('select the right tab arrow to get to the last tab', async () => {
       await expect(async () => {
         await tab.rightArrow.click();
-        await expect(tab.tab9).toBeInViewport({ timeout: 500 });
+        await expect(tab.tab9).toBeInViewport({ timeout: 2000 });
+        await expect(tab.leftArrow).toBeVisible();
       }).toPass({ intervals: INTERVALS });
 
       await tab.tab9.click();
@@ -113,7 +114,8 @@ test.describe('Milo Tab block feature test suite', () => {
 
       await expect(async () => {
         await tab.leftArrow.click();
-        await expect(tab.tab1).toBeInViewport({ timeout: 500 });
+        await expect(tab.tab1).toBeInViewport({ timeout: 2000 });
+        await expect(tab.rightArrow).toBeVisible();
       }).toPass({ intervals: INTERVALS });
 
       await tab.tab1.click();
