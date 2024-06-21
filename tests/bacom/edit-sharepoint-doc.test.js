@@ -13,7 +13,7 @@ let sharepoint;
 
 const authFile = 'tests/bacom/.auth/user.json';
 
-test.describe('Sharepoint editing', { tag: '@sp' }, async () => {
+test.describe('Sharepoint editing', { tag: '@sp, @nopr' }, async () => {
   test.beforeAll(async ({ browser }) => {
     const options = fs.existsSync(authFile) ? { storageState: authFile } : {};
     context = await browser.newContext(options);
