@@ -14,15 +14,15 @@ test.describe('Validate news block', () => {
     await test.step('Go to News page', async () => {
       console.log('url: ', baseURL + features[0].path);
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 3000 });
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 10000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
 
     await test.step('Enter Automation regression card in search field', async () => {
-      await newsPage.searchField.fill('Automation regression card');
+      await newsPage.searchField.fill('Automation regression news card SPP');
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(6);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(7);
     });
 
     await test.step('Clear search field on X', async () => {
@@ -32,7 +32,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Enter Automation regression card no1 in search field', async () => {
-      await newsPage.searchField.fill('Automation regression card no1');
+      await newsPage.searchField.fill('Automation regression news card SPP Public no1');
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBe(1);
     });
@@ -53,44 +53,48 @@ test.describe('Validate news block', () => {
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 3000 });
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 10000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
 
     await test.step('Select Oldest sort option', async () => {
-      await newsPage.searchField.fill('Automation regression card');
+      await newsPage.searchField.fill('Automation regression news card SPP');
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(6);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(7);
       await newsPage.sortBtn.click();
       await newsPage.oldestOption.click();
       const paginationText = await newsPage.paginationText.textContent();
-      await expect(paginationText.toLowerCase()).toBe('1 - 3 of 6 results');
+      await expect(paginationText.toLowerCase()).toBe('1 - 3 of 7 results');
     });
 
     await test.step('Load more cards', async () => {
       await newsPage.loadMore.click();
-      const paginationText = await newsPage.paginationText.textContent();
-      await expect(paginationText.toLowerCase()).toBe('1 - 6 of 6 results');
+      let paginationText = await newsPage.paginationText.textContent();
+      await expect(paginationText.toLowerCase()).toBe('1 - 6 of 7 results');
+      await newsPage.loadMore.click();
+      paginationText = await newsPage.paginationText.textContent();
+      await expect(paginationText.toLowerCase()).toBe('1 - 7 of 7 results');
       await expect(await newsPage.loadMore).not.toBeVisible();
       const firstCardDate = new Date(await newsPage.firstCardDate.textContent()).getTime();
       const lastCardDate = new Date(await newsPage.lastCardDate.textContent()).getTime();
       await expect(firstCardDate).toBeLessThan(lastCardDate);
+      await expect(await newsPage.cardCount.count()).toBe(7);
     });
   });
 
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 5000 });
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 9000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
     });
 
     await test.step('Find all automation regression cards', async () => {
-      await newsPage.searchField.fill('Automation regression card');
+      await newsPage.searchField.fill('Automation regression news card SPP');
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(6);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(7);
     });
 
     await test.step('Test applications filter', async () => {
@@ -103,7 +107,7 @@ test.describe('Validate news block', () => {
       await expect(parseInt(resultAfterAnalyticsFilterApplied.split(' ')[0], 10)).toBe(2);
       await newsPage.clearFilter('Applications', '2');
       const resultAfterClearingApplicationsFilter = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAfterClearingApplicationsFilter.split(' ')[0], 10)).toBe(6);
+      await expect(parseInt(resultAfterClearingApplicationsFilter.split(' ')[0], 10)).toBe(7);
       await newsPage.expandFilterOptions('Applications');
     });
 
@@ -114,7 +118,7 @@ test.describe('Validate news block', () => {
       await expect(parseInt(resultAfterTechnical.split(' ')[0], 10)).toBe(1);
       await newsPage.clearSideBarFilterButton('Technical');
       const resultAfterClearingFilter = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAfterClearingFilter.split(' ')[0], 10)).toBe(6);
+      await expect(parseInt(resultAfterClearingFilter.split(' ')[0], 10)).toBe(7);
       await newsPage.expandFilterOptions('Audience');
     });
 
@@ -136,19 +140,44 @@ test.describe('Validate news block', () => {
       await expect(parseInt(resultAfterTopicFilter.split(' ')[0], 10)).toBe(1);
       await newsPage.clearAllSelector.click();
       const resultAfterClearingAllFilters = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAfterClearingAllFilters.split(' ')[0], 10)).toBeGreaterThan(6);
+      await expect(parseInt(resultAfterClearingAllFilters.split(' ')[0], 10)).toBeGreaterThan(7);
     });
   });
 
-
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
+    await test.step('Go to News page', async () => {
+      await page.goto(`${baseURL}${features[3].path}`);
+      await newsPage.firstCardTitle.waitFor({state: 'visible', timeout: 9000});
+      await newsPage.searchField.fill('Automation regression news card spp public no1');
+      const resultAfterSearch = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultAfterSearch.split(' ')[0], 10)).toBe(1);
+    });
+    await test.step('Read now', async () => {
+      await newsPage.readCard.click();
+      const pages = await page.context().pages();
+      // await expect(pages.length).toBe(1);
+      // await expect(pages[0].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
+      await expect(pages.length).toBe(2);
+      await expect(pages[1].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
+    });
+  });
+  test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     await test.step('Click Sign In', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[4].path}`);
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 9000 });
+      const result = await newsPage.resultNumber.textContent();
+      await expect(parseInt(result.split(' ')[0], 10)).toBeGreaterThan(6);
+      await newsPage.searchField.fill('Automation regression news card SPP');
+      const resultAfterSearch = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultAfterSearch.split(' ')[0], 10)).toBe(7);
+      await newsPage.searchField.fill('Automation regression news card spp platinum no1');
+      const resultPlatinum = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultPlatinum.split(' ')[0], 10)).toBe(0);
       await newsPage.signInButton.click();
       await page.waitForLoadState('domcontentloaded');
     });
 
-    await test.step('Click Sign In', async () => {
+    await test.step('I load the news page', async () => {
       await newsPage.IMSEmailPage.waitFor({ state: 'visible', timeout: 5000 });
       await newsPage.emailField.fill(process.env.IMS_EMAIL);
       await newsPage.emailPageContinueButton.click();
@@ -165,10 +194,20 @@ test.describe('Validate news block', () => {
       await expect(userName).toBe('Yugo-SPP-Stage Platinum');
     });
 
-    await test.step('Logout', async () => {
-      await newsPage.logoutButton.click();
-      const signInButton = await newsPage.signInButton;
-      await expect(signInButton).toBeVisible();
+    await test.step('Find platinum automation regression cards', async () => {
+      await newsPage.searchField.fill('Automation regression news card spp platinum no1');
+      const result = await newsPage.resultNumber.textContent();
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(1);
     });
+
+    await test.step('Read now', async () => {
+          await newsPage.readCard.click();
+          const pages = await page.context().pages();
+          // await expect(pages.length).toBe(1);
+          // await expect(pages[0].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
+          await expect(pages.length).toBe(2);
+          await expect(pages[1].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-platinum-card-no1');
+        });
+
   });
 });

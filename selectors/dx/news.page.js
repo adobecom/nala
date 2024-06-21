@@ -23,6 +23,8 @@ export default class NewsPage {
     this.profileIconButton = page.locator('.feds-profile-button');
     this.profileName = page.locator('.feds-profile-name');
     this.logoutButton = page.locator('[daa-ll="Sign Out"]');
+    this.cardCount = page.locator('.card-wrapper');
+    this.readCard = page.locator('.card-btn');
   }
 
   async expandFilterOptions(filterSection) {
