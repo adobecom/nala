@@ -228,7 +228,7 @@ export default class IllustratorPageSanity {
 
   // Footer
   async validatingFooterElements(country) {
-    await this.page.waitForLoadState('domcontentloaded');
+    await this.changeRegion.scrollIntoViewIfNeeded();
     const elements = [this.footerCreativeCloud, this.footerCreativeCloudForBusiness,
       this.footerdiscountForStudentsAndTeachers, this.footerappsForiOS, this.footerWhatIsExperienceCloud,
       this.footerDownloadAndInstall, this.footerAdobeBlog, this.footerLoginToYourAccount, this.footerAbout,
