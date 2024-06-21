@@ -37,8 +37,9 @@ test.describe('Sharepoint editing', { tag: '@sp' }, async () => {
   });
 
   testPages.forEach(async (url) => {
-    await test(`Editing a docx in sharepoint - ${url} `, async () => {
+    await test(`Editing a docx in sharepoint @ ${url} `, async () => {
       await test.setTimeout(1000 * 60 * 2); // Set each test timeout to 2 minutes
+      const { annotations } = test.info();
 
       await test.step('1. Go to the docx.', async () => {
         const { pathname } = new URL(url);
@@ -49,6 +50,9 @@ test.describe('Sharepoint editing', { tag: '@sp' }, async () => {
         const adminPageContent = await page.locator('pre').textContent();
         const docxUrl = JSON.parse(adminPageContent).edit.url;
 
+        annotations.push({ type: 'Test Page', description: url });
+        annotations.push({ type: 'Admin Page', description: adminPage });
+        annotations.push({ type: 'Docx Url', description: docxUrl });
         console.log(`[Test page]: ${url}`);
         console.log(`[Admin page]: ${adminPage}`);
         console.log(`[Docx Url]: ${docxUrl}\n`);
@@ -67,6 +71,9 @@ test.describe('Sharepoint editing', { tag: '@sp' }, async () => {
           console.log(status);
           test.skip(true, status);
         }
+        const sessionId = await sharepoint.getSessionId();
+        console.log('Session ID:', sessionId);
+        annotations.push({ type: 'Session ID', description: sessionId });
       });
 
       await test.step('3. Make an edit.', async () => {
