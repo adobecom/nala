@@ -112,115 +112,98 @@ export default class IllustratorPageSanity {
 
   // U-NAV
   async validatingUnavElements(country) {
-    await this.page.waitForLoadState('networkidle');
-    const elements = [this.adobe, this.creativityAndDesign, this.illustrator, this.features,
-      this.comparePlans, this.freeTrialDetails, this.tryItForFree, this.appSwitcher,
-      this.signInButton, this.signInButtonTwo];
+    await this.page.waitForLoadState('domcontentloaded');
 
-    await Promise.all(elements.map(async (element) => {
-      switch (element) {
-        case this.tryItForFree:
-          if (country === 'Germany') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.appSwitcher:
-        case this.signInButton:
-          if (country !== 'United Kingdom' || country !== 'India' || country !== 'Canada English'
-            || country !== 'Canada French' || country !== 'Mexico' || country !== 'Australia'
-            || country !== 'Indonesia' || country !== 'Indonesia English' || country !== 'Thailand English'
-            || country !== 'Thailand' || country !== 'Singapore' || country !== 'Philippines'
-            || country !== 'Philippines English' || country !== 'Middle East And North Africa') {
-            return;
-          }
-          await expect(element).toBeVisible();
-          break;
-        case this.signInButtonTwo:
-          if (country === 'United Kingdom' || country === 'India' || country === 'Canada English'
-            || country === 'Canada French' || country === 'Mexico' || country === 'Australia'
-            || country === 'Indonesia' || country === 'Indonesia English' || country === 'Thailand English'
-            || country === 'Thailand' || country === 'Singapore' || country === 'Philippines'
-            || country === 'Philippines English' || country === 'Middle East And North Africa') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        default:
-          await expect(element).toBeVisible();
+    const elements = [
+      { element: this.adobe },
+      { element: this.creativityAndDesign },
+      { element: this.illustrator },
+      { element: this.features },
+      { element: this.comparePlans },
+      { element: this.freeTrialDetails, includedCountries: ['Germany'] },
+      { element: this.tryItForFree },
+      {
+        element: this.appSwitcher,
+        excludedCountries: ['United Kingdom', 'India', 'Canada English', 'Canada French',
+          'Mexico', 'Australia', 'Indonesia', 'Indonesia English', 'Thailand English', 'Thailand',
+          'Singapore', 'Philippines', 'Philippines English', 'Middle East And North Africa'],
+      },
+      {
+        element: this.signInButton,
+        excludedCountries: ['United Kingdom', 'India', 'Canada English', 'Canada French',
+          'Mexico', 'Australia', 'Indonesia', 'Indonesia English', 'Thailand English', 'Thailand',
+          'Singapore', 'Philippines', 'Philippines English', 'Middle East And North Africa'],
+      },
+      {
+        element: this.signInButtonTwo,
+        includedCountries: ['United Kingdom', 'India', 'Canada English', 'Canada French',
+          'Mexico', 'Australia', 'Indonesia', 'Indonesia English', 'Thailand English', 'Thailand',
+          'Singapore', 'Philippines', 'Philippines English', 'Middle East And North Africa'],
+      },
+    ];
+
+    await Promise.allSettled(elements.map(async ({ element, includedCountries = [], excludedCountries = [] }) => {
+      if (
+        !excludedCountries.includes(country) && (includedCountries.length === 0 || includedCountries.includes(country))
+      ) {
+        await expect(element).toBeVisible();
+        return;
       }
+      await expect(element).not.toBeVisible();
     }));
   }
 
   // Creativity & Design
   async validatingCreativityAndDesignElements(country) {
     await this.creativityAndDesign.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
 
-    const elements = [this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals,
-      this.business, this.schoolsAndUniversities, this.viewPlansAndPricing, this.photoshop, this.adobeExpress,
-      this.lightroom, this.illustratorCd, this.premierePro, this.adobeStock, this.viewAllProducts, this.photo,
-      this.graphicDesign, this.Video, this.illustration, this.socialMedia, this.threeDAndAR, this.pdf,
-      this.aiOverviewCC, this.adobeFirefly, this.adobecom, this.pdfAndESignatures, this.marketingAndCommerce,
-      this.helpAndSupport, this.seeSpecialOffers, this.adobeFireflyMp, this.governmentAgencies, this.benifitsForCC,
-      this.acrobatPro, this.adobeStockEs, this.seeAllProducts, this.seePlansAndPricingEs];
+    const elements = [
+      { element: this.whatIsCC },
+      { element: this.photographers },
+      { element: this.studentsAndTeachers },
+      { element: this.individuals, excludedCountries: ['Germany', 'France', 'Italy'] },
+      { element: this.business },
+      { element: this.schoolsAndUniversities, excludedCountries: ['Spain'] },
+      { element: this.viewPlansAndPricing, excludedCountries: ['Spain'] },
+      { element: this.photoshop },
+      { element: this.adobeExpress },
+      { element: this.lightroom, excludedCountries: ['Spain'] },
+      { element: this.illustratorCd, excludedCountries: ['Spain'] },
+      { element: this.premierePro },
+      { element: this.adobeStock, excludedCountries: ['Spain'] },
+      { element: this.viewAllProducts, excludedCountries: ['Spain'] },
+      { element: this.photo },
+      { element: this.graphicDesign },
+      { element: this.Video },
+      { element: this.illustration },
+      { element: this.socialMedia },
+      { element: this.threeDAndAR },
+      { element: this.pdf },
+      { element: this.aiOverviewCC, excludedCountries: ['Japan'] },
+      { element: this.adobeFirefly, excludedCountries: ['Poland', 'Japan'] },
+      { element: this.adobecom },
+      { element: this.pdfAndESignatures },
+      { element: this.marketingAndCommerce },
+      { element: this.helpAndSupport },
+      { element: this.seeSpecialOffers, includedCountries: ['United Kingdom'] },
+      { element: this.adobeFireflyMp, includedCountries: ['Poland', 'Japan'] },
+      { element: this.governmentAgencies, includedCountries: ['Japan'] },
+      { element: this.benifitsForCC, includedCountries: ['Japan'] },
+      { element: this.acrobatPro, includedCountries: ['Spain'] },
+      { element: this.adobeStockEs, includedCountries: ['Spain'] },
+      { element: this.seeAllProducts, includedCountries: ['Spain'] },
+      { element: this.seePlansAndPricingEs, includedCountries: ['Spain'] },
+    ];
 
-    await Promise.all(elements.map(async (element) => {
-      switch (element) {
-        case this.seeSpecialOffers:
-          if (country === 'United Kingdom') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.adobeFirefly:
-          if (country !== 'Poland' || country !== 'Japan') {
-            return;
-          }
-          await expect(element).toBeVisible();
-          break;
-        case this.adobeFireflyMp:
-          if (country === 'Poland' || country === 'Japan') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.individuals:
-          if (country !== 'Germany' || country !== 'France' || country !== 'Italy') {
-            return;
-          }
-          await expect(element).toBeVisible();
-          break;
-        case this.governmentAgencies:
-        case this.benifitsForCC:
-          if (country === 'Japan') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.aiOverviewCC:
-          if (country !== 'Japan') {
-            return;
-          }
-          await expect(element).toBeVisible();
-          break;
-        case this.acrobatPro:
-        case this.adobeStockEs:
-        case this.seeAllProducts:
-        case this.seePlansAndPricingEs:
-          if (country === 'Spain') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.schoolsAndUniversities:
-        case this.viewPlansAndPricing:
-        case this.illustratorCd:
-        case this.viewAllProducts:
-        case this.lightroom:
-        case this.adobeStock:
-          if (country !== 'Spain') {
-            return;
-          }
-          await expect(element).toBeVisible();
-          break;
-        default:
-          await expect(element).toBeVisible();
+    await Promise.allSettled(elements.map(async ({ element, includedCountries = [], excludedCountries = [] }) => {
+      if (
+        !excludedCountries.includes(country) && (includedCountries.length === 0 || includedCountries.includes(country))
+      ) {
+        await expect(element).toBeVisible();
+        return;
       }
+      await expect(element).not.toBeVisible();
     }));
 
     await this.creativityAndDesign.click();
@@ -228,7 +211,7 @@ export default class IllustratorPageSanity {
 
   async validatingCreativityAndDesignElementsSecondSet() {
     await this.creativityAndDesign.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
 
     const elements = [this.removeBackground, this.resizeImage, this.covertImageToSVG, this.covertVideoToGIF,
       this.createQRCode, this.seeAllQuickActions, this.resume, this.posters, this.card, this.instagramPost,
@@ -236,7 +219,7 @@ export default class IllustratorPageSanity {
       this.illustratorCd, this.seePlansAndPricing, this.adobeFireflyMp, this.adobecom, this.pdfAndESignatures,
       this.marketingAndCommerce, this.helpAndSupport];
 
-    await Promise.all(elements.map(async (element) => {
+    await Promise.allSettled(elements.map(async (element) => {
       await expect(element).toBeVisible();
     }));
 
@@ -245,7 +228,7 @@ export default class IllustratorPageSanity {
 
   // Footer
   async validatingFooterElements(country) {
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
     const elements = [this.footerCreativeCloud, this.footerCreativeCloudForBusiness,
       this.footerdiscountForStudentsAndTeachers, this.footerappsForiOS, this.footerWhatIsExperienceCloud,
       this.footerDownloadAndInstall, this.footerAdobeBlog, this.footerLoginToYourAccount, this.footerAbout,
@@ -254,7 +237,7 @@ export default class IllustratorPageSanity {
       this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
       this.protectMyPersonalData, this.adChoices, this.privacySection];
 
-    await Promise.all(elements.map(async (element) => {
+    await Promise.allSettled(elements.map(async (element) => {
       switch (element) {
         case this.privacySection:
           if (country === 'Korea') {
