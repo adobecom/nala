@@ -17,6 +17,10 @@ export default class Sharepoint {
     this.dialogText = this.iframe.locator('#WACDialogTextPanel');
     this.navButton = this.iframe.locator('#FishBowlNavButton');
     this.pageBreaks = this.iframe.locator('span.PageBreakTextSpan');
+    this.fileButton = this.iframe.getByRole('button', { name: 'File' });
+    this.aboutButton = this.iframe.getByLabel('About');
+    this.sessionInfo = this.iframe.getByLabel('Session ID');
+    this.closeButton = this.iframe.getByLabel('Close', { exact: true });
   }
 
   /**
@@ -29,6 +33,27 @@ export default class Sharepoint {
       return dialogText;
     }
     return '';
+  }
+
+  /**
+   * Retrieves the session ID from the page.
+   * @returns {Promise<string>} The session ID.
+   */
+  async getSessionId() {
+    await expect(async () => {
+      await this.fileButton.click();
+      await this.aboutButton.click();
+      await expect(this.sessionInfo).toBeVisible({ timeout: 1000 });
+    }).toPass();
+
+    const sessionId = await this.sessionInfo.inputValue();
+
+    await expect(async () => {
+      await this.closeButton.click();
+      await expect(this.aboutButton).not.toBeVisible({ timeout: 1000 });
+    }).toPass();
+
+    return sessionId;
   }
 
   /**
