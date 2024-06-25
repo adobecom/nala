@@ -8,7 +8,7 @@ const envs = require('../envs/envs.js');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: '../tests',
+  testDir: '../tests/bacom',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 45 * 1000,
@@ -33,7 +33,8 @@ const config = {
     : [['html', {
       outputFolder: 'test-html-results',
       open: 'never',
-    }], ['list'], ['../utils/reporters/base-reporter.js']],
+    }], ['list'], ['../utils/reporters/base-reporter.js'],
+    ['json', { outputFile: '../test-json-results/test-results.json' }]],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
