@@ -147,7 +147,7 @@ test.describe('Validate news block', () => {
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[3].path}`);
-      await newsPage.firstCardTitle.waitFor({state: 'visible', timeout: 9000});
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 9000 });
       await newsPage.searchField.fill('Automation regression news card spp public no1');
       const resultAfterSearch = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterSearch.split(' ')[0], 10)).toBe(1);
@@ -155,10 +155,9 @@ test.describe('Validate news block', () => {
     await test.step('Read now', async () => {
       await newsPage.readCard.click();
       const pages = await page.context().pages();
-      // await expect(pages.length).toBe(1);
-      // await expect(pages[0].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
       await expect(pages.length).toBe(2);
-      await expect(pages[1].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
+      await expect(pages[1].url())
+        .toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
     });
   });
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
@@ -201,13 +200,11 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Read now', async () => {
-          await newsPage.readCard.click();
-          const pages = await page.context().pages();
-          // await expect(pages.length).toBe(1);
-          // await expect(pages[0].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
-          await expect(pages.length).toBe(2);
-          await expect(pages[1].url()).toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-platinum-card-no1');
-        });
-
+      await newsPage.readCard.click();
+      const pages = await page.context().pages();
+      await expect(pages.length).toBe(2);
+      await expect(pages[1].url())
+        .toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-platinum-card-no1');
+    });
   });
 });
