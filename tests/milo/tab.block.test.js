@@ -76,7 +76,7 @@ test.describe('Milo Tab block feature test suite', () => {
     });
   });
 
-  test(`Tabs scrolling with arrow buttons, ${features[2].tags}`, async ({ page, baseURL }) => {
+  test(`Tabs scrolling with arrow buttons, ${features[2].tags}`, async ({ page, baseURL, isMobile }) => {
     console.log(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
     await page.waitForLoadState('networkidle');
@@ -93,12 +93,17 @@ test.describe('Milo Tab block feature test suite', () => {
     });
 
     await test.step('select the right tab arrow to get to the last tab', async () => {
-      await expect(async () => {
+      if (isMobile) {
+        await expect(async () => {
+          await tab.rightArrow.click();
+          await expect(tab.tab9).toBeInViewport({ timeout: 1000 });
+          await expect(tab.leftArrow).toBeVisible({ timeout: 1000 });
+        }).toPass({ intervals: INTERVALS });
+      } else {
         await tab.rightArrow.click();
-        await expect(tab.tab9).toBeInViewport({ timeout: 2000 });
+        await expect(tab.tab9).toBeInViewport();
         await expect(tab.leftArrow).toBeVisible();
-      }).toPass({ intervals: INTERVALS });
-
+      }
       await tab.tab9.click();
 
       await expect(await tab.tab1.getAttribute('aria-selected')).toBe('false');
@@ -110,13 +115,17 @@ test.describe('Milo Tab block feature test suite', () => {
     });
 
     await test.step('select the left tab arrow to get back to the first tab', async () => {
-      await tab.leftArrow.click();
-
-      await expect(async () => {
+      if (isMobile) {
+        await expect(async () => {
+          await tab.leftArrow.click();
+          await expect(tab.tab1).toBeInViewport({ timeout: 1000 });
+          await expect(tab.rightArrow).toBeVisible({ timeout: 1000 });
+        }).toPass({ intervals: INTERVALS });
+      } else {
         await tab.leftArrow.click();
-        await expect(tab.tab1).toBeInViewport({ timeout: 2000 });
+        await expect(tab.tab1).toBeInViewport();
         await expect(tab.rightArrow).toBeVisible();
-      }).toPass({ intervals: INTERVALS });
+      }
 
       await tab.tab1.click();
 
