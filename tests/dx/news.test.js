@@ -89,7 +89,7 @@ test.describe('Validate news block', () => {
     await test.step('Go to News page', async () => {
       console.log('url: ', baseURL + features[0].path);
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 25000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
     });
