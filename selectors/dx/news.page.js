@@ -2,7 +2,6 @@ export default class NewsPage {
   constructor(page) {
     this.page = page;
     this.resultNumber = page.locator('.partner-cards-cards-results').nth(0);
-    this.firstCardDate = page.locator('.card-footer .card-date').nth(0);
     this.firstCardTitle = page.locator('.card-title').nth(0);
     this.lastCardTitle = page.locator('.card-title').last();
     this.searchField = page.locator('.input');
