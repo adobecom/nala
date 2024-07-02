@@ -40,9 +40,7 @@ test.describe('Validate news block', () => {
   });
 
   function getEmail(imsCredentials, partnerLevel) {
-    const parsedString = imsCredentials.split(partnerLevel);
-    const email = parsedString[1].split(';');
-    return email[0];
+    return imsCredentials.split(partnerLevel)[1].split(';')[0];
   }
 
   async function runLoginTest({
