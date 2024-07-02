@@ -43,6 +43,18 @@ test.describe('Validate news block', () => {
     return imsCredentials.split(partnerLevel)[1].split(';')[0];
   }
 
+  async function signIn(page, partnerLevel) {
+    await newsPage.IMSEmailPage.waitFor({ state: 'visible', timeout: 5000 });
+    const email = getEmail(process.env.IMS_EMAIL, partnerLevel);
+    await newsPage.emailField.fill(email);
+    await newsPage.emailPageContinueButton.click();
+    await page.waitForLoadState('domcontentloaded');
+    await newsPage.IMSPasswordPage.waitFor({ state: 'visible', timeout: 10000 });
+    await newsPage.passwordField.fill(process.env.IMS_PASS);
+    await newsPage.passwordPageContinueButton.click();
+    await page.waitForLoadState('domcontentloaded');
+  }
+
   async function runLoginTest({
     partnerLevel, resultTotal, cardPartnerLevel, cardPartnerLevelAbove, page, baseURL,
   }) {
@@ -59,15 +71,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('I load the news page', async () => {
-      await newsPage.IMSEmailPage.waitFor({ state: 'visible', timeout: 5000 });
-      const email = getEmail(process.env.IMS_EMAIL, partnerLevel);
-      await newsPage.emailField.fill(email);
-      await newsPage.emailPageContinueButton.click();
-      await page.waitForLoadState('domcontentloaded');
-      await newsPage.IMSPasswordPage.waitFor({ state: 'visible', timeout: 10000 });
-      await newsPage.passwordField.fill(process.env.IMS_PASS);
-      await newsPage.passwordPageContinueButton.click();
-      await page.waitForLoadState('domcontentloaded');
+      await signIn(page, partnerLevel);
     });
 
     await test.step('Find automation regression cards for current partner level', async () => {
@@ -275,15 +279,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('I load the news page', async () => {
-      await newsPage.IMSEmailPage.waitFor({ state: 'visible', timeout: 5000 });
-      const email = getEmail(process.env.IMS_EMAIL, 'spp-platinum:');
-      await newsPage.emailField.fill(email);
-      await newsPage.emailPageContinueButton.click();
-      await page.waitForLoadState('domcontentloaded');
-      await newsPage.IMSPasswordPage.waitFor({ state: 'visible', timeout: 10000 });
-      await newsPage.passwordField.fill(process.env.IMS_PASS);
-      await newsPage.passwordPageContinueButton.click();
-      await page.waitForLoadState('domcontentloaded');
+      await signIn(page, 'spp-platinum:');
     });
 
     await test.step('Find platinum automation regression cards', async () => {
@@ -363,15 +359,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in with non spp member', async () => {
-      await newsPage.IMSEmailPage.waitFor({ state: 'visible', timeout: 5000 });
-      const email = getEmail(process.env.IMS_EMAIL, 'tpp-platinum:');
-      await newsPage.emailField.fill(email);
-      await newsPage.emailPageContinueButton.click();
-      await page.waitForLoadState('domcontentloaded');
-      await newsPage.IMSPasswordPage.waitFor({ state: 'visible', timeout: 10000 });
-      await newsPage.passwordField.fill(process.env.IMS_PASS);
-      await newsPage.passwordPageContinueButton.click();
-      await page.waitForLoadState('domcontentloaded');
+      await signIn(page, 'tpp-platinum:');
     });
 
     await test.step(`Open ${features[10].path} in a new tab`, async () => {
