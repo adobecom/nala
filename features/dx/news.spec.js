@@ -65,7 +65,7 @@ module.exports = {
       tcid: '11',
       name: '@login-news-page-non-member-of-spp-user',
       path: '/solutionpartners/drafts/automation/regression/partner-news',
-      baseURL: 'https://stage.adobe.com/partners.html',
+      baseURL: 'https://www.stage.adobe.com/partners.html',
       tags: '@dx-news @regression @login',
     },
   ],
