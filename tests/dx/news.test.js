@@ -350,10 +350,6 @@ test.describe('Validate news block', () => {
         window.location.href = navigationUrl;
       }, url);
 
-      if (await page.waitForSelector('.dialog-close', { state: 'visible', timeout: 15000 })) {
-        await newsPage.dialogCloseButton.click();
-      }
-
       await newsPage.signInButtonStageAdobe.click();
       await page.waitForLoadState('domcontentloaded');
     });

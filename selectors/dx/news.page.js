@@ -26,7 +26,6 @@ export default class NewsPage {
     this.logoutButton = page.locator('[daa-ll="Sign Out"]');
     this.cardCount = page.locator('.card-wrapper');
     this.readCard = page.locator('.card-btn');
-    this.dialogCloseButton = page.locator('.dialog-close');
     this.signInButtonStageAdobe = page.locator('.profile-comp.secondary-button');
   }
 
