@@ -8,28 +8,28 @@ const { features } = News;
 
 const sppGold = {
   partnerLevel: 'spp-gold:',
-  resultTotal: 13,
+  resultTotal: 14,
   cardPartnerLevel: 'Automation regression news card SPP Gold no1',
   cardPartnerLevelAbove: 'Automation regression news card spp platinum no1',
 };
 
 const sppSilver = {
   partnerLevel: 'spp-silver:',
-  resultTotal: 12,
+  resultTotal: 13,
   cardPartnerLevel: 'Automation regression news card SPP Silver no1',
   cardPartnerLevelAbove: 'Automation regression news card spp gold no1',
 };
 
 const sppBronze = {
   partnerLevel: 'spp-bronze:',
-  resultTotal: 11,
+  resultTotal: 12,
   cardPartnerLevel: 'Automation regression news card SPP Bronze no1',
   cardPartnerLevelAbove: 'Automation regression news card spp silver no1',
 };
 
 const sppCommunity = {
   partnerLevel: 'spp-community:',
-  resultTotal: 10,
+  resultTotal: 11,
   cardPartnerLevel: 'Automation regression news card SPP Community no1',
   cardPartnerLevelAbove: 'Automation regression news card spp bronze no1',
 };
@@ -62,10 +62,10 @@ test.describe('Validate news block', () => {
       await page.goto(`${baseURL}${features[6].path}`);
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
       await newsPage.searchField.fill(cardPartnerLevel);
-      const resultPlatinum = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultPlatinum.split(' ')[0], 10)).toBe(0);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
       await newsPage.signInButton.click();
       await page.waitForLoadState('domcontentloaded');
     });
@@ -79,20 +79,21 @@ test.describe('Validate news block', () => {
       const resultAll = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(resultTotal);
       await newsPage.searchField.fill(cardPartnerLevel);
-      const resultForGoldCards = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultForGoldCards.split(' ')[0], 10)).toBe(1);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
       await newsPage.searchField.fill(cardPartnerLevelAbove);
-      const resultForPlatinumCards = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultForPlatinumCards.split(' ')[0], 10)).toBe(0);
+      const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
     });
   }
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
+      console.log('url: ', baseURL + features[0].path);
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 25000 });
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
     });
 
     await test.step('Enter Automation regression news card SPP Public no1 in search field', async () => {
@@ -104,7 +105,7 @@ test.describe('Validate news block', () => {
     await test.step('Clear search field on X', async () => {
       await newsPage.clearSearchSelector.click();
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
     });
 
     await test.step('Enter Automation regression news card SPP Public no2 in search field', async () => {
@@ -116,7 +117,7 @@ test.describe('Validate news block', () => {
     await test.step('Clear all', async () => {
       await newsPage.clearAllSelector.click();
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
     });
 
     await test.step('Enter This is automation in search field', async () => {
@@ -131,31 +132,31 @@ test.describe('Validate news block', () => {
       await page.goto(`${baseURL}${features[1].path}`);
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
     });
 
     await test.step('Select Oldest sort option', async () => {
       await newsPage.searchField.fill('Automation regression news card SPP');
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(8);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
       await newsPage.sortBtn.click();
       await newsPage.oldestOption.click();
       const paginationText = await newsPage.paginationText.textContent();
-      await expect(paginationText.toLowerCase()).toBe('3 of 8 results');
+      await expect(paginationText.toLowerCase()).toBe('3 of 9 results');
     });
 
     await test.step('Load more cards', async () => {
       await newsPage.loadMore.click();
       let paginationText = await newsPage.paginationText.textContent();
-      await expect(paginationText.toLowerCase()).toBe('6 of 8 results');
+      await expect(paginationText.toLowerCase()).toBe('6 of 9 results');
       await newsPage.loadMore.click();
       paginationText = await newsPage.paginationText.textContent();
-      await expect(paginationText.toLowerCase()).toBe('8 of 8 results');
+      await expect(paginationText.toLowerCase()).toBe('9 of 9 results');
       await expect(await newsPage.loadMore).not.toBeVisible();
       const firstCardDate = new Date(await newsPage.firstCardDate.textContent()).getTime();
       const lastCardDate = new Date(await newsPage.lastCardDate.textContent()).getTime();
       await expect(firstCardDate).toBeLessThan(lastCardDate);
-      await expect(await newsPage.cardCount.count()).toBe(8);
+      await expect(await newsPage.cardCount.count()).toBe(9);
     });
   });
 
@@ -164,7 +165,7 @@ test.describe('Validate news block', () => {
       await page.goto(`${baseURL}${features[2].path}`);
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 10000 });
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
     });
 
     await test.step('Test applications filter', async () => {
@@ -177,7 +178,7 @@ test.describe('Validate news block', () => {
       await expect(parseInt(resultAfterAnalyticsFilterApplied.split(' ')[0], 10)).toBe(2);
       await newsPage.clearFilter('Applications', '2');
       const resultAfterClearingApplicationsFilter = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAfterClearingApplicationsFilter.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(resultAfterClearingApplicationsFilter.split(' ')[0], 10)).toBe(10);
       await newsPage.expandFilterOptions('Applications');
     });
 
@@ -188,7 +189,7 @@ test.describe('Validate news block', () => {
       await expect(parseInt(resultAfterTechnical.split(' ')[0], 10)).toBe(1);
       await newsPage.clearSideBarFilterButton('Technical');
       const resultAfterClearingFilter = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAfterClearingFilter.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(resultAfterClearingFilter.split(' ')[0], 10)).toBe(10);
       await newsPage.expandFilterOptions('Audience');
     });
 
@@ -210,7 +211,7 @@ test.describe('Validate news block', () => {
       await expect(parseInt(resultAfterTopicFilter.split(' ')[0], 10)).toBe(1);
       await newsPage.clearAllSelector.click();
       const resultAfterClearingAllFilters = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAfterClearingAllFilters.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(resultAfterClearingAllFilters.split(' ')[0], 10)).toBe(10);
     });
   });
 
@@ -236,13 +237,13 @@ test.describe('Validate news block', () => {
       await page.goto(`${baseURL}${features[4].path}`);
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
     });
 
     await test.step('Edge cases search bar', async () => {
       await newsPage.searchField.fill('Automation regression news card SPP with a date in the past');
       const resultDateInPastCard = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultDateInPastCard.split(' ')[0], 10)).toBe(0);
+      await expect(parseInt(resultDateInPastCard.split(' ')[0], 10)).toBe(1);
       await newsPage.searchField.fill('Automation regression news card SPP Public never expires');
       const resultNeverExpiresCard = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultNeverExpiresCard.split(' ')[0], 10)).toBe(1);
@@ -269,7 +270,7 @@ test.describe('Validate news block', () => {
       await page.goto(`${baseURL}${features[5].path}`);
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 10000 });
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(10);
       await newsPage.searchField.fill('Automation regression news card spp platinum no1');
       const resultPlatinum = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultPlatinum.split(' ')[0], 10)).toBe(0);
@@ -284,7 +285,7 @@ test.describe('Validate news block', () => {
     await test.step('Find platinum automation regression cards', async () => {
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const resultAll = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(14);
+      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(15);
       await newsPage.searchField.fill('Automation regression news card spp platinum no1');
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBe(1);
@@ -363,7 +364,7 @@ test.describe('Validate news block', () => {
       const newTabPage = new NewsPage(newTab);
       await newTabPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const resultCards = await newTabPage.resultNumber.textContent();
-      await expect(parseInt(resultCards.split(' ')[0], 10)).toBe(9);
+      await expect(parseInt(resultCards.split(' ')[0], 10)).toBe(10);
     });
   });
 });
