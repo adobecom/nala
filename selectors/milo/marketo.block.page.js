@@ -5,13 +5,7 @@ const LAST_NAME = 'lastNameTest';
 const PHONE = '415-123-4567';
 const EMAIL = 'test+nosub@adobetest.com';
 const COMPANY = 'Adobe';
-const COUNTRY = 'United States';
-const STATE = 'California';
 const POSTAL_CODE = '94111';
-const JOB_TITLE = 'Other';
-const PRIMARY_PRODUCT_INTEREST = 'Digital marketing';
-const FUNCTIONAL_AREA = 'Other';
-const COMPANY_TYPE = 'Other';
 
 export default class Marketo {
   constructor(page) {
@@ -38,118 +32,15 @@ export default class Marketo {
     this.submitButton = this.marketo.locator('#mktoButton_new');
   }
 
-  /**
-   * @description Checks that the form fields display.
-   * Checking the fields that all form IDs have.
-   */
-  async checkFieldsDisplays() {
-    await expect(this.country).toBeVisible({ timeout: 10000 });
-    await expect(this.firstName).toBeVisible();
-    await expect(this.lastName).toBeVisible();
-    await expect(this.email).toBeVisible();
-    await expect(this.company).toBeVisible();
-    await expect(this.submitButton).toBeVisible();
-  }
+  async submitFullTemplateForm(poi) {
+    await this.country.selectOption({ index: 1 });
+    await this.functionalArea.selectOption({ index: 1 });
+    await this.jobTitle.selectOption({ index: 1 });
 
-  /**
-   * @description Form ID: MCZ Production (2277)
-   */
-  async submitProductionForm() {
-    await this.country.selectOption(COUNTRY);
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.jobTitle.selectOption(JOB_TITLE);
-    await this.primaryProductInterest.selectOption(PRIMARY_PRODUCT_INTEREST);
-    await this.state.selectOption(STATE);
-    await this.firstName.fill(FIRST_NAME);
-    await this.lastName.fill(LAST_NAME);
-    await this.email.fill(EMAIL);
-    await this.phone.fill(PHONE);
-    await this.company.fill(COMPANY);
-    await this.postalCode.fill(POSTAL_CODE);
-    await this.submitButton.click();
-  }
+    // Setting index 2 to test so that the 'Company Type' field doesn't display
+    await this.primaryProductInterest.selectOption(poi !== undefined ? poi : { index: 2 });
 
-  async submitRFITemplateForm() {
-    await this.country.selectOption(COUNTRY);
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.jobTitle.selectOption(JOB_TITLE);
-    await this.primaryProductInterest.selectOption(PRIMARY_PRODUCT_INTEREST);
-    await this.state.selectOption(STATE);
-    await this.company.fill(COMPANY);
-    await this.firstName.fill(FIRST_NAME);
-    await this.lastName.fill(LAST_NAME);
-    await this.email.fill(EMAIL);
-    await this.phone.fill(PHONE);
-    await this.postalCode.fill(POSTAL_CODE);
-    await this.submitButton.click();
-  }
-
-  async submitDiscoverTemplateForm() {
-    await this.country.selectOption(COUNTRY);
-    await this.email.fill(EMAIL);
-    await this.company.fill(COMPANY);
-    await this.submitButton.click();
-  }
-
-  async submitExploreTemplateForm() {
-    await this.country.selectOption(COUNTRY);
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.jobTitle.selectOption(JOB_TITLE);
-    await this.firstName.fill(FIRST_NAME);
-    await this.lastName.fill(LAST_NAME);
-    await this.email.fill(EMAIL);
-    await this.company.fill(COMPANY);
-    await this.submitButton.click();
-  }
-
-  async submitEvaluateTemplateForm() {
-    await this.country.selectOption(COUNTRY);
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.jobTitle.selectOption(JOB_TITLE);
-    await this.state.selectOption(STATE);
-    await this.firstName.fill(FIRST_NAME);
-    await this.lastName.fill(LAST_NAME);
-    await this.email.fill(EMAIL);
-    await this.company.fill(COMPANY);
-    await this.phone.fill(PHONE);
-    await this.postalCode.fill(POSTAL_CODE);
-    await this.submitButton.click();
-  }
-
-  async submitWebinarTemplateForm() {
-    await this.country.selectOption(COUNTRY);
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.jobTitle.selectOption(JOB_TITLE);
-    await this.state.selectOption(STATE);
-    await this.firstName.fill(FIRST_NAME);
-    await this.lastName.fill(LAST_NAME);
-    await this.email.fill(EMAIL);
-    await this.phone.fill(PHONE);
-    await this.company.fill(COMPANY);
-    await this.postalCode.fill(POSTAL_CODE);
-    await this.submitButton.click();
-  }
-
-  async submitTrialTemplateForm() {
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.country.selectOption(COUNTRY);
-    await this.jobTitle.selectOption(JOB_TITLE);
-    await this.state.selectOption(STATE);
-    await this.firstName.fill(FIRST_NAME);
-    await this.lastName.fill(LAST_NAME);
-    await this.email.fill(EMAIL);
-    await this.phone.fill(PHONE);
-    await this.company.fill(COMPANY);
-    await this.postalCode.fill(POSTAL_CODE);
-    await this.submitButton.click();
-  }
-
-  async submitFullTemplateForm(poi = PRIMARY_PRODUCT_INTEREST) {
-    await this.country.selectOption(COUNTRY);
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.jobTitle.selectOption(JOB_TITLE);
-    await this.primaryProductInterest.selectOption(poi);
-    await this.state.selectOption(STATE);
+    await this.state.selectOption({ index: 1 });
     await this.company.fill(COMPANY);
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
@@ -161,9 +52,9 @@ export default class Marketo {
   }
 
   async submitExpandedTemplateForm() {
-    await this.country.selectOption(COUNTRY);
-    await this.functionalArea.selectOption(FUNCTIONAL_AREA);
-    await this.jobTitle.selectOption(JOB_TITLE);
+    await this.country.selectOption({ index: 1 });
+    await this.functionalArea.selectOption({ index: 1 });
+    await this.jobTitle.selectOption({ index: 1 });
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
@@ -173,7 +64,7 @@ export default class Marketo {
   }
 
   async submitEssentialTemplateForm() {
-    await this.country.selectOption(COUNTRY);
+    await this.country.selectOption({ index: 1 });
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
@@ -194,7 +85,7 @@ export default class Marketo {
     const expectedPOI = ['Commerce', 'ADOBEADVERTISINGCLOUD'];
 
     if (expectedPOI.includes(await this.getPOI())) {
-      this.companyType.selectOption(COMPANY_TYPE);
+      this.companyType.selectOption({ index: 1 });
     }
   }
 
