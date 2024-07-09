@@ -4,8 +4,8 @@ module.exports = {
     {
       tcid: '0',
       name: '@BACOM-Stats',
-      path: '/customer-success-stories/adobe-content-hub-case-study',
-      tags: '@stats @bacom @smoke @regression',
+      path: '/drafts/nala/blocks/stats/stats',
+      tags: '@stats @bacom @smoke @regression @bacomSmoke',
     },
   ],
 };

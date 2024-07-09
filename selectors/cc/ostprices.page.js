@@ -9,13 +9,15 @@ export default class ostprices {
     this.licenseCommitment = page.locator('.price-recurrence');
     this.numberofLicenses = page.locator('.price-unit-type');
 
-    this.emailBuynowCta = page.locator('a.con-button[data-checkout-workflow-step="email"]').nth(0);
+    // this.emailBuynowCta = page.locator('a.con-button[data-checkout-workflow-step="email"]').nth(0);
+    this.emailBuynowCta = page.locator('.con-button.placeholder-resolved').nth(0);
     this.emailBuynowCta2 = page.locator('a.con-button[data-checkout-workflow-step="email"]').nth(1);
-    this.segmentationBuynowCta = page.locator('a[data-checkout-workflow-step="segmentation"]');
-    this.bundleBuynowCta = page.locator('a[data-checkout-workflow-step="bundle"]');
+    this.segmentationBuynowCta = page.locator('.con-button.placeholder-resolved');
 
+    // this.bundleBuynowCta = page.locator('a[data-checkout-workflow-step="bundle"]');
+    this.bundleBuynowCta = page.locator('.con-button.placeholder-resolved');
     this.price = page.locator('//span[@class="price"]');
-    this.jpProductPrice = page.locator('//span[@aria-label="10,280 &#20870; 毎月 ライセンスごと"]');
+    this.jpProductPrice = page.locator('//span[@aria-label="12,380 &#20870; 毎月 ライセンスごと"]');
     this.jpCurrencySymbol = page.locator('.price-currency-symbol');
 
     // cc all apps price with segment CTA checkout
@@ -30,8 +32,8 @@ export default class ostprices {
     this.psLicenseCommitment = page.locator('.price-recurrence').last();
     this.psNumberOfLicenses = page.locator('.price-unit-type').last();
 
-    this.cc_pricemonth_jp = page.locator('//span[@aria-label="5,891 &#20870; 毎月 ライセンスごと"]');
-    this.ps_priceyear_jp = page.locator('//span[@aria-label="28,776 &#20870; 毎年 ライセンスごと"]');
+    this.cc_pricemonth_jp = page.locator('//span[@aria-label="7,073 &#20870; 毎月 ライセンスごと"]');
+    this.ps_priceyear_jp = page.locator('//span[@aria-label="34,680 &#20870; 毎年 ライセンスごと"]');
 
     // Student teacher edition price checks
     this.SteProductName = page.locator('h2#adobe-light-room');
@@ -44,7 +46,7 @@ export default class ostprices {
     this.priceLabelActual = page.locator('//p[contains(text(),"Actual price : ")]');
     this.strikeThroughProperty = page.locator('//span[@data-template="priceStrikethrough"]');
     this.strikeThroughPrice = page.locator('//span[@aria-label="US$89.99 per month per license"]').first();
-    this.strikeThroughPriceJp1 = page.locator('//span[@aria-label="9,346 &#20870; 毎月 ライセンスごと"]').first();
+    this.strikeThroughPriceJp1 = page.locator('//span[@aria-label="通常価格 : 11,255 &#20870; 毎月 ライセンスごと"]');
     this.priceLabelNow = page.locator('//p[contains(text(),"Now its: ")]');
     this.purchaseCTAbandle = page.locator('//a[@daa-ll="choose a plan-1|Actual price"]');
 
@@ -56,5 +58,5 @@ export default class ostprices {
     this.individualPsPriceYear = page.locator('//span[@aria-label="US$263.88 per year per license"]');
     this.individualPsPriceMonthJP = page.locator('.price').nth(0);
     this.individualPsPriceYearJP = page.locator('.price').nth(1);
+  }
 }
-};

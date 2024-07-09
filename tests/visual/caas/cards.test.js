@@ -1,25 +1,36 @@
 /* eslint-disable import/named */
 import { test } from '@playwright/test';
 import { features } from '../../../features/visual/caas/cards.spec.js';
-import { takeTwoAndCompare } from '../../../libs/visualutil.js';
+import { takeTwo } from '../../../libs/screenshot/take.js';
+import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
+
+const envs = require('../../../envs/envs.js');
 
 const folderPath = 'screenshots/caas';
+const results = {};
 
 test.describe('Milo Caas block visual comparison test suite', () => {
   // eslint-disable-next-line no-restricted-syntax
   for (const feature of features) {
     // eslint-disable-next-line no-loop-func
-    test(`${feature.name},${feature.tags}`, async ({ page, baseURL }, testInfo) => {
-      const result = await takeTwoAndCompare(
+    test(`${feature.name},${feature.tags}`, async ({ page }, testInfo) => {
+      const name = `${feature.name}-${testInfo.project.name}`;
+      const stableURL = `${envs[feature.stable]}${feature.path}`;
+      console.info(stableURL);
+      const betaURL = `${envs[feature.beta]}${feature.path}`;
+      console.info(betaURL);
+      const result = await takeTwo(
         page,
-        baseURL + feature.stable,
+        stableURL,
         async () => { await page.waitForTimeout(3000); },
-        baseURL + feature.beta,
+        betaURL,
         async () => { await page.waitForTimeout(3000); },
         folderPath,
-        `${feature.name}-${testInfo.project.name}`,
+        name,
       );
-      console.log(result);
+      results[name] = [result];
+
+      writeResultsToFile(folderPath, testInfo, results);
     });
   }
 });

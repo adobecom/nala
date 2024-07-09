@@ -126,6 +126,7 @@ screenshots/*
 axe-reports
 /test-results/
 /test-html-results/
+/test-json-results/
 /playwright-report/
 /playwright/.cache/
 Test.pptx
