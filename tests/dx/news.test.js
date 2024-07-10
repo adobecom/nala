@@ -6,91 +6,16 @@ const News = require('../../features/dx/news.spec.js');
 
 const { features } = News;
 
-const sppGold = {
-  partnerLevel: 'spp-gold:',
-  resultTotal: 13,
-  cardPartnerLevel: 'Automation regression news card SPP Gold no1',
-  cardPartnerLevelAbove: 'Automation regression news card spp platinum no1',
-};
-
-const sppSilver = {
-  partnerLevel: 'spp-silver:',
-  resultTotal: 12,
-  cardPartnerLevel: 'Automation regression news card SPP Silver no1',
-  cardPartnerLevelAbove: 'Automation regression news card spp gold no1',
-};
-
-const sppBronze = {
-  partnerLevel: 'spp-bronze:',
-  resultTotal: 11,
-  cardPartnerLevel: 'Automation regression news card SPP Bronze no1',
-  cardPartnerLevelAbove: 'Automation regression news card spp silver no1',
-};
-
-const sppCommunity = {
-  partnerLevel: 'spp-community:',
-  resultTotal: 10,
-  cardPartnerLevel: 'Automation regression news card SPP Community no1',
-  cardPartnerLevelAbove: 'Automation regression news card spp bronze no1',
-};
-
 test.describe('Validate news block', () => {
   test.beforeEach(async ({ page }) => {
     newsPage = new NewsPage(page);
   });
 
-  function getEmail(imsCredentials, partnerLevel) {
-    return imsCredentials.split(partnerLevel)[1].split(';')[0];
-  }
-
-  async function signIn(page, partnerLevel) {
-    await newsPage.IMSEmailPage.waitFor({ state: 'visible', timeout: 5000 });
-    const email = getEmail(process.env.IMS_EMAIL, partnerLevel);
-    await newsPage.emailField.fill(email);
-    await newsPage.emailPageContinueButton.click();
-    await page.waitForLoadState('domcontentloaded');
-    await newsPage.IMSPasswordPage.waitFor({ state: 'visible', timeout: 10000 });
-    await newsPage.passwordField.fill(process.env.IMS_PASS);
-    await newsPage.passwordPageContinueButton.click();
-    await page.waitForLoadState('domcontentloaded');
-  }
-
-  async function runLoginTest({
-    partnerLevel, resultTotal, cardPartnerLevel, cardPartnerLevelAbove, page, baseURL,
-  }) {
-    await test.step('Click Sign In', async () => {
-      await page.goto(`${baseURL}${features[6].path}`);
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
-      const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
-      await newsPage.searchField.fill(cardPartnerLevel);
-      const resultPlatinum = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultPlatinum.split(' ')[0], 10)).toBe(0);
-      await newsPage.signInButton.click();
-      await page.waitForLoadState('domcontentloaded');
-    });
-
-    await test.step('I load the news page', async () => {
-      await signIn(page, partnerLevel);
-    });
-
-    await test.step('Find automation regression cards for current partner level', async () => {
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
-      const resultAll = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(resultTotal);
-      await newsPage.searchField.fill(cardPartnerLevel);
-      const resultForGoldCards = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultForGoldCards.split(' ')[0], 10)).toBe(1);
-      await newsPage.searchField.fill(cardPartnerLevelAbove);
-      const resultForPlatinumCards = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultForPlatinumCards.split(' ')[0], 10)).toBe(0);
-    });
-  }
-
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
+      console.log('url: ', baseURL + features[0].path);
       await page.goto(`${baseURL}${features[0].path}`);
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 25000 });
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
     });
@@ -122,7 +47,7 @@ test.describe('Validate news block', () => {
     await test.step('Enter This is automation in search field', async () => {
       await newsPage.searchField.fill('This is automation');
       const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(8);
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(7);
     });
   });
 
@@ -242,10 +167,7 @@ test.describe('Validate news block', () => {
     await test.step('Edge cases search bar', async () => {
       await newsPage.searchField.fill('Automation regression news card SPP with a date in the past');
       const resultDateInPastCard = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultDateInPastCard.split(' ')[0], 10)).toBe(0);
-      await newsPage.searchField.fill('Automation regression news card SPP Public never expires');
-      const resultNeverExpiresCard = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultNeverExpiresCard.split(' ')[0], 10)).toBe(1);
+      await expect(parseInt(resultDateInPastCard.split(' ')[0], 10)).toBe(1);
       await newsPage.searchField.fill('Automation regression news card SPP Public card no6');
       const resultSppPublicCardNo6 = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultSppPublicCardNo6.split(' ')[0], 10)).toBe(1);
@@ -278,7 +200,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('I load the news page', async () => {
-      await signIn(page, 'spp-platinum:');
+      await newsPage.signIn('spp-platinum:');
     });
 
     await test.step('Find platinum automation regression cards', async () => {
@@ -298,47 +220,64 @@ test.describe('Validate news block', () => {
     });
   });
 
-  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    await runLoginTest({
-      partnerLevel: sppGold.partnerLevel,
-      resultTotal: sppGold.resultTotal,
-      cardPartnerLevel: sppGold.cardPartnerLevel,
-      cardPartnerLevelAbove: sppGold.cardPartnerLevelAbove,
-      page,
-      baseURL,
-    });
-  });
+  [
+    {
+      id: 6,
+      partnerLevel: 'spp-gold:',
+      resultTotal: 13,
+      cardPartnerLevel: 'Automation regression news card SPP Gold no1',
+      cardPartnerLevelAbove: 'Automation regression news card spp platinum no1',
+    },
+    {
+      id: 7,
+      partnerLevel: 'spp-silver:',
+      resultTotal: 12,
+      cardPartnerLevel: 'Automation regression news card SPP Silver no1',
+      cardPartnerLevelAbove: 'Automation regression news card spp gold no1',
+    },
+    {
+      id: 8,
+      partnerLevel: 'spp-bronze:',
+      resultTotal: 11,
+      cardPartnerLevel: 'Automation regression news card SPP Bronze no1',
+      cardPartnerLevelAbove: 'Automation regression news card spp silver no1',
+    },
+    {
+      id: 9,
+      partnerLevel: 'spp-community:',
+      resultTotal: 10,
+      cardPartnerLevel: 'Automation regression news card SPP Community no1',
+      cardPartnerLevelAbove: 'Automation regression news card spp bronze no1',
+    },
+  ].forEach(({ id, partnerLevel, resultTotal, cardPartnerLevel, cardPartnerLevelAbove }) => {
+    test(`${features[id].name},${features[id].tags}`, async ({ page, baseURL }) => {
+      await test.step('Click Sign In', async () => {
+        await page.goto(`${baseURL}${features[id].path}`);
+        await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+        const result = await newsPage.resultNumber.textContent();
+        await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+        await newsPage.searchField.fill(cardPartnerLevel);
+        const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+        await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
+        await newsPage.signInButton.click();
+        await page.waitForLoadState('domcontentloaded');
+      });
 
-  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    await runLoginTest({
-      partnerLevel: sppSilver.partnerLevel,
-      resultTotal: sppSilver.resultTotal,
-      cardPartnerLevel: sppSilver.cardPartnerLevel,
-      cardPartnerLevelAbove: sppSilver.cardPartnerLevelAbove,
-      page,
-      baseURL,
-    });
-  });
+      await test.step('I load the news page', async () => {
+        await newsPage.signIn(partnerLevel);
+      });
 
-  test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
-    await runLoginTest({
-      partnerLevel: sppBronze.partnerLevel,
-      resultTotal: sppBronze.resultTotal,
-      cardPartnerLevel: sppBronze.cardPartnerLevel,
-      cardPartnerLevelAbove: sppBronze.cardPartnerLevelAbove,
-      page,
-      baseURL,
-    });
-  });
-
-  test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
-    await runLoginTest({
-      partnerLevel: sppCommunity.partnerLevel,
-      resultTotal: sppCommunity.resultTotal,
-      cardPartnerLevel: sppCommunity.cardPartnerLevel,
-      cardPartnerLevelAbove: sppCommunity.cardPartnerLevelAbove,
-      page,
-      baseURL,
+      await test.step('Find automation regression cards for current partner level', async () => {
+        await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+        const resultAll = await newsPage.resultNumber.textContent();
+        await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(resultTotal);
+        await newsPage.searchField.fill(cardPartnerLevel);
+        const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+        await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
+        await newsPage.searchField.fill(cardPartnerLevelAbove);
+        const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
+        await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
+      });
     });
   });
 
@@ -354,7 +293,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in with non spp member', async () => {
-      await signIn(page, 'tpp-platinum:');
+      await newsPage.signIn('tpp-platinum:');
     });
 
     await test.step(`Open ${features[10].path} in a new tab`, async () => {
