@@ -1,22 +1,22 @@
-import { test, beforeEach, afterEach, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { features } from '../../features/feds/prodSanity/mobileTesting/mobilehomePageSanity.spec.js';
 import HomePageSanity from '../../selectors/feds/feds.homepagesanity.page.js';
 
 test.describe('Test Suite for Home Page on Android & iOS & iPad Devices', () => {
   let home;
 
-  beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     home = new HomePageSanity(page);
   });
 
-  afterEach(async ({ page }) => {
+  test.afterEach(async ({ page }) => {
     await page.close();
   });
   features.forEach((props) => {
     test(`${props.name}, ${props.tags}, ${props.country}`, async ({ page, baseURL }) => {
-      console.info(`[FEDSInfo] Checking Page: ${props.country} = ${baseURL}${features[props.tcid].path}`);
+      console.info(`[FEDSInfo] Checking Page: ${props.country} = ${baseURL}${props.path}`);
 
-      const pageURL = `${baseURL}${features[props.tcid].path}`;
+      const pageURL = `${baseURL}${props.path}`;
       await page.goto(pageURL, { waitUntil: 'networkidle' });
       await expect(page).toHaveURL(pageURL);
 
