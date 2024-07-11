@@ -2,16 +2,16 @@ import { test } from '@playwright/test';
 import fs from 'fs';
 import Sharepoint from '../../selectors/bacom-blog/sharepoint.page.js';
 
-const sharepointBacomBlogDrafts = 'https://adobe.sharepoint.com/sites/BizWeb/Shared%20Documents/Forms/AllItems.aspx';
-const bacomBlogAdminUrl = 'https://admin.hlx.page/status/adobecom/bacom-blog/main';
-const data = JSON.parse(fs.readFileSync('./data/bacom-blog/stagedBlogUrls.json', 'utf8'));
+const sharepointBacomDrafts = 'https://adobe.sharepoint.com/sites/adobecom/Shared%20Documents/Forms/AllItems.aspx';
+const bacomAdminUrl = 'https://admin.hlx.page/status/adobecom/bacom/main';
+const data = JSON.parse(fs.readFileSync('./data/bacom/stagedBacomUrls.json', 'utf8'));
 const testPages = Object.keys(data).map((key) => data[key][1]);
 
 let page;
 let context;
 let sharepoint;
 
-const authFile = 'tests/bacom-blog/.auth/user.json';
+const authFile = 'tests/bacom/.auth/user.json';
 
 test.describe('Sharepoint editing', { tag: '@sp, @nopr' }, async () => {
   test.beforeAll(async ({ browser }) => {
@@ -22,8 +22,12 @@ test.describe('Sharepoint editing', { tag: '@sp, @nopr' }, async () => {
 
     // TODO: Automated okta login
     // For now, we need to sign into okta manually
-    await page.goto(sharepointBacomBlogDrafts);
-    await page.waitForURL(sharepointBacomBlogDrafts, { timeout: 1000 * 60 * 2 });
+    await page.goto(sharepointBacomDrafts);
+    await page.waitForURL(sharepointBacomDrafts, { timeout: 1000 * 60 * 2 });
+
+    // For now, we need to sign into sidekick manually
+    await page.goto('https://admin.hlx.page/login/adobecom/bacom/main');
+    await page.waitForURL('https://admin.hlx.page/profile/adobecom/bacom/main', { timeout: 1000 * 60 * 2 });
 
     await context.storageState({ path: authFile });
   });
@@ -39,10 +43,12 @@ test.describe('Sharepoint editing', { tag: '@sp, @nopr' }, async () => {
 
       await test.step('1. Go to the docx.', async () => {
         const { pathname } = new URL(url);
-        const adminPage = `${bacomBlogAdminUrl}${pathname}?editUrl=auto`;
-        const response = await page.evaluate(async (api) => fetch(api)
-          .then((req) => (req.ok ? req.json() : Promise.reject(req))), adminPage);
-        const docxUrl = response?.edit.url;
+        const adminPage = `${bacomAdminUrl}${pathname}?editUrl=auto`;
+        console.log(adminPage);
+        await page.goto(adminPage);
+        await page.waitForLoadState('domcontentloaded');
+        const adminPageContent = await page.locator('pre').textContent();
+        const docxUrl = JSON.parse(adminPageContent).edit.url;
 
         annotations.push({ type: 'Test Page', description: url });
         annotations.push({ type: 'Admin Page', description: adminPage });
