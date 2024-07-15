@@ -42,24 +42,48 @@ module.exports = {
       name: '@login-news-page-gold-user',
       path: '/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
+      data: {
+        partnerLevel: 'spp-gold:',
+        resultTotal: 13,
+        cardPartnerLevel: 'Automation regression news card SPP Gold no1',
+        cardPartnerLevelAbove: 'Automation regression news card spp platinum no1',
+      },
     },
     {
       tcid: '8',
       name: '@login-news-page-silver-user',
       path: '/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
+      data: {
+        partnerLevel: 'spp-silver:',
+        resultTotal: 12,
+        cardPartnerLevel: 'Automation regression news card SPP Silver no1',
+        cardPartnerLevelAbove: 'Automation regression news card spp gold no1',
+      },
     },
     {
       tcid: '9',
       name: '@login-news-page-bronze-user',
       path: '/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
+      data: {
+        partnerLevel: 'spp-bronze:',
+        resultTotal: 11,
+        cardPartnerLevel: 'Automation regression news card SPP Bronze no1',
+        cardPartnerLevelAbove: 'Automation regression news card spp silver no1',
+      },
     },
     {
       tcid: '10',
       name: '@login-news-page-community-user',
       path: '/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
+      data: {
+        partnerLevel: 'spp-community:',
+        resultTotal: 10,
+        cardPartnerLevel: 'Automation regression news card SPP Community no1',
+        cardPartnerLevelAbove: 'Automation regression news card spp bronze no1',
+      },
     },
     {
       tcid: '11',
