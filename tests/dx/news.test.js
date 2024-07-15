@@ -11,6 +11,36 @@ test.describe('Validate news block', () => {
     newsPage = new NewsPage(page);
   });
 
+  async function findCardsForPartnerLevel(page, path, cardPartnerLevel, partnerLevel, resultTotal, cardLevelAbove) {
+    await test.step('Click Sign In', async () => {
+      await page.goto(path);
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const result = await newsPage.resultNumber.textContent();
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await newsPage.searchField.fill(cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
+      await newsPage.signInButton.click();
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('I load the news page', async () => {
+      await newsPage.signIn(partnerLevel);
+    });
+
+    await test.step('Find automation regression cards for current partner level', async () => {
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const resultAll = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(resultTotal);
+      await newsPage.searchField.fill(cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
+      await newsPage.searchField.fill(cardLevelAbove);
+      const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
+    });
+  }
+
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       console.log('url: ', baseURL + features[0].path);
@@ -220,57 +250,54 @@ test.describe('Validate news block', () => {
   });
 
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    const path = baseURL+features[6].path;
-    await findCardsForPartnerLevel(page, path, features[6].data.cardPartnerLevel, features[6].data.partnerLevel,features[6].data.resultTotal,features[6].data.cardPartnerLevelAbove);
+    const path = baseURL + features[6].path;
+    await findCardsForPartnerLevel(
+      page,
+      path,
+      features[6].data.cardPartnerLevel,
+      features[6].data.partnerLevel,
+      features[6].data.resultTotal,
+      features[6].data.cardLevelAbove,
+    );
   });
 
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    const path = baseURL+features[7].path;
-    await findCardsForPartnerLevel(page, path, features[7].data.cardPartnerLevel, features[7].data.partnerLevel,features[7].data.resultTotal,features[7].data.cardPartnerLevelAbove);
+    const path = baseURL + features[7].path;
+    await findCardsForPartnerLevel(
+      page,
+      path,
+      features[7].data.cardPartnerLevel,
+      features[7].data.partnerLevel,
+      features[7].data.resultTotal,
+      features[7].data.cardLevelAbove,
+    );
   });
 
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
-    const path = baseURL+features[8].path;
-    await findCardsForPartnerLevel(page, path, features[8].data.cardPartnerLevel, features[8].data.partnerLevel, features[8].data.resultTotal, features[8].data.cardPartnerLevelAbove);
+    const path = baseURL + features[8].path;
+    await findCardsForPartnerLevel(
+      page,
+      path,
+      features[8].data.cardPartnerLevel,
+      features[8].data.partnerLevel,
+      features[8].data.resultTotal,
+      features[8].data.cardLevelAbove,
+    );
   });
 
   test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
     await test.step('Click Sign In', async () => {
-      const path = baseURL+features[9].path;
-      await findCardsForPartnerLevel(page, path, features[9].data.cardPartnerLevel, features[9].data.partnerLevel,features[9].data.resultTotal,features[9].data.cardPartnerLevelAbove);
+      const path = baseURL + features[9].path;
+      await findCardsForPartnerLevel(
+        page,
+        path,
+        features[9].data.cardPartnerLevel,
+        features[9].data.partnerLevel,
+        features[9].data.resultTotal,
+        features[9].data.cardLevelAbove,
+      );
     });
   });
-
-  async function findCardsForPartnerLevel(page, path, cardPartnerLevel, partnerLevel, resultTotal, cardPartnerLevelAbove) {
-    await test.step('Click Sign In', async () => {
-      await page.goto(path);
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
-      const result = await newsPage.resultNumber.textContent();
-      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
-      await newsPage.searchField.fill(cardPartnerLevel);
-      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
-      await newsPage.signInButton.click();
-      await page.waitForLoadState('domcontentloaded');
-    });
-
-    await test.step('I load the news page', async () => {
-      await newsPage.signIn(partnerLevel);
-    });
-
-    await test.step('Find automation regression cards for current partner level', async () => {
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
-      const resultAll = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(resultTotal);
-      await newsPage.searchField.fill(cardPartnerLevel);
-      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
-      await newsPage.searchField.fill(cardPartnerLevelAbove);
-      const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
-      await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
-    });
-
-  }
 
   test(`${features[10].name},${features[10].tags}`, async ({ page, context, baseURL }) => {
     await test.step('Go to stage.adobe.com', async () => {

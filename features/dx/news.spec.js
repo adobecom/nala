@@ -46,7 +46,7 @@ module.exports = {
         partnerLevel: 'spp-gold:',
         resultTotal: 13,
         cardPartnerLevel: 'Automation regression news card SPP Gold no1',
-        cardPartnerLevelAbove: 'Automation regression news card spp platinum no1',
+        cardLevelAbove: 'Automation regression news card spp platinum no1',
       },
     },
     {
@@ -58,7 +58,7 @@ module.exports = {
         partnerLevel: 'spp-silver:',
         resultTotal: 12,
         cardPartnerLevel: 'Automation regression news card SPP Silver no1',
-        cardPartnerLevelAbove: 'Automation regression news card spp gold no1',
+        cardLevelAbove: 'Automation regression news card spp gold no1',
       },
     },
     {
@@ -70,7 +70,7 @@ module.exports = {
         partnerLevel: 'spp-bronze:',
         resultTotal: 11,
         cardPartnerLevel: 'Automation regression news card SPP Bronze no1',
-        cardPartnerLevelAbove: 'Automation regression news card spp silver no1',
+        cardLevelAbove: 'Automation regression news card spp silver no1',
       },
     },
     {
@@ -82,7 +82,7 @@ module.exports = {
         partnerLevel: 'spp-community:',
         resultTotal: 10,
         cardPartnerLevel: 'Automation regression news card SPP Community no1',
-        cardPartnerLevelAbove: 'Automation regression news card spp bronze no1',
+        cardLevelAbove: 'Automation regression news card spp bronze no1',
       },
     },
     {
