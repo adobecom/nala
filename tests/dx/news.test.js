@@ -142,7 +142,6 @@ test.describe('Validate news block', () => {
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[3].path}`);
-      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 10000 });
       await newsPage.searchField.fill('Automation regression news card SPP Public no1');
       const resultAfterSearch = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterSearch.split(' ')[0], 10)).toBe(1);
@@ -220,64 +219,123 @@ test.describe('Validate news block', () => {
     });
   });
 
-  [
-    {
-      id: 6,
-      partnerLevel: 'spp-gold:',
-      resultTotal: 13,
-      cardPartnerLevel: 'Automation regression news card SPP Gold no1',
-      cardPartnerLevelAbove: 'Automation regression news card spp platinum no1',
-    },
-    {
-      id: 7,
-      partnerLevel: 'spp-silver:',
-      resultTotal: 12,
-      cardPartnerLevel: 'Automation regression news card SPP Silver no1',
-      cardPartnerLevelAbove: 'Automation regression news card spp gold no1',
-    },
-    {
-      id: 8,
-      partnerLevel: 'spp-bronze:',
-      resultTotal: 11,
-      cardPartnerLevel: 'Automation regression news card SPP Bronze no1',
-      cardPartnerLevelAbove: 'Automation regression news card spp silver no1',
-    },
-    {
-      id: 9,
-      partnerLevel: 'spp-community:',
-      resultTotal: 10,
-      cardPartnerLevel: 'Automation regression news card SPP Community no1',
-      cardPartnerLevelAbove: 'Automation regression news card spp bronze no1',
-    },
-  ].forEach(({ id, partnerLevel, resultTotal, cardPartnerLevel, cardPartnerLevelAbove }) => {
-    test(`${features[id].name},${features[id].tags}`, async ({ page, baseURL }) => {
-      await test.step('Click Sign In', async () => {
-        await page.goto(`${baseURL}${features[id].path}`);
-        await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
-        const result = await newsPage.resultNumber.textContent();
-        await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
-        await newsPage.searchField.fill(cardPartnerLevel);
-        const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
-        await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
-        await newsPage.signInButton.click();
-        await page.waitForLoadState('domcontentloaded');
-      });
+  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
+    await test.step('Click Sign In', async () => {
+      await page.goto(`${baseURL}${features[6].path}`);
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const result = await newsPage.resultNumber.textContent();
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await newsPage.searchField.fill(features[6].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
+      await newsPage.signInButton.click();
+      await page.waitForLoadState('domcontentloaded');
+    });
 
-      await test.step('I load the news page', async () => {
-        await newsPage.signIn(partnerLevel);
-      });
+    await test.step('I load the news page', async () => {
+      await newsPage.signIn(features[6].data.partnerLevel);
+    });
 
-      await test.step('Find automation regression cards for current partner level', async () => {
-        await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
-        const resultAll = await newsPage.resultNumber.textContent();
-        await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(resultTotal);
-        await newsPage.searchField.fill(cardPartnerLevel);
-        const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
-        await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
-        await newsPage.searchField.fill(cardPartnerLevelAbove);
-        const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
-        await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
-      });
+    await test.step('Find automation regression cards for current partner level', async () => {
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const resultAll = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(features[6].data.resultTotal);
+      await newsPage.searchField.fill(features[6].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
+      await newsPage.searchField.fill(features[6].data.cardPartnerLevelAbove);
+      const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
+    });
+  });
+
+  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
+    await test.step('Click Sign In', async () => {
+      await page.goto(`${baseURL}${features[7].path}`);
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const result = await newsPage.resultNumber.textContent();
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await newsPage.searchField.fill(features[7].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
+      await newsPage.signInButton.click();
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('I load the news page', async () => {
+      await newsPage.signIn(features[7].data.partnerLevel);
+    });
+
+    await test.step('Find automation regression cards for current partner level', async () => {
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const resultAll = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(features[7].data.resultTotal);
+      await newsPage.searchField.fill(features[7].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
+      await newsPage.searchField.fill(features[7].data.cardPartnerLevelAbove);
+      const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
+    });
+  });
+
+  test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
+    await test.step('Click Sign In', async () => {
+      await page.goto(`${baseURL}${features[8].path}`);
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const result = await newsPage.resultNumber.textContent();
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await newsPage.searchField.fill(features[8].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
+      await newsPage.signInButton.click();
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('I load the news page', async () => {
+      await newsPage.signIn(features[8].data.partnerLevel);
+    });
+
+    await test.step('Find automation regression cards for current partner level', async () => {
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const resultAll = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(features[8].data.resultTotal);
+      await newsPage.searchField.fill(features[8].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
+      await newsPage.searchField.fill(features[8].data.cardPartnerLevelAbove);
+      const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
+    });
+  });
+
+  test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
+    await test.step('Click Sign In', async () => {
+      await page.goto(`${baseURL}${features[9].path}`);
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const result = await newsPage.resultNumber.textContent();
+      await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
+      await newsPage.searchField.fill(features[9].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(0);
+      await newsPage.signInButton.click();
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('I load the news page', async () => {
+      await newsPage.signIn(features[9].data.partnerLevel);
+    });
+
+    await test.step('Find automation regression cards for current partner level', async () => {
+      await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
+      const resultAll = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultAll.split(' ')[0], 10)).toBe(features[9].data.resultTotal);
+      await newsPage.searchField.fill(features[9].data.cardPartnerLevel);
+      const resultCardPartnerLevel = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevel.split(' ')[0], 10)).toBe(1);
+      await newsPage.searchField.fill(features[9].data.cardPartnerLevelAbove);
+      const resultCardPartnerLevelAbove = await newsPage.resultNumber.textContent();
+      await expect(parseInt(resultCardPartnerLevelAbove.split(' ')[0], 10)).toBe(0);
     });
   });
 
