@@ -21,4 +21,5 @@ module.exports = {
   '@local6456': 'http://localhost:6456',
   '@helpx_live': 'https://helpx-internal.stage.adobe.com',
   '@dx_stage': 'https://stage--dx-partners--adobecom.hlx.live',
+  '@dme_stage': 'https://partners.stage.adobe.com',
 };
