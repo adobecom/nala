@@ -35,13 +35,13 @@ module.exports = {
       tcid: '6',
       name: '@login-news-page-platinum-user',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
-      tags: '@dx-news @regression @login',
+      tags: '@dx-news @regression @login @nopr',
     },
     {
       tcid: '7',
       name: '@login-news-page-gold-user',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
-      tags: '@dx-news @regression @login',
+      tags: '@dx-news @regression @login @nopr',
       data: {
         partnerLevel: 'spp-gold:',
         resultTotal: 13,
@@ -53,7 +53,7 @@ module.exports = {
       tcid: '8',
       name: '@login-news-page-silver-user',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
-      tags: '@dx-news @regression @login',
+      tags: '@dx-news @regression @login @nopr',
       data: {
         partnerLevel: 'spp-silver:',
         resultTotal: 12,
@@ -65,7 +65,7 @@ module.exports = {
       tcid: '9',
       name: '@login-news-page-bronze-user',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
-      tags: '@dx-news @regression @login',
+      tags: '@dx-news @regression @login @nopr',
       data: {
         partnerLevel: 'spp-bronze:',
         resultTotal: 11,
@@ -77,7 +77,7 @@ module.exports = {
       tcid: '10',
       name: '@login-news-page-community-user',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
-      tags: '@dx-news @regression @login',
+      tags: '@dx-news @regression @login @nopr',
       data: {
         partnerLevel: 'spp-community:',
         resultTotal: 10,
@@ -90,7 +90,7 @@ module.exports = {
       name: '@login-news-page-non-member-of-spp-user',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       baseURL: 'https://www.stage.adobe.com/partners.html',
-      tags: '@dx-news @regression @login',
+      tags: '@dx-news @regression @login @nopr',
     },
   ],
 };
