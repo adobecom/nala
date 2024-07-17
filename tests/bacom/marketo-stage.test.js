@@ -1,12 +1,13 @@
-import { expect, test } from '@playwright/test';
-import { features } from '../../features/milo/marketo.block.spec.js';
+import { test, expect } from '@playwright/test';
+import { features } from '../../features/bacom/marketo-stage.spec.js';
 import MarketoBlock from '../../selectors/milo/marketo.block.page.js';
 
 let marketoBlock;
 const WAIT_TIME = 10000;
 const miloLibs = process.env.MILO_LIBS || '';
 
-test.describe('Marketo block test suite', () => {
+test.describe('Marketo block test suite for stage form', () => {
+  // test.describe('Marketo block test suite for stage form', { tag: '@stageForm' }, () => {
   test.beforeEach(async ({ page }) => {
     marketoBlock = new MarketoBlock(page);
     await test.setTimeout(60000);
@@ -35,7 +36,7 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
   });
@@ -65,7 +66,7 @@ test.describe('Marketo block test suite', () => {
         });
 
         await test.step('step-4: Verify the form submission redirect', async () => {
-          await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+          await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
         });
       },
     );
@@ -94,7 +95,7 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
   });
@@ -122,7 +123,7 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
   });
