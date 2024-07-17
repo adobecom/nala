@@ -34,7 +34,7 @@ module.exports = {
     {
       tcid: '6',
       name: '@login-news-page-platinum-user',
-      path: '/solutionpartners/drafts/automation/regression/partner-news',
+      path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
     },
     {
@@ -88,7 +88,7 @@ module.exports = {
     {
       tcid: '11',
       name: '@login-news-page-non-member-of-spp-user',
-      path: '/solutionpartners/drafts/automation/regression/partner-news',
+      path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       baseURL: 'https://www.stage.adobe.com/partners.html',
       tags: '@dx-news @regression @login',
     },

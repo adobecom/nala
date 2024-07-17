@@ -217,7 +217,7 @@ test.describe('Validate news block', () => {
 
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     await test.step('Click Sign In', async () => {
-      await page.goto(`${baseURL}${features[5].path}`);
+      await page.goto(`${features[5].path}`);
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 10000 });
       const result = await newsPage.resultNumber.textContent();
       await expect(parseInt(result.split(' ')[0], 10)).toBe(9);
@@ -301,7 +301,7 @@ test.describe('Validate news block', () => {
 
   test(`${features[10].name},${features[10].tags}`, async ({ page, context, baseURL }) => {
     await test.step('Go to stage.adobe.com', async () => {
-      const url = `${features[10].baseURL}`;
+      const url = `${features[10].path}`;
       await page.evaluate((navigationUrl) => {
         window.location.href = navigationUrl;
       }, url);
@@ -316,7 +316,7 @@ test.describe('Validate news block', () => {
 
     await test.step(`Open ${features[10].path} in a new tab`, async () => {
       const newTab = await context.newPage();
-      await newTab.goto(`${baseURL}${features[10].path}`);
+      await newTab.goto(`${features[10].path}`);
       const newTabPage = new NewsPage(newTab);
       await newTabPage.firstCardDate.waitFor({ state: 'visible', timeout: 15000 });
       const resultCards = await newTabPage.resultNumber.textContent();
