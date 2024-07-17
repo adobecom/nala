@@ -14,6 +14,7 @@ export default class HomePageSanity {
     this.signInButton = page.locator('#unav-profile');
     this.gnavCCPP = page.locator('.feds-navItem:nth-child(1)');
     this.gnavSpecialOffers = page.locator('.feds-navItem:nth-child(2)');
+    this.hamburgerMenu = page.locator('.feds-toggle');
 
     // Creative Cloud Elements
     this.whatIsCC = page.locator('.feds-popup a[href*="creativecloud.html"]').nth(0);
@@ -40,6 +41,8 @@ export default class HomePageSanity {
     this.createNow = page.locator('.feds-popup a[href*="J7XBWKS1&mv=other"]');
     this.illustrator = page.locator('.feds-popup a[href*="HZG8WTXS&mv=other"]');
     this.seePlansAndPricing = page.locator('.feds-popup a[href*="WXYGHWCC&mv=other"]');
+
+    this.whatIsCCMobile = page.locator('.feds-popup a[href*="creativecloud"]').nth(0);
 
     // Document Cloud Elements
     this.adobeAcrobat = page.locator('a[href$="acrobat.html"] .feds-navLink-content');
@@ -207,13 +210,7 @@ export default class HomePageSanity {
       },
       { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      {
-        element: this.aIOverviewCC,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['Belgium French', 'India', 'Japan'],
-        },
-      },
+      { element: this.aIOverviewCC, conditions: { defaultVisibility: true } },
       { element: this.adobeFirefly, conditions: { defaultVisibility: true } },
       { element: this.seeAllProducts, conditions: { includeCountries: ['Brazil', 'Chile', 'Spain'] } },
       { element: this.individuals, conditions: { includeCountries: ['Brazil', 'Chile'] } },
@@ -245,7 +242,7 @@ export default class HomePageSanity {
     await this.gnavDC.click();
     const elementsToCheck = [
       { element: this.adobeAcrobat, conditions: { defaultVisibility: true } },
-      { element: this.acrobatPlansAndPricing, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
+      { element: this.acrobatPlansAndPricing, conditions: { defaultVisibility: true } },
       { element: this.acrobatReader, conditions: { defaultVisibility: true } },
       { element: this.business, conditions: { defaultVisibility: true } },
       {
@@ -265,7 +262,7 @@ export default class HomePageSanity {
             'Nederland', 'Poland', 'Portugal', 'Romania', 'Switzerland', 'Slovenia', 'Slovakia', 'Switzerland French',
             'Finland', 'Sweden', 'Switzerland Italian', 'Turkey', 'Czech Republic', 'Bulgaria', 'Russia', 'Ukraine',
             'Israel Hebrew', 'UAE', 'Middle East And North Africa', 'Kingdom Of Saudi Arabia', 'Egypt', 'Kuwait',
-            'Qatar', 'India', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand',
+            'Qatar', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand',
             'Hong Kong', 'Taiwan', 'Japan', 'Korea', 'Latvia'],
         },
       },
@@ -287,7 +284,6 @@ export default class HomePageSanity {
       { element: this.wordToPDF, conditions: { defaultVisibility: true } },
       { element: this.developerResources, conditions: { defaultVisibility: true } },
       { element: this.eventsAndWebinars, conditions: { defaultVisibility: true } },
-      { element: this.AIOverviewDCTwo, conditions: { includeCountries: ['India'] } },
       { element: this.consultationBeforePurchase, conditions: { includeCountries: ['Japan'] } },
       { element: this.governmentTwo, conditions: { includeCountries: ['Japan'] } },
     ];
@@ -356,7 +352,7 @@ export default class HomePageSanity {
       { element: this.requestAdemo, conditions: { includeCountries: ['Brazil', 'India'] } },
       { element: this.analytics, conditions: { includeCountries: ['Brazil', 'India'] } },
       { element: this.experienceManagerAssets, conditions: { includeCountries: ['Brazil', 'India'] } },
-      { element: this.aiOverview, conditions: { includeCountries: ['Brazil', 'India'] } },
+      { element: this.aiOverview, conditions: { includeCountries: ['Brazil'] } },
       { element: this.adobeSummit, conditions: { includeCountries: ['Brazil', 'India'] } },
     ];
 
@@ -376,13 +372,7 @@ export default class HomePageSanity {
     await this.gnavHelpX.click();
     const elementsToCheck = [
       { element: this.helpCentre, conditions: { defaultVisibility: true } },
-      {
-        element: this.downloadAndInstall,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['Ecuador', 'Puerto Rico'],
-        },
-      },
+      { element: this.downloadAndInstall, conditions: { defaultVisibility: true } },
       { element: this.contact, conditions: { defaultVisibility: true } },
       { element: this.manageMyAccount, conditions: { defaultVisibility: true } },
       {
@@ -394,7 +384,6 @@ export default class HomePageSanity {
       },
       { element: this.creativeCloudTutorials, conditions: { defaultVisibility: true } },
       { element: this.adobeExperienceLeague, conditions: { defaultVisibility: true } },
-      { element: this.downloadAndInstallTwo, conditions: { includeCountries: ['Ecuador', 'Puerto Rico'] } },
       {
         element: this.subscribeToAdobeStatusTwo,
         conditions: { includeCountries: ['Kuwait English', 'Qatar English'] },
@@ -494,5 +483,58 @@ export default class HomePageSanity {
         await expect(element).toBeVisible();
       }
     }));
+  }
+
+  // Android, iOS and iPad methods.
+
+  // U-NAV
+  async validatingUnav() {
+    const elements = [this.hamburgerMenu, this.adobelogo, this.appSwitcher, this.signInButton];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+  }
+
+  // Hamburger Menu Items
+  async validatingHamburgerMenu() {
+    await this.hamburgerMenu.click();
+    const elements = [this.gnavCC, this.gnavDC, this.gnavEC, this.gnavHelpX];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+  }
+
+  // Creativity & Design
+  async validatingCreativityAndDesign(country) {
+    await this.gnavCC.click();
+
+    const excludeCountries = ['United Kingdom', 'India', 'Spain'];
+
+    if (excludeCountries.includes(country)) {
+      await expect(this.whatIsCCMobile).not.toBeVisible();
+    } else {
+      await expect(this.whatIsCCMobile).toBeVisible();
+    }
+  }
+
+  // Marketing & Commerce
+  async validatingMarketingAndCommerce() {
+    await this.gnavEC.click();
+    await expect(this.adobeExperienceCloud).toBeVisible();
+    await this.hamburgerMenu.click();
+  }
+
+  // Footer
+  async validatingFooter(country) {
+    await this.changeRegion.scrollIntoViewIfNeeded();
+
+    const includeCountry = ['India'];
+
+    const elements = [this.changeRegion, this.facebookLogo, this.twitterlogo,
+      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
+      this.protectMyPersonalData, this.adChoices,
+      includeCountry.includes(country) ? this.instagramLogoTwo : this.instagramLogo,
+    ];
+    await Promise.all(elements.map((element) => expect(element).toBeVisible()));
   }
 }
