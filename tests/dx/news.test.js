@@ -250,7 +250,7 @@ test.describe('Validate news block', () => {
   });
 
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    const path = baseURL + features[6].path;
+    const path = features[6].path;
     await findCardsForPartnerLevel(
       page,
       path,
@@ -262,7 +262,7 @@ test.describe('Validate news block', () => {
   });
 
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    const path = baseURL + features[7].path;
+    const path = features[7].path;
     await findCardsForPartnerLevel(
       page,
       path,
@@ -274,7 +274,7 @@ test.describe('Validate news block', () => {
   });
 
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
-    const path = baseURL + features[8].path;
+    const path = features[8].path;
     await findCardsForPartnerLevel(
       page,
       path,
@@ -287,7 +287,7 @@ test.describe('Validate news block', () => {
 
   test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
     await test.step('Click Sign In', async () => {
-      const path = baseURL + features[9].path;
+      const path = features[9].path;
       await findCardsForPartnerLevel(
         page,
         path,

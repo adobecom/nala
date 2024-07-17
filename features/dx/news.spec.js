@@ -40,7 +40,7 @@ module.exports = {
     {
       tcid: '7',
       name: '@login-news-page-gold-user',
-      path: '/solutionpartners/drafts/automation/regression/partner-news',
+      path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
       data: {
         partnerLevel: 'spp-gold:',
@@ -52,7 +52,7 @@ module.exports = {
     {
       tcid: '8',
       name: '@login-news-page-silver-user',
-      path: '/solutionpartners/drafts/automation/regression/partner-news',
+      path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
       data: {
         partnerLevel: 'spp-silver:',
@@ -64,7 +64,7 @@ module.exports = {
     {
       tcid: '9',
       name: '@login-news-page-bronze-user',
-      path: '/solutionpartners/drafts/automation/regression/partner-news',
+      path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
       data: {
         partnerLevel: 'spp-bronze:',
@@ -76,7 +76,7 @@ module.exports = {
     {
       tcid: '10',
       name: '@login-news-page-community-user',
-      path: '/solutionpartners/drafts/automation/regression/partner-news',
+      path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login',
       data: {
         partnerLevel: 'spp-community:',
