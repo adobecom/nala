@@ -169,8 +169,8 @@ export default class IllustratorPageSanity {
       { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
 
-      { element: this.aiOverviewCC, conditions: { defaultVisibility: true } },
-      { element: this.adobeFirefly, conditions: { defaultVisibility: true } },
+      { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+      { element: this.adobeFirefly, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
 
       { element: this.adobecom, conditions: { defaultVisibility: true } },
       { element: this.pdfAndESignatures, conditions: { defaultVisibility: true } },
