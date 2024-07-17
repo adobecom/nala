@@ -35,7 +35,9 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+        await page.waitForURL('**/?submissionid**');
+        const redirectedUrl = await page.url();
+        await expect(redirectedUrl).not.toBe(testPage);
       });
     });
   });
@@ -65,7 +67,9 @@ test.describe('Marketo block test suite', () => {
         });
 
         await test.step('step-4: Verify the form submission redirect', async () => {
-          await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+          await page.waitForURL('**/?submissionid**');
+          const redirectedUrl = await page.url();
+          await expect(redirectedUrl).not.toBe(testPage);
         });
       },
     );
@@ -94,7 +98,9 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+        await page.waitForURL('**/?submissionid**');
+        const redirectedUrl = await page.url();
+        await expect(redirectedUrl).not.toBe(testPage);
       });
     });
   });
@@ -122,7 +128,9 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await expect(page).not.toHaveURL(testPage, { timeout: 20000 });
+        await page.waitForURL('**/?submissionid**');
+        const redirectedUrl = await page.url();
+        await expect(redirectedUrl).not.toBe(testPage);
       });
     });
   });
