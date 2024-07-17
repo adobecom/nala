@@ -215,7 +215,7 @@ test.describe('Validate news block', () => {
     });
   });
 
-  test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
+  test(`${features[5].name},${features[5].tags}`, async ({ page }) => {
     await test.step('Click Sign In', async () => {
       await page.goto(`${features[5].path}`);
       await newsPage.firstCardDate.waitFor({ state: 'visible', timeout: 10000 });
@@ -249,11 +249,10 @@ test.describe('Validate news block', () => {
     });
   });
 
-  test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    const path = features[6].path;
+  test(`${features[6].name},${features[6].tags}`, async ({ page }) => {
     await findCardsForPartnerLevel(
       page,
-      path,
+      features[6].path,
       features[6].data.cardPartnerLevel,
       features[6].data.partnerLevel,
       features[6].data.resultTotal,
@@ -261,11 +260,10 @@ test.describe('Validate news block', () => {
     );
   });
 
-  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    const path = features[7].path;
+  test(`${features[7].name},${features[7].tags}`, async ({ page }) => {
     await findCardsForPartnerLevel(
       page,
-      path,
+      features[7].path,
       features[7].data.cardPartnerLevel,
       features[7].data.partnerLevel,
       features[7].data.resultTotal,
@@ -273,11 +271,10 @@ test.describe('Validate news block', () => {
     );
   });
 
-  test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
-    const path = features[8].path;
+  test(`${features[8].name},${features[8].tags}`, async ({ page }) => {
     await findCardsForPartnerLevel(
       page,
-      path,
+      features[8].path,
       features[8].data.cardPartnerLevel,
       features[8].data.partnerLevel,
       features[8].data.resultTotal,
@@ -285,12 +282,11 @@ test.describe('Validate news block', () => {
     );
   });
 
-  test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
+  test(`${features[9].name},${features[9].tags}`, async ({ page }) => {
     await test.step('Click Sign In', async () => {
-      const path = features[9].path;
       await findCardsForPartnerLevel(
         page,
-        path,
+        features[9].path,
         features[9].data.cardPartnerLevel,
         features[9].data.partnerLevel,
         features[9].data.resultTotal,
@@ -299,7 +295,7 @@ test.describe('Validate news block', () => {
     });
   });
 
-  test(`${features[10].name},${features[10].tags}`, async ({ page, context, baseURL }) => {
+  test(`${features[10].name},${features[10].tags}`, async ({ page, context }) => {
     await test.step('Go to stage.adobe.com', async () => {
       const url = `${features[10].path}`;
       await page.evaluate((navigationUrl) => {
