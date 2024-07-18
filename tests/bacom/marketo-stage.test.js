@@ -6,7 +6,7 @@ let marketoBlock;
 const WAIT_TIME = 10000;
 const miloLibs = process.env.MILO_LIBS || '';
 
-test.describe('Marketo block test suite for stage form', () => {
+test.describe('Marketo block test suite for stage form', { tag: '@stageForm' }, () => {
   // test.describe('Marketo block test suite for stage form', { tag: '@stageForm' }, () => {
   test.beforeEach(async ({ page }) => {
     marketoBlock = new MarketoBlock(page);
