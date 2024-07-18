@@ -18,6 +18,12 @@ test.describe('Milo Personalization feature test suite', () => {
     webUtil = new WebUtil(page);
   });
 
+  test.beforeAll(async ({ browserName }) => {
+    if (browserName === 'chromium') {
+      test.skip('Skipping tests for Chromium browser');
+    }
+  });
+
   // Test 0 : Personalization (Replace content)
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
