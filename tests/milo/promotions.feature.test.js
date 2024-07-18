@@ -223,7 +223,7 @@ test.describe('Promotions feature test suite', () => {
 
   // @Promo-with-personalization-and-target - Validate promo together with personalization and target ON
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL, browserName }) => {
-    test.skip(browserName === 'chromium', 'Skipping test for Chromium browser')
+    test.skip(browserName === 'chromium', 'Skipping test for Chromium browser');
    
     const testPage = `${baseURL}${features[7].path}${miloLibs}`;
     const { data } = features[7];
