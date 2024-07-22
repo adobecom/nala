@@ -16,9 +16,11 @@ module.exports = {
   '@blog_prod': 'https://blog.adobe.com',
   '@milo_blog_live': 'https://main--blog--adobecom.hlx.live',
   '@cc_live': 'https://main--cc--adobecom.hlx.live',
+  '@cc_stage': 'https://stage--cc--adobecom.hlx.live',
   '@uar_live': 'https://uar-integration--milo--adobecom.hlx.live',
   '@local3000': 'http://localhost:3000',
   '@local6456': 'http://localhost:6456',
   '@helpx_live': 'https://helpx-internal.stage.adobe.com',
-  '@dx_stage': 'https://partners.stage.adobe.com',
+  '@dx_stage': 'https://stage--dx-partners--adobecom.hlx.live',
+  '@dme_stage': 'https://partners.stage.adobe.com',
 };
