@@ -8,7 +8,7 @@ const envs = require('../envs/envs.js');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: '../tests/dx',
+  testDir: '../tests/dme',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
@@ -38,24 +38,24 @@ const config = {
 
     trace: 'on-first-retry',
     baseURL: process.env.PR_BRANCH_LIVE_URL_GH
-      && !process.env.PR_BRANCH_LIVE_URL_GH.includes('stage--dx-partners')
-      ? process.env.PR_BRANCH_LIVE_URL_GH : envs['@dx_stage'],
+      && !process.env.PR_BRANCH_LIVE_URL_GH.includes('stage--dme-partners')
+      ? process.env.PR_BRANCH_LIVE_URL_GH : envs['@dme_stage'],
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'dx-live-chromium',
+      name: 'dme-live-chromium',
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
-      name: 'dx-live-firefox',
+      name: 'dme-live-firefox',
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
-      name: 'dx-live-webkit',
+      name: 'dme-live-webkit',
       use: { ...devices['Desktop Safari'] },
     },
   ],

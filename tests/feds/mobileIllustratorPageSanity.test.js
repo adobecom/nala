@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/feds/prodSanity/illustratorsanity.spec.js';
+import { features } from '../../features/feds/prodSanity/mobileTesting/mobileIllustratorSanity.spec.js';
 import IllustratorPageSanity from '../../selectors/feds/feds.illustratorsanity.page.js';
 
-test.describe('Test Suite for Illustrator Page Components', () => {
+test.describe('Test Suite for Mobile, iPad, and Tablet Illustrator Page Components', () => {
   let illustrate;
 
   test.beforeEach(async ({ page }) => {
@@ -22,11 +22,13 @@ test.describe('Test Suite for Illustrator Page Components', () => {
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of U-NAV Elements
-      await illustrate.validatingUnavElements(props.country);
-      // Verifying the Visibility of Creativity & Design Elements
-      await illustrate.validatingCreativityAndDesignElements(props.country);
-      // Verifying the visibility of Footer Elements
-      await illustrate.validatingFooterElements(props.country);
+      await illustrate.validatingUnav();
+      // Verifying the Visibility of Hamburger Menu Elements
+      await illustrate.validatingHamburgerMenu(props.country);
+      // Verifying the visibility of Creativity & Design
+      await illustrate.validatingCreativityAndDesign(props.country);
+      // Verifying the visibility of Footer
+      await illustrate.validatingFooter(props.country);
     });
   });
 });
