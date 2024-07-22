@@ -6,6 +6,8 @@ export default class IllustratorPageSanity {
 
     // U-NAV Elements
     this.adobe = page.locator('.feds-brand');
+    this.appSwitcher = page.locator('#unav-app-switcher');
+    this.signInButton = page.locator('#unav-profile div');
     this.fedsNav = page.locator('.feds-nav');
     this.creativityAndDesign = this.fedsNav.locator('.feds-navItem button').nth(0);
     this.illustrator = this.fedsNav.locator('.feds-navItem').nth(1);
@@ -13,9 +15,7 @@ export default class IllustratorPageSanity {
     this.comparePlans = this.fedsNav.locator('.feds-navItem').nth(3);
     this.freeTrialDetails = this.fedsNav.locator('.feds-navItem').nth(4);
     this.tryItForFree = this.fedsNav.locator('.feds-navItem').nth(5);
-    this.appSwitcher = page.locator('#unav-app-switcher');
-    this.signInButton = page.locator('#unav-profile div');
-    this.signInButtonTwo = page.locator('.feds-signIn');
+    this.hamburgerMenu = page.locator('.feds-toggle');
 
     // Creativity & Design Elements
     this.whatIsCC = page.locator('.feds-popup [href*="creativecloud.html"]').nth(0);
@@ -43,18 +43,16 @@ export default class IllustratorPageSanity {
     this.Video = page.locator('.feds-menu-items a[href$="/video.html"]');
     this.illustration = page.locator('.feds-menu-items a[href$="/illustration.html"]');
     this.socialMedia = page.locator('.feds-menu-items a[href$="/social-media.html"]');
-    this.threeDAndAR = page.locator('.feds-popup a[href$="/3d-ar.html"]').nth(0);
+    this.threeDAndAR = page.locator('.feds-popup a[href*="3d"]').nth(0);
     this.pdf = page.locator('.feds-menu-items a[href$="acrobat-pro-cc.html"]');
-
-    this.seeSpecialOffers = page.locator('.feds-popup a[href*="special-offers.html"]');
 
     this.aiOverviewCC = page.locator('.feds-popup a[href$="ai/overview.html"]');
     this.adobeFirefly = page.locator('.feds-popup a[href$="products/firefly.html"]');
 
-    this.adobecom = page.locator('.feds-popup a[href$="/index.html"]');
-    this.pdfAndESignatures = page.locator('.feds-popup a[href$="/acrobat.html"]');
-    this.marketingAndCommerce = page.locator('.feds-popup a[href*="business.adobe.com"]');
-    this.helpAndSupport = page.locator('.feds-popup a[href$="support.html"]');
+    this.adobecom = page.locator('.feds-crossCloudMenu-item').nth(0);
+    this.pdfAndESignatures = page.locator('.feds-crossCloudMenu-item').nth(1);
+    this.marketingAndCommerce = page.locator('.feds-crossCloudMenu-item').nth(2);
+    this.helpAndSupport = page.locator('.feds-crossCloudMenu-item').nth(3);
 
     this.removeBackground = page.locator('[href*="KCJMVG5Q&mv=other"]');
     this.resizeImage = page.locator('[href*="GVTYXXVD&mv=other"]');
@@ -78,6 +76,8 @@ export default class IllustratorPageSanity {
     this.seeAllProducts = page.locator('.feds-popup [href*="JVLHVXNY&mv=other"]');
     this.seePlansAndPricingEs = page.locator('.feds-cta-wrapper [href*="KLZPV68R&mv=other"]');
 
+    this.quickActions = page.locator('.feds-menu-headline').nth(0);
+
     // Footer
     this.footerCreativeCloud = page.locator('.feds-footer-wrapper a[href*="creativecloud.html"]');
     this.footerCreativeCloudForBusiness = page.locator('.feds-footer-wrapper a[href*="creativecloud/business.html"]');
@@ -87,7 +87,7 @@ export default class IllustratorPageSanity {
     this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href$="download-install.html"]');
     this.footerAdobeBlog = page.locator('.feds-footer-wrapper a[href*="blog.adobe.com/"]');
     this.footerLoginToYourAccount = page.locator('a[href$="account.adobe.com/"]').nth(0);
-    this.footerAbout = page.locator('.feds-footer-wrapper a[href$="about-adobe.html"]');
+    this.footerAbout = page.locator('.feds-footer-wrapper a[href$="about-adobe.html"]').nth(0);
 
     // Featured Products
     this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
@@ -108,50 +108,28 @@ export default class IllustratorPageSanity {
     this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
     this.adChoices = page.locator('.feds-footer-legalWrapper a:nth-of-type(5)');
     this.privacySection = page.locator('.feds-footer-privacySection:nth-child(2)');
+    this.instagramLogoTwo = page.locator('a[href*="instagram"]').nth(1);
   }
 
   // U-NAV
   async validatingUnavElements(country) {
-    await this.page.waitForLoadState('domcontentloaded');
-
-    const elements = [
-      this.adobe, this.creativityAndDesign, this.illustrator, this.features, this.comparePlans,
-      this.freeTrialDetails, this.tryItForFree, this.appSwitcher, this.signInButton, this.signInButtonTwo,
+    const elementsToCheck = [
+      { element: this.adobe, conditions: { defaultVisibility: true } },
+      { element: this.appSwitcher, conditions: { defaultVisibility: true } },
+      { element: this.signInButton, conditions: { defaultVisibility: true } },
+      { element: this.creativityAndDesign, conditions: { defaultVisibility: true } },
+      { element: this.illustrator, conditions: { defaultVisibility: true } },
+      { element: this.features, conditions: { defaultVisibility: true } },
+      { element: this.comparePlans, conditions: { defaultVisibility: true } },
+      { element: this.freeTrialDetails, conditions: { defaultVisibility: true } },
+      { element: this.tryItForFree, conditions: { includeCountries: ['Germany'] } },
     ];
 
-    await Promise.all(elements.map(async (element) => {
-      switch (element) {
-        case this.tryItForFree:
-          if (country === 'Germany') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.appSwitcher:
-        case this.signInButton: {
-          const excludedCountries = [
-            'United Kingdom', 'India', 'Canada English', 'Canada French', 'Mexico', 'Australia', 'Indonesia',
-            'Indonesia English', 'Thailand English', 'Thailand', 'Singapore', 'Philippines', 'Philippines English',
-            'Middle East And North Africa',
-          ];
-          if (excludedCountries.includes(country)) {
-            await expect(element).not.toBeVisible();
-          }
-        }
-          break;
-        case this.signInButtonTwo: {
-          const includedCountries = [
-            'United Kingdom', 'India', 'Canada English', 'Canada French', 'Mexico', 'Australia', 'Indonesia',
-            'Indonesia English', 'Thailand English', 'Thailand', 'Singapore', 'Philippines', 'Philippines English',
-            'Middle East And North Africa',
-          ];
-          if (includedCountries.includes(country)) {
-            await expect(element).toBeVisible();
-          }
-        }
-          break;
-        default:
-          await expect(element).toBeVisible();
-          break;
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
       }
     }));
   }
@@ -159,90 +137,78 @@ export default class IllustratorPageSanity {
   // Creativity & Design
   async validatingCreativityAndDesignElements(country) {
     await this.creativityAndDesign.click();
-    await this.page.waitForLoadState('domcontentloaded');
 
-    const elements = [
-      this.whatIsCC, this.photographers, this.studentsAndTeachers, this.individuals, this.business,
-      this.schoolsAndUniversities, this.viewPlansAndPricing, this.photoshop, this.adobeExpress,
-      this.lightroom, this.illustratorCd, this.premierePro, this.adobeStock, this.viewAllProducts,
-      this.photo, this.graphicDesign, this.Video, this.illustration, this.socialMedia, this.threeDAndAR,
-      this.pdf, this.aiOverviewCC, this.adobeFirefly, this.adobecom, this.pdfAndESignatures,
-      this.marketingAndCommerce, this.helpAndSupport, this.seeSpecialOffers, this.adobeFireflyMp,
-      this.governmentAgencies, this.benifitsForCC, this.acrobatPro, this.adobeStockEs, this.seeAllProducts,
-      this.seePlansAndPricingEs,
+    const elementsToCheck = [
+      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France'] } },
+      { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      {
+        element: this.schoolsAndUniversities,
+        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
+      },
+      {
+        element: this.viewPlansAndPricing,
+        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
+      },
+
+      { element: this.photoshop, conditions: { defaultVisibility: true } },
+      { element: this.adobeExpress, conditions: { defaultVisibility: true } },
+      { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.illustratorCd, conditions: { defaultVisibility: true } },
+      { element: this.premierePro, conditions: { defaultVisibility: true } },
+      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+
+      { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.illustration, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.socialMedia, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+
+      { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+      { element: this.adobeFirefly, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+
+      { element: this.adobecom, conditions: { defaultVisibility: true } },
+      { element: this.pdfAndESignatures, conditions: { defaultVisibility: true } },
+      { element: this.marketingAndCommerce, conditions: { defaultVisibility: true } },
+      { element: this.helpAndSupport, conditions: { defaultVisibility: true } },
+
+      { element: this.adobeFireflyMp, conditions: { includeCountries: ['Japan'] } },
+      { element: this.governmentAgencies, conditions: { includeCountries: ['Japan'] } },
+      { element: this.benifitsForCC, conditions: { includeCountries: ['Japan'] } },
+      { element: this.acrobatPro, conditions: { includeCountries: ['Spain'] } },
+      { element: this.adobeStockEs, conditions: { includeCountries: ['Spain'] } },
+      { element: this.seeAllProducts, conditions: { includeCountries: ['Spain'] } },
+      { element: this.seePlansAndPricingEs, conditions: { includeCountries: ['Spain'] } },
+
+      { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
+      { element: this.resizeImage, conditions: { includeCountries: ['India'] } },
+      { element: this.covertImageToSVG, conditions: { includeCountries: ['India'] } },
+      { element: this.covertVideoToGIF, conditions: { includeCountries: ['India'] } },
+      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
+      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
+      { element: this.resume, conditions: { includeCountries: ['India'] } },
+      { element: this.posters, conditions: { includeCountries: ['India'] } },
+      { element: this.card, conditions: { includeCountries: ['India'] } },
+      { element: this.instagramPost, conditions: { includeCountries: ['India'] } },
+      { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
+      { element: this.createNow, conditions: { includeCountries: ['India'] } },
+      { element: this.adobeExpressIn, conditions: { includeCountries: ['India'] } },
+      { element: this.seePlansAndPricing, conditions: { includeCountries: ['India'] } },
     ];
 
-    await Promise.all(elements.map(async (element) => {
-      switch (element) {
-        case this.seeSpecialOffers:
-          if (country === 'United Kingdom') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.adobeFirefly:
-          if (country === 'Poland' || country === 'Japan') {
-            await expect(element).not.toBeVisible();
-          }
-          break;
-        case this.adobeFireflyMp:
-          if (country === 'Poland' || country === 'Japan') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.individuals:
-          if (country === 'Germany' || country === 'France' || country === 'Italy') {
-            await expect(element).not.toBeVisible();
-          }
-          break;
-        case this.governmentAgencies:
-        case this.benifitsForCC:
-          if (country === 'Japan') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.aiOverviewCC:
-          if (country === 'Japan') {
-            await expect(element).not.toBeVisible();
-          }
-          break;
-        case this.acrobatPro:
-        case this.adobeStockEs:
-        case this.seeAllProducts:
-        case this.seePlansAndPricingEs:
-          if (country === 'Spain') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        case this.schoolsAndUniversities:
-        case this.viewPlansAndPricing:
-        case this.illustratorCd:
-        case this.viewAllProducts:
-        case this.lightroom:
-        case this.adobeStock:
-          if (country === 'Spain') {
-            await expect(element).not.toBeVisible();
-          }
-          break;
-        default:
-          await expect(element).toBeVisible();
-          break;
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
       }
-    }));
-    await this.creativityAndDesign.click();
-  }
-
-  async validatingCreativityAndDesignElementsSecondSet() {
-    await this.creativityAndDesign.click();
-    await this.page.waitForLoadState('domcontentloaded');
-
-    const elements = [this.removeBackground, this.resizeImage, this.covertImageToSVG, this.covertVideoToGIF,
-      this.createQRCode, this.seeAllQuickActions, this.resume, this.posters, this.card, this.instagramPost,
-      this.youTubeVideo, this.createNow, this.whatIsCC, this.adobeExpressIn, this.photoshop, this.premierePro,
-      this.illustratorCd, this.seePlansAndPricing, this.adobeFireflyMp, this.adobecom, this.pdfAndESignatures,
-      this.marketingAndCommerce, this.helpAndSupport];
-
-    await Promise.all(elements.map(async (element) => {
-      await expect(element).toBeVisible();
     }));
 
     await this.creativityAndDesign.click();
@@ -251,24 +217,146 @@ export default class IllustratorPageSanity {
   // Footer
   async validatingFooterElements(country) {
     await this.changeRegion.scrollIntoViewIfNeeded();
-    const elements = [this.footerCreativeCloud, this.footerCreativeCloudForBusiness,
-      this.footerdiscountForStudentsAndTeachers, this.footerappsForiOS, this.footerWhatIsExperienceCloud,
-      this.footerDownloadAndInstall, this.footerAdobeBlog, this.footerLoginToYourAccount, this.footerAbout,
-      this.footerAdobeAcrobatReaderlogo, this.footerAdobeExpresslogo, this.footerPhotoshoplogo,
-      this.footerIllustratorlogo, this.changeRegion, this.facebookLogo, this.instagramLogo, this.twitterlogo,
-      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
-      this.protectMyPersonalData, this.adChoices, this.privacySection];
+    const elements = [
+      this.footerCreativeCloud, this.footerCreativeCloudForBusiness, this.footerdiscountForStudentsAndTeachers,
+      this.footerappsForiOS, this.footerWhatIsExperienceCloud, this.footerDownloadAndInstall, this.footerAdobeBlog,
+      this.footerLoginToYourAccount, this.footerAbout, this.footerAdobeAcrobatReaderlogo, this.footerAdobeExpresslogo,
+      this.footerPhotoshoplogo, this.footerIllustratorlogo, this.changeRegion, this.facebookLogo, this.instagramLogo,
+      this.twitterlogo, this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
+      this.protectMyPersonalData, this.adChoices, (country.includes('Korea')) ? this.privacySection : null,
+    ];
 
+    const validElements = elements.filter((element) => element !== null);
+
+    await Promise.all(validElements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+  }
+
+  // Mobile, iPad and Tab methods.
+
+  // U-Nav
+  async validatingUnav() {
+    const elements = [this.hamburgerMenu, this.adobe, this.appSwitcher, this.signInButton];
     await Promise.all(elements.map(async (element) => {
-      switch (element) {
-        case this.privacySection:
-          if (country === 'Korea') {
-            await expect(element).toBeVisible();
-          }
-          break;
-        default:
-          await expect(element).toBeVisible();
+      await expect(element).toBeVisible();
+    }));
+  }
+
+  // Hamburger Menu
+  async validatingHamburgerMenu(country) {
+    await this.hamburgerMenu.click();
+    const elementsToCheck = [
+      { element: this.creativityAndDesign, conditions: { defaultVisibility: true } },
+      { element: this.illustrator, conditions: { defaultVisibility: true } },
+      { element: this.features, conditions: { defaultVisibility: true } },
+      { element: this.comparePlans, conditions: { defaultVisibility: true } },
+      { element: this.freeTrialDetails, conditions: { defaultVisibility: true } },
+      { element: this.tryItForFree, conditions: { includeCountries: ['Germany'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
       }
     }));
+  }
+
+  // Creativity & Design
+  async validatingCreativityAndDesign(country) {
+    await this.creativityAndDesign.click();
+
+    const skipCountries = ['United Kingdom', 'India', 'Spain'];
+    const addCountries = ['United Kingdom', 'India', 'Spain'];
+
+    if (!skipCountries.includes(country)) {
+      await this.creativityAndDesignElements(country);
+    } else if (addCountries.includes(country)) {
+      await this.quickActionsElements(country);
+    }
+
+    await this.hamburgerMenu.click();
+  }
+
+  async creativityAndDesignElements(country) {
+    const elementsToCheck = [
+      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      {
+        element: this.individuals,
+        conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'Italy'] },
+      },
+      { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      {
+        element: this.schoolsAndUniversities,
+        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
+      },
+      {
+        element: this.viewPlansAndPricing,
+        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
+      },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  async quickActionsElements(country) {
+    await this.quickActions.click();
+    const elementsToCheck = [
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.photoshop, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.adobeExpress, conditions: { defaultVisibility: true } },
+      { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.illustratorCd, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.premierePro, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      {
+        element: this.viewAllProducts,
+        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain', 'United Kingdom'] },
+      },
+      { element: this.viewPlansAndPricing, conditions: { includeCountries: ['United Kingdom'] } },
+      { element: this.acrobatPro, conditions: { includeCountries: ['Spain'] } },
+      { element: this.adobeStockEs, conditions: { includeCountries: ['Spain'] } },
+      { element: this.seeAllProducts, conditions: { includeCountries: ['Spain'] } },
+      { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
+      { element: this.resizeImage, conditions: { includeCountries: ['India'] } },
+      { element: this.covertImageToSVG, conditions: { includeCountries: ['India'] } },
+      { element: this.covertVideoToGIF, conditions: { includeCountries: ['India'] } },
+      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
+      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  // Footer
+  async validatingFooter(country) {
+    await this.changeRegion.scrollIntoViewIfNeeded();
+
+    const includeCountry = ['India'];
+
+    const elements = [this.changeRegion, this.facebookLogo, this.twitterlogo,
+      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
+      this.protectMyPersonalData, this.adChoices,
+      includeCountry.includes(country) ? this.instagramLogoTwo : this.instagramLogo,
+    ];
+    await Promise.all(elements.map((element) => expect(element).toBeVisible()));
   }
 }
