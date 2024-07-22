@@ -80,6 +80,13 @@ export default class Marketo {
     return poi;
   }
 
+  async getFormTemplate() {
+    const template = await this.page.evaluate(
+      'window.mcz_marketoForm_pref.form.template',
+    );
+    return template;
+  }
+
   async selectCompanyType() {
     // The company type field will display if the poi is one of the below
     const expectedPOI = ['Commerce', 'ADOBEADVERTISINGCLOUD'];
@@ -92,12 +99,24 @@ export default class Marketo {
   /**
    * @description Checks that the input fields have the placeholder attribute
    * and that the value isn't empty.
-   * @param  {...any} inputFields the input fields of the form being tested.
    */
-  static async checkInputPlaceholders(...inputFields) {
-    inputFields.forEach(async (el) => {
-      expect(el).toHaveAttribute('placeholder');
-      const placeholder = await el.getAttribute('placeholder');
+  async checkInputPlaceholders() {
+    const template = await this.page.evaluate(
+      'window.mcz_marketoForm_pref.form.template',
+    );
+
+    const inputFields = [
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.company,
+    ];
+
+    if (template === 'flex_contact') inputFields.push(this.phone, this.postalCode);
+
+    inputFields.forEach(async (field) => {
+      expect(field).toHaveAttribute('placeholder');
+      const placeholder = await field.getAttribute('placeholder');
       expect(placeholder.length).toBeGreaterThan(1);
     });
   }
