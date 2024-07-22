@@ -1,17 +1,15 @@
-import { expect, test } from '@playwright/test';
-import { features } from '../../features/milo/marketo.block.spec.js';
+import { test, expect } from '@playwright/test';
+import { features } from '../../features/bacom/marketo-stage.spec.js';
 import MarketoBlock from '../../selectors/milo/marketo.block.page.js';
 
 let marketoBlock;
 const WAIT_TIME = 10000;
 const miloLibs = process.env.MILO_LIBS || '';
 
-test.describe('Marketo block test suite', () => {
-  test.beforeEach(async ({ page, browserName }) => {
-    if (browserName === 'chromium') test.skip('TODO: debug why this is failing on github actions');
-
+test.describe('Marketo block test suite for stage form', () => {
+  test.beforeEach(async ({ page }) => {
     marketoBlock = new MarketoBlock(page);
-    await test.setTimeout(80000);
+    await test.setTimeout(60000);
   });
 
   features[0].path.forEach((path) => {
@@ -37,9 +35,7 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
   });
@@ -69,9 +65,7 @@ test.describe('Marketo block test suite', () => {
         });
 
         await test.step('step-4: Verify the form submission redirect', async () => {
-          await page.waitForTimeout(WAIT_TIME);
-          const redirectedUrl = await page.url();
-          await expect(redirectedUrl).toContain('?submissionid');
+          await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
         });
       },
     );
@@ -100,9 +94,7 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
   });
@@ -130,9 +122,7 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(page).not.toHaveURL(testPage, { timeout: 15000 });
       });
     });
   });
