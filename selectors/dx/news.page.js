@@ -42,12 +42,4 @@ export default class NewsPage {
   async clearFilter(filter, number) {
     await this.page.locator(`[aria-label="${filter}"] + [aria-label="${number}"]`).click();
   }
-
-  async signIn(partnerLevel) {
-    const email = process.env.IMS_EMAIL.split(partnerLevel)[1].split(';')[0];
-    await this.emailField.fill(email);
-    await this.emailPageContinueButton.click();
-    await this.passwordField.fill(process.env.IMS_PASS);
-    await this.passwordPageContinueButton.click();
-  }
 }
