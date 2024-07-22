@@ -7,6 +7,11 @@ module.exports = {
       testId: '@MWPW-140197',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/public-page',
       tags: '@dx-signin @regression @login @nopr',
+      data: {
+        partnerLevel: 'spp-platinum:',
+        expectedProtectedURL: '/solutionpartners/drafts/automation/regression/protected-home',
+        expectedPublicURL: '/solutionpartners/drafts/automation/regression/public-page',
+      },
     },
     {
       tcid: '2',
@@ -14,6 +19,10 @@ module.exports = {
       testId: '@MWPW-140198 @MWPW-140201',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-signin @regression @login @nopr',
+      data: {
+        partnerLevel: 'spp-gold:',
+        expectedToSeeInURL: '/solutionpartners/drafts/automation/regression/partner-news',
+      },
     },
     {
       tcid: '3',
@@ -22,6 +31,10 @@ module.exports = {
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/public-page',
       baseURL: 'https://www.stage.adobe.com/partners.html',
       tags: '@dx-signin @regression @login @nopr',
+      data: {
+        partnerLevel: 'spp-community:',
+        expectedProtectedURL: '/solutionpartners/drafts/automation/regression/protected-home',
+      },
     },
     {
       tcid: '4',
@@ -30,6 +43,10 @@ module.exports = {
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/public-page',
       baseURL: 'https://www.stage.adobe.com/partners.html',
       tags: '@dx-signin @regression @login @nopr',
+      data: {
+        partnerLevel: 'spp-platinum:',
+        expectedProtectedURL: '/solutionpartners/drafts/automation/regression/protected-home',
+      },
     },
     {
       tcid: '5',
@@ -38,6 +55,10 @@ module.exports = {
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/public-page',
       newsPath: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-signin @regression @login @nopr',
+      data: {
+        partnerLevel: 'tpp-platinum:',
+        expectedToSeeInURL: '/solutionpartners/error/contact-not-found',
+      },
     },
     {
       tcid: '6',
@@ -46,6 +67,10 @@ module.exports = {
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/protected-home',
       baseURL: 'https://www.stage.adobe.com/partners.html',
       tags: '@dx-signin @regression @login @nopr',
+      data: {
+        partnerLevel: 'tpp-platinum:',
+        expectedToSeeInURL: '/solutionpartners/error/contact-not-found',
+      },
     },
     {
       tcid: '7',
@@ -54,6 +79,10 @@ module.exports = {
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/public-page',
       baseURL: 'https://www.stage.adobe.com/partners.html',
       tags: '@dx-signin @regression @login @nopr',
+      data: {
+        partnerLevel: 'tpp-platinum:',
+        expectedToSeeInURL: '/solutionpartners/error/contact-not-found',
+      },
     },
     {
       tcid: '8',
@@ -61,6 +90,7 @@ module.exports = {
       testId: '@MWPW-140213',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/protected-home',
       tags: '@dx-signin @regression @login @nopr',
+      expectedToSeeInURL: 'https://auth-stg1.services.adobe.com/',
     },
     {
       tcid: '9',

@@ -6,7 +6,7 @@ const signin = require('../../features/dx/signin.spec.js');
 
 const { features } = signin;
 
-test.describe('Validate news block', () => {
+test.describe('MAPP sign in flow', () => {
   test.beforeEach(async ({ page }) => {
     signInPage = new SignInPage(page);
   });
@@ -37,14 +37,14 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in', async () => {
-      await signInPage.signIn(page, 'spp-platinum:');
+      await signInPage.signIn(page, `${features[0].data.partnerLevel}`);
     });
 
     await test.step('Verify redirection to protected home page after successful login', async () => {
       await signInPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/drafts/automation/regression/protected-home');
+        .toContain(`${features[0].data.expectedProtectedURL}`);
     });
 
     await test.step('Logout', async () => {
@@ -56,7 +56,7 @@ test.describe('Validate news block', () => {
       await signInPage.signInButton.waitFor({ state: 'visible', timeout: 10000 });
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/drafts/automation/regression/public-page');
+        .toContain(`${features[0].data.expectedPublicURL}`);
     });
   });
 
@@ -74,14 +74,14 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in', async () => {
-      await signInPage.signIn(page, 'spp-gold:');
+      await signInPage.signIn(page, `${features[1].data.partnerLevel}`);
     });
 
     await test.step('Verify restricted news after successful login', async () => {
       await signInPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/drafts/automation/regression/partner-news');
+        .toContain(`${features[1].data.expectedToSeeInURL}`);
       const joinNowButton = await signInPage.joinNowButton;
       await expect(joinNowButton).toBeHidden();
       const explorePastArticlesButton = await signInPage.explorePastArticles;
@@ -99,7 +99,7 @@ test.describe('Validate news block', () => {
       await signInPage.signInButton.waitFor({ state: 'visible', timeout: 10000 });
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/drafts/automation/regression/partner-news');
+        .toContain(`${features[1].data.expectedToSeeInURL}`);
       const joinNowButton = await signInPage.joinNowButton;
       await expect(joinNowButton).toBeVisible();
       const explorePastArticlesButton = await signInPage.explorePastArticles;
@@ -121,7 +121,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in with spp community user', async () => {
-      await signInPage.signIn(page, 'spp-community:');
+      await signInPage.signIn(page, `${features[2].data.partnerLevel}`);
       await signInPage.userNameDisplay.waitFor({ state: 'visible', timeout: 15000 });
     });
 
@@ -132,7 +132,7 @@ test.describe('Validate news block', () => {
       await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[1].url())
-        .toContain('/solutionpartners/drafts/automation/regression/protected-home');
+        .toContain(`${features[2].data.expectedProtectedURL}`);
     });
   });
 
@@ -148,7 +148,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in with spp platinum user', async () => {
-      await signInPage.signIn(page, 'spp-platinum:');
+      await signInPage.signIn(page, `${features[3].data.partnerLevel}`);
       await signInPage.userNameDisplay.waitFor({ state: 'visible', timeout: 15000 });
     });
 
@@ -159,7 +159,7 @@ test.describe('Validate news block', () => {
       await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[1].url())
-        .toContain('/solutionpartners/drafts/automation/regression/protected-home');
+        .toContain(`${features[3].data.expectedProtectedURL}`);
     });
   });
 
@@ -171,14 +171,14 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in', async () => {
-      await signInPage.signIn(page, 'tpp-platinum:');
+      await signInPage.signIn(page, `${features[4].data.partnerLevel}`);
     });
 
     await test.step('Verify redirection to contact not found page after successful login', async () => {
       await signInPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/error/contact-not-found');
+        .toContain(`${features[4].data.expectedToSeeInURL}`);
     });
 
     await test.step('Logout', async () => {
@@ -193,14 +193,14 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in', async () => {
-      await signInPage.signIn(page, 'tpp-platinum:');
+      await signInPage.signIn(page, `${features[4].data.partnerLevel}`);
     });
 
     await test.step('Verify redirection to contact not found page after successful login', async () => {
       await signInPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/error/contact-not-found');
+        .toContain(`${features[4].data.expectedToSeeInURL}`);
     });
   });
 
@@ -216,7 +216,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in with tpp platinum user', async () => {
-      await signInPage.signIn(page, 'tpp-platinum:');
+      await signInPage.signIn(page, `${features[5].data.partnerLevel}`);
       await signInPage.userNameDisplay.waitFor({ state: 'visible', timeout: 15000 });
     });
 
@@ -227,7 +227,7 @@ test.describe('Validate news block', () => {
       await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[1].url())
-        .toContain('/solutionpartners/error/contact-not-found');
+        .toContain(`${features[5].data.expectedToSeeInURL}`);
       const signInButton = await signInPage.signInButton;
       await expect(signInButton).toBeHidden();
     });
@@ -245,7 +245,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in with tpp platinum user', async () => {
-      await signInPage.signIn(page, 'tpp-platinum:');
+      await signInPage.signIn(page, `${features[6].data.partnerLevel}`);
       await signInPage.userNameDisplay.waitFor({ state: 'visible', timeout: 15000 });
     });
 
@@ -256,7 +256,7 @@ test.describe('Validate news block', () => {
       await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
       const pages = await page.context().pages();
       await expect(pages[1].url())
-        .toContain('/solutionpartners/error/contact-not-found');
+        .toContain(`${features[6].data.expectedToSeeInURL}`);
       const signInButton = await newTabPage.signInButton;
       await expect(signInButton).toBeHidden();
       const joinNowButton = await newTabPage.joinNowButton;
@@ -269,7 +269,7 @@ test.describe('Validate news block', () => {
       await page.goto(`${features[7].path}`);
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('https://auth-stg1.services.adobe.com/');
+        .toContain(`${features[7].expectedToSeeInURL}`);
     });
   });
 
