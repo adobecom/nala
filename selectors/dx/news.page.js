@@ -15,10 +15,6 @@ export default class NewsPage {
     this.lastCardDate = page.locator('.card-date').nth(5);
 
     this.signInButton = page.locator('button[daa-ll="Sign In"].feds-signIn');
-    this.emailField = page.locator('#EmailPage-EmailField');
-    this.emailPageContinueButton = page.locator('//button[@data-id="EmailPage-ContinueButton"]');
-    this.passwordField = page.locator('#PasswordPage-PasswordField');
-    this.passwordPageContinueButton = page.locator('//button[@data-id="PasswordPage-ContinueButton"]');
     this.profileIconButton = page.locator('.feds-profile-button');
     this.profileName = page.locator('.feds-profile-name');
     this.logoutButton = page.locator('[daa-ll="Sign Out"]');
@@ -41,13 +37,5 @@ export default class NewsPage {
 
   async clearFilter(filter, number) {
     await this.page.locator(`[aria-label="${filter}"] + [aria-label="${number}"]`).click();
-  }
-
-  async signIn(partnerLevel) {
-    const email = process.env.IMS_EMAIL.split(partnerLevel)[1].split(';')[0];
-    await this.emailField.fill(email);
-    await this.emailPageContinueButton.click();
-    await this.passwordField.fill(process.env.IMS_PASS);
-    await this.passwordPageContinueButton.click();
   }
 }
