@@ -5,6 +5,7 @@ let signInPage;
 const signin = require('../../features/dme/signin.spec.js');
 
 const { features } = signin;
+const redirectionFeatures = features.slice(1, 3);
 
 test.describe('MAPC sign in flow', () => {
   test.beforeEach(async ({ page }) => {
@@ -41,57 +42,18 @@ test.describe('MAPC sign in flow', () => {
     });
   });
 
-  test(`${features[1].name},${features[1].tags}`, async ({ page, context }) => {
-    await test.step('Go to stage.adobe.com', async () => {
-      const url = `${features[1].baseURL}`;
-      await page.evaluate((navigationUrl) => {
-        window.location.href = navigationUrl;
-      }, url);
-
-      await signInPage.signInButtonStageAdobe.click();
-      await page.waitForLoadState('domcontentloaded');
-    });
-
-    await test.step('Sign in with cpp spain platinum user', async () => {
-      await signInPage.signIn(page, `${features[1].data.partnerLevel}`);
-      await signInPage.userNameDisplay.waitFor({ state: 'visible', timeout: 20000 });
-    });
-
-    await test.step('Open public page in a new tab', async () => {
+  redirectionFeatures.forEach((feature) => {
+    test(`${feature.name},${feature.tags}`, async ({ page, context }) => {
       const newTab = await context.newPage();
-      await newTab.goto(`${features[1].path}`);
       const newTabPage = new SignInPage(newTab);
-      await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
-      const pages = await page.context().pages();
-      await expect(pages[1].url())
-        .toContain(`${features[1].data.expectedToSeeInURL}`);
-    });
-  });
-
-  test(`${features[2].name},${features[2].tags}`, async ({ page, context }) => {
-    await test.step('Go to stage.adobe.com', async () => {
-      const url = `${features[2].baseURL}`;
-      await page.evaluate((navigationUrl) => {
-        window.location.href = navigationUrl;
-      }, url);
-
-      await signInPage.signInButtonStageAdobe.click();
-      await page.waitForLoadState('domcontentloaded');
-    });
-
-    await test.step('Sign in with cpp spain platinum user', async () => {
-      await signInPage.signIn(page, `${features[2].data.partnerLevel}`);
-      await signInPage.userNameDisplay.waitFor({ state: 'visible', timeout: 20000 });
-    });
-
-    await test.step('Open restricted page in a new tab', async () => {
-      const newTab = await context.newPage();
-      await newTab.goto(`${features[2].path}`);
-      const newTabPage = new SignInPage(newTab);
-      await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
-      const pages = await page.context().pages();
-      await expect(pages[1].url())
-        .toContain(`${features[2].data.expectedToSeeInURL}`);
+      await signInPage.verifyRedirectAfterLogin({
+        page,
+        test,
+        expect,
+        newTab,
+        newTabPage,
+        feature,
+      });
     });
   });
 });

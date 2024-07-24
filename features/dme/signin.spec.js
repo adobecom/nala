@@ -21,6 +21,7 @@ module.exports = {
       data: {
         partnerLevel: 'cpp-spain-platinum:',
         expectedToSeeInURL: 'https://partners.stage.adobe.com/channelpartners/drafts/automation/regression/protected-home',
+        page: 'public page',
       },
     },
     {
@@ -32,6 +33,7 @@ module.exports = {
       data: {
         partnerLevel: 'cpp-spain-platinum:',
         expectedToSeeInURL: 'https://partners.stage.adobe.com/channelpartners/drafts/automation/regression/protected-home',
+        page: 'restricted page',
       },
     },
   ],
