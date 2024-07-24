@@ -5,29 +5,12 @@ let signInPage;
 const signin = require('../../features/dx/signin.spec.js');
 
 const { features } = signin;
+const uniqueFeatures = features.slice(8, 11);
 
 test.describe('MAPP sign in flow', () => {
   test.beforeEach(async ({ page }) => {
     signInPage = new SignInPage(page);
   });
-
-  async function verifyLandingPageAfterLogin({ page, partnerLevel, status, expectedLandingPageURL }) {
-    await test.step('Go to public home page', async () => {
-      await page.goto(`${features[8].path}`);
-      await page.waitForLoadState('domcontentloaded');
-      await signInPage.signInButton.click();
-    });
-
-    await test.step('Sign in', async () => {
-      await signInPage.signIn(page, partnerLevel);
-    });
-
-    await test.step(`Verify redirection to ${status} page after successful login`, async () => {
-      await signInPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
-      const pages = await page.context().pages();
-      await expect(pages[0].url()).toContain(expectedLandingPageURL);
-    });
-  }
 
   test(`${features[0].name},${features[0].tags}`, async ({ page }) => {
     await test.step('Go to public home page', async () => {
@@ -273,30 +256,17 @@ test.describe('MAPP sign in flow', () => {
     });
   });
 
-  test(`${features[8].name},${features[8].tags}`, async ({ page }) => {
-    await verifyLandingPageAfterLogin({
-      page,
-      partnerLevel: features[8].data.partnerLevel,
-      status: features[8].data.status,
-      expectedLandingPageURL: features[8].data.expectedLandingPageURL,
-    });
-  });
-
-  test(`${features[9].name},${features[9].tags}`, async ({ page }) => {
-    await verifyLandingPageAfterLogin({
-      page,
-      partnerLevel: features[9].data.partnerLevel,
-      status: features[9].data.status,
-      expectedLandingPageURL: features[9].data.expectedLandingPageURL,
-    });
-  });
-
-  test(`${features[10].name},${features[10].tags}`, async ({ page }) => {
-    await verifyLandingPageAfterLogin({
-      page,
-      partnerLevel: features[10].data.partnerLevel,
-      status: features[10].data.status,
-      expectedLandingPageURL: features[10].data.expectedLandingPageURL,
+  uniqueFeatures.forEach((feature) => {
+    test(`${feature.name},${feature.tags}`, async ({ page }) => {
+      await signInPage.verifyLandingPageAfterLogin({
+        page,
+        partnerLevel: feature.data.partnerLevel,
+        status: feature.data.status,
+        expectedLandingPageURL: feature.data.expectedLandingPageURL,
+        test,
+        expect,
+        path: feature.path,
+      });
     });
   });
 });
