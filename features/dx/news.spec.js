@@ -24,6 +24,7 @@ module.exports = {
       name: '@desc-regression-news-page-read-article',
       path: '/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @anonymous',
+      expectedToSeeInURL: '/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1',
     },
     {
       tcid: '5',
@@ -36,6 +37,11 @@ module.exports = {
       name: '@login-news-page-platinum-user',
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       tags: '@dx-news @regression @login @nopr',
+      data: {
+        partnerLevel: 'spp-platinum:',
+        expectedToSeeInURL: '/solutionpartners/drafts/'
+          + 'automation/regression/caas-cards/automation-regression-platinum-card-no1',
+      },
     },
     {
       tcid: '7',
@@ -91,6 +97,7 @@ module.exports = {
       path: 'https://partners.stage.adobe.com/solutionpartners/drafts/automation/regression/partner-news',
       baseURL: 'https://www.stage.adobe.com/partners.html',
       tags: '@dx-news @regression @login @nopr',
+      partnerLevel: 'tpp-platinum:',
     },
   ],
 };
