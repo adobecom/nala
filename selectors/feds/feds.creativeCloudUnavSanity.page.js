@@ -222,10 +222,10 @@ export default class CreativeCloudUnavSanity {
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
       { element: this.adobeFirefly, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
-      // { element: this.adobecom, conditions: { defaultVisibility: true } },
-      // { element: this.pdfAndESignatures, conditions: { defaultVisibility: true } },
-      // { element: this.marketingAndCommerce, conditions: { defaultVisibility: true } },
-      // { element: this.helpAndSupport, conditions: { defaultVisibility: true } },
+      { element: this.adobecom, conditions: { defaultVisibility: true } },
+      { element: this.pdfAndESignatures, conditions: { defaultVisibility: true } },
+      { element: this.marketingAndCommerce, conditions: { defaultVisibility: true } },
+      { element: this.helpAndSupport, conditions: { defaultVisibility: true } },
       { element: this.forGovernmentAgencies, conditions: { includeCountries: ['Japan'] } },
       { element: this.benifitsForCreativeCloudPaidMembers, conditions: { includeCountries: ['Japan'] } },
       { element: this.adobeFireflyCC, conditions: { includeCountries: ['Japan'] } },
@@ -323,9 +323,8 @@ export default class CreativeCloudUnavSanity {
   }
 
   // Clicking on "Buy Now" button
-  async validatingBuyNowButton() {
+  async validatingBuyNowButton(url) {
     await this.buyNowButton.click();
-    const url = this.page.url();
     console.info('[Validation] URL of Buy Now Page:', url);
     await expect(this.page).toHaveURL(url);
   }
@@ -357,15 +356,7 @@ export default class CreativeCloudUnavSanity {
     }
   }
 
-  // Mobile, Tab & iPad methods
-
-  // Gnav
-  async validatingUnav() {
-    const elements = [this.hamburgerMenu, this.adobeLogo, this.appSwitcher, this.signInButton];
-    await Promise.all(elements.map(async (element) => {
-      await expect(element).toBeVisible();
-    }));
-  }
+  // Mobile Methods
 
   // Hamburger Menu
   async validatingHamburgerMenu(country) {
@@ -570,5 +561,77 @@ export default class CreativeCloudUnavSanity {
     await Promise.all(elements.map(async (element) => {
       await expect(element).toBeVisible();
     }));
+  }
+
+  // Tab & iPad Methods
+
+  // Creativity & Design
+  async validatingCreativityAndDesignTabiPad(country) {
+    await this.creativityAndDesign.click();
+
+    const elementsToCheck = [
+      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      {
+        element: this.studentsAndTeachers,
+        conditions: { defaultVisibility: true, excludeCountries: ['India'] },
+      },
+      {
+        element: this.individuals,
+        conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France'] },
+      },
+      { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      {
+        element: this.schoolsAndUniversities,
+        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
+      },
+      { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true } },
+      { element: this.photoshop, conditions: { defaultVisibility: true } },
+      { element: this.adobeExpress, conditions: { defaultVisibility: true } },
+      { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.illustrator, conditions: { defaultVisibility: true } },
+      { element: this.premierePro, conditions: { defaultVisibility: true } },
+      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.illustration, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.socialMedia, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+      { element: this.adobeFirefly, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+      { element: this.forGovernmentAgencies, conditions: { includeCountries: ['Japan'] } },
+      { element: this.benifitsForCreativeCloudPaidMembers, conditions: { includeCountries: ['Japan'] } },
+      { element: this.adobeFireflyCC, conditions: { includeCountries: ['Japan'] } },
+      { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
+      { element: this.resizeImage, conditions: { includeCountries: ['India'] } },
+      { element: this.covertImageToSVG, conditions: { includeCountries: ['India'] } },
+      { element: this.covertVideoToGIF, conditions: { includeCountries: ['India'] } },
+      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
+      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
+      { element: this.resume, conditions: { includeCountries: ['India'] } },
+      { element: this.posters, conditions: { includeCountries: ['India'] } },
+      { element: this.card, conditions: { includeCountries: ['India'] } },
+      { element: this.instagramPost, conditions: { includeCountries: ['India'] } },
+      { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
+      { element: this.createNow, conditions: { includeCountries: ['India'] } },
+      { element: this.adobePro, conditions: { includeCountries: ['Spain'] } },
+      { element: this.seeAllProducts, conditions: { includeCountries: ['Spain'] } },
+      { element: this.seePlansAndPricing, conditions: { includeCountries: ['Spain'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+
+    await this.creativityAndDesign.click();
   }
 }

@@ -158,7 +158,7 @@ module.exports = {
     {
       tcid: '22',
       name: '@PhilippinesEnglishMobileCCUnavPageCheck',
-      path: '/ph_fil/creativecloud.html?georouting=off',
+      path: '/ph_en/creativecloud.html?georouting=off',
       tags: '@mobileCCOUnavPageSanity @mobileCCUnavPhilippinesEnglish',
       country: 'Philippines English',
     },
