@@ -100,7 +100,6 @@ module.exports = {
       tags: '@dx-signin @regression @login @nopr',
       data: {
         partnerLevel: 'spp-submitted-in-review:',
-        status: 'submitted in review',
         expectedLandingPageURL: 'https://partners.stage.adobe.com/solutionpartners/error/submitted-in-review',
       },
     },
@@ -112,7 +111,6 @@ module.exports = {
       tags: '@dx-signin @regression @login @nopr',
       data: {
         partnerLevel: 'spp-deactivated:',
-        status: 'contact inactive',
         expectedLandingPageURL: 'https://partners.stage.adobe.com/solutionpartners/error/contact-inactive',
       },
     },
@@ -124,7 +122,6 @@ module.exports = {
       tags: '@dx-signin @regression @login @nopr',
       data: {
         partnerLevel: 'spp-expired:',
-        status: 'account expired',
         expectedLandingPageURL: 'https://partners.stage.adobe.com/solutionpartners/error/account-expired',
       },
     },

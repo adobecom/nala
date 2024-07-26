@@ -20,30 +20,20 @@ export default class SignInPage {
 
   async signIn(page, partnerLevel) {
     const email = process.env.IMS_EMAIL.split(partnerLevel)[1].split(';')[0];
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await this.emailField.fill(email);
     await this.emailPageContinueButton.click();
     await this.passwordField.fill(process.env.IMS_PASS);
     await this.passwordPageContinueButton.click();
   }
 
-  async verifyLandingPageAfterLogin({
-    page, partnerLevel, status, expectedLandingPageURL, test, expect, path,
-  }) {
-    await test.step('Go to public home page', async () => {
-      await page.goto(path);
-      await page.waitForLoadState('domcontentloaded');
-      await this.signInButton.click();
-    });
-
-    await test.step('Sign in', async () => {
-      await this.signIn(page, partnerLevel);
-    });
-
-    await test.step(`Verify redirection to ${status} page after successful login`, async () => {
-      await this.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
-      const pages = await page.context().pages();
-      await expect(pages[0].url()).toContain(expectedLandingPageURL);
-    });
+  async verifyLandingPageAfterLogin({ page, expect, path, partnerLevel, expectedLandingPageURL }) {
+    await page.goto(path);
+    await page.waitForLoadState('domcontentloaded');
+    await this.signInButton.click();
+    await this.signIn(page, partnerLevel);
+    await this.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
+    const pages = await page.context().pages();
+    await expect(pages[0].url()).toContain(expectedLandingPageURL);
   }
 }

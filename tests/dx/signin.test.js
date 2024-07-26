@@ -258,14 +258,14 @@ test.describe('MAPP sign in flow', () => {
 
   uniqueFeatures.forEach((feature) => {
     test(`${feature.name},${feature.tags}`, async ({ page }) => {
-      await signInPage.verifyLandingPageAfterLogin({
-        page,
-        partnerLevel: feature.data.partnerLevel,
-        status: feature.data.status,
-        expectedLandingPageURL: feature.data.expectedLandingPageURL,
-        test,
-        expect,
-        path: feature.path,
+      await test.step('Verify landing page after successful login', async () => {
+        await signInPage.verifyLandingPageAfterLogin({
+          page,
+          expect,
+          path: feature.path,
+          partnerLevel: feature.data.partnerLevel,
+          expectedLandingPageURL: feature.data.expectedLandingPageURL,
+        });
       });
     });
   });
