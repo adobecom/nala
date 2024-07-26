@@ -15,7 +15,7 @@ export default class SignInPage {
 
   async signIn(page, partnerLevel) {
     const email = process.env.IMS_EMAIL.split(partnerLevel)[1].split(';')[0];
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await this.emailField.fill(email);
     await this.emailPageContinueButton.click();
     await this.passwordField.fill(process.env.IMS_PASS);
@@ -23,29 +23,20 @@ export default class SignInPage {
   }
 
   async verifyRedirectAfterLogin({
-    page, test, expect, newTab, newTabPage, feature,
+    page, expect, newTab, newTabPage, baseURL, partnerLevel, path, expectedToSeeInURL,
   }) {
-    await test.step('Go to stage.adobe.com', async () => {
-      const url = `${feature.baseURL}`;
-      await page.evaluate((navigationUrl) => {
-        window.location.href = navigationUrl;
-      }, url);
+    const url = `${baseURL}`;
+    await page.evaluate((navigationUrl) => {
+      window.location.href = navigationUrl;
+    }, url);
 
-      await this.signInButtonStageAdobe.click();
-      await page.waitForLoadState('domcontentloaded');
-    });
-
-    await test.step('Sign in with cpp spain platinum user', async () => {
-      await this.signIn(page, `${feature.data.partnerLevel}`);
-      await this.userNameDisplay.waitFor({ state: 'visible', timeout: 20000 });
-    });
-
-    await test.step(`Open ${feature.data.page} in a new tab`, async () => {
-      await newTab.goto(`${feature.path}`);
-      await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
-      const pages = await page.context().pages();
-      await expect(pages[1].url())
-        .toContain(`${feature.data.expectedToSeeInURL}`);
-    });
+    await this.signInButtonStageAdobe.click();
+    await this.signIn(page, `${partnerLevel}`);
+    await this.userNameDisplay.waitFor({ state: 'visible', timeout: 20000 });
+    await newTab.goto(`${path}`);
+    await newTabPage.profileIconButton.waitFor({ state: 'visible', timeout: 20000 });
+    const pages = await page.context().pages();
+    await expect(pages[1].url())
+      .toContain(`${expectedToSeeInURL}`);
   }
 }
