@@ -1,8 +1,10 @@
 import { expect } from '@playwright/test';
+import IllustratorPageSanity from './feds.illustratorsanity.page.js';
 
 export default class CreativeCloudUnavSanity {
   constructor(page) {
     this.page = page;
+    this.illu = new IllustratorPageSanity(page);
 
     // Adobe Brand Logo, appswitcher and signIn button
     this.adobeLogo = page.locator('a.feds-brand');
@@ -105,37 +107,6 @@ export default class CreativeCloudUnavSanity {
 
     // Training & Support
     this.innovations = page.locator('.feds-popup a[href$="creativecloud/features.html"]');
-
-    // Footer
-    this.footerCreativeCloud = page.locator('.feds-footer-wrapper a[href*="creativecloud.html"]');
-    this.footerCreativeCloudForBusiness = page.locator('.feds-footer-wrapper a[href*="creativecloud/business.html"]');
-    this.footerdiscountForStudentsAndTeachers = page.locator('.feds-footer-wrapper a[href*="students.html"]');
-    this.footerappsForiOS = page.locator('.feds-footer-wrapper a[href*="id852473028"]');
-    this.footerWhatIsExperienceCloud = page.locator('.feds-menu-items a[href*="business.adobe.com"]').nth(0);
-    this.footerWhatIsExperienceCloudTwo = page.locator('.feds-menu-items a[href*="experience-cloud.html"]');
-    this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href$="download-install.html"]');
-    this.footerAdobeBlog = page.locator('.feds-footer-wrapper a[href*="blog.adobe.com/"]');
-    this.footerLoginToYourAccount = page.locator('a[href$="account.adobe.com/"]').nth(0);
-    this.footerAbout = page.locator('.feds-footer-wrapper a[href$="about-adobe.html"]').nth(0);
-
-    // Featured Products
-    this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
-    this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(2)');
-    this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]');
-    this.footerIllustratorlogo = page.locator('a[href$="illustrator/free-trial-download.html"]');
-
-    // Change Region and social media
-    this.changeRegion = page.locator('.feds-regionPicker-wrapper');
-    this.facebookLogo = page.locator('a[href*="facebook"]');
-    this.instagramLogo = page.locator('a[href*="instagram.com"]');
-    this.twitterlogo = page.locator('a[href*="twitter"]');
-    this.linkedinLogo = page.locator('a[href*="linkedin"]');
-    this.copyright = page.locator('.feds-footer-legalWrapper>p>span');
-    this.privacyPolicy = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)');
-    this.termsOfUse = page.locator('.feds-footer-legalWrapper a:nth-of-type(2)');
-    this.cookies = page.locator('.feds-footer-legalWrapper a:nth-of-type(3)');
-    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
-    this.adChoices = page.locator('.feds-footer-legalWrapper a:nth-of-type(5)');
   }
 
   // UNAV
@@ -217,7 +188,7 @@ export default class CreativeCloudUnavSanity {
       { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.illustration, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.socialMedia, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.socialMedia, conditions: { defaultVisibility: true, excludeCountries: ['India', 'United States'] } },
       { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
@@ -331,15 +302,15 @@ export default class CreativeCloudUnavSanity {
 
   // Footer
   async validatingFooter() {
-    await this.changeRegion.scrollIntoViewIfNeeded();
+    await this.illu.changeRegion.scrollIntoViewIfNeeded();
 
     const elementsToCheck = [
-      this.footerCreativeCloud, this.footerCreativeCloudForBusiness, this.footerdiscountForStudentsAndTeachers,
-      this.footerappsForiOS, this.footerDownloadAndInstall, this.footerAdobeBlog, this.footerLoginToYourAccount,
-      this.footerAbout, this.footerAdobeAcrobatReaderlogo, this.footerAdobeExpresslogo, this.footerPhotoshoplogo,
-      this.footerIllustratorlogo, this.changeRegion, this.facebookLogo, this.instagramLogo, this.twitterlogo,
-      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies, this.adChoices,
-      this.protectMyPersonalData, this.footerWhatIsExperienceCloud,
+      this.illu.footerCreativeCloud, this.illu.footerCreativeCloudForBusiness, this.illu.footerdiscountForStudentsAndTeachers,
+      this.illu.footerappsForiOS, this.illu.footerDownloadAndInstall, this.illu.footerAdobeBlog, this.illu.footerLoginToYourAccount,
+      this.illu.footerAbout, this.illu.footerAdobeAcrobatReaderlogo, this.illu.footerAdobeExpresslogo, this.illu.footerPhotoshoplogo,
+      this.illu.footerIllustratorlogo, this.illu.changeRegion, this.illu.facebookLogo, this.illu.instagramLogo, this.illu.twitterlogo,
+      this.illu.linkedinLogo, this.illu.copyright, this.illu.privacyPolicy, this.illu.termsOfUse, this.illu.cookies, this.illu.adChoices,
+      this.illu.protectMyPersonalData, this.illu.footerWhatIsExperienceCloud,
     ];
 
     await Promise.all(elementsToCheck.map(async (element) => {
@@ -552,11 +523,11 @@ export default class CreativeCloudUnavSanity {
 
   // Footer
   async validatingFooterSection() {
-    await this.changeRegion.scrollIntoViewIfNeeded();
+    await this.illu.changeRegion.scrollIntoViewIfNeeded();
 
-    const elements = [this.changeRegion, this.facebookLogo, this.instagramLogo, this.twitterlogo,
-      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies, this.adChoices,
-      this.protectMyPersonalData];
+    const elements = [this.illu.changeRegion, this.illu.facebookLogo, this.illu.instagramLogo, this.illu.twitterlogo,
+      this.illu.linkedinLogo, this.illu.copyright, this.illu.privacyPolicy, this.illu.termsOfUse, this.illu.cookies, this.illu.adChoices,
+      this.illu.protectMyPersonalData];
 
     await Promise.all(elements.map(async (element) => {
       await expect(element).toBeVisible();
@@ -597,7 +568,7 @@ export default class CreativeCloudUnavSanity {
       { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.illustration, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.socialMedia, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.socialMedia, conditions: { defaultVisibility: true, excludeCountries: ['India', 'United States'] } },
       { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
