@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/feds/prodSanity/ccepagesanity.spec.js';
+import { features } from '../../features/feds/prodSanity/mobileTesting/mobileCCEPageSanity.spec.js';
 import CreativeCloudEnterpriseSanity from '../../selectors/feds/feds.ccepagesanity.page.js';
 
 test.describe('Test Suite for Creative Cloud Business Enterprise Page Components', () => {
@@ -22,15 +22,15 @@ test.describe('Test Suite for Creative Cloud Business Enterprise Page Components
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of U-NAV Elements
-      await enterprise.validatingUnavElements(props.country);
+      await enterprise.validatingUnav();
       // Verifying the visibility of Creativity & Design Elements
-      await enterprise.validatingCreativityAndDesignElements(props.country);
+      await enterprise.validatingCreativityAndDesign(props.country);
       // Verifying the visibility of Product Elements
-      await enterprise.validatingProductElements();
+      await enterprise.validatingProduct();
       // Verifying the visibility of Resource Elements
-      await enterprise.validatingResourceElements();
+      await enterprise.validatingResources();
       // Verifying the visibility of Footer Elements
-      await enterprise.validatingFooterElements();
+      await enterprise.validatingFooter();
     });
   });
 });
