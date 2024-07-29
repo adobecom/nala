@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test';
 import NewsPage from '../../selectors/dx/news.page.js';
+import SignInPage from '../../selectors/dx/signin.page.js';
 
 let newsPage;
+let signInPage;
 const News = require('../../features/dx/news.spec.js');
 
 const { features } = News;
@@ -9,6 +11,7 @@ const { features } = News;
 test.describe('Validate news block', () => {
   test.beforeEach(async ({ page }) => {
     newsPage = new NewsPage(page);
+    signInPage = new SignInPage(page);
   });
 
   async function findCardsForPartnerLevel(page, path, cardPartnerLevel, partnerLevel, resultTotal, cardLevelAbove) {
@@ -25,7 +28,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('I load the news page', async () => {
-      await newsPage.signIn(partnerLevel);
+      await signInPage.signIn(page, partnerLevel);
     });
 
     await test.step('Find automation regression cards for current partner level', async () => {
@@ -173,6 +176,7 @@ test.describe('Validate news block', () => {
     await test.step('Go to News page', async () => {
       await page.goto(`${baseURL}${features[3].path}`);
       await newsPage.searchField.fill('Automation regression news card SPP Public no1');
+      await newsPage.firstCardTitle.waitFor({ state: 'visible', timeout: 10000 });
       const resultAfterSearch = await newsPage.resultNumber.textContent();
       await expect(parseInt(resultAfterSearch.split(' ')[0], 10)).toBe(1);
     });
@@ -181,7 +185,7 @@ test.describe('Validate news block', () => {
       await newsPage.readCard.click();
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-card-no1');
+        .toContain(`${features[3].expectedToSeeInURL}`);
     });
   });
 
@@ -229,7 +233,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('I load the news page', async () => {
-      await newsPage.signIn('spp-platinum:');
+      await signInPage.signIn(page, `${features[5].data.partnerLevel}`);
     });
 
     await test.step('Find platinum automation regression cards', async () => {
@@ -245,7 +249,7 @@ test.describe('Validate news block', () => {
       await newsPage.readCard.click();
       const pages = await page.context().pages();
       await expect(pages[0].url())
-        .toContain('/solutionpartners/drafts/automation/regression/caas-cards/automation-regression-platinum-card-no1');
+        .toContain(`${features[5].data.expectedToSeeInURL}`);
     });
   });
 
@@ -297,7 +301,7 @@ test.describe('Validate news block', () => {
 
   test(`${features[10].name},${features[10].tags}`, async ({ page, context }) => {
     await test.step('Go to stage.adobe.com', async () => {
-      const url = `${features[10].path}`;
+      const url = `${features[10].baseURL}`;
       await page.evaluate((navigationUrl) => {
         window.location.href = navigationUrl;
       }, url);
@@ -307,7 +311,7 @@ test.describe('Validate news block', () => {
     });
 
     await test.step('Sign in with non spp member', async () => {
-      await newsPage.signIn('tpp-platinum:');
+      await signInPage.signIn(page, `${features[10].partnerLevel}`);
     });
 
     await test.step(`Open ${features[10].path} in a new tab`, async () => {
