@@ -8,6 +8,9 @@ export default class Accordion {
     this.accordionHeaders = this.accordion.locator('dt[role=heading]');
     this.accordionButtons = this.accordion.locator('dt button');
     this.accordionButtonIcons = this.accordion.locator('.accordion-icon');
+    this.outlineButton = this.accordion.locator('.con-button.outline').nth(nth);
+    this.blueButton = this.accordion.locator('.con-button.blue').nth(nth);
+    this.textLink = this.accordion.locator('//a[contains(text(), "Text link")]').nth(nth);
 
     // accordion blocks attributes
     this.attributes = {
