@@ -131,7 +131,7 @@ test.describe('Milo Table block feature test suite', () => {
       // verify sticky table header and attributes
       await expect(await table.collapseStickyTable).toBeVisible();
       await expect(table.highlightRow).toHaveClass(/row.*row-1.*row-highlight/);
-      await expect(table.stickyRow).toHaveClass(/row.*row-2.*row-heading/);      
+      await expect(table.stickyRow).toHaveClass(/row.*row-2.*row-heading/);
 
       // verify table row, column count
       await expect(await table.rows).toHaveCount(data.rowsCount);
