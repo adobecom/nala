@@ -40,7 +40,7 @@ module.exports = {
     {
       tcid: '3',
       name: '@Accordion (seo editorial)',
-      path: '/drafts/nala/blocks/accordion/accordion-seo-editorial#',
+      path: '/drafts/nala/blocks/accordion/accordion-seo-editorial',
       data: {
         headers: 3,
         heading0: 'How do I compress a PDF without losing quality?',

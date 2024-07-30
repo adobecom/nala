@@ -135,9 +135,7 @@ test.describe('Milo Accordion Block test suite', () => {
       await expect(await accordion.accordionHeaders.nth(1)).toContainText(data.heading1);
       await expect(await accordion.accordionHeaders.nth(2)).toContainText(data.heading2);
 
-      // verify accordion buttons open close clicks
-      // await expect(await accordion.accordionButtons.nth(0)).toHaveAttribute('aria-expanded', 'false');
-      // await accordion.accordionButtonIcons.nth(0).click();
+      // verify accordion nth(0) buttons is open by default
       await expect(await accordion.accordionButtons.nth(0)).toHaveAttribute('aria-expanded', 'true');
 
       // verify action area buttons, links and text
@@ -147,6 +145,10 @@ test.describe('Milo Accordion Block test suite', () => {
 
       await expect(await accordion.outlineButton).toContainText(data.outlineButtonText);
       await expect(await accordion.blueButton).toContainText(data.blueButtonText);
+
+      // verify accordion buttons open close clicks
+      await accordion.accordionButtonIcons.nth(0).click();
+      await expect(await accordion.accordionButtons.nth(0)).toHaveAttribute('aria-expanded', 'false');
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
