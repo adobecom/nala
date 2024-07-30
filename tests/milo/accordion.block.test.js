@@ -136,8 +136,8 @@ test.describe('Milo Accordion Block test suite', () => {
       await expect(await accordion.accordionHeaders.nth(2)).toContainText(data.heading2);
 
       // verify accordion buttons open close clicks
-      //await expect(await accordion.accordionButtons.nth(0)).toHaveAttribute('aria-expanded', 'false');
-      //await accordion.accordionButtonIcons.nth(0).click();
+      // await expect(await accordion.accordionButtons.nth(0)).toHaveAttribute('aria-expanded', 'false');
+      // await accordion.accordionButtonIcons.nth(0).click();
       await expect(await accordion.accordionButtons.nth(0)).toHaveAttribute('aria-expanded', 'true');
 
       // verify action area buttons, links and text
@@ -152,5 +152,5 @@ test.describe('Milo Accordion Block test suite', () => {
     await test.step('step-3: Verify analytics attributes', async () => {
       expect(await webUtil.verifyAttributes_(accordion.accordion, accordion.attributes.analytics['accordion.daa-lh'])).toBeTruthy();
     });
-  });  
+  });
 });

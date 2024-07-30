@@ -47,7 +47,7 @@ module.exports = {
         heading1: 'What size PDFs can I compress?',
         heading2: 'How do I check my PDF file size?',
         outlineButtonText: 'Lorem ipsum',
-        blueButtonText: 'Learn more'
+        blueButtonText: 'Learn more',
       },
       tags: '@accordion @accordion-seo-editorial @smoke @regression @milo',
     },
