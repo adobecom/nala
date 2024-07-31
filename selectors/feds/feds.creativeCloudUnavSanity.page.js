@@ -1,10 +1,10 @@
 import { expect } from '@playwright/test';
-import IllustratorPageSanity from './feds.illustratorsanity.page.js';
+import FedsFooter from './feds.footer.page.js';
 
 export default class CreativeCloudUnavSanity {
   constructor(page) {
     this.page = page;
-    this.illu = new IllustratorPageSanity(page);
+    this.footer = new FedsFooter(page);
 
     // Adobe Brand Logo, appswitcher and signIn button
     this.adobeLogo = page.locator('a.feds-brand');
@@ -301,16 +301,18 @@ export default class CreativeCloudUnavSanity {
   }
 
   // Footer
-  async validatingFooter() {
-    await this.illu.changeRegion.scrollIntoViewIfNeeded();
+  async validatingFooter(country) {
+    await this.footer.changeRegionButton.scrollIntoViewIfNeeded();
 
     const elementsToCheck = [
-      this.illu.footerCreativeCloud, this.illu.footerCreativeCloudForBusiness, this.illu.footerdiscountForStudentsAndTeachers,
-      this.illu.footerappsForiOS, this.illu.footerDownloadAndInstall, this.illu.footerAdobeBlog, this.illu.footerLoginToYourAccount,
-      this.illu.footerAbout, this.illu.footerAdobeAcrobatReaderlogo, this.illu.footerAdobeExpresslogo, this.illu.footerPhotoshoplogo,
-      this.illu.footerIllustratorlogo, this.illu.changeRegion, this.illu.facebookLogo, this.illu.instagramLogo, this.illu.twitterlogo,
-      this.illu.linkedinLogo, this.illu.copyright, this.illu.privacyPolicy, this.illu.termsOfUse, this.illu.cookies, this.illu.adChoices,
-      this.illu.protectMyPersonalData, this.illu.footerWhatIsExperienceCloud,
+      this.footer.footerCreativeCloud, this.footer.footerViewAllProducts, this.footer.footerCreativeCloudForBusiness,
+      this.footer.footerDiscountsForStudentsAndTeachers, this.footer.footerAppsforiOS, this.footer.footerDownloadAndInstall,
+      this.footer.footerAdobeBlogSecond, this.footer.footerLogInToYourAccount, this.footer.footerAbout,
+      this.footer.footerAdobeAcrobatReaderlogo, this.footer.footerAdobeExpresslogo, this.footer.footerPhotoshoplogo,
+      this.footer.footerIllustratorlogo, this.footer.changeRegionButton, this.footer.facebookIcon, this.footer.twitterIcon,
+      this.footer.linkedInIcon, this.footer.legalCopyright, this.footer.privacyLink, this.footer.cookiePreferencesLink,
+      this.footer.adChoicesLink, this.footer.protectMyPersonalData, this.footer.footerWhatIsExperienceCloud, this.footer.instagramIcon,
+      (country.includes('Poland')) ? this.footer.termsOfUseLinkTwo : this.footer.termsOfUseLink,
     ];
 
     await Promise.all(elementsToCheck.map(async (element) => {
@@ -522,12 +524,13 @@ export default class CreativeCloudUnavSanity {
   }
 
   // Footer
-  async validatingFooterSection() {
-    await this.illu.changeRegion.scrollIntoViewIfNeeded();
+  async validatingFooterSection(country) {
+    await this.footer.changeRegionButton.scrollIntoViewIfNeeded();
 
-    const elements = [this.illu.changeRegion, this.illu.facebookLogo, this.illu.instagramLogo, this.illu.twitterlogo,
-      this.illu.linkedinLogo, this.illu.copyright, this.illu.privacyPolicy, this.illu.termsOfUse, this.illu.cookies, this.illu.adChoices,
-      this.illu.protectMyPersonalData];
+    const elements = [this.footer.changeRegionButton, this.footer.facebookIcon, this.footer.twitterIcon, this.footer.linkedInIcon,
+      this.footer.legalCopyright, this.footer.privacyLink, this.footer.cookiePreferencesLink, this.footer.adChoicesLink,
+      this.footer.protectMyPersonalData, this.footer.instagramIcon,
+      (country.includes('Poland')) ? this.footer.termsOfUseLinkTwo : this.footer.termsOfUseLink];
 
     await Promise.all(elements.map(async (element) => {
       await expect(element).toBeVisible();

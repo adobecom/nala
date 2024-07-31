@@ -43,7 +43,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
       // Closing Hamburger Menu
       await creative.hamburgerMenu.click();
       // Validating Footer Elements
-      await creative.validatingFooterSection();
+      await creative.validatingFooterSection(props.country);
     });
   });
 });

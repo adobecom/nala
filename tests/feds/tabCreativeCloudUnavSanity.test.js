@@ -25,7 +25,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[0].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[0].country);
     await creative.validatingBuyNowButton(features[0].buyNowUrl);
   });
 
@@ -42,7 +42,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingSubjectArea(features[1].country);
     await creative.validatingTrainingAndSupport(features[1].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[1].country);
     await creative.validatingBuyNowButton(features[1].buyNowUrl);
   });
 
@@ -58,7 +58,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[2].country);
     await creative.validatingTrainingAndSupport(features[2].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[2].country);
     await creative.validatingBuyNowButton(features[2].buyNowUrl);
   });
 
@@ -75,7 +75,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingSubjectArea(features[3].country);
     await creative.validatingTrainingAndSupport(features[3].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[3].country);
     await creative.validatingBuyNowButton(features[3].buyNowUrl);
   });
 
@@ -92,7 +92,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingSubjectArea(features[4].country);
     await creative.validatingTrainingAndSupport(features[4].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[4].country);
     await creative.validatingBuyNowButton(features[4].buyNowUrl);
   });
 
@@ -108,7 +108,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[5].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[5].country);
     await creative.validatingBuyNowButton(features[5].buyNowUrl);
   });
 
@@ -124,8 +124,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingProgram(features[6].country);
     await creative.validatingSubjectArea(features[6].country);
     await creative.validatingTrainingAndSupport(features[6].country);
-    await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[6].country);
     await creative.validatingBuyNowButton(features[6].buyNowUrl);
   });
 
@@ -140,7 +139,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingCreativityAndDesignTabiPad(features[7].country);
     await creative.validatingExplore(features[7].country);
     await creative.validatingLearnAndSupport();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[7].country);
     await creative.validatingBuyNowButton(features[7].buyNowUrl);
   });
 
@@ -157,7 +156,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingSubjectArea(features[8].country);
     await creative.validatingTrainingAndSupport(features[8].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[8].country);
     await creative.validatingBuyNowButton(features[8].buyNowUrl);
   });
 
@@ -173,7 +172,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[9].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[9].country);
     await creative.validatingBuyNowButton(features[9].buyNowUrl);
   });
 
@@ -189,7 +188,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[10].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[10].country);
     await creative.validatingBuyNowButton(features[10].buyNowUrl);
   });
 
@@ -205,7 +204,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[11].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[11].country);
     await creative.validatingBuyNowButton(features[11].buyNowUrl);
   });
 
@@ -221,7 +220,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[12].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[12].country);
     await creative.validatingBuyNowButton(features[12].buyNowUrl);
   });
 
@@ -238,7 +237,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingSubjectArea(features[13].country);
     await creative.validatingTrainingAndSupport(features[13].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[13].country);
     await creative.validatingBuyNowButton(features[13].buyNowUrl);
   });
 
@@ -254,7 +253,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[14].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[14].country);
     await creative.validatingBuyNowButton(features[14].buyNowUrl);
   });
 
@@ -270,7 +269,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[15].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[15].country);
     await creative.validatingBuyNowButton(features[15].buyNowUrl);
   });
 
@@ -286,7 +285,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[16].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[16].country);
     await creative.validatingBuyNowButton(features[16].buyNowUrl);
   });
 
@@ -303,7 +302,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingSubjectArea(features[17].country);
     await creative.validatingTrainingAndSupport(features[17].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[17].country);
     await creative.validatingBuyNowButton(features[17].buyNowUrl);
   });
 
@@ -319,7 +318,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[18].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[18].country);
     await creative.validatingBuyNowButton(features[18].buyNowUrl);
   });
 
@@ -336,7 +335,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingSubjectArea(features[19].country);
     await creative.validatingTrainingAndSupport(features[19].country);
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[19].country);
     await creative.validatingBuyNowButton(features[19].buyNowUrl);
   });
 
@@ -352,7 +351,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[20].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[20].country);
     await creative.validatingBuyNowButton(features[20].buyNowUrl);
   });
 
@@ -368,7 +367,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[21].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[21].country);
     await creative.validatingBuyNowButton(features[21].buyNowUrl);
   });
 
@@ -384,7 +383,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingExplore(features[22].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
-    await creative.validatingFooter();
+    await creative.validatingFooter(features[22].country);
     await creative.validatingBuyNowButton(features[22].buyNowUrl);
   });
 });
