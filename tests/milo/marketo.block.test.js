@@ -65,7 +65,7 @@ test.describe('Marketo block test suite', () => {
         });
 
         await test.step('step-3: Submit the form with valid inputs', async () => {
-          await marketoBlock.submitFullTemplateForm('Adobe Advertising Cloud');
+          await marketoBlock.submitFullTemplateForm('Digital commerce');
         });
 
         await test.step('step-4: Verify the form submission redirect', async () => {

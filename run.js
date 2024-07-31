@@ -13,6 +13,7 @@ Options:
 -h, --help          Display this help message and exit.
 --headed            Run tests in headed mode.
 --headless          Run tests in headless mode (default).
+--list              List all tests found, but doesn't run them.
 
 Examples:
 node run.js -p=milo-live-chrome -c=milo
@@ -94,6 +95,10 @@ function runPlaywrightTests() {
   // Add options dynamically based on argv
   if (argv.headed) {
     options.push('--headed');
+  }
+
+  if (argv.list) {
+    options.push('--list');
   }
 
   if (argv.project) {
