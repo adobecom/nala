@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { features } from '../../features/bacom/event-speakers.spec.js';
-import EventSpeakers from '../../selectors/bacom/event-speakers.page.js';
+import { features } from '../../../features/bacom/blocks/event-speakers.spec.js';
+import EventSpeakers from '../../../selectors/bacom/event-speakers.page.js';
 
 const miloLibs = process.env.MILO_LIBS || '';
 
