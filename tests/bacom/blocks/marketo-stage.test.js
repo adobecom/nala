@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { features } from '../../features/bacom/marketo-stage.spec.js';
-import MarketoBlock from '../../selectors/milo/marketo.block.page.js';
+import { features } from '../../../features/bacom/blocks/marketo-stage.spec.js';
+import MarketoBlock from '../../../selectors/milo/marketo.block.page.js';
 
 let marketoBlock;
 const WAIT_TIME = 10000;
@@ -61,7 +61,7 @@ test.describe('Marketo block test suite for stage form', () => {
         });
 
         await test.step('step-3: Submit the form with valid inputs', async () => {
-          await marketoBlock.submitFullTemplateForm('Adobe Advertising Cloud');
+          await marketoBlock.submitFullTemplateForm('Digital commerce');
         });
 
         await test.step('step-4: Verify the form submission redirect', async () => {
