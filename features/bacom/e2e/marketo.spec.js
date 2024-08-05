@@ -12,7 +12,7 @@ module.exports = {
         '/uk/',
         '/jp/',
       ],
-      tags: '@marketo @bacom @smoke @regression @homepage',
+      tags: '@marketo @bacom @smoke @regression @e2e @homepage',
     },
     {
       tcid: '1',
@@ -20,7 +20,7 @@ module.exports = {
       path: [
         '/resources/experience-magento-compare',
       ],
-      tags: '@marketo @marketoEssentialTemplate @bacom @smoke @regression @resources',
+      tags: '@marketo @marketoEssentialTemplate @bacom @smoke @regression @e2e @resources',
     },
   ],
 };
