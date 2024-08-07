@@ -34,30 +34,30 @@ export default class Marketo {
 
   async submitFullTemplateForm(poi) {
     await this.country.selectOption({ index: 1 });
-    await this.functionalArea.selectOption({ index: 1 });
     await this.jobTitle.selectOption({ index: 1 });
-
-    // Setting index 2 to test so that the 'Company Type' field doesn't display
-    await this.primaryProductInterest.selectOption(poi !== undefined ? poi : { index: 2 });
-
-    await this.state.selectOption({ index: 1 });
     await this.company.fill(COMPANY);
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
     await this.phone.fill(PHONE);
+    await this.functionalArea.selectOption({ index: 1 });
     await this.postalCode.fill(POSTAL_CODE);
+
+    // Setting index 2 to test so that the 'Company Type' field doesn't display
+    await this.primaryProductInterest.selectOption(poi !== undefined ? poi : { index: 2 });
+
+    await this.state.selectOption({ index: 1 });
     await this.selectCompanyType();
     await this.submitButton.click();
   }
 
   async submitExpandedTemplateForm() {
     await this.country.selectOption({ index: 1 });
-    await this.functionalArea.selectOption({ index: 1 });
     await this.jobTitle.selectOption({ index: 1 });
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
+    await this.functionalArea.selectOption({ index: 1 });
     await this.company.fill(COMPANY);
     await this.selectCompanyType();
     await this.submitButton.click();
@@ -105,6 +105,10 @@ export default class Marketo {
       'window.mcz_marketoForm_pref.form.template',
     );
 
+    if (!template) {
+      throw new Error('Template not found');
+    }
+
     const inputFields = [
       this.firstName,
       this.lastName,
@@ -115,9 +119,11 @@ export default class Marketo {
     if (template === 'flex_contact') inputFields.push(this.phone, this.postalCode);
 
     inputFields.forEach(async (field) => {
-      expect(field).toHaveAttribute('placeholder');
-      const placeholder = await field.getAttribute('placeholder');
-      expect(placeholder.length).toBeGreaterThan(1);
+      await expect(async () => {
+        expect(await field).toHaveAttribute('placeholder', { timeout: 10000 });
+        const placeholder = await field.getAttribute('placeholder');
+        expect(placeholder.length).toBeGreaterThan(1);
+      }).toPass();
     });
   }
 }

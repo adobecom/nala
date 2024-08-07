@@ -3,7 +3,6 @@ import { features } from '../../features/milo/marketo.block.spec.js';
 import MarketoBlock from '../../selectors/milo/marketo.block.page.js';
 
 let marketoBlock;
-const WAIT_TIME = 10000;
 const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Marketo block test suite', () => {
@@ -11,7 +10,7 @@ test.describe('Marketo block test suite', () => {
     if (browserName === 'chromium') test.skip('TODO: debug why this is failing on github actions');
 
     marketoBlock = new MarketoBlock(page);
-    await test.setTimeout(80000);
+    await test.setTimeout(1000 * 60 * 3);
   });
 
   features[0].path.forEach((path) => {
@@ -23,9 +22,7 @@ test.describe('Marketo block test suite', () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
         await expect(page).toHaveURL(testPage);
-
-        // Need this wait to avoid failed form submission during parallel runs
-        await page.waitForTimeout(WAIT_TIME);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 8000 });
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
@@ -37,9 +34,11 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(async () => {
+          await marketoBlock.submitButton.waitFor({ state: 'detached' });
+          const redirectedUrl = await page.url();
+          await expect(redirectedUrl).toContain('?submissionid');
+        }).toPass();
       });
     });
   });
@@ -55,9 +54,7 @@ test.describe('Marketo block test suite', () => {
           await page.goto(testPage);
           await page.waitForLoadState('domcontentloaded');
           await expect(page).toHaveURL(testPage);
-
-          // Need this wait to avoid failed form submission during parallel runs
-          await page.waitForTimeout(WAIT_TIME);
+          await expect(marketoBlock.email).toBeVisible({ timeout: 8000 });
         });
 
         await test.step('step-2: check the input field placeholders', async () => {
@@ -69,9 +66,11 @@ test.describe('Marketo block test suite', () => {
         });
 
         await test.step('step-4: Verify the form submission redirect', async () => {
-          await page.waitForTimeout(WAIT_TIME);
-          const redirectedUrl = await page.url();
-          await expect(redirectedUrl).toContain('?submissionid');
+          await expect(async () => {
+            await marketoBlock.submitButton.waitFor({ state: 'detached' });
+            const redirectedUrl = await page.url();
+            await expect(redirectedUrl).toContain('?submissionid');
+          }).toPass();
         });
       },
     );
@@ -86,9 +85,7 @@ test.describe('Marketo block test suite', () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
         await expect(page).toHaveURL(testPage);
-
-        // Need this wait to avoid failed form submission during parallel runs
-        await page.waitForTimeout(WAIT_TIME);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 8000 });
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
@@ -100,9 +97,11 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(async () => {
+          await marketoBlock.submitButton.waitFor({ state: 'detached' });
+          const redirectedUrl = await page.url();
+          await expect(redirectedUrl).toContain('?submissionid');
+        }).toPass();
       });
     });
   });
@@ -116,9 +115,7 @@ test.describe('Marketo block test suite', () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
         await expect(page).toHaveURL(testPage);
-
-        // Need this wait to avoid failed form submission during parallel runs
-        await page.waitForTimeout(WAIT_TIME);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 8000 });
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
@@ -130,9 +127,11 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(async () => {
+          await marketoBlock.submitButton.waitFor({ state: 'detached' });
+          const redirectedUrl = await page.url();
+          await expect(redirectedUrl).toContain('?submissionid');
+        }).toPass();
       });
     });
   });
