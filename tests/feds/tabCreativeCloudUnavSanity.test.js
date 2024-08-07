@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { features } from '../../features/feds/prodSanity/creativeCloudUnavSanity.spec.js';
+import { features } from '../../features/feds/prodSanity/tabiPadTesting/tabCreativeCloudUnavSanity.spec.js';
 import CreativeCloudUnavSanity from '../../selectors/feds/feds.creativeCloudUnavSanity.page.js';
 
 test.describe('Test Suite for Creative Cloud Page Components', () => {
@@ -21,7 +21,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[0].country);
-    await creative.validatingCreativityAndDesign(features[0].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[0].country);
     await creative.validatingExplore(features[0].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -37,7 +37,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[1].country);
-    await creative.validatingCreativityAndDesign(features[1].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[1].country);
     await creative.validatingProgram(features[1].country);
     await creative.validatingSubjectArea(features[1].country);
     await creative.validatingTrainingAndSupport(features[1].country);
@@ -54,7 +54,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[2].country);
-    await creative.validatingCreativityAndDesign(features[2].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[2].country);
     await creative.validatingExplore(features[2].country);
     await creative.validatingTrainingAndSupport(features[2].country);
     await creative.closingPromoButton();
@@ -70,7 +70,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[3].country);
-    await creative.validatingCreativityAndDesign(features[3].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[3].country);
     await creative.validatingProgram(features[3].country);
     await creative.validatingSubjectArea(features[3].country);
     await creative.validatingTrainingAndSupport(features[3].country);
@@ -87,7 +87,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[4].country);
-    await creative.validatingCreativityAndDesign(features[4].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[4].country);
     await creative.validatingProgram(features[4].country);
     await creative.validatingSubjectArea(features[4].country);
     await creative.validatingTrainingAndSupport(features[4].country);
@@ -104,7 +104,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[5].country);
-    await creative.validatingCreativityAndDesign(features[5].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[5].country);
     await creative.validatingExplore(features[5].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -120,7 +120,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[6].country);
-    await creative.validatingCreativityAndDesign(features[6].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[6].country);
     await creative.validatingProgram(features[6].country);
     await creative.validatingSubjectArea(features[6].country);
     await creative.validatingTrainingAndSupport(features[6].country);
@@ -136,10 +136,9 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[7].country);
-    await creative.validatingCreativityAndDesign(features[7].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[7].country);
     await creative.validatingExplore(features[7].country);
     await creative.validatingLearnAndSupport();
-    await creative.closingPromoButton();
     await creative.validatingFooter(features[7].country);
     await creative.validatingBuyNowButton(features[7].buyNowUrl);
   });
@@ -152,7 +151,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[8].country);
-    await creative.validatingCreativityAndDesign(features[8].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[8].country);
     await creative.validatingProgram(features[8].country);
     await creative.validatingSubjectArea(features[8].country);
     await creative.validatingTrainingAndSupport(features[8].country);
@@ -169,7 +168,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[9].country);
-    await creative.validatingCreativityAndDesign(features[9].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[9].country);
     await creative.validatingExplore(features[9].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -185,7 +184,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[10].country);
-    await creative.validatingCreativityAndDesign(features[10].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[10].country);
     await creative.validatingExplore(features[10].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -201,7 +200,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[11].country);
-    await creative.validatingCreativityAndDesign(features[11].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[11].country);
     await creative.validatingExplore(features[11].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -217,7 +216,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[12].country);
-    await creative.validatingCreativityAndDesign(features[12].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[12].country);
     await creative.validatingExplore(features[12].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -233,7 +232,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[13].country);
-    await creative.validatingCreativityAndDesign(features[13].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[13].country);
     await creative.validatingProgram(features[13].country);
     await creative.validatingSubjectArea(features[13].country);
     await creative.validatingTrainingAndSupport(features[13].country);
@@ -250,7 +249,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[14].country);
-    await creative.validatingCreativityAndDesign(features[14].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[14].country);
     await creative.validatingExplore(features[14].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -266,7 +265,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[15].country);
-    await creative.validatingCreativityAndDesign(features[15].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[15].country);
     await creative.validatingExplore(features[15].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -282,7 +281,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[16].country);
-    await creative.validatingCreativityAndDesign(features[16].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[16].country);
     await creative.validatingExplore(features[16].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -298,7 +297,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[17].country);
-    await creative.validatingCreativityAndDesign(features[17].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[17].country);
     await creative.validatingProgram(features[17].country);
     await creative.validatingSubjectArea(features[17].country);
     await creative.validatingTrainingAndSupport(features[17].country);
@@ -315,7 +314,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[18].country);
-    await creative.validatingCreativityAndDesign(features[18].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[18].country);
     await creative.validatingExplore(features[18].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -331,7 +330,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[19].country);
-    await creative.validatingCreativityAndDesign(features[19].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[19].country);
     await creative.validatingProgram(features[19].country);
     await creative.validatingSubjectArea(features[19].country);
     await creative.validatingTrainingAndSupport(features[19].country);
@@ -348,7 +347,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[20].country);
-    await creative.validatingCreativityAndDesign(features[20].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[20].country);
     await creative.validatingExplore(features[20].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -364,7 +363,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[21].country);
-    await creative.validatingCreativityAndDesign(features[21].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[21].country);
     await creative.validatingExplore(features[21].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
@@ -380,7 +379,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[22].country);
-    await creative.validatingCreativityAndDesign(features[22].country);
+    await creative.validatingCreativityAndDesignTabiPad(features[22].country);
     await creative.validatingExplore(features[22].country);
     await creative.validatingLearnAndSupport();
     await creative.closingPromoButton();
