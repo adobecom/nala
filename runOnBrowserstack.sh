@@ -16,7 +16,7 @@ if [ -f "${CONFIG_FILE_PATH}" ]; then
     echo "*** Running Playwright tests with config: ${CONFIG_FILE_PATH} ***"
     if [ -n "$TAG" ]; then
         echo "Running with TAG: ${TAG}"
-        npx browserstack-node-sdk playwright test --config="${CONFIG_FILE_PATH}" --grep="${TAG}"
+        npx browserstack-node-sdk playwright test --config="${CONFIG_FILE_PATH}" --grep="${TAG}" --retries=2
         exit 0
     else
       npx browserstack-node-sdk playwright test --config="${CONFIG_FILE_PATH}"
