@@ -11,6 +11,7 @@ Options:
 -g, --grep          Filter tests by grep pattern, e.g., '@milo'.
 -r, --reporter      Specify the reporter to use, e.g., 'html'.
 -h, --help          Display this help message and exit.
+--debug             Run tests in debug mode.
 --headed            Run tests in headed mode.
 --headless          Run tests in headless mode (default).
 --list              List all tests found, but doesn't run them.
@@ -93,6 +94,10 @@ function runPlaywrightTests() {
   }
 
   // Add options dynamically based on argv
+  if (argv.debug) {
+    options.push('--debug');
+  }
+
   if (argv.headed) {
     options.push('--headed');
   }
