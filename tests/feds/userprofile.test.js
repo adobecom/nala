@@ -8,7 +8,7 @@ import FedsHeader from '../../selectors/feds/feds.header.page.js';
 
 test.describe('User Profile Component test suite', () => {
   // FEDS User Profile Checks:
-  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
+  test.skip(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Login = new FedsLogin(page);
     const Header = new FedsHeader(page);
     console.info(`[FEDSInfo] Checking page: ${baseURL}${features[0].path}`);

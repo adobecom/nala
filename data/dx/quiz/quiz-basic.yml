@@ -1,0 +1,12 @@
+---
+'Commerce': 'adobe-commerce'
+'Analytics > Web analytics': 'adobe-analytics'
+'Analytics > Omnichannel analytics (online and offline)': 'adobe-customer-journey-analytics'
+'Analytics > Product analytics': 'adobe-product-analytics'
+'Content management > Content management system (CMS)': 'experience-manager-sites'
+'Content management > Digital assets management (DAM)': 'experience-manager-assets'
+'Customer data management': 'real-time-cdp'
+'Marketing and campaign management > B2C customer journey management': 'adobe-journey-optimizer' 
+'Marketing and campaign management > B2B marketing automation': 'marketo-engage' 
+'Project management': 'workfront'
+

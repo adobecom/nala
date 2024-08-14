@@ -6,7 +6,8 @@ export default class Georouting {
 
         // global footer locators
         this.footer = this.page.locator('.global-footer');
-        this.changeRegionLink = this.footer.locator('//a[@data-modal-path="/fragments/regions"]');
+        //this.changeRegionLink = this.footer.locator('//a[@data-modal-path="/fragments/regions"]');
+        this.changeRegionLink = this.footer.locator('.modal.link-block');
 
         // change region modal locators
         this.changeRegionModal = this.page.locator('.dialog-modal');

@@ -1,0 +1,36 @@
+name: Milo Nala Daily Run
+
+on:
+  schedule:
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+
+jobs:
+  platform_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Running tests
+    runs-on: ${{ matrix.os }}
+    env:
+      WORKFLOW_NAME: 'Milo Nala Daily Run'
+      DAILY_RUN: 'true'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Run Nala ${{ matrix.os }}
+        uses: ./
+        env:
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+          HLX_TKN: ${{ secrets.HLX_TKN }}
+          SLACK_WH: ${{ secrets.SLACK_WH }}
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: nala-results
+          path: nala-results.json
+          retention-days: 30

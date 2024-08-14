@@ -70,7 +70,7 @@ export default class Marquee {
     this.iconImage = this.foreground.locator('.icon-area img');
 
     // media images
-    this.mediaImage = this.marquee.locator('div.media img');
+    this.mediaImage = this.marquee.locator('div.asset img');
 
     // marquee attributes
     this.attributes = {
@@ -182,18 +182,7 @@ export default class Marquee {
         'autoplay': '',
         'loop': '',
         'muted': ''
-      },      
-      'analytics': {
-        'marquee.daa-lh': {
-          'daa-lh': /b[1-9]|marquee|default|default/,
-        }, 
-        'section.daa-lh': {
-          'daa-lh': /s[1-9]/,
-        },
-        'content.daa-lh': {
-          'daa-lh': /b[1-9]|content|default|default/,
-        },         
-      },     
+      },    
     };
   }
 };

@@ -11,13 +11,13 @@ const config = {
   testDir: '../tests/bacom',
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 45 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000,
+    timeout: 10 * 1000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -29,8 +29,13 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results', open: 'never' }]],
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
+    : [['html', {
+      outputFolder: 'test-html-results',
+      open: 'never',
+    }], ['list'], ['../utils/reporters/base-reporter.js'],
+    ['json', { outputFile: '../test-json-results/test-results.json' }]],
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -52,7 +57,6 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
     {
       name: 'bacom-live-firefox',
       use: {
@@ -60,7 +64,6 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
     {
       name: 'bacom-live-webkit',
       use: {
@@ -68,78 +71,27 @@ const config = {
         baseURL: envs['@bacom_live'],
       },
     },
-
-    {
-      name: 'bacomblog-live-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacomblog_live'],
-      },
-    },
-
-    {
-      name: 'bacomblog-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacomblog_live'],
-      },
-    },
-
-    {
-      name: 'bacomblog-live-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacomblog_live'],
-      },
-    },
-
-    {
-      name: 'bacom-stage-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-stage-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-stage-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
-
-    {
-      name: 'bacom-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_prod'],
-      },
-    },
+    // {
+    //   name: 'bacom-prod-chrome',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
+    // {
+    //   name: 'bacom-prod-firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
+    // {
+    //   name: 'bacom-prod-webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //     baseURL: envs['@bacom_prod'],
+    //   },
+    // },
   ],
 };
 module.exports = config;

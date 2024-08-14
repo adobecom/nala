@@ -6,6 +6,8 @@ import ModalBlock from '../../selectors/milo/modal.block.page.js';
 let modal;
 let webUtil;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Modal feature test suite', () => {
   test.beforeEach(async ({ page }) => {
     modal = new ModalBlock(page);
@@ -14,12 +16,12 @@ test.describe('Milo Modal feature test suite', () => {
 
   // Test 0 : Modal with Text block
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
 
     await test.step('step-1: Go to Modal feature test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);    
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);    
     });
 
     await test.step('step-2: Verify Modal text fragment content/specs', async () => {
@@ -47,12 +49,12 @@ test.describe('Milo Modal feature test suite', () => {
 
   // Test 1 : Modal with Media block
   test(`${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[1].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
 
     await test.step('step-1: Go to Modal feature test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Modal media fragement content/specs', async () => {
@@ -64,7 +66,7 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await modalLink).toHaveAttribute('class', modal.attributes['modal-link']['class']);
 
       //click the modal link
-      await modalLink.click();
+      await modalLink.click();      
       await expect(await modal.dialog).toBeVisible();
 
       await expect(await modal.mediaBlock).toBeVisible();
@@ -82,12 +84,12 @@ test.describe('Milo Modal feature test suite', () => {
 
   // Test 2 : Modal with Video Autoplay
   test(`${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
 
     await test.step('step-1: Go to Modal feature test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Modal media fragement content/specs', async () => {
@@ -98,7 +100,7 @@ test.describe('Milo Modal feature test suite', () => {
       await expect(await modalLink).toHaveAttribute('class', modal.attributes['modal-link']['class']);
 
       //click the modal link and verify video autoplay
-      await modalLink.click();
+      await modalLink.click();      
       await expect(await modal.dialog).toBeVisible();
       expect(await WebUtil.isModalInViewport(modal.page, modal.modalSelector)).toBeTruthy();
 

@@ -37,5 +37,19 @@ module.exports = {
       },
       tags: '@accordion @accordion-quiet-max @smoke @regression @milo',
     },
+    {
+      tcid: '3',
+      name: '@Accordion (seo editorial)',
+      path: '/drafts/nala/blocks/accordion/accordion-seo-editorial',
+      data: {
+        headers: 3,
+        heading0: 'How do I compress a PDF without losing quality?',
+        heading1: 'What size PDFs can I compress?',
+        heading2: 'How do I check my PDF file size?',
+        outlineButtonText: 'Lorem ipsum',
+        blueButtonText: 'Learn more',
+      },
+      tags: '@accordion @accordion-seo-editorial @smoke @regression @milo',
+    },
   ],
 };

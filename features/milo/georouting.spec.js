@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 module.exports = {
   name: 'Georouting Feature',
   features: [
@@ -7,7 +9,7 @@ module.exports = {
       desc: 'User accessing DE page from US locale.',
       path: '/de/drafts/nala/features/georouting/georouting',
       data: {
-        title: 'This Adobe site doesn\'t match your location.',
+        title: /This Adobe site doesn[' ’]t match your location./,
         text: 'Based on your location, we think you may prefer the United States website',
         button: 'United States',
         link: 'Deutschland',
@@ -15,7 +17,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @smoke @regression @milo ',
+      tags: '@georouting @smoke @regression @milo @nopr',
     },
     {
       tcid: '1',
@@ -98,7 +100,7 @@ module.exports = {
         cookieName: 'international',
         cookieValue: 'de',
       },
-      tags: '@georouting @georouting-close @regression @milo ',
+      tags: '@georouting @georouting-close @regression @milo @nopr',
     },
   ],
 };

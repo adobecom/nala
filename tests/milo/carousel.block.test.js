@@ -4,18 +4,20 @@ import CarouselBlock from '../../selectors/milo/carousel.block.page.js';
 
 let carousel;
 
+const miloLibs = process.env.MILO_LIBS || '';
+
 test.describe('Milo Carousel Block test suite', () => {
   test.beforeEach(async ({ page }) => {
     carousel = new CarouselBlock(page);
-});
+  });
 
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
 
     await test.step('step-1: Go to Carousel block test page', async () => {
-      await page.goto(`${baseURL}${features[0].path}`);
-      await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
+      await page.goto(`${baseURL}${features[0].path}${miloLibs}`);
+      await page.waitForLoadState('networkidle');
+      await expect(page).toHaveURL(`${baseURL}${features[0].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify Carousel container', async () => {
@@ -50,12 +52,12 @@ test.describe('Milo Carousel Block test suite', () => {
   });
 
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[0].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[0].path}${miloLibs}`);
 
     await test.step('step-1: Go to Carousel lightbox block test page', async () => {
-      await page.goto(`${baseURL}${features[1].path}`);
-      await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
+      await page.goto(`${baseURL}${features[1].path}${miloLibs}`);
+      await page.waitForLoadState('networkidle');
+      await expect(page).toHaveURL(`${baseURL}${features[1].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify carousel with lightbox features', async () => {
@@ -83,12 +85,12 @@ test.describe('Milo Carousel Block test suite', () => {
   });
 
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    console.info(`[Test Page]: ${baseURL}${features[2].path}`);
+    console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
 
     await test.step('step-1: Go to Carousel multi-slide show-2 block test page', async () => {
-      await page.goto(`${baseURL}${features[2].path}`);
-      await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[2].path}`);
+      await page.goto(`${baseURL}${features[2].path}${miloLibs}`);
+      await page.waitForLoadState('networkidle');
+      await expect(page).toHaveURL(`${baseURL}${features[2].path}${miloLibs}`);
     });
 
     await test.step('step-2: Verify multi slide carousel show-2 features', async () => {

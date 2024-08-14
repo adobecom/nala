@@ -113,6 +113,11 @@ dist
 .vscode/launch.json
 .vscode/settings.json
 
+# SauceLabs files
+artifacts/
+sauce-app-payload*
+saucectl-report.json
+
 # Debug/Report/Screenshots Local files
 debug
 reports
@@ -121,9 +126,18 @@ screenshots/*
 axe-reports
 /test-results/
 /test-html-results/
+/test-json-results/
 /playwright-report/
 /playwright/.cache/
 Test.pptx
 nala-results.json
 configs/screenshots/
 configs/test-html-results/
+/results/bacom-blog/**.json
+
+# Browserstack files
+browserstackSetupConfig.json
+configs/playwright-browserstack-sdk.config.js
+playwright-browserstack-sdk.config.temp.json
+
+.auth/

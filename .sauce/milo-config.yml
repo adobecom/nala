@@ -1,0 +1,124 @@
+apiVersion: v1alpha
+kind: playwright
+showConsoleLog: true
+defaults:
+  timeout: 60m
+sauce:
+  region: us-west-1
+  concurrency: 6 # Controls how many suites are executed at the same time.
+  retries: 2
+  metadata:
+    tags:
+      - e2e
+      - nala
+      - milo
+#  tunnel:
+#    name: tunnel_name
+#    owner: tunnel_owner
+playwright:
+  version: package.json # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/#supported-testing-platforms for a list of supported versions.
+  configFile: ./configs/milo.sauce.config.js # See https://docs.saucelabs.com/web-apps/automated-testing/playwright/yaml/#configfile for a list of supported configuration files.
+# Send in specific environment variables to your tests by adding them here. These parameters are only neccessary if running locally.
+#env:
+#  IMS_EMAIL: $IMS_EMAIL_LOCAL
+#  IMS_PASS: $IMS_PASS_LOCAL
+#  HLX_TKN: $HLX_TKN_LOCAL
+# Controls what files are available in the context of a test run (unless explicitly excluded by .sauceignore).
+rootDir: ./
+npm:
+  registry: https://registry.npmjs.org
+  registries:
+    - url: https://registry.npmjs.org
+  packages:
+    "@axe-core/playwright": "^4.7.0"
+    "axe-html-reporter": "^2.2.3"
+    "axios": "^1.3.4"
+    "css": "^3.0.0"
+    "js-yaml": "^4.1.0"
+    "@babel/core": "7.21.3"
+    "@babel/eslint-parser": "7.21.3"
+    "eslint": "8.37.0"
+    "eslint-config-airbnb-base": "15.0.0"
+    "eslint-plugin-import": "2.27.5"
+    "saucectl": "0.168.0"
+suites:
+  - name: "Firefox Win"
+    platformName: "Windows 11"
+    screenResolution: "1440x900"
+    testMatch: [".*.js"]
+    smartRetry:
+      failedOnly: true
+    params:
+      browserName: "firefox"
+      project: "milo-live-firefox"  # Runs the project that's defined in `configs/milo.config.js`
+      headless: true
+      grep: "@smoke"
+  - name: "Chromium Win"
+    platformName: "Windows 11"
+    screenResolution: "1440x900"
+    testMatch: [".*.js"]
+    smartRetry:
+      failedOnly: true
+    params:
+      browserName: "chromium"
+      project: "milo-live-chrome"
+      headless: true
+      grep: "@smoke"
+  - name: "Webkit Win"
+    platformName: "Windows 11"
+    screenResolution: "1440x900"
+    testMatch: [".*.js"]
+    smartRetry:
+      failedOnly: true
+    params:
+      browserName: "webkit"
+      project: "milo-live-webkit"
+      headless: true
+      grep: "@smoke"
+  - name: "Firefox Mac"
+    platformName: "macOS 13"
+    screenResolution: "1440x900"
+    testMatch: [".*.js"]
+    smartRetry:
+      failedOnly: true
+    params:
+      browserName: "firefox"
+      project: "milo-live-firefox"
+      headless: true
+      grep: "@smoke"
+  - name: "Chromium Mac"
+    platformName: "macOS 13"
+    screenResolution: "1440x900"
+    testMatch: [".*.js"]
+    smartRetry:
+      failedOnly: true
+    params:
+      browserName: "chromium"
+      project: "milo-live-chrome"
+      headless: true
+      grep: "@smoke"
+  - name: "Webkit Mac"
+    platformName: "macOS 13"
+    screenResolution: "1440x900"
+    testMatch: [".*.js"]
+    smartRetry:
+      failedOnly: true
+    params:
+      browserName: "webkit"
+      project: "milo-live-webkit"
+      headless: true
+      grep: "@smoke"
+reporters:
+  json:
+    enabled: true
+    filename: saucectl-report.json
+#    webhookURL: $SLACK_WH  # Slack webhook URL can come here for test reports
+# Controls what artifacts to fetch when the suites have finished.
+artifacts:
+  cleanup: true
+  download:
+    when: always
+    match:
+      - "*.log"
+      - "*.json"
+    directory: ./artifacts/

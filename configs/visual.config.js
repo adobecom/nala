@@ -6,8 +6,9 @@ const { devices } = require('@playwright/test');
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests/milo', // TODO: Switch to ./tests once baseURL conditional checks have been made on individual tests
-  outputDir: './test-results',
+  testDir: '../tests/visual',
+  outputDir: '../test-results',
+  globalSetup: '../global.setup.js',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   /**
@@ -33,8 +34,9 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['./utils/reporters/json-reporter.js'], ['./utils/reporters/api-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results' }]],
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
+    : [['html', { outputFolder: 'test-html-results', open: 'never' }],
+      ['list'], ['../utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -44,16 +46,17 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: 'https://main--milo--adobecom.hlx.live', // TODO: Remove once baseURL checks have been made on individual tests
+
+    baseURL: 'https://main--milo--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'chrome',
       use: {
         ...devices['Desktop Chrome'],
-        viewport: { width: 1280, height: 720 },
+        viewport: { width: 1920, height: 1080 },
       },
     },
 
@@ -61,7 +64,7 @@ const config = {
       name: 'firefox',
       use: {
         ...devices['Desktop Firefox'],
-        viewport: { width: 1280, height: 720 },
+        viewport: { width: 1920, height: 1080 },
       },
     },
 
@@ -69,22 +72,22 @@ const config = {
       name: 'webkit',
       use: {
         ...devices['Desktop Safari'],
-        viewport: { width: 1280, height: 720 },
+        viewport: { width: 1920, height: 1080 },
       },
     },
 
     /* Test visually against mobile viewports. */
     {
-      name: 'android',
-      use: { ...devices['Pixel 5'] },
-    },
-    {
       name: 'iphone',
-      use: { ...devices['iPhone SE'] },
+      use: { ...devices['iPhone X'] },
     },
     {
       name: 'ipad',
       use: { ...devices['iPad Mini'] },
+    },
+    {
+      name: 'android',
+      use: { ...devices['Pixel 5'] },
     },
   ],
 };

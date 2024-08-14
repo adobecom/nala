@@ -48,14 +48,33 @@ test.describe('Blog Home page test suite', () => {
     });
 
     await test.step('step-3: Verify Articles', async () => {
-      // Featured article section
-      await expect(homePage.featuredArticleBlock).toBeVisible();
-      await expect(homePage.featuredArticleCard).toBeVisible();
-      await expect(homePage.featuredArticleImage).toBeVisible();
-      // Latest news text section
-      await expect(homePage.textBlock).toBeVisible();
-      await expect(homePage.textBlockHeader).toBeVisible();
-      await expect(homePage.readMoreNewsButton).toBeVisible();
+      // article section (Text Block)
+      await expect(homePage.marquee).toBeVisible();
+      await expect(homePage.marqueeTextH1).toBeVisible();
+      await expect(homePage.marqueeActionBlueButton).toBeVisible();
+
+      // article section (Text Block)
+      await expect(homePage.textBlock1).toBeVisible();
+      await expect(homePage.textBlock1Header).toBeVisible();
+      await expect(homePage.textBlock1OutlineButton).toBeVisible();
+
+      // consonant cards section
+      await expect(homePage.consonantCard1).toBeVisible();
+      await expect(homePage.consonantCard1Image).toBeVisible();
+      await expect(homePage.consonantCard1H3Text).toBeVisible();
+      await expect(homePage.consonantCard1Text).toBeVisible();
+
+      await expect(homePage.consonantCard2).toBeVisible();
+      await expect(homePage.consonantCard2Image).toBeVisible();
+      await expect(homePage.consonantCard2H3Text).toBeVisible();
+      await expect(homePage.consonantCard2Text).toBeVisible();
+
+      await expect(homePage.consonantCard3).toBeVisible();
+      await expect(homePage.consonantCard3Image).toBeVisible();
+      await expect(homePage.consonantCard3H3Text).toBeVisible();
+      await expect(homePage.consonantCard3Text).toBeVisible();
+
+
       // Article feeds section
       await webUtil.scrollPage('down', 'slow');
       await page.waitForLoadState('networkidle');

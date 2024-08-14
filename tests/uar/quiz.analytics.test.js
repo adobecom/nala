@@ -53,7 +53,7 @@ test.describe('Quiz flow test suite', () => {
             await quiz.checkResultPage(testdata[key]);
           });
 
-          await page.waitForTimeout(1000);
+          await page.waitForTimeout(2000);
 
           const difference = networkLogs.slice(logIndex, networkLogs.length);
           console.info(difference);
@@ -71,7 +71,7 @@ test.describe('Quiz flow test suite', () => {
             logNumber += 1;
           }
 
-          if (log !== undefined && log.includes('Logo|gnav|milo')) {
+          if (log !== undefined && log.includes('gnav|milo|header')) {
             logResult2 = true;
             logNumber2 += 1;
           }
