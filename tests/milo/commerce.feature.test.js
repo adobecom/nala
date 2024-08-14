@@ -8,7 +8,15 @@ import FedsHeader from '../../selectors/feds/feds.header.page.js';
 const miloLibs = process.env.MILO_LIBS || '';
 
 let COMM;
-test.beforeEach(async ({ page }) => { COMM = new CommercePage(page); });
+test.beforeEach(async ({ page, baseURL }) => {
+  COMM = new CommercePage(page);
+  const skipOn = ['bacom', 'business'];
+
+  skipOn.some((skip) => {
+    if (baseURL.includes(skip)) test.skip(true, `Skipping the commerce tests for ${baseURL}`);
+    return null;
+  });
+});
 
 test.describe('Commerce feature test suite', () => {
   // @Commerce-Price-Term - Validate price with term display
@@ -292,8 +300,9 @@ test.describe('Commerce feature test suite', () => {
       await webUtil.scrollPage('down', 'slow');
       const unresolvedPlaceholders = await page.evaluate(
         () => [...document.querySelectorAll('[data-wcs-osi]')].filter(
-          (el) => !el.classList.contains('placeholder-resolved')
-        ));
+          (el) => !el.classList.contains('placeholder-resolved'),
+        ),
+      );
       expect(unresolvedPlaceholders.length).toBe(0);
     });
 
@@ -301,8 +310,9 @@ test.describe('Commerce feature test suite', () => {
     await test.step('Validate checkout links', async () => {
       const invalidCheckoutLinks = await page.evaluate(
         () => [...document.querySelectorAll('[data-wcs-osi][is="checkout-link"]')].filter(
-          (el) => !el.getAttribute('href').includes('commerce')
-        ));
+          (el) => !el.getAttribute('href').includes('commerce'),
+        ),
+      );
       expect(invalidCheckoutLinks.length).toBe(0);
     });
   });
