@@ -497,7 +497,7 @@ test.describe('Promotions feature test suite', () => {
     });
   });
 
-  // @Promo-insert-fragment - Validate promo insert text after and before fragment
+  // @Promo-fragment-insert - Validate promo insert text after and before fragment
   test(`${features[13].name},${features[13].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[13].path}${miloLibs}`;
     const { data } = features[13];
