@@ -172,7 +172,7 @@ test.describe('Commerce feature test suite', () => {
   });
 
   // @Commerce-Upgrade-Entitlement - Validate Upgrade commerce flow
-  test(`${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {    
+  test(`${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {
     test.skip(); // Skipping due to missing login
 
     const testPage = `${baseURL}${features[4].path}${miloLibs}`;
@@ -272,8 +272,9 @@ test.describe('Commerce feature test suite', () => {
       await webUtil.scrollPage('down', 'slow');
       const unresolvedPlaceholders = await page.evaluate(
         () => [...document.querySelectorAll('[data-wcs-osi]')].filter(
-          (el) => !el.classList.contains('placeholder-resolved')
-        ));
+          (el) => !el.classList.contains('placeholder-resolved'),
+        ),
+      );
       expect(unresolvedPlaceholders.length).toBe(0);
     });
 
@@ -281,8 +282,9 @@ test.describe('Commerce feature test suite', () => {
     await test.step('Validate checkout links', async () => {
       const invalidCheckoutLinks = await page.evaluate(
         () => [...document.querySelectorAll('[data-wcs-osi][is="checkout-link"]')].filter(
-          (el) => !el.getAttribute('href').includes('commerce')
-        ));
+          (el) => !el.getAttribute('href').includes('commerce'),
+        ),
+      );
       expect(invalidCheckoutLinks.length).toBe(0);
     });
   });
@@ -369,5 +371,4 @@ test.describe('Commerce feature test suite', () => {
       await expect(await COMM.price.locator('.price-strikethrough')).not.toBeVisible();
     });
   });
-
 });
