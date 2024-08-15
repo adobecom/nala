@@ -8,7 +8,15 @@ import FedsHeader from '../../selectors/feds/feds.header.page.js';
 const miloLibs = process.env.MILO_LIBS || '';
 
 let COMM;
-test.beforeEach(async ({ page }) => { COMM = new CommercePage(page); });
+test.beforeEach(async ({ page, baseURL }) => {
+  COMM = new CommercePage(page);
+  const skipOn = ['bacom', 'business'];
+
+  skipOn.some((skip) => {
+    if (baseURL.includes(skip)) test.skip(true, `Skipping the commerce tests for ${baseURL}`);
+    return null;
+  });
+});
 
 test.describe('Commerce feature test suite', () => {
   test.skip(({ browserName }) => browserName === 'chromium', 'Skipping tests for Chrome browser');

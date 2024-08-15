@@ -18,10 +18,17 @@ test.describe('Milo Personalization feature test suite', () => {
     webUtil = new WebUtil(page);
   });
 
-  test.beforeAll(async ({ browserName }) => {
+  test.beforeAll(async ({ browserName, baseURL }) => {
     if (browserName === 'chromium') {
       test.skip('Skipping tests for Chromium browser');
     }
+
+    const skipOn = ['bacom', 'business'];
+
+    skipOn.some((skip) => {
+      if (baseURL.includes(skip)) test.skip(true, `Skipping the personalization tests for ${baseURL}`);
+      return null;
+    });
   });
 
   // Test 0 : Personalization (Replace content)
