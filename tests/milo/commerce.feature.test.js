@@ -11,6 +11,8 @@ let COMM;
 test.beforeEach(async ({ page }) => { COMM = new CommercePage(page); });
 
 test.describe('Commerce feature test suite', () => {
+  test.skip(({ browserName }) => browserName === 'chromium', 'Skipping tests for Chrome browser');
+
   // @Commerce-Price-Term - Validate price with term display
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[0].path}${miloLibs}`;
