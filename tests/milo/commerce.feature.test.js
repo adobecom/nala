@@ -19,7 +19,7 @@ test.beforeEach(async ({ page, baseURL }) => {
 });
 
 test.describe('Commerce feature test suite', () => {
-  test.skip(({ browserName }) => browserName === 'chromium', 'Skipping tests for Chrome browser');
+  test.skip(({ browserName }) => browserName === 'chromium' && process.env.CI === true, 'Skipping tests for chromium on github actions');
 
   // @Commerce-Price-Term - Validate price with term display
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
