@@ -17,7 +17,8 @@ test.beforeEach(async ({ page, baseURL, browserName }) => {
     return null;
   });
 
-  if (browserName === 'chromium' && process.env.ci) test.skip(); //Skipping tests for chromium on github actions dut to net::ERR_HTTP2_PROTOCOL_ERROR.
+  // Skipping tests for chromium on github actions dut to net::ERR_HTTP2_PROTOCOL_ERROR.
+  if (browserName === 'chromium' && process.env.GITHUB_ACTIONS) test.skip();
 });
 
 test.describe('Commerce feature test suite', () => {
