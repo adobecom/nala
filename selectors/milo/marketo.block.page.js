@@ -30,6 +30,7 @@ export default class Marketo {
       'select[name="mktoFormsCompanyType"]',
     );
     this.submitButton = this.marketo.locator('#mktoButton_new');
+    this.message = this.marketo.locator('.ty-message');
   }
 
   async submitFullTemplateForm(poi) {

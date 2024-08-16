@@ -13,7 +13,7 @@ test.describe('Marketo block test suite', () => {
 
   features[0].path.forEach((path) => {
     test(`0: Marketo full form, ${features[0].tags}, path: ${path}`, async ({ page, baseURL }) => {
-      const params = miloLibs ? `?${miloLibs}&georouting=off` : '?georouting=off';
+      const params = miloLibs ? `${miloLibs}&georouting=off` : '?georouting=off';
       const testPage = `${baseURL}${path}${params}`;
 
       console.info(`[Test Page]: ${testPage}`);
