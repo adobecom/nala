@@ -10,7 +10,7 @@ test.describe('Milo Merchcard block test suite', () => {
   test.beforeEach(async ({ page, browserName }) => {
     merchCard = new MerchCard(page);
     if (browserName === 'chromium') {
-      await page.setExtraHTTPHeaders({ 'sec-ch-ua': '\"Chromium\";v=\"123\", \"Not:A-Brand\";v=\"8\"' });
+      await page.setExtraHTTPHeaders({ 'sec-ch-ua': '"Chromium";v="123", "Not:A-Brand";v="8"' });
     }
   });
 
