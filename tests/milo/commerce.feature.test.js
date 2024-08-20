@@ -11,9 +11,7 @@ let COMM;
 test.beforeEach(async ({ page, baseURL, browserName }) => {
   COMM = new CommercePage(page);
   if (browserName === 'chromium') {
-    await page.setExtraHTTPHeaders({
-      'sec-ch-ua': '\"Chromium\";v=\"123\", \"Not:A-Brand\";v=\"8\"',
-    });
+    await page.setExtraHTTPHeaders({ 'sec-ch-ua': '\"Chromium\";v=\"123\", \"Not:A-Brand\";v=\"8\"' });
   }
 
   const skipOn = ['bacom', 'business'];
