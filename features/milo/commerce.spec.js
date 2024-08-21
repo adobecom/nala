@@ -24,7 +24,10 @@ module.exports = {
       tcid: '3',
       name: '@Commerce-Promo',
       path: '/drafts/nala/features/commerce/promo-placeholders',
-      data: { promo: 'UMRM2MUSPr501YOC' },
+      data: { 
+        promo: 'UMRM2MUSPr501YOC',
+        workflow: 'recommendation',
+      },
       tags: '@commerce @smoke @regression',
     },
     {
