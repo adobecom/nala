@@ -337,6 +337,7 @@ test.describe('Commerce feature test suite', () => {
       await expect(COMM.freeTrialCta).toHaveAttribute('href', new RegExp(`${data.promo}`));
       await expect(COMM.freeTrialCta).toHaveAttribute('href', new RegExp(`${data.CO}`));
       await expect(COMM.freeTrialCta).toHaveAttribute('href', new RegExp(`${data.lang}`));
+      await expect(COMM.freeTrialCta).toHaveAttribute('href', new RegExp(`${data.workflow}`));
     });
 
     await test.step('Validate regular price display', async () => {
