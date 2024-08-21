@@ -322,7 +322,7 @@ test.describe('Commerce feature test suite', () => {
       );
       expect(unresolvedPlaceholders.length).toBe(0);
     });
-    
+
     await test.step('Validate Buy now CTA', async () => {
       await COMM.buyNowCta.waitFor({ state: 'visible', timeout: 10000 });
       await expect(COMM.buyNowCta).toHaveAttribute('data-promotion-code', data.promo);
@@ -405,7 +405,7 @@ test.describe('Commerce feature test suite', () => {
       await page.goto(testPage);
       await page.waitForLoadState('domcontentloaded');
     });
-    
+
     // Validate there are no unresolved commerce placeholders
     await test.step('Validate wcs placeholders', async () => {
       const unresolvedPlaceholders = await page.evaluate(
@@ -415,7 +415,7 @@ test.describe('Commerce feature test suite', () => {
       );
       expect(unresolvedPlaceholders.length).toBe(0);
     });
-    
+
     await test.step('Validate Buy now CTA', async () => {
       await COMM.buyNowCta.waitFor({ state: 'visible', timeout: 10000 });
       await expect(COMM.buyNowCta).toHaveAttribute('data-promotion-code', data.promo);
@@ -469,5 +469,5 @@ test.describe('Commerce feature test suite', () => {
       expect(await priceStyle).toContain('line-through');
       await expect(COMM.priceStrikethrough).toHaveAttribute('data-promotion-code', data.promo);
     });
-  });  
+  });
 });
