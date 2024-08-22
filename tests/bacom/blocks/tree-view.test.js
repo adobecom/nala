@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { TreeView } from '../../selectors/bacom/tree-view.page.js';
+import { TreeView } from '../../../selectors/bacom/tree-view.page.js';
 
-const TreeViewSpec = require('../../features/bacom/tree-view.spec.js');
+const TreeViewSpec = require('../../../features/bacom/blocks/tree-view.spec.js');
 
 const { features } = TreeViewSpec;
 const miloLibs = process.env.MILO_LIBS || '';

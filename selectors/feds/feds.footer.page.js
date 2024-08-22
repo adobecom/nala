@@ -43,6 +43,34 @@ export default class FedsFooter {
     this.downloadAdobeExpress = page.locator('footer a[daa-ll="Adobe_Express"]');
     this.downloadAdobePhotoshop = page.locator('footer a[daa-ll="Photoshop"]');
     this.downloadAdobeIllustrator = page.locator('footer a[daa-ll="Illustrator"]');
+
+    // Footer Section Selectors:
+    this.footerCreativeCloud = page.locator(".feds-footer-wrapper a[href*='creativecloud.html']");
+    this.footerViewAllProducts = page.locator(".feds-navLink[href*='/products/catalog.html?']");
+    this.footerCreativeCloudForBusiness = page.locator(".feds-footer-wrapper [href$='cloud/business.html']").nth(0);
+    this.footerAcrobatForBusiness = page.locator(".feds-footer-wrapper a[href$='acrobat/business.html']");
+    this.footerDiscountsForStudentsAndTeachers = page.locator(".feds-footer-wrapper a[href$='buy/students.html']");
+    this.footerDigitalLearningSolutions = page.locator("a[href$='/elearning.html']");
+    this.footerAppsforiOS = page.locator("a[href*='id852473028']");
+    this.footerAppsforAndroid = page.locator("a[href*='id=com.adobe.cc']");
+    this.footerWhatIsExperienceCloud = page.locator('.feds-footer-wrapper a[href*="business"]').nth(4);
+    this.footerTermsOfUse = page.locator('a[href*="experiencecloudterms"]');
+    this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href*="download-install.html"]');
+    this.footerGenuineSoftware = page.locator('a[href*="genuine.html"]');
+    this.footerAdobeBlog = page.locator('.feds-navLink[href*="blog"]').nth(1);
+    this.footerAdobeDeveloper = page.locator('a[href*="developer"]');
+    this.footerLogInToYourAccount = page.locator('.feds-footer-wrapper a[href*="account.adobe"]').nth(0);
+    this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]').nth(0);
+    this.footerIntegrity = page.locator('a[href*="integrity.html"]');
+    this.footerAdobeBlogSecond = page.locator('.feds-navLink[href*="blog"]').nth(0);
+    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
+    this.termsOfUseLinkTwo = page.locator('a[href*="terms.html"]').nth(1);
+
+    // Featured Product Selectors:
+    this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
+    this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(2)');
+    this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]');
+    this.footerIllustratorlogo = page.locator('a[href$="illustrator/free-trial-download.html"]');
   }
 
   // >> FEDS Footer methods declared here <<

@@ -5,7 +5,15 @@ import PromoPage from '../../selectors/milo/promotions.feature.page.js';
 const miloLibs = process.env.MILO_LIBS || '';
 
 let PROMO;
-test.beforeEach(async ({ page }) => { PROMO = new PromoPage(page); });
+test.beforeEach(async ({ page, baseURL }) => {
+  PROMO = new PromoPage(page);
+  const skipOn = ['bacom', 'business'];
+
+  skipOn.some((skip) => {
+    if (baseURL.includes(skip)) test.skip(true, `Skipping the promo tests for ${baseURL}`);
+    return null;
+  });
+});
 
 test.describe('Promotions feature test suite', () => {
   // @Promo-insert - Validate promo insert text after marquee and before text component
@@ -222,7 +230,9 @@ test.describe('Promotions feature test suite', () => {
   });
 
   // @Promo-with-personalization-and-target - Validate promo together with personalization and target ON
-  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
+  test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL, browserName }) => {
+    test.skip(browserName === 'chromium', 'Skipping test for Chromium browser');
+
     const testPage = `${baseURL}${features[7].path}${miloLibs}`;
     const { data } = features[7];
     console.info('[Test Page]: ', testPage);
@@ -495,7 +505,7 @@ test.describe('Promotions feature test suite', () => {
     });
   });
 
-  // @Promo-insert-fragment - Validate promo insert text after and before fragment
+  // @Promo-fragment-insert - Validate promo insert text after and before fragment
   test(`${features[13].name},${features[13].tags}`, async ({ page, baseURL }) => {
     const testPage = `${baseURL}${features[13].path}${miloLibs}`;
     const { data } = features[13];

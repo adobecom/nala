@@ -1,5 +1,4 @@
-import { expect, test } from '@playwright/test';
-import { features } from '../../features/feds/homePageSanity.spec.js';
+import { expect } from '@playwright/test';
 
 export default class HomePageSanity {
   constructor(page) {
@@ -13,10 +12,9 @@ export default class HomePageSanity {
     this.gnavHelpX = page.locator('.feds-navItem:nth-child(4) button');
     this.appSwitcher = page.locator('.unav-comp-app-switcher');
     this.signInButton = page.locator('#unav-profile');
-    this.loginButton = page.locator('.feds-signIn');
-    this.Tologin = page.locator('.profile-signed-out>button');
     this.gnavCCPP = page.locator('.feds-navItem:nth-child(1)');
     this.gnavSpecialOffers = page.locator('.feds-navItem:nth-child(2)');
+    this.hamburgerMenu = page.locator('.feds-toggle');
 
     // Creative Cloud Elements
     this.whatIsCC = page.locator('.feds-popup a[href*="creativecloud.html"]').nth(0);
@@ -25,13 +23,12 @@ export default class HomePageSanity {
     this.photoshop = page.locator('.feds-popup a[href*="photoshop.html"]');
     this.AdobeStock = page.locator('.feds-popup a[href*="stock.adobe.com"]');
     this.photo = page.locator('a[href$="promoid=D8F91JW4&mv=other"]');
-    this.pdf = page.locator('a[href*="acrobat-pro-cc.html"]');
+    this.pdf = page.locator('a[href$="acrobat-pro-cc.html"]');
     this.aIOverviewCC = page.locator('.feds-popup a[href*="ai/overview.html"]').nth(0);
-    this.adobeFirefly = page.locator('a[href*="firefly.html"]');
+    this.adobeFirefly = page.locator('a[href*="firefly.html"]').nth(0);
 
     this.individuals = page.locator('.feds-navLink[href*="all-apps.html"]');
     this.companies = page.locator('.feds-navLink[href*="promoid=KH8NV9ZS&mv=other"]');
-    this.allApsOverview = page.locator('.feds-navLink[href*="?promoid=HVQ7WXK7&mv=other"]');
     this.seeAllProducts = page.locator('.feds-cta.feds-cta--primary[href*="?promoid=JVLHVXNY&mv=other"]');
     this.seePlansAndPrices = page.locator('.feds-cta.feds-cta--secondary[href*="?promoid=KLZPV68R&mv=other"]');
     this.viewAllProductsCC = page.locator('.feds-navLink.feds-navLink--blue[href*="creativity-design"]');
@@ -45,12 +42,14 @@ export default class HomePageSanity {
     this.illustrator = page.locator('.feds-popup a[href*="HZG8WTXS&mv=other"]');
     this.seePlansAndPricing = page.locator('.feds-popup a[href*="WXYGHWCC&mv=other"]');
 
+    this.whatIsCCMobile = page.locator('.feds-popup a[href*="creativecloud"]').nth(0);
+
     // Document Cloud Elements
     this.adobeAcrobat = page.locator('a[href$="acrobat.html"] .feds-navLink-content');
     this.acrobatPlansAndPricing = page.locator('.feds-cta.feds-cta--primary[href$="/pricing.html"]');
     this.acrobatReader = page.locator('a[href$="pdf-reader.html"]');
     this.business = page.locator('.feds-popup a[href$="acrobat/business.html"]');
-    this.government = page.locator('a[href$="/government.html"]');
+    this.government = page.locator('a[href$="/government.html"]').nth(0);
     this.aiOverviewDC = page.locator('.feds-popup a[href$="/ai/overview.html"]').nth(1);
     this.aiInAcrobat = page.locator('.feds-navLink[href$="generative-ai-pdf.html"]');
     this.pdfToWord = page.locator('a[href$="pdf-to-word.html"]');
@@ -59,10 +58,8 @@ export default class HomePageSanity {
     this.eventsAndWebinars = page.locator('a[href$="webinars.html"]');
 
     this.AIOverviewDCTwo = page.locator('.feds-popup a[href$="/ai/overview.html"]').nth(0);
+    this.governmentTwo = page.locator('a[href$="/government.html"]').nth(1);
     this.consultationBeforePurchase = page.locator('.feds-popup a[href$="0120-693-724"]');
-
-    this.smallBusiness = page.locator('.feds-popup a[href*="small-business.html"]');
-    this.homeAndPersonal = page.locator('.feds-popup a[href*="personal-document-management.html"]');
 
     // Experience Cloud Elements
     this.adobeExperienceCloud = page.locator('.feds-popup a[href*="business.adobe.com"]').nth(0);
@@ -84,26 +81,19 @@ export default class HomePageSanity {
     this.requestAdemo = page.locator('.feds-popup a[href$="experience-cloud.html"]');
     this.analytics = page.locator('.feds-popup a[href$="adobe-analytics.html"]');
     this.experienceManagerAssets = page.locator('.feds-popup a[href$="aem-assets.html"]');
-    this.aiProgramOverview = page.locator('.feds-popup a[href*="ai/overview.html"]').nth(1);
-    this.aiProgramOverviewTwo = page.locator('.feds-popup a[href*="ai/overview.html"]').nth(2);
-    this.aiOverview = page.locator('.feds-popup a[href*="ai/overview.html"]');
+    this.aiOverview = page.locator('.feds-popup a[href*="ai/overview.html"]').nth(1);
     this.adobeSummit = page.locator('a[href*="summit.adobe.com"]');
-    this.senseiGenAI = page.locator('.feds-navLink[href*="adobe-sensei-genai.html"]');
 
     // Help-X Elements
     this.helpCentre = page.locator('.feds-popup a[href$="support.html"]:nth-child(1)');
-    this.downloadAndInstall = page.locator(".feds-cta--secondary[href$='catalog.html']");
+    this.downloadAndInstall = page.locator(".feds-cta--secondary[href$='catalog.html']").nth(0);
     this.contact = page.locator(".feds-cta--primary[href$='open-jarvis-chat']");
     this.manageMyAccount = page.locator(".feds-popup a[href*='account.adobe']").nth(0);
     this.subscribeToAdobeStatus = page.locator("a[href$='proactivesubscriptions']");
     this.creativeCloudTutorials = page.locator("a[href$='learn']");
     this.adobeExperienceLeague = page.locator("a[href*='experienceleague']:nth-child(4)");
-
-    this.helpCentreTwo = page.locator('.feds-popup a[href$="support.html"]:nth-child(1)').nth(0);
-    this.helpCentreThree = page.locator('.feds-popup a[href$="support.html"]:nth-child(2)');
-    this.accountManagementTwo = page.locator('.feds-popup a[href$="account.adobe.com/"]').nth(1);
-    this.showAllHelpTopics = page.locator('.feds-popup li a[href$="support.html"]');
-    this.getInfoAboutTipsTutorialsSpecialOffers = page.locator('.feds-popup a[href$="?promoid=TKZTL9PK%20"]');
+    this.downloadAndInstallTwo = page.locator(".feds-cta--secondary[href$='catalog.html']").nth(1);
+    this.subscribeToAdobeStatusTwo = page.locator('a[href*="src=helpx"]');
 
     // Footer Elements
     this.footerCreativeCloud = page.locator(".feds-footer-wrapper a[href*='creativecloud.html']");
@@ -133,7 +123,7 @@ export default class HomePageSanity {
     // Change Region and social media
     this.changeRegion = page.locator('.feds-regionPicker-wrapper');
     this.facebookLogo = page.locator('a[href*="facebook"]');
-    this.instagramLogo = page.locator('a[href*="instagram"]');
+    this.instagramLogo = page.locator('a[href*="instagram"]').nth(0);
     this.twitterlogo = page.locator('a[href*="twitter"]');
     this.linkedinLogo = page.locator('a[href*="linkedin"]');
     this.copyright = page.locator('.feds-footer-legalWrapper>p>span');
@@ -142,46 +132,409 @@ export default class HomePageSanity {
     this.cookies = page.locator('.feds-footer-legalWrapper a:nth-of-type(3)');
     this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
     this.adChoices = page.locator('.feds-footer-legalWrapper a:nth-of-type(5)');
+    this.instagramLogoTwo = page.locator('a[href*="instagram"]').nth(1);
+    this.weibo = page.locator('a[href*="weibo"]');
+    this.socialMedia = page.locator('a[href*="social-media"]');
   }
 
-  async validateGnavHomePage(page, baseURL, featureIndex, locale, homePage, home) {
-    console.info(`[FEDSInfo] Checking page: ${baseURL}${features[featureIndex].path}`);
+  // U-NAV
+  async validatingUnavElements(country) {
+    const elementsToCheck = [
+      { element: this.adobelogo, conditions: { defaultVisibility: true } },
+      { element: this.appSwitcher, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.signInButton, conditions: { defaultVisibility: true } },
+      {
+        element: this.gnavCC,
+        conditions: { defaultVisibility: true, excludeCountries: ['CIS English', 'CIS Russian', 'China'] },
+      },
+      {
+        element: this.gnavDC,
+        conditions: { defaultVisibility: true, excludeCountries: ['CIS English', 'CIS Russian', 'China'] },
+      },
+      {
+        element: this.gnavEC,
+        conditions: { defaultVisibility: true, excludeCountries: ['CIS English', 'CIS Russian', 'China'] },
+      },
+      {
+        element: this.gnavHelpX,
+        conditions: { defaultVisibility: true, excludeCountries: ['CIS English', 'CIS Russian', 'China'] },
+      },
+      {
+        element: this.gnavCCPP,
+        conditions: {
+          includeCountries: ['CIS English', 'CIS Russian'],
+          excludeCountries: ['China'],
+        },
+      },
+      {
+        element: this.gnavSpecialOffers,
+        conditions: {
+          includeCountries: ['CIS English', 'CIS Russian'],
+          excludeCountries: ['China'],
+        },
+      },
+    ];
 
-    await test.step(`Validating ${locale} Locale page`, async () => {
-      const pageURL = `${baseURL}${features[featureIndex].path}`;
-      await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
-      await expect(page).toHaveURL(pageURL);
-
-      // Verifying the visibility of UNAV Elements
-      await page.waitForLoadState('networkidle');
-      await Promise.all(homePage.locales[locale].unavElements.map((element) => expect(home[element]).toBeVisible()));
-
-      if (locale !== 'CIS English' && locale !== 'CIS Russian' && locale !== 'China') {
-        // Verifying the visibility of Creative Cloud Elements
-        await this.gnavCC.click({ timeout: 5000 });
-        await page.waitForLoadState('domcontentloaded');
-        await Promise.all(homePage.locales[locale].ccElements.map((element) => expect(home[element]).toBeVisible()));
-
-        // Verifying the visibility of Document cloud Elements
-        await this.gnavDC.click({ timeout: 5000 });
-        await page.waitForLoadState('domcontentloaded');
-        await Promise.all(homePage.locales[locale].dcElements.map((element) => expect(home[element]).toBeVisible()));
-
-        // Verifying the visibility of Experience Cloud Elements
-        await this.gnavEC.click({ timeout: 5000 });
-        await page.waitForLoadState('domcontentloaded');
-        await Promise.all(homePage.locales[locale].ecElements.map((element) => expect(home[element]).toBeVisible()));
-
-        // Verifying the visibility of Help-X Elements
-        await this.gnavHelpX.click({ timeout: 5000 });
-        await page.waitForLoadState('domcontentloaded');
-        await Promise.all(homePage.locales[locale].helpXElements.map((element) => expect(home[element]).toBeVisible()));
-        await this.gnavHelpX.click({ timeout: 5000 });
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
       }
+    }));
+  }
 
-      // Verifying the visibility of Footer Elements
-      await this.changeRegion.scrollIntoViewIfNeeded();
-      await Promise.all(homePage.locales[locale].footerElements.map((element) => expect(home[element]).toBeVisible()));
-    });
+  // Creativity & Design
+  async validatingCCElements(country) {
+    await this.gnavCC.click();
+    const elementsToCheck = [
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'Germany'] } },
+      {
+        element: this.schoolsAndUniversities,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Brazil', 'Chile', 'Spain', 'India'],
+        },
+      },
+      {
+        element: this.viewPlansAndPrices,
+        conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'Chile', 'Spain', 'Russia', 'India'] },
+      },
+      { element: this.photoshop, conditions: { defaultVisibility: true } },
+      { element: this.AdobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      {
+        element: this.viewAllProductsCC,
+        conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'Chile', 'Spain', 'India'] },
+      },
+      { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.aIOverviewCC, conditions: { defaultVisibility: true } },
+      { element: this.adobeFirefly, conditions: { defaultVisibility: true } },
+      { element: this.seeAllProducts, conditions: { includeCountries: ['Brazil', 'Chile', 'Spain'] } },
+      { element: this.individuals, conditions: { includeCountries: ['Brazil', 'Chile'] } },
+      { element: this.companies, conditions: { includeCountries: ['Brazil', 'Chile'] } },
+      { element: this.seePlansAndPrices, conditions: { includeCountries: ['Brazil', 'Chile', 'Spain'] } },
+      { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
+      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
+      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
+      { element: this.resume, conditions: { includeCountries: ['India'] } },
+      { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
+      { element: this.createNow, conditions: { includeCountries: ['India'] } },
+      { element: this.illustrator, conditions: { includeCountries: ['India'] } },
+      { element: this.seePlansAndPricing, conditions: { includeCountries: ['India'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  // Document Cloud
+  async validatingDCElements(country) {
+    await this.gnavDC.click();
+    const elementsToCheck = [
+      { element: this.adobeAcrobat, conditions: { defaultVisibility: true } },
+      { element: this.acrobatPlansAndPricing, conditions: { defaultVisibility: true } },
+      { element: this.acrobatReader, conditions: { defaultVisibility: true } },
+      { element: this.business, conditions: { defaultVisibility: true } },
+      {
+        element: this.government,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Germany', 'France', 'Greece', 'Italy', 'Saudi Arabia', 'Finland', 'Japan'],
+        },
+      },
+      {
+        element: this.aiOverviewDC,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Argentina', 'Brazil', 'Canada French', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
+            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Belgium French', 'Germany', 'Estonia',
+            'Spain', 'France', 'Greece', 'Italy', 'Lithuania', 'Luxemburg German', 'Luxemburg French', 'Hungary',
+            'Nederland', 'Poland', 'Portugal', 'Romania', 'Switzerland', 'Slovenia', 'Slovakia', 'Switzerland French',
+            'Finland', 'Sweden', 'Switzerland Italian', 'Turkey', 'Czech Republic', 'Bulgaria', 'Russia', 'Ukraine',
+            'Israel Hebrew', 'UAE', 'Middle East And North Africa', 'Kingdom Of Saudi Arabia', 'Egypt', 'Kuwait',
+            'Qatar', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand',
+            'Hong Kong', 'Taiwan', 'Japan', 'Korea', 'Latvia'],
+        },
+      },
+      {
+        element: this.aiInAcrobat,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Argentina', 'Brazil', 'Canada French', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
+            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Belgium French', 'Germany', 'Estonia',
+            'Spain', 'France', 'Greece', 'Italy', 'Lithuania', 'Luxemburg German', 'Luxemburg French', 'Hungary',
+            'Nederland', 'Poland', 'Portugal', 'Romania', 'Switzerland', 'Slovenia', 'Slovakia', 'Switzerland French',
+            'Finland', 'Sweden', 'Switzerland Italian', 'Turkey', 'Czech Republic', 'Bulgaria', 'Russia', 'Ukraine',
+            'Israel Hebrew', 'UAE', 'Middle East And North Africa', 'Kingdom Of Saudi Arabia', 'Egypt', 'Kuwait',
+            'Qatar', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand', 'Hong Kong',
+            'Taiwan', 'Japan', 'Korea', 'Latvia'],
+        },
+      },
+      { element: this.pdfToWord, conditions: { defaultVisibility: true } },
+      { element: this.wordToPDF, conditions: { defaultVisibility: true } },
+      { element: this.developerResources, conditions: { defaultVisibility: true } },
+      { element: this.eventsAndWebinars, conditions: { defaultVisibility: true } },
+      { element: this.consultationBeforePurchase, conditions: { includeCountries: ['Japan'] } },
+      { element: this.governmentTwo, conditions: { includeCountries: ['Japan'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  // Experience Cloud
+  async validatingECElements(country) {
+    await this.gnavEC.click();
+    const elementsToCheck = [
+      { element: this.adobeExperienceCloud, conditions: { defaultVisibility: true, includeCountries: ['Brazil'] } },
+      {
+        element: this.customerDataPlatform,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Brazil', 'India'],
+        },
+      },
+      { element: this.marketingAutomation, conditions: { defaultVisibility: true } },
+      {
+        element: this.viewAllProductsEC,
+        conditions: {
+          defaultVisibility: true,
+          includeCountries: ['Brazil', 'India'],
+        },
+      },
+      { element: this.adobeGenStudio, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India'] } },
+      { element: this.aiAssistant, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India'] } },
+      {
+        element: this.adobeExperiencePlatform,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Brazil', 'India'],
+        },
+      },
+      { element: this.adobeGenAI, conditions: { defaultVisibility: true, includeCountries: ['Brazil'] } },
+      { element: this.findProduct, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India'] } },
+      { element: this.resourceCentre, conditions: { defaultVisibility: true, includeCountries: ['Brazil', 'India'] } },
+      {
+        element: this.customerSuccessStories,
+        conditions: {
+          defaultVisibility: true,
+          includeCountries: ['Brazil', 'India'],
+        },
+      },
+      {
+        element: this.servicesAndSupport,
+        conditions: {
+          defaultVisibility: true,
+          includeCountries: ['Brazil', 'India'],
+        },
+      },
+      { element: this.training, conditions: { defaultVisibility: true, includeCountries: ['Brazil', 'India'] } },
+
+      { element: this.insightsAndAudiences, conditions: { includeCountries: ['Brazil', 'India'] } },
+      { element: this.b2bMarketing, conditions: { includeCountries: ['Brazil', 'India'] } },
+      { element: this.requestAdemo, conditions: { includeCountries: ['Brazil', 'India'] } },
+      { element: this.analytics, conditions: { includeCountries: ['Brazil', 'India'] } },
+      { element: this.experienceManagerAssets, conditions: { includeCountries: ['Brazil', 'India'] } },
+      { element: this.aiOverview, conditions: { includeCountries: ['Brazil'] } },
+      { element: this.adobeSummit, conditions: { includeCountries: ['Brazil', 'India'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  // Helpx
+  async validatingHelpXElements(country) {
+    await this.gnavHelpX.click();
+    const elementsToCheck = [
+      { element: this.helpCentre, conditions: { defaultVisibility: true } },
+      { element: this.downloadAndInstall, conditions: { defaultVisibility: true } },
+      { element: this.contact, conditions: { defaultVisibility: true } },
+      { element: this.manageMyAccount, conditions: { defaultVisibility: true } },
+      {
+        element: this.subscribeToAdobeStatus,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Kuwait English', 'Qatar English'],
+        },
+      },
+      { element: this.creativeCloudTutorials, conditions: { defaultVisibility: true } },
+      { element: this.adobeExperienceLeague, conditions: { defaultVisibility: true } },
+      {
+        element: this.subscribeToAdobeStatusTwo,
+        conditions: { includeCountries: ['Kuwait English', 'Qatar English'] },
+      },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+
+    await this.gnavHelpX.click();
+  }
+
+  // Footer
+  async validatingFooterElements(country) {
+    await this.changeRegion.scrollIntoViewIfNeeded();
+    const elementsToCheck = [
+      { element: this.footerCreativeCloud, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerViewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      {
+        element: this.footerCreativeCloudForBusiness,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China'],
+        },
+      },
+      { element: this.footerAcrobatForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      {
+        element: this.footerDiscountsForStudentsAndTeachers,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Russia', 'China'],
+        },
+      },
+      {
+        element: this.footerDigitalLearningSolutions,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China'],
+        },
+      },
+      { element: this.footerAppsforiOS, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerAppsforAndroid, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      {
+        element: this.footerWhatIsExperienceCloud,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China'],
+        },
+      },
+      { element: this.footerTermsOfUse, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerDownloadAndInstall, conditions: { defaultVisibility: true } },
+      { element: this.footerGenuineSoftware, conditions: { defaultVisibility: true } },
+      { element: this.footerAdobeBlog, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerAdobeDeveloper, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerLogInToYourAccount, conditions: { defaultVisibility: true } },
+      { element: this.footerAbout, conditions: { defaultVisibility: true } },
+      { element: this.footerIntegrity, conditions: { defaultVisibility: true } },
+      {
+        element: this.footerAdobeAcrobatReaderlogo,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China'],
+        },
+      },
+      { element: this.footerAdobeExpresslogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerPhotoshoplogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerIllustratorlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.changeRegion, conditions: { defaultVisibility: true } },
+      { element: this.facebookLogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.instagramLogo, conditions: { defaultVisibility: true, excludeCountries: ['India', 'China'] } },
+      { element: this.twitterlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.linkedinLogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.copyright, conditions: { defaultVisibility: true } },
+      { element: this.privacyPolicy, conditions: { defaultVisibility: true } },
+      { element: this.termsOfUse, conditions: { defaultVisibility: true } },
+      { element: this.cookies, conditions: { defaultVisibility: true } },
+      { element: this.protectMyPersonalData, conditions: { defaultVisibility: true } },
+      { element: this.adChoices, conditions: { defaultVisibility: true } },
+      { element: this.instagramLogoTwo, conditions: { includeCountries: ['India'] } },
+      { element: this.weibo, conditions: { includeCountries: ['China'] } },
+      { element: this.socialMedia, conditions: { includeCountries: ['China'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  // Android, iOS and iPad methods.
+
+  // U-NAV
+  async validatingUnav() {
+    const elements = [this.hamburgerMenu, this.adobelogo, this.appSwitcher, this.signInButton];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+  }
+
+  // Hamburger Menu Items
+  async validatingHamburgerMenu() {
+    await this.hamburgerMenu.click();
+    const elements = [this.gnavCC, this.gnavDC, this.gnavEC, this.gnavHelpX];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+  }
+
+  // Creativity & Design
+  async validatingCreativityAndDesign(country) {
+    await this.gnavCC.click();
+
+    const excludeCountries = ['United Kingdom', 'India', 'Spain'];
+
+    if (excludeCountries.includes(country)) {
+      await expect(this.whatIsCCMobile).not.toBeVisible();
+    } else {
+      await expect(this.whatIsCCMobile).toBeVisible();
+    }
+  }
+
+  // Marketing & Commerce
+  async validatingMarketingAndCommerce() {
+    await this.gnavEC.click();
+    await expect(this.adobeExperienceCloud).toBeVisible();
+    await this.hamburgerMenu.click();
+  }
+
+  // Footer
+  async validatingFooter(country) {
+    await this.changeRegion.scrollIntoViewIfNeeded();
+
+    const includeCountry = ['India'];
+
+    const elements = [this.changeRegion, this.facebookLogo, this.twitterlogo,
+      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
+      this.protectMyPersonalData, this.adChoices,
+      includeCountry.includes(country) ? this.instagramLogoTwo : this.instagramLogo,
+    ];
+    await Promise.all(elements.map((element) => expect(element).toBeVisible()));
   }
 }
