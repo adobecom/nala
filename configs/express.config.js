@@ -44,9 +44,9 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'express-stage-chromium',
+      name: 'express-live-chromium',
       use: { ...devices['Desktop Chrome'],
-        baseURL: envs['@express_stage'],
+        baseURL: envs['@express_live'],
       },
     },
   ],
