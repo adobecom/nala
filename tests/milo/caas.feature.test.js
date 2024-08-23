@@ -33,6 +33,7 @@ test.describe('Milo CAAS Feature test suite', () => {
 
     await test.step('step-2: Verify CAAS collection content/specs', async () => {
       // verify number of cards in the collection
+      await expect(await caas.caasFirstCard).toBeVisible();
       await expect(await caas.caasCards).toHaveCount(data.cardsPerPage);
 
       // verify caas title and paginator
