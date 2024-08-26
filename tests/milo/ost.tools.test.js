@@ -5,6 +5,7 @@ import ims from '../../libs/imslogin.js';
 
 let authToken;
 let adobeIMS;
+let OST;
 
 test.beforeAll(async ({ browser }) => {
   test.slow();
@@ -27,10 +28,13 @@ test.beforeAll(async ({ browser }) => {
   authToken = await page.evaluate(() => adobeIMS.getAccessToken().token);
 });
 
+test.beforeEach(async ({ page }) => {
+    OST = new OSTPage(page);
+  });
+
 test.describe('OST page test suite', () => {
   // Verify OST search by offer ID
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
 
     const testPage = `${baseURL}${features[0].path}${features[0].browserParams}${authToken}`;
@@ -58,7 +62,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST offer entitlements
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[1].path}`);
 
     const testPage = `${baseURL}${features[1].path}${features[1].browserParams}${authToken}`;
@@ -85,7 +88,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST offer price options display
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[2].path}`);
 
     const testPage = `${baseURL}${features[2].path}${features[2].browserParams}${authToken}`;
@@ -168,7 +170,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST enebalement for price term text
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[3].path}`);
 
     const testPage = `${baseURL}${features[3].path}${features[3].browserParams}${authToken}`;
@@ -257,7 +258,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST enebalement for price unit text
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[4].path}`);
 
     const testPage = `${baseURL}${features[4].path}${features[4].browserParams}${authToken}`;
@@ -346,7 +346,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST enebalement for price tax label
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[5].path}`);
 
     const testPage = `${baseURL}${features[5].path}${features[5].browserParams}${authToken}`;
@@ -435,7 +434,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST enebalement for tax inclusivity in the price
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[6].path}`);
 
     const testPage = `${baseURL}${features[6].path}${features[6].browserParams}${authToken}`;
@@ -515,7 +513,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST offer price promo
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[7].path}`);
 
     const testPage = `${baseURL}${features[7].path}${features[7].browserParams}${authToken}`;
@@ -594,7 +591,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST checkout link generation
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[8].path}`);
 
     const testPage = `${baseURL}${features[7].path}${features[8].browserParams}${authToken}`;
@@ -644,7 +640,6 @@ test.describe('OST page test suite', () => {
 
   // Verify OST enebalement for old price in the promo price
   test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
-    const OST = new OSTPage(page);
     console.info(`[Test Page]: ${baseURL}${features[9].path}`);
 
     const testPage = `${baseURL}${features[9].path}${features[9].browserParams}${authToken}`;
