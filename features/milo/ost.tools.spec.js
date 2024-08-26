@@ -88,9 +88,7 @@ module.exports = {
       tcid: '6',
       name: '@OST-TaxInclusivity',
       path: '/tools/ost',
-      data: {
-        offerID: '0ADF92A6C8514F2800BE9E87DB641D2A',
-      },
+      data: { offerID: '0ADF92A6C8514F2800BE9E87DB641D2A' },
       browserParams: '?token=',
       tags: '@ost @commerce @regression @nopr',
     },
@@ -122,9 +120,7 @@ module.exports = {
       tcid: '9',
       name: '@OST-OldPrice',
       path: '/tools/ost',
-      data: {
-        offerID: '0ADF92A6C8514F2800BE9E87DB641D2A',
-      },
+      data: { offerID: '0ADF92A6C8514F2800BE9E87DB641D2A' },
       browserParams: '?token=',
       tags: '@ost @commerce @regression @nopr',
     },
