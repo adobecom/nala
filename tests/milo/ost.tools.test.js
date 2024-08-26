@@ -29,8 +29,8 @@ test.beforeAll(async ({ browser }) => {
 });
 
 test.beforeEach(async ({ page }) => {
-    OST = new OSTPage(page);
-  });
+  OST = new OSTPage(page);
+});
 
 test.describe('OST page test suite', () => {
   // Verify OST search by offer ID
