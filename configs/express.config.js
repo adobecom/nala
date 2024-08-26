@@ -49,6 +49,13 @@ const config = {
         baseURL: envs['@express_live'],
       },
     },
+
+    {
+      name: 'express-live-firefox',
+      use: { ...devices['Desktop Firefox'],
+        baseURL: envs['@express_live'],
+      },
+    },
   ],
 };
 
