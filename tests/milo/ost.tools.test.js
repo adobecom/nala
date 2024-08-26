@@ -4,6 +4,7 @@ import OSTPage from '../../selectors/milo/ost.tools.page.js';
 import ims from '../../libs/imslogin.js';
 
 let authToken;
+let adobeIMS;
 
 test.beforeAll(async ({ browser }) => {
   test.slow();
