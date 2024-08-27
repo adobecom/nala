@@ -7,7 +7,7 @@ test.describe('Verify pages are up', () => {
       await test.step('Verify response', async () => {
         const response = await page.goto(`${baseURL}${path}`, { waitUntil: 'domcontentloaded' });
         const statusCode = response.status();
-        expect(statusCode).toBe(200);
+        expect.soft(statusCode).toBe(200);
         console.info(`HTTP Status Code: ${statusCode}`);
       });
     });
