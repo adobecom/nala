@@ -13,9 +13,7 @@ test.beforeAll(async ({ browser }) => {
   if (process.env.GITHUB_ACTIONS) test.skip();
 
   const page = await browser.newPage();
-  // const requestGnavPromise = page.waitForResponse('https://www.adobe.com/libs/blocks/global-navigation/utilities/keyboard/mainNav.js');
   await page.goto('https://www.adobe.com/creativecloud/plans.html?mboxDisable=1&adobe_authoring_enabled=true');
-  // await requestGnavPromise;
   const signinBtn = page.locator('#universal-nav button.profile-comp').first();
   await expect(signinBtn).toBeVisible();
   await signinBtn.click();
@@ -123,10 +121,6 @@ test.describe('OST page test suite', () => {
       clipboardText = await page.evaluate('navigator.clipboard.readText()');
       expect(await clipboardText).toContain('milo.adobe.com/tools/ost');
       expect(await clipboardText).toContain('type=price');
-      // expect(await clipboardText).toContain("term=true");
-      // expect(await clipboardText).toContain("seat=true");
-      // expect(await clipboardText).toContain("tax=false");
-      // expect(await clipboardText).toContain("exclusive=false");
     });
 
     await test.step('Validate Offer optical price option', async () => {
@@ -142,10 +136,6 @@ test.describe('OST page test suite', () => {
       clipboardText = await page.evaluate('navigator.clipboard.readText()');
       expect(await clipboardText).toContain('milo.adobe.com/tools/ost');
       expect(await clipboardText).toContain('type=priceOptical');
-      // expect(await clipboardText).toContain("term=true");
-      // expect(await clipboardText).toContain("seat=true");
-      // expect(await clipboardText).toContain("tax=false");
-      // expect(await clipboardText).toContain("exclusive=false");
     });
 
     await test.step('Validate Offer strikethrough price option', async () => {
@@ -161,10 +151,6 @@ test.describe('OST page test suite', () => {
       clipboardText = await page.evaluate('navigator.clipboard.readText()');
       expect(await clipboardText).toContain('milo.adobe.com/tools/ost');
       expect(await clipboardText).toContain('type=priceStrikethrough');
-      // expect(await clipboardText).toContain("term=true");
-      // expect(await clipboardText).toContain("seat=true");
-      // expect(await clipboardText).toContain("tax=false");
-      // expect(await clipboardText).toContain("exclusive=false");
     });
   });
 
@@ -633,7 +619,6 @@ test.describe('OST page test suite', () => {
       await OST.workflowMenu.click();
       await page.locator(`div[data-key="${data.workflowStep_2}"]`).waitFor({ state: 'visible', timeout: 10000 });
       await page.locator(`div[data-key="${data.workflowStep_2}"]`).click();
-      // await OST.workflowMenu.selectOption({ value: data.workflowStep_2});
       await expect(OST.checkoutLink).toHaveAttribute('href', new RegExp(`${data.workflowStep_2}`));
     });
   });
