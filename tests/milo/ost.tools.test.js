@@ -20,16 +20,10 @@ test.beforeAll(async ({ browser }) => {
   await page.waitForURL('**/auth.services.adobe.com/en_US/index.html**/');
   features[0].url = 'https://www.adobe.com/creativecloud/plans.html?mboxDisable=1&adobe_authoring_enabled=true';
   await ims.fillOutSignInForm(features[0], page);
-
   await expect(async () => {
     const response = await page.request.get(features[0].url);
     expect(response.status()).toBe(200);
   }).toPass();
-
-
-//   await page.waitForLoadState('domcontentloaded');
-//   await page.waitForTimeout(3000);
-
   authToken = await page.evaluate(() => adobeIMS.getAccessToken().token);
 });
 
