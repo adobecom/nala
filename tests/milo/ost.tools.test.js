@@ -20,8 +20,15 @@ test.beforeAll(async ({ browser }) => {
   await page.waitForURL('**/auth.services.adobe.com/en_US/index.html**/');
   features[0].url = 'https://www.adobe.com/creativecloud/plans.html?mboxDisable=1&adobe_authoring_enabled=true';
   await ims.fillOutSignInForm(features[0], page);
-  await page.waitForLoadState('domcontentloaded');
-  await page.waitForTimeout(3000);
+
+  await expect(async () => {
+    const response = await page.request.get(features[0].url);
+    expect(response.status()).toBe(200);
+  }).toPass();
+
+
+//   await page.waitForLoadState('domcontentloaded');
+//   await page.waitForTimeout(3000);
 
   authToken = await page.evaluate(() => adobeIMS.getAccessToken().token);
 });
@@ -44,7 +51,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
       await page.waitForTimeout(2000);
     });
@@ -71,7 +77,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
       await page.waitForTimeout(2000);
     });
@@ -99,7 +104,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
@@ -169,7 +173,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
@@ -257,7 +260,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
@@ -345,7 +347,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
@@ -433,7 +434,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
@@ -512,7 +512,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
@@ -588,7 +587,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
@@ -638,7 +636,6 @@ test.describe('OST page test suite', () => {
     });
 
     await test.step('Enter Offer ID in the search field', async () => {
-      await OST.searchField.waitFor({ state: 'visible', timeout: 10000 });
       await OST.searchField.fill(data.offerID);
     });
 
