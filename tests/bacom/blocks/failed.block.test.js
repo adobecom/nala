@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
 import { expect, test } from '@playwright/test';
-import { WebUtil } from '../../libs/webutil.js';
+import { WebUtil } from '../../../libs/webutil.js';
 
-const parse = require('../../libs/parse.js');
-const failedBlock = require('../../features/bacom/failed.block.spec.js');
-const selectors = require('../../selectors/bacom/failed.block.page.js');
+const parse = require('../../../libs/parse.js');
+const failedBlock = require('../../../features/bacom/blocks/failed.block.spec.js');
+const selectors = require('../../../selectors/bacom/failed.block.page.js');
 
 // Parse the feature file into something flat that can be tested separately
 const { name, features } = parse(failedBlock);
@@ -17,7 +17,6 @@ test.describe(`${name} test suite`, () => {
   });
 
   features.forEach((props) => {
-
     test(props.title, async ({ page, browser }) => {
       await page.goto(props.url);
       const res = await page.goto(props.url);

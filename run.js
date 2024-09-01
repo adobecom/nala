@@ -11,8 +11,11 @@ Options:
 -g, --grep          Filter tests by grep pattern, e.g., '@milo'.
 -r, --reporter      Specify the reporter to use, e.g., 'html'.
 -h, --help          Display this help message and exit.
+--bstack            Run tests on Browserstack.
+--debug             Run tests in debug mode.
 --headed            Run tests in headed mode.
 --headless          Run tests in headless mode (default).
+--list              List all tests found, but doesn't run them.
 
 Examples:
 node run.js -p=milo-live-chrome -c=milo
@@ -82,7 +85,7 @@ function runPlaywrightTests() {
   const argv = parseArgs(args);
 
   // Construct the Playwright CLI command
-  const command = 'npx playwright test';
+  let command = 'npx playwright test';
   const options = [];
 
   if (Object.keys(argv).length === 0) {
@@ -92,8 +95,16 @@ function runPlaywrightTests() {
   }
 
   // Add options dynamically based on argv
+  if (argv.debug) {
+    options.push('--debug');
+  }
+
   if (argv.headed) {
     options.push('--headed');
+  }
+
+  if (argv.list) {
+    options.push('--list');
   }
 
   if (argv.project) {
@@ -105,6 +116,8 @@ function runPlaywrightTests() {
         options.push(`--project=${project}`);
       });
     }
+  } else if (argv.bstack) {
+    command = 'npx browserstack-node-sdk playwright test';
   } else {
     console.error('Error: -p (project) is required');
     process.exit(1);

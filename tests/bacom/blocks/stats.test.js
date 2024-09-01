@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/bacom/stats.spec.js';
-import StatsBlock from '../../selectors/bacom/stats.page.js';
+import { features } from '../../../features/bacom/blocks/stats.spec.js';
+import StatsBlock from '../../../selectors/bacom/stats.page.js';
 
 const miloLibs = process.env.MILO_LIBS || '';
 

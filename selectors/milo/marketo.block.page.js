@@ -30,34 +30,35 @@ export default class Marketo {
       'select[name="mktoFormsCompanyType"]',
     );
     this.submitButton = this.marketo.locator('#mktoButton_new');
+    this.message = this.marketo.locator('.ty-message');
   }
 
   async submitFullTemplateForm(poi) {
     await this.country.selectOption({ index: 1 });
-    await this.functionalArea.selectOption({ index: 1 });
     await this.jobTitle.selectOption({ index: 1 });
-
-    // Setting index 2 to test so that the 'Company Type' field doesn't display
-    await this.primaryProductInterest.selectOption(poi !== undefined ? poi : { index: 2 });
-
-    await this.state.selectOption({ index: 1 });
     await this.company.fill(COMPANY);
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
     await this.phone.fill(PHONE);
+    await this.functionalArea.selectOption({ index: 1 });
     await this.postalCode.fill(POSTAL_CODE);
+
+    // Setting index 2 to test so that the 'Company Type' field doesn't display
+    await this.primaryProductInterest.selectOption(poi !== undefined ? poi : { index: 2 });
+
+    await this.state.selectOption({ index: 1 });
     await this.selectCompanyType();
     await this.submitButton.click();
   }
 
   async submitExpandedTemplateForm() {
     await this.country.selectOption({ index: 1 });
-    await this.functionalArea.selectOption({ index: 1 });
     await this.jobTitle.selectOption({ index: 1 });
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
+    await this.functionalArea.selectOption({ index: 1 });
     await this.company.fill(COMPANY);
     await this.selectCompanyType();
     await this.submitButton.click();
@@ -80,6 +81,13 @@ export default class Marketo {
     return poi;
   }
 
+  async getFormTemplate() {
+    const template = await this.page.evaluate(
+      'window.mcz_marketoForm_pref.form.template',
+    );
+    return template;
+  }
+
   async selectCompanyType() {
     // The company type field will display if the poi is one of the below
     const expectedPOI = ['Commerce', 'ADOBEADVERTISINGCLOUD'];
@@ -92,13 +100,31 @@ export default class Marketo {
   /**
    * @description Checks that the input fields have the placeholder attribute
    * and that the value isn't empty.
-   * @param  {...any} inputFields the input fields of the form being tested.
    */
-  static async checkInputPlaceholders(...inputFields) {
-    inputFields.forEach(async (el) => {
-      expect(el).toHaveAttribute('placeholder');
-      const placeholder = await el.getAttribute('placeholder');
-      expect(placeholder.length).toBeGreaterThan(1);
+  async checkInputPlaceholders() {
+    const template = await this.page.evaluate(
+      'window.mcz_marketoForm_pref.form.template',
+    );
+
+    if (!template) {
+      throw new Error('Template not found');
+    }
+
+    const inputFields = [
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.company,
+    ];
+
+    if (template === 'flex_contact') inputFields.push(this.phone, this.postalCode);
+
+    inputFields.forEach(async (field) => {
+      await expect(async () => {
+        expect(await field).toHaveAttribute('placeholder', { timeout: 10000 });
+        const placeholder = await field.getAttribute('placeholder');
+        expect(placeholder.length).toBeGreaterThan(1);
+      }).toPass();
     });
   }
 }

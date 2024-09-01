@@ -1,15 +1,15 @@
-import { expect, test, beforeEach, afterEach } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { features } from '../../features/feds/prodSanity/ccepagesanity.spec.js';
 import CreativeCloudEnterpriseSanity from '../../selectors/feds/feds.ccepagesanity.page.js';
 
 test.describe('Test Suite for Creative Cloud Business Enterprise Page Components', () => {
   let enterprise;
 
-  beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     enterprise = new CreativeCloudEnterpriseSanity(page);
   });
 
-  afterEach(async ({ page }) => {
+  test.afterEach(async ({ page }) => {
     await page.close();
   });
 
