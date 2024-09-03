@@ -70,7 +70,7 @@ module.exports = {
         'pricing',
 
       ],
-      tags: '@regression',
+      tags: '@regression @express',
     },
   ],
 };
