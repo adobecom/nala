@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/milo/caas.spec.js';
-import Caas from '../../selectors/milo/caas.feature.page.js';
+import { features } from '../../features/caas/caas.spec.js';
+import Caas from '../../selectors/caas/caas.feature.page.js';
 
 let caas;
 let consoleErrors = [];
@@ -17,6 +17,7 @@ test.describe('Milo CAAS Feature test suite', () => {
   });
 
   test.afterEach(async () => {
+    console.log('Console Errors:', consoleErrors);
     consoleErrors = [];
   });
 
@@ -32,6 +33,7 @@ test.describe('Milo CAAS Feature test suite', () => {
     });
 
     await test.step('step-2: Verify CAAS collection content/specs', async () => {
+      await page.waitForSelector('.consonant-Card', { state: 'visible', timeout: 60000 });
       // verify number of cards in the collection
       await expect(await caas.caasFirstCard).toBeVisible();
       await expect(await caas.caasCards).toHaveCount(data.cardsPerPage);
