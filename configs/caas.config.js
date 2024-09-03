@@ -115,58 +115,6 @@ const config = {
         baseURL: envs['@milo_prod'],
       },
     },
-
-    // Added viewport for standardized window testing for visual comparisons
-    {
-      name: 'milo-live-chrome-visual',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@milo-live'],
-        viewport: { width: 1280, height: 720 },
-        headless: false,
-      },
-    },
-
-    {
-      name: 'milo-live-firefox-visual',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@milo-live'],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
-
-    {
-      name: 'milo-live-webkit-visual',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@milo-live'],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
-
-    /* Test visually against mobile viewports. */
-    {
-      name: 'milo-live-android-visual',
-      use: {
-        ...devices['Pixel 5'],
-        baseURL: envs['@milo-live'],
-      },
-    },
-    {
-      name: 'milo-live-iphone-visual',
-      use: {
-        ...devices['iPhone SE'],
-        baseURL: envs['@milo-live'],
-      },
-    },
-    {
-      name: 'milo-live-ipad-visual',
-      use: {
-        ...devices['iPad Mini'],
-        baseURL: envs['@milo-live'],
-      },
-    },
   ],
 };
 export default config;
