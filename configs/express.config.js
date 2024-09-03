@@ -45,14 +45,16 @@ const config = {
   projects: [
     {
       name: 'express-live-chromium',
-      use: { ...devices['Desktop Chrome'],
+      use: {
+        ...devices['Desktop Chrome'],
         baseURL: envs['@express_live'],
       },
     },
 
     {
       name: 'express-live-firefox',
-      use: { ...devices['Desktop Firefox'],
+      use: {
+        ...devices['Desktop Firefox'],
         baseURL: envs['@express_live'],
       },
     },
