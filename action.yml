@@ -1,5 +1,10 @@
 name: 'Nala'
 
+inputs:
+  test-type:
+    description: 'Type of test to run'
+    required: true
+    default: 'nala'
 
 runs:
   using: 'composite'
@@ -8,6 +13,11 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: lts/*
-
-    - run: $GITHUB_ACTION_PATH/run.sh
+    - name: Run tests
       shell: bash
+      run: |
+        if [ "${{ inputs.test-type }}" == "caas" ]; then
+          $GITHUB_ACTION_PATH/run.sh -type @caas
+        else
+          $GITHUB_ACTION_PATH/run.sh
+        fi
