@@ -313,16 +313,6 @@ test.describe('Commerce feature test suite', () => {
       await page.waitForLoadState('domcontentloaded');
     });
 
-    // Validate there are no unresolved commerce placeholders
-    await test.step('Validate wcs placeholders', async () => {
-      const unresolvedPlaceholders = await page.evaluate(
-        () => [...document.querySelectorAll('[data-wcs-osi]')].filter(
-          (el) => !el.classList.contains('placeholder-resolved'),
-        ),
-      );
-      expect(unresolvedPlaceholders.length).toBe(0);
-    });
-
     await test.step('Validate Buy now CTA', async () => {
       await COMM.buyNowCta.waitFor({ state: 'visible', timeout: 10000 });
       await expect(COMM.buyNowCta).toHaveAttribute('data-promotion-code', data.promo);
@@ -407,16 +397,6 @@ test.describe('Commerce feature test suite', () => {
       await page.waitForLoadState('domcontentloaded');
     });
 
-    // Validate there are no unresolved commerce placeholders
-    await test.step('Validate wcs placeholders', async () => {
-      const unresolvedPlaceholders = await page.evaluate(
-        () => [...document.querySelectorAll('[data-wcs-osi]')].filter(
-          (el) => !el.classList.contains('placeholder-resolved'),
-        ),
-      );
-      expect(unresolvedPlaceholders.length).toBe(0);
-    });
-
     await test.step('Validate Buy now CTA', async () => {
       await COMM.buyNowCta.waitFor({ state: 'visible', timeout: 10000 });
       await expect(COMM.buyNowCta).toHaveAttribute('data-promotion-code', data.promo);
@@ -469,6 +449,49 @@ test.describe('Commerce feature test suite', () => {
       );
       expect(await priceStyle).toContain('line-through');
       await expect(COMM.priceStrikethrough).toHaveAttribute('data-promotion-code', data.promo);
+    });
+  });
+
+  // @Commerce-Localized - Validate placeholders are resolved in all locales (Jenkins only)
+  test(`${features[10].name},${features[10].tags}`, async ({ page, baseURL }) => {
+    let testPage;
+    // Skip tests on github actions and PRs, run only on Jenkins
+    if (process.env.GITHUB_ACTIONS) test.skip();
+    if (process.env.locale && process.env.locale !== 'default') {
+      testPage = `${baseURL}/${process.env.locale}${features[10].path}${miloLibs}`;
+    } else {
+      testPage = `${baseURL}${features[10].path}${miloLibs}`;
+    }
+    console.info('[Test Page]: ', testPage);
+
+    await test.step('Go to the test page', async () => {
+      await page.goto(testPage);
+      await page.waitForLoadState('domcontentloaded');
+    });
+
+    await test.step('Validate page display', async () => {
+      await COMM.price.waitFor({ state: 'visible', timeout: 10000 });
+      await COMM.buyNowCta.waitFor({ state: 'visible', timeout: 10000 });
+    });
+
+    // Validate there are no unresolved commerce placeholders
+    await test.step('Validate wcs placeholders', async () => {
+      const unresolvedPlaceholders = await page.evaluate(
+        () => [...document.querySelectorAll('[data-wcs-osi]')].filter(
+          (el) => !el.classList.contains('placeholder-resolved'),
+        ),
+      );
+      expect(unresolvedPlaceholders.length).toBe(0);
+    });
+
+    // Validate commerce checkout links are indeed commerce
+    await test.step('Validate checkout links', async () => {
+      const invalidCheckoutLinks = await page.evaluate(
+        () => [...document.querySelectorAll('[data-wcs-osi][is="checkout-link"]')].filter(
+          (el) => !el.getAttribute('href').includes('commerce'),
+        ),
+      );
+      expect(invalidCheckoutLinks.length).toBe(0);
     });
   });
 });
