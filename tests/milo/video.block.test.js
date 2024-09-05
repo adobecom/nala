@@ -88,7 +88,7 @@ test.describe('Milo Video Block test suite', () => {
       await expect(await video.video).toBeVisible();
       await expect(await video.content).toContainText(data.h2Text);
       await new Promise((resolve) => { setTimeout(resolve, 5000); });
-      await video.video.hover({force: true});
+      await video.video.hover({ force: true });
 
       expect(await webUtil.verifyAttributes_(video.video, video.attributes['video.autoplay.once'])).toBeTruthy();
       expect(await webUtil.verifyAttributes_(video.videoSource, video.attributes['video.source'])).toBeTruthy();
