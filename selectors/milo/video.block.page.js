@@ -11,10 +11,12 @@ export default class Video {
     this.miloVideo = this.page.locator('.milo-video');
     this.iframe = this.page.locator('iframe').first();            
     this.mpcPlayerTitle = this.page.frameLocator('iframe').first().locator('.mpc-player__title');
-    this.mpcPlayButton = this.page.frameLocator('iframe').first().locator('.mpc-player button[aria-label="Play"]');
+    // this.mpcPlayButton = this.page.frameLocator('iframe').first().locator('div .mpc-player');
+    this.mpcPlayButton = this.page.frameLocator('iframe').first().locator('button .mpc-large-play.mpc-player__large-play');
     this.mpcMutedButton = this.page.frameLocator('iframe').first().locator('.mpc-player button[aria-label="Mute"]');
     this.mpcMutedLabel = this.page.frameLocator('iframe').first().locator('.mpc-player button[aria-label="Mute"] span');
-    this.youtubePlayButton = this.page.frameLocator('iframe').first().locator('button[aria-label="Play"]');
+    this.youtubePlayButton = this.page.locator('button.lty-playbtn');
+    this.liteYoutube = this.page.locator('lite-youtube');
     this.modalVideo = this.fragment.locator('video')
     this.modalVideoSource = this.modalVideo.locator('source');
     this.consonantCardsGrid = this.page.locator('.consonant-CardsGrid');
