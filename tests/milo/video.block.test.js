@@ -155,9 +155,9 @@ test.describe('Milo Video Block test suite', () => {
     });
 
     await test.step('step-2: Verify video block content/specs', async () => {
-      await expect(await video.miloVideo).toBeVisible();
-      await expect(await video.liteYoutube).toBeVisible();
-      await expect(await video.ltyPlaybtn).toBeVisible();
+      await expect(video.miloVideo).toBeVisible();
+      await expect(video.liteYoutube).toBeVisible();
+      await expect(video.ltyPlaybtn).toBeVisible();
       // await expect(await video.ltyPlaybtn).toHaveAttribute('title', 'Play');
 
       // await expect(await video.liteYoutube).toHaveAttribute('title', data.iframeTitle);

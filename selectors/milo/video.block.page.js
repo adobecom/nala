@@ -1,21 +1,23 @@
 export default class Video {
-  constructor(page, nth=0) {
+  constructor(page, nth = 0) {
     this.page = page;
 
     // video locators
     this.section = this.page.locator('.section').nth(nth);
     this.content = this.page.locator('.content').nth(nth);
-    this.fragment = this.page.locator('.fragment')
+    this.fragment = this.page.locator('.fragment');
     this.video = this.page.locator('.content video');
     this.videoSource = this.video.locator('source');
     this.miloVideo = this.page.locator('.milo-video');
-    this.iframe = this.page.locator('iframe').first();            
+    this.iframe = this.page.locator('iframe').first();
     this.mpcPlayerTitle = this.page.frameLocator('iframe').first().locator('.mpc-player__title');
     this.mpcPlayButton = this.page.frameLocator('iframe').first().locator('.mpc-player button[aria-label="Play"]');
     this.mpcMutedButton = this.page.frameLocator('iframe').first().locator('.mpc-player button[aria-label="Mute"]');
     this.mpcMutedLabel = this.page.frameLocator('iframe').first().locator('.mpc-player button[aria-label="Mute"] span');
     this.youtubePlayButton = this.page.frameLocator('iframe').first().locator('button[aria-label="Play"]');
-    this.modalVideo = this.fragment.locator('video')
+    this.liteYoutube = this.page.locator('lite-youtube');
+    this.ltyPlaybtn = this.liteYoutube.locator('.lty-playbtn');
+    this.modalVideo = this.fragment.locator('video');
     this.modalVideoSource = this.modalVideo.locator('source');
     this.consonantCardsGrid = this.page.locator('.consonant-CardsGrid');
     this.consonantCards = this.consonantCardsGrid.locator('.card.consonant-Card');
