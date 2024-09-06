@@ -2,10 +2,11 @@ export default class Video {
   constructor(page, nth = 0) {
     this.page = page;
 
-    // video locators
+    // Video locators
     this.section = this.page.locator('.section').nth(nth);
     this.content = this.page.locator('.content').nth(nth);
     this.fragment = this.page.locator('.fragment');
+    // Remove duplicate 'video' and 'videoSource' declarations
     this.video = this.page.locator('.content video');
     this.videoSource = this.video.locator('source');
     this.miloVideo = this.page.locator('.milo-video');
@@ -21,10 +22,8 @@ export default class Video {
     this.modalVideoSource = this.modalVideo.locator('source');
     this.consonantCardsGrid = this.page.locator('.consonant-CardsGrid');
     this.consonantCards = this.consonantCardsGrid.locator('.card.consonant-Card');
-    this.video = this.page.locator('.content video');
-    this.videoSource = this.video.locator('source');
 
-    // video block attributes
+    // Video block attributes
     this.attributes = {
       'video.default': {
         playsinline: '',
@@ -42,12 +41,12 @@ export default class Video {
       },
       'video.autoplay.once': {
         playsinline: '',
-        autoplay: '',        
+        autoplay: '',
         muted: '',
       },
       'video.hover.play': {
         playsinline: '',
-        autoplay: '',        
+        autoplay: '',
         muted: '',
         'data-hoverplay': '',
         'data-mouseevent': 'true',
@@ -63,15 +62,15 @@ export default class Video {
         scrolling: 'no',
         allowfullscreen: '',
         allow: 'encrypted-media; accelerometer; gyroscope; picture-in-picture',
-      },   
-      'analytics': {
+      },
+      analytics: {
         'section.daa-lh': {
-        'daa-lh': /s[1-9]/,
+          'daa-lh': /s[1-9]/,
         },
         'content.daa-lh': {
           'daa-lh': /b[1-9]|content|default|default/,
-        },         
-      },     
+        },
+      },
     };
   }
 }
