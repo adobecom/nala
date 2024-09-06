@@ -56,8 +56,9 @@ module.exports = {
       path: '/drafts/nala/blocks/video/youtube-video',
       data: {
         h1Text: 'YouTube video',
-        iframeTitle: 'Adobe MAX Keynote 2022 | Adobe Creative Cloud',
+        playLabel: 'Adobe MAX Keynote 2022 | Adobe Creative Cloud',
         source: 'https://www.youtube.com/embed/OfQKEzgPaBA?',
+        videoId: 'OfQKEzgPaBA',
       },
       tags: '@video @smoke @regression @milo',
     },
