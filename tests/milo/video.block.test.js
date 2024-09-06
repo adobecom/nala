@@ -146,7 +146,7 @@ test.describe('Milo Video Block test suite', () => {
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     test.slow();
     console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
-    const { data } = features[6];
+    // const { data } = features[6];
 
     await test.step('step-1: Go to video block test page', async () => {
       await page.goto(`${baseURL}${features[6].path}${miloLibs}`);
