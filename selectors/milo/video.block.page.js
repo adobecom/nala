@@ -27,46 +27,46 @@ export default class Video {
     // video block attributes
     this.attributes = {
       'video.default': {
-        'playsinline': '',
-        'controls': '',
+        playsinline: '',
+        controls: '',
       },
       'video.source': {
-        'type': 'video/mp4',
-        'src': /.*.mp4/,
+        type: 'video/mp4',
+        src: /.*.mp4/,
       },
       'video.autoplay': {
-        'playsinline': '',
-        'autoplay': '',
-        'loop': '',
-        'muted': ''
+        playsinline: '',
+        autoplay: '',
+        loop: '',
+        muted: ''
       },
       'video.autoplay.once': {
-        'playsinline': '',
-        'autoplay': '',        
-        'muted': ''
+        playsinline: '',
+        autoplay: '',        
+        muted: ''
       },
       'video.hover.play': {
-        'playsinline': '',
-        'autoplay': '',        
-        'muted': '',
+        playsinline: '',
+        autoplay: '',        
+        muted: '',
         'data-hoverplay': '',
         'data-mouseevent': 'true'
       },
       'iframe-mpc': {
-        'class': 'adobetv',
-        'scrolling': 'no',
-        'allowfullscreen': '',
-        'loading': 'lazy',
+        class: 'adobetv',
+        scrolling: 'no',
+        allowfullscreen: '',
+        loading: 'lazy',
       },
       'iframe-youtube': {
-        'class': 'youtube',
-        'scrolling': 'no',
-        'allowfullscreen': '',
-        'allow': 'encrypted-media; accelerometer; gyroscope; picture-in-picture',
+        class: 'youtube',
+        scrolling: 'no',
+        allowfullscreen: '',
+        allow: 'encrypted-media; accelerometer; gyroscope; picture-in-picture',
       },   
       'analytics': {
         'section.daa-lh': {
-          'daa-lh': /s[1-9]/,
+        'daa-lh': /s[1-9]/,
         },
         'content.daa-lh': {
           'daa-lh': /b[1-9]|content|default|default/,
