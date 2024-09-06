@@ -38,19 +38,19 @@ export default class Video {
         playsinline: '',
         autoplay: '',
         loop: '',
-        muted: ''
+        muted: '',
       },
       'video.autoplay.once': {
         playsinline: '',
         autoplay: '',        
-        muted: ''
+        muted: '',
       },
       'video.hover.play': {
         playsinline: '',
         autoplay: '',        
         muted: '',
         'data-hoverplay': '',
-        'data-mouseevent': 'true'
+        'data-mouseevent': 'true',
       },
       'iframe-mpc': {
         class: 'adobetv',
