@@ -457,12 +457,12 @@ test.describe('Commerce feature test suite', () => {
     let testPage;
     // Skip tests on github actions and PRs, run only on Jenkins
     if (process.env.GITHUB_ACTIONS) test.skip();
-    if (process.env.locale && process.env.locale !== 'default') {
-      testPage = `${baseURL}/${process.env.locale}${features[10].path}${miloLibs}`;
+    if (process.env.loc && process.env.loc !== 'default') {
+      testPage = `${baseURL}/${process.env.loc}${features[10].path}${miloLibs}`;
     } else {
       testPage = `${baseURL}${features[10].path}${miloLibs}`;
     }
-    console.info('[Test Page]: ', testPage);
+    console.log('[Test Page]: ', testPage);
 
     await test.step('Go to the test page', async () => {
       await page.goto(testPage);
