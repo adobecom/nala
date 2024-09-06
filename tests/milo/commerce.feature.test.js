@@ -470,8 +470,8 @@ test.describe('Commerce feature test suite', () => {
     });
 
     await test.step('Validate page display', async () => {
-      await COMM.price.waitFor({ state: 'visible', timeout: 10000 });
-      await COMM.buyNowCta.waitFor({ state: 'visible', timeout: 10000 });
+      await expect(await COMM.price).toBeVisible();
+      await expect(await COMM.freeTrialCta).toBeVisible();
     });
 
     // Validate there are no unresolved commerce placeholders
