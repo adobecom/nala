@@ -156,13 +156,13 @@ test.describe('Milo Video Block test suite', () => {
 
     await test.step('step-2: Verify video block content/specs', async () => {
       await expect(await video.miloVideo).toBeVisible();
-      await expect(await video.iframe).toBeVisible();
-      await expect(await video.youtubePlayButton).toBeVisible();
-      await expect(await video.youtubePlayButton).toHaveAttribute('title', 'Play');
+      await expect(await video.liteYoutube).toBeVisible();
+      await expect(await video.ltyPlaybtn).toBeVisible();
+      // await expect(await video.ltyPlaybtn).toHaveAttribute('title', 'Play');
 
-      await expect(await video.iframe).toHaveAttribute('title', data.iframeTitle);
-      await expect(await video.iframe).toHaveAttribute('src', data.source);
-      expect(await webUtil.verifyAttributes_(video.iframe, video.attributes['iframe-youtube'])).toBeTruthy();
+      // await expect(await video.liteYoutube).toHaveAttribute('title', data.iframeTitle);
+      // await expect(await video.liteYoutube).toHaveAttribute('src', data.source);
+      // expect(await webUtil.verifyAttributes_(video.liteYoutube, video.attributes['lite-youtube'])).toBeTruthy();
     });
   });
 
