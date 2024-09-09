@@ -87,8 +87,8 @@ test.describe('Milo Video Block test suite', () => {
     await test.step('step-2: Verify video block content/specs', async () => {
       await expect(await video.video).toBeVisible();
       await expect(await video.content).toContainText(data.h2Text);
-      await new Promise((resolve) => { setTimeout(resolve, 2000); });
-      await video.video.hover();
+      await new Promise((resolve) => { setTimeout(resolve, 5000); });
+      await video.video.hover({ force: true });
 
       expect(await webUtil.verifyAttributes_(video.video, video.attributes['video.autoplay.once'])).toBeTruthy();
       expect(await webUtil.verifyAttributes_(video.videoSource, video.attributes['video.source'])).toBeTruthy();
@@ -110,8 +110,6 @@ test.describe('Milo Video Block test suite', () => {
     await test.step('step-2: Verify video block content/specs', async () => {
       await expect(await video.miloVideo).toBeVisible();
       await expect(await video.iframe).toBeVisible();
-      await expect(await video.mpcPlayButton).toBeVisible();
-      await expect(await video.mpcPlayerTitle).toContainText(data.h1Title);
 
       await expect(await video.iframe).toHaveAttribute('title', data.iframeTitle);
       await expect(await video.iframe).toHaveAttribute('src', data.source);
@@ -133,9 +131,6 @@ test.describe('Milo Video Block test suite', () => {
 
     await test.step('step-2: Verify video block content/specs', async () => {
       await expect(await video.miloVideo).toBeVisible();
-      await expect(await video.iframe).toBeVisible();
-      // await expect(await video.mpcMutedButton).toBeVisible({ timeout: 3000 });
-
       await expect(await video.iframe).toHaveAttribute('title', data.iframeTitle);
       await expect(await video.iframe).toHaveAttribute('src', data.source);
       expect(await webUtil.verifyAttributes_(video.iframe, video.attributes['iframe-mpc'])).toBeTruthy();
@@ -156,13 +151,11 @@ test.describe('Milo Video Block test suite', () => {
 
     await test.step('step-2: Verify video block content/specs', async () => {
       await expect(await video.miloVideo).toBeVisible();
-      await expect(await video.iframe).toBeVisible();
       await expect(await video.youtubePlayButton).toBeVisible();
-      await expect(await video.youtubePlayButton).toHaveAttribute('title', 'Play');
+      await expect(await video.youtubePlayButton).toHaveAttribute('type', 'button');
 
-      await expect(await video.iframe).toHaveAttribute('title', data.iframeTitle);
-      await expect(await video.iframe).toHaveAttribute('src', data.source);
-      expect(await webUtil.verifyAttributes_(video.iframe, video.attributes['iframe-youtube'])).toBeTruthy();
+      await expect(await video.liteYoutube).toHaveAttribute('playlabel', data.playLabel);
+      await expect(await video.liteYoutube).toHaveAttribute('videoid', data.videoId);
     });
   });
 

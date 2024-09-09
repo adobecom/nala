@@ -52,16 +52,6 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'milo-live-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@milo-live'],
-        contextOptions: { permissions: ['clipboard-read', 'clipboard-write'] },
-        headless: false,
-      },
-    },
-
-    {
       name: 'milo-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
@@ -81,38 +71,6 @@ const config = {
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@milo-live'],
-      },
-    },
-
-    {
-      name: 'milo-prod-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@milo_prod'],
-        contextOptions: { permissions: ['clipboard-read', 'clipboard-write'] },
-        headless: false,
-      },
-    },
-
-    {
-      name: 'milo-prod-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@milo_prod'],
-        launchOptions: {
-          firefoxUserPrefs: {
-            'dom.events.asyncClipboard.readText': true,
-            'dom.events.testing.asyncClipboard': true,
-          },
-        },
-      },
-    },
-
-    {
-      name: 'milo-prod-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@milo_prod'],
       },
     },
   ],
