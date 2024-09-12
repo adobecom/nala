@@ -10,6 +10,18 @@ on:
       platform:
         description: 'Platform to run tests on; select one, options: [ubuntu-latest, windows-latest, macos-latest]'
         required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      app:
+        description: 'Application to run tests on (e.g., nala, nala-chrome, nala-firefox)'
+        required: false
+        type: string
+      reporter:
+        description: 'Reporter to use for test results'
+        required: false
         type: string
 
 jobs:
@@ -25,10 +37,15 @@ jobs:
         uses: ./
         env:
           labels: ${{ inputs.tags }}
+          APPS: ${{ inputs.app }}
+          reporter: ${{ inputs.reporter }}
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
           HLX_TKN: ${{ secrets.HLX_TKN }}
-          SLACK_WH: ${{ secrets.SLACK_WH }}          
+          SLACK_WH: ${{ secrets.SLACK_WH }}
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+
       - name: Persist JSON Artifact
         uses: actions/upload-artifact@v3
         if: always()
