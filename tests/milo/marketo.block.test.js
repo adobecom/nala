@@ -171,11 +171,19 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.submitFullTemplateForm();
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
         }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
       });
     });
   });
@@ -203,11 +211,19 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.submitFullTemplateForm('Digital commerce');
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
         }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
       });
     });
   });
@@ -235,11 +251,19 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.submitExpandedTemplateForm();
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
         }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
       });
     });
   });
@@ -267,11 +291,19 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.submitEssentialTemplateForm();
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
         }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
       });
     });
   });
