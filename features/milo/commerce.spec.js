@@ -85,5 +85,11 @@ module.exports = {
       },
       tags: '@commerce @smoke @regression',
     },
+    {
+      tcid: '10',
+      name: '@Commerce-Localized',
+      path: '/drafts/nala/features/commerce/commerce-loc',
+      tags: '@commerce @smoke @regression @nopr',
+    },
   ],
 };
