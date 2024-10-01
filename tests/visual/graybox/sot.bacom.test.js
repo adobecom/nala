@@ -12,7 +12,7 @@ const results = {};
 
 test.describe('Graybox Bacom SOT visual comparison test suite', () => {
   // reset timeout because we use this to run all test data
-  test.setTimeout(10 * 60 * 1000);
+  test.setTimeout(20 * 60 * 1000);
   for (const feature of features) {
     // eslint-disable-next-line no-loop-func
     test(`${feature.name},${feature.tags}`, async ({ page }, testInfo) => {
@@ -30,9 +30,9 @@ test.describe('Graybox Bacom SOT visual comparison test suite', () => {
         const result = await takeTwo(
           page,
           stableURL,
-          async () => { await page.waitForTimeout(5000); },
+          async () => { await page.waitForTimeout(10000); },
           betaURL,
-          async () => { await page.waitForTimeout(5000); },
+          async () => { await page.waitForTimeout(15000); },
           folderPath,
           name,
           { fullPage: true },
