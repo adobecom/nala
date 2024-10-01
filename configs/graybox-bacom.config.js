@@ -69,37 +69,9 @@ const config = {
       },
     },
     {
-      name: 'bacom-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_graybox'],
-      },
-    },
-    {
-      name: 'bacom-live-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_graybox'],
-      },
-    },
-    {
       name: 'bacom-stage-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-    {
-      name: 'bacom-stage-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_stage'],
-      },
-    },
-    {
-      name: 'bacom-stage-webkit',
-      use: {
-        ...devices['Desktop Safari'],
         baseURL: envs['@bacom_stage'],
       },
     },
