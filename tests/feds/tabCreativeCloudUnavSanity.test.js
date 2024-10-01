@@ -24,7 +24,6 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingCreativityAndDesignTabiPad(features[0].country);
     await creative.validatingExplore(features[0].country);
     await creative.validatingLearnAndSupport();
-    await creative.closingPromoButton();
     await creative.validatingFooter(features[0].country);
     await creative.validatingBuyNowButton(features[0].buyNowUrl);
   });
@@ -91,7 +90,6 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingProgram(features[4].country);
     await creative.validatingSubjectArea(features[4].country);
     await creative.validatingTrainingAndSupport(features[4].country);
-    await creative.closingPromoButton();
     await creative.validatingFooter(features[4].country);
     await creative.validatingBuyNowButton(features[4].buyNowUrl);
   });
@@ -171,7 +169,6 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingCreativityAndDesignTabiPad(features[9].country);
     await creative.validatingExplore(features[9].country);
     await creative.validatingLearnAndSupport();
-    await creative.closingPromoButton();
     await creative.validatingFooter(features[9].country);
     await creative.validatingBuyNowButton(features[9].buyNowUrl);
   });
@@ -180,7 +177,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     console.info(`[Creative Cloud] Checking Page: Korea = ${baseURL}${features[10].path}`);
 
     const pageURL = `${baseURL}${features[10].path}`;
-    await page.goto(pageURL, { waitUntil: 'networkidle' });
+    await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(pageURL);
 
     await creative.validatingGnav(features[10].country);
