@@ -31,12 +31,13 @@ class BaseReporter {
   onBegin(config, suite) {
     this.config = config;
     this.rootSuite = suite;
-
   }
 
   async onTestEnd(test, result) {
     const { title, retries, _projectId } = test;
-    const { name, tags, url, browser, env, branch, repo} = this.parseTestTitle(title, _projectId);
+    const {
+      name, tags, url, browser, env, branch, repo,
+    } = this.parseTestTitle(title, _projectId);
     const {
       status,
       duration,
@@ -66,24 +67,24 @@ class BaseReporter {
       retry,
     });
     if (status === 'passed') {
-      this.passedTests++;
+      this.passedTests += 1;
     } else if (failedStatus.includes(status)) {
-      this.failedTests++;
+      this.failedTests += 1;
     } else if (status === 'skipped') {
-      this.skippedTests++;
+      this.skippedTests += 1;
     }
   }
 
   async onEnd() {
-    //this.printPersistingOption();
-    //await this.persistData();
+    // this.printPersistingOption();
+    // await this.persistData();
     const summary = this.printResultSummary();
     const resultSummary = { summary };
 
     if (process.env.SLACK_WH) {
       try {
         await sendSlackMessage(process.env.SLACK_WH, resultSummary);
-      } catch (error){
+      } catch (error) {
         console.log('----Failed to publish result to slack channel----');
       }
     }
@@ -94,8 +95,10 @@ class BaseReporter {
     const passPercentage = ((this.passedTests / totalTests) * 100).toFixed(2);
     const failPercentage = ((this.failedTests / totalTests) * 100).toFixed(2);
     const miloLibs = process.env.MILO_LIBS || '';
-    const prBranchUrl = process.env.PR_BRANCH_LIVE_URL + miloLibs
-    let envURL = prBranchUrl || this.config.projects[0].use.baseURL;
+    const prBranchUrl = process.env.PR_BRANCH_LIVE_URL
+      ? process.env.PR_BRANCH_LIVE_URL + miloLibs
+      : process.env.PR_BRANCH_LIVE_URL;
+    const envURL = prBranchUrl || this.config.projects[0].use.baseURL;
     let exeEnv = 'Local Environment';
     let runUrl = 'Local Environment';
     let runName = 'Nala Local Run';
@@ -124,7 +127,7 @@ class BaseReporter {
     ** Application URL  : ${envURL}
     ** Executed on        : ${exeEnv}
     ** Execution details  : ${runUrl}
-    ** Workflow name      : ${runName}` ;
+    ** Workflow name      : ${runName}`;
 
     console.log(summary);
 
@@ -156,9 +159,9 @@ class BaseReporter {
 
     const titleParts = title.split('@');
     const name = titleParts[1].trim();
-    const tags = titleParts.slice(2).map(tag => tag.trim());
+    const tags = titleParts.slice(2).map((tag) => tag.trim());
 
-    const projectConfig = this.config.projects.find(project => project.name === projectId);
+    const projectConfig = this.config.projects.find((project) => project.name === projectId);
 
     // Get baseURL from project config
     if (projectConfig?.use?.baseURL) {
@@ -182,11 +185,13 @@ class BaseReporter {
       [branch, repo] = branchAndRepo.split('--');
     }
 
-    return { name, tags, url, browser, env, branch, repo};
+    return {
+      name, tags, url, browser, env, branch, repo,
+    };
   }
 
   // eslint-disable-next-line class-methods-use-this, no-empty-function
-  async persistData() {}
+  async persistData() { }
 
   printPersistingOption() {
     if (this.options?.persist) {
@@ -196,7 +201,7 @@ class BaseReporter {
     } else {
       console.log('Not persisting data');
     }
-    //this.branch1 = process.env.GITHUB_REF_NAME ?? 'local';
+    // this.branch1 = process.env.GITHUB_REF_NAME ?? 'local';
     this.branch = process.env.LOCAL_TEST_LIVE_URL;
   }
 
