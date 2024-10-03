@@ -30,34 +30,39 @@ export default class Marketo {
       'select[name="mktoFormsCompanyType"]',
     );
     this.submitButton = this.marketo.locator('#mktoButton_new');
+    this.message = this.marketo.locator('.ty-message');
+    this.title = this.marketo.locator('.marketo-title');
+    this.description = this.marketo.locator('.marketo-description');
   }
 
   async submitFullTemplateForm(poi) {
     await this.country.selectOption({ index: 1 });
-    await this.functionalArea.selectOption({ index: 1 });
     await this.jobTitle.selectOption({ index: 1 });
-
-    // Setting index 2 to test so that the 'Company Type' field doesn't display
-    await this.primaryProductInterest.selectOption(poi !== undefined ? poi : { index: 2 });
-
-    await this.state.selectOption({ index: 1 });
     await this.company.fill(COMPANY);
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
     await this.phone.fill(PHONE);
+    await this.functionalArea.selectOption({ index: 1 });
     await this.postalCode.fill(POSTAL_CODE);
+
+    // Setting index 2 to test so that the 'Company Type' field doesn't display
+    await this.primaryProductInterest.selectOption(
+      poi !== undefined ? poi : { index: 2 },
+    );
+
+    await this.state.selectOption({ index: 1 });
     await this.selectCompanyType();
     await this.submitButton.click();
   }
 
   async submitExpandedTemplateForm() {
     await this.country.selectOption({ index: 1 });
-    await this.functionalArea.selectOption({ index: 1 });
     await this.jobTitle.selectOption({ index: 1 });
     await this.firstName.fill(FIRST_NAME);
     await this.lastName.fill(LAST_NAME);
     await this.email.fill(EMAIL);
+    await this.functionalArea.selectOption({ index: 1 });
     await this.company.fill(COMPANY);
     await this.selectCompanyType();
     await this.submitButton.click();
@@ -84,6 +89,11 @@ export default class Marketo {
     const template = await this.page.evaluate(
       'window.mcz_marketoForm_pref.form.template',
     );
+
+    if (!template) {
+      throw new Error('Template not found');
+    }
+
     return template;
   }
 
@@ -101,9 +111,7 @@ export default class Marketo {
    * and that the value isn't empty.
    */
   async checkInputPlaceholders() {
-    const template = await this.page.evaluate(
-      'window.mcz_marketoForm_pref.form.template',
-    );
+    const template = await this.getFormTemplate();
 
     const inputFields = [
       this.firstName,
@@ -115,9 +123,42 @@ export default class Marketo {
     if (template === 'flex_contact') inputFields.push(this.phone, this.postalCode);
 
     inputFields.forEach(async (field) => {
-      expect(field).toHaveAttribute('placeholder');
-      const placeholder = await field.getAttribute('placeholder');
-      expect(placeholder.length).toBeGreaterThan(1);
+      await expect(async () => {
+        expect(await field).toHaveAttribute('placeholder', { timeout: 10000 });
+        const placeholder = await field.getAttribute('placeholder');
+        expect(placeholder.length).toBeGreaterThan(1);
+      }).toPass();
     });
+  }
+
+  async formElements() {
+    const template = await this.getFormTemplate();
+
+    const elements = [
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.company,
+      this.country,
+      this.companyType,
+      this.submitButton,
+      this.title,
+      this.description,
+    ];
+
+    if (template === 'flex_event') {
+      elements.push(this.jobTitle, this.functionalArea);
+    } else if (template === 'flex_contact') {
+      elements.push(
+        this.phone,
+        this.jobTitle,
+        this.functionalArea,
+        this.state,
+        this.postalCode,
+        this.primaryProductInterest,
+      );
+    }
+
+    return elements;
   }
 }

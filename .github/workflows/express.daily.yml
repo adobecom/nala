@@ -1,4 +1,4 @@
-name: Bacom Nala Daily Run
+name: Express Nala Daily Run
 
 on:
   schedule:
@@ -10,11 +10,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     name: Running tests
     runs-on: ${{ matrix.os }}
     env:
-      WORKFLOW_NAME: 'Bacom Nala Daily Run'
+      WORKFLOW_NAME: 'Express Nala Daily Run'
       DAILY_RUN: 'true'
 
     steps:
@@ -27,7 +27,7 @@ jobs:
           node-version: lts/*
 
       - name: Run Nala ${{ matrix.os }}
-        run: bash dailyrun.sh bacom @bacomSmoke
+        run: bash dailyrun.sh express
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}

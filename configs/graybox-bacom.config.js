@@ -55,7 +55,7 @@ const config = {
     trace: 'on-first-retry',
     baseURL:
       process.env.BASE_URL
-      || envs['@bacom_live']
+      || envs['@bacom_graybox']
       || 'https://main--bacom--adobecom.hlx.live',
   },
 
@@ -65,44 +65,16 @@ const config = {
       name: 'bacom-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_live'],
+        baseURL: envs['@bacom_graybox'],
       },
     },
     {
-      name: 'bacom-live-firefox',
+      name: 'bacom-stage-chrome',
       use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@bacom_live'],
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@bacom_stage'],
       },
     },
-    {
-      name: 'bacom-live-webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        baseURL: envs['@bacom_live'],
-      },
-    },
-    // {
-    //   name: 'bacom-prod-chrome',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     baseURL: envs['@bacom_prod'],
-    //   },
-    // },
-    // {
-    //   name: 'bacom-prod-firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //     baseURL: envs['@bacom_prod'],
-    //   },
-    // },
-    // {
-    //   name: 'bacom-prod-webkit',
-    //   use: {
-    //     ...devices['Desktop Safari'],
-    //     baseURL: envs['@bacom_prod'],
-    //   },
-    // },
   ],
 };
 module.exports = config;

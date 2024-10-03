@@ -1,8 +1,8 @@
-name: Bacom Nala Daily Run
+name: CAAS Nala Daily Run
 
 on:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: "30 15 * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,11 +10,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     name: Running tests
     runs-on: ${{ matrix.os }}
     env:
-      WORKFLOW_NAME: 'Bacom Nala Daily Run'
+      WORKFLOW_NAME: 'CAAS Nala Daily Run'
       DAILY_RUN: 'true'
 
     steps:
@@ -25,18 +25,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-
+        
       - name: Run Nala ${{ matrix.os }}
-        run: bash dailyrun.sh bacom @bacomSmoke
+        run: bash dailyrun.sh caas
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}
           HLX_TKN: ${{ secrets.HLX_TKN }}
           SLACK_WH: ${{ secrets.SLACK_WH }}
-
+      
       - name: Display workflow name
         run: echo "The workflow name is $WORKFLOW_NAME"
-
+        
       - name: Persist JSON Artifact
         uses: actions/upload-artifact@v3
         if: always()

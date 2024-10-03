@@ -23,4 +23,7 @@ module.exports = {
   '@helpx_live': 'https://helpx-internal.stage.adobe.com',
   '@dx_stage': 'https://stage--dx-partners--adobecom.hlx.live',
   '@dme_stage': 'https://stage--dme-partners--adobecom.hlx.live',
+  '@express_stage': 'https://stage--express--adobecom.hlx.live/express/',
+  '@express_live': 'https://main--express--adobecom.hlx.live/express/',
+  '@bacom_graybox': 'https://test.business-graybox.adobe.com',
 };

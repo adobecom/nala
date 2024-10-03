@@ -3,29 +3,32 @@ import { features } from '../../features/milo/marketo.block.spec.js';
 import MarketoBlock from '../../selectors/milo/marketo.block.page.js';
 
 let marketoBlock;
-const WAIT_TIME = 10000;
 const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Marketo block test suite', () => {
-  test.beforeEach(async ({ page, browserName }) => {
-    if (browserName === 'chromium') test.skip('TODO: debug why this is failing on github actions');
+  test.beforeAll(async ({ browserName }) => {
+    if (browserName === 'chromium' && process.env.CI) test.skip('TODO: debug why this is failing on github actions');
 
+    if (process.env.CI) test.setTimeout(1000 * 60 * 3); // 3 minutes
+  });
+
+  test.beforeEach(async ({ page }) => {
     marketoBlock = new MarketoBlock(page);
-    await test.setTimeout(80000);
   });
 
   features[0].path.forEach((path) => {
-    test(`0: @marketo full template, ${features[0].tags}, path: ${path}`, async ({ page, baseURL }) => {
-      const testPage = `${baseURL}${path}${miloLibs}`;
+    test(`0: @marketo full template (redirect), ${features[0].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
       console.info(`[Test Page]: ${testPage}`);
 
       await test.step('step-1: Go to the Marketo block full template test page', async () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
-        await expect(page).toHaveURL(testPage);
-
-        // Need this wait to avoid failed form submission during parallel runs
-        await page.waitForTimeout(WAIT_TIME);
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
@@ -37,58 +40,61 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(async () => {
+          await marketoBlock.submitButton.waitFor({ state: 'detached' });
+          const redirectedUrl = await page.url();
+          await expect(redirectedUrl).toContain('?submissionid');
+        }).toPass();
       });
     });
   });
 
   features[1].path.forEach((path) => {
-    test(
-      `1: @marketo full template with company type, ${features[1].tags}, path: ${path}`,
-      async ({ page, baseURL }) => {
-        const testPage = `${baseURL}${path}${miloLibs}`;
-        console.info(`[Test Page]: ${testPage}`);
+    test(`1: @marketo full template (redirect) with company type, ${features[1].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
+      console.info(`[Test Page]: ${testPage}`);
 
-        await test.step('step-1: Go to the Marketo block full template test page', async () => {
-          await page.goto(testPage);
-          await page.waitForLoadState('domcontentloaded');
-          await expect(page).toHaveURL(testPage);
+      await test.step('step-1: Go to the Marketo block full template test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
+      });
 
-          // Need this wait to avoid failed form submission during parallel runs
-          await page.waitForTimeout(WAIT_TIME);
-        });
+      await test.step('step-2: check the input field placeholders', async () => {
+        await marketoBlock.checkInputPlaceholders();
+      });
 
-        await test.step('step-2: check the input field placeholders', async () => {
-          await marketoBlock.checkInputPlaceholders();
-        });
+      await test.step('step-3: Submit the form with valid inputs', async () => {
+        await marketoBlock.submitFullTemplateForm('Digital commerce');
+      });
 
-        await test.step('step-3: Submit the form with valid inputs', async () => {
-          await marketoBlock.submitFullTemplateForm('Digital commerce');
-        });
-
-        await test.step('step-4: Verify the form submission redirect', async () => {
-          await page.waitForTimeout(WAIT_TIME);
+      await test.step('step-4: Verify the form submission redirect', async () => {
+        await expect(async () => {
+          await marketoBlock.submitButton.waitFor({ state: 'detached' });
           const redirectedUrl = await page.url();
           await expect(redirectedUrl).toContain('?submissionid');
-        });
-      },
-    );
+        }).toPass();
+      });
+    });
   });
 
   features[2].path.forEach((path) => {
-    test(`2: @marketo expanded template, ${features[2].tags}}, path: ${path}`, async ({ page, baseURL }) => {
-      const testPage = `${baseURL}${path}${miloLibs}`;
+    test(`2: @marketo expanded template (redirect), ${features[2].tags}}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
       console.info(`[Test Page]: ${testPage}`);
 
       await test.step('step-1: Go to the Marketo block expanded template test page', async () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
-        await expect(page).toHaveURL(testPage);
-
-        // Need this wait to avoid failed form submission during parallel runs
-        await page.waitForTimeout(WAIT_TIME);
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
@@ -100,25 +106,28 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(async () => {
+          await marketoBlock.submitButton.waitFor({ state: 'detached' });
+          const redirectedUrl = await page.url();
+          await expect(redirectedUrl).toContain('?submissionid');
+        }).toPass();
       });
     });
   });
 
   features[3].path.forEach((path) => {
-    test(`3: @marketo essential template, ${features[3].tags}, path: ${path}`, async ({ page, baseURL }) => {
-      const testPage = `${baseURL}${path}${miloLibs}`;
+    test(`3: @marketo essential template (redirect), ${features[3].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
       console.info(`[Test Page]: ${testPage}`);
 
       await test.step('step-1: Go to the Marketo block essential template test page', async () => {
         await page.goto(testPage);
         await page.waitForLoadState('domcontentloaded');
-        await expect(page).toHaveURL(testPage);
-
-        // Need this wait to avoid failed form submission during parallel runs
-        await page.waitForTimeout(WAIT_TIME);
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
       });
 
       await test.step('step-2: check the input field placeholders', async () => {
@@ -130,9 +139,171 @@ test.describe('Marketo block test suite', () => {
       });
 
       await test.step('step-4: Verify the form submission redirect', async () => {
-        await page.waitForTimeout(WAIT_TIME);
-        const redirectedUrl = await page.url();
-        await expect(redirectedUrl).toContain('?submissionid');
+        await expect(async () => {
+          await marketoBlock.submitButton.waitFor({ state: 'detached' });
+          const redirectedUrl = await page.url();
+          await expect(redirectedUrl).toContain('?submissionid');
+        }).toPass();
+      });
+    });
+  });
+
+  features[4].path.forEach((path) => {
+    test(`4: @marketo full template (message), ${features[4].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
+      console.info(`[Test Page]: ${testPage}`);
+
+      await test.step('step-1: Go to the Marketo block full template test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
+      });
+
+      await test.step('step-2: check the input field placeholders', async () => {
+        await marketoBlock.checkInputPlaceholders();
+      });
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
+        await marketoBlock.submitFullTemplateForm();
+      });
+
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+        await expect(async () => {
+          await expect(marketoBlock.message).toBeAttached();
+          await expect(page.url()).toBe(testPage);
+        }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
+      });
+    });
+  });
+
+  features[5].path.forEach((path) => {
+    test(`5: @marketo full template (message) with company type, ${features[5].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
+      console.info(`[Test Page]: ${testPage}`);
+
+      await test.step('step-1: Go to the Marketo block full template test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
+      });
+
+      await test.step('step-2: check the input field placeholders', async () => {
+        await marketoBlock.checkInputPlaceholders();
+      });
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
+        await marketoBlock.submitFullTemplateForm('Digital commerce');
+      });
+
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+        await expect(async () => {
+          await expect(marketoBlock.message).toBeAttached();
+          await expect(page.url()).toBe(testPage);
+        }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
+      });
+    });
+  });
+
+  features[6].path.forEach((path) => {
+    test(`6: @marketo expanded (message) template, ${features[6].tags}}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
+      console.info(`[Test Page]: ${testPage}`);
+
+      await test.step('step-1: Go to the Marketo block expanded template test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
+      });
+
+      await test.step('step-2: check the input field placeholders', async () => {
+        await marketoBlock.checkInputPlaceholders();
+      });
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
+        await marketoBlock.submitExpandedTemplateForm();
+      });
+
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+        await expect(async () => {
+          await expect(marketoBlock.message).toBeAttached();
+          await expect(page.url()).toBe(testPage);
+        }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
+      });
+    });
+  });
+
+  features[7].path.forEach((path) => {
+    test(`7: @marketo essential (message) template, ${features[7].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
+      console.info(`[Test Page]: ${testPage}`);
+
+      await test.step('step-1: Go to the Marketo block essential template test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
+      });
+
+      await test.step('step-2: check the input field placeholders', async () => {
+        await marketoBlock.checkInputPlaceholders();
+      });
+
+      await test.step('step-3: Submit the form with valid inputs', async () => {
+        await marketoBlock.submitEssentialTemplateForm();
+      });
+
+      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+        await expect(async () => {
+          await expect(marketoBlock.message).toBeAttached();
+          await expect(page.url()).toBe(testPage);
+        }).toPass();
+
+        const elements = await marketoBlock.formElements();
+
+        elements.forEach(async (el) => {
+          await expect(async () => {
+            await expect(el).not.toBeVisible();
+          }).toPass();
+        });
       });
     });
   });

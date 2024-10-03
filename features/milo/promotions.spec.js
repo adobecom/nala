@@ -150,7 +150,7 @@ module.exports = {
     },
     {
       tcid: '13',
-      name: '@Promo-insert-fragment',
+      name: '@Promo-fragment-insert',
       path: '/drafts/nala/features/promotions/promo-with-fragments-insert',
       data: {
         textMarquee: 'Fragment marquee',
