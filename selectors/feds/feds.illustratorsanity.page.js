@@ -1,8 +1,10 @@
 import { expect } from '@playwright/test';
+import FedsFooter from './feds.footer.page.js';
 
 export default class IllustratorPageSanity {
   constructor(page) {
     this.page = page;
+    this.feds = new FedsFooter(page);
 
     // U-NAV Elements
     this.adobe = page.locator('.feds-brand');
@@ -77,38 +79,6 @@ export default class IllustratorPageSanity {
     this.seePlansAndPricingEs = page.locator('.feds-cta-wrapper [href*="KLZPV68R&mv=other"]');
 
     this.quickActions = page.locator('.feds-menu-headline').nth(0);
-
-    // Footer
-    this.footerCreativeCloud = page.locator('.feds-footer-wrapper a[href*="creativecloud.html"]');
-    this.footerCreativeCloudForBusiness = page.locator('.feds-footer-wrapper a[href*="creativecloud/business.html"]');
-    this.footerdiscountForStudentsAndTeachers = page.locator('.feds-footer-wrapper a[href*="students.html"]');
-    this.footerappsForiOS = page.locator('.feds-footer-wrapper a[href*="id852473028"]');
-    this.footerWhatIsExperienceCloud = page.locator('.feds-menu-items a[href*="business.adobe.com"]').nth(0);
-    this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href$="download-install.html"]');
-    this.footerAdobeBlog = page.locator('.feds-footer-wrapper a[href*="blog.adobe.com/"]');
-    this.footerLoginToYourAccount = page.locator('a[href$="account.adobe.com/"]').nth(0);
-    this.footerAbout = page.locator('.feds-footer-wrapper a[href$="about-adobe.html"]').nth(0);
-
-    // Featured Products
-    this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
-    this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(2)');
-    this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]');
-    this.footerIllustratorlogo = page.locator('.feds-featuredProducts a[href$="illustrator/free-trial-download.html"]');
-
-    // Change Region and social media
-    this.changeRegion = page.locator('.feds-regionPicker-wrapper');
-    this.facebookLogo = page.locator('a[href*="facebook"]');
-    this.instagramLogo = page.locator('a[href*="instagram.com"]');
-    this.twitterlogo = page.locator('a[href*="twitter"]');
-    this.linkedinLogo = page.locator('a[href*="linkedin"]');
-    this.copyright = page.locator('.feds-footer-legalWrapper>p>span');
-    this.privacyPolicy = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)');
-    this.termsOfUse = page.locator('.feds-footer-legalWrapper a:nth-of-type(2)');
-    this.cookies = page.locator('.feds-footer-legalWrapper a:nth-of-type(3)');
-    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
-    this.adChoices = page.locator('.feds-footer-legalWrapper a:nth-of-type(5)');
-    this.privacySection = page.locator('.feds-footer-privacySection:nth-child(2)');
-    this.instagramLogoTwo = page.locator('a[href*="instagram"]').nth(1);
   }
 
   // U-NAV
@@ -142,16 +112,10 @@ export default class IllustratorPageSanity {
       { element: this.whatIsCC, conditions: { defaultVisibility: true } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France'] } },
+      { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'India'] } },
       { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      {
-        element: this.schoolsAndUniversities,
-        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
-      },
-      {
-        element: this.viewPlansAndPricing,
-        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
-      },
+      { element: this.schoolsAndUniversities, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
 
       { element: this.photoshop, conditions: { defaultVisibility: true } },
       { element: this.adobeExpress, conditions: { defaultVisibility: true } },
@@ -165,7 +129,6 @@ export default class IllustratorPageSanity {
       { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.illustration, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.socialMedia, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
 
@@ -215,25 +178,24 @@ export default class IllustratorPageSanity {
   }
 
   // Footer
-  async validatingFooterElements(country) {
-    await this.changeRegion.scrollIntoViewIfNeeded();
+  async validatingFooterElements() {
+    await this.feds.changeRegionButton.scrollIntoViewIfNeeded();
     const elements = [
-      this.footerCreativeCloud, this.footerCreativeCloudForBusiness, this.footerdiscountForStudentsAndTeachers,
-      this.footerappsForiOS, this.footerWhatIsExperienceCloud, this.footerDownloadAndInstall, this.footerAdobeBlog,
-      this.footerLoginToYourAccount, this.footerAbout, this.footerAdobeAcrobatReaderlogo, this.footerAdobeExpresslogo,
-      this.footerPhotoshoplogo, this.footerIllustratorlogo, this.changeRegion, this.facebookLogo, this.instagramLogo,
-      this.twitterlogo, this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
-      this.protectMyPersonalData, this.adChoices, (country.includes('Korea')) ? this.privacySection : null,
+      this.feds.footerCreativeCloud, this.feds.footerCreativeCloudForBusiness, this.feds.footerDiscountsForStudentsAndTeachers,
+      this.feds.footerAppsforiOS, this.feds.footerWhatIsExperienceCloud, this.feds.footerDownloadAndInstall,
+      this.feds.footerAdobeBlogSecond, this.feds.footerLogInToYourAccount, this.feds.footerAbout, this.feds.footerAdobeAcrobatReaderlogo,
+      this.feds.footerAdobeExpresslogo, this.feds.footerPhotoshoplogo, this.feds.footerIllustratorlogo, this.feds.changeRegionButton,
+      this.feds.facebookIcon, this.feds.instagramIcon, this.feds.twitterIcon, this.feds.linkedInIcon, this.feds.legalCopyright,
+      this.feds.privacyLink, this.feds.termsOfUseLink, this.feds.cookiePreferencesLink, this.feds.protectMyPersonalData,
+      this.feds.adChoicesLogo,
     ];
 
-    const validElements = elements.filter((element) => element !== null);
-
-    await Promise.all(validElements.map(async (element) => {
+    await Promise.all(elements.map(async (element) => {
       await expect(element).toBeVisible();
     }));
   }
 
-  // Mobile, iPad and Tab methods.
+  // Mobile methods:
 
   // U-Nav
   async validatingUnav() {
@@ -285,19 +247,9 @@ export default class IllustratorPageSanity {
       { element: this.whatIsCC, conditions: { defaultVisibility: true } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      {
-        element: this.individuals,
-        conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'Italy'] },
-      },
       { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      {
-        element: this.schoolsAndUniversities,
-        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
-      },
-      {
-        element: this.viewPlansAndPricing,
-        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] },
-      },
+      { element: this.schoolsAndUniversities, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
     ];
 
     await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
@@ -319,10 +271,7 @@ export default class IllustratorPageSanity {
       { element: this.illustratorCd, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.premierePro, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
-      {
-        element: this.viewAllProducts,
-        conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain', 'United Kingdom'] },
-      },
+      { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain', 'United Kingdom'] } },
       { element: this.viewPlansAndPricing, conditions: { includeCountries: ['United Kingdom'] } },
       { element: this.acrobatPro, conditions: { includeCountries: ['Spain'] } },
       { element: this.adobeStockEs, conditions: { includeCountries: ['Spain'] } },
@@ -347,16 +296,82 @@ export default class IllustratorPageSanity {
   }
 
   // Footer
-  async validatingFooter(country) {
-    await this.changeRegion.scrollIntoViewIfNeeded();
+  async validatingFooter() {
+    await this.feds.changeRegionButton.scrollIntoViewIfNeeded();
 
-    const includeCountry = ['India'];
-
-    const elements = [this.changeRegion, this.facebookLogo, this.twitterlogo,
-      this.linkedinLogo, this.copyright, this.privacyPolicy, this.termsOfUse, this.cookies,
-      this.protectMyPersonalData, this.adChoices,
-      includeCountry.includes(country) ? this.instagramLogoTwo : this.instagramLogo,
+    const elements = [this.feds.changeRegionButton, this.feds.facebookIcon, this.feds.instagramIcon,
+      this.feds.twitterIcon, this.feds.linkedInIcon, this.feds.legalCopyright, this.feds.privacyLink,
+      this.feds.termsOfUseLink, this.feds.cookiePreferencesLink, this.feds.protectMyPersonalData,
+      this.feds.adChoicesLogo, this.feds.adChoicesLink,
     ];
     await Promise.all(elements.map((element) => expect(element).toBeVisible()));
+  }
+
+  // iPad and Tab Methods
+  async validatingCreativityAndDesignTabiPad(country) {
+    await this.creativityAndDesign.click();
+
+    const elementsToCheck = [
+      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'India'] } },
+      { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.schoolsAndUniversities, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+
+      { element: this.photoshop, conditions: { defaultVisibility: true } },
+      { element: this.adobeExpress, conditions: { defaultVisibility: true } },
+      { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.illustratorCd, conditions: { defaultVisibility: true } },
+      { element: this.premierePro, conditions: { defaultVisibility: true } },
+      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+
+      { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.illustration, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+
+      { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+      { element: this.adobeFirefly, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+
+      { element: this.adobeFireflyMp, conditions: { includeCountries: ['Japan'] } },
+      { element: this.governmentAgencies, conditions: { includeCountries: ['Japan'] } },
+      { element: this.benifitsForCC, conditions: { includeCountries: ['Japan'] } },
+      { element: this.acrobatPro, conditions: { includeCountries: ['Spain'] } },
+      { element: this.adobeStockEs, conditions: { includeCountries: ['Spain'] } },
+      { element: this.seeAllProducts, conditions: { includeCountries: ['Spain'] } },
+      { element: this.seePlansAndPricingEs, conditions: { includeCountries: ['Spain'] } },
+
+      { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
+      { element: this.resizeImage, conditions: { includeCountries: ['India'] } },
+      { element: this.covertImageToSVG, conditions: { includeCountries: ['India'] } },
+      { element: this.covertVideoToGIF, conditions: { includeCountries: ['India'] } },
+      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
+      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
+      { element: this.resume, conditions: { includeCountries: ['India'] } },
+      { element: this.posters, conditions: { includeCountries: ['India'] } },
+      { element: this.card, conditions: { includeCountries: ['India'] } },
+      { element: this.instagramPost, conditions: { includeCountries: ['India'] } },
+      { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
+      { element: this.createNow, conditions: { includeCountries: ['India'] } },
+      { element: this.adobeExpressIn, conditions: { includeCountries: ['India'] } },
+      { element: this.seePlansAndPricing, conditions: { includeCountries: ['India'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+
+    await this.creativityAndDesign.click();
   }
 }
