@@ -58,6 +58,14 @@ const config = {
         baseURL: envs['@express_live'],
       },
     },
+
+    {
+      name: 'express-milo-main-chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@express_milo'],
+      },
+    },
   ],
 };
 
