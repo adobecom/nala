@@ -3,15 +3,22 @@ module.exports = {
   features: [
     {
       tcid: '0',
-      name: '@ckg-link-list ',
+      name: '@ckg-link-list',
       path: '/colors/red',
       tags: '@ckg-link-list @smoke @regression',
     },
-    {
-      tcid: '1',
-      name: '@ckg-link-list ',
-      path: '/colors/yellow',
-      tags: '@ckg-link-list @smoke @regression',
-    },
+
+    // {
+    //   tcid: '3',
+    //   name: '@ckg-link-list-nav',
+    //   path: '/colors/black',
+    //   tags: '@ckg-link-list @smoke @regression',
+    // },
+    // {
+    //   tcid: '4',
+    //   name: '@ckg-link-list-resize',
+    //   path: '/colors/black',
+    //   tags: '@ckg-link-list @smoke @regression',
+    // },
   ],
 };

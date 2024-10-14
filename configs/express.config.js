@@ -64,6 +64,41 @@ const config = {
       use: {
         ...devices['Desktop Chrome'],
         baseURL: envs['@express_milo'],
+        viewport: { width: 1680, height: 1024 },
+      },
+    },
+
+    {
+      name: 'express-milo-main-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@express_milo'],
+        viewport: { width: 1680, height: 720 },
+      },
+    },
+
+    {
+      name: 'express-milo-main-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@express_milo'],
+        viewport: { width: 1680, height: 720 },
+      },
+    },
+
+    {
+      name: 'express-milo-main-android',
+      use: {
+        ...devices['Pixel 5'],
+        baseURL: envs['@express_milo'],
+      },
+    },
+
+    {
+      name: 'express-milo-main-iphone',
+      use: {
+        ...devices['iPhone SE'],
+        baseURL: envs['@express_milo'],
       },
     },
   ],
