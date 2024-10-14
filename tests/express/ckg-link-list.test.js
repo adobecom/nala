@@ -75,16 +75,5 @@ test.describe('Ckg Link List Block Test Suite', () => {
         await expect(page).toHaveURL(`${baseURL}/colors/${pageColor}`);
       }
     });
-
-    // await test.step('Resize and check arrow buttons ', async () => {
-    //   await page.setViewportSize({ width: 600, height: 350 });
-    //   await ckgLinkList.ckgLinkList.scrollIntoViewIfNeeded();
-    //   await page.waitForLoadState();
-    //   await page.waitForTimeout(3000);
-    //   await ckgLinkList.carouselArrowLeftHidden.waitFor();
-    //   await ckgLinkList.carouselArrowRightShow.waitFor();
-    //   expect(ckgLinkList.carouselArrowLeftHidden).toHaveCount(1);
-    //   expect(ckgLinkList.carouselArrowRightShow).toHaveCount(1);
-    // });
   });
 });

@@ -7,18 +7,5 @@ module.exports = {
       path: '/colors/red',
       tags: '@ckg-link-list @smoke @regression',
     },
-
-    // {
-    //   tcid: '3',
-    //   name: '@ckg-link-list-nav',
-    //   path: '/colors/black',
-    //   tags: '@ckg-link-list @smoke @regression',
-    // },
-    // {
-    //   tcid: '4',
-    //   name: '@ckg-link-list-resize',
-    //   path: '/colors/black',
-    //   tags: '@ckg-link-list @smoke @regression',
-    // },
   ],
 };
