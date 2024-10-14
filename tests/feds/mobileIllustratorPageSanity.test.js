@@ -28,7 +28,7 @@ test.describe('Test Suite for Mobile, iPad, and Tablet Illustrator Page Componen
       // Verifying the visibility of Creativity & Design
       await illustrate.validatingCreativityAndDesign(props.country);
       // Verifying the visibility of Footer
-      await illustrate.validatingFooter(props.country);
+      await illustrate.validatingFooter();
     });
   });
 });

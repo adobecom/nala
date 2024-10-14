@@ -109,7 +109,6 @@ export default class HomePageSanity {
     this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href*="download-install.html"]');
     this.footerGenuineSoftware = page.locator('a[href*="genuine.html"]');
     this.footerAdobeBlog = page.locator('.feds-navLink[href*="blog.adobe"]');
-    this.footerAdobeDeveloper = page.locator('a[href*="developer.adobe"]');
     this.footerLogInToYourAccount = page.locator('.feds-footer-wrapper a[href*="account.adobe"]').nth(0);
     this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]').nth(0);
     this.footerIntegrity = page.locator('a[href*="integrity.html"]');
@@ -190,7 +189,7 @@ export default class HomePageSanity {
   async validatingCCElements(country) {
     await this.gnavCC.click();
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'Germany'] } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       {
         element: this.schoolsAndUniversities,
         conditions: {
@@ -210,7 +209,7 @@ export default class HomePageSanity {
       },
       { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.aIOverviewCC, conditions: { defaultVisibility: true } },
+      { element: this.aIOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
       { element: this.adobeFirefly, conditions: { defaultVisibility: true } },
       { element: this.seeAllProducts, conditions: { includeCountries: ['Brazil', 'Chile', 'Spain'] } },
       { element: this.individuals, conditions: { includeCountries: ['Brazil', 'Chile'] } },
@@ -256,28 +255,26 @@ export default class HomePageSanity {
         element: this.aiOverviewDC,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Argentina', 'Brazil', 'Canada French', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
-            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Belgium French', 'Germany', 'Estonia',
-            'Spain', 'France', 'Greece', 'Italy', 'Lithuania', 'Luxemburg German', 'Luxemburg French', 'Hungary',
-            'Nederland', 'Poland', 'Portugal', 'Romania', 'Switzerland', 'Slovenia', 'Slovakia', 'Switzerland French',
+          excludeCountries: ['Argentina', 'Brazil', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
+            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Estonia', 'Spain', 'Greece',
+            'Italy', 'Lithuania', 'Hungary', 'Nederland', 'Poland', 'Portugal', 'Romania', 'Slovenia', 'Slovakia',
             'Finland', 'Sweden', 'Switzerland Italian', 'Turkey', 'Czech Republic', 'Bulgaria', 'Russia', 'Ukraine',
             'Israel Hebrew', 'UAE', 'Middle East And North Africa', 'Kingdom Of Saudi Arabia', 'Egypt', 'Kuwait',
             'Qatar', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand',
-            'Hong Kong', 'Taiwan', 'Japan', 'Korea', 'Latvia'],
+            'Hong Kong', 'Taiwan', 'Japan', 'Korea', 'Latvia', 'Denmark', 'Norway', 'Canada French'],
         },
       },
       {
         element: this.aiInAcrobat,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Argentina', 'Brazil', 'Canada French', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
-            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Belgium French', 'Germany', 'Estonia',
-            'Spain', 'France', 'Greece', 'Italy', 'Lithuania', 'Luxemburg German', 'Luxemburg French', 'Hungary',
-            'Nederland', 'Poland', 'Portugal', 'Romania', 'Switzerland', 'Slovenia', 'Slovakia', 'Switzerland French',
+          excludeCountries: ['Argentina', 'Brazil', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
+            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Estonia', 'Spain', 'Greece', 'Italy',
+            'Lithuania', 'Hungary', 'Nederland', 'Poland', 'Portugal', 'Romania', 'Slovenia', 'Slovakia',
             'Finland', 'Sweden', 'Switzerland Italian', 'Turkey', 'Czech Republic', 'Bulgaria', 'Russia', 'Ukraine',
             'Israel Hebrew', 'UAE', 'Middle East And North Africa', 'Kingdom Of Saudi Arabia', 'Egypt', 'Kuwait',
             'Qatar', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand', 'Hong Kong',
-            'Taiwan', 'Japan', 'Korea', 'Latvia'],
+            'Taiwan', 'Japan', 'Korea', 'Latvia', 'Denmark', 'Norway', 'Canada French'],
         },
       },
       { element: this.pdfToWord, conditions: { defaultVisibility: true } },
@@ -409,13 +406,7 @@ export default class HomePageSanity {
     const elementsToCheck = [
       { element: this.footerCreativeCloud, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerViewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      {
-        element: this.footerCreativeCloudForBusiness,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
+      { element: this.footerCreativeCloudForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerAcrobatForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       {
         element: this.footerDiscountsForStudentsAndTeachers,
@@ -424,37 +415,18 @@ export default class HomePageSanity {
           excludeCountries: ['Russia', 'China'],
         },
       },
-      {
-        element: this.footerDigitalLearningSolutions,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
+      { element: this.footerDigitalLearningSolutions, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerAppsforiOS, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerAppsforAndroid, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      {
-        element: this.footerWhatIsExperienceCloud,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
+      { element: this.footerWhatIsExperienceCloud, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerTermsOfUse, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerDownloadAndInstall, conditions: { defaultVisibility: true } },
       { element: this.footerGenuineSoftware, conditions: { defaultVisibility: true } },
       { element: this.footerAdobeBlog, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerAdobeDeveloper, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerLogInToYourAccount, conditions: { defaultVisibility: true } },
       { element: this.footerAbout, conditions: { defaultVisibility: true } },
       { element: this.footerIntegrity, conditions: { defaultVisibility: true } },
-      {
-        element: this.footerAdobeAcrobatReaderlogo,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
+      { element: this.footerAdobeAcrobatReaderlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerAdobeExpresslogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerPhotoshoplogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerIllustratorlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
