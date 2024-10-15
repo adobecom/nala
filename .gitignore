@@ -141,3 +141,5 @@ configs/playwright-browserstack-sdk.config.js
 playwright-browserstack-sdk.config.temp.json
 
 .auth/
+
+*-404-results.json

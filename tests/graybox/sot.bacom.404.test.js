@@ -62,7 +62,7 @@ test.describe('Graybox Bacom SOT 404 Check test suite', () => {
 
   // {{ edit_3 }}: Write results to JSON file after all tests
   test.afterAll(async () => {
-    fs.writeFileSync('404-results.json', JSON.stringify(results, null, 2));
-    console.log('Results saved to 404-results.json');
+    fs.writeFileSync('graybox-bacom-404-results.json', JSON.stringify(results, null, 2));
+    console.log('Results saved to graybox-bacom-404-results.json');
   });
 });
