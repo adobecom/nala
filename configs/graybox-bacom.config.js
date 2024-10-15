@@ -9,7 +9,7 @@ const envs = require('../envs/envs.js');
  */
 const config = {
   testDir: '../tests/',
-  testMatch: ['bacom/**/*.test.js', 'milo/**/*.test.js'],
+  testMatch: ['bacom/**/*.test.js', 'milo/**/*.test.js', 'graybox/**/*.test.js'],
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 45 * 1000,
@@ -30,7 +30,7 @@ const config = {
   workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js']]
+    ? [['github'], ['list'], ['../utils/reporters/base-reporter.js'], ['json', { outputFile: '../test-json-results/test-results.json' }]]
     : [
       [
         'html',
