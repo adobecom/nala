@@ -248,10 +248,10 @@ exports.WebUtil = class WebUtil {
         const rect = modalDialog.getBoundingClientRect();
         return (
           rect.top >= 0
-        && rect.left >= 0
-        && rect.bottom
+          && rect.left >= 0
+          && rect.bottom
           <= (window.innerHeight || document.documentElement.clientHeight)
-        && rect.right
+          && rect.right
           <= (window.innerWidth || document.documentElement.clientWidth)
         );
       }, selector);
@@ -283,6 +283,17 @@ exports.WebUtil = class WebUtil {
   }
 
   /**
+   * Makes a GET request
+   * @param {string} url - The URL to make the GET request to.
+   * @returns {object} The response object.
+   */
+  static async getRequest(url) {
+    const requestContext = await request.newContext();
+    const response = await requestContext.get(url);
+    return response;
+  }
+
+  /**
    * Enable network logging
    * @param {Array} networklogs - An array to store all network logs
    */
@@ -290,7 +301,7 @@ exports.WebUtil = class WebUtil {
     await this.page.route('**', (route) => {
       const url = route.request().url();
       if (url.includes('sstats.adobe.com/ee/or2/v1/interact')
-       || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
+        || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
         networklogs.push(url);
         const firstEvent = route.request().postDataJSON().events[0];
         // eslint-disable-next-line no-underscore-dangle
