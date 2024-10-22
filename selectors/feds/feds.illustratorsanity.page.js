@@ -109,7 +109,7 @@ export default class IllustratorPageSanity {
     await this.creativityAndDesign.click();
 
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'India'] } },
@@ -244,7 +244,7 @@ export default class IllustratorPageSanity {
 
   async creativityAndDesignElements(country) {
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
@@ -312,7 +312,7 @@ export default class IllustratorPageSanity {
     await this.creativityAndDesign.click();
 
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'India'] } },
