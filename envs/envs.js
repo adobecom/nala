@@ -25,5 +25,6 @@ module.exports = {
   '@dme_stage': 'https://stage--dme-partners--adobecom.hlx.live',
   '@express_stage': 'https://stage--express--adobecom.hlx.live/express',
   '@express_live': 'https://main--express--adobecom.hlx.live/express',
+  '@express_milo': 'https://main--express-milo--adobecom.hlx.live',
   '@bacom_graybox': 'https://test.business-graybox.adobe.com',
 };

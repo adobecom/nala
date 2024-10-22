@@ -58,6 +58,15 @@ const config = {
         baseURL: envs['@express_live'],
       },
     },
+
+    {
+      name: 'express-milo-live-firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: envs['@express_milo'],
+      },
+    },
+
   ],
 };
 
