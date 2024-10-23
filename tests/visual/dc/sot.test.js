@@ -30,9 +30,9 @@ test.describe('DC SOT visual comparison test suite', () => {
         const result = await takeTwo(
           page,
           stableURL,
-          async () => { await page.waitForTimeout(3000); },
+          async () => { await page.waitForTimeout(4000); },
           betaURL,
-          async () => { await page.waitForTimeout(3000); },
+          async () => { await page.waitForTimeout(4000); },
           folderPath,
           name,
           { fullPage: true },
