@@ -78,7 +78,7 @@ export default class CreativeCloudEnterpriseSanity {
 
     this.adobecom = page.locator('.feds-crossCloudMenu-item [href*="/"]').nth(0);
     this.pdfAndESignature = page.locator('.feds-crossCloudMenu-item [href*="acrobat.html"]');
-    this.marketingAndCommerce = page.locator('.feds-crossCloudMenu-item [href*="business.adobe.com"]');
+    this.marketingAndCommerce = page.locator('.feds-crossCloudMenu-item [href*="business.stage.adobe.com"]');
     this.helpAndSupport = page.locator('.feds-crossCloudMenu-item [href*="support.html"]');
 
     this.removeBackground = page.locator('[href*="KCJMVG5Q&mv=other"]');
@@ -141,7 +141,7 @@ export default class CreativeCloudEnterpriseSanity {
   async validatingCreativityAndDesignElements(country) {
     await this.creativityAndDesign.click();
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'India'] } },
@@ -192,7 +192,7 @@ export default class CreativeCloudEnterpriseSanity {
       { element: this.instagramPost, conditions: { includeCountries: ['India'] } },
       { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
       { element: this.createNow, conditions: { includeCountries: ['India'] } },
-      { element: this.whatIsCC, conditions: { includeCountries: ['India'] } },
+      { element: this.whatIsCC, conditions: { includeCountries: ['India'], excludeCountries: ['Germany'] } },
       { element: this.adobeExpressIn, conditions: { includeCountries: ['India'] } },
       { element: this.seePlansAndPricing, conditions: { includeCountries: ['India'] } },
     ];
@@ -272,7 +272,7 @@ export default class CreativeCloudEnterpriseSanity {
   async creativityAndDesignElements(country) {
     await this.creativityAndDesign.click();
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       {
@@ -303,7 +303,7 @@ export default class CreativeCloudEnterpriseSanity {
     await this.creativityAndDesign.click();
     await this.quickActions.click();
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Germany'] } },
       { element: this.photoshop, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.adobeExpress, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
       { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
@@ -393,7 +393,7 @@ export default class CreativeCloudEnterpriseSanity {
   async validatingCreativityAndDesignElementsiPadTab(country) {
     await this.creativityAndDesign.click();
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'India'] } },
@@ -441,7 +441,7 @@ export default class CreativeCloudEnterpriseSanity {
       { element: this.instagramPost, conditions: { includeCountries: ['India'] } },
       { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
       { element: this.createNow, conditions: { includeCountries: ['India'] } },
-      { element: this.whatIsCC, conditions: { includeCountries: ['India'] } },
+      { element: this.whatIsCC, conditions: { includeCountries: ['India'], excludeCountries: ['Germany'] } },
       { element: this.adobeExpressIn, conditions: { includeCountries: ['India'] } },
       { element: this.seePlansAndPricing, conditions: { includeCountries: ['India'] } },
     ];

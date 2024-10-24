@@ -9,7 +9,7 @@ const envs = require('../envs/envs.js');
  */
 const config = {
   testDir: '../tests/',
-  testMatch: ['bacom/**/*.test.js', 'milo/**/*.test.js', 'graybox/**/*.test.js'],
+  testMatch: ['dc/**/*.test.js', 'milo/**/*.test.js', 'graybox/**/*.test.js'],
   outputDir: '../test-results',
   /* Maximum time one test can run for. */
   timeout: 45 * 1000,
@@ -55,24 +55,24 @@ const config = {
     trace: 'on-first-retry',
     baseURL:
       process.env.BASE_URL
-      || envs['@bacom_graybox']
-      || 'https://main--bacom--adobecom.hlx.live',
+      || envs['@graybox_dc']
+      || 'https://main--dc--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'bacom-live-chrome',
+      name: 'dc-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_graybox'],
+        baseURL: envs['@graybox_dc'],
       },
     },
     {
-      name: 'bacom-stage-chrome',
+      name: 'dc-stage-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_stage'],
+        baseURL: envs['@adobe_stage'],
       },
     },
   ],
