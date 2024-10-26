@@ -32,7 +32,7 @@ test.describe('BACOM SOT visual comparison test suite', () => {
           },
           betaURL,
           async () => {
-            await page.waitForTimeout(3000);
+            await page.waitForTimeout(6000);
           },
           folderPath,
           name,
