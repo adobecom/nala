@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@ckg-link-list',
-      path: '/colors/red',
+      path: '/express/colors/red',
       tags: '@ckg-link-list @smoke @regression',
     },
   ],

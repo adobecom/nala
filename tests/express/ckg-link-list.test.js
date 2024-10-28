@@ -72,7 +72,7 @@ test.describe('Ckg Link List Block Test Suite', () => {
         const pageColor = btnText.toLowerCase().replace(' ', '-');
         await ckgLinkList.pill.nth(0).click();
         await page.waitForLoadState('domcontentloaded');
-        await expect(page).toHaveURL(`${baseURL}/colors/${pageColor}`);
+        await expect(page).toHaveURL(`${baseURL}/express/colors/${pageColor}`);
       }
     });
   });

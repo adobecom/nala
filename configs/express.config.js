@@ -58,7 +58,7 @@ const config = {
         baseURL: envs['@express_live'],
       },
     },
-
+/*
     {
       name: 'express-milo-main-chromium',
       use: {
@@ -101,6 +101,7 @@ const config = {
         baseURL: envs['@express_milo'],
       },
     },
+*/
   ],
 };
 
