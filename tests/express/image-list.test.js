@@ -4,7 +4,7 @@ import { features } from '../../features/express/image-list.spec.js';
 import ImageList from '../../selectors/express/image-list.page.js';
 
 let imageList;
-const prodURL = 'https://www.adobe.com/express/';
+const prodHomePage = 'https://www.adobe.com/express/';
 
 test.describe('Image List Block Test Suite', () => {
   // before each test block
@@ -30,7 +30,7 @@ test.describe('Image List Block Test Suite', () => {
     await test.step('On click, goes to homepage ', async () => {
       await page.waitForLoadState();
       await imageList.imageListXSmall.click();
-      await expect(page).toHaveURL(`${prodURL}`);
+      await expect(page).toHaveURL(`${prodHomePage}`);
     });
   });
 
@@ -52,7 +52,7 @@ test.describe('Image List Block Test Suite', () => {
     await test.step('On click, goes to homepage ', async () => {
       await page.waitForLoadState();
       await imageList.imageListSmall.click();
-      await expect(page).toHaveURL(`${prodURL}`);
+      await expect(page).toHaveURL(`${prodHomePage}`);
     });
   });
 
@@ -74,7 +74,7 @@ test.describe('Image List Block Test Suite', () => {
     await test.step('On click, goes to homepage ', async () => {
       await page.waitForLoadState();
       await imageList.imageList.click();
-      await expect(page).toHaveURL(`${prodURL}`);
+      await expect(page).toHaveURL(`${prodHomePage}`);
     });
   });
 
@@ -96,7 +96,7 @@ test.describe('Image List Block Test Suite', () => {
     await test.step('On click, goes to homepage ', async () => {
       await page.waitForLoadState();
       await imageList.imageListLarge.click();
-      await expect(page).toHaveURL(`${prodURL}`);
+      await expect(page).toHaveURL(`${prodHomePage}`);
     });
   });
 
@@ -118,7 +118,7 @@ test.describe('Image List Block Test Suite', () => {
     await test.step('On click, goes to homepage ', async () => {
       await page.waitForLoadState();
       await imageList.imageListXLarge.click();
-      await expect(page).toHaveURL(`${prodURL}`);
+      await expect(page).toHaveURL(`${prodHomePage}`);
     });
   });
 });
