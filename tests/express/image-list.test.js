@@ -4,6 +4,7 @@ import { features } from '../../features/express/image-list.spec.js';
 import ImageList from '../../selectors/express/image-list.page.js';
 
 let imageList;
+const prodURL = 'https://www.adobe.com/express/';
 
 test.describe('Image List Block Test Suite', () => {
   // before each test block
@@ -25,6 +26,12 @@ test.describe('Image List Block Test Suite', () => {
       await page.waitForLoadState();
       await expect(imageList.imageListXSmall).toBeVisible();
     });
+
+    await test.step('On click, goes to homepage ', async () => {
+      await page.waitForLoadState();
+      await imageList.imageListXSmall.click();
+      await expect(page).toHaveURL(`${prodURL}`);
+    });
   });
 
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
@@ -40,6 +47,12 @@ test.describe('Image List Block Test Suite', () => {
     await test.step('Verify block displayed ', async () => {
       await page.waitForLoadState();
       await expect(imageList.imageListSmall).toBeVisible();
+    });
+
+    await test.step('On click, goes to homepage ', async () => {
+      await page.waitForLoadState();
+      await imageList.imageListSmall.click();
+      await expect(page).toHaveURL(`${prodURL}`);
     });
   });
 
@@ -57,6 +70,12 @@ test.describe('Image List Block Test Suite', () => {
       await page.waitForLoadState();
       await expect(imageList.imageList).toBeVisible();
     });
+
+    await test.step('On click, goes to homepage ', async () => {
+      await page.waitForLoadState();
+      await imageList.imageList.click();
+      await expect(page).toHaveURL(`${prodURL}`);
+    });
   });
 
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
@@ -73,6 +92,12 @@ test.describe('Image List Block Test Suite', () => {
       await page.waitForLoadState();
       await expect(imageList.imageListLarge).toBeVisible();
     });
+
+    await test.step('On click, goes to homepage ', async () => {
+      await page.waitForLoadState();
+      await imageList.imageListLarge.click();
+      await expect(page).toHaveURL(`${prodURL}`);
+    });
   });
 
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
@@ -88,6 +113,12 @@ test.describe('Image List Block Test Suite', () => {
     await test.step('Verify block displayed ', async () => {
       await page.waitForLoadState();
       await expect(imageList.imageListXLarge).toBeVisible();
+    });
+
+    await test.step('On click, goes to homepage ', async () => {
+      await page.waitForLoadState();
+      await imageList.imageListXLarge.click();
+      await expect(page).toHaveURL(`${prodURL}`);
     });
   });
 });

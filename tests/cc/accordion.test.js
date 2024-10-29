@@ -7,6 +7,7 @@ test.describe('verify accordion showing up with authored question and answers wi
   test.beforeEach(async ({ page }) => {
     accordion = new Accordion(page);
   });
+
   // Verify accordion showing up with authored question and answers and UI
   test(`${features[0].name},${features[0].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
@@ -16,7 +17,7 @@ test.describe('verify accordion showing up with authored question and answers wi
       await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
     });
     await test.step('accordion ui with expected elements', async () => {
-      await page.waitForLoadState();  
+      await page.waitForLoadState();
       expect(await accordion.accordionSection).toBeTruthy();
       expect(await accordion.accordionName).toBeTruthy();
       expect(await accordion.accordionQuestion1).toBeTruthy();
@@ -26,6 +27,7 @@ test.describe('verify accordion showing up with authored question and answers wi
       expect(await accordion.DefaultState).toBeTruthy();
     });
   });
+
   // check the expand feature when click on first question
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[1].path}`);
@@ -43,6 +45,7 @@ test.describe('verify accordion showing up with authored question and answers wi
       expect(await accordion.accordexpanded).toBeTruthy();
     });
   });
+
   // check the collapse feature when click on first question
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[2].path}`);
@@ -62,6 +65,7 @@ test.describe('verify accordion showing up with authored question and answers wi
       expect(await accordion.DefaultState).toBeTruthy();
     });
   });
+
   // check the links are functional in the question summary
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[3].path}`);
