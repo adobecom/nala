@@ -73,7 +73,7 @@ const config = {
       use: {
         ...devices['Desktop Firefox'],
         baseURL: envs['@express_milo'],
-        viewport: { width: 1680, height: 720 },
+        viewport: { width: 1680, height: 1024 },
       },
     },
 
@@ -82,7 +82,7 @@ const config = {
       use: {
         ...devices['Desktop Safari'],
         baseURL: envs['@express_milo'],
-        viewport: { width: 1680, height: 720 },
+        viewport: { width: 1680, height: 1024 },
       },
     },
 
