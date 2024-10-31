@@ -95,9 +95,9 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.sepcialOffers).toBeVisible();
       await expect(await merchCard.sepcialOffersImage).toBeVisible();
 
-      await expect(await merchCard.sepcialOffersTitleH4).toBeVisible();
-      await expect(await merchCard.sepcialOffersTitleH4).toContainText(data.titleH4);
-      await expect(await merchCard.sepcialOffersTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.plansCardDetailM).toBeVisible();
+      await expect(await merchCard.plansCardDetailM).toContainText(data.titleH4);
+      await expect(await merchCard.specialOffersTitleHeading).toContainText(data.titleH3);
 
       await expect(await merchCard.sepcialOffersDescription1).toContainText(data.description1);
       await expect(await merchCard.sepcialOffersDescription2).toContainText(data.description2);
@@ -126,8 +126,8 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.sepcialOffersRibbon).toBeVisible();
       await expect(await merchCard.sepcialOffersRibbon).toContainText(data.badgeText);
 
-      await expect(await merchCard.sepcialOffersTitleH3).toContainText(data.titleH3);
-      await expect(await merchCard.sepcialOffersTitleH4).toContainText(data.titleH4);
+      await expect(await merchCard.specialOffersTitleHeading).toContainText(data.titleH3);
+      await expect(await merchCard.plansCardDetailM).toContainText(data.titleH4);
 
       await expect(await merchCard.sepcialOffersDescription1).toContainText(data.description);
       await expect(await merchCard.seeTermsTextLink).toContainText(data.link1Text);
@@ -163,7 +163,7 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.plans).toBeVisible();
       await expect(await merchCard.productIcon).toBeVisible();
 
-      await expect(await merchCard.plansCardTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.plansCardTitleHeadingXS).toContainText(data.titleH3);
       await expect(await merchCard.plansCardTitleH5).toContainText(data.titleH5);
 
       // await expect(await merchCard.price).toContainText(data.price);
@@ -195,7 +195,7 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.plansRibbon).toBeVisible();
       await expect(await merchCard.plansRibbon).toContainText(data.badgeText);
 
-      await expect(await merchCard.plansCardTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.plansCardTitleHeadingXS).toContainText(data.titleH3);
       await expect(await merchCard.plansCardTitleH4).toContainText(data.titleH4);
 
       // await expect(await merchCard.price).toContainText(data.price);
@@ -224,7 +224,7 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.plans).toBeVisible();
       await expect(await merchCard.productIcon).toBeVisible();
 
-      await expect(await merchCard.plansCardTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.plansCardTitleHeadingXS).toContainText(data.titleH3);
       await expect(await merchCard.plansCardTitleH5).toContainText(data.titleH5);
 
       // await expect(await merchCard.price).toContainText(data.price);
@@ -258,7 +258,7 @@ test.describe('Milo Merchcard block test suite', () => {
       await expect(await merchCard.plansRibbon).toBeVisible();
       await expect(await merchCard.plansRibbon).toContainText(data.badgeText);
 
-      await expect(await merchCard.plansCardTitleH3).toContainText(data.titleH3);
+      await expect(await merchCard.plansCardTitleHeadingXS).toContainText(data.titleH3);
       await expect(await merchCard.plansCardTitleH5).toContainText(data.titleH5);
 
       // await expect(await merchCard.price).toContainText(data.price);
