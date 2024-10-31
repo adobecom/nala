@@ -36,16 +36,16 @@ export default class Merchcard {
     this.linkText2 = this.segmentDescription2.locator('a').nth(1);
 
     // merch-card special offers
-    this.sepcialOffersImage = this.sepcialOffers.locator('div[slot="bg-image"] img');
-    this.sepcialOffersRibbon = this.merchCard.locator('.special-offers-badge');
+    this.specialOffersImage = this.sepcialOffers.locator('div[slot="bg-image"] img');
+    this.specialOffersRibbon = this.merchCard.locator('.special-offers-badge');
     this.plansCardDetailM = this.sepcialOffers.locator('p[slot="detail-m"]').nth(0);
-    this.sepcialOffersTitlePromoText = this.sepcialOffers.locator('div[slot="body-xs"]');
+    this.specialOffersTitlePromoText = this.sepcialOffers.locator('p[slot="body-xxs"]');
     this.specialOffersTitleHeading = this.sepcialOffers.locator('h3[slot="heading-xs"]').nth(0);
 
-    this.sepcialOffersDescription1 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(1);
-    this.sepcialOffersDescription2 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(2);
-    this.sepcialOffersDescription3 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(3);
-    this.sepcialOffersLinkText3 = this.sepcialOffersDescription3.locator('a').nth(0);
+    this.specialOffersDescription1 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(1);
+    this.specialOffersDescription2 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(2);
+    this.specialOffersDescription3 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(3);
+    this.specialOffersLinkText3 = this.specialOffersDescription3.locator('a').nth(0);
 
     this.seeTermsTextLink = this.merchCard.locator('a:has-text("See terms")');
 
@@ -53,8 +53,7 @@ export default class Merchcard {
     this.productIcon = this.plans.locator('img');
     this.plansRibbon = this.plans.locator('.plans-badge');
     this.plansCardTitleHeadingXS = this.plans.locator('h3[slot="heading-xs"]');
-    this.plansCardTitleH4 = this.plans.locator('p[slot="body-xxs"]');
-    this.plansCardTitleH5 = this.plans.locator('p[slot="body-xxs"]');
+    this.plansCardTitlePromoText = this.plans.locator('p[slot="body-xxs"]');
     this.plansCardDescription1 = this.plans.locator('div[slot="body-xs"] p').nth(1);
     this.plansCardDescription2 = this.plans.locator('div[slot="body-xs"] p').nth(2);
     this.plansCardDescription3 = this.plans.locator('div[slot="body-xs"] p').nth(3);
