@@ -38,8 +38,8 @@ export default class Merchcard {
     // merch-card special offers
     this.sepcialOffersImage = this.sepcialOffers.locator('div[slot="bg-image"] img');
     this.sepcialOffersRibbon = this.merchCard.locator('.special-offers-badge');
-    this.sepcialOffersTitleH4 = this.sepcialOffers.locator('h4[slot="detail-m"]').nth(0);
-    this.sepcialOffersTitleH5 = this.sepcialOffers.locator('h5[slot="body-xs"]');
+    this.sepcialOffersTitleH4 = this.sepcialOffers.locator('p[slot="detail-m"]').nth(0);
+    this.sepcialOffersTitleH5 = this.sepcialOffers.locator('div[slot="body-xs"]');
     this.sepcialOffersTitleH3 = this.sepcialOffers.locator('h3[slot="heading-xs"]').nth(0);
 
     this.sepcialOffersDescription1 = this.sepcialOffers.locator('div[slot="body-xs"] p').nth(1);
@@ -53,8 +53,8 @@ export default class Merchcard {
     this.productIcon = this.plans.locator('img');
     this.plansRibbon = this.plans.locator('.plans-badge');
     this.plansCardTitleH3 = this.plans.locator('h3[slot="heading-xs"]');
-    this.plansCardTitleH4 = this.plans.locator('h4[slot="body-xxs"]');
-    this.plansCardTitleH5 = this.plans.locator('h5[slot="body-xxs"]');
+    this.plansCardTitleH4 = this.plans.locator('p[slot="body-xxs"]');
+    this.plansCardTitleH5 = this.plans.locator('p[slot="body-xxs"]');
     this.plansCardDescription1 = this.plans.locator('div[slot="body-xs"] p').nth(1);
     this.plansCardDescription2 = this.plans.locator('div[slot="body-xs"] p').nth(2);
     this.plansCardDescription3 = this.plans.locator('div[slot="body-xs"] p').nth(3);
@@ -73,7 +73,7 @@ export default class Merchcard {
     this.systemRequirementTextLink = this.merchCard.locator('a:has-text("See system requirements")');
 
     this.catalogCardTitleH3 = this.catalog.locator('h3[slot="heading-xs"]');
-    this.catalogCardTitleH4 = this.catalog.locator('h4[slot="body-xxs"]');
+    this.catalogCardTitleH4 = this.catalog.locator('p[slot="body-xxs"]');
     this.catalogCardDescription2 = this.catalog.locator('div[slot="body-xs"] p').nth(2);
     this.seeWhatsIncludedTextLink = this.merchCard.locator('a:has-text("See what’s included")');
     this.learnMoreTextLink = this.merchCard.locator('a:has-text("Learn more")');
