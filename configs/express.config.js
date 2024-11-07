@@ -58,6 +58,14 @@ const config = {
         baseURL: envs['@express_live'],
       },
     },
+
+    {
+      name: 'express-live-webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: envs['@express_live'],
+      },
+    },
   ],
 };
 
