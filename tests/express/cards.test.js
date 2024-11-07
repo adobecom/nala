@@ -34,6 +34,7 @@ test.describe('Cards block testing', () => {
       expect(totalButtons).toBeTruthy();
 
       for (let i = 0; i < totalButtons; i++) {
+        await page.waitForTimeout(2000);
         const text = await card.button.nth(i).innerText();
         console.log(text);
         await card.button.nth(i).click();
@@ -67,6 +68,7 @@ test.describe('Cards block testing', () => {
 
       // buttons
       for (let i = 0; i < totalButtons; i++) {
+        await page.waitForTimeout(2000);
         const text = await card.button.nth(i).innerText();
         console.log(text);
         await card.button.nth(i).click();
@@ -119,6 +121,7 @@ test.describe('Cards block testing', () => {
       expect(text2).toBe('Try now');
 
       for (let i = 0; i < totalButtons; i++) {
+        await page.waitForTimeout(2000);
         const [newTab] = await Promise.all([
           page.waitForEvent('popup'),
           await card.button.nth(i).click(),
@@ -154,6 +157,7 @@ test.describe('Cards block testing', () => {
       expect(totalButtons).toEqual(4);
 
       for (let i = 0; i < totalButtons; i++) {
+        await page.waitForTimeout(2000);
         const text = await card.button.nth(i).innerText();
         console.log(text);
         const [newTab] = await Promise.all([
@@ -191,6 +195,7 @@ test.describe('Cards block testing', () => {
       expect(totalButtons).toEqual(8);
 
       for (let i = 0; i < totalButtons; i++) {
+        await page.waitForTimeout(2000);
         const [newTab] = await Promise.all([
           page.waitForEvent('popup'),
           await card.button.nth(i).click(),
@@ -223,6 +228,7 @@ test.describe('Cards block testing', () => {
       expect(totalButtons).toEqual(6);
 
       for (let i = 0; i < totalButtons; i++) {
+        await page.waitForTimeout(2000);
         const [newTab] = await Promise.all([
           page.waitForEvent('popup'),
           await card.button.nth(i).click(),
@@ -255,6 +261,7 @@ test.describe('Cards block testing', () => {
       expect(totalButtons).toEqual(6);
 
       for (let i = 0; i < totalButtons; i++) {
+        await page.waitForTimeout(2000);
         const [newTab] = await Promise.all([
           page.waitForEvent('popup'),
           await card.button.nth(i).click(),
