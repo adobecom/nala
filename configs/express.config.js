@@ -58,50 +58,14 @@ const config = {
         baseURL: envs['@express_live'],
       },
     },
-    /*
-    {
-      name: 'express-milo-main-chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: envs['@express_milo'],
-        viewport: { width: 1680, height: 1024 },
-      },
-    },
 
     {
-      name: 'express-milo-main-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        baseURL: envs['@express_milo'],
-        viewport: { width: 1680, height: 1024 },
-      },
-    },
-
-    {
-      name: 'express-milo-main-webkit',
+      name: 'express-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@express_milo'],
-        viewport: { width: 1680, height: 1024 },
+        baseURL: envs['@express_live'],
       },
     },
-
-    {
-      name: 'express-milo-main-android',
-      use: {
-        ...devices['Pixel 5'],
-        baseURL: envs['@express_milo'],
-      },
-    },
-
-    {
-      name: 'express-milo-main-iphone',
-      use: {
-        ...devices['iPhone SE'],
-        baseURL: envs['@express_milo'],
-      },
-    },
-    */
   ],
 };
 
