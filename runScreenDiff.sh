@@ -12,6 +12,16 @@ fi
 
 category="$1"
 
+# Only install dependencies if running in GitHub Actions
+if [ -n "$GITHUB_ACTIONS" ]; then
+    echo "*** Installing playwright dependencies ***"
+    cd "$GITHUB_ACTION_PATH" || exit
+    npm ci
+    npx playwright install --with-deps
+else
+    echo "Skipping dependency installation - not running in GitHub Actions"
+fi
+
 # Run each command one by one
 node run.js -c ${Config} -p ${Project} -g @${category}-screenshots
 node libs/screenshot/merge.js screenshots/${category}
