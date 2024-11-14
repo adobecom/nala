@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       category:
-        description: 'Test category to run (leave empty to run all, or specify: sot,milo,feds,caas,uar,uar-ai,dc,bacom)'
+        description: 'Test category to run (leave empty to run all, or specify one: sot,milo,feds,caas,uar,uar-ai,dc,bacom)'
         required: false
         type: string
 
 jobs:
   test-matrix:
-    name: Running ${{ matrix.category }} tests
+    name: Running ${{ inputs.category }} tests
     strategy:
       fail-fast: false
       matrix:
@@ -19,9 +19,7 @@ jobs:
             categories: ["sot","milo","feds","caas","uar","uar-ai"]
           - platform: macos-latest
             categories: ["dc","bacom","graybox-bacom","graybox-dc"]
-        category: ${{ inputs.category == '' && matrix.categories || format('["{}"]', inputs.category) }}
     runs-on: ${{ matrix.platform }}
-    if: ${{ inputs.category == '' || contains(join(matrix.categories, ','), inputs.category) }}
     
     steps:
       - name: Check out repository
@@ -33,7 +31,14 @@ jobs:
           node-version: lts/*
         
       - name: Run Nala
-        run: bash runScreenDiff.sh ${{ matrix.category }}
+        run: |
+          if [ -n "${{ inputs.category }}" ]; then
+            bash runScreenDiff.sh ${{ inputs.category }}
+          else
+            for category in ${{ join(matrix.categories, ' ') }}; do
+              bash runScreenDiff.sh $category
+            done
+          fi
         shell: bash
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
