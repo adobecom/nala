@@ -19,10 +19,9 @@ jobs:
             categories: ["sot","milo","feds","caas","uar","uar-ai"]
           - platform: macos-latest
             categories: ["dc","bacom","graybox-bacom","graybox-dc"]
-        # If category is specified, create a dynamic matrix
-        category: ${{ inputs.category == '' && fromJson(matrix.categories) || fromJson(format('["{}"]', inputs.category)) }}
+        category: ${{ inputs.category == '' && matrix.categories || format('["{}"]', inputs.category) }}
     runs-on: ${{ matrix.platform }}
-    if: ${{ inputs.category == '' || contains(matrix.categories, inputs.category) }}
+    if: ${{ inputs.category == '' || contains(join(matrix.categories, ','), inputs.category) }}
     
     steps:
       - name: Check out repository
