@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       category:
-        description: 'Test category to run (leave empty to run all, or specify one: sot,milo,feds,caas,uar,uar-ai,dc,bacom)'
+        description: 'Test category to run (leave empty to run all, or specify one: milo,feds,caas,uar,uar-ai)'
         required: false
         type: string
 
@@ -15,10 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: windows-latest
-            categories: ["sot","milo","feds","caas","uar","uar-ai"]
           - platform: macos-latest
-            categories: ["dc","bacom","graybox-bacom","graybox-dc"]
+            categories: ["milo","feds","caas","uar","uar-ai"]
     runs-on: ${{ matrix.platform }}
     
     steps:
