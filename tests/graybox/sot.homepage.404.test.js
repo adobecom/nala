@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/named */
 import { test } from '@playwright/test';
-import { features } from '../../features/graybox/sot.bacom.404.spec.js';
+import { features } from '../../features/graybox/sot.homepage.404.spec.js';
 
 const fs = require('fs'); // Add this import at the top
 
@@ -11,7 +11,7 @@ const results = {};
 let consoleErrors = [];
 let four0FourErrors = [];
 
-test.describe('Graybox Bacom SOT 404 Check test suite', () => {
+test.describe('Graybox Homepage SOT 404 Check test suite', () => {
   test.setTimeout(20 * 60 * 1000);
   test.beforeEach(async ({ page }) => {
     // Check for 404s
@@ -41,7 +41,7 @@ test.describe('Graybox Bacom SOT 404 Check test suite', () => {
         consoleErrors = [];
         four0FourErrors = [];
         const stableURL = testdata[key];
-        const betaURL = stableURL.replace('business.stage', 'test.business-graybox');
+        const betaURL = stableURL.replace('www.stage', 'test.graybox');
         console.info('Checking for 404s on:', betaURL);
         // Go to the page you want to check
         await page.goto(betaURL);
@@ -51,7 +51,7 @@ test.describe('Graybox Bacom SOT 404 Check test suite', () => {
         // {{ edit_1 }}: Log all links on the page
         const links = await page.$$eval('a', (anchors) => anchors
           .map((anchor) => anchor.href)
-          .filter((href) => !href.includes('test.business-graybox')));
+          .filter((href) => !href.includes('test.graybox')));
         console.log('Links on the page:', links);
         results[betaURL] = {
           four0FourErrors,
@@ -64,7 +64,7 @@ test.describe('Graybox Bacom SOT 404 Check test suite', () => {
 
   // {{ edit_3 }}: Write results to JSON file after all tests
   test.afterAll(async () => {
-    fs.writeFileSync('graybox-bacom-404-results.json', JSON.stringify(results, null, 2));
-    console.log('Results saved to graybox-bacom-404-results.json');
+    fs.writeFileSync('graybox-homepage-404-results.json', JSON.stringify(results, null, 2));
+    console.log('Results saved to graybox-homepage-404-results.json');
   });
 });

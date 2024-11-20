@@ -27,4 +27,6 @@ module.exports = {
   '@express_live': 'https://main--express--adobecom.hlx.live',
   '@graybox_bacom': 'https://test.business-graybox.adobe.com',
   '@graybox_dc': 'https://test.graybox.adobe.com',
+  '@graybox_homepage': 'https://test.graybox.adobe.com',
+  '@graybox_cc': 'https://test.graybox.adobe.com',
 };
