@@ -18,7 +18,7 @@ module.exports = {
       tcid: '1',
       name: '@marketo essential template',
       path: [
-        '/resources/experience-magento-compare',
+        '/resources/webinars/beyond-the-buzzword-operationalizing-generative-ai-for-growth',
       ],
       tags: '@marketo @marketoEssentialTemplate @bacom @smoke @regression @e2e @resources',
     },
