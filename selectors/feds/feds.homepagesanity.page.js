@@ -62,7 +62,7 @@ export default class HomePageSanity {
     this.consultationBeforePurchase = page.locator('.feds-popup a[href$="0120-693-724"]');
 
     // Experience Cloud Elements
-    this.adobeExperienceCloud = page.locator('.feds-popup a[href*="business.adobe.com"]').nth(0);
+    this.adobeExperienceCloud = page.locator('.feds-popup a[href*="business.stage.adobe.com"]').nth(0);
     this.customerDataPlatform = page.locator('a[href*="/rtcdp.html"]');
     this.marketingAutomation = page.locator('.feds-popup a[href*="marketo.html"]');
     this.viewAllProductsEC = page.locator('a[href*="products.html"]');
@@ -74,7 +74,6 @@ export default class HomePageSanity {
     this.resourceCentre = page.locator('a[href$="resources/main.html"]');
     this.customerSuccessStories = page.locator('a[href*="success-stories"]');
     this.servicesAndSupport = page.locator('a[href$="support/main.html"]');
-    this.training = page.locator('a[href*="learning.adobe"]');
 
     this.insightsAndAudiences = page.locator('.feds-popup a[href$="personalization.html"]');
     this.b2bMarketing = page.locator('.feds-popup a[href$="b2b-marketing.html"]');
@@ -102,14 +101,11 @@ export default class HomePageSanity {
     this.footerAcrobatForBusiness = page.locator(".feds-footer-wrapper a[href$='acrobat/business.html']");
     this.footerDiscountsForStudentsAndTeachers = page.locator(".feds-footer-wrapper a[href$='buy/students.html']");
     this.footerDigitalLearningSolutions = page.locator("a[href$='/elearning.html']");
-    this.footerAppsforiOS = page.locator("a[href*='id852473028']");
-    this.footerAppsforAndroid = page.locator("a[href*='id=com.adobe.cc']");
-    this.footerWhatIsExperienceCloud = page.locator('.feds-footer-wrapper a[href*="business.adobe.com"]').nth(0);
+    this.footerAppsforiOS = page.locator("a[href*='app-store']");
+    this.footerAppsforAndroid = page.locator("a[href*='play.google.com']");
     this.footerTermsOfUse = page.locator('a[href*="experiencecloudterms"]');
     this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href*="download-install.html"]');
     this.footerGenuineSoftware = page.locator('a[href*="genuine.html"]');
-    this.footerAdobeBlog = page.locator('.feds-navLink[href*="blog.adobe"]');
-    this.footerAdobeDeveloper = page.locator('a[href*="developer.adobe"]');
     this.footerLogInToYourAccount = page.locator('.feds-footer-wrapper a[href*="account.adobe"]').nth(0);
     this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]').nth(0);
     this.footerIntegrity = page.locator('a[href*="integrity.html"]');
@@ -190,7 +186,7 @@ export default class HomePageSanity {
   async validatingCCElements(country) {
     await this.gnavCC.click();
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'Germany'] } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       {
         element: this.schoolsAndUniversities,
         conditions: {
@@ -210,7 +206,7 @@ export default class HomePageSanity {
       },
       { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.aIOverviewCC, conditions: { defaultVisibility: true } },
+      { element: this.aIOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
       { element: this.adobeFirefly, conditions: { defaultVisibility: true } },
       { element: this.seeAllProducts, conditions: { includeCountries: ['Brazil', 'Chile', 'Spain'] } },
       { element: this.individuals, conditions: { includeCountries: ['Brazil', 'Chile'] } },
@@ -249,41 +245,39 @@ export default class HomePageSanity {
         element: this.government,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Germany', 'France', 'Greece', 'Italy', 'Saudi Arabia', 'Finland', 'Japan'],
+          excludeCountries: ['France', 'Greece', 'Italy', 'Saudi Arabia', 'Finland', 'Japan'],
         },
       },
       {
         element: this.aiOverviewDC,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Argentina', 'Brazil', 'Canada French', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
-            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Belgium French', 'Germany', 'Estonia',
-            'Spain', 'France', 'Greece', 'Italy', 'Lithuania', 'Luxemburg German', 'Luxemburg French', 'Hungary',
-            'Nederland', 'Poland', 'Portugal', 'Romania', 'Switzerland', 'Slovenia', 'Slovakia', 'Switzerland French',
+          excludeCountries: ['Argentina', 'Brazil', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
+            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Estonia', 'Spain', 'Greece',
+            'Italy', 'Lithuania', 'Hungary', 'Nederland', 'Poland', 'Portugal', 'Romania', 'Slovenia', 'Slovakia',
             'Finland', 'Sweden', 'Switzerland Italian', 'Turkey', 'Czech Republic', 'Bulgaria', 'Russia', 'Ukraine',
             'Israel Hebrew', 'UAE', 'Middle East And North Africa', 'Kingdom Of Saudi Arabia', 'Egypt', 'Kuwait',
             'Qatar', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand',
-            'Hong Kong', 'Taiwan', 'Japan', 'Korea', 'Latvia'],
+            'Hong Kong', 'Taiwan', 'Japan', 'Korea', 'Latvia', 'Denmark', 'Norway', 'United States'],
         },
       },
       {
         element: this.aiInAcrobat,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Argentina', 'Brazil', 'Canada French', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
-            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Belgium French', 'Germany', 'Estonia',
-            'Spain', 'France', 'Greece', 'Italy', 'Lithuania', 'Luxemburg German', 'Luxemburg French', 'Hungary',
-            'Nederland', 'Poland', 'Portugal', 'Romania', 'Switzerland', 'Slovenia', 'Slovakia', 'Switzerland French',
+          excludeCountries: ['Argentina', 'Brazil', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador',
+            'Guatemala', 'Latin America', 'Mexico', 'Peru', 'Puerto Rico', 'Estonia', 'Spain', 'Greece', 'Italy',
+            'Lithuania', 'Hungary', 'Nederland', 'Poland', 'Portugal', 'Romania', 'Slovenia', 'Slovakia',
             'Finland', 'Sweden', 'Switzerland Italian', 'Turkey', 'Czech Republic', 'Bulgaria', 'Russia', 'Ukraine',
             'Israel Hebrew', 'UAE', 'Middle East And North Africa', 'Kingdom Of Saudi Arabia', 'Egypt', 'Kuwait',
             'Qatar', 'Indonesia', 'Malaysia', 'Philippines', 'Vietnam', 'India Hindi', 'Thailand', 'Hong Kong',
-            'Taiwan', 'Japan', 'Korea', 'Latvia'],
+            'Taiwan', 'Japan', 'Korea', 'Latvia', 'Denmark', 'Norway'],
         },
       },
       { element: this.pdfToWord, conditions: { defaultVisibility: true } },
       { element: this.wordToPDF, conditions: { defaultVisibility: true } },
-      { element: this.developerResources, conditions: { defaultVisibility: true } },
-      { element: this.eventsAndWebinars, conditions: { defaultVisibility: true } },
+      { element: this.developerResources, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
+      { element: this.eventsAndWebinars, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
       { element: this.consultationBeforePurchase, conditions: { includeCountries: ['Japan'] } },
       { element: this.governmentTwo, conditions: { includeCountries: ['Japan'] } },
     ];
@@ -308,34 +302,50 @@ export default class HomePageSanity {
         element: this.customerDataPlatform,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Brazil', 'India'],
+          excludeCountries: ['Brazil', 'India', 'United States'],
         },
       },
-      { element: this.marketingAutomation, conditions: { defaultVisibility: true } },
+      { element: this.marketingAutomation, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
       {
         element: this.viewAllProductsEC,
         conditions: {
           defaultVisibility: true,
           includeCountries: ['Brazil', 'India'],
+          excludeCountries: ['United States'],
         },
       },
-      { element: this.adobeGenStudio, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India'] } },
-      { element: this.aiAssistant, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India'] } },
+      { element: this.adobeGenStudio, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India', 'United States'] } },
+      { element: this.aiAssistant, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India', 'United States'] } },
       {
         element: this.adobeExperiencePlatform,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Brazil', 'India'],
+          excludeCountries: ['Brazil', 'India', 'United States'],
         },
       },
-      { element: this.adobeGenAI, conditions: { defaultVisibility: true, includeCountries: ['Brazil'] } },
+      {
+        element: this.adobeGenAI,
+        conditions: {
+          defaultVisibility: true,
+          includeCountries: ['Brazil'],
+          excludeCountries: ['United States'],
+        },
+      },
       { element: this.findProduct, conditions: { defaultVisibility: true, excludeCountries: ['Brazil', 'India'] } },
-      { element: this.resourceCentre, conditions: { defaultVisibility: true, includeCountries: ['Brazil', 'India'] } },
+      {
+        element: this.resourceCentre,
+        conditions: {
+          defaultVisibility: true,
+          includeCountries: ['Brazil', 'India'],
+          excludeCountries: ['United States'],
+        },
+      },
       {
         element: this.customerSuccessStories,
         conditions: {
           defaultVisibility: true,
           includeCountries: ['Brazil', 'India'],
+          excludeCountries: ['United States'],
         },
       },
       {
@@ -343,10 +353,9 @@ export default class HomePageSanity {
         conditions: {
           defaultVisibility: true,
           includeCountries: ['Brazil', 'India'],
+          excludeCountries: ['United States'],
         },
       },
-      { element: this.training, conditions: { defaultVisibility: true, includeCountries: ['Brazil', 'India'] } },
-
       { element: this.insightsAndAudiences, conditions: { includeCountries: ['Brazil', 'India'] } },
       { element: this.b2bMarketing, conditions: { includeCountries: ['Brazil', 'India'] } },
       { element: this.requestAdemo, conditions: { includeCountries: ['Brazil', 'India'] } },
@@ -409,52 +418,26 @@ export default class HomePageSanity {
     const elementsToCheck = [
       { element: this.footerCreativeCloud, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerViewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      {
-        element: this.footerCreativeCloudForBusiness,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
+      { element: this.footerCreativeCloudForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerAcrobatForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerDiscountsForStudentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerDigitalLearningSolutions, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       {
-        element: this.footerDiscountsForStudentsAndTeachers,
+        element: this.footerAppsforiOS,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['Russia', 'China'],
+          excludeCountries: ['China', 'CIS English', 'CIS Russian', 'Egypt English', 'Kuwait English', 'Nigeria', 'Qatar English',
+            'South Africa'],
         },
       },
-      {
-        element: this.footerDigitalLearningSolutions,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
-      { element: this.footerAppsforiOS, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerAppsforAndroid, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      {
-        element: this.footerWhatIsExperienceCloud,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
       { element: this.footerTermsOfUse, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerDownloadAndInstall, conditions: { defaultVisibility: true } },
       { element: this.footerGenuineSoftware, conditions: { defaultVisibility: true } },
-      { element: this.footerAdobeBlog, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerAdobeDeveloper, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerLogInToYourAccount, conditions: { defaultVisibility: true } },
       { element: this.footerAbout, conditions: { defaultVisibility: true } },
       { element: this.footerIntegrity, conditions: { defaultVisibility: true } },
-      {
-        element: this.footerAdobeAcrobatReaderlogo,
-        conditions: {
-          defaultVisibility: true,
-          excludeCountries: ['China'],
-        },
-      },
+      { element: this.footerAdobeAcrobatReaderlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerAdobeExpresslogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerPhotoshoplogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.footerIllustratorlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },

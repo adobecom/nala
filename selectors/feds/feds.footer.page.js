@@ -51,8 +51,8 @@ export default class FedsFooter {
     this.footerAcrobatForBusiness = page.locator(".feds-footer-wrapper a[href$='acrobat/business.html']");
     this.footerDiscountsForStudentsAndTeachers = page.locator(".feds-footer-wrapper a[href$='buy/students.html']");
     this.footerDigitalLearningSolutions = page.locator("a[href$='/elearning.html']");
-    this.footerAppsforiOS = page.locator("a[href*='id852473028']");
-    this.footerAppsforAndroid = page.locator("a[href*='id=com.adobe.cc']");
+    this.footerAppsforiOS = page.locator("a[href*='app-store']");
+    this.footerAppsforAndroid = page.locator("a[href*='play.google.com']");
     this.footerWhatIsExperienceCloud = page.locator('.feds-footer-wrapper a[href*="business"]').nth(4);
     this.footerTermsOfUse = page.locator('a[href*="experiencecloudterms"]');
     this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href*="download-install.html"]');
@@ -70,7 +70,7 @@ export default class FedsFooter {
     this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
     this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(2)');
     this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]');
-    this.footerIllustratorlogo = page.locator('a[href$="illustrator/free-trial-download.html"]');
+    this.footerIllustratorlogo = page.locator('.feds-featuredProducts a[href$="illustrator/free-trial-download.html"]');
   }
 
   // >> FEDS Footer methods declared here <<

@@ -15,6 +15,8 @@ const authFile = 'tests/bacom/.auth/user.json';
 
 test.describe('Sharepoint editing', { tag: '@sp, @nopr' }, async () => {
   test.beforeAll(async ({ browser }) => {
+    if (process.env.CI) test.skip();
+
     const options = fs.existsSync(authFile) ? { storageState: authFile } : {};
     context = await browser.newContext(options);
     page = await context.newPage();

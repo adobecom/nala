@@ -26,7 +26,7 @@ test.describe('Test Suite for Illustrator Page Components', () => {
       // Verifying the Visibility of Creativity & Design Elements
       await illustrate.validatingCreativityAndDesignElements(props.country);
       // Verifying the visibility of Footer Elements
-      await illustrate.validatingFooterElements(props.country);
+      await illustrate.validatingFooterElements();
     });
   });
 });
