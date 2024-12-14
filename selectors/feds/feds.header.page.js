@@ -10,7 +10,8 @@ export default class FedsHeader {
     this.headerContainer = page.locator('header.global-navigation');
     this.mainNavLogo = page.locator('a.feds-brand, a.gnav-brand');
     this.mainNavContainer = page.locator('nav.feds-topnav, .gnav-wrapper');
-    this.thirdNavItem = this.mainNavContainer.locator('.feds-nav > div:nth-child(3)');
+    this.fedsNav = this.mainNavContainer.locator('.feds-nav');
+    this.thirdNavItem = this.fedsNav.locator('div:nth-child(3)');
     this.fedsCta = this.mainNavContainer.getByText('Get Started');
     this.megaMenuToggle = page.locator('button.feds-navLink.feds-navLink--hoverCaret, .section-menu').first();
     this.megaMenuContainer = page.locator('section.feds-navItem--megaMenu div.feds-popup, .section-menu .gnav-menu-container');
