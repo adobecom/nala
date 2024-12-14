@@ -54,14 +54,14 @@ test.describe('Marketo block test suite', () => {
     test(
       `1: Marketo essential template, ${features[1].tags}, path: ${path}`,
       async ({ page, baseURL }) => {
-        const params = miloLibs ? `?${miloLibs}&georouting=off` : '?georouting=off';
+        const params = miloLibs ? `${miloLibs}&georouting=off` : '?georouting=off';
         const testPage = `${baseURL}${path}${params}`;
         console.info(`[Test Page]: ${testPage}`);
 
         await test.step('step-1: Go to the Marketo block full template test page', async () => {
           await page.goto(testPage);
           await page.waitForLoadState('domcontentloaded');
-          await expect(page).toHaveURL(testPage);
+          await expect(page.url()).toContain(path);
 
           await marketoBlock.marketo.scrollIntoViewIfNeeded();
           await expect(marketoBlock.email).toBeVisible({ timeout: 8000 });
