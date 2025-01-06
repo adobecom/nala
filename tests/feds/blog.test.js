@@ -23,7 +23,6 @@ test.describe('Test Suite for Blog Page Components', () => {
     await blog.validatingUSPage();
     await page.waitForLoadState('domcontentloaded');
     await expect(page).toHaveURL(`${baseURL}${features[1].path}`);
-    console.log('Navigated Page URL:', page.url());
   });
 
   test(`${features[1].name}, ${features[1].tags}, ${features[1].country}`, async ({ page, baseURL }) => {
@@ -36,6 +35,5 @@ test.describe('Test Suite for Blog Page Components', () => {
     await blog.validatingJPPage();
     await page.waitForLoadState('domcontentloaded');
     await expect(page).toHaveURL(`${baseURL}${features[0].path}`);
-    console.log('Navigated Page URL:', page.url());
   });
 });
