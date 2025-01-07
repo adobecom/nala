@@ -50,8 +50,9 @@ export default class Marquee {
     this.filledButtonL = this.marquee.locator('.con-button.blue.button-l');
     this.filledButtonXL = this.marquee.locator('.con-button.blue.button-xl');
 
-    this.actionLink1 = this.marquee.locator('a').nth(0);
+    this.actionLink1 = this.marquee.locator('a').nth(0); // video pause button
     this.actionLink2 = this.marquee.locator('a').nth(1);
+    this.actionLink3 = this.marquee.locator('a').nth(2);
 
     // background images
     this.background = this.marquee.locator('.background');
@@ -75,114 +76,112 @@ export default class Marquee {
     // marquee attributes
     this.attributes = {
       'marquee.light': {
-        'backgroundImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '1369',
-          'height': '685'
+        backgroundImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '1369',
+          height: '685',
         },
       },
-      'marquee.small': {  
-        'backgroundImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '750',
-          'height': '375'
+      'marquee.small': {
+        backgroundImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '750',
+          height: '375',
         },
       },
       'marquee.small.light': {
-        'backgroundImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '750',
-          'height': '375'
+        backgroundImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '750',
+          height: '375',
         },
       },
       'marquee.large': {
-        'backgroundImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '750',
-          'height': '375'
+        backgroundImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '750',
+          height: '375',
         },
       },
       'marquee.large.light': {
-        'backgroundImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '750',
-          'height': '375',
-          'style': 'object-position: left center;',
+        backgroundImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '750',
+          height: '375',
+          style: 'object-position: left center;',
         },
       },
-      'marquee.split.small': {   
-        'style': /^background:\s+rgb\(0, 0, 0\)$/,        
-      },
+      'marquee.split.small': { style: /^background:\s+rgb\(0, 0, 0\)$/ },
       'marquee.split.large': {
-        'iconImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '49',
-          'height': '48',
+        iconImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '49',
+          height: '48',
         },
-        'mediaImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '720',
-          'height': '520',
+        mediaImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '720',
+          height: '520',
         },
       },
       'marquee.split.one-third-large': {
-        'style': /^background:\s+rgb\(245, 245, 245\)$/, 
-        'iconImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '200',
-          'height': '80',
+        style: /^background:\s+rgb\(245, 245, 245\)$/,
+        iconImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '200',
+          height: '80',
         },
-        'mediaImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '720',
-          'height': '520',
+        mediaImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '720',
+          height: '520',
         },
       },
       'marquee.split.one-third': {
-        'style': /^background:\s+rgb\(0, 0, 0\)$/, 
-        'iconImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '65',
-          'height': '64',
+        style: /^background:\s+rgb\(0, 0, 0\)$/,
+        iconImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '65',
+          height: '64',
         },
-        'mediaImg': {
-          'loading': 'eager',
-          'fetchpriority': 'high',
-          'width': '720',
-          'height': '520',
+        mediaImg: {
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: '720',
+          height: '520',
         },
       },
-      'backgroundMobileImg': {
-        'loading': 'eager',
-        'fetchpriority': 'high',
+      backgroundMobileImg: {
+        loading: 'eager',
+        fetchpriority: 'high',
       },
       'backgroundVideo.inline': {
-        'playsinline': '',
-        'autoplay': '',
-        'loop': '',
-        'muted': ''
+        playsinline: '',
+        autoplay: '',
+        loop: '',
+        muted: '',
       },
       'backgroundVideo.loopOnce': {
-        'playsinline': '',
-        'autoplay': '',
-        'muted': ''
+        playsinline: '',
+        autoplay: '',
+        muted: '',
       },
       'backgroundVideo.controls': {
-        'controls': '',
-        'autoplay': '',
-        'loop': '',
-        'muted': ''
-      },    
+        controls: '',
+        autoplay: '',
+        loop: '',
+        muted: '',
+      },
     };
   }
-};
+}
