@@ -26,6 +26,6 @@ fi
 node run.js -c ${Config} -p ${Project} -g @${category}-screenshots
 node libs/screenshot/merge.js screenshots/${category}
 node libs/screenshot/compare.mjs screenshots/${category}
-node libs/screenshot/uploads3Public.js screenshots/${category}
+node libs/screenshot/uploads3.js screenshots/${category}
 
 echo "All commands executed successfully for category: ${category}!"
