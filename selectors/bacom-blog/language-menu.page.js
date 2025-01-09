@@ -6,14 +6,13 @@ import { expect } from '@playwright/test';
 export default class LanguageMenu {
   constructor(page) {
     this.page = page;
-    this.footerRegionButton = this.page.locator('.footer-region > button');
+    this.footerRegionButton = this.page.locator('.feds-regionPicker');
     this.languageMenu = this.page.locator('ul#language-menu');
     this.au = this.languageMenu.getByText('AU (English)');
     this.uk = this.languageMenu.getByText('UK (English)');
     this.us = this.languageMenu.getByText('US (English)');
     this.de = this.languageMenu.getByText('Deutschland');
     this.fr = this.languageMenu.getByText('France');
-    this.kr = this.languageMenu.getByText('한국');
     this.jp = this.languageMenu.getByText('日本');
   }
 
@@ -29,7 +28,6 @@ export default class LanguageMenu {
     await expect(await this.us).toBeVisible();
     await expect(await this.de).toBeVisible();
     await expect(await this.fr).toBeVisible();
-    await expect(await this.kr).toBeVisible();
     await expect(await this.jp).toBeVisible();
   }
 
@@ -45,7 +43,6 @@ export default class LanguageMenu {
     await expect(await this.us).not.toBeVisible();
     await expect(await this.de).not.toBeVisible();
     await expect(await this.fr).not.toBeVisible();
-    await expect(await this.kr).not.toBeVisible();
     await expect(await this.jp).not.toBeVisible();
   }
 
