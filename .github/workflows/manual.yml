@@ -30,7 +30,7 @@ jobs:
           HLX_TKN: ${{ secrets.HLX_TKN }}
           SLACK_WH: ${{ secrets.SLACK_WH }}          
       - name: Persist JSON Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: nala-results

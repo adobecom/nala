@@ -40,7 +40,7 @@ jobs:
         run: echo "The workflow name is $WORKFLOW_NAME"
 
       - name: Persist JSON Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: nala-results
