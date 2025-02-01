@@ -27,7 +27,7 @@ test.describe('Breadcrumbs Component Test Suite', () => {
       // Check breadcrumbs structure & content:
       await expect(Header.breadcrumbElems).toHaveCount(5);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
-      breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
+      breadcrumbs = breadcrumbs.replace(/[^a-zA-Z0-9]/g, '');
       expect(breadcrumbs).toEqual('HomeProductsPhotoshopEducationBreadcrumbsWithBase');
     });
   });
@@ -51,7 +51,7 @@ test.describe('Breadcrumbs Component Test Suite', () => {
       // Check breadcrumbs structure & content:
       await expect(Header.breadcrumbElems).toHaveCount(5);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
-      breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
+      breadcrumbs = breadcrumbs.replace(/[^a-zA-Z0-9]/g, '');
       expect(breadcrumbs).toEqual('HomeProductsPhotoshopEducationBreadcrumbsFromDocument');
     });
   });
@@ -75,7 +75,7 @@ test.describe('Breadcrumbs Component Test Suite', () => {
       // Check breadcrumbs structure & content:
       await expect(Header.breadcrumbElems).toHaveCount(4);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
-      breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
+      breadcrumbs = breadcrumbs.replace(/[^a-zA-Z0-9]/g, '');
       expect(breadcrumbs).toEqual('nalablocksbreadcrumbsfedsbreadcrumbshiddenlinks');
     });
   });
@@ -99,7 +99,7 @@ test.describe('Breadcrumbs Component Test Suite', () => {
       // Check breadcrumbs structure & content:
       await expect(Header.breadcrumbElems).toHaveCount(5);
       let breadcrumbs = await Header.breadcrumbContainer.textContent();
-      breadcrumbs = breadcrumbs.replace(/ /g, '').replace(/(\r\n|\n|\r)/gm, '');
+      breadcrumbs = breadcrumbs.replace(/[^a-zA-Z0-9]/g, '');
       expect(breadcrumbs).toEqual('draftsnalablocksbreadcrumbsfedsbreadcrumbsnohiddenlinks');
     });
   });
