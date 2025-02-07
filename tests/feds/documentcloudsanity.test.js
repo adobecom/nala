@@ -13,7 +13,7 @@ test.describe('DC production pages Gnav sanity', () => {
     const pageURL = `${baseURL}${features[0].path}`;
     await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(pageURL);
-    await dcsanity.CloseGeoModel();
+    // await dcsanity.CloseGeoModel();
     await dcsanity.ValidateGnav();
   });
 
@@ -22,7 +22,7 @@ test.describe('DC production pages Gnav sanity', () => {
     const pageURL = `${baseURL}${features[1].path}`;
     await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(pageURL);
-    await dcsanity.CloseGeoModel();
+    // await dcsanity.CloseGeoModel();
     await dcsanity.ValidateGnav();
   });
 
@@ -193,7 +193,7 @@ test.describe('DC production pages Gnav sanity', () => {
     const pageURL = `${baseURL}${features[20].path}`;
     await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(pageURL);
-    await dcsanity.CloseGeoModel();
+    // await dcsanity.CloseGeoModel();
     await dcsanity.ValidateGnav();
   });
 

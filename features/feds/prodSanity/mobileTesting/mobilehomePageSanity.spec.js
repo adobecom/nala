@@ -158,7 +158,7 @@ module.exports = {
     {
       tcid: '22',
       name: '@PhilippineEnglishMobileHomePageCheck',
-      path: '/ph_fil/?georouting=off',
+      path: '/ph_en/?georouting=off',
       tags: '@mobileHomePageSanity @mobileHomePagePhilippinesEnglish',
       country: 'Philippines English',
     },
