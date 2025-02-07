@@ -65,7 +65,7 @@ const config = {
       name: 'bacom-live-chrome',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@bacom_graybox'],
+        baseURL: envs['@graybox_bacom'],
       },
     },
     {

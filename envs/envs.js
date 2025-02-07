@@ -28,4 +28,6 @@ module.exports = {
   '@express_milo_live': 'https://main--express-milo--adobecom.aem.live',
   '@graybox_bacom': 'https://test.business-graybox.adobe.com',
   '@graybox_dc': 'https://test.graybox.adobe.com',
+  '@graybox_homepage': 'https://test.graybox.adobe.com',
+  '@graybox_cc': 'https://test.graybox.adobe.com',
 };

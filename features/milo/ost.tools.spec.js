@@ -122,7 +122,7 @@ module.exports = {
       path: '/tools/ost',
       data: { offerID: '0ADF92A6C8514F2800BE9E87DB641D2A' },
       browserParams: '?token=',
-      tags: '@ost @commerce @regression @nopr',
+      tags: '@ost @commerce @f1 S@regression @nopr',
     },
   ],
 };

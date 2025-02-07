@@ -49,7 +49,9 @@ test.describe('Graybox Bacom SOT 404 Check test suite', () => {
         // Wait for some time to ensure all resources are loaded
         await page.waitForLoadState('networkidle'); // Better way to wait for page load
         // {{ edit_1 }}: Log all links on the page
-        const links = await page.$$eval('a', (anchors) => anchors.map((anchor) => anchor.href));
+        const links = await page.$$eval('a', (anchors) => anchors
+          .map((anchor) => anchor.href)
+          .filter((href) => !href.includes('test.business-graybox')));
         console.log('Links on the page:', links);
         results[betaURL] = {
           four0FourErrors,
