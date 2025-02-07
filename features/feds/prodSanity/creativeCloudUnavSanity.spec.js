@@ -6,7 +6,7 @@ module.exports = {
       name: '@UnitedStatesCCUnavPageCheck',
       path: '/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavUnitedStates',
-      buyNowUrl: '/creativecloud/plans.html?filter=acrobat&plan=individual&filter=acrobat',
+      buyNowUrl: '/creativecloud/plans.html',
       country: 'United States',
     },
     {

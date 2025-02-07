@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { features } from '../../features/feds/prodSanity/mobileTesting/mobilehomePageSanity.spec.js';
+import { features } from '../../features/feds/prodSanity/mobileTesting/mobNewNavHomePage.spec.js';
 import HomePageSanity from '../../selectors/feds/feds.homepagesanity.page.js';
 
-test.describe('Test Suite for Home Page on Android & iOS & iPad Devices', () => {
+test.describe('Test Suite for New Nav Home Page on Android & iOS & iPad Devices', () => {
   let home;
 
   test.beforeEach(async ({ page }) => {
@@ -25,13 +25,13 @@ test.describe('Test Suite for Home Page on Android & iOS & iPad Devices', () => 
       // Verifying the visibility of Hamburger Menu Elements
       await home.validatingHamburgerMenu();
       // Verifying the visibility of Creative Cloud Elements
-      await home.validatingCreativityAndDesign(props.country);
+      await home.creativityAndDesignNewNav();
       // Verifying the visibility of PDF & E-Signatures Elements
-      await home.validatingPDFAndESignatures(props.country);
+      await home.documentCloudNewNav();
       // Verifying the visibility of Experience Cloud Elements
-      await home.validatingMarketingAndCommerce(props.country);
+      await home.experienceCloudNewNav();
       // Verifying the visibility of Learn & Support Elements
-      await home.validatingLearnAndSupport(props.country);
+      await home.helpXNewNav();
       // Verifying the visibility of Footer Elements
       await home.validatingFooter(test, props.country);
     });

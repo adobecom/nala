@@ -25,7 +25,7 @@ export default class FedsFooter {
     this.privacyLink = page.locator('a[href*="privacy.html"]');
     this.termsOfUseLink = page.locator('a[href*="terms.html"]');
     this.cookiePreferencesLink = page.locator('a[href*="#openPrivacy"]');
-    this.doNotSellInformationLink = page.locator('a[href*="ca-rights.html"]');
+    this.doNotSellInformationLink = page.locator('a[href*="rights"]');
     this.adChoicesLink = page.locator('a[href*="opt-out.html"]');
     this.adChoicesLogo = page.locator('svg.feds-adChoices-icon');
 
