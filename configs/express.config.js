@@ -11,7 +11,7 @@ const config = {
   outputDir: '../test-results',
   globalSetup: '../global.setup.js',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -37,8 +37,9 @@ const config = {
     actionTimeout: 60000,
 
     trace: 'on-first-retry',
+
     // eslint-disable-next-line max-len
-    baseURL: envs['@express_live'] || 'https://main--express--adobecom.hlx.live',
+    baseURL: envs['@express_milo_live'] || 'https://main--express-milo--adobecom.aem.live',
   },
 
   /* Configure projects for major browsers */
@@ -47,7 +48,7 @@ const config = {
       name: 'express-live-chromium',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@express_live'],
+        baseURL: envs['@express_milo_live'],
       },
     },
 
@@ -55,7 +56,7 @@ const config = {
       name: 'express-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@express_live'],
+        baseURL: envs['@express_milo_live'],
       },
     },
 
@@ -63,7 +64,7 @@ const config = {
       name: 'express-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@express_live'],
+        baseURL: envs['@express_milo_live'],
       },
     },
   ],
