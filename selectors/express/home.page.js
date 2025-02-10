@@ -29,7 +29,7 @@ export default class homePage {
     this.pricingFooter = page.locator('.pricing-footer');
     this.pricingFooterLink = this.pricingFooter.locator('div > a');
     this.compareAllPlansButton = page.getByRole('link', { name: 'Compare all plans' });
-    this.start30DayFreeTrialButton = page.getByRole('link', { name: 'Start 30-day free trial'});
+    this.start30DayFreeTrialButton = page.getByRole('link', { name: 'Start 30-day free trial' });
     this.getAdobeAccessFreeButton = page.getByRole('link', { name: 'Get Adobe Express free' });
     this.start14DayFreeTrialButton = page.getByRole('link', { name: 'Start 14-day free trial' });
     this.requestInformationButton = page.getByRole('link', { name: 'Request information' });
