@@ -19,7 +19,7 @@ export default class FedsFooter {
 
     // Legal Selectors:
     this.legalContainer = page.locator('div.feds-footer-legalWrapper');
-    this.legalSections = page.locator('p.feds-footer-privacySection');
+    this.legalSections = page.locator('div.feds-footer-privacySection');
     this.legalLinks = page.locator('div.feds-footer-legalWrapper a');
     this.legalCopyright = page.locator('span.feds-footer-copyright');
     this.privacyLink = page.locator('a[href*="privacy.html"]');
