@@ -23,28 +23,26 @@ test.describe('Dynamic Navigation Test Suite', () => {
     await test.step('1. Navigate to on page and check the nav and breadcrumbs', async () => {
       await page.goto(onPage);
       await page.waitForLoadState('domcontentloaded');
-      await page.waitForSelector('button.feds-signIn', { state: 'visible' });
+      await expect(header.signInButton).toBeVisible();
       await page.waitForSelector('nav.feds-breadcrumbs', { state: 'visible' });
 
       await expect(async () => {
         await expect(header.breadcrumbContainer).toBeVisible();
-        onNav = await header.mainNavContainer.innerText();
+        onNav = await header.fedsNav.innerText();
         onNav = onNav.toLowerCase();
         await expect(onNav.length).toBeGreaterThan(0);
-        await expect(onNav).toContain('sign in');
       }).toPass();
     });
 
     await test.step('2. Navigate to a page with dynamic nav set to "entry"', async () => {
       await page.goto(entryPage);
       await page.waitForLoadState('domcontentloaded');
-      await page.waitForSelector('button.feds-signIn', { state: 'visible' });
+      await expect(header.signInButton).toBeVisible();
 
       await expect(async () => {
-        entryNav = await header.mainNavContainer.innerText();
+        entryNav = await header.fedsNav.innerText();
         entryNav = entryNav.toLowerCase();
         await expect(entryNav.length).toBeGreaterThan(0);
-        await expect(entryNav).toContain('sign in');
       }).toPass();
     });
 
@@ -56,14 +54,13 @@ test.describe('Dynamic Navigation Test Suite', () => {
     await test.step('4. Check that the expected nav displays and breadcrumbs do not', async () => {
       await page.waitForURL(/.*\/on/);
       await page.waitForLoadState('domcontentloaded');
-      await page.waitForSelector('button.feds-signIn', { state: 'visible' });
+      await expect(header.signInButton).toBeVisible();
       await page.waitForSelector('nav.feds-breadcrumbs', { state: 'hidden' });
 
       await expect(async () => {
-        onNavAfterEntry = await header.mainNavContainer.innerText();
+        onNavAfterEntry = await header.fedsNav.innerText();
         onNavAfterEntry = onNavAfterEntry.toLowerCase();
         await expect(onNavAfterEntry.length).toBeGreaterThan(0);
-        await expect(onNavAfterEntry).toContain('sign in');
         await expect(entryNav).toBe(onNavAfterEntry);
         await expect(onNavAfterEntry).not.toBe(onNav);
         await expect(header.breadcrumbContainer).not.toBeVisible();
@@ -84,28 +81,26 @@ test.describe('Dynamic Navigation Test Suite', () => {
     await test.step('1. Navigate to the off page and check the nav and breadcrumbs', async () => {
       await page.goto(offPage);
       await page.waitForLoadState('domcontentloaded');
-      await page.waitForSelector('button.feds-signIn', { state: 'visible' });
+      await expect(header.signInButton).toBeVisible();
 
       await expect(async () => {
         await expect(header.breadcrumbContainer).toBeVisible();
-        offNav = await header.mainNavContainer.innerText();
+        offNav = await header.fedsNav.innerText();
         offNav = offNav.toLowerCase();
         await expect(offNav.length).toBeGreaterThan(0);
-        await expect(offNav).toContain('sign in');
       }).toPass();
     });
 
     await test.step('2. Navigate to a page with dynamic nav set to "entry"', async () => {
       await page.goto(entryPage);
       await page.waitForLoadState('domcontentloaded');
-      await page.waitForSelector('button.feds-signIn', { state: 'visible' });
+      await expect(header.signInButton).toBeVisible();
       await page.waitForSelector('nav.feds-breadcrumbs', { state: 'visible' });
 
       await expect(async () => {
-        entryNav = await header.mainNavContainer.innerText();
+        entryNav = await header.fedsNav.innerText();
         entryNav = entryNav.toLowerCase();
         await expect(entryNav.length).toBeGreaterThan(0);
-        await expect(entryNav).toContain('sign in');
       }).toPass();
     });
 
@@ -117,16 +112,15 @@ test.describe('Dynamic Navigation Test Suite', () => {
     await test.step('4. Check that the expected nav and breadcrumb displays.', async () => {
       await page.waitForURL(/.*\/off/);
       await page.waitForLoadState('domcontentloaded');
-      await page.waitForSelector('button.feds-signIn', { state: 'visible' });
+      await expect(header.signInButton).toBeVisible();
 
       // TODO: Uncomment the following line when the bug is fixed.
       // await page.waitForSelector('nav.feds-breadcrumbs', { state: 'visible' });
 
       await expect(async () => {
-        offNavAfterEntry = await header.mainNavContainer.innerText();
+        offNavAfterEntry = await header.fedsNav.innerText();
         offNavAfterEntry = offNavAfterEntry.toLowerCase();
         await expect(offNavAfterEntry.length).toBeGreaterThan(0);
-        await expect(offNavAfterEntry).toContain('sign in');
       }).toPass();
 
       await expect(offNavAfterEntry).toBe(offNav);
