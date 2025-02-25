@@ -11,7 +11,7 @@ test.describe('Discover cards test suite', () => {
   });
 
   features[0].path.forEach((path) => {
-    test(`${features[0].name},${features[0].tags} path: ${path}`, async ({ baseURL, page }) => {
+    test(`${features[0].name},${features[0].tags} path: ${path}`, async ({ baseURL }) => {
       const testPage = `${baseURL}${path}`;
       await discoverCard.gotoURL(testPage);
 
