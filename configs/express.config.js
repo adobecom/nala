@@ -39,7 +39,7 @@ const config = {
     trace: 'on-first-retry',
 
     // eslint-disable-next-line max-len
-    baseURL: envs['@express_milo_live'] || 'https://main--express-milo--adobecom.aem.live',
+    baseURL: envs['@express_live'] || 'https://main--express-milo--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
@@ -48,7 +48,7 @@ const config = {
       name: 'express-live-chromium',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: envs['@express_milo_live'],
+        baseURL: envs['@express_live'],
       },
     },
 
@@ -56,7 +56,7 @@ const config = {
       name: 'express-live-firefox',
       use: {
         ...devices['Desktop Firefox'],
-        baseURL: envs['@express_milo_live'],
+        baseURL: envs['@express_live'],
       },
     },
 
@@ -64,7 +64,7 @@ const config = {
       name: 'express-live-webkit',
       use: {
         ...devices['Desktop Safari'],
-        baseURL: envs['@express_milo_live'],
+        baseURL: envs['@express_live'],
       },
     },
   ],
