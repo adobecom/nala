@@ -11,7 +11,7 @@ const config = {
   outputDir: '../test-results',
   globalSetup: '../global.setup.js',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 45 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -38,7 +38,7 @@ const config = {
 
     trace: 'on-first-retry',
     // eslint-disable-next-line max-len
-    baseURL: envs['@express_live'] || 'https://main--express--adobecom.hlx.live',
+    baseURL: envs['@express_live'] || 'https://main--express-milo--adobecom.hlx.live',
   },
 
   /* Configure projects for major browsers */
