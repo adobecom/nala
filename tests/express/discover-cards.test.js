@@ -35,15 +35,17 @@ test.describe('Discover cards test suite', () => {
         let url;
         if (path === '/') {
           await discoverCard.clickButtonOfFirstCard();
-          await page.waitForURL('https://new.express.adobe.com/**');
+          await page.waitForLoadState('networkidle');
+          await page.waitForURL('https://new.express.adobe.com/**', 3000);
           url = page.url();
           expect(url).toContain('new.express.adobe.com');
         } else {
+          await page.waitForLoadState('networkidle');
           const [newTab] = await Promise.all([
             page.waitForEvent('popup'),
             await discoverCard.clickButtonOfFirstCard(),
           ]);
-          await newTab.waitForURL('https://blog.adobe.com/**');
+          await newTab.waitForURL('https://blog.adobe.com/**', 3000);
           url = newTab.url();
           expect(url).toContain('blog.adobe.com');
           await newTab.close();

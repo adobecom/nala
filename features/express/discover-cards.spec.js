@@ -5,7 +5,7 @@ module.exports = {
       tcid: '0',
       name: '@discover-cards',
       path: ['/', '/express/business', '/express/business/teams'],
-      tags: '@express @smoke @regression',
+      tags: '@express @smoke @regression @discover-cards',
     },
   ],
 };
