@@ -36,7 +36,8 @@ const config = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 60000,
 
-    trace: 'on-first-retry',
+    // trace: 'on-first-retry',
+    trace: 'on',
     // eslint-disable-next-line max-len
     baseURL: envs['@express_live'] || 'https://main--express-milo--adobecom.hlx.live',
   },
