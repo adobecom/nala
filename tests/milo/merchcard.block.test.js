@@ -7,6 +7,17 @@ let merchCard;
 const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Milo Merchcard block test suite', () => {
+  test.beforeAll(async ({ baseURL }) => {
+    const excludedEnv = ['bacom', 'business'];
+
+    for (const env of excludedEnv) {
+      if (baseURL.includes(env)) {
+        test.skip(`Skipping the merchcard block tests for ${baseURL}`);
+        break;
+      }
+    }
+  });
+
   test.beforeEach(async ({ page, browserName }) => {
     merchCard = new MerchCard(page);
     if (browserName === 'chromium') {
