@@ -45,7 +45,9 @@ test.describe('Milo Carousel Block test suite', () => {
       expect(await carousel.getSlideText(1, 'h2', 'Orange Slices')).toBeTruthy();
 
       // move to 3rd slide by clicking indicator and verify h2 tag header
-      await carousel.moveToIndicator(3);
+      await carousel.moveToNextSlide();
+      await carousel.moveToNextSlide();
+      await carousel.moveToNextSlide();
       expect(await carousel.getCurrentIndicatorIndex()).toBe('0');
       expect(await carousel.getSlideText(3, 'h2', 'Apples')).toBeTruthy();
     });

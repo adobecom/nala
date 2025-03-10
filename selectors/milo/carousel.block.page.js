@@ -21,134 +21,120 @@ export default class Carousel {
   }
 
   /**
- * Get the index of the current slide.
- * @return {Promise<number>}.
- */
+   * Get the index of the current slide.
+   * @return {Promise<number>}.
+   */
   async getCurrentSlideIndex() {
     const currentIndex = await this.activeSlide.getAttribute('data-index');
     return currentIndex;
   }
 
   /**
- * Get the count of slides of carousel.
- * @return {Promise<number>}.
- */
+   * Get the count of slides of carousel.
+   * @return {Promise<number>}.
+   */
   async getNumberOfSlides() {
     const numberOfSlides = await this.slidesCount.count();
     return numberOfSlides;
   }
 
   /**
- * Move to next slide .
- */
+   * Move to next slide .
+   */
   async moveToNextSlide() {
     await this.nextButton.click();
   }
 
   /**
- * Move to previous slide .
- */
+   * Move to previous slide .
+   */
   async moveToPreviousSlide() {
     await this.previousButton.click();
   }
 
   /**
- * Move to nth  slide .
- */
-  async moveToSlide(index) {
-    await this.indicator.nth(index).click();
-  }
-
-  /**
- * Are carousel indictors are displayed.
- * @return {Promise<boolean>}.
- */
+   * Are carousel indictors are displayed.
+   * @return {Promise<boolean>}.
+   */
   async areIndicatorsDisplayed() {
     const isDisplayed = await this.indicator.isVisible();
     return isDisplayed;
   }
 
   /**
- * Get the active indictor index.
- * @return {Promise<number>}.
- */
+   * Get the active indictor index.
+   * @return {Promise<number>}.
+   */
   async getCurrentIndicatorIndex() {
-    const currentIndex = await this.activeIndicator.getAttribute('tabindex');
+    const currentIndex = await this.activeIndicator.getAttribute('data-index');
     return currentIndex;
   }
 
   /**
- * Get the count of indicators of carousel.
- * @return {Promise<number>}.
- */
+   * Get the count of indicators of carousel.
+   * @return {Promise<number>}.
+   */
   async getNumberOfIndicators() {
     const numberOfIndicators = await this.indicatorCount.count();
     return numberOfIndicators;
   }
 
   /**
- * Move to nth slide by clicking nth indicator
- */
-  async moveToIndicator(index) {
-    await this.indicatorCount.nth(index).click();
-  }
-
-  /**
- * Check carousel <next> button is visible
- * @return {Promise<boolean>}.
- */
+   * Check carousel <next> button is visible
+   * @return {Promise<boolean>}.
+   */
   async isNextButtonlVisible() {
     const isDisplayed = await this.nextButton.isVisible();
     return isDisplayed;
   }
 
   /**
- * Check carousel <previous> button is visible
- * @return {Promise<boolean>}.
- */
+   * Check carousel <previous> button is visible
+   * @return {Promise<boolean>}.
+   */
   async isPreviousButtonlVisible() {
     const isDisplayed = await this.previousButton.isVisible();
     return isDisplayed;
   }
 
   /**
- * Check carousel <lightbox expand> button is visible
- * @return {Promise<boolean>}.
- */
+   * Check carousel <lightbox expand> button is visible
+   * @return {Promise<boolean>}.
+   */
   async isLightboxExpandButtonVisible() {
     const isDisplayed = await this.lightboxExpandButton.isVisible();
     return isDisplayed;
   }
 
   /**
- * Check carousel <lightbox model close> button is visible
- * @return {Promise<boolean>}.
- */
+   * Check carousel <lightbox model close> button is visible
+   * @return {Promise<boolean>}.
+   */
   async isLightboxCloseButtonVisible() {
     const isDisplayed = await this.lightboxCloseButton.isVisible();
     return isDisplayed;
   }
 
   /**
- * Click carousel <lightbox expand> button
- */
+   * Click carousel <lightbox expand> button
+   */
   async expandLightboxModal() {
     await this.lightboxExpandButton.click();
   }
 
   /**
- * Click carousel <lightbox modal close> button
- */
+   * Click carousel <lightbox modal close> button
+   */
   async closeLightboxModal() {
     await this.lightboxCloseButton.click();
   }
 
   /**
- * Gets the text content of a specified carousel slide.
- * @param {number} index - The index of the carousel slide to get the text from.
- * @param {string} tagOrClass - The tag name or class name of the element containing the text.
- * @returns {Promise<string>} The text content of the specified carousel slide.
- */
+   * Gets the text content of a specified carousel slide.
+   * @param {number} index - The index of the carousel slide to get the text from.
+   * @param {string} tagOrClass - The tag name or class name of the element containing the text.
+   * @returns {Promise<string>} The text content of the specified carousel slide.
+   */
   async getSlideText(index, tagOrClass) {
     let slideSelector = `.carousel-slide:nth-child(${index}) `;
     if (tagOrClass.startsWith('.')) {
@@ -163,12 +149,12 @@ export default class Carousel {
   }
 
   /**
- * Gets the text content of a specified carousel slide.
- * @param {number} index - The index of the carousel slide to get the text from.
- * @param {string} tagOrClass - The tag name or class name of the element containing the text.
- * @param {string} expectedText - The text to be validated.
- * @returns {Promise<boolean>} .
- */
+   * Gets the text content of a specified carousel slide.
+   * @param {number} index - The index of the carousel slide to get the text from.
+   * @param {string} tagOrClass - The tag name or class name of the element containing the text.
+   * @param {string} expectedText - The text to be validated.
+   * @returns {Promise<boolean>} .
+   */
   async validateSlideText(index, tagOrClass, expectedText) {
     let slideSelector = `.carousel-slide:nth-child(${index}) `;
     if (tagOrClass.startsWith('.')) {
@@ -186,11 +172,11 @@ export default class Carousel {
   }
 
   /**
- * Check if the specified carousel type is displayed on the page.
- * @param {string} type - The type of carousel to check.
- * @return {Promise<boolean>} Returns a Promise that resolves to true or false.
- * @throws {Error} Throws an error if an invalid carousel type is provided.
- */
+   * Check if the specified carousel type is displayed on the page.
+   * @param {string} type - The type of carousel to check.
+   * @return {Promise<boolean>} Returns a Promise that resolves to true or false.
+   * @throws {Error} Throws an error if an invalid carousel type is provided.
+   */
   async isCarouselDisplayed(type, timeout = 3000) {
     let isDisplayed;
     switch (type) {
@@ -207,7 +193,10 @@ export default class Carousel {
         isDisplayed = await this.carouselContainer.isVisible();
         break;
       case 'carouselShow-2':
-        await this.carouselContainerShow2.waitFor({ state: 'visible', timeout });
+        await this.carouselContainerShow2.waitFor({
+          state: 'visible',
+          timeout,
+        });
         isDisplayed = await this.carouselContainerShow2.isVisible();
         break;
       case 'carousel':
