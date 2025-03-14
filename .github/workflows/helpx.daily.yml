@@ -1,8 +1,8 @@
 name: Helpx Nala Daily Run
 
 on:
-  schedule:
-    - cron: "30 15 * * *"
+  #schedule:
+  #  - cron: "30 15 * * *" # disabling the daily run to fix issues
   workflow_dispatch:
 
 jobs:
