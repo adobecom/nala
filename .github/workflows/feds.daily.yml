@@ -1,8 +1,8 @@
 name: Feds Nala Daily Run
 
 on:
-  schedule:
-    - cron: "30 16 * * *"
+  #schedule:
+  #  - cron: "30 16 * * *" # disabling the daily run to fix issues
   workflow_dispatch:
 
 jobs:

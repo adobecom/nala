@@ -1,8 +1,8 @@
 name: Milo Nala Daily Run
 
 on:
-  schedule:
-    - cron: "0 16 * * *"
+  #schedule:
+  #  - cron: "0 16 * * *" # disabling the daily run to fix issues
   workflow_dispatch:
 
 jobs:
