@@ -38,7 +38,7 @@ const config = {
 
     trace: 'on-first-retry',
     // eslint-disable-next-line max-len
-    baseURL: process.env.PR_BRANCH_LIVE_URL || (process.env.LOCAL_TEST_LIVE_URL || 'https://main--milo--adobecom.hlx.live'),
+    baseURL: process.env.PR_BRANCH_LIVE_URL || (process.env.LOCAL_TEST_LIVE_URL || 'https://main--milo--adobecom.aem.live'),
   },
 
   /* Configure projects for major browsers */
