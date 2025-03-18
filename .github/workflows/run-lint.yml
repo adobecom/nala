@@ -10,9 +10,9 @@ jobs:
     name: Running eslint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@8fca048dbcf31f2792a5f7f4f7611af5582b418d
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@75bb964907cd582125c7786a95b6a16e9d9f049a
         with:
           node-version: 18
 
@@ -20,6 +20,6 @@ jobs:
         run: npm ci
 
       - name: Run eslint on changed files
-        uses: tj-actions/eslint-changed-files@v20
+        uses: tj-actions/eslint-changed-files@1f85b6c9609a0e1f4ed9d3ff1716c7fef4e2a6e4
         with:
           config_path: '.eslintrc.js'
