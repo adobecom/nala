@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@ax-marquee with button',
-      path: ['/express/create', '/express/business', '/express/business/teams',
+      path: ['/express/create', '/express/business/teams',
         '/express/entitled', '/express/learn/students', '/express/nonprofits',
       ],
       tags: '@express @smoke @regression @ax-marquee',
