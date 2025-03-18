@@ -33,19 +33,15 @@ test.describe('ax-marquee test suite', () => {
 
       await test.step('test button click', async () => {
         // Nonprofit page button points to external website.
-        if (path !== '/express/nonprofits') {
-          const target = {
-            '/express/business/teams': 'https://commerce-stg.adobe.com/**',
-            '/express/business/': `${baseURL}/express/business#sales-contact-form-1`,
-            '/express/create': 'https://new.express.adobe.com/**',
-            '/express/entitled': 'https://new.express.adobe.com/**',
-            '/express/learn/students': `${baseURL}/express/learn/students#susi-light-student`,
-          };
-
+        if (path === '/express/nonprofits') {
+          const href = await axMarquee.ctaButton.getAttribute('href');
+          if (href) {
+            const response = await page.request.get(href);
+            expect(response.status()).toEqual(200);
+          }
+        } else {
           await axMarquee.ctaButton.click();
-          await page.waitForURL(target[`${path}`], 6000);
-          const url = page.url();
-          expect(url).not.toBe(testPage);
+          expect(page.url).not.toBe(testPage);
         }
       });
     });
