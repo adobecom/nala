@@ -35,11 +35,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitFullTemplateForm();
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-5: Verify the form submission redirect', async () => {
         await expect(async () => {
           await marketoBlock.submitButton.waitFor({ state: 'detached' });
           const redirectedUrl = await page.url();
@@ -68,11 +73,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitFullTemplateForm('Digital commerce');
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-5: Verify the form submission redirect', async () => {
         await expect(async () => {
           await marketoBlock.submitButton.waitFor({ state: 'detached' });
           const redirectedUrl = await page.url();
@@ -101,11 +111,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitExpandedTemplateForm();
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-5: Verify the form submission redirect', async () => {
         await expect(async () => {
           await marketoBlock.submitButton.waitFor({ state: 'detached' });
           const redirectedUrl = await page.url();
@@ -134,11 +149,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitEssentialTemplateForm();
       });
 
-      await test.step('step-4: Verify the form submission redirect', async () => {
+      await test.step('step-5: Verify the form submission redirect', async () => {
         await expect(async () => {
           await marketoBlock.submitButton.waitFor({ state: 'detached' });
           const redirectedUrl = await page.url();
@@ -167,11 +187,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitFullTemplateForm();
       });
 
-      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+      await test.step('step-5: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
@@ -207,11 +232,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitFullTemplateForm('Digital commerce');
       });
 
-      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+      await test.step('step-5: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
@@ -247,11 +277,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitExpandedTemplateForm();
       });
 
-      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+      await test.step('step-5: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
@@ -287,11 +322,16 @@ test.describe('Marketo block test suite', () => {
         await marketoBlock.checkInputPlaceholders();
       });
 
-      await test.step('step-3: Submit the form with valid inputs', async () => {
+      await test.step('step-3: Check that the error messages display', async () => {
+        await marketoBlock.submitButton.click();
+        await marketoBlock.checkForErrorMessages();
+      });
+
+      await test.step('step-4: Submit the form with valid inputs', async () => {
         await marketoBlock.submitEssentialTemplateForm();
       });
 
-      await test.step('step-4: Verify that the form message displays after form submission.', async () => {
+      await test.step('step-5: Verify that the form message displays after form submission.', async () => {
         await expect(async () => {
           await expect(marketoBlock.message).toBeAttached();
           await expect(page.url()).toBe(testPage);
