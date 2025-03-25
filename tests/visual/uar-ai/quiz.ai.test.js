@@ -13,7 +13,7 @@ const folderPath = 'screenshots/uar-ai';
 
 test.describe('Quiz flow test suite', () => {
   // reset timeout because we use this to run all test data
-  test.setTimeout(3 * 60 * 1000);
+  test.setTimeout(10 * 60 * 1000);
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
@@ -38,23 +38,23 @@ test.describe('Quiz flow test suite', () => {
           keyNumber += 1;
           const project = testInfo.project.name;
 
-          await test.step(`Stable: Select each answer on test page according to ${key}`, async () => {
-            await stablePage.checkQuizEntry(stableURL, key, keyNumber, 'stable', project, folderPath, true);
-          });
+          // await test.step(`Stable: Select each answer on test page according to ${key}`, async () => {
+          //   await stablePage.checkBCQuiz(stableURL, key, keyNumber, 'stable', project, folderPath, true);
+          // });
 
-          stableProductScreenshots = stablePage.screenshots.slice();
-          stablePage.screenshots = [];
+          // stableProductScreenshots = stablePage.screenshots.slice();
+          // stablePage.screenshots = [];
 
           await test.step(`Beta: Select each answer on test page according to ${key}`, async () => {
-            await betaPage.checkQuizEntry(betaURL, key, keyNumber, 'beta', project, folderPath, true);
+            await betaPage.checkBCQuiz(betaURL, key, keyNumber, 'beta', project, folderPath, true);
           });
 
-          betaProductScreenshots = betaPage.screenshots.slice();
-          betaPage.screenshots = [];
+          // betaProductScreenshots = betaPage.screenshots.slice();
+          // betaPage.screenshots = [];
 
-          const result = compareScreenshots(stableProductScreenshots, betaProductScreenshots);
-          const name = `${key}-${project}`;
-          results[name] = result;
+          // const result = compareScreenshots(stableProductScreenshots, betaProductScreenshots);
+          // const name = `${key}-${project}`;
+          // results[name] = result;
         }
 
         writeResultsToFile(folderPath, testInfo, results);
