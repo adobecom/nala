@@ -6,7 +6,7 @@ import Quiz from '../../../selectors/uar/quiz.page.js';
 
 const { features } = require('../../../features/visual/uar-ai/quiz.ai.spec.js');
 const { WebUtil } = require('../../../libs/webutil.js');
-const { compareScreenshots, writeResultsToFile } = require('../../../libs/screenshot/utils.js');
+const { writeResultsToFile } = require('../../../libs/screenshot/utils.js');
 const envs = require('../../../envs/envs.js');
 
 const folderPath = 'screenshots/uar-ai';
@@ -18,7 +18,7 @@ test.describe('Quiz flow test suite', () => {
     test(
       `${feature.name}, ${feature.tags}`,
       async ({ page }, testInfo) => {
-        const stablePage = new Quiz(page);
+        // const stablePage = new Quiz(page);
         const betaPage = new Quiz(page);
         const stableURL = `${envs[feature.stable]}${feature.path}`;
         console.info(stableURL);
@@ -33,8 +33,8 @@ test.describe('Quiz flow test suite', () => {
 
         for (const key of Object.keys(testdata)) {
           console.log(key);
-          let stableProductScreenshots = [];
-          let betaProductScreenshots = [];
+          // let stableProductScreenshots = [];
+          // let betaProductScreenshots = [];
           keyNumber += 1;
           const project = testInfo.project.name;
 
