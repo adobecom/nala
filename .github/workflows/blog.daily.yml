@@ -1,8 +1,8 @@
 name: Blog Nala Daily Run
 
 on:
-  schedule:
-    - cron: "0 15 * * *"
+  #schedule:
+  #  - cron: "0 15 * * *" # disabling the daily run to fix issues.
   workflow_dispatch:
 
 jobs:
@@ -19,10 +19,10 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
         with:
           node-version: lts/*
         
@@ -38,7 +38,7 @@ jobs:
         run: echo "The workflow name is $WORKFLOW_NAME"
         
       - name: Persist JSON Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
         if: always()
         with:
           name: nala-results

@@ -9,14 +9,13 @@ notifications:
       project: MWPW # Mandatory
       filters:
         include:
-          risk_rating: R5
+          risk_rating: R3
       fields:
         assignee:
           name: nateekar
-        customfield_11800: MWPW-140779 #epic link
+        customfield_11800: MWPW-164516 #epic link
         watchers:
           - casalino
-          - mauchley
         labels:
           - "OriginatingProcess=Kodiak"
           - "security"
