@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@grid-marquee headline',
-      path: ['/'],
+      path: ['/express/'],
       tags: '@express @smoke @regression @grid-marquee @headline',
     },
 
