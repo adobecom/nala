@@ -18,7 +18,7 @@ test.describe('BACOM SOT visual comparison test suite', () => {
       const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
       for (const key of Object.keys(testdata)) {
-        const stableURL = testdata[key].replace('.stage.', '.');
+        const stableURL = testdata[key];
         console.info(stableURL);
         const betaURL = testdata[key] + MILO_LIBS;
         console.info(betaURL);
@@ -27,13 +27,9 @@ test.describe('BACOM SOT visual comparison test suite', () => {
         const result = await takeTwo(
           page,
           stableURL,
-          async () => {
-            await page.waitForTimeout(3000);
-          },
+          async () => { await page.waitForSelector('.feds-footer-privacyLink'); },
           betaURL,
-          async () => {
-            await page.waitForTimeout(6000);
-          },
+          async () => { await page.waitForSelector('.feds-footer-privacyLink'); },
           folderPath,
           name,
           { fullPage: true },
