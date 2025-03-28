@@ -17,7 +17,7 @@ module.exports = {
 
     {
       tcid: '2',
-      name: '@ax-marquee ratings',
+      name: '@grid-marquee ratings',
       path: ['/express/'],
       tags: '@express @smoke @regression @grid-marquee @ratings',
     },

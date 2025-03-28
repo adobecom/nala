@@ -15,6 +15,7 @@ test.describe('grid-marquee test suite', () => {
       const testPage = `${baseURL}${path}`;
       console.log(testPage);
       await gridMarquee.gotoURL(testPage);
+      await page.waitForSelector('.global-footer');
 
       await test.step('validate elements in block', async () => {
         await expect(gridMarquee.expressLogo).toBeVisible();
@@ -46,6 +47,7 @@ test.describe('grid-marquee test suite', () => {
     test(`${features[1].name}, path: ${path}, test cards`, async ({ baseURL, page }) => {
       const testPage = `${baseURL}${path}`;
       await gridMarquee.gotoURL(testPage);
+      await page.waitForSelector('.global-footer');
 
       let cardCount;
       await test.step('validate elements in block ', async () => {
