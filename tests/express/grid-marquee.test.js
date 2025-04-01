@@ -85,19 +85,19 @@ test.describe('grid-marquee test suite', () => {
       await page.waitForSelector('.global-footer');
       await test.step('validate elements in block ', async () => {
         expect(await gridMarquee.ratings).toBeVisible();
-        expect(await gridMarquee.ratingsContainer.nth(0)).toBeVisible();
-        expect(await gridMarquee.ratingsContainer.nth(1)).toBeVisible();
-        const appStoreRating = await gridMarquee.ratingsContainer.nth(0).innerText();
-        const googlePlayRating = await gridMarquee.ratingsContainer.nth(1).innerText();
+        expect(await gridMarquee.appStoreButton).toBeVisible();
+        expect(await gridMarquee.googlePlayButton).toBeVisible();
+        const appStoreRating = await gridMarquee.appStoreButton.innerText();
+        const googlePlayRating = await gridMarquee.googlePlayButton.innerText();
         expect(appStoreRating).toBeTruthy();
         expect(googlePlayRating).toBeTruthy();
       });
 
       await test.step('validate button click ', async () => {
-        await gridMarquee.ratingsContainer.nth(0).click();
+        await gridMarquee.appStoreButton.click();
         expect(page.url).not.toBe(testPage);
         await gridMarquee.gotoURL(testPage);
-        await gridMarquee.ratingsContainer.nth(1).click();
+        await gridMarquee.googlePlayButton.click();
         expect(page.url).not.toBe(testPage);
       });
     });

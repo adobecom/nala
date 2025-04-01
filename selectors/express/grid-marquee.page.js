@@ -16,9 +16,10 @@ export default class GridMarquee {
     this.cardDrawerPanel = this.cardDrawer.locator('.panel');
     this.cardDrawerLink = this.cardDrawer.locator('a');
     this.ratings = this.gridMarquee.locator('.ratings');
-    this.ratingsContainer = this.ratings.locator('.ratings-container');
     this.ratingsStar = this.ratings.locator('svg');
     this.ratingsButton = this.ratings.locator('a');
+    this.appStoreButton = this.ratings.locator('.ratings-container').nth(0);
+    this.googlePlayButton = this.ratings.locator('.ratings-container').nth(1);
   }
 
   async gotoURL(url) {
