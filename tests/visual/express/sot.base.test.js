@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { features } from '../../../features/visual/express/sot.spec.js';
-import { takeTwo } from '../../../libs/screenshot/take.js';
+import { features } from '../../../features/visual/express/sot.base.spec.js';
+import { takeOne } from '../../../libs/screenshot/take.js';
 import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
 import Visual from '../../../selectors/visual/visual.page.js';
 
@@ -21,22 +21,14 @@ test.describe('Express SOT visual comparison test suite', () => {
       const visual = new Visual(page);
 
       for (const key of Object.keys(testdata)) {
-        const stableURL = testdata[key].replace('.stage.', '.');
-        console.info(stableURL);
         const betaURL = testdata[key] + MILO_LIBS;
         console.info(betaURL);
 
         const name = `${feature.name}-${key}-${testInfo.project.name}`;
-        const result = await takeTwo(
+        const result = await takeOne(
           page,
-          stableURL,
-          async () => {
-            await visual.waitForEndOfPage();
-          },
           betaURL,
-          async () => {
-            await visual.waitForEndOfPage();
-          },
+          async () => { await visual.waitForEndOfPage(); },
           folderPath,
           name,
           { fullPage: true },

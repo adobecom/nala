@@ -4,6 +4,7 @@ import { test } from '@playwright/test';
 import { features } from '../../../features/visual/homepage/sot.spec.js';
 import { takeTwo } from '../../../libs/screenshot/take.js';
 import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
+import Visual from '../../../selectors/visual/visual.page.js';
 
 const { WebUtil } = require('../../../libs/webutil.js');
 
@@ -19,6 +20,8 @@ test.describe('Homepage SOT visual comparison test suite', () => {
       // load test data from static files
       const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
+      const visual = new Visual(page);
+
       for (const key of Object.keys(testdata)) {
         const stableURL = testdata[key].replace('.stage.', '.');
         console.info(stableURL);
@@ -30,9 +33,9 @@ test.describe('Homepage SOT visual comparison test suite', () => {
         const result = await takeTwo(
           page,
           stableURL,
-          async () => { await page.waitForTimeout(4000); },
+          async () => { await visual.waitForEndOfPage(); },
           betaURL,
-          async () => { await page.waitForTimeout(4000); },
+          async () => { await visual.waitForEndOfPage(); },
           folderPath,
           name,
           { fullPage: true },

@@ -3,13 +3,13 @@
 # Check if category is passed as an argument
 if [ -z "$1" ]; then
   echo "Usage: $0 <category> [config] [project]"
-  echo "Example: $0 milo visual chrome,ipad,iphone"
+  echo "Example: $0 sot|milo visual chrome,ipad,iphone"
   exit 1
 fi
 
 # Validate category input
 category="$1"
-valid_categories="milo caas feds uar bacom bacom-blog graybox-homepage graybox-dc graybox-cc graybox-bacom"
+valid_categories="sot homepage dc cc express"
 if ! echo "$valid_categories" | grep -w -q "$category"; then
   echo "Error: Invalid category '$category'"
   echo "Valid categories are: $valid_categories"
@@ -52,7 +52,7 @@ else
 fi
 
 # Run each command one by one
-node run.js -c ${Config} -p ${Project} -g @${category}-screenshots
+node run.js -c ${Config} -p ${Project} -g @${category}-screenshots-one
 node libs/screenshot/merge.js screenshots/${category}
 node libs/screenshot/compare.mjs screenshots/${category}
 node libs/screenshot/uploads3.js screenshots/${category}
