@@ -4,6 +4,7 @@ import { test } from '@playwright/test';
 import { features } from '../../../features/visual/dc/sot.one.spec.js';
 import { takeOne } from '../../../libs/screenshot/take.js';
 import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
+import Visual from '../../../selectors/visual/visual.page.js';
 
 const { WebUtil } = require('../../../libs/webutil.js');
 
@@ -19,6 +20,8 @@ test.describe('DC SOT visual comparison test suite', () => {
       // load test data from static files
       const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
+      const visual = new Visual(page);
+
       for (const key of Object.keys(testdata)) {
         const betaURL = testdata[key];
         console.info(betaURL);
@@ -28,7 +31,7 @@ test.describe('DC SOT visual comparison test suite', () => {
         const result = await takeOne(
           page,
           betaURL,
-          async () => { await page.waitForSelector('.feds-footer-privacyLink'); },
+          async () => { await visual.waitForEndOfPage(); },
           folderPath,
           name,
           { fullPage: true },
