@@ -15,7 +15,7 @@ test.describe('Image List Block Test Suite', () => {
     console.info(`${baseURL}${features[0].path}`);
     const testPage = `${baseURL}${features[0].path}`;
     await page.goto(testPage);
-    await page.waitForSelector('.global-footer');
+    await expect(imageList.globalFooter).toBeVisible();
 
     await test.step('Verify block displayed ', async () => {
       await expect(imageList.imageListXSmall).toBeVisible();
@@ -31,7 +31,7 @@ test.describe('Image List Block Test Suite', () => {
     console.info(`${baseURL}${features[1].path}`);
     const testPage = `${baseURL}${features[1].path}`;
     await page.goto(testPage);
-    await page.waitForSelector('.global-footer');
+    await expect(imageList.globalFooter).toBeVisible();
 
     await test.step('Verify block displayed ', async () => {
       await expect(imageList.imageListSmall).toBeVisible();
@@ -48,7 +48,7 @@ test.describe('Image List Block Test Suite', () => {
     console.info(`${baseURL}${features[2].path}`);
     const testPage = `${baseURL}${features[2].path}`;
     await page.goto(testPage);
-    await page.waitForSelector('.global-footer');
+    await expect(imageList.globalFooter).toBeVisible();
 
     await test.step('Verify block displayed ', async () => {
       await expect(imageList.imageList).toBeVisible();
@@ -64,7 +64,7 @@ test.describe('Image List Block Test Suite', () => {
     console.info(`${baseURL}${features[3].path}`);
     const testPage = `${baseURL}${features[3].path}`;
     await page.goto(testPage);
-    await page.waitForSelector('.global-footer');
+    await expect(imageList.globalFooter).toBeVisible();
 
     await test.step('Verify block displayed ', async () => {
       await expect(imageList.imageListLarge).toBeVisible();
@@ -80,7 +80,7 @@ test.describe('Image List Block Test Suite', () => {
     console.info(`${baseURL}${features[4].path}`);
     const testPage = `${baseURL}${features[4].path}`;
     await page.goto(testPage);
-    await page.waitForSelector('.global-footer');
+    await expect(imageList.globalFooter).toBeVisible();
 
     await test.step('Verify block displayed ', async () => {
       await expect(imageList.imageListXLarge).toBeVisible();
