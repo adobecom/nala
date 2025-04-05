@@ -8,5 +8,11 @@ export default class cards {
     this.cardImage = page.locator('.card-image');
     this.link = page.locator('.card-content > p > a');
     this.button = page.locator('.card-content > p.button-container > a');
+    this.globalFooter = page.locator('.global-footer');
+  }
+
+  async gotoURL(url) {
+    await this.page.goto(url);
+    await this.globalFooter.waitFor();
   }
 }

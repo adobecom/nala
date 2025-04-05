@@ -12,11 +12,12 @@ export default class DiscoverCard {
     this.cardsGalleryControl = this.cardsBlock.locator('.gallery-control');
     this.cardsControlPrev = this.cardsGalleryControl.locator('.prev');
     this.cardsControlNext = this.cardsGalleryControl.locator('.next');
+    this.globalFooter = page.locator('.global-footer');
   }
 
   async gotoURL(url) {
     await this.page.goto(url);
-    await this.page.waitForLoadState('domcontentloaded');
+    await this.globalFooter.waitFor();
   }
 
   async scrollToDiscoverCards() {

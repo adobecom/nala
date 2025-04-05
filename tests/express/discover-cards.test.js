@@ -32,7 +32,7 @@ test.describe('Discover cards test suite', () => {
       });
 
       await test.step('Validate card button click', async () => {
-        if (path === '/') {
+        if (path === '/express/') {
           await discoverCard.clickButtonOfFirstCard();
           expect(page.url).not.toBe(testPage);
         } else {
