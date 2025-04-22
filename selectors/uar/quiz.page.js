@@ -18,6 +18,8 @@ export default class Quiz {
     this.quizInput = page.locator('#quiz-input');
     this.continueButton = page.getByRole('button', { name: 'Continue' });
     this.carouselNext = page.locator('.carousel-arrow.arrow-next');
+    this.bcChatInput = page.locator('.bc-chat-input');
+    this.bcChatButton = page.locator('.bc-send-button');
   }
 
   /**
@@ -331,6 +333,30 @@ export default class Quiz {
           version,
           0,
           'result',
+          folderPath,
+          project,
+        );
+      }
+    }
+  }
+
+  async checkBCQuiz(url, key, keyNumber, version, project, folderPath, isScreenshot = false) {
+    const answers = key.split('>').map((x) => x.trim());
+    await this.page.goto(url);
+    for (const answer of answers) {
+      await this.bcChatInput.fill(answer);
+      await this.bcChatButton.click();
+      await this.page.waitForSelector('.bc-action-button');
+
+      if (isScreenshot) {
+        await this.page.waitForTimeout(1000);
+
+        const index = answers.indexOf(answer);
+        await this.takeScreenshot(
+          keyNumber,
+          version,
+          index,
+          answer,
           folderPath,
           project,
         );

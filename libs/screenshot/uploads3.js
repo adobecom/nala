@@ -48,11 +48,12 @@ async function uploadFile(fileName, s3Bucket, s3Path, credentials, s3Key, mimeTy
 
 async function main() {
   const dir = process.argv[2] || 'screenshots/milo';
+  const type = process.argv[3] || '';
   const bucket = S3BUCKET;
   const s3Path = '.';
 
   if (!bucket || !s3Path) {
-    console.log('Usage: node uploads3.js <localPath>');
+    console.log('Usage: node uploads3.js <localPath> <type>');
     process.exit(1);
   }
 
@@ -108,14 +109,14 @@ async function main() {
   console.log('Upload results.json');
   await uploadFile(resultsPath, bucket, s3Path, creds, resultsPath, 'application/json');
 
-  const timestampPath = path.join(dir, 'timestamp.json');
+  const timestampPath = path.join(dir, `timestamp${type}.json`);
 
   fs.writeFileSync(
     validatePath(timestampPath, { forWriting: true }),
     JSON.stringify([(new Date()).toLocaleString()], null, 2),
   );
 
-  console.log('Upload timestamp.json');
+  console.log(`Upload timestamp${type}.json`);
   await uploadFile(timestampPath, bucket, s3Path, creds, timestampPath, 'application/json');
 }
 

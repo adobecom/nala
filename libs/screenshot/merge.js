@@ -21,7 +21,7 @@ function mergeResults(folderPath) {
     );
 
     // Optionally, clean up individual files
-    resultsFiles.forEach((file) => fs.unlinkSync(path.join(folderPath, file)));
+    resultsFiles.forEach((file) => fs.unlinkSync(validatePath(path.join(folderPath, file))));
 
     console.log('Results merged and saved successfully.');
   } catch (error) {

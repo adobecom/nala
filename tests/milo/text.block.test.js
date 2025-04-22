@@ -37,13 +37,13 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      await expect(await text.text).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));      
+      await expect(await text.text).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
       await expect(await text.outlineButton).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.outlineButtonText, 1, data.h3Text));
-      await expect(await text.actionAreaLink).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 2, data.h3Text));    
+      await expect(await text.actionAreaLink).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 2, data.h3Text));
     });
   });
 
-  // Test 1 : Text (intro)  
+  // Test 1 : Text (intro)
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
     const { data } = features[1];
@@ -62,15 +62,15 @@ test.describe('Milo Text Block test suite', () => {
       expect(await webUtil.verifyAttributes_(text.textIntro, text.attProperties['text-intro'])).toBeTruthy();
       expect(await webUtil.verifyCSS_(text.introDetailM, text.cssProperties['detail-m'])).toBeTruthy();
       expect(await webUtil.verifyCSS_(text.introHeadline, text.cssProperties['heading-l'])).toBeTruthy();
-      expect(await webUtil.verifyCSS_(text.bodyM, text.cssProperties['body-m'])).toBeTruthy(); 
+      expect(await webUtil.verifyCSS_(text.bodyM, text.cssProperties['body-m'])).toBeTruthy();
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      await expect(await text.textIntro).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));   
-    });    
+      await expect(await text.textIntro).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
+    });
   });
 
-  // Test 2 : Text (full-width)   
+  // Test 2 : Text (full-width)
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
     const { data } = features[2];
@@ -95,12 +95,11 @@ test.describe('Milo Text Block test suite', () => {
 
     await test.step('step-3: Verify analytics attributes', async () => {
       await expect(await text.textFullWidth).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
-      await expect(await text.bodyLink).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 1, data.h3Text));  
+      await expect(await text.bodyLink).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 1, data.h3Text));
     });
-
   });
 
-  // Test 3 : Text (full-width, large) 
+  // Test 3 : Text (full-width, large)
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
     const { data } = features[3];
@@ -125,11 +124,11 @@ test.describe('Milo Text Block test suite', () => {
 
     await test.step('step-3: Verify analytics attributes', async () => {
       await expect(await text.textFullWidthLarge).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
-      await expect(await text.bodyLink).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 1, data.h2Text));      
-    });     
+      await expect(await text.bodyLink).toHaveAttribute('daa-ll', await webUtil.getLinkDaall(data.linkText, 1, data.h2Text));
+    });
   });
 
-  // Test 4 : Text (long-form, large)   
+  // Test 4 : Text (long-form, large)
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const { data } = features[4];
@@ -154,11 +153,11 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      await expect(await text.textLongFormLarge).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));     
-    });     
+      await expect(await text.textLongFormLarge).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
+    });
   });
 
-  // Test 5 : Text (inset, medium, m-spacing)  
+  // Test 5 : Text (inset, medium, m-spacing)
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
     const { data } = features[5];
@@ -183,11 +182,11 @@ test.describe('Milo Text Block test suite', () => {
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      await expect(await text.textInsetLargeMSpacing).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));     
-    });    
+      await expect(await text.textInsetLargeMSpacing).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
+    });
   });
 
-  // Test 6 : Text (legal)    
+  // Test 6 : Text (legal)
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
     const { data } = features[6];
@@ -205,16 +204,16 @@ test.describe('Milo Text Block test suite', () => {
       await expect(await text.publishText).toContainText(data.publishText);
       await expect(await text.generalTerms).toContainText(data.generalTermsText);
       await expect(await text.legalInfoLink).toContainText(data.linkText);
-  
+
       expect(await webUtil.verifyAttributes_(text.textlegal, text.attProperties['text-legal'])).toBeTruthy();
       expect(await webUtil.verifyCSS_(text.bodyXSS, text.cssProperties['body-xss'])).toBeTruthy();
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      await expect(await text.textlegal).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));     
-    });    
+      await expect(await text.textlegal).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
+    });
   });
-  
+
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
     const { data } = features[7];
@@ -234,12 +233,11 @@ test.describe('Milo Text Block test suite', () => {
 
       expect(await webUtil.verifyAttributes_(text.textLinkFarm, text.attProperties['text-Link-farm'])).toBeTruthy();
       expect(await webUtil.verifyCSS_(text.linkFarmHeadline, text.cssProperties['heading-l'])).toBeTruthy();
-      expect(await webUtil.verifyAttributes_(text.linkFarmcolumnheading, text.attProperties['headingprops'])).toBeTruthy();
+      expect(await webUtil.verifyAttributes_(text.linkFarmcolumnheading, text.attProperties.headingprops)).toBeTruthy();
     });
 
     await test.step('step-3: Verify analytics attributes', async () => {
-      await expect(await text.textLinkFarm).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));     
-    });     
+      await expect(await text.textLinkFarm).toHaveAttribute('daa-lh', await webUtil.getBlockDaalh('text', 1));
+    });
   });
-
 });
