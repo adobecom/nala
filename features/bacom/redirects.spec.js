@@ -17,7 +17,6 @@ module.exports = {
         '/de/blog',
         '/fr/blog',
         '/jp/blog',
-        '/kr/blog',
       ],
       tags: '@redirects @bacom @bacomSmoke @regression',
     },

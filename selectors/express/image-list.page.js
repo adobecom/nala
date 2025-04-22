@@ -1,4 +1,4 @@
-export default class ckgLinkList {
+export default class ImageList {
   constructor(page) {
     this.page = page;
     this.imageList = page.locator('.image-list');
@@ -6,5 +6,6 @@ export default class ckgLinkList {
     this.imageListXSmall = page.locator('.image-list.xs');
     this.imageListLarge = page.locator('.image-list.l');
     this.imageListXLarge = page.locator('.image-list.xl');
+    this.globalFooter = page.locator('.global-footer');
   }
 }

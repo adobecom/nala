@@ -4,7 +4,7 @@ import { features } from '../../features/milo/quote.block.spec.js';
 import QuoteBlock from '../../selectors/milo/quote.block.page.js';
 
 let quote;
-let webUtil
+let webUtil;
 
 const miloLibs = process.env.MILO_LIBS || '';
 
@@ -33,7 +33,6 @@ test.describe('Milo Quote Block test suite', () => {
 
       expect(await webUtil.verifyAttributes_(await quote.quote, quote.attProperties.quote)).toBeTruthy();
       expect(await webUtil.verifyCSS_(await quote.quote, quote.cssProperties.quote)).toBeTruthy();
-
     });
   });
 
@@ -54,8 +53,8 @@ test.describe('Milo Quote Block test suite', () => {
       await expect(await quote.quoteFigCaption).toContainText(data.figCaption);
       await expect(await quote.quoteFigCaptionCite).toContainText(data.cite);
 
-      expect(await webUtil.verifyAttributes_(await quote.quote, quote.attProperties['quote-contained'], )).toBeTruthy();
-      expect(await webUtil.verifyCSS_(await quote.quote, quote.cssProperties['quote-contained'])).toBeTruthy();      
+      expect(await webUtil.verifyAttributes_(await quote.quote, quote.attProperties['quote-contained'])).toBeTruthy();
+      expect(await webUtil.verifyCSS_(await quote.quote, quote.cssProperties['quote-contained'])).toBeTruthy();
     });
   });
 
@@ -82,7 +81,7 @@ test.describe('Milo Quote Block test suite', () => {
     });
   });
 
-  // Test 3 : quote (borders)  
+  // Test 3 : quote (borders)
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     console.info(`[MiloInfo] Checking page: ${baseURL}${features[3].path}${miloLibs}`);
     const { data } = features[3];
@@ -104,7 +103,7 @@ test.describe('Milo Quote Block test suite', () => {
     });
   });
 
-  // Test 4 : quote (align-right) 
+  // Test 4 : quote (align-right)
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
     const { data } = features[4];
@@ -126,7 +125,7 @@ test.describe('Milo Quote Block test suite', () => {
     });
   });
 
-  // Test 5 : quote (xl-spaced)   
+  // Test 5 : quote (xl-spaced)
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
     const { data } = features[5];

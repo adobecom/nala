@@ -634,7 +634,7 @@ module.exports = {
     {
       tcid: '90',
       name: '@KoreaPageGnavCheck',
-      path: '/kr/?georouting=off',
+      path: '/kr/?georouting=off#modal-hash',
       tags: '@gnavsanity @gnavhomeKorea',
       country: 'Korea',
     },
