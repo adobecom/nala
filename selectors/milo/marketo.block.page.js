@@ -33,6 +33,7 @@ export default class Marketo {
     this.message = this.marketo.locator('.ty-message');
     this.title = this.marketo.locator('.marketo-title');
     this.description = this.marketo.locator('.marketo-description');
+    this.errorMessage = this.marketo.locator('.msg-error > .mktoVisible  > div > div > div > div.mktoHtmlText');
   }
 
   async submitFullTemplateForm(poi) {
@@ -129,6 +130,46 @@ export default class Marketo {
         expect(placeholder.length).toBeGreaterThan(1);
       }).toPass();
     });
+  }
+
+  async checkForErrorMessages() {
+    const template = await this.getFormTemplate();
+
+    const inputFields = [
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.company,
+      this.country,
+    ];
+
+    if (template === 'flex_contact') {
+      inputFields.push(
+        this.phone,
+        this.postalCode,
+        this.jobTitle,
+        this.functionalArea,
+        this.primaryProductInterest,
+      );
+    } else if (template === 'flex_event') {
+      inputFields.push(
+        this.jobTitle,
+        this.functionalArea,
+      );
+    }
+
+    inputFields.forEach(async (field) => {
+      await expect(async () => {
+        await expect(field).toHaveCSS('border-top-color', 'rgb(215, 55, 63)');
+        await expect(field).toHaveCSS('border-left-color', 'rgb(215, 55, 63)');
+        await expect(field).toHaveCSS('border-right-color', 'rgb(215, 55, 63)');
+        await expect(field).toHaveCSS('border-bottom-color', 'rgb(215, 55, 63)');
+      }).toPass();
+    });
+
+    await expect(this.errorMessage).toBeVisible();
+    await expect(this.errorMessage).toHaveCSS('color', 'rgb(215, 55, 63)');
+    await expect(this.errorMessage).toHaveText('This field is required..');
   }
 
   async formElements() {

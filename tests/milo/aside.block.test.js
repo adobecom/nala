@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { expect, test } from '@playwright/test';
 import { features } from '../../features/milo/aside.block.spec.js';
 import AsideBlock from '../../selectors/milo/aside.block.page.js';
@@ -6,7 +7,7 @@ const miloLibs = process.env.MILO_LIBS || '';
 
 test.describe('Aside Block test suite', () => {
   // Aside Small Checks:
-  test(`${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 0] ${features[0].name}, ${features[0].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[0].path}`);
 
@@ -33,12 +34,12 @@ test.describe('Aside Block test suite', () => {
       const bgdColor = await Aside.asideSmall.evaluate(
         (e) => window.getComputedStyle(e).getPropertyValue('background-color'),
       );
-      expect(bgdColor).toBe(Aside.props.background.lightGrey1);
+      expect(bgdColor).toBe(Aside.props.background.lightGrey3);
     });
   });
 
   // Aside Medium Checks:
-  test(`${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 1] ${features[1].name}, ${features[1].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[1].path}${miloLibs}`);
 
@@ -63,12 +64,12 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideMedium.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe(Aside.props.background.lightGrey1);
+      expect(bgdColor).toBe(Aside.props.background.lightGrey3);
     });
   });
 
   // Aside Large Checks:
-  test(`${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 2] ${features[2].name}, ${features[2].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[2].path}${miloLibs}`);
 
@@ -93,12 +94,12 @@ test.describe('Aside Block test suite', () => {
       expect(await Aside.actionButtons.count()).toEqual(2);
       // Check Aside block background:
       const bgdColor = await Aside.asideLarge.evaluate((e) => window.getComputedStyle(e).getPropertyValue('background-color'));
-      expect(bgdColor).toBe(Aside.props.background.lightGrey1);
+      expect(bgdColor).toBe(Aside.props.background.lightGrey3);
     });
   });
 
   // Aside Split Small Dark Checks:
-  test(`${features[3].name}, ${features[3].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 3] ${features[3].name}, ${features[3].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[3].path}${miloLibs}`);
 
@@ -128,7 +129,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Split Small Half Dark Checks:
-  test(`${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 4] ${features[4].name}, ${features[4].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[4].path}${miloLibs}`);
 
@@ -158,7 +159,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Split Medium Checks:
-  test(`${features[5].name}, ${features[5].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 5] ${features[5].name}, ${features[5].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[5].path}${miloLibs}`);
 
@@ -188,7 +189,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Split Medium Half Checks:
-  test(`${features[6].name}, ${features[6].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 6] ${features[6].name}, ${features[6].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[6].path}${miloLibs}`);
 
@@ -218,7 +219,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Split Large Checks:
-  test(`${features[7].name}, ${features[7].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 7] ${features[7].name}, ${features[7].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[7].path}${miloLibs}`);
 
@@ -246,7 +247,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Split Large Half Dark Checks:
-  test(`${features[8].name}, ${features[8].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 8] ${features[8].name}, ${features[8].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[8].path}${miloLibs}`);
 
@@ -276,7 +277,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Inline Checks:
-  test(`${features[9].name}, ${features[9].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 9] ${features[9].name}, ${features[9].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[9].path}${miloLibs}`);
 
@@ -306,7 +307,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Inline Dark Checks:
-  test(`${features[10].name}, ${features[10].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 10] ${features[10].name}, ${features[10].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[10].path}${miloLibs}`);
 
@@ -336,7 +337,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Notification Extra Small Dark:
-  test(`${features[11].name}, ${features[11].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 11] ${features[11].name}, ${features[11].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[11].path}${miloLibs}`);
 
@@ -371,7 +372,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Notification Small:
-  test(`${features[12].name}, ${features[12].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 12] ${features[12].name}, ${features[12].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[12].path}${miloLibs}`);
 
@@ -404,7 +405,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Notification Medium:
-  test(`${features[13].name}, ${features[13].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 13] ${features[13].name}, ${features[13].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[13].path}${miloLibs}`);
 
@@ -434,7 +435,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Notification Medium Center:
-  test(`${features[14].name}, ${features[14].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 14] ${features[14].name}, ${features[14].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[14].path}${miloLibs}`);
 
@@ -464,7 +465,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Notification Large:
-  test(`${features[15].name}, ${features[15].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 15] ${features[15].name}, ${features[15].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[15].path}${miloLibs}`);
 
@@ -494,7 +495,7 @@ test.describe('Aside Block test suite', () => {
   });
 
   // Aside Notification Large Center:
-  test(`${features[16].name}, ${features[16].tags}`, async ({ page, baseURL }) => {
+  test(`[Test Id - 16] ${features[16].name}, ${features[16].tags}`, async ({ page, baseURL }) => {
     const Aside = new AsideBlock(page);
     console.info(`[Test Page]: ${baseURL}${features[16].path}${miloLibs}`);
 

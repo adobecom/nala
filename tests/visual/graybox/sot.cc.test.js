@@ -4,6 +4,7 @@ import { test } from '@playwright/test';
 import { features } from '../../../features/visual/graybox/sot.cc.spec.js';
 import { takeTwo } from '../../../libs/screenshot/take.js';
 import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
+import Visual from '../../../selectors/visual/visual.page.js';
 
 const { WebUtil } = require('../../../libs/webutil.js');
 
@@ -18,6 +19,8 @@ test.describe('Graybox CC SOT visual comparison test suite', () => {
     test(`${feature.name},${feature.tags}`, async ({ page }, testInfo) => {
       const testdata = await WebUtil.loadTestData(`${feature.data}`);
 
+      const visual = new Visual(page);
+
       for (const key of Object.keys(testdata)) {
         const stableURL = testdata[key];
         const betaURL = testdata[key].replace('www.stage', 'test.graybox');
@@ -28,13 +31,11 @@ test.describe('Graybox CC SOT visual comparison test suite', () => {
             page,
             stableURL,
             async () => {
-              await page.waitForLoadState('networkidle');
-              await page.waitForTimeout(8000);
+              await visual.waitForEndOfPage();
             },
             betaURL,
             async () => {
-              await page.waitForLoadState('networkidle');
-              await page.waitForTimeout(10000);
+              await visual.waitForEndOfPage();
             },
             folderPath,
             name,
