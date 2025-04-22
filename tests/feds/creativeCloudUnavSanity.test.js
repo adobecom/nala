@@ -185,7 +185,6 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingCreativityAndDesign(features[10].country);
     await creative.validatingExplore(features[10].country);
     await creative.validatingLearnAndSupport();
-    await creative.closingPromoButton();
     await creative.validatingFooter(features[10].country);
     await creative.validatingBuyNowButton(`${baseURL}${features[10].buyNowUrl}`);
   });

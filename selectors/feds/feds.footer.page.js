@@ -63,7 +63,7 @@ export default class FedsFooter {
     this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]').nth(0);
     this.footerIntegrity = page.locator('a[href*="integrity.html"]');
     this.footerAdobeBlogSecond = page.locator('.feds-navLink[href*="blog"]').nth(0);
-    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
+    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(0);
     this.termsOfUseLinkTwo = page.locator('a[href*="terms.html"]').nth(1);
 
     // Featured Product Selectors:

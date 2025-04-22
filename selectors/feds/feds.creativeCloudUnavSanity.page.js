@@ -44,20 +44,20 @@ export default class CreativeCloudUnavSanity {
     this.explore = page.locator('.feds-navItem:nth-child(3) button');
     this.features = page.locator('.feds-navItem:nth-child(4) a').nth(0);
     this.forBusiness = page.locator('.feds-navItem:nth-child(5) a').nth(0);
-    this.comparePlans = page.locator('.feds-navItem:nth-child(6) a');
+    this.comparePlans = page.locator('.feds-navItem:nth-child(6) a').nth(0);
     this.learnAndSupport = page.locator('.feds-navItem:nth-child(7) button');
     this.buyNowButton = page.locator('.feds-cta-wrapper [href*="plans.html"]').nth(1);
     this.buyNowButtonTwo = page.locator('.feds-cta-wrapper [href*="plans.html"]').nth(2);
 
     this.photoVideoAndDesign = page.locator('.feds-navItem:nth-child(1) button');
-    this.creativeCloud = page.locator('.feds-navItem:nth-child(2) a');
-    this.program = page.locator('.feds-navItem:nth-child(3) button');
-    this.subjectArea = page.locator('.feds-navItem:nth-child(4) button');
+    this.creativeCloud = page.locator('.feds-navItem:nth-child(2) a').nth(0);
+    this.program = page.locator('.feds-navItem:nth-child(3) button').nth(0);
+    this.subjectArea = page.locator('.feds-navItem:nth-child(4) button').nth(0);
     this.trainingAndSupport = page.locator('.feds-navItem:nth-child(5) button');
-    this.pricesAndSubscriptions = page.locator('.feds-navItem:nth-child(6) a');
+    this.pricesAndSubscriptions = page.locator('.feds-navItem:nth-child(6) a').nth(0);
     this.trainingAndSupportLink = page.locator('.feds-navItem:nth-child(6) button');
-    this.aboInfo = page.locator('.feds-navItem:nth-child(7) a');
-    this.appRecomendation = page.locator('.feds-navItem:nth-child(8) a');
+    this.aboInfo = page.locator('.feds-navItem:nth-child(7) a').nth(0);
+    this.appRecomendation = page.locator('.feds-navItem:nth-child(8) a').nth(0);
 
     this.creativeCloudProducts = page.locator('.feds-menu-headline').nth(0);
 
@@ -111,7 +111,7 @@ export default class CreativeCloudUnavSanity {
 
     // Explore
     this.graphicDesignExplore = page.locator('.feds-popup a[href$="design.html"]').nth(1);
-    this.graphicDesignExploreIn = page.locator('.feds-popup a[href$="design.html"]');
+    this.graphicDesignExploreIn = page.locator('.feds-popup a[href$="design.html"]').nth(0);
 
     // Learn & Support
     this.home = page.locator('.feds-popup a[href$="support/creative-cloud.html"]').nth(0);
@@ -122,19 +122,19 @@ export default class CreativeCloudUnavSanity {
 
     // Subject Areas
     this.photoSa = page.locator('.feds-popup a[href$="creativecloud/photography.html"]').nth(1);
-    this.photoCa = page.locator('.feds-popup a[href$="creativecloud/photography.html"]');
+    this.photoCa = page.locator('.feds-popup a[href$="creativecloud/photography.html"]').nth(0);
 
     // Training & Support
-    this.innovations = page.locator('.feds-popup a[href$="creativecloud/features.html"]');
+    this.innovations = page.locator('.feds-popup a[href$="creativecloud/features.html"]').nth(0);
   }
 
   // UNAV
   async validatingGnav(country) {
     const section1 = ['Middle East And North Africa', 'India', 'Canada English', 'Korea',
       'Canada French', 'Poland', 'Australia', 'Indonesia', 'Indonesia English'];
-    const section2 = ['Germany', 'United Kingdom', 'Japan', 'Mexico', 'Turkey', 'Thailand'];
+    const section2 = ['Germany', 'United Kingdom', 'Mexico', 'Turkey', 'Thailand'];
     const section3 = ['United States', 'France'];
-    const section4 = ['Italy'];
+    const section4 = ['Italy', 'Japan'];
     const section5 = ['Thailand English', 'Singapore', 'Philippines English'];
     const section6 = ['Spain'];
     const section7 = ['Philippines'];
@@ -195,30 +195,24 @@ export default class CreativeCloudUnavSanity {
 
     const elementsToCheck = [
       { element: this.whatIsCC, conditions: { defaultVisibility: true } },
-      { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      {
-        element: this.studentsAndTeachers,
-        conditions: { defaultVisibility: true, excludeCountries: ['India'] },
-      },
-      {
-        element: this.individuals,
-        conditions: { defaultVisibility: true, excludeCountries: ['India'] },
-      },
-      { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.photographers, conditions: { defaultVisibility: true } },
+      { element: this.studentsAndTeachers, conditions: { defaultVisibility: true } },
+      { element: this.individuals, conditions: { defaultVisibility: true } },
+      { element: this.business, conditions: { defaultVisibility: true } },
       { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true } },
       { element: this.photoshop, conditions: { defaultVisibility: true } },
       { element: this.adobeExpress, conditions: { defaultVisibility: true } },
-      { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.lightroom, conditions: { defaultVisibility: true } },
       { element: this.illustrator, conditions: { defaultVisibility: true } },
       { element: this.premierePro, conditions: { defaultVisibility: true } },
       {
         element: this.adobeStock,
         conditions: {
           defaultVisibility: true,
-          excludeCountries: ['India', 'Indonesia English', 'Indonesia'],
+          excludeCountries: ['Indonesia English', 'Indonesia', 'Thailand English', 'Thailand'],
         },
       },
-      { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
+      { element: this.viewAllProducts, conditions: { defaultVisibility: true } },
       { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
@@ -227,13 +221,8 @@ export default class CreativeCloudUnavSanity {
       { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
       { element: this.resizeImage, conditions: { includeCountries: ['India'] } },
       { element: this.covertImageToSVG, conditions: { includeCountries: ['India'] } },
-      { element: this.covertVideoToGIF, conditions: { includeCountries: ['India'] } },
-      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
-      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
       { element: this.resume, conditions: { includeCountries: ['India'] } },
       { element: this.posters, conditions: { includeCountries: ['India'] } },
-      { element: this.card, conditions: { includeCountries: ['India'] } },
-      { element: this.instagramPost, conditions: { includeCountries: ['India'] } },
       { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
       { element: this.createNow, conditions: { includeCountries: ['India'] } },
       { element: this.adobePro, conditions: { includeCountries: ['Spain'] } },
@@ -700,7 +689,7 @@ export default class CreativeCloudUnavSanity {
   }
 
   // Hambuger Menu
-  async validatingHamburgerMenuNewNav() {
+  async validatingHamburgerMenuNewNav(country) {
     await this.hamburgerMenu.click();
 
     const elements = [this.adobeLogoMegaMenu, this.breadHome, this.breadAdobeCC, this.creativityAndDesignTitle, this.closeMegaMenu];
@@ -719,7 +708,11 @@ export default class CreativeCloudUnavSanity {
       }
     }));
 
-    await expect(this.viewPlansAndPricing).toBeVisible();
+    if (country === 'Spain') {
+      await expect(this.viewAllProducts).toBeVisible();
+    } else {
+      await expect(this.viewPlansAndPricing).toBeVisible();
+    }
     await expect(this.whatIsCC).toBeVisible();
 
     await this.featuredProductsNN.click();

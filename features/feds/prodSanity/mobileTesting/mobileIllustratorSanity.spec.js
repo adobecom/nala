@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@UnitedStatesMobileillustratorPageCheck',
-      path: '/products/illustrator.html?georouting=off',
+      path: '/products/illustrator.html?georouting=off#modal-hash',
       tags: '@mobileIllustratorSanity @mobileIllustratorUnitedStates',
       country: 'United States',
     },
@@ -53,7 +53,7 @@ module.exports = {
     {
       tcid: '7',
       name: '@IndiaMobileillustratorPageCheck',
-      path: '/in/products/illustrator.html?georouting=off',
+      path: '/in/products/illustrator.html?georouting=off#modal-hash',
       tags: '@mobileIllustratorSanity @mobileIllustratorIndia',
       country: 'India',
     },
@@ -74,7 +74,7 @@ module.exports = {
     {
       tcid: '10',
       name: '@KoreaMobileillustratorPageCheck',
-      path: '/kr/products/illustrator.html?georouting=off',
+      path: '/kr/products/illustrator.html?georouting=off#modal-hash',
       tags: '@mobileIllustratorSanity @mobileIllustratorKorea',
       country: 'Korea',
     },
@@ -116,7 +116,7 @@ module.exports = {
     {
       tcid: '16',
       name: '@IndonesiaEnglishMobileillustratorPageCheck',
-      path: '/id_en/products/illustrator.html?georouting=off',
+      path: '/id_en/products/illustrator.html?georouting=off#modal-hash',
       tags: '@mobileIllustratorSanity @mobileIllustratorIndonesiaEnglish',
       country: 'Indonesia English',
     },
@@ -158,7 +158,7 @@ module.exports = {
     {
       tcid: '22',
       name: '@PhilippineEnglishMobileillustratorPageCheck',
-      path: '/ph_fil/products/illustrator.html?georouting=off',
+      path: '/ph_en/products/illustrator.html?georouting=off',
       tags: '@mobileIllustratorSanity @mobileIllustratorPhilippinesEnglish',
       country: 'Philippines English',
     },

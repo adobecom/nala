@@ -22,13 +22,13 @@ test.describe('Test Suite for Mobile, iPad, and Tablet Illustrator Page Componen
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of U-NAV Elements
-      await illustrate.validatingUnav(test);
+      await illustrate.validatingUnav();
+      // Verifying the visibility of L-NAV Elements
+      await illustrate.validatingLnavElements();
       // Verifying the Visibility of Hamburger Menu Elements
-      await illustrate.validatingHamburgerMenu(props.country);
-      // Verifying the visibility of Creativity & Design
-      await illustrate.validatingCreativityAndDesign(props.country);
+      await illustrate.validatingHamburgerMenuElements(props.country);
       // Verifying the visibility of Footer
-      await illustrate.validatingFooter(test);
+      await illustrate.validatingFooter();
     });
   });
 });
