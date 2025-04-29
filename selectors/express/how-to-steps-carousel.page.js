@@ -23,9 +23,7 @@ export default class HowToStepsCarousel {
 
   async scrollToHowToStepsCarousel() {
     await this.page.waitForLoadState('domcontentloaded');
-    if (this.howToStepsCarouselContainer) {
-      await this.howToStepsCarouselContainer.scrollIntoViewIfNeeded(2000);
-    }
+    await this.howToStepsCarouselContainer.scrollIntoViewIfNeeded(2000);
   }
 
   async clickButton() {
