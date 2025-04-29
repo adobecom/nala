@@ -24,7 +24,7 @@ module.exports = {
       name: '@accordion-innterlinks',
       path: '/drafts/Automation-PW/accordion-faqs?georouting=off',
       tags: '@cc @cc-accordion @cc-accordionlinkscheck',
-      url: 'https://main--cc--adobecom.hlx.live/creativecloud/plans.html',
+      url: 'https://www.adobe.com/creativecloud/plans.html',
     },
   ],
 };
