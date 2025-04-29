@@ -7,7 +7,7 @@ export default class IllustratorPageSanity {
     this.feds = new FedsFooter(page);
 
     // U-NAV Elements
-    this.adobe = page.locator('.feds-brand');
+    this.adobe = page.locator('.feds-brand-container a.feds-brand');
     this.appSwitcher = page.locator('#unav-app-switcher');
     this.signInButton = page.locator('#unav-profile div');
     this.fedsNav = page.locator('.feds-nav');
@@ -17,7 +17,28 @@ export default class IllustratorPageSanity {
     this.comparePlans = this.fedsNav.locator('.feds-navItem').nth(3);
     this.freeTrialDetails = this.fedsNav.locator('.feds-navItem').nth(4);
     this.tryItForFree = this.fedsNav.locator('.feds-navItem').nth(5);
+
+    this.shopFor = page.locator('.feds-menu-headline').nth(0);
+    this.featuredProducts = page.locator('.feds-menu-headline').nth(1);
+    this.explore = page.locator('.feds-menu-headline').nth(2);
+
     this.hamburgerMenu = page.locator('.feds-toggle');
+    this.closeMegaMenu = page.locator('.close-icon');
+    this.adobeLogoMegaMenu = page.locator('.top-bar .feds-brand-image');
+
+    this.breadHome = page.locator('.feds-nav .feds-breadcrumbs li').nth(0);
+    this.breadAdobeCC = page.locator('.feds-nav .feds-breadcrumbs li').nth(1);
+    this.breadAdobeIllustrator = page.locator('.feds-nav .feds-breadcrumbs li').nth(2);
+
+    this.shopForNN = page.locator('.tabs button').nth(0);
+    this.featuredProductsNN = page.locator('.tabs button').nth(1);
+    this.exploreNN = page.locator('.tabs button').nth(2);
+
+    this.creativityAndDesignTitle = page.locator('.title h7');
+
+    // L-Nav Elements
+    this.illustratorLnav = page.locator('.feds-localnav-title');
+    this.overviewLnav = page.locator('.feds-localnav-items .feds-navLink').nth(0);
 
     // Creativity & Design Elements
     this.whatIsCC = page.locator('.feds-popup [href*="creativecloud.html"]').nth(0);
@@ -92,12 +113,12 @@ export default class IllustratorPageSanity {
       { element: this.features, conditions: { defaultVisibility: true } },
       { element: this.comparePlans, conditions: { defaultVisibility: true } },
       { element: this.freeTrialDetails, conditions: { defaultVisibility: true } },
-      { element: this.tryItForFree, conditions: { includeCountries: ['Germany'] } },
     ];
-
     await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
       if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
         await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
       } else if (conditions.defaultVisibility) {
         await expect(element).toBeVisible();
       }
@@ -109,59 +130,43 @@ export default class IllustratorPageSanity {
     await this.creativityAndDesign.click();
 
     const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
-      { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.individuals, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'France', 'India'] } },
-      { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.schoolsAndUniversities, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
-      { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      { element: this.photographers, conditions: { defaultVisibility: true } },
+      { element: this.individuals, conditions: { defaultVisibility: true } },
+      { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true, excludeCountries: ['Spain'] } },
 
       { element: this.photoshop, conditions: { defaultVisibility: true } },
       { element: this.adobeExpress, conditions: { defaultVisibility: true } },
-      { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.lightroom, conditions: { defaultVisibility: true } },
       { element: this.illustratorCd, conditions: { defaultVisibility: true } },
       { element: this.premierePro, conditions: { defaultVisibility: true } },
-      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
-      { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      {
+        element: this.adobeStock,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Indonesia English', 'Indonesia', 'Thailand', 'Thailand English'],
+        },
+      },
+      { element: this.viewAllProducts, conditions: { defaultVisibility: true } },
 
       { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.graphicDesign, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.Video, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.illustration, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.threeDAndAR, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.pdf, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-
-      { element: this.aiOverviewCC, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
-      { element: this.adobeFirefly, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
 
       { element: this.adobecom, conditions: { defaultVisibility: true } },
       { element: this.pdfAndESignatures, conditions: { defaultVisibility: true } },
       { element: this.marketingAndCommerce, conditions: { defaultVisibility: true } },
       { element: this.helpAndSupport, conditions: { defaultVisibility: true } },
 
-      { element: this.adobeFireflyMp, conditions: { includeCountries: ['Japan'] } },
-      { element: this.governmentAgencies, conditions: { includeCountries: ['Japan'] } },
-      { element: this.benifitsForCC, conditions: { includeCountries: ['Japan'] } },
-      { element: this.acrobatPro, conditions: { includeCountries: ['Spain'] } },
-      { element: this.adobeStockEs, conditions: { includeCountries: ['Spain'] } },
-      { element: this.seeAllProducts, conditions: { includeCountries: ['Spain'] } },
-      { element: this.seePlansAndPricingEs, conditions: { includeCountries: ['Spain'] } },
-
       { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
       { element: this.resizeImage, conditions: { includeCountries: ['India'] } },
       { element: this.covertImageToSVG, conditions: { includeCountries: ['India'] } },
-      { element: this.covertVideoToGIF, conditions: { includeCountries: ['India'] } },
-      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
-      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
       { element: this.resume, conditions: { includeCountries: ['India'] } },
       { element: this.posters, conditions: { includeCountries: ['India'] } },
-      { element: this.card, conditions: { includeCountries: ['India'] } },
-      { element: this.instagramPost, conditions: { includeCountries: ['India'] } },
       { element: this.youTubeVideo, conditions: { includeCountries: ['India'] } },
       { element: this.createNow, conditions: { includeCountries: ['India'] } },
-      { element: this.adobeExpressIn, conditions: { includeCountries: ['India'] } },
-      { element: this.seePlansAndPricing, conditions: { includeCountries: ['India'] } },
     ];
 
     await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
@@ -183,12 +188,11 @@ export default class IllustratorPageSanity {
     const elements = [
       this.feds.footerCreativeCloud, this.feds.footerCreativeCloudForBusiness, this.feds.footerDiscountsForStudentsAndTeachers,
       this.feds.footerAppsforiOS, this.feds.footerWhatIsExperienceCloud, this.feds.footerDownloadAndInstall,
-      this.feds.footerAdobeBlogSecond, this.feds.footerLogInToYourAccount, this.feds.footerAbout, this.feds.footerAdobeAcrobatReaderlogo,
+      this.feds.footerAdobeBlogSecond, this.feds.footerAbout, this.feds.footerAdobeAcrobatReaderlogo,
       this.feds.footerAdobeExpresslogo, this.feds.footerPhotoshoplogo, this.feds.footerIllustratorlogo, this.feds.changeRegionButton,
       this.feds.facebookIcon, this.feds.instagramIcon, this.feds.twitterIcon, this.feds.linkedInIcon, this.feds.legalCopyright,
       this.feds.privacyLink, this.feds.termsOfUseLink, this.feds.cookiePreferencesLink, this.feds.protectMyPersonalData,
-      this.feds.adChoicesLogo,
-    ];
+      this.feds.adChoicesLogo];
 
     await Promise.all(elements.map(async (element) => {
       await expect(element).toBeVisible();
@@ -198,105 +202,20 @@ export default class IllustratorPageSanity {
   // Mobile methods:
 
   // U-Nav
-  async validatingUnav() {
+  async validatingUnav(test) {
     const elements = [this.hamburgerMenu, this.adobe, this.appSwitcher, this.signInButton];
     await Promise.all(elements.map(async (element) => {
       await expect(element).toBeVisible();
     }));
-  }
 
-  // Hamburger Menu
-  async validatingHamburgerMenu(country) {
-    await this.hamburgerMenu.click();
-    const elementsToCheck = [
-      { element: this.creativityAndDesign, conditions: { defaultVisibility: true } },
-      { element: this.illustrator, conditions: { defaultVisibility: true } },
-      { element: this.features, conditions: { defaultVisibility: true } },
-      { element: this.comparePlans, conditions: { defaultVisibility: true } },
-      { element: this.freeTrialDetails, conditions: { defaultVisibility: true } },
-      { element: this.tryItForFree, conditions: { includeCountries: ['Germany'] } },
-    ];
-
-    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
-      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
-        await expect(element).toBeVisible();
-      } else if (conditions.defaultVisibility) {
-        await expect(element).toBeVisible();
-      }
-    }));
-  }
-
-  // Creativity & Design
-  async validatingCreativityAndDesign(country) {
-    await this.creativityAndDesign.click();
-
-    const skipCountries = ['United Kingdom', 'India', 'Spain'];
-    const addCountries = ['United Kingdom', 'India', 'Spain'];
-
-    if (!skipCountries.includes(country)) {
-      await this.creativityAndDesignElements(country);
-    } else if (addCountries.includes(country)) {
-      await this.quickActionsElements(country);
-    }
-
-    await this.hamburgerMenu.click();
-  }
-
-  async creativityAndDesignElements(country) {
-    const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
-      { element: this.photographers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.studentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.business, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.schoolsAndUniversities, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
-      { element: this.viewPlansAndPricing, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
-    ];
-
-    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
-      if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
-        await expect(element).not.toBeVisible();
-      } else if (conditions.defaultVisibility) {
-        await expect(element).toBeVisible();
-      }
-    }));
-  }
-
-  async quickActionsElements(country) {
-    await this.quickActions.click();
-    const elementsToCheck = [
-      { element: this.whatIsCC, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.photoshop, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.adobeExpress, conditions: { defaultVisibility: true } },
-      { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
-      { element: this.illustratorCd, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.premierePro, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
-      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
-      { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain', 'United Kingdom'] } },
-      { element: this.viewPlansAndPricing, conditions: { includeCountries: ['United Kingdom'] } },
-      { element: this.acrobatPro, conditions: { includeCountries: ['Spain'] } },
-      { element: this.adobeStockEs, conditions: { includeCountries: ['Spain'] } },
-      { element: this.seeAllProducts, conditions: { includeCountries: ['Spain'] } },
-      { element: this.removeBackground, conditions: { includeCountries: ['India'] } },
-      { element: this.resizeImage, conditions: { includeCountries: ['India'] } },
-      { element: this.covertImageToSVG, conditions: { includeCountries: ['India'] } },
-      { element: this.covertVideoToGIF, conditions: { includeCountries: ['India'] } },
-      { element: this.createQRCode, conditions: { includeCountries: ['India'] } },
-      { element: this.seeAllQuickActions, conditions: { includeCountries: ['India'] } },
-    ];
-
-    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
-      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
-        await expect(element).toBeVisible();
-      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
-        await expect(element).not.toBeVisible();
-      } else if (conditions.defaultVisibility) {
-        await expect(element).toBeVisible();
-      }
-    }));
+    await this.scrollAndCheck(test, 880, 2000);
+    await this.scrollToBottom(test);
+    await this.scrollToTop(test);
+    await this.scrollAndCheck(test, 1240, 2000);
   }
 
   // Footer
-  async validatingFooter() {
+  async validatingFooter(test) {
     await this.feds.changeRegionButton.scrollIntoViewIfNeeded();
 
     const elements = [this.feds.changeRegionButton, this.feds.facebookIcon, this.feds.instagramIcon,
@@ -305,6 +224,11 @@ export default class IllustratorPageSanity {
       this.feds.adChoicesLogo, this.feds.adChoicesLink,
     ];
     await Promise.all(elements.map((element) => expect(element).toBeVisible()));
+
+    await this.scrollAndCheckBackward(test, 330, 2000);
+    await this.scrollToTop(test);
+    await this.scrollToBottom(test);
+    await this.scrollAndCheckBackward(test, 750, 2000);
   }
 
   // iPad and Tab Methods
@@ -325,7 +249,7 @@ export default class IllustratorPageSanity {
       { element: this.lightroom, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
       { element: this.illustratorCd, conditions: { defaultVisibility: true } },
       { element: this.premierePro, conditions: { defaultVisibility: true } },
-      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
+      { element: this.adobeStock, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
       { element: this.viewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['India', 'Spain'] } },
 
       { element: this.photo, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
@@ -373,5 +297,116 @@ export default class IllustratorPageSanity {
     }));
 
     await this.creativityAndDesign.click();
+  }
+
+  // Scroll the page
+  async scrollAndCheck(test, scrollAmount, waitTime) {
+    const initialScrollY = await this.page.evaluate(() => window.scrollY);
+    await this.page.evaluate((amount) => window.scrollBy(0, amount), scrollAmount);
+    await this.page.waitForTimeout(waitTime);
+    const newScrollY = await this.page.evaluate(() => window.scrollY);
+    const isScrolled = newScrollY > initialScrollY;
+    console.log('Is the page scrolled?', isScrolled);
+
+    if (!isScrolled) {
+      test.fail('Page did not scroll as expected.');
+      throw new Error('Page did not scroll as expected.');
+    }
+  }
+
+  async scrollAndCheckBackward(test, scrollAmount, waitTime) {
+    const initialScrollY = await this.page.evaluate(() => window.scrollY);
+    await this.page.evaluate((amount) => window.scrollBy(0, amount), -scrollAmount);
+    await this.page.waitForTimeout(waitTime);
+    const newScrollY = await this.page.evaluate(() => window.scrollY);
+    const isScrolled = newScrollY < initialScrollY;
+    console.log('Is the page scrolled Backward?', isScrolled);
+
+    if (!isScrolled) {
+      test.fail('Page did not scroll Backward as expected.');
+      throw new Error('Page did not scroll Backward as expected.');
+    }
+  }
+
+  async scrollToBottom(test) {
+    const initialScrollY = await this.page.evaluate(() => window.scrollY);
+    await this.page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+    await this.page.waitForTimeout(2000);
+    const newScrollY = await this.page.evaluate(() => window.scrollY);
+    const isScrolled = newScrollY > initialScrollY;
+    console.log('Is the page scrolled th the bottom?', isScrolled);
+
+    if (!isScrolled) {
+      test.fail('Page did not scroll as expected.');
+      throw new Error('Page did not scroll as expected.');
+    }
+  }
+
+  async scrollToTop(test) {
+    const initialScrollY = await this.page.evaluate(() => window.scrollY);
+    await this.page.evaluate(() => {
+      window.scrollTo(0, 0);
+    });
+    await this.page.waitForTimeout(2000);
+    const newScrollY = await this.page.evaluate(() => window.scrollY);
+    const isScrolled = newScrollY < initialScrollY;
+    console.log('Is the page scrolled to the top?', isScrolled);
+
+    if (!isScrolled) {
+      test.fail('Page did not scroll to the top as expected.');
+      throw new Error('Page did not scroll to the top as expected.');
+    }
+  }
+
+  // New Nav Methods
+
+  // L-Nav
+  async validatingLnavElements() {
+    await this.illustratorLnav.click();
+    await expect(this.overviewLnav).toBeVisible();
+    await this.illustratorLnav.click();
+  }
+
+  // Hamburger Menu
+  async validatingHamburgerMenuElements(country) {
+    await this.hamburgerMenu.click();
+
+    const elements = [this.adobeLogoMegaMenu, this.closeMegaMenu, this.breadHome, this.breadAdobeCC, this.breadAdobeIllustrator,
+      this.creativityAndDesignTitle];
+    await Promise.all(elements.map((element) => expect(element).toBeVisible()));
+
+    const elementsToCheck = [
+      { element: this.shopForNN, conditions: { defaultVisibility: true } },
+      { element: this.featuredProductsNN, conditions: { defaultVisibility: true } },
+      { element: this.exploreNN, conditions: { defaultVisibility: true } },
+    ];
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+
+    const excludeCountries = ['India', 'Spain'];
+
+    if (country.excludeCountries && excludeCountries.includes(country)) {
+      if (country.excludeCountries.includes('India')) {
+        await expect(this.seeAllQuickActions).toBeVisible();
+      }
+      if (country.excludeCountries.includes('Spain')) {
+        await expect(this.viewAllProducts).toBeVisible();
+      }
+      await expect(this.viewPlansAndPricing).not.toBeVisible();
+    } else if (!excludeCountries.includes(country)) {
+      await expect(this.viewPlansAndPricing).toBeVisible();
+    }
+    await expect(this.photoshop).toBeVisible();
+
+    await this.shopForNN.click();
+    await this.exploreNN.click();
+    await this.featuredProductsNN.click();
+
+    await this.closeMegaMenu.click();
   }
 }

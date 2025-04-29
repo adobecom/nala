@@ -22,7 +22,7 @@ test.describe('Test Suite for Creative Cloud Business Enterprise Page Components
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of U-NAV Elements
-      await enterprise.validatingUnav();
+      await enterprise.validatingUnav(test);
       // Verifying the visibility of Creativity & Design Elements
       await enterprise.validatingCreativityAndDesign(props.country);
       // Verifying the visibility of Product Elements
@@ -30,7 +30,7 @@ test.describe('Test Suite for Creative Cloud Business Enterprise Page Components
       // Verifying the visibility of Resource Elements
       await enterprise.validatingResources();
       // Verifying the visibility of Footer Elements
-      await enterprise.validatingFooter();
+      await enterprise.validatingFooter(test);
     });
   });
 });
