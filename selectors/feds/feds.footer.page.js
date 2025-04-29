@@ -25,7 +25,7 @@ export default class FedsFooter {
     this.privacyLink = page.locator('a[href*="privacy.html"]');
     this.termsOfUseLink = page.locator('a[href*="terms.html"]');
     this.cookiePreferencesLink = page.locator('a[href*="#openPrivacy"]');
-    this.doNotSellInformationLink = page.locator('a[href*="ca-rights.html"]');
+    this.doNotSellInformationLink = page.locator('a[href*="rights"]');
     this.adChoicesLink = page.locator('a[href*="opt-out.html"]');
     this.adChoicesLogo = page.locator('svg.feds-adChoices-icon');
 
@@ -63,7 +63,7 @@ export default class FedsFooter {
     this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]').nth(0);
     this.footerIntegrity = page.locator('a[href*="integrity.html"]');
     this.footerAdobeBlogSecond = page.locator('.feds-navLink[href*="blog"]').nth(0);
-    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
+    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(0);
     this.termsOfUseLinkTwo = page.locator('a[href*="terms.html"]').nth(1);
 
     // Featured Product Selectors:

@@ -23,7 +23,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingGnav(features[0].country);
     await creative.validatingCreativityAndDesign(features[0].country);
     await creative.validatingExplore(features[0].country);
-    await creative.validatingLearnAndSupport();
+    await creative.validatingLearnAndSupport(features[0].country);
     await creative.validatingFooter(features[0].country);
     await creative.validatingBuyNowButton(`${baseURL}${features[0].buyNowUrl}`);
   });
@@ -156,7 +156,7 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingTrainingAndSupport(features[8].country);
     await creative.closingPromoButton();
     await creative.validatingFooter(features[8].country);
-    await creative.validatingBuyNowButton(`${baseURL}${features[8].buyNowUrl}`);
+    await creative.validatingBuyNowButtonSpain(`${baseURL}${features[8].buyNowUrl}`);
   });
 
   test(`${features[9].name}, ${features[9].tags}, ${features[9].country}`, async ({ page, baseURL }) => {
@@ -185,7 +185,6 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
     await creative.validatingCreativityAndDesign(features[10].country);
     await creative.validatingExplore(features[10].country);
     await creative.validatingLearnAndSupport();
-    await creative.closingPromoButton();
     await creative.validatingFooter(features[10].country);
     await creative.validatingBuyNowButton(`${baseURL}${features[10].buyNowUrl}`);
   });

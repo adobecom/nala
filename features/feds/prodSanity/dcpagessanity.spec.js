@@ -11,7 +11,7 @@ module.exports = {
     {
       tcid: '1',
       name: '@USDCSign',
-      path: '/sign.html',
+      path: '/acrobat/business/sign.html',
       tags: '@DCSanity @USDCSign-sanity',
       country: 'United States',
     },
