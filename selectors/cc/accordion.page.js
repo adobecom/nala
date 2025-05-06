@@ -4,7 +4,7 @@ export default class accordion {
     // Accordion UI elements in page
     this.accordionSection = page.locator('.accordion-container.seo.static-links.con-block.max-width-10-desktop');
     this.accordionName = this.accordionSection.locator('#accordion-1');
-    this.accordionQuestion1 = this.accordionName.locator('//dt[@role="heading"]').nth(0);
+    this.accordionQuestion1 = this.accordionName.locator('//div[@role="heading"]').nth(0);
     this.accordionDefinition1 = this.accordionName.locator('#accordion-1-trigger-1');
     this.accordionQuestion2 = this.accordionName.locator('//dt[@role="heading"]').nth(1);
     this.accordionDefinition2 = this.accordionName.locator('#accordion-1-trigger-2');
