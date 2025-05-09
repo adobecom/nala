@@ -347,4 +347,84 @@ test.describe('Marketo block test suite', () => {
       });
     });
   });
+
+  features[8].path.forEach((path) => {
+    test(`8: @marketo show/hide content post form submission, ${features[8].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
+      console.info(`[Test Page]: ${testPage}`);
+
+      await test.step('step-1: Go to the Marketo show/hide test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
+      });
+
+      await test.step('step-2: Check that the content is hidden/displayed', async () => {
+        const hiddenContent = page.getByText('shown post form submission');
+        const shownContent = page.getByText('hide post form submission');
+
+        await expect(hiddenContent).toBeHidden();
+        await expect(shownContent).toBeVisible();
+        await expect(hiddenContent).not.toBeVisible();
+      });
+
+      await test.step('step-3: Submit the form', async () => {
+        await marketoBlock.submitEssentialTemplateForm();
+        await expect(marketoBlock.message).toBeVisible({ timeout: 10000 });
+      });
+
+      await test.step('step-4: Check that the content is hidden/displayed', async () => {
+        const shownContent = page.getByText('shown post form submission');
+        const hiddenContent = page.getByText('hide post form submission');
+
+        await expect(hiddenContent).toBeHidden();
+        await expect(shownContent).toBeVisible();
+        await expect(hiddenContent).not.toBeVisible();
+      });
+    });
+  });
+
+  features[9].path.forEach((path) => {
+    test(`9: @marketo form off param, ${features[9].tags}, path: ${path}`, async ({
+      page,
+      baseURL,
+    }) => {
+      const testPage = `${baseURL}${path}${miloLibs}`.toLowerCase();
+      console.info(`[Test Page]: ${testPage}`);
+
+      await test.step('step-1: Go to the Marketo show/hide test page', async () => {
+        await page.goto(testPage);
+        await page.waitForLoadState('domcontentloaded');
+        await expect(page.url()).toBe(testPage);
+        await expect(marketoBlock.email).toBeVisible({ timeout: 10000 });
+      });
+
+      await test.step('step-2: Check that the content is hidden/displayed', async () => {
+        const hiddenContent = page.getByText('shown post form submission');
+        const shownContent = page.getByText('hide post form submission');
+
+        await expect(hiddenContent).toBeHidden();
+        await expect(shownContent).toBeVisible();
+        await expect(hiddenContent).not.toBeVisible();
+      });
+
+      await test.step('step-3: Navigate to the page with the form off param', async () => {
+        const formParam = miloLibs ? '&form=off' : '?form=off';
+        await page.goto(`${testPage}${formParam}`);
+      });
+
+      await test.step('step-4: Check that the content is hidden/displayed', async () => {
+        const shownContent = page.getByText('shown post form submission');
+        const hiddenContent = page.getByText('hide post form submission');
+
+        await expect(hiddenContent).toBeHidden();
+        await expect(shownContent).toBeVisible();
+        await expect(hiddenContent).not.toBeVisible();
+      });
+    });
+  });
 });
