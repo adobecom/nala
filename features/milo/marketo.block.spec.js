@@ -61,5 +61,17 @@ module.exports = {
       ],
       tags: '@marketo @marketoEssentialMessage @marketoMessage @milo @smoke @regression',
     },
+    {
+      tcid: '8',
+      name: '@marketo show/hide post form submission',
+      path: ['/drafts/nala/blocks/marketo/show-hide'],
+      tags: '@marketo @marketoShowHide @milo @smoke @regression',
+    },
+    {
+      tcid: '9',
+      name: '@marketo form off param',
+      path: ['/drafts/nala/blocks/marketo/show-hide'],
+      tags: '@marketo @marketoShowHide @marketoFormOff @milo @smoke @regression',
+    },
   ],
 };
