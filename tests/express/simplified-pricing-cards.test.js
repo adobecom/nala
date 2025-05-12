@@ -45,6 +45,10 @@ test.describe('simplified-pricing-cards test suite', () => {
 
       await test.step('test button click', async () => {
         await simplifiedPricingCards.gotoURL(testPage);
+        await simplifiedPricingCards.clickFreeButton();
+        expect(page.url()).not.toBe(testPage);
+
+        await simplifiedPricingCards.gotoURL(testPage);
         await simplifiedPricingCards.clickPremiumButton();
         expect(page.url()).not.toBe(testPage);
 
@@ -54,9 +58,6 @@ test.describe('simplified-pricing-cards test suite', () => {
 
         await simplifiedPricingCards.gotoURL(testPage);
         await simplifiedPricingCards.clickEnterpriseButton();
-        expect(page.url()).not.toBe(testPage);
-
-        await simplifiedPricingCards.clickFreeButton();
         expect(page.url()).not.toBe(testPage);
       });
     });
