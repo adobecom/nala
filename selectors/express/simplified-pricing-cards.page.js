@@ -1,4 +1,4 @@
-export default class HowToStepsCarousel {
+export default class SimplifiedPricingCards {
   constructor(page) {
     this.page = page;
     this.simplifiedPricingCards = page.locator('.simplified-pricing-cards');
