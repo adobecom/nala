@@ -15,6 +15,5 @@ export default class pricingmodel {
     this.educationTab = this.tablist.locator('//div[@data-query-value="edu"]');
     this.sslTransactionIndicator = page.locator('Secure transaction').nth(1);
     this.modelClose = page.locator('dialog-close');
-
   }
 }
