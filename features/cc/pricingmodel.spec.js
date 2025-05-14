@@ -5,13 +5,13 @@ module.exports = {
       tcid: '0',
       name: '@pricingmodel-ui',
       path: '/creativecloud?georouting=off',
-      tags: '@cc @cc-pricingmodel @cc-pricingmodel-ui',
+      tags: '@cc @cc-pricingmodel @cc-pricingmodel-ui @nopr',
     },
     {
       tcid: '1',
       name: '@pricingmodel-tabandpicksubscription',
       path: '/creativecloud?georouting=off',
-      tags: '@cc @cc-pricingmodel @cc-pricingmodel-tabandpicksubscription',
+      tags: '@cc @cc-pricingmodel @cc-pricingmodel-tabandpicksubscription @nopr',
     },
   ],
 };
