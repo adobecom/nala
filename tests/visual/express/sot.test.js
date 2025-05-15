@@ -8,7 +8,7 @@ const { WebUtil } = require('../../../libs/webutil.js');
 
 const folderPath = 'screenshots/express';
 const results = {};
-const MILO_LIBS = '';
+const envs = require('../../../envs/envs.js');
 
 test.describe('Express SOT visual comparison test suite', () => {
   // reset timeout because we use this to run all test data
@@ -21,9 +21,9 @@ test.describe('Express SOT visual comparison test suite', () => {
       const visual = new Visual(page);
 
       for (const key of Object.keys(testdata)) {
-        const stableURL = testdata[key].replace('.stage.', '.');
+        const stableURL = `${envs[feature.stable]}${testdata[key]}`;
         console.info(stableURL);
-        const betaURL = testdata[key] + MILO_LIBS;
+        const betaURL = `${envs[feature.beta]}${testdata[key]}`;
         console.info(betaURL);
 
         const name = `${feature.name}-${key}-${testInfo.project.name}`;
