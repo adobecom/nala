@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 const FIRST_NAME = 'firstNameTest';
 const LAST_NAME = 'lastNameTest';
 const PHONE = '415-123-4567';
-const EMAIL = 'test+nosub@adobetest.com';
+const EMAIL = 'test@adobetest.com';
 const COMPANY = 'Adobe';
 const POSTAL_CODE = '94111';
 
