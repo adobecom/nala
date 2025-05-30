@@ -9,7 +9,7 @@ fi
 
 # Validate category input
 category="$1"
-valid_categories="milo caas feds uar bacom bacom-blog graybox-homepage graybox-dc graybox-cc graybox-bacom"
+valid_categories="milo caas feds uar bacom bacom-blog graybox-homepage graybox-dc graybox-cc graybox-bacom express"
 if ! echo "$valid_categories" | grep -w -q "$category"; then
   echo "Error: Invalid category '$category'"
   echo "Valid categories are: $valid_categories"

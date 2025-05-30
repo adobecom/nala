@@ -57,7 +57,7 @@ export default class Aside {
         black: 'rgb(17, 17, 17)',
         darkGrey: 'rgb(171, 171, 171)',
         lightGrey2: 'rgb(245, 245, 245)',
-        lightGrey3: 'rgb(249, 249, 249)',
+        lightGrey3: 'rgb(238, 238, 238)',
       },
     };
   }

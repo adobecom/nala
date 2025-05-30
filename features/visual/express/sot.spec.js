@@ -4,8 +4,8 @@ module.exports = {
     {
       tcid: '0',
       name: '@express-visual',
-      stable: '@adobe_prod',
-      beta: '@adobe_stage',
+      stable: '@express_live',
+      beta: '@express_stage',
       tags: '@express-visual @visual @express-screenshots',
       data: 'data/express/sot-basic.yml',
     },
