@@ -110,7 +110,7 @@ export default class AxColumns {
     await this.page.waitForLoadState('domcontentloaded');
     if (this.highlightVariantWatchNowButton.first()) {
       await this.highlightVariantWatchNowButton.first().click();
-      await this.waitForTimeout(2000);
+      await this.page.waitForTimeout(2000);
     }
   }
 
@@ -118,7 +118,7 @@ export default class AxColumns {
     await this.page.waitForLoadState('domcontentloaded');
     if (this.highlightVariantAlternativeVideoSourceWebMButton.first()) {
       await this.highlightVariantAlternativeVideoSourceWebMButton.first().click();
-      await this.waitForTimeout(2000);
+      await this.page.waitForTimeout(2000);
     }
   }
 
@@ -126,7 +126,7 @@ export default class AxColumns {
     await this.page.waitForLoadState('domcontentloaded');
     if (this.highlightVariantAlternateVideoSourceMP4Button.first()) {
       await this.highlightVariantAlternateVideoSourceMP4Button.first().click();
-      await this.waitForTimeout(2000);
+      await this.page.waitForTimeout(2000);
     }
   }
 
@@ -134,7 +134,7 @@ export default class AxColumns {
     await this.page.waitForLoadState('domcontentloaded');
     if (this.fullsizeVariantDesignNowButton.first()) {
       await this.fullsizeVariantDesignNowButton.first().click();
-      await this.waitForTimeout(2000);
+      await this.page.waitForTimeout(2000);
     }
   }
 
@@ -142,7 +142,7 @@ export default class AxColumns {
     await this.page.waitForLoadState('domcontentloaded');
     if (this.fullsizeCenterVariantMakeYourLogoNowButton.first()) {
       await this.fullsizeCenterVariantMakeYourLogoNowButton.first().click();
-      await this.waitForTimeout(2000);
+      await this.page.waitForTimeout(2000);
     }
   }
 
@@ -150,6 +150,7 @@ export default class AxColumns {
     await this.page.waitForLoadState('domcontentloaded');
     if (this.lightVariantStartNowItsFreeButton.first()) {
       await this.lightVariantStartNowItsFreeButton.first().click();
+      await this.page.waitForTimeout(2000);
     }
   }
 }
