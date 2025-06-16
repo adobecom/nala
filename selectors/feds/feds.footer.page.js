@@ -19,13 +19,13 @@ export default class FedsFooter {
 
     // Legal Selectors:
     this.legalContainer = page.locator('div.feds-footer-legalWrapper');
-    this.legalSections = page.locator('p.feds-footer-privacySection');
+    this.legalSections = page.locator('ul.feds-footer-privacySection');
     this.legalLinks = page.locator('div.feds-footer-legalWrapper a');
     this.legalCopyright = page.locator('span.feds-footer-copyright');
     this.privacyLink = page.locator('a[href*="privacy.html"]');
     this.termsOfUseLink = page.locator('a[href*="terms.html"]');
     this.cookiePreferencesLink = page.locator('a[href*="#openPrivacy"]');
-    this.doNotSellInformationLink = page.locator('a[href*="ca-rights.html"]');
+    this.doNotSellInformationLink = page.locator('a[href*="rights"]');
     this.adChoicesLink = page.locator('a[href*="opt-out.html"]');
     this.adChoicesLogo = page.locator('svg.feds-adChoices-icon');
 
@@ -51,8 +51,8 @@ export default class FedsFooter {
     this.footerAcrobatForBusiness = page.locator(".feds-footer-wrapper a[href$='acrobat/business.html']");
     this.footerDiscountsForStudentsAndTeachers = page.locator(".feds-footer-wrapper a[href$='buy/students.html']");
     this.footerDigitalLearningSolutions = page.locator("a[href$='/elearning.html']");
-    this.footerAppsforiOS = page.locator("a[href*='id852473028']");
-    this.footerAppsforAndroid = page.locator("a[href*='id=com.adobe.cc']");
+    this.footerAppsforiOS = page.locator("a[href*='app-store']");
+    this.footerAppsforAndroid = page.locator("a[href*='play.google.com']");
     this.footerWhatIsExperienceCloud = page.locator('.feds-footer-wrapper a[href*="business"]').nth(4);
     this.footerTermsOfUse = page.locator('a[href*="experiencecloudterms"]');
     this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href*="download-install.html"]');
@@ -63,14 +63,14 @@ export default class FedsFooter {
     this.footerAbout = page.locator('.feds-footer-wrapper [href*="about-adobe.html"]').nth(0);
     this.footerIntegrity = page.locator('a[href*="integrity.html"]');
     this.footerAdobeBlogSecond = page.locator('.feds-navLink[href*="blog"]').nth(0);
-    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(4)');
+    this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(0);
     this.termsOfUseLinkTwo = page.locator('a[href*="terms.html"]').nth(1);
 
     // Featured Product Selectors:
     this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
     this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(2)');
     this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]');
-    this.footerIllustratorlogo = page.locator('a[href$="illustrator/free-trial-download.html"]');
+    this.footerIllustratorlogo = page.locator('.feds-featuredProducts a[href$="illustrator/free-trial-download.html"]');
   }
 
   // >> FEDS Footer methods declared here <<

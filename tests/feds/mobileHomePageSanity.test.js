@@ -21,15 +21,19 @@ test.describe('Test Suite for Home Page on Android & iOS & iPad Devices', () => 
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of G-NAV Elements
-      await home.validatingUnav();
+      await home.validatingUnav(test);
       // Verifying the visibility of Hamburger Menu Elements
       await home.validatingHamburgerMenu();
       // Verifying the visibility of Creative Cloud Elements
       await home.validatingCreativityAndDesign(props.country);
+      // Verifying the visibility of PDF & E-Signatures Elements
+      await home.validatingPDFAndESignatures(props.country);
       // Verifying the visibility of Experience Cloud Elements
-      await home.validatingMarketingAndCommerce();
+      await home.validatingMarketingAndCommerce(props.country);
+      // Verifying the visibility of Learn & Support Elements
+      await home.validatingLearnAndSupport(props.country);
       // Verifying the visibility of Footer Elements
-      await home.validatingFooter(props.country);
+      await home.validatingFooter(test, props.country);
     });
   });
 });

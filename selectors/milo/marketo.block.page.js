@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 const FIRST_NAME = 'firstNameTest';
 const LAST_NAME = 'lastNameTest';
 const PHONE = '415-123-4567';
-const EMAIL = 'test+nosub@adobetest.com';
+const EMAIL = 'test@adobetest.com';
 const COMPANY = 'Adobe';
 const POSTAL_CODE = '94111';
 
@@ -31,6 +31,9 @@ export default class Marketo {
     );
     this.submitButton = this.marketo.locator('#mktoButton_new');
     this.message = this.marketo.locator('.ty-message');
+    this.title = this.marketo.locator('.marketo-title');
+    this.description = this.marketo.locator('.marketo-description');
+    this.errorMessage = this.marketo.locator('.msg-error > .mktoVisible  > div > div > div > div.mktoHtmlText');
   }
 
   async submitFullTemplateForm(poi) {
@@ -45,7 +48,9 @@ export default class Marketo {
     await this.postalCode.fill(POSTAL_CODE);
 
     // Setting index 2 to test so that the 'Company Type' field doesn't display
-    await this.primaryProductInterest.selectOption(poi !== undefined ? poi : { index: 2 });
+    await this.primaryProductInterest.selectOption(
+      poi !== undefined ? poi : { index: 2 },
+    );
 
     await this.state.selectOption({ index: 1 });
     await this.selectCompanyType();
@@ -85,6 +90,11 @@ export default class Marketo {
     const template = await this.page.evaluate(
       'window.mcz_marketoForm_pref.form.template',
     );
+
+    if (!template) {
+      throw new Error('Template not found');
+    }
+
     return template;
   }
 
@@ -102,13 +112,7 @@ export default class Marketo {
    * and that the value isn't empty.
    */
   async checkInputPlaceholders() {
-    const template = await this.page.evaluate(
-      'window.mcz_marketoForm_pref.form.template',
-    );
-
-    if (!template) {
-      throw new Error('Template not found');
-    }
+    const template = await this.getFormTemplate();
 
     const inputFields = [
       this.firstName,
@@ -126,5 +130,76 @@ export default class Marketo {
         expect(placeholder.length).toBeGreaterThan(1);
       }).toPass();
     });
+  }
+
+  async checkForErrorMessages() {
+    const template = await this.getFormTemplate();
+
+    const inputFields = [
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.company,
+      this.country,
+    ];
+
+    if (template === 'flex_contact') {
+      inputFields.push(
+        this.phone,
+        this.postalCode,
+        this.jobTitle,
+        this.functionalArea,
+        this.primaryProductInterest,
+      );
+    } else if (template === 'flex_event') {
+      inputFields.push(
+        this.jobTitle,
+        this.functionalArea,
+      );
+    }
+
+    inputFields.forEach(async (field) => {
+      await expect(async () => {
+        await expect(field).toHaveCSS('border-top-color', 'rgb(215, 55, 63)');
+        await expect(field).toHaveCSS('border-left-color', 'rgb(215, 55, 63)');
+        await expect(field).toHaveCSS('border-right-color', 'rgb(215, 55, 63)');
+        await expect(field).toHaveCSS('border-bottom-color', 'rgb(215, 55, 63)');
+      }).toPass();
+    });
+
+    await expect(this.errorMessage).toBeVisible();
+    await expect(this.errorMessage).toHaveCSS('color', 'rgb(215, 55, 63)');
+    await expect(this.errorMessage).toHaveText('This field is required..');
+  }
+
+  async formElements() {
+    const template = await this.getFormTemplate();
+
+    const elements = [
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.company,
+      this.country,
+      this.companyType,
+      this.submitButton,
+      this.title,
+      this.description,
+    ];
+
+    if (template === 'flex_event') {
+      elements.push(this.jobTitle, this.functionalArea);
+    } else if (template === 'flex_contact') {
+      elements.push(
+        this.phone,
+        this.jobTitle,
+        this.functionalArea,
+        this.state,
+        this.postalCode,
+        this.primaryProductInterest,
+      );
+    }
+
+    return elements;
   }
 }

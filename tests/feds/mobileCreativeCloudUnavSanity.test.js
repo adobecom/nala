@@ -25,25 +25,13 @@ test.describe('Test Suite for Creative Cloud Page Components', () => {
       await expect(page).toHaveURL(pageURL);
 
       // Validating Unav Elements
-      await home.validatingUnav();
+      await home.validatingUnav(test);
+      // Validating Lnav Elements
+      await creative.validatingLnavElements();
       // Validating Hamburger Menu Elements
-      await creative.validatingHamburgerMenu(props.country);
-      // Validating Creativity & Design Elements
-      await creative.validatingCreativityDesign(props.country);
-      // Validating Explore Elements
-      await creative.validatingExploreSection(props.country);
-      // Validating Learn & Support Elements
-      await creative.validatingLearnAndSupportSection(props.country);
-      // Validating Program Elements
-      await creative.validatingProgramSection(props.country);
-      // Validating Subject Area Elements
-      await creative.validatingSubjectAreaSection(props.country);
-      // Validating Training & Support Elements
-      await creative.validatingTrainingAndSupportSection(props.country);
-      // Closing Hamburger Menu
-      await creative.hamburgerMenu.click();
+      await creative.validatingHamburgerMenuNewNav(props.country);
       // Validating Footer Elements
-      await creative.validatingFooterSection(props.country);
+      await creative.validatingFooterSection(test);
     });
   });
 });

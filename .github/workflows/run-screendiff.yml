@@ -1,0 +1,48 @@
+name: Run ScreenDiff Manually
+
+on:
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'Test category to run (leave empty to run all, or specify one: milo,feds,caas,uar,uar-ai)'
+        required: false
+        type: string
+
+jobs:
+  test-matrix:
+    name: Running ${{ inputs.category }} tests
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-latest
+            categories: ["milo","feds","caas","uar","uar-ai"]
+    runs-on: ${{ matrix.platform }}
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Node.js
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
+        with:
+          node-version: lts/*
+        
+      - name: Run Nala
+        run: |
+          if [ -n "${{ inputs.category }}" ]; then
+            bash runScreenDiff.sh ${{ inputs.category }}
+          else
+            for category in ${{ join(matrix.categories, ' ') }}; do
+              bash runScreenDiff.sh $category
+            done
+          fi
+        shell: bash
+        env:
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+          HLX_TKN: ${{ secrets.HLX_TKN }}
+          SLACK_WH: ${{ secrets.SLACK_WH }}
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_ROLE_ARN: ${{secrets.AWS_ROLE_ARN}}

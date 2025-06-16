@@ -6,7 +6,7 @@ module.exports = {
       name: '@UnitedStatesCCUnavPageCheck',
       path: '/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavUnitedStates',
-      buyNowUrl: 'https://www.adobe.com/creativecloud/plans.html?filter=acrobat&plan=individual&filter=acrobat',
+      buyNowUrl: '/creativecloud/plans.html',
       country: 'United States',
     },
     {
@@ -14,7 +14,7 @@ module.exports = {
       name: '@GermanyCCUnavPageCheck',
       path: '/de/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavGermany',
-      buyNowUrl: 'https://www.adobe.com/de/creativecloud/plans.html',
+      buyNowUrl: '/de/creativecloud/plans.html',
       country: 'Germany',
     },
     {
@@ -22,7 +22,7 @@ module.exports = {
       name: '@FranceCCUnavPageCheck',
       path: '/fr/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavFrance',
-      buyNowUrl: 'https://www.adobe.com/fr/creativecloud/plans.html',
+      buyNowUrl: '/fr/creativecloud/plans.html',
       country: 'France',
     },
     {
@@ -30,7 +30,7 @@ module.exports = {
       name: '@ItalyCCUnavPageCheck',
       path: '/it/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavItaly',
-      buyNowUrl: 'https://www.adobe.com/it/creativecloud/plans.html',
+      buyNowUrl: '/it/creativecloud/plans.html',
       country: 'Italy',
     },
     {
@@ -38,7 +38,7 @@ module.exports = {
       name: '@UnitedKingdomCCUnavPageCheck',
       path: '/uk/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavUnitedKingdom',
-      buyNowUrl: 'https://www.adobe.com/uk/creativecloud/plans.html',
+      buyNowUrl: '/uk/creativecloud/plans.html',
       country: 'United Kingdom',
     },
     {
@@ -46,7 +46,7 @@ module.exports = {
       name: '@MiddleEastAndNorthAfricaCCUnavPageCheck',
       path: '/mena_ar/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavMiddleEastAndNorthAfrica',
-      buyNowUrl: 'https://www.adobe.com/mena_ar/creativecloud/plans.html',
+      buyNowUrl: '/mena_ar/creativecloud/plans.html',
       country: 'Middle East And North Africa',
     },
     {
@@ -54,7 +54,7 @@ module.exports = {
       name: '@JapanCCUnavPageCheck',
       path: '/jp/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavJapan',
-      buyNowUrl: 'https://www.adobe.com/jp/creativecloud/plans.html',
+      buyNowUrl: '/jp/creativecloud/plans.html',
       country: 'Japan',
     },
     {
@@ -62,7 +62,7 @@ module.exports = {
       name: '@IndiaCCUnavPageCheck',
       path: '/in/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavIndia',
-      buyNowUrl: 'https://www.adobe.com/in/creativecloud/plans.html',
+      buyNowUrl: '/in/creativecloud/plans.html',
       country: 'India',
     },
     {
@@ -70,7 +70,7 @@ module.exports = {
       name: '@SpainCCUnavPageCheck',
       path: '/es/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavSpain',
-      buyNowUrl: 'https://www.adobe.com/es/creativecloud/plans.html',
+      buyNowUrl: '/es/creativecloud/plans.html',
       country: 'Spain',
     },
     {
@@ -78,7 +78,7 @@ module.exports = {
       name: '@CanadaEnglishCCUnavPageCheck',
       path: '/ca/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavCanadaEnglish',
-      buyNowUrl: 'https://www.adobe.com/ca/creativecloud/plans.html?filter=acrobat&plan=individual&filter=acrobat',
+      buyNowUrl: '/ca/creativecloud/plans.html',
       country: 'Canada English',
     },
     {
@@ -86,7 +86,7 @@ module.exports = {
       name: '@KoreaCCUnavPageCheck',
       path: '/kr/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavKorea',
-      buyNowUrl: 'https://www.adobe.com/kr/creativecloud/plans.html',
+      buyNowUrl: '/kr/creativecloud/plans.html',
       country: 'Korea',
     },
     {
@@ -94,7 +94,7 @@ module.exports = {
       name: '@CanadaFrenchCCUnavPageCheck',
       path: '/ca_fr/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavCanadaFrench',
-      buyNowUrl: 'https://www.adobe.com/ca_fr/creativecloud/plans.html?filter=acrobat&plan=individual&filter=acrobat',
+      buyNowUrl: '/ca_fr/creativecloud/plans.html',
       country: 'Canada French',
     },
     {
@@ -102,7 +102,7 @@ module.exports = {
       name: '@PolandCCUnavPageCheck',
       path: '/pl/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavPoland',
-      buyNowUrl: 'https://www.adobe.com/pl/creativecloud/plans.html?filter=acrobat&plan=individual&filter=acrobat',
+      buyNowUrl: '/pl/creativecloud/plans.html',
       country: 'Poland',
     },
     {
@@ -110,7 +110,7 @@ module.exports = {
       name: '@MexicoCCUnavPageCheck',
       path: '/mx/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavMexico',
-      buyNowUrl: 'https://www.adobe.com/mx/creativecloud/plans.html',
+      buyNowUrl: '/mx/creativecloud/plans.html',
       country: 'Mexico',
     },
     {
@@ -118,7 +118,7 @@ module.exports = {
       name: '@AustraliaCCUnavPageCheck',
       path: '/au/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavAustralia',
-      buyNowUrl: 'https://www.adobe.com/au/creativecloud/plans.html',
+      buyNowUrl: '/au/creativecloud/plans.html',
       country: 'Australia',
     },
     {
@@ -126,7 +126,7 @@ module.exports = {
       name: '@IndonesiaCCUnavPageCheck',
       path: '/id_id/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavIndonesia',
-      buyNowUrl: 'https://www.adobe.com/id_id/creativecloud/plans.html',
+      buyNowUrl: '/id_id/creativecloud/plans.html',
       country: 'Indonesia',
     },
     {
@@ -134,7 +134,7 @@ module.exports = {
       name: '@IndonesiaEnglishCCUnavPageCheck',
       path: '/id_en/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavIndonesiaEnglish',
-      buyNowUrl: 'https://www.adobe.com/id_en/creativecloud/plans.html',
+      buyNowUrl: '/id_en/creativecloud/plans.html',
       country: 'Indonesia English',
     },
     {
@@ -142,7 +142,7 @@ module.exports = {
       name: '@TurkeyCCUnavPageCheck',
       path: '/tr/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavTurkey',
-      buyNowUrl: 'https://www.adobe.com/tr/creativecloud/plans.html',
+      buyNowUrl: '/tr/creativecloud/plans.html',
       country: 'Turkey',
     },
     {
@@ -150,7 +150,7 @@ module.exports = {
       name: '@ThailandEnglishCCUnavPageCheck',
       path: '/th_en/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavThailandEnglish',
-      buyNowUrl: 'https://www.adobe.com/th_en/creativecloud/plans.html',
+      buyNowUrl: '/th_en/creativecloud/plans.html',
       country: 'Thailand English',
     },
     {
@@ -158,7 +158,7 @@ module.exports = {
       name: '@ThailandCCUnavPageCheck',
       path: '/th_th/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavThailand',
-      buyNowUrl: 'https://www.adobe.com/th_th/creativecloud/plans.html',
+      buyNowUrl: '/th_th/creativecloud/plans.html',
       country: 'Thailand',
     },
     {
@@ -166,7 +166,7 @@ module.exports = {
       name: '@SingaporeCCUnavPageCheck',
       path: '/sg/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavSingapore',
-      buyNowUrl: 'https://www.adobe.com/sg/creativecloud/plans.html',
+      buyNowUrl: '/sg/creativecloud/plans.html',
       country: 'Singapore',
     },
     {
@@ -174,7 +174,7 @@ module.exports = {
       name: '@PhilippinesCCUnavPageCheck',
       path: '/ph_fil/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavPhilippines',
-      buyNowUrl: 'https://www.adobe.com/ph_fil/creativecloud/plans.html',
+      buyNowUrl: '/ph_fil/creativecloud/plans.html',
       country: 'Philippines',
     },
     {
@@ -182,7 +182,7 @@ module.exports = {
       name: '@PhilippinesEnglishCCUnavPageCheck',
       path: '/ph_en/creativecloud.html?georouting=off',
       tags: '@ccounavpagesanity @ccunavPhilippinesEnglish',
-      buyNowUrl: 'https://www.adobe.com/ph_en/creativecloud/plans.html',
+      buyNowUrl: '/ph_en/creativecloud/plans.html',
       country: 'Philippines English',
     },
   ],

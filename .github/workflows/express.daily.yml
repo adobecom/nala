@@ -1,0 +1,46 @@
+name: Express Nala Daily Run
+
+on:
+  #schedule:
+  #  - cron: '0 16 * * *' # disabling the daily run to fix issues
+  workflow_dispatch:
+
+jobs:
+  platform_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Running tests
+    runs-on: ${{ matrix.os }}
+    env:
+      WORKFLOW_NAME: 'Express Nala Daily Run'
+      DAILY_RUN: 'true'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Node.js
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
+        with:
+          node-version: lts/*
+
+      - name: Run Nala ${{ matrix.os }}
+        run: bash dailyrun.sh express
+        env:
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+          HLX_TKN: ${{ secrets.HLX_TKN }}
+          SLACK_WH: ${{ secrets.SLACK_WH }}
+
+      - name: Display workflow name
+        run: echo "The workflow name is $WORKFLOW_NAME"
+
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
+        if: always()
+        with:
+          name: nala-results
+          path: nala-results.json
+          retention-days: 30

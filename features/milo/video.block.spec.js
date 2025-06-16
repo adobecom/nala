@@ -56,8 +56,9 @@ module.exports = {
       path: '/drafts/nala/blocks/video/youtube-video',
       data: {
         h1Text: 'YouTube video',
-        iframeTitle: 'Adobe MAX Keynote 2022 | Adobe Creative Cloud',
+        playLabel: 'Adobe MAX Keynote 2022 | Adobe Creative Cloud',
         source: 'https://www.youtube.com/embed/OfQKEzgPaBA?',
+        videoId: 'OfQKEzgPaBA',
       },
       tags: '@video @smoke @regression @milo',
     },
@@ -66,7 +67,7 @@ module.exports = {
       name: '@Fragment Modal video inline',
       path: '/drafts/nala/blocks/video/fragments-modal-video-autoplay',
       data:
-      { source: 'https://main--milo--adobecom.hlx.live/libs/media_1e798d01c6ddc7e7eadc8f134d69e4f8d7193fdbb.mp4' },
+      { source: 'https://main--milo--adobecom.aem.live/libs/media_1e798d01c6ddc7e7eadc8f134d69e4f8d7193fdbb.mp4' },
       tags: '@video @smoke @regression @milo',
     },
     {

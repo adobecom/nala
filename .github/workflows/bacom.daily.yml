@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest]
     name: Running tests
     runs-on: ${{ matrix.os }}
     env:
@@ -19,26 +19,28 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
         with:
           node-version: lts/*
 
-      - name: Run Nala ${{ matrix.os }}
+      - name: Run bacom blocks tests ${{ matrix.os }}
         run: bash dailyrun.sh bacom @bacomSmoke
         env:
-          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
-          IMS_PASS: ${{ secrets.IMS_PASS }}
-          HLX_TKN: ${{ secrets.HLX_TKN }}
+          SLACK_WH: ${{ secrets.SLACK_WH }}
+
+      - name: Run milo blocks tests on bacom ${{matrix.os}}
+        run: npx playwright test --config=./configs/bacom.config.js -g @milo
+        env:
           SLACK_WH: ${{ secrets.SLACK_WH }}
 
       - name: Display workflow name
         run: echo "The workflow name is $WORKFLOW_NAME"
 
       - name: Persist JSON Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
         if: always()
         with:
           name: nala-results

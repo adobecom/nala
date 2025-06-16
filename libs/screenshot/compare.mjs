@@ -3,37 +3,12 @@ import { getComparator } from 'playwright-core/lib/utils';
 import axios from 'axios';
 import path from 'path';
 import fs from 'fs';
+import { validatePath } from './utils.js';
 
 const S3URL = 'https://s3-sj3.corp.adobe.com/milo';
-const ALLOWED_BASE_DIRECTORY = 'screenshots';
-
-function sanitizeAndValidateFilePath(filePath) {
-  if (typeof filePath !== 'string') {
-    throw new Error(`Invalid path: ${filePath}. Path should be a string.`);
-  }
-
-  // Resolve the input path to an absolute path
-  const absolutePath = path.resolve(filePath);
-  console.log(absolutePath);
-
-  // Ensure the path is within the allowed base directory
-  if (!absolutePath.includes(ALLOWED_BASE_DIRECTORY)) {
-    throw new Error(`Path traversal attempt detected: ${filePath}`);
-  }
-
-  if (!fs.existsSync(absolutePath)) {
-    throw new Error(`File does not exist: ${absolutePath}`);
-  }
-
-  if (!fs.lstatSync(absolutePath).isFile()) {
-    throw new Error(`Not a file: ${absolutePath}`);
-  }
-
-  return absolutePath;
-}
 
 async function downloadImage(url, localPath) {
-  const writer = fs.createWriteStream(sanitizeAndValidateFilePath(localPath));
+  const writer = fs.createWriteStream(validatePath(localPath, { forWriting: true }));
 
   const res = await axios.get(url, { responseType: 'stream' });
 
@@ -84,7 +59,7 @@ async function main() {
     process.exit(1);
   }
 
-  const curEntries = JSON.parse(fs.readFileSync(sanitizeAndValidateFilePath(`${localPath}/results.json`)));
+  const curEntries = JSON.parse(fs.readFileSync(validatePath(`${localPath}/results.json`)));
 
   const firstEntry = Object.values(curEntries)[0][0];
 
@@ -106,8 +81,8 @@ async function main() {
       const result = {};
       console.log(entry);
 
-      const baseImage = fs.readFileSync(sanitizeAndValidateFilePath(entry.a));
-      const currImage = fs.readFileSync(sanitizeAndValidateFilePath(entry.b));
+      const baseImage = fs.readFileSync(validatePath(entry.a));
+      const currImage = fs.readFileSync(validatePath(entry.b));
       result.order = entry.order;
       result.a = entry.a;
       result.b = entry.b;
@@ -118,7 +93,7 @@ async function main() {
 
       if (diffImage) {
         const diffName = `${entry.b}`.replace('.png', '-diff.png');
-        fs.writeFileSync(diffName, diffImage.diff);
+        fs.writeFileSync(validatePath(diffName, { forWriting: true }), diffImage.diff);
         result.diff = diffName;
         console.info('Differences found');
       }
@@ -127,7 +102,7 @@ async function main() {
     results[key] = resultsArray;
   }
 
-  fs.writeFileSync(sanitizeAndValidateFilePath(`${localPath}/results.json`), JSON.stringify(results, null, 2));
+  fs.writeFileSync(validatePath(`${localPath}/results.json`, { forWriting: true }), JSON.stringify(results, null, 2));
 }
 
 main();

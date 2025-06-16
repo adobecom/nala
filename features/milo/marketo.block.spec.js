@@ -4,17 +4,13 @@ module.exports = {
     {
       tcid: '0',
       name: '@marketo full template',
-      path: [
-        '/drafts/nala/blocks/marketo/full',
-      ],
+      path: ['/drafts/nala/blocks/marketo/full'],
       tags: '@marketo @marketoFullRedirect @marketoRedirect @milo @smoke @regression',
     },
     {
       tcid: '1',
       name: '@marketo full template with company type',
-      path: [
-        '/drafts/nala/blocks/marketo/full-with-company-type',
-      ],
+      path: ['/drafts/nala/blocks/marketo/full-with-company-type'],
       tags: '@marketo @marketoFullRedirect @marketoRedirect @milo @smoke @regression',
     },
     {
@@ -38,17 +34,13 @@ module.exports = {
     {
       tcid: '4',
       name: '@marketo full template message',
-      path: [
-        '/drafts/nala/blocks/marketo/full-message',
-      ],
+      path: ['/drafts/nala/blocks/marketo/full-message'],
       tags: '@marketo @marketoFullMessage @marketoMessage @milo @smoke @regression',
     },
     {
       tcid: '5',
       name: '@marketo full template with company type',
-      path: [
-        '/drafts/nala/blocks/marketo/full-message-with-company-type',
-      ],
+      path: ['/drafts/nala/blocks/marketo/full-message-with-company-type'],
       tags: '@marketo @marketoFullMessage @marketoMessage @milo @smoke @regression',
     },
     {
@@ -68,6 +60,18 @@ module.exports = {
         '/drafts/nala/blocks/marketo/essential-message-with-company-type',
       ],
       tags: '@marketo @marketoEssentialMessage @marketoMessage @milo @smoke @regression',
+    },
+    {
+      tcid: '8',
+      name: '@marketo show/hide post form submission',
+      path: ['/drafts/nala/blocks/marketo/show-hide'],
+      tags: '@marketo @marketoShowHide @milo @smoke @regression',
+    },
+    {
+      tcid: '9',
+      name: '@marketo form off param',
+      path: ['/drafts/nala/blocks/marketo/show-hide'],
+      tags: '@marketo @marketoShowHide @marketoFormOff @milo @smoke @regression',
     },
   ],
 };
