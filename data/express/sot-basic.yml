@@ -4,7 +4,7 @@
 'color': '/express/colors/red'
 'entitled': '/express/entitled'
 'feature': '/express/feature'
-'homepage': '/express'
+'homepage': '/express/?martech=off'
 'pricing': '/express/pricing'
 'create': '/express/create'
 'templates': '/express/templates'
