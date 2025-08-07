@@ -566,6 +566,7 @@ export default class HomePageSanity {
       } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
         await expect(element).not.toBeVisible();
       } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
     }));
 
     await expect(this.pdfAndESignatureTitle).toBeVisible();
