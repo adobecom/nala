@@ -21,6 +21,20 @@ export default class HomePageSanity {
     this.inTheNews = page.locator('.highlight-row');
     this.readAStory = page.locator('a[href$="next-generation-creators"]');
 
+    // App Switcher Elements
+    this.webApps = page.locator('.unav-comp-app-switcher-popover-title');
+    this.adobeExpressAS = page.locator('a[href*="D8F91NS"]');
+    this.adobeFireflyAs = page.locator('a[href*="DDSB1DXR"]');
+    this.acrobatAS = page.locator('a[href*="DRCFIIQN"]');
+    this.photoshopAS = page.locator('a[href*="DZTGZS8L"]');
+    this.lightroomAS = page.locator('a[href*="DMMD15GP"]');
+    this.stockAS = page.locator('a[href$="id=FAKHZNJK&mv=other&mv2=unav"]');
+    this.acrobatSignAS = page.locator('a[href*="BWBX2WJT"]');
+    this.fontsAS = page.locator('a[href*="DHWC196Q"]');
+    this.experienceCloudAS = page.locator('a[href*="F89JZJSJ"]');
+    this.adobecomAS = page.locator('a[href$="promoid=FMHMZSLF&mv=other&mv2=unav"]');
+    this.allAppsAS = page.locator('a[href$="promoid=FHRLZ9BG&mv=other&mv2=unav"]');
+
     // Creative Cloud Elements
     this.whatIsCC = page.locator('.feds-popup a[href*="creativecloud.html"]').nth(0);
     this.schoolsAndUniversities = page.locator('.feds-popup a[href$="education.html"]');
@@ -57,7 +71,7 @@ export default class HomePageSanity {
     this.featuredProductsNN = page.locator('.tabs button').nth(1);
     this.exploreNN = page.locator('.tabs button').nth(2);
 
-    this.creativityAndDesignTitle = page.locator('.title h7').nth(0);
+    this.creativityAndDesignTitle = page.locator('.title h2').nth(0);
 
     // Document Cloud Elements
     this.adobeAcrobat = page.locator('a[href$="acrobat.html"] .feds-navLink-content');
@@ -83,7 +97,7 @@ export default class HomePageSanity {
     this.shopForDcNN = page.locator('.tabs button').nth(4);
     this.quickActionsNN = page.locator('.tabs button').nth(5);
 
-    this.pdfAndESignatureTitle = page.locator('.title h7').nth(1);
+    this.pdfAndESignatureTitle = page.locator('.title h2').nth(1);
 
     // Experience Cloud Elements
     this.adobeExperienceCloud = page.locator('.feds-popup a[href*="business"]').nth(3);
@@ -97,7 +111,7 @@ export default class HomePageSanity {
     this.resourceCentre = page.locator('a[href$="resources/main.html"]');
     this.customerSuccessStories = page.locator('a[href*="success-stories"]');
     this.servicesAndSupport = page.locator('a[href$="support/main.html"]');
-    this.viewAllProductsEcCm = page.locator('a[href$="products.html"]');
+    this.viewAllProductsEcCm = page.locator('a[href$="products.html"]').nth(0);
 
     this.insightsAndAudiences = page.locator('.feds-popup a[href$="personalization.html"]');
     this.b2bMarketing = page.locator('.feds-popup a[href$="b2b-marketing.html"]');
@@ -125,7 +139,7 @@ export default class HomePageSanity {
     this.IndustriesNN = page.locator('.tabs button').nth(9);
     this.notSureWhatYouNeedNN = page.locator('.tabs button').nth(10);
 
-    this.marketingAndCommerceTitle = page.locator('.title h7').nth(2);
+    this.marketingAndCommerceTitle = page.locator('.title h2').nth(2);
 
     // Help-X Elements
     this.helpCentre = page.locator('.feds-popup a[href$="support.html"]:nth-child(1)');
@@ -148,7 +162,7 @@ export default class HomePageSanity {
     this.commonTasksNN = page.locator('.tabs button').nth(12);
     this.learningResourcesNN = page.locator('.tabs button').nth(13);
 
-    this.learnAndSupportTitle = page.locator('.title h7').nth(3);
+    this.learnAndSupportTitle = page.locator('.title h2').nth(3);
 
     // Footer Elements
     this.footerCreativeCloud = page.locator(".feds-footer-wrapper a[href*='creativecloud.html']");
@@ -157,7 +171,7 @@ export default class HomePageSanity {
     this.footerAcrobatForBusiness = page.locator(".feds-footer-wrapper a[href$='acrobat/business.html']").nth(0);
     this.footerDiscountsForStudentsAndTeachers = page.locator(".feds-footer-wrapper a[href$='buy/students.html']");
     this.footerDigitalLearningSolutions = page.locator("a[href$='/elearning.html']");
-    this.footerAppsforiOS = page.locator("a[href*='app-store']");
+    this.footerAppsforiOS = page.locator("a[href*='id331646274']");
     this.footerAppsforAndroid = page.locator("a[href*='play.google.com']");
     this.footerTermsOfUse = page.locator('a[href*="experiencecloudterms"]');
     this.footerDownloadAndInstall = page.locator('.feds-footer-wrapper a[href*="download-install.html"]');
@@ -168,7 +182,7 @@ export default class HomePageSanity {
 
     // Featured Products
     this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
-    this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(2)');
+    this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(1)').nth(1);
     this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]').nth(0);
     this.footerIllustratorlogo = page.locator('a[href$="illustrator/free-trial-download.html"]');
 
@@ -187,6 +201,23 @@ export default class HomePageSanity {
     this.instagramLogoTwo = page.locator('a[href*="instagram"]').nth(1);
     this.weibo = page.locator('a[href*="weibo"]');
     this.socialMedia = page.locator('a[href*="social-media"]');
+    this.cookiesA = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(3);
+    this.cookiesB = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(4);
+    this.cookiesC = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(2);
+
+    // Cookie Preference
+    this.cookieSettings = page.locator('h2[id="pc-title"]');
+    this.operate = page.locator('label.ot-switch-label').nth(0);
+    this.measure = page.locator('label.ot-switch-label').nth(1);
+    this.extend = page.locator('label.ot-switch-label').nth(2);
+    this.personalize = page.locator('label.ot-switch-label').nth(3);
+    this.closeCookie = page.locator('button[id="close-pc-btn-handler"]');
+
+    // Change Region Elements
+    this.uk = page.locator('//a[contains(text(), "United Kingdom")]');
+    this.us = page.locator('//a[contains(text(), "United States")]');
+    this.closeChangeRegion = page.locator('.dialog-close');
+    this.cg = page.locator('p .tracking-header').nth(0);
   }
 
   // U-NAV
@@ -208,6 +239,37 @@ export default class HomePageSanity {
         await expect(element).toBeVisible();
       }
     }));
+  }
+
+  // App Switcher
+  async validatingAppSwitcherElements(country) {
+    await this.appSwitcher.click();
+    await this.page.waitForTimeout(5000);
+    const elementsToCheck = [
+      { element: this.webApps, conditions: { defaultVisibility: true } },
+      { element: this.adobeExpressAS, conditions: { defaultVisibility: true } },
+      { element: this.adobeFireflyAs, conditions: { defaultVisibility: true } },
+      { element: this.acrobatAS, conditions: { defaultVisibility: true } },
+      { element: this.photoshopAS, conditions: { defaultVisibility: true } },
+      { element: this.lightroomAS, conditions: { defaultVisibility: true } },
+      { element: this.stockAS, conditions: { defaultVisibility: true } },
+      { element: this.acrobatSignAS, conditions: { defaultVisibility: true } },
+      { element: this.fontsAS, conditions: { defaultVisibility: true } },
+      { element: this.experienceCloudAS, conditions: { defaultVisibility: true } },
+      { element: this.adobecomAS, conditions: { defaultVisibility: true } },
+      { element: this.allAppsAS, conditions: { defaultVisibility: true } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+    await this.page.waitForTimeout(5000);
   }
 
   // Creativity & Design
@@ -275,7 +337,6 @@ export default class HomePageSanity {
   async validatingHelpXElements(country) {
     await this.gnavHelpX.click();
     const elementsToCheck = [
-      { element: this.helpCentre, conditions: { defaultVisibility: true } },
       { element: this.contact, conditions: { defaultVisibility: true } },
     ];
 
@@ -295,23 +356,52 @@ export default class HomePageSanity {
   async validatingFooterElements(country) {
     await this.changeRegion.scrollIntoViewIfNeeded();
     const elementsToCheck = [
-      { element: this.footerCreativeCloud, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerViewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerCreativeCloudForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerDiscountsForStudentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerDigitalLearningSolutions, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerAppsforiOS, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerAppsforAndroid, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerTermsOfUse, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerDownloadAndInstall, conditions: { defaultVisibility: true } },
-      { element: this.footerGenuineSoftware, conditions: { defaultVisibility: true } },
-      { element: this.footerLogInToYourAccount, conditions: { defaultVisibility: true, excludeCountries: ['Korea'] } },
+      { element: this.footerCreativeCloud, conditions: { defaultVisibility: true, excludeCountries: ['China', 'United States'] } },
+      { element: this.footerViewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['China', 'United States'] } },
+      {
+        element: this.footerCreativeCloudForBusiness,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China', 'United States'],
+        },
+      },
+      {
+        element: this.footerDiscountsForStudentsAndTeachers,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China', 'United States'],
+        },
+      },
+      {
+        element: this.footerDigitalLearningSolutions,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China', 'United States'],
+        },
+      },
+      { element: this.footerAppsforAndroid, conditions: { defaultVisibility: true, excludeCountries: ['China', 'United States'] } },
+      { element: this.footerTermsOfUse, conditions: { defaultVisibility: true, excludeCountries: ['China', 'United States'] } },
+      { element: this.footerDownloadAndInstall, conditions: { defaultVisibility: true, excludeCountries: ['Luxemburg German'] } },
+      {
+        element: this.footerGenuineSoftware,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Luxemburg German', 'United States'],
+        },
+      },
+      { element: this.footerLogInToYourAccount, conditions: { defaultVisibility: true, excludeCountries: ['Korea', 'Luxemburg German'] } },
       { element: this.footerAbout, conditions: { defaultVisibility: true } },
-      { element: this.footerIntegrity, conditions: { defaultVisibility: true } },
+      { element: this.footerIntegrity, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
       { element: this.footerAdobeAcrobatReaderlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
-      { element: this.footerAdobeExpresslogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerAdobeExpresslogo, conditions: { defaultVisibility: true, excludeCountries: ['China', 'United States'] } },
       { element: this.footerPhotoshoplogo, conditions: { defaultVisibility: true, excludeCountries: ['China', 'Denmark'] } },
-      { element: this.footerIllustratorlogo, conditions: { defaultVisibility: true, excludeCountries: ['China', 'Denmark'] } },
+      {
+        element: this.footerIllustratorlogo,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['China', 'Denmark', 'United States'],
+        },
+      },
       { element: this.changeRegion, conditions: { defaultVisibility: true } },
       { element: this.facebookLogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
       { element: this.instagramLogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
@@ -338,7 +428,47 @@ export default class HomePageSanity {
     }));
   }
 
-  // Android, iOS and iPad methods.
+  // Cookie Preference
+  async validatingCookiePreference(country) {
+    const includeCountries = ['Denmark', 'Luxemburg German', 'Switzerland', 'Austria'];
+    const includeCountriesA = ['Germany'];
+    const includeCountriesB = ['CIS Russian', 'CIS English'];
+
+    if (includeCountries.includes(country)) {
+      await this.cookiesA.click();
+    } else if (includeCountriesA.includes(country)) {
+      await this.cookiesB.click();
+    } else if (includeCountriesB.includes(country)) {
+      await this.page.waitForTimeout(2000);
+      await this.cookiesC.click();
+    } else {
+      await this.cookies.click();
+    }
+
+    await this.page.waitForTimeout(2000);
+    await expect(this.cookieSettings).toBeVisible();
+    await expect(this.operate).toBeChecked();
+    await expect(this.measure).toBeChecked();
+    await expect(this.extend).toBeChecked();
+    await expect(this.personalize).toBeChecked();
+    await this.closeCookie.click();
+  }
+
+  // Change Region
+  async validatingChangeRegion(country) {
+    await this.changeRegion.click();
+    const includeCountries = ['United States'];
+
+    if (includeCountries.includes(country)) {
+      await this.uk.click();
+      await expect(this.page).toHaveURL('https://www.stage.adobe.com/uk/?georouting=off&mep=off');
+    } else {
+      await this.us.click();
+      await expect(this.page).toHaveURL('https://www.stage.adobe.com/?georouting=off&mep=off');
+    }
+  }
+
+  // ============================= Android, iOS and iPad methods ============================= //
 
   // U-NAV
   async validatingUnav(test) {
@@ -351,6 +481,25 @@ export default class HomePageSanity {
     await this.scrollAndCheck(test, 1500, 2000);
     await this.scrollToBottom(test);
     await this.scrollToTop(test);
+  }
+
+  // Close App Switcher
+  async tapTopOnMobile(test) {
+    const viewport = this.page.viewportSize();
+    if (!viewport) {
+      test.fail('Viewport size is not available.');
+      return;
+    }
+
+    const x = viewport.width / 2;
+    const y = 5;
+
+    try {
+      await this.page.touchscreen.tap(x, y);
+      console.log(`Tapped at top of the page: (${x}, ${y})`);
+    } catch (e) {
+      test.fail(`Failed to tap at top of page: ${e.message}`);
+    }
   }
 
   // Hamburger Menu Items
@@ -397,13 +546,17 @@ export default class HomePageSanity {
     await this.gnavDC.click();
 
     const elementsToCheck = [
-      { element: this.productsNN, conditions: { defaultVisibility: true } },
+      { element: this.productsNN, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
       { element: this.shopForDcNN, conditions: { defaultVisibility: true } },
       { element: this.quickActionsNN, conditions: { defaultVisibility: true } },
     ];
 
     await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
-      if (conditions.defaultVisibility) {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
         await expect(element).toBeVisible();
       }
     }));
@@ -412,7 +565,6 @@ export default class HomePageSanity {
     await expect(this.acrobatPlansAndPricing).toBeVisible();
     await expect(this.adobeAcrobat).toBeVisible();
 
-    await this.shopForDcNN.click();
     await this.quickActionsNN.click();
 
     await this.mainMenuDC.click();
@@ -424,9 +576,8 @@ export default class HomePageSanity {
 
     const elementsToCheck = [
       { element: this.marketingAndCommerceTitle, conditions: { defaultVisibility: true } },
-      { element: this.adobeExperienceCloud, conditions: { defaultVisibility: true } },
-      { element: this.featuredProductsEcNN, conditions: { defaultVisibility: true } },
-      { element: this.newReleasesNN, conditions: { defaultVisibility: true } },
+      { element: this.adobeExperienceCloud, conditions: { defaultVisibility: true, excludeCountries: ['Japan'] } },
+      { element: this.featuredProductsEcNN, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
       { element: this.whatWeSolveNN, conditions: { defaultVisibility: true } },
       { element: this.viewAllProductsEcCm, conditions: { defaultVisibility: true } },
     ];
@@ -453,7 +604,7 @@ export default class HomePageSanity {
     await this.gnavHelpX.click();
 
     const elementsToCheck = [
-      { element: this.helpAndCommunityNN, conditions: { defaultVisibility: true } },
+      { element: this.helpAndCommunityNN, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
     ];
 
     await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
@@ -474,7 +625,7 @@ export default class HomePageSanity {
   }
 
   // Footer
-  async validatingFooter(test, country) {
+  async validatingFooter(test) {
     await this.changeRegion.scrollIntoViewIfNeeded();
 
     const elements = [this.changeRegion, this.facebookLogo, this.twitterlogo,
@@ -521,7 +672,7 @@ export default class HomePageSanity {
     await this.page.evaluate(() => {
       window.scrollTo(0, document.body.scrollHeight);
     });
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(5000);
     const newScrollY = await this.page.evaluate(() => window.scrollY);
     const isScrolled = newScrollY > initialScrollY;
     console.log('Is the page scrolled to the bottom?', isScrolled);
