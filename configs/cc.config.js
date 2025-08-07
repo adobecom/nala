@@ -31,7 +31,7 @@ const config = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
     ? [['github'], ['../utils/reporters/json-reporter.js'], ['../utils/reporters/json-reporter.js']]
-    : [['html', { outputFolder: 'test-html-results' }],['list'],['../utils/reporters/base-reporter.js']],
+    : [['html', { outputFolder: 'test-html-results' }], ['list'], ['../utils/reporters/base-reporter.js']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -41,29 +41,52 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    baseURL: process.env.BASE_URL || envs['@cc_live'] || 'https://main--cc--adobecom.hlx.live',
+    baseURL: process.env.BASE_URL || envs['@cc_stage'] || 'https://stage--cc--adobecom.aem.live',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'cc-live-chrome',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'cc-live-firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
+      use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'cc-live-webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+
+    {
+      name: 'cc-live-IOS-mobile',
       use: {
-        ...devices['Desktop Safari'],
+        ...devices['iPhone 15'],
+        userAgent:
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 17_7_2 like Mac OS X) '
+          + 'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 '
+          + 'Mobile/15E148 Safari/604.1',
+        viewport: {
+          width: 393,
+          height: 659,
+        },
+      },
+    },
+
+    {
+      name: 'cc-live-Android-mobile',
+      use: {
+        ...devices['Galaxy S24'],
+        userAgent:
+          'Mozilla/5.0 (Linux; Android 14; SM-S921U) AppleWebKit/537.36 '
+          + '(KHTML, like Gecko) Chrome/139.0.7258.31 Mobile Safari/537.36',
+        viewport: {
+          width: 480,
+          height: 1040,
+        },
       },
     },
   ],

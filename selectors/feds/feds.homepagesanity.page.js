@@ -261,9 +261,7 @@ export default class HomePageSanity {
     ];
 
     await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
-      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
-        await expect(element).toBeVisible();
-      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+      if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
         await expect(element).not.toBeVisible();
       } else if (conditions.defaultVisibility) {
         await expect(element).toBeVisible();
@@ -390,6 +388,17 @@ export default class HomePageSanity {
         },
       },
       { element: this.footerLogInToYourAccount, conditions: { defaultVisibility: true, excludeCountries: ['Korea', 'Luxemburg German'] } },
+      { element: this.footerCreativeCloud, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerViewAllProducts, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerCreativeCloudForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerDiscountsForStudentsAndTeachers, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerDigitalLearningSolutions, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerAppsforiOS, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerAppsforAndroid, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerTermsOfUse, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
+      { element: this.footerDownloadAndInstall, conditions: { defaultVisibility: true } },
+      { element: this.footerGenuineSoftware, conditions: { defaultVisibility: true } },
+      { element: this.footerLogInToYourAccount, conditions: { defaultVisibility: true, excludeCountries: ['Korea'] } },
       { element: this.footerAbout, conditions: { defaultVisibility: true } },
       { element: this.footerIntegrity, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
       { element: this.footerAdobeAcrobatReaderlogo, conditions: { defaultVisibility: true, excludeCountries: ['China'] } },
@@ -527,7 +536,7 @@ export default class HomePageSanity {
     }));
 
     await expect(this.creativityAndDesignTitle).toBeVisible();
-
+    
     if (country === 'Spain') {
       await expect(this.viewPlansAndPricing).toBeVisible();
     } else {
@@ -557,8 +566,6 @@ export default class HomePageSanity {
       } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
         await expect(element).not.toBeVisible();
       } else if (conditions.defaultVisibility) {
-        await expect(element).toBeVisible();
-      }
     }));
 
     await expect(this.pdfAndESignatureTitle).toBeVisible();

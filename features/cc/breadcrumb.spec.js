@@ -12,14 +12,14 @@ module.exports = {
       name: '@breadcrumb-displayfirstlevelcheck',
       path: '/drafts/Automation-PW/breadcrumb?georouting=off',
       tags: '@cc @cc-breadcrumb @cc-breadcrumbfirstlevellinkcheck',
-      url: 'https://main--cc--adobecom.hlx.live/',
+      url: 'https://www.adobe.com/',
     },
     {
       tcid: '2',
       name: '@breadcrumb-displaypageparentlink',
       path: '/drafts/Automation-PW/breadcrumb?georouting=off',
       tags: '@cc @cc-breadcrumb @cc-breadcrumbparentlinkcheck',
-      url: 'https://main--cc--adobecom.hlx.live/products/photoshop.html',
+      url: 'https://www.adobe.com/products/photoshop.html',
     },
   ],
 };
