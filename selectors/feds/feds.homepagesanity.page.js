@@ -680,7 +680,7 @@ export default class HomePageSanity {
     await this.page.evaluate(() => {
       window.scrollTo(0, document.body.scrollHeight);
     });
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForTimeout(2000);
     const newScrollY = await this.page.evaluate(() => window.scrollY);
     const isScrolled = newScrollY > initialScrollY;
     console.log('Is the page scrolled to the bottom?', isScrolled);
