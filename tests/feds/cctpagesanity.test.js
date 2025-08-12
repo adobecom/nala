@@ -1,47 +1,47 @@
 import { test, expect } from '@playwright/test';
 import { features } from '../../features/feds/prodSanity/cctpagesanity.spec.js';
 import CreativeCloudTeamsSanity from '../../selectors/feds/feds.cctpagesanity.page.js';
+import HomePageSanity from '../../selectors/feds/feds.homepagesanity.page.js';
 
 test.describe('Test Suite for Creative Cloud Business Teams Page Components', () => {
   let cct;
+  let home;
 
   test.beforeEach(async ({ page }) => {
     cct = new CreativeCloudTeamsSanity(page);
+    home = new HomePageSanity(page);
   });
 
   test.afterEach(async ({ page }) => {
     await page.close();
   });
 
-  test(`${features[0].name}, ${features[0].tags}, ${features[0].country}`, async ({ page, baseURL }) => {
-    console.info(`[FEDSInfo] Checking Page: ${baseURL}${features[features[0].tcid].path}`);
+  features.forEach((props) => {
+    test(`${props.name}, ${props.tags}, ${props.country}`, async ({ page, baseURL }) => {
+      console.info(`[FEDSInfo] Checking Page: ${baseURL}${props.path}`);
 
-    const pageURL = `${baseURL}${features[0].path}`;
-    await page.goto(pageURL, { waitUntil: 'networkidle' });
-    await expect(page).toHaveURL(pageURL);
+      const pageURL = `${baseURL}${props.path}`;
+      await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
+      await expect(page).toHaveURL(pageURL);
 
-    await cct.validatingUnavElements();
-    await cct.validatingCreativeAndDesignElements();
-    await cct.validatingProductElements();
-    await cct.validatingResourceElements();
-    await cct.validatingContactSales();
-    await cct.validatingFooterElements();
-  });
-
-  test(`${features[1].name}, ${features[1].tags}, ${features[1].country}`, async ({ page, baseURL }) => {
-    console.info(`[FEDSInfo] Checking Page: ${baseURL}${features[features[1].tcid].path}`);
-
-    const pageURL = `${baseURL}${features[1].path}`;
-    await page.goto(pageURL, { waitUntil: 'networkidle' });
-    await expect(page).toHaveURL(pageURL);
-
-    await cct.closeGeorouting.click();
-
-    await cct.validatingUnavElements();
-    await cct.validatingCreativeAndDesignElements();
-    await cct.validatingProductElements();
-    await cct.validatingResourceElements();
-    await cct.validatingContactSales();
-    await cct.validatingFooterElements();
+      // Verifying the visibility of U-NAV Elements
+      await cct.validatingUnavElements(props.country);
+      // Verifying the visibility of App Switcher Elements
+      await home.validatingAppSwitcherElements(props.country);
+      // Verifying the Visibility of Creativity & Design Elements
+      await cct.validatingCreativeAndDesignElements(props.country);
+      // Verifying the visibility of Products Elements
+      await cct.validatingProductElements();
+      // Verifying the visibility of Resources Elements
+      await cct.validatingResourceElements();
+      // Verifying the visibility of Contact Sales
+      await cct.validatingContactSales(props.country);
+      // Verifying the visibility of Footer Elements
+      await cct.validatingFooterElements(props.country);
+      // Verifying Cookie Preference
+      await home.validatingCookiePreference(props.country);
+      // Verifying Change Region
+      await cct.validatingChangeRegion(props.country);
+    });
   });
 });

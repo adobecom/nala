@@ -17,11 +17,14 @@ test.describe('Test Suite for Home Page on Android & iOS & iPad Devices', () => 
       console.info(`[FEDSInfo] Checking Page: ${props.country} = ${baseURL}${props.path}`);
 
       const pageURL = `${baseURL}${props.path}`;
-      await page.goto(pageURL, { waitUntil: 'networkidle' });
+      await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of G-NAV Elements
       await home.validatingUnav(test);
+      // Verifiying the visibility of App Switcher Elements
+      await home.validatingAppSwitcherElements(props.country);
+      await home.tapTopOnMobile();
       // Verifying the visibility of Hamburger Menu Elements
       await home.validatingHamburgerMenu();
       // Verifying the visibility of Creative Cloud Elements
@@ -34,6 +37,10 @@ test.describe('Test Suite for Home Page on Android & iOS & iPad Devices', () => 
       await home.validatingLearnAndSupport(props.country);
       // Verifying the visibility of Footer Elements
       await home.validatingFooter(test, props.country);
+      // Verifying Cookie Preference
+      await home.validatingCookiePreference(props.country);
+      // Verifying Change Region
+      await home.validatingChangeRegion(props.country);
     });
   });
 });
