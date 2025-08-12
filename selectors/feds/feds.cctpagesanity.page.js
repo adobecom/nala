@@ -17,7 +17,7 @@ export default class CreativeCloudTeamsSanity {
     this.comparePlans = page.locator('.feds-navItem').nth(5);
     this.contactSales = page.locator('.feds-navLink.feds-navLink--hoverCaret').nth(3);
     this.freeTrial = page.locator('.feds-navItem').nth(7);
-    this.buyNow = page.locator('.feds-navItem.feds-navItem--centered');
+    this.buyNow = page.locator('.feds-navItem.feds-navItem--centered').nth(0);
     this.phoneNumber = page.locator('.feds-navItem').nth(9);
 
     // Creativity & Design Elements
@@ -25,44 +25,85 @@ export default class CreativeCloudTeamsSanity {
     this.viewPlansAndPricing = page.locator('[href*="creativecloud/plans.html"]').nth(0);
 
     // Products
-    this.creativeCloudForTeamsPro = page.locator('.feds-menu-items [href*="business/teams.html"]');
-    this.viewAllProducts = page.locator('.feds-menu-items [href*="business/teams/plans.html"]');
+    this.creativeCloudForTeamsPro = page.locator('.feds-menu-items [href*="business/teams.html"]').nth(0);
+    this.productsPhotoshop = page.locator('.feds-menu-items [href$="teams/photoshop.html"]').nth(0);
 
     // Resources
-    this.resourceCenter = page.locator('.feds-menu-items [href$="resources/main.html"]');
-    this.helpCenter = page.locator('.feds-menu-items [href$="enterprise/teams.html"]');
+    this.resourceCenter = page.locator('.feds-menu-items [href$="resources/main.html"]').nth(0);
+    this.helpCenter = page.locator('.feds-menu-items [href$="enterprise/teams.html"]').nth(0);
 
     // Contact Sales
-    this.requestInformation = page.locator('.feds-menu-column [href$="request-information.html"]');
+    this.requestInformation = page.locator('.feds-menu-column [href$="request-information.html"]').nth(0);
+    this.requestInformationJp = page.locator('.feds-menu-column [href$="request-information.html"]').nth(1);
 
-    // Georouting pop
-    this.closeGeorouting = page.locator('.dexter-CloseButton').nth(5);
-
-    // ----------------------------------- Dexter ----------------------------------- //
+    // Chnage Region Elements
+    this.changeRegion = page.locator('.feds-regionPicker-wrapper');
+    this.uk = page.locator('//a[contains(text(), "United Kingdom")]');
+    this.us = page.locator('//a[contains(text(), "United States")]');
   }
 
   // U-Nav
-  async validatingUnavElements() {
-    const elements = [this.cce.adobe, this.cce.appSwitcher, this.cce.signInButton, this.creativityAndDesign,
-      this.creativeCloudForBusiness, this.products, this.resources, this.adminConsole, this.comparePlans,
-      this.contactSales, this.freeTrial, this.buyNow, this.phoneNumber];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
+  async validatingUnavElements(country) {
+    const elementsToCheck = [
+      { element: this.cce.adobe, conditions: { defaultVisibility: true } },
+      { element: this.cce.appSwitcher, conditions: { defaultVisibility: true } },
+      { element: this.cce.signInButton, conditions: { defaultVisibility: true } },
+      { element: this.creativityAndDesign, conditions: { defaultVisibility: true } },
+      { element: this.creativeCloudForBusiness, conditions: { defaultVisibility: true } },
+      { element: this.products, conditions: { defaultVisibility: true } },
+      { element: this.resources, conditions: { defaultVisibility: true } },
+      { element: this.adminConsole, conditions: { defaultVisibility: true } },
+      { element: this.comparePlans, conditions: { defaultVisibility: true } },
+      { element: this.contactSales, conditions: { defaultVisibility: true } },
+      { element: this.freeTrial, conditions: { defaultVisibility: true } },
+      { element: this.buyNow, conditions: { defaultVisibility: true } },
+      { element: this.phoneNumber, conditions: { defaultVisibility: true, excludeCountries: ['Turkey', 'Korea'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
   }
 
   // Creativity & Design
-  async validatingCreativeAndDesignElements() {
+  async validatingCreativeAndDesignElements(country) {
     await this.creativityAndDesign.click({ timeout: 5000 });
-    const elements = [this.whatIsCC, this.viewPlansAndPricing, this.cce.adobecom, this.cce.pdfAndESignature,
-      this.cce.marketingAndCommerce, this.cce.helpAndSupport];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
+    const elementsToCheck = [
+      { element: this.whatIsCC, conditions: { defaultVisibility: true } },
+      {
+        element: this.viewPlansAndPricing,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['Indonesia English', 'Indonesia', 'Mexico', 'India'],
+        },
+      },
+      { element: this.cce.adobecom, conditions: { defaultVisibility: true } },
+      { element: this.cce.pdfAndESignature, conditions: { defaultVisibility: true } },
+      { element: this.cce.marketingAndCommerce, conditions: { defaultVisibility: true } },
+      { element: this.cce.helpAndSupport, conditions: { defaultVisibility: true } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
   }
 
   // Products
   async validatingProductElements() {
     await this.products.click({ timeout: 5000 });
-    const elements = [this.creativeCloudForTeamsPro, this.viewAllProducts];
+    const elements = [this.creativeCloudForTeamsPro, this.productsPhotoshop];
     const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
     await Promise.all(promises);
   }
@@ -76,25 +117,79 @@ export default class CreativeCloudTeamsSanity {
   }
 
   // Contact Sales
-  async validatingContactSales() {
+  async validatingContactSales(country) {
     await this.contactSales.click({ timeout: 5000 });
-    await expect(this.requestInformation).toBeVisible();
+    await expect(country === 'Japan' ? this.requestInformationJp : this.requestInformation).toBeVisible();
     await this.contactSales.click({ timeout: 5000 });
   }
 
   // Footer
-  async validatingFooterElements() {
+  async validatingFooterElements(country) {
     await this.footer.changeRegionContainer.scrollIntoViewIfNeeded();
-    const elements = [this.footer.footerCreativeCloud, this.footer.footerCreativeCloudForBusiness,
-      this.footer.footerDiscountsForStudentsAndTeachers, this.footer.footerAppsforiOS, this.footer.footerWhatIsExperienceCloud,
-      this.footer.footerDownloadAndInstall, this.footer.footerAdobeBlogSecond, this.footer.footerLogInToYourAccount,
-      this.footer.footerAbout, this.footer.footerAdobeAcrobatReaderlogo, this.footer.footerAdobeExpresslogo,
-      this.footer.footerPhotoshoplogo, this.footer.footerIllustratorlogo, this.footer.changeRegionContainer, this.footer.facebookIcon,
-      this.footer.instagramIcon, this.footer.twitterIcon, this.footer.linkedInIcon, this.footer.legalCopyright, this.footer.privacyLink,
-      this.footer.termsOfUseLink, this.footer.cookiePreferencesLink, this.footer.doNotSellInformationLink, this.footer.adChoicesLink,
-      this.footer.adChoicesLogo, this.footer.footerAdobeAcrobatReaderlogo, this.footer.footerAdobeExpresslogo,
-      this.footer.footerPhotoshoplogo, this.footer.footerIllustratorlogo];
-    const promises = elements.map(async (element) => { await expect(element).toBeVisible(); });
-    await Promise.all(promises);
+    const elementsToCheck = [
+      { element: this.footer.footerCreativeCloud, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
+      { element: this.footer.footerCreativeCloudForBusiness, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
+      {
+        element: this.footer.footerDiscountsForStudentsAndTeachers,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['United States'],
+        },
+      },
+      { element: this.footer.footerAppsforiOS, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
+      { element: this.footer.footerWhatIsExperienceCloud, conditions: { defaultVisibility: true } },
+      { element: this.footer.footerDownloadAndInstall, conditions: { defaultVisibility: true } },
+      { element: this.footer.footerAdobeBlogSecond, conditions: { defaultVisibility: true } },
+      { element: this.footer.footerLogInToYourAccount, conditions: { defaultVisibility: true, excludeCountries: ['Korea'] } },
+      { element: this.footer.footerAbout, conditions: { defaultVisibility: true } },
+      { element: this.footer.footerAdobeAcrobatReaderlogo, conditions: { defaultVisibility: true } },
+      { element: this.footer.footerAdobeExpresslogo, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
+      { element: this.footer.footerPhotoshoplogo, conditions: { defaultVisibility: true } },
+      { element: this.footer.footerIllustratorlogo, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
+      { element: this.footer.changeRegionContainer, conditions: { defaultVisibility: true } },
+      { element: this.footer.facebookIcon, conditions: { defaultVisibility: true } },
+      { element: this.footer.instagramIcon, conditions: { defaultVisibility: true } },
+      { element: this.footer.twitterIcon, conditions: { defaultVisibility: true } },
+      { element: this.footer.linkedInIcon, conditions: { defaultVisibility: true } },
+      { element: this.footer.legalCopyright, conditions: { defaultVisibility: true } },
+      { element: this.footer.privacyLink, conditions: { defaultVisibility: true } },
+      { element: this.footer.termsOfUseLink, conditions: { defaultVisibility: true } },
+      { element: this.footer.cookiePreferencesLink, conditions: { defaultVisibility: true } },
+      {
+        element: this.footer.doNotSellInformationLink,
+        conditions: {
+          defaultVisibility: true,
+          excludeCountries: ['United States', 'Germany', 'Middle East And North Africa', 'Spain', 'Canada English', 'Poland', 'Australia',
+            'Thailand English', 'Thailand', 'Philippines', 'Philippines English', 'Turkey', 'Indonesia English', 'Indonesia', 'Mexico',
+            'India', 'Japan', 'Korea'],
+        },
+      },
+      { element: this.footer.adChoicesLink, conditions: { defaultVisibility: true } },
+      { element: this.footer.adChoicesLogo, conditions: { defaultVisibility: true } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  // Change Region
+  async validatingChangeRegion(country) {
+    await this.changeRegion.click();
+    const includeCountries = ['United States'];
+
+    if (includeCountries.includes(country)) {
+      await this.uk.click();
+      await expect(this.page).toHaveURL('https://www.stage.adobe.com/uk/creativecloud/business/teams.html?georouting=off&mep=off');
+    } else {
+      await this.us.click();
+      await expect(this.page).toHaveURL('https://www.stage.adobe.com/creativecloud/business/teams.html?georouting=off&mep=off');
+    }
   }
 }
