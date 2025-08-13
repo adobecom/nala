@@ -9,7 +9,6 @@ module.exports = {
         '/de/',
         '/fr/',
         '/au/',
-        '/uk/',
         '/jp/',
       ],
       tags: '@marketo @bacom @smoke @regression @e2e @homepage',
@@ -18,6 +17,7 @@ module.exports = {
       tcid: '1',
       name: '@marketo essential template',
       path: [
+        '/uk/',
         '/resources/webinars/beyond-the-buzzword-operationalizing-generative-ai-for-growth',
       ],
       tags: '@marketo @marketoEssentialTemplate @bacom @smoke @regression @e2e @resources',

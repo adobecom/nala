@@ -68,7 +68,7 @@ export default class FedsFooter {
 
     // Featured Product Selectors:
     this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
-    this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(2)');
+    this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(1)').nth(1);
     this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]');
     this.footerIllustratorlogo = page.locator('.feds-featuredProducts a[href$="illustrator/free-trial-download.html"]');
   }
