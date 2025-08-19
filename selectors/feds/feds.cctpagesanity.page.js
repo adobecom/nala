@@ -20,9 +20,25 @@ export default class CreativeCloudTeamsSanity {
     this.buyNow = page.locator('.feds-navItem.feds-navItem--centered').nth(0);
     this.phoneNumber = page.locator('.feds-navItem').nth(9);
 
+    this.hamburgerMenu = page.locator('.feds-toggle');
+    this.adobeLogoMegaMenu = page.locator('.top-bar .feds-brand-image');
+    this.closeMegaMenu = page.locator('.close-icon');
+    this.breadHome = page.locator('.feds-nav .feds-breadcrumbs li').nth(0);
+    this.breadAdobeCC = page.locator('.feds-nav .feds-breadcrumbs li').nth(1);
+    this.breadCCProForTeams = page.locator('.feds-nav .feds-breadcrumbs li').nth(2);
+    this.creativityAndDesignTitle = page.locator('.title h2');
+
+    this.shopForNN = page.locator('.tabs button').nth(0);
+    this.featuredProductsNN = page.locator('.tabs button').nth(1);
+    this.onlineToolsCCNN = page.locator('.tabs button').nth(2);
+    this.more = page.locator('.tabs button').nth(3);
+
     // Creativity & Design Elements
     this.whatIsCC = page.locator('[href*="creativecloud.html"]').nth(0);
     this.viewPlansAndPricing = page.locator('[href*="creativecloud/plans.html"]').nth(0);
+
+    this.whatIsCCMob = page.locator('.feds-navLink-content').nth(0);
+    this.viewPlansAndPricingMob = page.locator('.sticky-cta a');
 
     // Products
     this.creativeCloudForTeamsPro = page.locator('.feds-menu-items [href*="business/teams.html"]').nth(0);
@@ -140,7 +156,7 @@ export default class CreativeCloudTeamsSanity {
       { element: this.footer.footerWhatIsExperienceCloud, conditions: { defaultVisibility: true } },
       { element: this.footer.footerDownloadAndInstall, conditions: { defaultVisibility: true } },
       { element: this.footer.footerAdobeBlogSecond, conditions: { defaultVisibility: true } },
-      { element: this.footer.footerLogInToYourAccount, conditions: { defaultVisibility: true, excludeCountries: ['Korea'] } },
+      { element: this.footer.footerLogInToYourAccount, conditions: { defaultVisibility: true } },
       { element: this.footer.footerAbout, conditions: { defaultVisibility: true } },
       { element: this.footer.footerAdobeAcrobatReaderlogo, conditions: { defaultVisibility: true } },
       { element: this.footer.footerAdobeExpresslogo, conditions: { defaultVisibility: true, excludeCountries: ['United States'] } },
@@ -191,5 +207,40 @@ export default class CreativeCloudTeamsSanity {
       await this.us.click();
       await expect(this.page).toHaveURL('https://www.stage.adobe.com/creativecloud/business/teams.html?georouting=off&mep=off');
     }
+  }
+
+  // ==================== Mobile ==================== //
+
+  // Hambuger Menu
+  async validatingHamburgerMenu() {
+    await this.hamburgerMenu.click();
+
+    const elements = [this.adobeLogoMegaMenu, this.closeMegaMenu, this.breadHome, this.breadAdobeCC, this.breadCCProForTeams,
+      this.creativityAndDesignTitle];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+
+    const elementsToCheck = [
+      { element: this.shopForNN, conditions: { defaultVisibility: true } },
+      { element: this.featuredProductsNN, conditions: { defaultVisibility: true } },
+      { element: this.onlineToolsCCNN, conditions: { defaultVisibility: true } },
+      { element: this.more, conditions: { defaultVisibility: true } },
+    ];
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+
+    await expect(this.whatIsCCMob).toBeVisible();
+    await expect(this.viewPlansAndPricingMob).toBeVisible();
+
+    await this.featuredProductsNN.click();
+    await this.onlineToolsCCNN.click();
+    await this.more.click();
+    await this.shopForNN.click();
+
+    await this.closeMegaMenu.click();
   }
 }
