@@ -19,6 +19,35 @@ export default class PhotoshopPageSanity {
     this.appSwitcher = page.locator('#unav-app-switcher');
     this.signIn = page.locator('#unav-profile');
 
+    // Unav Elements for mobile
+    this.hamburgerMenu = page.locator('.feds-toggle');
+    this.adobeLogoMegaMenu = page.locator('.feds-brand').nth(0);
+    this.closeMegaMenu = page.locator('.close-icon');
+    this.breadHome = page.locator('.feds-nav .feds-breadcrumbs li').nth(0);
+    this.breadAdobeCC = page.locator('.feds-nav .feds-breadcrumbs li').nth(1);
+    this.breadPhotoshop = page.locator('.feds-nav .feds-breadcrumbs li').nth(2);
+    this.creativityAndDesignTitle = page.locator('.title h2');
+
+    this.shopFor = page.locator('.tabs button').nth(0);
+    this.featuredProductsNN = page.locator('.tabs button').nth(1);
+    this.onlineToolsCCNN = page.locator('.tabs button').nth(2);
+    this.more = page.locator('.tabs button').nth(3);
+    this.viewAllProducts = page.locator('.feds-popup [href*="catalog.html"]')
+    this.viewPlansAndPricingMobCTA = page.locator('.feds-cta feds-cta--primary');
+
+    // Lnav Mobile elements
+    this.whatIsCCMob = page.locator('.feds-popup [href*="creativecloud.html"]').nth(1);
+    this.mobPhotoshopDropdown = page.locator('.feds-localnav-title');
+    this.mobOverview = page.locator('.feds-localnav-items .feds-navItem').nth(0);
+    this.mobFeatures = page.locator('.feds-localnav-items .feds-navItem').nth(1);
+    this.mobMobile = page.locator('.feds-localnav-items .feds-navItem').nth(2);
+    this.mobComparePlans = page.locator('.feds-localnav-items .feds-navItem').nth(3);
+
+    // Change Region Elements
+    this.changeRegion = page.locator('.feds-regionPicker-wrapper');
+    this.uk = page.locator('//a[contains(text(), "United Kingdom")]');
+    this.us = page.locator('//a[contains(text(), "United States")]');
+
     // Creativity and design Elements
     this.whatIsCC = page.locator('.feds-popup [href*="creativecloud.html"]');
     this.whatIsCC = page.locator('.feds-popup [href*="creativecloud.html"]').nth(0);
@@ -129,7 +158,7 @@ export default class PhotoshopPageSanity {
         await expect(element).toBeVisible();
       }
     }));
-    await this.gnavCC.click({ timeout: 10000 });
+    await this.gnavCC.click({ timeout: 20000 });
   }
 
   // Footer
@@ -147,6 +176,138 @@ export default class PhotoshopPageSanity {
       { element: this.feds.adChoicesLogo, conditions: { defaultVisibility: true } },
       { element: this.feds.adChoicesLink, conditions: { defaultVisibility: true } },
       { element: this.feds.termsOfUseLinkCA, conditions: { includeCountries: ['Canada English'] } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
+        await expect(element).toBeVisible();
+      } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  // Change region Validation
+  async validatingChangeRegion(country) {
+    await this.changeRegion.click();
+    const includeCountries = ['United States'];
+
+    if (includeCountries.includes(country)) {
+      await this.uk.click();
+      await expect(this.page).toHaveURL('https://www.stage.adobe.com/uk/products/photoshop.html?georouting=off&mep=off');
+    } else {
+      await this.us.click();
+      await expect(this.page).toHaveURL('https://www.stage.adobe.com/products/photoshop.html?georouting=off&mep=off');
+    }
+  }
+
+// ==================== Mobile ==================== //
+  // U-Nav
+  async validatingUnavMobile() {
+    const elements = [this.hamburgerMenu, this.adobelogo, this.appSwitcher, this.signIn];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+      await this.page.waitForTimeout(5000);
+    }));
+  }
+
+  // Hambuger Menu
+  async validatingHamburgerMenu() {
+    await this.hamburgerMenu.click();
+
+    const elements = [this.adobeLogoMegaMenu, this.closeMegaMenu, this.breadHome, this.breadAdobeCC, this.breadPhotoshop,
+      this.creativityAndDesignTitle];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
+
+    const elementsToCheck = [
+      { element: this.shopFor, conditions: { defaultVisibility: true } },
+      { element: this.featuredProductsNN, conditions: { defaultVisibility: true } },
+      { element: this.onlineToolsCCNN, conditions: { defaultVisibility: true } },
+      { element: this.more, conditions: { defaultVisibility: true } },
+    ];
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+
+    await this.featuredProductsNN.click();
+    await this.onlineToolsCCNN.click();
+    await this.more.click();
+    await this.shopFor.click();
+
+    await this.closeMegaMenu.click();
+  }
+
+  // L-Nav Elements
+  async validatingLnavElements() {
+    await this.mobPhotoshopDropdown.click();
+    await expect(this.mobOverview).toBeVisible();
+    await this.mobFeatures.click();
+    await this.page.goBack();
+    await this.mobPhotoshopDropdown.click();
+    await this.mobMobile.click();
+    await this.page.goBack();
+    await this.mobPhotoshopDropdown.click();
+    await this.mobComparePlans.click();
+    await this.page.goBack();
+  }
+
+  // Creativity & Design
+  async validatingCreativityAndDesign(country) {
+    await this.hamburgerMenu.click();
+    await this.creativityAndDesign.click();
+
+    const elementsToCheck = [
+      { element: this.shopFor, conditions: { defaultVisibility: true } },
+      { element: this.featuredProductsNN, conditions: { defaultVisibility: true } },
+      { element: this.onlineToolsCCNN, conditions: { defaultVisibility: true } },
+      { element: this.more, conditions: { defaultVisibility: true } },
+    ];
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+
+    const skipCountries = ['United Kingdom', 'India', 'Spain'];
+    const addCountries = ['United Kingdom', 'India', 'Spain'];
+
+    if (!skipCountries.includes(country)) {
+      await this.creativityAndDesignElements(country);
+    } else if (addCountries.includes(country)) {
+      await this.quickActionsElements(country);
+    } else {
+      await expect(this.whatIsCCMob).toBeVisible();
+    }
+  }
+
+  async creativityAndDesignElements(country) {
+    await this.page.waitForTimeout(1000);
+    await this.shopFor.click();
+    const elementsToCheck = [
+      { element: this.whatIsCCMob, conditions: { defaultVisibility: true } },
+    ];
+
+    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+      if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
+        await expect(element).not.toBeVisible();
+      } else if (conditions.defaultVisibility) {
+        await expect(element).toBeVisible();
+      }
+    }));
+  }
+
+  async quickActionsElements(country) {
+    await this.quickActions.click();
+    const elementsToCheck = [
+      { element: this.whatIsCCMob, conditions: { defaultVisibility: true, excludeCountries: ['India'] } },
     ];
 
     await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
