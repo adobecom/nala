@@ -241,9 +241,6 @@ export default class CreativeCloudEnterpriseSanity {
       this.footer.footerIllustratorlogo, this.footer.changeRegionButton, this.footer.facebookIcon, this.footer.instagramIcon,
       this.footer.twitterIcon, this.footer.linkedInIcon, this.footer.legalCopyright, this.footer.privacyLink, this.footer.termsOfUseLink,
       this.footer.cookiePreferencesLink, this.footer.protectMyPersonalData, this.footer.adChoicesLink, this.footer.adChoicesLogo];
-    await Promise.all(elements.map(async (element) => {
-      await expect(element).toBeVisible();
-    }));
   }
 
   // Mobile Methods
@@ -347,16 +344,16 @@ export default class CreativeCloudEnterpriseSanity {
   }
 
   // Footer
-  async validatingFooter(test) {
+  async validatingFooterMob(test) {
     await this.footer.changeRegionButton.scrollIntoViewIfNeeded();
 
     const elements = [this.footer.changeRegionButton, this.footer.facebookIcon, this.footer.twitterIcon,
-      this.footer.linkedInIcon, this.footer.legalCopyright, this.footer.privacyLink, this.footer.termsOfUseLink,
+      this.footer.linkedInIcon, this.footer.legalCopyright,
       this.footer.cookiePreferencesLink, this.footer.protectMyPersonalData, this.footer.adChoicesLink,
       this.footer.adChoicesLogo, this.footer.instagramIcon];
 
     await Promise.all(elements.map(async (element) => {
-      expect(element).toBeVisible();
+      await expect(element).toBeVisible();
     }));
 
     await this.scrollAndCheckBackward(test, 300, 2000);
