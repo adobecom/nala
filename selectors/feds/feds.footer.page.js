@@ -1,5 +1,4 @@
 /* eslint-disable import/no-import-module-exports */
-
 export default class FedsFooter {
   constructor(page) {
     this.page = page;
@@ -22,7 +21,8 @@ export default class FedsFooter {
     this.legalSections = page.locator('ul.feds-footer-privacySection');
     this.legalLinks = page.locator('div.feds-footer-legalWrapper a');
     this.legalCopyright = page.locator('span.feds-footer-copyright');
-    this.privacyLink = page.locator('a[href*="privacy.html"]');
+    this.privacyLink = page.locator('a[href*="privacy.html"]').nth(1);
+
     this.termsOfUseLink = page.locator('a[href*="terms.html"]');
     this.cookiePreferencesLink = page.locator('a[href*="#openPrivacy"]');
     this.doNotSellInformationLink = page.locator('a[href*="rights"]');
@@ -65,11 +65,14 @@ export default class FedsFooter {
     this.footerAdobeBlogSecond = page.locator('.feds-navLink[href*="blog"]').nth(0);
     this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(0);
     this.termsOfUseLinkTwo = page.locator('a[href*="terms.html"]').nth(1);
+    this.termsOfUseLinkCA = page.locator('a[href*="terms.html"]').nth(3);
+    this.termsOfUseLinkPSCA = page.locator('a[href*="terms.html"]').nth(2);
+    this.privacyLinkCA = page.locator('a[daa-ll="Privacy-1"]');
 
     // Featured Product Selectors:
     this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
     this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(1)').nth(1);
-    this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]');
+    this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]').nth(2);
     this.footerIllustratorlogo = page.locator('.feds-featuredProducts a[href$="illustrator/free-trial-download.html"]');
   }
 
