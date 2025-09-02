@@ -1,13 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { features } from '../../features/feds/prodSanity/cctpagesanity.spec.js';
+import { features } from '../../features/feds/prodSanity/mobileTesting/mobileCCTpagesanity.spec.js';
 import CreativeCloudTeamsSanity from '../../selectors/feds/feds.cctpagesanity.page.js';
+import CreativeCloudEnterpriseSanity from '../../selectors/feds/feds.ccepagesanity.page.js';
 import HomePageSanity from '../../selectors/feds/feds.homepagesanity.page.js';
 
-test.describe('Test Suite for Creative Cloud Business Teams Page Components', () => {
+test.describe('Test Suite for Creative Cloud Business Enterprise Page Components', () => {
+  let enterprise;
   let cct;
   let home;
 
   test.beforeEach(async ({ page }) => {
+    enterprise = new CreativeCloudEnterpriseSanity(page);
     cct = new CreativeCloudTeamsSanity(page);
     home = new HomePageSanity(page);
   });
@@ -18,26 +21,20 @@ test.describe('Test Suite for Creative Cloud Business Teams Page Components', ()
 
   features.forEach((props) => {
     test(`${props.name}, ${props.tags}, ${props.country}`, async ({ page, baseURL }) => {
-      console.info(`[FEDSInfo] Checking Page: ${baseURL}${props.path}`);
+      console.info(`[FEDSInfo] Checking Page: ${baseURL}${features[props.tcid].path}`);
 
-      const pageURL = `${baseURL}${props.path}`;
+      const pageURL = `${baseURL}${features[props.tcid].path}`;
       await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of U-NAV Elements
-      await cct.validatingUnavElements(props.country);
-      // Verifying the visibility of App Switcher Elements
-      await home.validatingAppSwitcherElements(props.country);
-      // Verifying the Visibility of Creativity & Design Elements
-      await cct.validatingCreativeAndDesignElements(props.country);
-      // Verifying the visibility of Products Elements
-      await cct.validatingProductElements();
-      // Verifying the visibility of Resources Elements
-      await cct.validatingResourceElements();
-      // Verifying the visibility of Contact Sales
-      await cct.validatingContactSales(props.country);
+      await enterprise.validatingUnav(test);
+      // Verifying the visibility of L-NAV Elements
+      await enterprise.validatingLnavElements();
+      // Verifying the visibility of Hamburger Elements
+      await cct.validatingHamburgerMenu(props.country);
       // Verifying the visibility of Footer Elements
-      await cct.validatingFooterElements(props.country);
+      await enterprise.validatingFooter(test);
       // Verifying Cookie Preference
       await home.validatingCookiePreference(props.country);
       // Verifying Change Region

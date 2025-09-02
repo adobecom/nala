@@ -8,7 +8,7 @@ module.exports = {
       data: {
         cardsPerPage: 4,
         caasTitle: 'Consonant Card Collection Title',
-        paginator: '1 - 4 of 8 results',
+        paginator: 'Prev',
       },
       tags: '@caas @smoke @regression @milo',
     },

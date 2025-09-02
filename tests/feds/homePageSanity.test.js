@@ -14,17 +14,26 @@ test.describe('Test Suite for Home Page Components', () => {
   });
 
   const excludedCountries = ['CIS English', 'CIS Russian', 'China'];
+  const excludeAppSwitcherCountries = ['China'];
 
   features.forEach((props) => {
     test(`${props.name}, ${props.tags}, ${props.country}`, async ({ page, baseURL }) => {
       console.info(`[FEDSInfo] Checking Page: ${baseURL}${features[props.tcid].path}`);
 
       const pageURL = `${baseURL}${features[props.tcid].path}`;
-      await page.goto(pageURL, { waitUntil: 'networkidle' });
+      await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of U-NAV Elements
       await home.validatingUnavElements(props.country);
+
+      // Verifying the visibility of App Switcher Elements
+      if (!excludeAppSwitcherCountries.includes(props.country)) {
+        await home.validatingAppSwitcherElements(props.country);
+        await home.appSwitcher.click();
+      } else {
+        console.info(`[FEDSInfo] Skipping App Switcher validation for ${props.country}`);
+      }
 
       if (!excludedCountries.includes(props.country)) {
         // Verifying the visibility of Creativity & Design Elements
@@ -39,6 +48,10 @@ test.describe('Test Suite for Home Page Components', () => {
 
       // Verifying the visibility of Footer Elements
       await home.validatingFooterElements(props.country);
+      // Verifying Cookie Preference
+      await home.validatingCookiePreference(props.country);
+      // Verifying Change Region
+      await home.validatingChangeRegion(props.country);
     });
   });
 });
