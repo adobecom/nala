@@ -4,7 +4,14 @@ module.exports = {
     {
       tcid: '0',
       name: '@marketo full template',
-      path: ['/de/', '/fr/', '/au/', '/jp/', '/uk/'],
+      path: [
+        '/request-consultation',
+        '/de/request-consultation',
+        '/fr/request-consultation',
+        '/au/request-consultation',
+        '/jp/request-consultation',
+        '/uk/request-consultation',
+      ],
       tags: '@marketo @marketoBacom @bacom @smoke @regression @e2e @homepage',
     },
     {
