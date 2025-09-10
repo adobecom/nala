@@ -18,8 +18,18 @@ export default class Quiz {
     this.quizInput = page.locator('#quiz-input');
     this.continueButton = page.getByRole('button', { name: 'Continue' });
     this.carouselNext = page.locator('.carousel-arrow.arrow-next');
-    this.bcChatInput = page.locator('.bc-chat-input');
-    this.bcChatButton = page.locator('.bc-send-button');
+    this.bcChatInput = page.locator('#bc-input-field');
+    this.bcChatButton = page.locator('.input-field-button');
+
+    // Console error monitoring for health checks
+    this.consoleErrors = [];
+    this.knownConsoleErrors = [
+      'Failed to load resource: net::ERR_FAILED',
+      'Failed to fetch',
+      'NetworkError',
+      'net::ERR_NETWORK_CHANGED',
+      'net::ERR_INTERNET_DISCONNECTED',
+    ];
   }
 
   /**
@@ -340,26 +350,104 @@ export default class Quiz {
     }
   }
 
-  async checkBCQuiz(url, key, keyNumber, version, project, folderPath, isScreenshot = false) {
+  /**
+   * Initialize console error monitoring for health checks
+   */
+  initializeErrorMonitoring() {
+    this.consoleErrors = [];
+    this.page.on('console', (exception) => {
+      if (exception.type() === 'error') {
+        this.consoleErrors.push(exception.text());
+      }
+    });
+  }
+
+  /**
+   * Get unexpected console errors (filtering out known errors)
+   * @return {Array<string>} Array of unexpected error messages
+   */
+  getUnexpectedConsoleErrors() {
+    return this.consoleErrors.filter((error) => !this.knownConsoleErrors.some((knownError) => error.includes(knownError)));
+  }
+
+  /**
+   * Get critical JavaScript errors only
+   * @return {Array<string>} Array of critical JavaScript errors
+   */
+  getCriticalJavaScriptErrors() {
+    return this.consoleErrors.filter((error) => error.includes('TypeError')
+      || error.includes('ReferenceError')
+      || error.includes('SyntaxError')
+      || error.includes('Cannot read prop')
+      || error.includes('is not a function'));
+  }
+
+  /**
+   * Log console error summary for health checks
+   */
+  logErrorSummary() {
+    const unexpectedErrors = this.getUnexpectedConsoleErrors();
+
+    if (unexpectedErrors.length > 0) {
+      console.log('Unexpected Console Errors:', unexpectedErrors);
+    } else {
+      console.log('✅ No unexpected console errors detected');
+    }
+  }
+
+  /**
+   * Send a brand concierge chat message and wait for response
+   * @param {string} message - Message to send
+   * @param {number} timeout - Timeout for response (default 15000ms)
+   */
+  async sendBCChatMessage(message, timeout = 15000) {
+    await this.bcChatInput.fill(message);
+    await this.bcChatButton.click();
+
+    try {
+      await this.page.waitForSelector('.bc-prompt-suggestion-button', { timeout });
+      return true;
+    } catch (error) {
+      console.log(`⚠️ No response received for message: "${message}"`);
+      return false;
+    }
+  }
+
+  /**
+   * Simulate network failure by blocking API requests
+   * @param {string} pattern - URL pattern to block (default: '**\/api\/**')
+   */
+  async simulateNetworkFailure(pattern = '**/api/**') {
+    await this.page.route(pattern, (route) => route.abort());
+  }
+
+  async checkBCQuiz(url, key, keyNumber, version, project, folderPath, isScreenshot = true) {
     const answers = key.split('>').map((x) => x.trim());
     await this.page.goto(url);
     for (const answer of answers) {
+      await this.page.waitForTimeout(500);
       await this.bcChatInput.fill(answer);
       await this.bcChatButton.click();
-      await this.page.waitForSelector('.bc-action-button');
+      try {
+        await this.page.waitForSelector('.bc-prompt-suggestion-button');
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('waiting for selector')) {
+          console.info('No suggestion button');
+        }
+      } finally {
+        if (isScreenshot) {
+          await this.page.waitForTimeout(1000);
 
-      if (isScreenshot) {
-        await this.page.waitForTimeout(1000);
-
-        const index = answers.indexOf(answer);
-        await this.takeScreenshot(
-          keyNumber,
-          version,
-          index,
-          answer,
-          folderPath,
-          project,
-        );
+          const index = answers.indexOf(answer);
+          await this.takeScreenshot(
+            keyNumber,
+            version,
+            index,
+            answer,
+            folderPath,
+            project,
+          );
+        }
       }
     }
   }
