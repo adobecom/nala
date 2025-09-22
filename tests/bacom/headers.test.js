@@ -16,7 +16,7 @@ test.describe('BACOM Headers tests', () => {
       const response = await WebUtil.getRequest(testPage);
 
       expect(response.status()).toBe(200);
-      expect(response.headers()['x-adobe-content']).toBe('Helix BACOM');
+      expect(response.headers()['x-adobe-content']).toBe('AEM DA BACOM');
     });
   });
 
