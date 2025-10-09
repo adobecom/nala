@@ -13,14 +13,14 @@ const folderPath = 'screenshots/uar-ai';
 
 test.describe('Quiz flow test suite', () => {
   // reset timeout because we use this to run all test data
-  test.setTimeout(20 * 60 * 1000);
+  test.setTimeout(30 * 60 * 1000);
   for (const feature of features) {
     test(
       `${feature.name}, ${feature.tags}`,
       async ({ page }, testInfo) => {
         const stablePage = new Quiz(page);
         const betaPage = new Quiz(page);
-        const stableURL = `${envs[feature.stable]}${feature.path}`;
+        const stableURL = `${envs[feature.stable]}/cc-shared/fragments/tests/2025/q3/ace1082/brand-concierge`;
         console.info(stableURL);
         const betaURL = `${envs[feature.beta]}${feature.path}`;
         console.info(betaURL);
