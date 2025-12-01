@@ -103,10 +103,10 @@ export default class PhotoshopPageSanity {
       { element: this.gnavComparePlans, conditions: { defaultVisibility: true } },
       { element: this.gnavFreeTrialDetails, conditions: { defaultVisibility: true , excludeCountries : ['Korea'] } },
       { element: this.gnavMobile, conditions: { defaultVisibility: true } },
-      { element: this.goToPhotoshop, conditions: { defaultVisibility: true } },
+      { element: this.goToPhotoshop, conditions: { defaultVisibility: true ,excludeCountries : ['Indonesia'] } },
     ];
 
-    await Promise.all(elementsToCheck.map(async ({ element, conditions }) => {
+    for (const { element, conditions } of elementsToCheck) {
       if (conditions.includeCountries && conditions.includeCountries.includes(country)) {
         await expect(element).toBeVisible();
       } else if (conditions.excludeCountries && conditions.excludeCountries.includes(country)) {
@@ -114,7 +114,7 @@ export default class PhotoshopPageSanity {
       } else if (conditions.defaultVisibility) {
         await expect(element).toBeVisible();
       }
-    }));
+    }
   }
 
   // Creativity & Design
