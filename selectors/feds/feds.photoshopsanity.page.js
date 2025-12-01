@@ -321,3 +321,4 @@ export default class PhotoshopPageSanity {
     }));
   }
 }
+//

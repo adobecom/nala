@@ -75,6 +75,7 @@ export default class FedsFooter {
     this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]').nth(2);
     this.footerIllustratorlogo = page.locator('.feds-featuredProducts a[href$="illustrator/free-trial-download.html"]');
   }
+  //
 
   // >> FEDS Footer methods declared here <<
 }
