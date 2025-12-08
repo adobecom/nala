@@ -4,8 +4,8 @@ module.exports = {
     {
       tcid: '0',
       name: 'BACOM Visual Comparison',
-      stable: '@bacom_prod',
-      beta: '@bacom_stage',
+      stable: '@bacom_live',
+      beta: '@bacom_live',
       tags: '@bacom-visual @visual @bacom-screenshots',
       data: 'data/bacom/visual/sot.yml',
     },
