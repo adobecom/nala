@@ -1,0 +1,275 @@
+---
+# =============================================================================
+# BACOM & DA-BACOM Language-First Site (Lingo) Test URLs
+# Testing: Link transformation and regional page detection
+# Feature Branch: ?milolibs=vhargrave-lingo-link-transformation-test&martech=off
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# GNav Test URLs
+# -----------------------------------------------------------------------------
+'gnav-footer-modal': 'https://main--da-bacom--adobecom.aem.live/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English US (/) - Root/Default Site - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'en-us': 'https://main--da-bacom--adobecom.aem.live/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-products': 'https://main--da-bacom--adobecom.aem.live/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-solutions': 'https://main--da-bacom--adobecom.aem.live/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-creativecloud': 'https://main--da-bacom--adobecom.aem.live/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-analytics': 'https://main--da-bacom--adobecom.aem.live/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-marketo': 'https://main--da-bacom--adobecom.aem.live/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-commerce': 'https://main--da-bacom--adobecom.aem.live/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-workfront': 'https://main--da-bacom--adobecom.aem.live/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-firefly': 'https://main--da-bacom--adobecom.aem.live/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us-personalization': 'https://main--da-bacom--adobecom.aem.live/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English India (/in) - Full Site - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'en-in': 'https://main--da-bacom--adobecom.aem.live/in/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-products': 'https://main--da-bacom--adobecom.aem.live/in/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-solutions': 'https://main--da-bacom--adobecom.aem.live/in/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-creativecloud': 'https://main--da-bacom--adobecom.aem.live/in/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/in/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-analytics': 'https://main--da-bacom--adobecom.aem.live/in/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-marketo': 'https://main--da-bacom--adobecom.aem.live/in/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-commerce': 'https://main--da-bacom--adobecom.aem.live/in/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-workfront': 'https://main--da-bacom--adobecom.aem.live/in/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-firefly': 'https://main--da-bacom--adobecom.aem.live/in/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in-personalization': 'https://main--da-bacom--adobecom.aem.live/in/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Base (/es) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'es': 'https://main--da-bacom--adobecom.aem.live/es/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-products': 'https://main--da-bacom--adobecom.aem.live/es/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-solutions': 'https://main--da-bacom--adobecom.aem.live/es/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-creativecloud': 'https://main--da-bacom--adobecom.aem.live/es/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/es/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-analytics': 'https://main--da-bacom--adobecom.aem.live/es/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-marketo': 'https://main--da-bacom--adobecom.aem.live/es/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-commerce': 'https://main--da-bacom--adobecom.aem.live/es/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-workfront': 'https://main--da-bacom--adobecom.aem.live/es/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-firefly': 'https://main--da-bacom--adobecom.aem.live/es/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-personalization': 'https://main--da-bacom--adobecom.aem.live/es/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /ar (Argentina) - .aem.live (query-index.json - published)
+# -----------------------------------------------------------------------------
+'es-ar-live': 'https://main--da-bacom--adobecom.aem.live/ar/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-live-products': 'https://main--da-bacom--adobecom.aem.live/ar/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-live-solutions': 'https://main--da-bacom--adobecom.aem.live/ar/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-live-creativecloud': 'https://main--da-bacom--adobecom.aem.live/ar/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-live-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/ar/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-live-ai': 'https://main--da-bacom--adobecom.aem.live/ar/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /ar (Argentina) - .aem.page (preview-index.json - draft/preview)
+# -----------------------------------------------------------------------------
+'es-ar-page': 'https://main--da-bacom--adobecom.aem.page/ar/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-page-products': 'https://main--da-bacom--adobecom.aem.page/ar/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-page-solutions': 'https://main--da-bacom--adobecom.aem.page/ar/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-page-creativecloud': 'https://main--da-bacom--adobecom.aem.page/ar/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-page-experience-cloud': 'https://main--da-bacom--adobecom.aem.page/ar/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar-page-ai': 'https://main--da-bacom--adobecom.aem.page/ar/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /mx (Mexico) - .aem.live (query-index.json - published)
+# -----------------------------------------------------------------------------
+'es-mx-live': 'https://main--da-bacom--adobecom.aem.live/mx/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-live-products': 'https://main--da-bacom--adobecom.aem.live/mx/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-live-solutions': 'https://main--da-bacom--adobecom.aem.live/mx/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-live-creativecloud': 'https://main--da-bacom--adobecom.aem.live/mx/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-live-ai': 'https://main--da-bacom--adobecom.aem.live/mx/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /mx (Mexico) - .aem.page (preview-index.json - draft/preview)
+# -----------------------------------------------------------------------------
+'es-mx-page': 'https://main--da-bacom--adobecom.aem.page/mx/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-page-products': 'https://main--da-bacom--adobecom.aem.page/mx/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-page-solutions': 'https://main--da-bacom--adobecom.aem.page/mx/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-page-creativecloud': 'https://main--da-bacom--adobecom.aem.page/mx/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx-page-ai': 'https://main--da-bacom--adobecom.aem.page/mx/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# German Base (/de) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'de': 'https://main--da-bacom--adobecom.aem.live/de/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-products': 'https://main--da-bacom--adobecom.aem.live/de/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-solutions': 'https://main--da-bacom--adobecom.aem.live/de/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-creativecloud': 'https://main--da-bacom--adobecom.aem.live/de/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/de/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-analytics': 'https://main--da-bacom--adobecom.aem.live/de/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-marketo': 'https://main--da-bacom--adobecom.aem.live/de/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-commerce': 'https://main--da-bacom--adobecom.aem.live/de/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-workfront': 'https://main--da-bacom--adobecom.aem.live/de/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-firefly': 'https://main--da-bacom--adobecom.aem.live/de/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-personalization': 'https://main--da-bacom--adobecom.aem.live/de/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# German Regional /at (Austria) - .aem.live (query-index.json - published)
+# -----------------------------------------------------------------------------
+'de-at-live': 'https://main--da-bacom--adobecom.aem.live/at/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-at-live-products': 'https://main--da-bacom--adobecom.aem.live/at/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-at-live-solutions': 'https://main--da-bacom--adobecom.aem.live/at/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-at-live-creativecloud': 'https://main--da-bacom--adobecom.aem.live/at/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# German Regional /at (Austria) - .aem.page (preview-index.json - draft/preview)
+# -----------------------------------------------------------------------------
+'de-at-page': 'https://main--da-bacom--adobecom.aem.page/at/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-at-page-products': 'https://main--da-bacom--adobecom.aem.page/at/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-at-page-solutions': 'https://main--da-bacom--adobecom.aem.page/at/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-at-page-creativecloud': 'https://main--da-bacom--adobecom.aem.page/at/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# German Regional /ch_de (Switzerland German) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'de-ch_de': 'https://main--da-bacom--adobecom.aem.live/ch_de/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-products': 'https://main--da-bacom--adobecom.aem.live/ch_de/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-solutions': 'https://main--da-bacom--adobecom.aem.live/ch_de/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-creativecloud': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-analytics': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-marketo': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-commerce': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-workfront': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-firefly': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de-personalization': 'https://main--da-bacom--adobecom.aem.live/ch_de/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# French Base (/fr) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'fr': 'https://main--da-bacom--adobecom.aem.live/fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-products': 'https://main--da-bacom--adobecom.aem.live/fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-solutions': 'https://main--da-bacom--adobecom.aem.live/fr/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-creativecloud': 'https://main--da-bacom--adobecom.aem.live/fr/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/fr/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-analytics': 'https://main--da-bacom--adobecom.aem.live/fr/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-marketo': 'https://main--da-bacom--adobecom.aem.live/fr/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-commerce': 'https://main--da-bacom--adobecom.aem.live/fr/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-workfront': 'https://main--da-bacom--adobecom.aem.live/fr/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-firefly': 'https://main--da-bacom--adobecom.aem.live/fr/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-personalization': 'https://main--da-bacom--adobecom.aem.live/fr/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# French Regional /ca_fr (Canada French) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'fr-ca_fr': 'https://main--da-bacom--adobecom.aem.live/ca_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-products': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-solutions': 'https://main--da-bacom--adobecom.aem.live/ca_fr/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-creativecloud': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-analytics': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-marketo': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-commerce': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-workfront': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-firefly': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr-personalization': 'https://main--da-bacom--adobecom.aem.live/ca_fr/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Italian (/it) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'it': 'https://main--da-bacom--adobecom.aem.live/it/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-products': 'https://main--da-bacom--adobecom.aem.live/it/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-solutions': 'https://main--da-bacom--adobecom.aem.live/it/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-creativecloud': 'https://main--da-bacom--adobecom.aem.live/it/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/it/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-analytics': 'https://main--da-bacom--adobecom.aem.live/it/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-marketo': 'https://main--da-bacom--adobecom.aem.live/it/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-commerce': 'https://main--da-bacom--adobecom.aem.live/it/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-workfront': 'https://main--da-bacom--adobecom.aem.live/it/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-firefly': 'https://main--da-bacom--adobecom.aem.live/it/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-personalization': 'https://main--da-bacom--adobecom.aem.live/it/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Portuguese (/pt) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'pt': 'https://main--da-bacom--adobecom.aem.live/pt/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-products': 'https://main--da-bacom--adobecom.aem.live/pt/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-solutions': 'https://main--da-bacom--adobecom.aem.live/pt/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-creativecloud': 'https://main--da-bacom--adobecom.aem.live/pt/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/pt/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-analytics': 'https://main--da-bacom--adobecom.aem.live/pt/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-marketo': 'https://main--da-bacom--adobecom.aem.live/pt/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-commerce': 'https://main--da-bacom--adobecom.aem.live/pt/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-workfront': 'https://main--da-bacom--adobecom.aem.live/pt/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-firefly': 'https://main--da-bacom--adobecom.aem.live/pt/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-personalization': 'https://main--da-bacom--adobecom.aem.live/pt/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Portuguese Regional /br (Brazil) - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'pt-br': 'https://main--da-bacom--adobecom.aem.live/br/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-products': 'https://main--da-bacom--adobecom.aem.live/br/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-solutions': 'https://main--da-bacom--adobecom.aem.live/br/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-creativecloud': 'https://main--da-bacom--adobecom.aem.live/br/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/br/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-analytics': 'https://main--da-bacom--adobecom.aem.live/br/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-marketo': 'https://main--da-bacom--adobecom.aem.live/br/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-commerce': 'https://main--da-bacom--adobecom.aem.live/br/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-workfront': 'https://main--da-bacom--adobecom.aem.live/br/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-firefly': 'https://main--da-bacom--adobecom.aem.live/br/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br-personalization': 'https://main--da-bacom--adobecom.aem.live/br/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Japanese (/jp) - Full Site - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'jp': 'https://main--da-bacom--adobecom.aem.live/jp/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-products': 'https://main--da-bacom--adobecom.aem.live/jp/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-solutions': 'https://main--da-bacom--adobecom.aem.live/jp/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-creativecloud': 'https://main--da-bacom--adobecom.aem.live/jp/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/jp/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-analytics': 'https://main--da-bacom--adobecom.aem.live/jp/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-marketo': 'https://main--da-bacom--adobecom.aem.live/jp/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-commerce': 'https://main--da-bacom--adobecom.aem.live/jp/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-workfront': 'https://main--da-bacom--adobecom.aem.live/jp/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-firefly': 'https://main--da-bacom--adobecom.aem.live/jp/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp-personalization': 'https://main--da-bacom--adobecom.aem.live/jp/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Korean (/kr) - Full Site - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'kr': 'https://main--da-bacom--adobecom.aem.live/kr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-products': 'https://main--da-bacom--adobecom.aem.live/kr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-solutions': 'https://main--da-bacom--adobecom.aem.live/kr/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-creativecloud': 'https://main--da-bacom--adobecom.aem.live/kr/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/kr/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-analytics': 'https://main--da-bacom--adobecom.aem.live/kr/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-marketo': 'https://main--da-bacom--adobecom.aem.live/kr/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-commerce': 'https://main--da-bacom--adobecom.aem.live/kr/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-workfront': 'https://main--da-bacom--adobecom.aem.live/kr/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-firefly': 'https://main--da-bacom--adobecom.aem.live/kr/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr-personalization': 'https://main--da-bacom--adobecom.aem.live/kr/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English UK (/uk) - Full Site - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'en-uk': 'https://main--da-bacom--adobecom.aem.live/uk/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-products': 'https://main--da-bacom--adobecom.aem.live/uk/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-solutions': 'https://main--da-bacom--adobecom.aem.live/uk/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-creativecloud': 'https://main--da-bacom--adobecom.aem.live/uk/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/uk/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-analytics': 'https://main--da-bacom--adobecom.aem.live/uk/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-marketo': 'https://main--da-bacom--adobecom.aem.live/uk/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-commerce': 'https://main--da-bacom--adobecom.aem.live/uk/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-workfront': 'https://main--da-bacom--adobecom.aem.live/uk/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-firefly': 'https://main--da-bacom--adobecom.aem.live/uk/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk-personalization': 'https://main--da-bacom--adobecom.aem.live/uk/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English AU (/au) - Full Site - Homepage + 10 Subpages
+# -----------------------------------------------------------------------------
+'en-au': 'https://main--da-bacom--adobecom.aem.live/au/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-products': 'https://main--da-bacom--adobecom.aem.live/au/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-solutions': 'https://main--da-bacom--adobecom.aem.live/au/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-creativecloud': 'https://main--da-bacom--adobecom.aem.live/au/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/au/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-analytics': 'https://main--da-bacom--adobecom.aem.live/au/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-marketo': 'https://main--da-bacom--adobecom.aem.live/au/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-commerce': 'https://main--da-bacom--adobecom.aem.live/au/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-workfront': 'https://main--da-bacom--adobecom.aem.live/au/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-firefly': 'https://main--da-bacom--adobecom.aem.live/au/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au-personalization': 'https://main--da-bacom--adobecom.aem.live/au/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
