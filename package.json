@@ -34,7 +34,7 @@
     "@axe-core/playwright": "^4.7.0",
     "@playwright/test": "^1.49.1",
     "axe-html-reporter": "^2.2.3",
-    "axios": "^1.7.4",
+    "axios": "^1.13.2",
     "css": "^3.0.0",
     "js-yaml": "^4.1.0"
   },
