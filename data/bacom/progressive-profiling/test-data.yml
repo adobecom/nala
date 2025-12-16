@@ -1,0 +1,154 @@
+---
+# =============================================================================
+# BACOM Progressive Profiling Test Data
+# Testing: Field visibility, pre-fill, and hiding behaviors across forms
+# Forms: Short DX (Essential), Medium DX (Expanded), RFI (Contact/Full)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Form URLs (DX forms only)
+# -----------------------------------------------------------------------------
+forms:
+  short-dx:
+    name: 'Short Form DX (Essential)'
+    url: 'https://business.adobe.com/resources/form-test-1-essential-dx-stage.html'
+    template: 'flex_content'
+  medium-dx:
+    name: 'Medium Form DX (Expanded)'
+    url: 'https://business.adobe.com/resources/form-test-2-expanded-dx-stage.html'
+    template: 'flex_event'
+  rfi:
+    name: 'RFI Form (Contact/Full)'
+    url: 'https://business.adobe.com/resources/form-test-5-stage.html'
+    template: 'flex_contact'
+
+# -----------------------------------------------------------------------------
+# Test User Data (using @adobetest.com emails as required)
+# -----------------------------------------------------------------------------
+testUsers:
+  default:
+    email: 'xiasun+test001@adobetest.com'
+    firstName: 'NalaTest'
+    lastName: 'UserPP'
+    company: 'Adobe Test Corp'
+    country: 'United States'
+    state: 'California'
+    postalCode: '95110'
+    phone: '408-555-0100'
+    jobTitle: 'Individual Contributor'
+    functionalArea: 'Marketing: General'
+    primaryProductInterest: 'Real-time web analytics'
+
+# -----------------------------------------------------------------------------
+# Field Visibility Rules by Form Type (Unknown User)
+# -----------------------------------------------------------------------------
+fieldRules:
+  # Short Form DX (Essential) - 5 fields
+  short-dx:
+    visible:
+      - email
+      - firstName
+      - lastName
+      - company
+      - country
+    hidden:
+      - state
+      - postalCode
+      - phone
+      - jobTitle
+      - functionalArea
+      - primaryProductInterest
+
+  # Medium Form DX (Expanded) - 7 fields
+  medium-dx:
+    visible:
+      - email
+      - firstName
+      - lastName
+      - company
+      - country
+      - jobTitle
+      - functionalArea
+    hidden:
+      - state
+      - postalCode
+      - phone
+      - primaryProductInterest
+
+  # RFI Form (Contact/Full) - 11 fields
+  # Note: state and postalCode are dependent on country selection
+  rfi:
+    visible:
+      - email
+      - firstName
+      - lastName
+      - company
+      - country
+      - phone
+      - jobTitle
+      - functionalArea
+      - primaryProductInterest
+    visibleAfterCountry:
+      - state
+      - postalCode
+    hidden: []
+
+# -----------------------------------------------------------------------------
+# Progressive Profiling Journey Rules
+# Previously collected fields should be HIDDEN on subsequent forms
+# -----------------------------------------------------------------------------
+journeyRules:
+  # Journey: Short DX → Medium DX
+  shortToMedium:
+    description: 'User filled Short form, now visiting Medium form via email link'
+    hidden:
+      - firstName
+      - lastName
+      - company
+    visible:
+      - email
+      - country
+      - jobTitle
+      - functionalArea
+
+  # Journey: Short DX → RFI
+  shortToRfi:
+    description: 'User filled Short form, now visiting RFI form via email link'
+    hidden:
+      - firstName
+      - lastName
+      - company
+    visible:
+      - email
+      - country
+      - phone
+      - state
+      - postalCode
+      - jobTitle
+      - functionalArea
+      - primaryProductInterest
+
+  # Journey: Medium DX → RFI
+  mediumToRfi:
+    description: 'User filled Medium form, now visiting RFI form via email link'
+    hidden:
+      - firstName
+      - lastName
+      - company
+      - jobTitle
+      - functionalArea
+    visible:
+      - email
+      - country
+      - phone
+      - state
+      - postalCode
+      - primaryProductInterest
+
+# -----------------------------------------------------------------------------
+# Thank You Page patterns (for form submission verification)
+# -----------------------------------------------------------------------------
+thankYouPatterns:
+  - 'submissionid'
+  - 'thank-you'
+  - 'form-test-thank-you'
