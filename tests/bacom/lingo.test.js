@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { features } from '../../features/bacom/lingo.spec.js';
 import * as fs from 'fs';
 import * as path from 'path';
+import { features } from '../../features/bacom/lingo.spec.js';
 
 const { WebUtil } = require('../../libs/webutil.js');
 
@@ -56,7 +56,7 @@ function ensureResultsDir() {
 // Append a single test result to JSON Lines file (parallel-safe)
 function appendTestResult(testResult) {
   ensureResultsDir();
-  const line = JSON.stringify(testResult) + '\n';
+  const line = `${JSON.stringify(testResult)}\n`;
   fs.appendFileSync(REPORT_JSONL_PATH, line);
   console.info(`[LingoTest] Appended result for: ${testResult.testName}`);
 }
@@ -134,11 +134,19 @@ async function analyzePageLinks(page, locale, isRoot = false) {
 
   const links = await page.evaluate(() => {
     const allLinks = Array.from(document.querySelectorAll('a[href]'));
-    return allLinks.map((a) => ({
-      href: a.href,
-      text: a.textContent?.trim().substring(0, 50) || '',
-      location: a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : 'body',
-    }));
+    return allLinks.map((a) => {
+      let location = 'body';
+      if (a.closest('header')) {
+        location = 'header';
+      } else if (a.closest('footer')) {
+        location = 'footer';
+      }
+      return {
+        href: a.href,
+        text: a.textContent?.trim().substring(0, 50) || '',
+        location,
+      };
+    });
   });
 
   const internalLinks = links.filter((link) => link.href.startsWith(baseDomain));
@@ -326,7 +334,9 @@ async function testBaseLanguagePages(page, testData, pageKeys, locale, testName)
  * Test REGIONAL pages - Compare .live vs .page link transformation
  */
 async function testRegionalPagesWithEnv(page, testData, pageKeys, regionalLocale, baseLocale, env, testName) {
-  const results = { success: 0, skip: 0, failed: 0, regionalLinks: 0, baseLinks: 0, pages: [] };
+  const results = {
+    success: 0, skip: 0, failed: 0, regionalLinks: 0, baseLinks: 0, pages: [],
+  };
 
   for (let i = 0; i < pageKeys.length; i += 1) {
     const pageName = pageKeys[i];

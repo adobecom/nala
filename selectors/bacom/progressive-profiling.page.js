@@ -56,24 +56,24 @@ export default class ProgressiveProfilingForm {
     // ==========================================================================
     // Core fields (Short/Essential form - flex_content)
     // ==========================================================================
-    this.email = this.marketo.locator('input[name="Email"]');           // Business email
-    this.firstName = this.marketo.locator('input[name="FirstName"]');   // First name
-    this.lastName = this.marketo.locator('input[name="LastName"]');     // Last name
-    this.company = this.marketo.locator('input[name="mktoFormsCompany"]'); // Organization name
-    this.country = this.marketo.locator('select[name="Country"]');      // Country
+    this.email = this.marketo.locator('input[name="Email"]');
+    this.firstName = this.marketo.locator('input[name="FirstName"]');
+    this.lastName = this.marketo.locator('input[name="LastName"]');
+    this.company = this.marketo.locator('input[name="mktoFormsCompany"]');
+    this.country = this.marketo.locator('select[name="Country"]');
 
     // ==========================================================================
     // Medium/Expanded form fields (flex_event) - additional fields
     // ==========================================================================
-    this.jobTitle = this.marketo.locator('select[name="mktoFormsJobTitle"]');       // Job title or role
-    this.functionalArea = this.marketo.locator('select[name="mktoFormsFunctionalArea"]'); // Department
+    this.jobTitle = this.marketo.locator('select[name="mktoFormsJobTitle"]');
+    this.functionalArea = this.marketo.locator('select[name="mktoFormsFunctionalArea"]');
 
     // ==========================================================================
     // RFI/Full form fields (flex_contact) - additional fields
     // ==========================================================================
-    this.phone = this.marketo.locator('input[name="Phone"]');           // Business phone
-    this.state = this.marketo.locator('select[name="State"]');          // State/province
-    this.postalCode = this.marketo.locator('input[name="PostalCode"]'); // Zip/postal code
+    this.phone = this.marketo.locator('input[name="Phone"]');
+    this.state = this.marketo.locator('select[name="State"]');
+    this.postalCode = this.marketo.locator('input[name="PostalCode"]');
     this.primaryProductInterest = this.marketo.locator('select[name="mktoFormsPrimaryProductInterest"]'); // Primary product of interest
 
     // ==========================================================================
@@ -392,14 +392,10 @@ export default class ProgressiveProfilingForm {
       if (isPrefilled) {
         results.passed += 1;
         const value = await this.getFieldValue(fieldName);
-        results.details.push({
-          field: fieldName, expected: 'prefilled', actual: `prefilled (${value})`, pass: true,
-        });
+        results.details.push({ field: fieldName, expected: 'prefilled', actual: `prefilled (${value})`, pass: true });
       } else {
         results.failed += 1;
-        results.details.push({
-          field: fieldName, expected: 'prefilled', actual: 'empty', pass: false,
-        });
+        results.details.push({ field: fieldName, expected: 'prefilled', actual: 'empty', pass: false });
       }
     }
 
@@ -408,15 +404,11 @@ export default class ProgressiveProfilingForm {
       const isPrefilled = await this.isFieldPrefilled(fieldName);
       if (!isPrefilled) {
         results.passed += 1;
-        results.details.push({
-          field: fieldName, expected: 'empty', actual: 'empty', pass: true,
-        });
+        results.details.push({ field: fieldName, expected: 'empty', actual: 'empty', pass: true });
       } else {
         results.failed += 1;
         const value = await this.getFieldValue(fieldName);
-        results.details.push({
-          field: fieldName, expected: 'empty', actual: `prefilled (${value})`, pass: false,
-        });
+        results.details.push({ field: fieldName, expected: 'empty', actual: `prefilled (${value})`, pass: false });
       }
     }
 
