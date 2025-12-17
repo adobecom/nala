@@ -273,3 +273,267 @@
 'en-au-workfront': 'https://main--da-bacom--adobecom.aem.live/au/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
 'en-au-firefly': 'https://main--da-bacom--adobecom.aem.live/au/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
 'en-au-personalization': 'https://main--da-bacom--adobecom.aem.live/au/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English NZ (/nz) - Regional
+# -----------------------------------------------------------------------------
+'en-nz': 'https://main--da-bacom--adobecom.aem.live/nz/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-nz-products': 'https://main--da-bacom--adobecom.aem.live/nz/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Canada (/ca) - Regional
+# -----------------------------------------------------------------------------
+'en-ca': 'https://main--da-bacom--adobecom.aem.live/ca/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ca-products': 'https://main--da-bacom--adobecom.aem.live/ca/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Ireland (/ie) - Regional
+# -----------------------------------------------------------------------------
+'en-ie': 'https://main--da-bacom--adobecom.aem.live/ie/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ie-products': 'https://main--da-bacom--adobecom.aem.live/ie/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Singapore (/sg) - Regional
+# -----------------------------------------------------------------------------
+'en-sg': 'https://main--da-bacom--adobecom.aem.live/sg/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-sg-products': 'https://main--da-bacom--adobecom.aem.live/sg/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Hong Kong (/hk_en) - Regional
+# -----------------------------------------------------------------------------
+'en-hk_en': 'https://main--da-bacom--adobecom.aem.live/hk_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-hk_en-products': 'https://main--da-bacom--adobecom.aem.live/hk_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English UAE (/ae_en) - Regional
+# -----------------------------------------------------------------------------
+'en-ae_en': 'https://main--da-bacom--adobecom.aem.live/ae_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ae_en-products': 'https://main--da-bacom--adobecom.aem.live/ae_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Belgium (/be_en) - Regional
+# -----------------------------------------------------------------------------
+'en-be_en': 'https://main--da-bacom--adobecom.aem.live/be_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-be_en-products': 'https://main--da-bacom--adobecom.aem.live/be_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Netherlands (/nl) - Regional
+# -----------------------------------------------------------------------------
+'en-nl': 'https://main--da-bacom--adobecom.aem.live/nl/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-nl-products': 'https://main--da-bacom--adobecom.aem.live/nl/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Sweden (/se) - Regional
+# -----------------------------------------------------------------------------
+'en-se': 'https://main--da-bacom--adobecom.aem.live/se/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-se-products': 'https://main--da-bacom--adobecom.aem.live/se/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Denmark (/dk) - Regional
+# -----------------------------------------------------------------------------
+'en-dk': 'https://main--da-bacom--adobecom.aem.live/dk/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-dk-products': 'https://main--da-bacom--adobecom.aem.live/dk/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Norway (/no) - Regional
+# -----------------------------------------------------------------------------
+'en-no': 'https://main--da-bacom--adobecom.aem.live/no/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-no-products': 'https://main--da-bacom--adobecom.aem.live/no/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Finland (/fi) - Regional
+# -----------------------------------------------------------------------------
+'en-fi': 'https://main--da-bacom--adobecom.aem.live/fi/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-fi-products': 'https://main--da-bacom--adobecom.aem.live/fi/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Poland (/pl) - Regional
+# -----------------------------------------------------------------------------
+'en-pl': 'https://main--da-bacom--adobecom.aem.live/pl/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-pl-products': 'https://main--da-bacom--adobecom.aem.live/pl/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Czech Republic (/cz) - Regional
+# -----------------------------------------------------------------------------
+'en-cz': 'https://main--da-bacom--adobecom.aem.live/cz/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-cz-products': 'https://main--da-bacom--adobecom.aem.live/cz/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Romania (/ro) - Regional
+# -----------------------------------------------------------------------------
+'en-ro': 'https://main--da-bacom--adobecom.aem.live/ro/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ro-products': 'https://main--da-bacom--adobecom.aem.live/ro/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Bulgaria (/bg) - Regional
+# -----------------------------------------------------------------------------
+'en-bg': 'https://main--da-bacom--adobecom.aem.live/bg/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-bg-products': 'https://main--da-bacom--adobecom.aem.live/bg/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Greece (/gr_en) - Regional
+# -----------------------------------------------------------------------------
+'en-gr_en': 'https://main--da-bacom--adobecom.aem.live/gr_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-gr_en-products': 'https://main--da-bacom--adobecom.aem.live/gr_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Turkey (/tr) - Regional
+# -----------------------------------------------------------------------------
+'en-tr': 'https://main--da-bacom--adobecom.aem.live/tr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-tr-products': 'https://main--da-bacom--adobecom.aem.live/tr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Israel (/il_en) - Regional
+# -----------------------------------------------------------------------------
+'en-il_en': 'https://main--da-bacom--adobecom.aem.live/il_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-il_en-products': 'https://main--da-bacom--adobecom.aem.live/il_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Saudi Arabia (/sa_en) - Regional
+# -----------------------------------------------------------------------------
+'en-sa_en': 'https://main--da-bacom--adobecom.aem.live/sa_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-sa_en-products': 'https://main--da-bacom--adobecom.aem.live/sa_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English MENA (/mena_en) - Regional
+# -----------------------------------------------------------------------------
+'en-mena_en': 'https://main--da-bacom--adobecom.aem.live/mena_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-mena_en-products': 'https://main--da-bacom--adobecom.aem.live/mena_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Africa (/africa) - Regional
+# -----------------------------------------------------------------------------
+'en-africa': 'https://main--da-bacom--adobecom.aem.live/africa/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-africa-products': 'https://main--da-bacom--adobecom.aem.live/africa/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Russia (/ru) - Regional
+# -----------------------------------------------------------------------------
+'en-ru': 'https://main--da-bacom--adobecom.aem.live/ru/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ru-products': 'https://main--da-bacom--adobecom.aem.live/ru/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Ukraine (/ua) - Regional
+# -----------------------------------------------------------------------------
+'en-ua': 'https://main--da-bacom--adobecom.aem.live/ua/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ua-products': 'https://main--da-bacom--adobecom.aem.live/ua/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Estonia (/ee) - Regional
+# -----------------------------------------------------------------------------
+'en-ee': 'https://main--da-bacom--adobecom.aem.live/ee/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ee-products': 'https://main--da-bacom--adobecom.aem.live/ee/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Slovakia (/sk) - Regional
+# -----------------------------------------------------------------------------
+'en-sk': 'https://main--da-bacom--adobecom.aem.live/sk/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-sk-products': 'https://main--da-bacom--adobecom.aem.live/sk/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Slovenia (/si) - Regional
+# -----------------------------------------------------------------------------
+'en-si': 'https://main--da-bacom--adobecom.aem.live/si/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-si-products': 'https://main--da-bacom--adobecom.aem.live/si/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Luxembourg (/lu_en) - Regional
+# -----------------------------------------------------------------------------
+'en-lu_en': 'https://main--da-bacom--adobecom.aem.live/lu_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-lu_en-products': 'https://main--da-bacom--adobecom.aem.live/lu_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English China (/cn) - Regional
+# -----------------------------------------------------------------------------
+'en-cn': 'https://main--da-bacom--adobecom.aem.live/cn/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-cn-products': 'https://main--da-bacom--adobecom.aem.live/cn/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Taiwan (/tw) - Regional
+# -----------------------------------------------------------------------------
+'en-tw': 'https://main--da-bacom--adobecom.aem.live/tw/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-tw-products': 'https://main--da-bacom--adobecom.aem.live/tw/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Indonesia (/id_en) - Regional
+# -----------------------------------------------------------------------------
+'en-id_en': 'https://main--da-bacom--adobecom.aem.live/id_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-id_en-products': 'https://main--da-bacom--adobecom.aem.live/id_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Malaysia (/my_en) - Regional
+# -----------------------------------------------------------------------------
+'en-my_en': 'https://main--da-bacom--adobecom.aem.live/my_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-my_en-products': 'https://main--da-bacom--adobecom.aem.live/my_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Philippines (/ph_en) - Regional
+# -----------------------------------------------------------------------------
+'en-ph_en': 'https://main--da-bacom--adobecom.aem.live/ph_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ph_en-products': 'https://main--da-bacom--adobecom.aem.live/ph_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Thailand (/th_en) - Regional
+# -----------------------------------------------------------------------------
+'en-th_en': 'https://main--da-bacom--adobecom.aem.live/th_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-th_en-products': 'https://main--da-bacom--adobecom.aem.live/th_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# English Vietnam (/vn_en) - Regional
+# -----------------------------------------------------------------------------
+'en-vn_en': 'https://main--da-bacom--adobecom.aem.live/vn_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-vn_en-products': 'https://main--da-bacom--adobecom.aem.live/vn_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# French Regional /be_fr (Belgium French) - Regional
+# -----------------------------------------------------------------------------
+'fr-be_fr': 'https://main--da-bacom--adobecom.aem.live/be_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-be_fr-products': 'https://main--da-bacom--adobecom.aem.live/be_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# French Regional /ch_fr (Switzerland French) - Regional
+# -----------------------------------------------------------------------------
+'fr-ch_fr': 'https://main--da-bacom--adobecom.aem.live/ch_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ch_fr-products': 'https://main--da-bacom--adobecom.aem.live/ch_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# French Regional /lu_fr (Luxembourg French) - Regional
+# -----------------------------------------------------------------------------
+'fr-lu_fr': 'https://main--da-bacom--adobecom.aem.live/lu_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-lu_fr-products': 'https://main--da-bacom--adobecom.aem.live/lu_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# German Regional /lu_de (Luxembourg German) - Regional
+# -----------------------------------------------------------------------------
+'de-lu_de': 'https://main--da-bacom--adobecom.aem.live/lu_de/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-lu_de-products': 'https://main--da-bacom--adobecom.aem.live/lu_de/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Italian Regional /ch_it (Switzerland Italian) - Regional
+# -----------------------------------------------------------------------------
+'it-ch_it': 'https://main--da-bacom--adobecom.aem.live/ch_it/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-ch_it-products': 'https://main--da-bacom--adobecom.aem.live/ch_it/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /cl (Chile) - Regional
+# -----------------------------------------------------------------------------
+'es-cl': 'https://main--da-bacom--adobecom.aem.live/cl/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-cl-products': 'https://main--da-bacom--adobecom.aem.live/cl/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /co (Colombia) - Regional
+# -----------------------------------------------------------------------------
+'es-co': 'https://main--da-bacom--adobecom.aem.live/co/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-co-products': 'https://main--da-bacom--adobecom.aem.live/co/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /la (Latin America) - Regional
+# -----------------------------------------------------------------------------
+'es-la': 'https://main--da-bacom--adobecom.aem.live/la/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-la-products': 'https://main--da-bacom--adobecom.aem.live/la/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /pe (Peru) - Regional
+# -----------------------------------------------------------------------------
+'es-pe': 'https://main--da-bacom--adobecom.aem.live/pe/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-pe-products': 'https://main--da-bacom--adobecom.aem.live/pe/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'

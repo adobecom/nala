@@ -145,3 +145,7 @@ playwright-browserstack-sdk.config.temp.json
 *-404-results.json
 
 *bacom-stage-*.json
+
+*lingo-test-results.jsonl
+*lingo-detailed-report.json
+.lingo-run-marker

@@ -119,12 +119,38 @@ function aggregateReport() {
   console.info(`[LingoTest] Summary: ${tests.length} tests, ${passedTests} passed, ${failedTests} failed`);
 }
 
+// Track if this worker has already cleared results (to avoid race conditions with parallel workers)
+const RUN_MARKER_PATH = path.join(RESULTS_DIR, '.lingo-run-marker');
+
 // Clear previous results (call at start of test run)
+// Uses a marker file to prevent multiple workers from clearing each other's results
 function clearPreviousResults() {
   ensureResultsDir();
+
+  // Check if this is a fresh run by looking at the marker file
+  // If marker exists and was created less than 60 seconds ago, another worker already cleared
+  if (fs.existsSync(RUN_MARKER_PATH)) {
+    try {
+      const markerStat = fs.statSync(RUN_MARKER_PATH);
+      const ageMs = Date.now() - markerStat.mtimeMs;
+      if (ageMs < 60000) {
+        // Another worker already started this run, don't clear
+        console.info('[LingoTest] Skipping clear - another worker already initialized');
+        return;
+      }
+    } catch (e) {
+      // Ignore stat errors
+    }
+  }
+
+  // This is a fresh run - clear old results and create marker
   if (fs.existsSync(REPORT_JSONL_PATH)) {
     fs.unlinkSync(REPORT_JSONL_PATH);
+    console.info('[LingoTest] Cleared previous results');
   }
+
+  // Create/update marker file to signal other workers
+  fs.writeFileSync(RUN_MARKER_PATH, new Date().toISOString());
 }
 
 // Helper function to analyze links on the page (with detailed info)
@@ -915,4 +941,114 @@ test.describe('BACOM Language-First Site (Lingo) Link Transformation test suite'
     console.info(`[LingoTest] ✓ English AU /au: ${results.success} passed, ${results.skip} skipped`);
     expect(results.success).toBeGreaterThan(0);
   });
+
+  // =========================================================================
+  // DYNAMIC TESTS FOR NEW LOCALES (18-64)
+  // These tests cover English Regional, Spanish Regional, German Regional,
+  // French Regional, Italian Regional, and Portuguese Regional locales
+  // =========================================================================
+
+  // Locale configuration map
+  const LOCALE_CONFIG = {
+    // English Regional
+    'en-nz': { locale: 'nz', base: null, type: 'regional' },
+    'en-ca': { locale: 'ca', base: null, type: 'regional' },
+    'en-ie': { locale: 'ie', base: null, type: 'regional' },
+    'en-sg': { locale: 'sg', base: null, type: 'regional' },
+    'en-hk_en': { locale: 'hk_en', base: null, type: 'regional' },
+    'en-ae_en': { locale: 'ae_en', base: null, type: 'regional' },
+    'en-be_en': { locale: 'be_en', base: null, type: 'regional' },
+    'en-nl': { locale: 'nl', base: null, type: 'regional' },
+    'en-se': { locale: 'se', base: null, type: 'regional' },
+    'en-dk': { locale: 'dk', base: null, type: 'regional' },
+    'en-no': { locale: 'no', base: null, type: 'regional' },
+    'en-fi': { locale: 'fi', base: null, type: 'regional' },
+    'en-pl': { locale: 'pl', base: null, type: 'regional' },
+    'en-cz': { locale: 'cz', base: null, type: 'regional' },
+    'en-ro': { locale: 'ro', base: null, type: 'regional' },
+    'en-bg': { locale: 'bg', base: null, type: 'regional' },
+    'en-gr_en': { locale: 'gr_en', base: null, type: 'regional' },
+    'en-tr': { locale: 'tr', base: null, type: 'regional' },
+    'en-il_en': { locale: 'il_en', base: null, type: 'regional' },
+    'en-sa_en': { locale: 'sa_en', base: null, type: 'regional' },
+    'en-mena_en': { locale: 'mena_en', base: null, type: 'regional' },
+    'en-africa': { locale: 'africa', base: null, type: 'regional' },
+    'en-ru': { locale: 'ru', base: null, type: 'regional' },
+    'en-ua': { locale: 'ua', base: null, type: 'regional' },
+    'en-ee': { locale: 'ee', base: null, type: 'regional' },
+    'en-sk': { locale: 'sk', base: null, type: 'regional' },
+    'en-si': { locale: 'si', base: null, type: 'regional' },
+    'en-lu_en': { locale: 'lu_en', base: null, type: 'regional' },
+    'en-cn': { locale: 'cn', base: null, type: 'regional' },
+    'en-tw': { locale: 'tw', base: null, type: 'regional' },
+    'en-id_en': { locale: 'id_en', base: null, type: 'regional' },
+    'en-my_en': { locale: 'my_en', base: null, type: 'regional' },
+    'en-ph_en': { locale: 'ph_en', base: null, type: 'regional' },
+    'en-th_en': { locale: 'th_en', base: null, type: 'regional' },
+    'en-vn_en': { locale: 'vn_en', base: null, type: 'regional' },
+    // Spanish
+    'es-cl': { locale: 'cl', base: 'es', type: 'regional' },
+    'es-co': { locale: 'co', base: 'es', type: 'regional' },
+    'es-la': { locale: 'la', base: 'es', type: 'regional' },
+    'es-pe': { locale: 'pe', base: 'es', type: 'regional' },
+    // German
+    'de-ch_de': { locale: 'ch_de', base: 'de', type: 'regional' },
+    'de-lu_de': { locale: 'lu_de', base: 'de', type: 'regional' },
+    // French
+    'fr-ca_fr': { locale: 'ca_fr', base: 'fr', type: 'regional' },
+    'fr-be_fr': { locale: 'be_fr', base: 'fr', type: 'regional' },
+    'fr-ch_fr': { locale: 'ch_fr', base: 'fr', type: 'regional' },
+    'fr-lu_fr': { locale: 'lu_fr', base: 'fr', type: 'regional' },
+    // Italian
+    'it-ch_it': { locale: 'ch_it', base: 'it', type: 'regional' },
+    // Portuguese
+    'pt-br': { locale: 'br', base: 'pt', type: 'regional' },
+  };
+
+  // Create test function for each new locale (features 18+)
+  const createLocaleTest = (featureIndex) => {
+    const feature = features[featureIndex];
+    if (!feature) return;
+
+    const localeInfo = LOCALE_CONFIG[feature.path];
+    if (!localeInfo) {
+      // Skip unknown locales silently - they may be handled by other tests
+      return;
+    }
+
+    test(`${feature.name}, ${feature.tags}`, async ({ page }) => {
+      const testData = await WebUtil.loadTestData(`${feature.data}`);
+
+      // Get the test pages for this locale
+      const pageKeys = Object.keys(testData).filter((key) => key.startsWith(feature.path));
+
+      if (pageKeys.length === 0) {
+        console.warn(`[LingoTest] No pages found for ${feature.path}`);
+        test.skip();
+        return;
+      }
+
+      const { locale, base, type } = localeInfo;
+      let results;
+
+      if (type === 'regional' && base) {
+        // Non-English regional (Spanish, German, French, Italian, Portuguese)
+        results = await testRegionalPagesWithEnv(page, testData, pageKeys, locale, base, '.live', feature.name);
+      } else if (type === 'regional') {
+        // English regional - test like full site (links should have the regional locale)
+        results = await testFullSitePages(page, testData, pageKeys, locale, feature.name);
+      } else {
+        // Full site
+        results = await testFullSitePages(page, testData, pageKeys, locale, feature.name);
+      }
+
+      console.info(`[LingoTest] ✓ ${feature.name}: ${results.success} passed, ${results.skip} skipped`);
+      expect(results.success).toBeGreaterThan(0);
+    });
+  };
+
+  // Generate tests for features 18-64
+  for (let i = 18; i < features.length; i += 1) {
+    createLocaleTest(i);
+  }
 });
