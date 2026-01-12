@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable max-len */
 /**
  * Generate self-contained HTML report from lingo-detailed-report.json
  * Usage: node scripts/generate-lingo-report.js
@@ -36,11 +37,11 @@ const allUnexpectedLocales = []; // Collect all unexpected locale issues
 const allBadLinks = []; // Collect all bad/staging links
 
 if (reportData.tests) {
-  reportData.tests.forEach(test => {
+  reportData.tests.forEach((test) => {
     if (test.pages) {
-      test.pages.forEach(page => {
+      test.pages.forEach((page) => {
         if (page.hasCaaS) {
-          pagesWithCaaS++;
+          pagesWithCaaS += 1;
           totalCaaSCards += page.cardCount || 0;
           allCaaSPages.push({
             testName: test.testName,
@@ -48,7 +49,7 @@ if (reportData.tests) {
             pageName: page.name,
             pageUrl: page.url,
             cardCount: page.cardCount || 0,
-            totalLinks: page.links?.total || 0
+            totalLinks: page.links?.total || 0,
           });
         }
         if (page.links && page.links.total) {
@@ -61,18 +62,18 @@ if (reportData.tests) {
             locale: test.locale,
             pageName: page.name,
             pageUrl: page.url,
-            reason: page.reason || 'Unknown'
+            reason: page.reason || 'Unknown',
           });
         }
         // Collect pages that were redirected (404 fallback)
         if (page.wasRedirected) {
-          pagesRedirected++;
+          pagesRedirected += 1;
           allFallbacks.push({
             testName: test.testName,
             locale: test.locale,
             pageName: page.name,
             pageUrl: page.url,
-            fallbackTo: page.links?.fallbackRule?.fallbackTo || 'Unknown'
+            fallbackTo: page.links?.fallbackRule?.fallbackTo || 'Unknown',
           });
         }
         // Collect violations
@@ -80,13 +81,13 @@ if (reportData.tests) {
           totalCorrectFallbacks += page.linkValidation.correctFallbacks || 0;
           if (page.linkValidation.violations && page.linkValidation.violations.length > 0) {
             totalViolations += page.linkValidation.violations.length;
-            page.linkValidation.violations.forEach(v => {
+            page.linkValidation.violations.forEach((v) => {
               allViolations.push({
                 testName: test.testName,
                 locale: test.locale,
                 pageName: page.name,
                 pageUrl: page.url,
-                ...v
+                ...v,
               });
             });
           }
@@ -97,19 +98,19 @@ if (reportData.tests) {
               locale: test.locale,
               pageName: page.name,
               pageUrl: page.url,
-              ...page.linkValidation.unexpectedLocales
+              ...page.linkValidation.unexpectedLocales,
             });
           }
         }
         // Collect bad/staging links
         if (page.links?.badLinks && page.links.badLinks.length > 0) {
-          page.links.badLinks.forEach(bl => {
+          page.links.badLinks.forEach((bl) => {
             allBadLinks.push({
               testName: test.testName,
               locale: test.locale,
               pageName: page.name,
               pageUrl: page.url,
-              ...bl
+              ...bl,
             });
           });
         }
@@ -118,9 +119,9 @@ if (reportData.tests) {
   });
 }
 
-const summary = reportData.summary;
-const passRate = summary.totalPages > 0 
-  ? ((summary.passedPages / summary.totalPages) * 100).toFixed(1) 
+const { summary } = reportData;
+const passRate = summary.totalPages > 0
+  ? ((summary.passedPages / summary.totalPages) * 100).toFixed(1)
   : 0;
 
 // Generate HTML
@@ -400,7 +401,7 @@ const html = `<!DOCTYPE html>
             </tr>
           </thead>
           <tbody>
-            ${allBadLinks.map(bl => `
+            ${allBadLinks.map((bl) => `
               <tr style="border-bottom:1px solid var(--border-color);">
                 <td style="padding:8px;">
                   <span style="color:var(--accent-blue);font-family:monospace;">${bl.locale || ''}</span><br>
@@ -455,7 +456,7 @@ const html = `<!DOCTYPE html>
             </tr>
           </thead>
           <tbody>
-            ${allViolations.map(v => `
+            ${allViolations.map((v) => `
               <tr style="border-bottom:1px solid var(--border-color);">
                 <td style="padding:8px;color:var(--accent-blue);font-family:monospace;">${v.locale || ''}</td>
                 <td style="padding:8px;">${v.pageName || ''}</td>
@@ -484,7 +485,7 @@ const html = `<!DOCTYPE html>
             This typically indicates a content authoring issue - the page should only contain links to the expected locale (${allUnexpectedLocales[0]?.locale || 'target locale'}) or root (/), but found links pointing to other locale prefixes.
           </p>
         </div>
-        ${allUnexpectedLocales.map((item, idx) => `
+        ${allUnexpectedLocales.map((item) => `
           <div style="background: var(--bg-card); border-radius: 10px; padding: 16px; margin-bottom: 12px; border: 1px solid rgba(255, 149, 0, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <div>
@@ -500,7 +501,7 @@ const html = `<!DOCTYPE html>
             </div>
             <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px;">${item.issue || ''}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              ${(item.locales || []).map(l => `
+              ${(item.locales || []).map((l) => `
                 <span style="background: rgba(255, 149, 0, 0.15); border: 1px solid rgba(255, 149, 0, 0.4); padding: 4px 10px; border-radius: 6px; font-family: monospace; font-size: 0.8rem;">
                   <span style="color: #ff9500;">/${l.locale}</span>
                   <span style="color: var(--text-secondary);">: ${l.count} links</span>
@@ -511,7 +512,7 @@ const html = `<!DOCTYPE html>
               <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
                 <p style="color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 6px;">Sample links:</p>
                 <div style="display: flex; flex-wrap: wrap; gap: 4px;">
-                  ${item.sampleLinks.slice(0, 5).map(l => `
+                  ${item.sampleLinks.slice(0, 5).map((l) => `
                     <code style="background: var(--bg-primary); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; color: var(--text-secondary);">${l.href}</code>
                   `).join('')}
                   ${item.sampleLinks.length > 5 ? `<span style="color: var(--text-secondary); font-size: 0.7rem;">+${item.sampleLinks.length - 5} more</span>` : ''}
@@ -544,7 +545,7 @@ const html = `<!DOCTYPE html>
             </tr>
           </thead>
           <tbody>
-            ${allSkipped.map(s => `
+            ${allSkipped.map((s) => `
               <tr style="border-bottom:1px solid var(--border-color);">
                 <td style="padding:8px;color:var(--accent-blue);font-family:monospace;">${s.locale || ''}</td>
                 <td style="padding:8px;">${s.pageName || ''}</td>
@@ -578,7 +579,7 @@ const html = `<!DOCTYPE html>
             </tr>
           </thead>
           <tbody>
-            ${allFallbacks.map(f => `
+            ${allFallbacks.map((f) => `
               <tr style="border-bottom:1px solid var(--border-color);">
                 <td style="padding:8px;color:var(--accent-blue);font-family:monospace;">${f.locale || ''}</td>
                 <td style="padding:8px;">${f.pageName || ''}</td>
@@ -614,7 +615,7 @@ const html = `<!DOCTYPE html>
             </tr>
           </thead>
           <tbody>
-            ${allCaaSPages.map(c => `
+            ${allCaaSPages.map((c) => `
               <tr style="border-bottom:1px solid var(--border-color);">
                 <td style="padding:8px;color:var(--accent-blue);font-family:monospace;">${c.locale || ''}</td>
                 <td style="padding:8px;">${c.pageName || ''}</td>
@@ -644,7 +645,7 @@ const html = `<!DOCTYPE html>
               <h4>${key}</h4>
               <p>${rule.description}</p>
               <div class="locale-tags">
-                ${rule.locales.map(l => `<span class="locale-tag">${l}</span>`).join('')}
+                ${rule.locales.map((l) => `<span class="locale-tag">${l}</span>`).join('')}
               </div>
             </div>
           `).join('')}
@@ -665,7 +666,7 @@ const html = `<!DOCTYPE html>
               <h4>${key} → ${rule.fallbackTo}</h4>
               <p>Falls back to <code>${rule.fallbackTo}</code> on 404</p>
               <div class="locale-tags">
-                ${rule.locales.slice(0, 8).map(l => `<span class="locale-tag">/${l}</span>`).join('')}
+                ${rule.locales.slice(0, 8).map((l) => `<span class="locale-tag">/${l}</span>`).join('')}
                 ${rule.locales.length > 8 ? `<span class="locale-tag">+${rule.locales.length - 8}</span>` : ''}
               </div>
             </div>
@@ -682,10 +683,10 @@ const html = `<!DOCTYPE html>
       </div>
       <div class="section-content show" id="tests">
         ${reportData.tests.map((test, i) => {
-          const p = test.results.passed || 0;
-          const f = test.results.failed || 0;
-          const s = test.results.skipped || 0;
-          return `
+    const p = test.results.passed || 0;
+    const f = test.results.failed || 0;
+    const s = test.results.skipped || 0;
+    return `
             <div class="test-item">
               <div class="test-header" onclick="toggleTest(${i})">
                 <div>
@@ -702,7 +703,7 @@ const html = `<!DOCTYPE html>
                 </div>
               </div>
               <div class="pages-list" id="t${i}">
-                ${(test.pages || []).map(pg => `
+                ${(test.pages || []).map((pg) => `
                   <div class="page-row">
                     <div class="top">
                       <span class="name">${pg.name}</span>
@@ -717,18 +718,18 @@ const html = `<!DOCTYPE html>
                         ${pg.links?.baseLinks ? `<span><span class="label">Base:</span> <span class="value">${pg.links.baseLinks}</span></span>` : ''}
                         ${pg.hasCaaS ? `<span class="caas-badge">🎴 ${pg.cardCount} cards</span>` : ''}
 ${pg.linkValidation ? `
-                                          ${pg.linkValidation.skipped 
-                                            ? `<span style="color:var(--accent-blue)">ℹ️ Redirected to base (validation skipped)</span>`
-                                            : `<span style="color:var(--accent-green)">✅ ${pg.linkValidation.correctFallbacks} correct</span>
+                                          ${pg.linkValidation.skipped
+    ? '<span style="color:var(--accent-blue)">ℹ️ Redirected to base (validation skipped)</span>'
+    : `<span style="color:var(--accent-green)">✅ ${pg.linkValidation.correctFallbacks} correct</span>
                                                ${pg.linkValidation.incorrectLinks > 0 ? `<span style="color:var(--accent-red)">❌ ${pg.linkValidation.incorrectLinks} violations</span>` : ''}`
-                                          }
+}
                                         ` : ''}
                       </div>
                       ${pg.linkValidation && pg.linkValidation.violations && pg.linkValidation.violations.length > 0 ? `
                         <div style="margin-top:8px;padding:8px;background:rgba(244,33,46,0.1);border-radius:6px;font-size:0.8rem;">
                           <strong style="color:var(--accent-red)">⚠️ Link Violations (regional page exists but link points to base):</strong>
                           <ul style="margin:4px 0 0 16px;color:var(--text-secondary)">
-${pg.linkValidation.violations.slice(0, 5).map(v => `<li><code>${v.pagePath}</code> → should be <code style="color:var(--accent-green)">${v.regionalPath}</code></li>`).join('')}
+${pg.linkValidation.violations.slice(0, 5).map((v) => `<li><code>${v.pagePath}</code> → should be <code style="color:var(--accent-green)">${v.regionalPath}</code></li>`).join('')}
                                             ${pg.linkValidation.violations.length > 5 ? `<li>... and ${pg.linkValidation.violations.length - 5} more</li>` : ''}
                                           </ul>
                                         </div>
@@ -738,10 +739,10 @@ ${pg.linkValidation.violations.slice(0, 5).map(v => `<li><code>${v.pagePath}</co
                                           <strong style="color:var(--accent-yellow)">⚠️ Unexpected Locale Links (Content Issue):</strong>
                                           <p style="margin:4px 0;color:var(--text-secondary)">${pg.linkValidation.unexpectedLocales.issue}</p>
                                           <ul style="margin:4px 0 0 16px;color:var(--text-secondary)">
-                                            ${pg.linkValidation.unexpectedLocales.locales.map(l => `<li><code>/${l.locale}</code>: ${l.count} links</li>`).join('')}
+                                            ${pg.linkValidation.unexpectedLocales.locales.map((l) => `<li><code>/${l.locale}</code>: ${l.count} links</li>`).join('')}
                                           </ul>
                                           ${pg.linkValidation.unexpectedLocales.sampleLinks && pg.linkValidation.unexpectedLocales.sampleLinks.length > 0 ? `
-                                            <p style="margin-top:4px;color:var(--text-secondary);font-size:0.75rem;">Sample: ${pg.linkValidation.unexpectedLocales.sampleLinks.map(l => l.href).join(', ')}</p>
+                                            <p style="margin-top:4px;color:var(--text-secondary);font-size:0.75rem;">Sample: ${pg.linkValidation.unexpectedLocales.sampleLinks.map((l) => l.href).join(', ')}</p>
                                           ` : ''}
                                         </div>
                                       ` : ''}
@@ -749,7 +750,7 @@ ${pg.linkValidation.violations.slice(0, 5).map(v => `<li><code>${v.pagePath}</co
                                         <div style="margin-top:8px;padding:8px;background:rgba(220,38,38,0.15);border-radius:6px;font-size:0.8rem;border:1px solid rgba(220,38,38,0.3);">
                                           <strong style="color:#dc2626">🚨 Bad/Staging Links Found (${pg.links.badLinks.length}):</strong>
                                           <ul style="margin:4px 0 0 16px;color:var(--text-secondary)">
-                                            ${pg.links.badLinks.slice(0, 5).map(bl => `<li><code style="color:#dc2626">${bl.href}</code> <span style="font-size:0.7rem">[${bl.location}]</span> - ${bl.issue}</li>`).join('')}
+                                            ${pg.links.badLinks.slice(0, 5).map((bl) => `<li><code style="color:#dc2626">${bl.href}</code> <span style="font-size:0.7rem">[${bl.location}]</span> - ${bl.issue}</li>`).join('')}
                                             ${pg.links.badLinks.length > 5 ? `<li>... and ${pg.links.badLinks.length - 5} more</li>` : ''}
                                           </ul>
                                         </div>
@@ -760,7 +761,7 @@ ${pg.linkValidation.violations.slice(0, 5).map(v => `<li><code>${v.pagePath}</co
               </div>
             </div>
           `;
-        }).join('')}
+  }).join('')}
       </div>
     </div>
   </div>
@@ -780,6 +781,5 @@ ${pg.linkValidation.violations.slice(0, 5).map(v => `<li><code>${v.pagePath}</co
 
 fs.writeFileSync(HTML_PATH, html);
 console.log(`✓ Generated ${HTML_PATH}`);
-console.log(`\nOpen the report:`);
+console.log('\nOpen the report:');
 console.log(`  open ${HTML_PATH}`);
-

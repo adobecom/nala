@@ -302,8 +302,12 @@ export default class LingoROC {
       const isGreen = text.includes('mep-lingo:');
       const isYellow = text.includes('fallback:');
 
+      let type = 'unknown';
+      if (isGreen) type = 'green';
+      else if (isYellow) type = 'yellow';
+
       details.push({
-        type: isGreen ? 'green' : (isYellow ? 'yellow' : 'unknown'),
+        type,
         text: text.trim().substring(0, 100),
         href,
       });
@@ -357,7 +361,7 @@ export default class LingoROC {
    * @param {string} basePath - Base path to look for (e.g., '/es/', '/fr/')
    * @returns {Promise<number>} Number of fallback fragments
    */
-  async countFallbackFragments(basePath) {
+  async countFallbackFragments() {
     const fallbackElements = await this.fallbackFragment.all();
     console.info(`[LingoROC] Fallback fragments (data-mep-lingo-fallback): ${fallbackElements.length}`);
     return fallbackElements.length;
@@ -478,7 +482,7 @@ export default class LingoROC {
    * Waits for page with fragments to load
    * @param {number} timeout - Max wait time in ms
    */
-  async waitForPageWithFragments(timeout = 30000) {
+  async waitForPageWithFragments() {
     await this.page.waitForLoadState('domcontentloaded');
     try {
       await this.fragment.first().waitFor({ state: 'attached', timeout: 5000 });

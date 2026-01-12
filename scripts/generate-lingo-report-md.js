@@ -35,11 +35,11 @@ const allBadLinks = [];
 const allUnexpectedLocales = [];
 
 if (reportData.tests) {
-  reportData.tests.forEach(test => {
+  reportData.tests.forEach((test) => {
     if (test.pages) {
-      test.pages.forEach(page => {
+      test.pages.forEach((page) => {
         if (page.hasCaaS) {
-          pagesWithCaaS++;
+          pagesWithCaaS += 1;
           totalCaaSCards += page.cardCount || 0;
         }
         if (page.links && page.links.total) {
@@ -49,21 +49,21 @@ if (reportData.tests) {
           allSkipped.push({
             locale: test.locale,
             pageName: page.name,
-            reason: page.reason || 'Unknown'
+            reason: page.reason || 'Unknown',
           });
         }
         if (page.wasRedirected) {
-          pagesRedirected++;
+          pagesRedirected += 1;
         }
         if (page.linkValidation) {
           totalCorrectFallbacks += page.linkValidation.correctFallbacks || 0;
           if (page.linkValidation.violations && page.linkValidation.violations.length > 0) {
             totalViolations += page.linkValidation.violations.length;
-            page.linkValidation.violations.forEach(v => {
+            page.linkValidation.violations.forEach((v) => {
               allViolations.push({
                 locale: test.locale,
                 pageName: page.name,
-                ...v
+                ...v,
               });
             });
           }
@@ -71,16 +71,16 @@ if (reportData.tests) {
             allUnexpectedLocales.push({
               locale: test.locale,
               pageName: page.name,
-              ...page.linkValidation.unexpectedLocales
+              ...page.linkValidation.unexpectedLocales,
             });
           }
         }
         if (page.links?.badLinks && page.links.badLinks.length > 0) {
-          page.links.badLinks.forEach(bl => {
+          page.links.badLinks.forEach((bl) => {
             allBadLinks.push({
               locale: test.locale,
               pageName: page.name,
-              ...bl
+              ...bl,
             });
           });
         }
@@ -89,9 +89,9 @@ if (reportData.tests) {
   });
 }
 
-const summary = reportData.summary;
-const passRate = summary.totalPages > 0 
-  ? ((summary.passedPages / summary.totalPages) * 100).toFixed(1) 
+const { summary } = reportData;
+const passRate = summary.totalPages > 0
+  ? ((summary.passedPages / summary.totalPages) * 100).toFixed(1)
   : 0;
 
 // Generate Markdown
@@ -133,9 +133,9 @@ if (allBadLinks.length > 0) {
 | Locale | Page | Location | Link Text | Bad URL | Issue |
 |--------|------|----------|-----------|---------|-------|
 `;
-  allBadLinks.forEach(bl => {
+  allBadLinks.forEach((bl) => {
     const text = (bl.text || '(no text)').substring(0, 30);
-    const href = bl.href.length > 60 ? bl.href.substring(0, 60) + '...' : bl.href;
+    const href = bl.href.length > 60 ? `${bl.href.substring(0, 60)}...` : bl.href;
     md += `| \`${bl.locale}\` | ${bl.pageName} | ${bl.location} | ${text} | \`${href}\` | ${bl.issue} |\n`;
   });
   md += '\n---\n\n';
@@ -150,7 +150,7 @@ if (totalViolations > 0) {
 | Locale | Page | Link Path | Should Be | Issue |
 |--------|------|-----------|-----------|-------|
 `;
-  allViolations.slice(0, 50).forEach(v => {
+  allViolations.slice(0, 50).forEach((v) => {
     md += `| \`${v.locale}\` | ${v.pageName} | \`${v.pagePath || ''}\` | \`${v.regionalPath || ''}\` | ${v.issue || ''} |\n`;
   });
   if (allViolations.length > 50) {
@@ -168,8 +168,8 @@ if (allUnexpectedLocales.length > 0) {
 | Locale | Page | Issue | Unexpected Locales |
 |--------|------|-------|-------------------|
 `;
-  allUnexpectedLocales.forEach(item => {
-    const locales = (item.locales || []).map(l => `\`/${l.locale}\`: ${l.count}`).join(', ');
+  allUnexpectedLocales.forEach((item) => {
+    const locales = (item.locales || []).map((l) => `\`/${l.locale}\`: ${l.count}`).join(', ');
     md += `| \`${item.locale}\` | ${item.pageName} | ${item.issue || ''} | ${locales} |\n`;
   });
   md += '\n---\n\n';
@@ -182,7 +182,7 @@ if (allSkipped.length > 0) {
 | Locale | Page | Reason |
 |--------|------|--------|
 `;
-  allSkipped.forEach(s => {
+  allSkipped.forEach((s) => {
     md += `| \`${s.locale}\` | ${s.pageName} | ${s.reason} |\n`;
   });
   md += '\n---\n\n';
@@ -193,7 +193,7 @@ md += `## 📋 Link Transformation Rules
 
 `;
 Object.entries(reportData.rules || {}).forEach(([key, rule]) => {
-  const locales = rule.locales.slice(0, 10).map(l => `\`${l}\``).join(', ');
+  const locales = rule.locales.slice(0, 10).map((l) => `\`${l}\``).join(', ');
   const more = rule.locales.length > 10 ? ` +${rule.locales.length - 10} more` : '';
   md += `### ${key}
 
@@ -210,7 +210,7 @@ md += `---
 
 `;
 Object.entries(reportData.fallbackRules || {}).forEach(([key, rule]) => {
-  const locales = rule.locales.slice(0, 8).map(l => `\`/${l}\``).join(', ');
+  const locales = rule.locales.slice(0, 8).map((l) => `\`/${l}\``).join(', ');
   const more = rule.locales.length > 8 ? ` +${rule.locales.length - 8} more` : '';
   md += `- **${key}** → \`${rule.fallbackTo}\`: ${locales}${more}\n`;
 });
@@ -223,19 +223,21 @@ md += `
 `;
 
 // Test Results with collapsible sections
-(reportData.tests || []).forEach((test, i) => {
+(reportData.tests || []).forEach((test) => {
   const p = test.results.passed || 0;
   const f = test.results.failed || 0;
   const s = test.results.skipped || 0;
-  
+
+  const failStr = f > 0 ? `❌ ${f}` : '';
+  const skipStr = s > 0 ? `⏭️ ${s}` : '';
   md += `<details>
-<summary><strong>${test.testName}</strong> - ${test.ruleType} ${test.locale} | ✅ ${p} ${f > 0 ? `❌ ${f}` : ''} ${s > 0 ? `⏭️ ${s}` : ''}</summary>
+<summary><strong>${test.testName}</strong> - ${test.ruleType} ${test.locale} | ✅ ${p} ${failStr} ${skipStr}</summary>
 
 | Page | Status | Links | Match % | CaaS | Notes |
 |------|--------|-------|---------|------|-------|
 `;
-  
-  (test.pages || []).forEach(pg => {
+
+  (test.pages || []).forEach((pg) => {
     const links = pg.links?.total || '-';
     const match = pg.links?.matchedPercentage || '-';
     const caas = pg.hasCaaS ? `🎴 ${pg.cardCount}` : '-';
@@ -247,11 +249,14 @@ md += `
     } else if (pg.status === 'skipped') {
       notes = pg.reason || 'skipped';
     }
-    
-    const statusIcon = pg.status === 'passed' ? '✅' : pg.status === 'skipped' ? '⏭️' : pg.status === 'warning' ? '⚠️' : '❌';
+
+    let statusIcon = '❌';
+    if (pg.status === 'passed') statusIcon = '✅';
+    else if (pg.status === 'skipped') statusIcon = '⏭️';
+    else if (pg.status === 'warning') statusIcon = '⚠️';
     md += `| ${pg.name} | ${statusIcon} | ${links} | ${match} | ${caas} | ${notes} |\n`;
   });
-  
+
   md += `
 </details>
 
@@ -282,5 +287,5 @@ md += `---
 
 fs.writeFileSync(MD_PATH, md);
 console.log(`✓ Generated ${MD_PATH}`);
-console.log(`\nView the report:`);
+console.log('\nView the report:');
 console.log(`  cat ${MD_PATH}`);

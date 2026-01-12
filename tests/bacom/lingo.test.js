@@ -410,7 +410,7 @@ async function fetchQueryIndex(baseDomain, locale) {
           // Remove locale prefix (e.g., /ar/products -> /products)
           const localeMatch = normalized.match(/^\/[a-z]{2}(?:_[a-z]{2})?(\/.*)/);
           if (localeMatch) {
-            normalized = localeMatch[1];
+            [, normalized] = localeMatch;
           }
           // Remove .html extension
           normalized = normalized.replace(/\.html$/, '');
@@ -462,9 +462,9 @@ function pageExistsInIndex(queryIndex, pagePath) {
  */
 async function validateRegionalLinks(baseLocaleLinks, regionalLocale, baseLocale, baseDomain) {
   const validationResults = {
-    correct: [],      // Links correctly pointing to base (regional not in index)
-    incorrect: [],    // Links incorrectly pointing to base (regional IS in index - BUG!)
-    unchecked: [],    // Links that couldn't be checked
+    correct: [], // Links correctly pointing to base (regional not in index)
+    incorrect: [], // Links incorrectly pointing to base (regional IS in index - BUG!)
+    unchecked: [], // Links that couldn't be checked
     queryIndexInfo: null,
   };
 
@@ -585,20 +585,20 @@ async function waitForPageReady(page) {
 async function waitForCaaSContent(page, pageName) {
   // CaaS container selectors - these are common patterns for dynamically loaded content
   const caasSelectors = [
-    '.caas-container',           // CaaS main container
-    '.consonant-CardsGrid',      // Consonant cards grid
-    '.card-collection',          // Card collection
-    '.consonant-Wrapper',        // Consonant wrapper
+    '.caas-container', // CaaS main container
+    '.consonant-CardsGrid', // Consonant cards grid
+    '.card-collection', // Card collection
+    '.consonant-Wrapper', // Consonant wrapper
     '[data-component="CardCollection"]', // Card collection component
-    '.merch-cards',              // Merch cards
-    '.fragment .cards',          // Cards within fragments
-    '.section .cards',           // Cards within sections
-    '.caas-preview',             // Lazy-loaded CaaS preview container
+    '.merch-cards', // Merch cards
+    '.fragment .cards', // Cards within fragments
+    '.section .cards', // Cards within sections
+    '.caas-preview', // Lazy-loaded CaaS preview container
   ];
 
   // Lazy-loaded CaaS markers - these indicate CaaS content that needs to be scrolled into view
   const lazyCaaSMarkers = [
-    '.caas.link-block',          // CaaS link-block (lazy-loaded marker)
+    '.caas.link-block', // CaaS link-block (lazy-loaded marker)
     'a.caas[data-block-status]', // CaaS anchor with block status
   ];
 
@@ -621,7 +621,7 @@ async function waitForCaaSContent(page, pageName) {
           const maxScroll = document.documentElement.scrollHeight;
           for (let pos = 0; pos < maxScroll; pos += scrollStep) {
             window.scrollTo(0, pos);
-            await new Promise((r) => setTimeout(r, 300));
+            await new Promise((r) => { setTimeout(r, 300); });
           }
           // Scroll back to top
           window.scrollTo(0, 0);
@@ -683,8 +683,8 @@ async function waitForCaaSContent(page, pageName) {
     '.merch-card',
     'article.card',
     '.card-item',
-    '[aria-label="Card Collection"] li',  // Lazy-loaded CaaS card items
-    '.caas-preview li',                    // CaaS preview card items
+    '[aria-label="Card Collection"] li', // Lazy-loaded CaaS card items
+    '.caas-preview li', // CaaS preview card items
   ];
 
   let cardCount = 0;
@@ -903,7 +903,7 @@ async function testRegionalPages(page, testData, pageKeys, regionalLocale, baseL
 
           if (loadResult.wasRedirected) {
             // Page redirected to base site - all links pointing to base is CORRECT
-            console.info(`  ℹ️ Page redirected to base site - skipping link validation`);
+            console.info('  ℹ️ Page redirected to base site - skipping link validation');
             console.info(`  ✅ All ${baseLinks} links correctly point to base (base site rule)`);
             validation = {
               rule: 'Page redirected to base site - no link transformation on base sites',
@@ -954,7 +954,7 @@ async function testRegionalPages(page, testData, pageKeys, regionalLocale, baseL
               const unexpectedLinks = analysis.linkDetails.other.filter(
                 (l) => l.detectedLocale !== baseLocale && l.detectedLocale !== regionalLocale,
               );
-              console.warn(`  ⚠️ UNEXPECTED LOCALES (potential content issues):`);
+              console.warn('  ⚠️ UNEXPECTED LOCALES (potential content issues):');
               unexpectedLocales.forEach(({ locale, count }) => {
                 console.warn(`     - /${locale}: ${count} links (should be /${regionalLocale} or /${baseLocale})`);
               });
@@ -969,7 +969,7 @@ async function testRegionalPages(page, testData, pageKeys, regionalLocale, baseL
                   text: l.text?.substring(0, 50),
                   detectedLocale: l.detectedLocale,
                 })),
-                issue: `Links to unexpected locales found. On /${regionalLocale} page, links should be /${regionalLocale} (regional) or /${baseLocale} (base fallback)`,
+                issue: `Links to unexpected locales found on /${regionalLocale}`,
               };
             }
           }
@@ -1420,20 +1420,20 @@ test.describe('BACOM Language-First Site (Lingo) Link Transformation test suite'
         if (type === 'regional' && base) {
           // Non-English regional (Spanish, German, French, Italian, Portuguese)
           results = await testRegionalPages(page, testData, pageKeys, locale, base, feature.name);
-          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+          console.info('[LingoTest] ═══════════════════════════════════════════');
           console.info(`[LingoTest] Regional /${locale} Summary:`);
           console.info(`[LingoTest]   Regional links: ${results.regionalLinks}`);
           console.info(`[LingoTest]   Base /${base} fallback links: ${results.baseLinks}`);
           console.info(`[LingoTest]   404 Fallback Rule: /${locale} → /${base}`);
-          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+          console.info('[LingoTest] ═══════════════════════════════════════════');
         } else if (type === 'regional-en') {
           // English regional - test like full site but log fallback info
           results = await testFullSitePages(page, testData, pageKeys, locale, feature.name);
-          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+          console.info('[LingoTest] ═══════════════════════════════════════════');
           console.info(`[LingoTest] English Regional /${locale} Summary:`);
           console.info(`[LingoTest]   Pages loaded: ${results.success}`);
           console.info(`[LingoTest]   404 Fallback Rule: /${locale} → / (root)`);
-          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+          console.info('[LingoTest] ═══════════════════════════════════════════');
         }
       } else if (feature.path.startsWith('es') && feature.path === 'es') {
         // Spanish base

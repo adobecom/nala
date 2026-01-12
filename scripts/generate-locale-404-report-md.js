@@ -30,46 +30,46 @@ let totalDuration = 0;
 
 const categories = [];
 
-suites.forEach(suite => {
+suites.forEach((suite) => {
   const category = {
     name: suite.title,
     tests: [],
     passed: 0,
-    failed: 0
+    failed: 0,
   };
-  
-  (suite.specs || []).forEach(spec => {
+
+  (suite.specs || []).forEach((spec) => {
     const test = spec.tests?.[0];
     const result = test?.results?.[0];
     const status = result?.status || 'unknown';
     const duration = result?.duration || 0;
-    
-    totalTests++;
+
+    totalTests += 1;
     totalDuration += duration;
-    
+
     if (status === 'passed') {
-      passedTests++;
-      category.passed++;
+      passedTests += 1;
+      category.passed += 1;
     } else {
-      failedTests++;
-      category.failed++;
+      failedTests += 1;
+      category.failed += 1;
     }
-    
+
     // Parse locale and base site from title
     const match = spec.title.match(/(\/.+?) -> (.+?) \|/);
     const locale = match?.[1] || '';
     const baseSite = match?.[2] || '';
-    
+
     category.tests.push({
       title: spec.title,
       locale,
       baseSite,
       status,
       duration,
-      errors: result?.errors || []
+      errors: result?.errors || [],
     });
   });
-  
+
   if (category.tests.length > 0) {
     categories.push(category);
   }
@@ -111,7 +111,7 @@ categories.forEach((cat, i) => {
 
   // Group by base site
   const byBaseSite = {};
-  cat.tests.forEach(t => {
+  cat.tests.forEach((t) => {
     if (!byBaseSite[t.baseSite]) {
       byBaseSite[t.baseSite] = [];
     }
@@ -122,7 +122,7 @@ categories.forEach((cat, i) => {
 |--------|-----------|--------|----------|
 `;
 
-  cat.tests.forEach(t => {
+  cat.tests.forEach((t) => {
     const statusIcon = t.status === 'passed' ? '✅' : '❌';
     md += `| \`${t.locale}\` | \`${t.baseSite}\` | ${statusIcon} | ${t.duration}ms |\n`;
   });
@@ -137,8 +137,8 @@ if (failedTests > 0) {
 ## ❌ Failed Tests
 
 `;
-  categories.forEach(cat => {
-    cat.tests.filter(t => t.status !== 'passed').forEach(t => {
+  categories.forEach((cat) => {
+    cat.tests.filter((t) => t.status !== 'passed').forEach((t) => {
       md += `### ${t.locale} → ${t.baseSite}
 
 **Title:** ${t.title}
@@ -147,7 +147,7 @@ if (failedTests > 0) {
       if (t.errors.length > 0) {
         md += `**Errors:**
 \`\`\`
-${t.errors.map(e => e.message || JSON.stringify(e)).join('\n')}
+${t.errors.map((e) => e.message || JSON.stringify(e)).join('\n')}
 \`\`\`
 
 `;
@@ -163,7 +163,7 @@ md += `---
 
 | Base Site | Regional Locales |
 |-----------|------------------|
-| \`/\` (Root) | ae_en, africa, be_en, bg, ca, cn, cz, dk, ee, fi, gr_en, hk_en, id_en, ie, il_en, lu_en, mena_en, my_en, nl, no, nz, ph_en, pl, ro, ru, sa_en, se, sg, si, sk, th_en, tr, tw, ua, vn_en |
+| \`/\` (Root) | ae_en, africa, be_en, bg, ca, cn, cz, dk, ee, fi, gr_en, hk_en... (34 locales) |
 | \`/de\` (German) | at, ch_de, lu_de |
 | \`/es\` (Spanish) | ar, cl, co, la, mx, pe |
 | \`/fr\` (French) | be_fr, ca_fr, ch_fr, lu_fr |

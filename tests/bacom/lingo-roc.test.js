@@ -18,9 +18,9 @@ const { WebUtil } = require('../../libs/webutil.js');
  * | BASIC        | /ca_fr, /at, /ch_de, /ch_it, /br  | textmeplingoblock only |
  * | NEGATIVE     | /ar (no swap expected)            | Should NOT swap  |
  *
- * FULL FEATURE URLs:
- * - French Swiss:   https://stage--da-bacom--adobecom.aem.live/fr/drafts/mepqa/fragments/base?milolibs=stage&langFirst=on&mepHighlight=true&mep=&akamaiLocale=ch_fr
- * - Spanish Mexico: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langFirst=on&mepHighlight=true&mep=&akamaiLocale=mx
+ * FULL FEATURE URLs (with mepHighlight & akamaiLocale params):
+ * - French Swiss:   /fr/drafts/mepqa/fragments/base (akamaiLocale=ch_fr)
+ * - Spanish Mexico: /es/drafts/mepqa/fragments/base (akamaiLocale=mx)
  */
 
 // Report file paths
@@ -482,7 +482,7 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
       // Verify using data-path: should NOT have /mx, should have /es/
       const result = await lingoROC.verifyFragmentSwap('/mx', '/es/');
 
-      console.info(`[LingoROC] Spanish with akamaiLocale=ar (NEGATIVE TEST)`);
+      console.info('[LingoROC] Spanish with akamaiLocale=ar (NEGATIVE TEST)');
       console.info(`[LingoROC] /mx fragments (should be 0): ${result.swapped}`);
       console.info(`[LingoROC] /es/ fragments (fallback): ${result.fallback}`);
       console.info('[LingoROC] Expected: Should NOT see /mx fragments');

@@ -35,11 +35,11 @@ const allBadLinks = [];
 const allUnexpectedLocales = [];
 
 if (reportData.tests) {
-  reportData.tests.forEach(test => {
+  reportData.tests.forEach((test) => {
     if (test.pages) {
-      test.pages.forEach(page => {
+      test.pages.forEach((page) => {
         if (page.hasCaaS) {
-          pagesWithCaaS++;
+          pagesWithCaaS += 1;
           totalCaaSCards += page.cardCount || 0;
         }
         if (page.links && page.links.total) {
@@ -49,21 +49,21 @@ if (reportData.tests) {
           allSkipped.push({
             locale: test.locale,
             pageName: page.name,
-            reason: page.reason || 'Unknown'
+            reason: page.reason || 'Unknown',
           });
         }
         if (page.wasRedirected) {
-          pagesRedirected++;
+          pagesRedirected += 1;
         }
         if (page.linkValidation) {
           totalCorrectFallbacks += page.linkValidation.correctFallbacks || 0;
           if (page.linkValidation.violations && page.linkValidation.violations.length > 0) {
             totalViolations += page.linkValidation.violations.length;
-            page.linkValidation.violations.forEach(v => {
+            page.linkValidation.violations.forEach((v) => {
               allViolations.push({
                 locale: test.locale,
                 pageName: page.name,
-                ...v
+                ...v,
               });
             });
           }
@@ -71,16 +71,16 @@ if (reportData.tests) {
             allUnexpectedLocales.push({
               locale: test.locale,
               pageName: page.name,
-              ...page.linkValidation.unexpectedLocales
+              ...page.linkValidation.unexpectedLocales,
             });
           }
         }
         if (page.links?.badLinks && page.links.badLinks.length > 0) {
-          page.links.badLinks.forEach(bl => {
+          page.links.badLinks.forEach((bl) => {
             allBadLinks.push({
               locale: test.locale,
               pageName: page.name,
-              ...bl
+              ...bl,
             });
           });
         }
@@ -89,9 +89,9 @@ if (reportData.tests) {
   });
 }
 
-const summary = reportData.summary;
-const passRate = summary.totalPages > 0 
-  ? ((summary.passedPages / summary.totalPages) * 100).toFixed(1) 
+const { summary } = reportData;
+const passRate = summary.totalPages > 0
+  ? ((summary.passedPages / summary.totalPages) * 100).toFixed(1)
   : 0;
 
 // Generate Confluence Wiki Markup
@@ -131,9 +131,9 @@ These links point to staging/preview URLs that should NOT appear on production p
 
 ||Locale||Page||Location||Link Text||Bad URL||Issue||
 `;
-  allBadLinks.slice(0, 100).forEach(bl => {
+  allBadLinks.slice(0, 100).forEach((bl) => {
     const text = (bl.text || '(no text)').substring(0, 25).replace(/\|/g, '\\|');
-    const href = bl.href.length > 50 ? bl.href.substring(0, 50) + '...' : bl.href;
+    const href = bl.href.length > 50 ? `${bl.href.substring(0, 50)}...` : bl.href;
     wiki += `|{{${bl.locale}}}|${bl.pageName}|${bl.location}|${text}|{{${href}}}|${bl.issue}|\n`;
   });
   if (allBadLinks.length > 100) {
@@ -152,7 +152,7 @@ These links point to the BASE locale when the regional page EXISTS in the Query 
 
 ||Locale||Page||Link Path||Should Be||Issue||
 `;
-  allViolations.slice(0, 50).forEach(v => {
+  allViolations.slice(0, 50).forEach((v) => {
     wiki += `|{{${v.locale}}}|${v.pageName}|{{${v.pagePath || ''}}}|{{${v.regionalPath || ''}}}|${v.issue || ''}|\n`;
   });
   if (allViolations.length > 50) {
@@ -167,8 +167,8 @@ if (allUnexpectedLocales.length > 0) {
 
 ||Locale||Page||Issue||Unexpected Locales||
 `;
-  allUnexpectedLocales.forEach(item => {
-    const locales = (item.locales || []).map(l => `/${l.locale}: ${l.count}`).join(', ');
+  allUnexpectedLocales.forEach((item) => {
+    const locales = (item.locales || []).map((l) => `/${l.locale}: ${l.count}`).join(', ');
     wiki += `|{{${item.locale}}}|${item.pageName}|${item.issue || ''}|${locales}|\n`;
   });
   wiki += '\n';
@@ -179,7 +179,7 @@ wiki += `h2. Link Transformation Rules
 
 `;
 Object.entries(reportData.rules || {}).forEach(([key, rule]) => {
-  const locales = rule.locales.slice(0, 10).map(l => `{{${l}}}`).join(', ');
+  const locales = rule.locales.slice(0, 10).map((l) => `{{${l}}}`).join(', ');
   const more = rule.locales.length > 10 ? ` +${rule.locales.length - 10} more` : '';
   wiki += `h3. ${key}
 
@@ -195,7 +195,7 @@ wiki += `h2. 404 Fallback Rules
 
 `;
 Object.entries(reportData.fallbackRules || {}).forEach(([key, rule]) => {
-  const locales = rule.locales.slice(0, 6).map(l => `{{/${l}}}`).join(', ');
+  const locales = rule.locales.slice(0, 6).map((l) => `{{/${l}}}`).join(', ');
   const more = rule.locales.length > 6 ? ` +${rule.locales.length - 6} more` : '';
   wiki += `* *${key}* → {{${rule.fallbackTo}}}: ${locales}${more}\n`;
 });
@@ -206,16 +206,16 @@ h2. Test Results by Locale
 
 `;
 
-(reportData.tests || []).forEach((test, i) => {
+(reportData.tests || []).forEach((test) => {
   const p = test.results.passed || 0;
   const f = test.results.failed || 0;
   const s = test.results.skipped || 0;
-  
+
   wiki += `{expand:${test.testName} - ${test.locale} | (/) ${p} ${f > 0 ? `(x) ${f}` : ''} ${s > 0 ? `(!) ${s}` : ''}}
 ||Page||Status||Links||Match %||CaaS||Notes||
 `;
-  
-  (test.pages || []).forEach(pg => {
+
+  (test.pages || []).forEach((pg) => {
     const links = pg.links?.total || '-';
     const match = pg.links?.matchedPercentage || '-';
     const caas = pg.hasCaaS ? pg.cardCount : '-';
@@ -227,11 +227,13 @@ h2. Test Results by Locale
     } else if (pg.status === 'skipped') {
       notes = pg.reason || 'skipped';
     }
-    
-    const statusIcon = pg.status === 'passed' ? '(/)' : pg.status === 'skipped' ? '(!)' : pg.status === 'warning' ? '(!)' : '(x)';
+
+    let statusIcon = '(x)';
+    if (pg.status === 'passed') statusIcon = '(/)';
+    else if (pg.status === 'skipped' || pg.status === 'warning') statusIcon = '(!)';
     wiki += `|${pg.name}|${statusIcon}|${links}|${match}|${caas}|${notes}|\n`;
   });
-  
+
   wiki += `{expand}
 
 `;
@@ -258,9 +260,9 @@ _Report generated by Nala Lingo Test Suite_
 
 fs.writeFileSync(OUTPUT_PATH, wiki);
 console.log(`✓ Generated ${OUTPUT_PATH}`);
-console.log(`\nHow to use in Confluence:`);
-console.log(`  1. Edit your Confluence page`);
-console.log(`  2. Click "Insert" → "Markup" (or press Ctrl+Shift+D)`);
-console.log(`  3. Select "Confluence Wiki" from dropdown`);
-console.log(`  4. Paste the contents of lingo-report-confluence.txt`);
-console.log(`  5. Click "Insert"`);
+console.log('\nHow to use in Confluence:');
+console.log('  1. Edit your Confluence page');
+console.log('  2. Click "Insert" → "Markup" (or press Ctrl+Shift+D)');
+console.log('  3. Select "Confluence Wiki" from dropdown');
+console.log('  4. Paste the contents of lingo-report-confluence.txt');
+console.log('  5. Click "Insert"');
