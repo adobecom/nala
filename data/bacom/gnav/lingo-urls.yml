@@ -2,538 +2,786 @@
 # =============================================================================
 # BACOM & DA-BACOM Language-First Site (Lingo) Test URLs
 # Testing: Link transformation and regional page detection
-# Feature Branch: ?milolibs=vhargrave-lingo-link-transformation-test&martech=off
+# Stage URL: ?milolibs=stage&martech=off&langfirst=on
 # =============================================================================
 
 # -----------------------------------------------------------------------------
 # GNav Test URLs
 # -----------------------------------------------------------------------------
-'gnav-footer-modal': 'https://main--da-bacom--adobecom.aem.live/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'gnav-footer-modal': 'https://business.stage.adobe.com/?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English US (/) - Root/Default Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-us': 'https://main--da-bacom--adobecom.aem.live/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-products': 'https://main--da-bacom--adobecom.aem.live/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-solutions': 'https://main--da-bacom--adobecom.aem.live/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-creativecloud': 'https://main--da-bacom--adobecom.aem.live/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-analytics': 'https://main--da-bacom--adobecom.aem.live/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-marketo': 'https://main--da-bacom--adobecom.aem.live/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-commerce': 'https://main--da-bacom--adobecom.aem.live/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-workfront': 'https://main--da-bacom--adobecom.aem.live/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-firefly': 'https://main--da-bacom--adobecom.aem.live/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-us-personalization': 'https://main--da-bacom--adobecom.aem.live/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-us': 'https://business.stage.adobe.com/?milolibs=stage&martech=off&langfirst=on'
+'en-us-products': 'https://business.stage.adobe.com/products?milolibs=stage&martech=off&langfirst=on'
+'en-us-solutions': 'https://business.stage.adobe.com/solutions?milolibs=stage&martech=off&langfirst=on'
+'en-us-creativecloud': 'https://business.stage.adobe.com/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'en-us-experience-cloud': 'https://business.stage.adobe.com/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'en-us-analytics': 'https://business.stage.adobe.com/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'en-us-marketo': 'https://business.stage.adobe.com/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'en-us-commerce': 'https://business.stage.adobe.com/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'en-us-workfront': 'https://business.stage.adobe.com/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'en-us-firefly': 'https://business.stage.adobe.com/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'en-us-personalization': 'https://business.stage.adobe.com/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English India (/in) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-in': 'https://main--da-bacom--adobecom.aem.live/in/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-products': 'https://main--da-bacom--adobecom.aem.live/in/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-solutions': 'https://main--da-bacom--adobecom.aem.live/in/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-creativecloud': 'https://main--da-bacom--adobecom.aem.live/in/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/in/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-analytics': 'https://main--da-bacom--adobecom.aem.live/in/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-marketo': 'https://main--da-bacom--adobecom.aem.live/in/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-commerce': 'https://main--da-bacom--adobecom.aem.live/in/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-workfront': 'https://main--da-bacom--adobecom.aem.live/in/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-firefly': 'https://main--da-bacom--adobecom.aem.live/in/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-in-personalization': 'https://main--da-bacom--adobecom.aem.live/in/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-in': 'https://business.stage.adobe.com/in/?milolibs=stage&martech=off&langfirst=on'
+'en-in-products': 'https://business.stage.adobe.com/in/products?milolibs=stage&martech=off&langfirst=on'
+'en-in-solutions': 'https://business.stage.adobe.com/in/solutions?milolibs=stage&martech=off&langfirst=on'
+'en-in-creativecloud': 'https://business.stage.adobe.com/in/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'en-in-experience-cloud': 'https://business.stage.adobe.com/in/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'en-in-analytics': 'https://business.stage.adobe.com/in/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'en-in-marketo': 'https://business.stage.adobe.com/in/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'en-in-commerce': 'https://business.stage.adobe.com/in/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'en-in-workfront': 'https://business.stage.adobe.com/in/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'en-in-firefly': 'https://business.stage.adobe.com/in/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'en-in-personalization': 'https://business.stage.adobe.com/in/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Spanish Base (/es) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'es': 'https://main--da-bacom--adobecom.aem.live/es/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-products': 'https://main--da-bacom--adobecom.aem.live/es/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-solutions': 'https://main--da-bacom--adobecom.aem.live/es/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-creativecloud': 'https://main--da-bacom--adobecom.aem.live/es/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/es/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-analytics': 'https://main--da-bacom--adobecom.aem.live/es/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-marketo': 'https://main--da-bacom--adobecom.aem.live/es/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-commerce': 'https://main--da-bacom--adobecom.aem.live/es/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-workfront': 'https://main--da-bacom--adobecom.aem.live/es/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-firefly': 'https://main--da-bacom--adobecom.aem.live/es/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-personalization': 'https://main--da-bacom--adobecom.aem.live/es/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es': 'https://business.stage.adobe.com/es/?milolibs=stage&martech=off&langfirst=on'
+'es-products': 'https://business.stage.adobe.com/es/products?milolibs=stage&martech=off&langfirst=on'
+'es-solutions': 'https://business.stage.adobe.com/es/solutions?milolibs=stage&martech=off&langfirst=on'
+'es-creativecloud': 'https://business.stage.adobe.com/es/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'es-experience-cloud': 'https://business.stage.adobe.com/es/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'es-analytics': 'https://business.stage.adobe.com/es/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'es-marketo': 'https://business.stage.adobe.com/es/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'es-commerce': 'https://business.stage.adobe.com/es/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'es-workfront': 'https://business.stage.adobe.com/es/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'es-firefly': 'https://business.stage.adobe.com/es/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'es-personalization': 'https://business.stage.adobe.com/es/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /ar (Argentina) - .aem.live (query-index.json - published)
+# Spanish Regional /ar (Argentina)
 # -----------------------------------------------------------------------------
-'es-ar-live': 'https://main--da-bacom--adobecom.aem.live/ar/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-live-products': 'https://main--da-bacom--adobecom.aem.live/ar/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-live-solutions': 'https://main--da-bacom--adobecom.aem.live/ar/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-live-creativecloud': 'https://main--da-bacom--adobecom.aem.live/ar/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-live-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/ar/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-live-ai': 'https://main--da-bacom--adobecom.aem.live/ar/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-ar': 'https://business.stage.adobe.com/ar/?milolibs=stage&martech=off&langfirst=on'
+'es-ar-products': 'https://business.stage.adobe.com/ar/products?milolibs=stage&martech=off&langfirst=on'
+'es-ar-solutions': 'https://business.stage.adobe.com/ar/solutions?milolibs=stage&martech=off&langfirst=on'
+'es-ar-creativecloud': 'https://business.stage.adobe.com/ar/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'es-ar-experience-cloud': 'https://business.stage.adobe.com/ar/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'es-ar-ai': 'https://business.stage.adobe.com/ar/ai?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /ar (Argentina) - .aem.page (preview-index.json - draft/preview)
+# Spanish Regional /mx (Mexico)
 # -----------------------------------------------------------------------------
-'es-ar-page': 'https://main--da-bacom--adobecom.aem.page/ar/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-page-products': 'https://main--da-bacom--adobecom.aem.page/ar/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-page-solutions': 'https://main--da-bacom--adobecom.aem.page/ar/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-page-creativecloud': 'https://main--da-bacom--adobecom.aem.page/ar/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-page-experience-cloud': 'https://main--da-bacom--adobecom.aem.page/ar/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-ar-page-ai': 'https://main--da-bacom--adobecom.aem.page/ar/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-
-# -----------------------------------------------------------------------------
-# Spanish Regional /mx (Mexico) - .aem.live (query-index.json - published)
-# -----------------------------------------------------------------------------
-'es-mx-live': 'https://main--da-bacom--adobecom.aem.live/mx/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-live-products': 'https://main--da-bacom--adobecom.aem.live/mx/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-live-solutions': 'https://main--da-bacom--adobecom.aem.live/mx/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-live-creativecloud': 'https://main--da-bacom--adobecom.aem.live/mx/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-live-ai': 'https://main--da-bacom--adobecom.aem.live/mx/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-
-# -----------------------------------------------------------------------------
-# Spanish Regional /mx (Mexico) - .aem.page (preview-index.json - draft/preview)
-# -----------------------------------------------------------------------------
-'es-mx-page': 'https://main--da-bacom--adobecom.aem.page/mx/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-page-products': 'https://main--da-bacom--adobecom.aem.page/mx/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-page-solutions': 'https://main--da-bacom--adobecom.aem.page/mx/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-page-creativecloud': 'https://main--da-bacom--adobecom.aem.page/mx/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-mx-page-ai': 'https://main--da-bacom--adobecom.aem.page/mx/ai?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-mx': 'https://business.stage.adobe.com/mx/?milolibs=stage&martech=off&langfirst=on'
+'es-mx-products': 'https://business.stage.adobe.com/mx/products?milolibs=stage&martech=off&langfirst=on'
+'es-mx-solutions': 'https://business.stage.adobe.com/mx/solutions?milolibs=stage&martech=off&langfirst=on'
+'es-mx-creativecloud': 'https://business.stage.adobe.com/mx/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'es-mx-ai': 'https://business.stage.adobe.com/mx/ai?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # German Base (/de) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'de': 'https://main--da-bacom--adobecom.aem.live/de/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-products': 'https://main--da-bacom--adobecom.aem.live/de/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-solutions': 'https://main--da-bacom--adobecom.aem.live/de/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-creativecloud': 'https://main--da-bacom--adobecom.aem.live/de/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/de/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-analytics': 'https://main--da-bacom--adobecom.aem.live/de/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-marketo': 'https://main--da-bacom--adobecom.aem.live/de/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-commerce': 'https://main--da-bacom--adobecom.aem.live/de/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-workfront': 'https://main--da-bacom--adobecom.aem.live/de/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-firefly': 'https://main--da-bacom--adobecom.aem.live/de/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-personalization': 'https://main--da-bacom--adobecom.aem.live/de/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de': 'https://business.stage.adobe.com/de/?milolibs=stage&martech=off&langfirst=on'
+'de-products': 'https://business.stage.adobe.com/de/products?milolibs=stage&martech=off&langfirst=on'
+'de-solutions': 'https://business.stage.adobe.com/de/solutions?milolibs=stage&martech=off&langfirst=on'
+'de-creativecloud': 'https://business.stage.adobe.com/de/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'de-experience-cloud': 'https://business.stage.adobe.com/de/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'de-analytics': 'https://business.stage.adobe.com/de/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'de-marketo': 'https://business.stage.adobe.com/de/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'de-commerce': 'https://business.stage.adobe.com/de/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'de-workfront': 'https://business.stage.adobe.com/de/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'de-firefly': 'https://business.stage.adobe.com/de/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'de-personalization': 'https://business.stage.adobe.com/de/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
-# German Regional /at (Austria) - .aem.live (query-index.json - published)
+# German Regional /at (Austria)
 # -----------------------------------------------------------------------------
-'de-at-live': 'https://main--da-bacom--adobecom.aem.live/at/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-at-live-products': 'https://main--da-bacom--adobecom.aem.live/at/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-at-live-solutions': 'https://main--da-bacom--adobecom.aem.live/at/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-at-live-creativecloud': 'https://main--da-bacom--adobecom.aem.live/at/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-
-# -----------------------------------------------------------------------------
-# German Regional /at (Austria) - .aem.page (preview-index.json - draft/preview)
-# -----------------------------------------------------------------------------
-'de-at-page': 'https://main--da-bacom--adobecom.aem.page/at/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-at-page-products': 'https://main--da-bacom--adobecom.aem.page/at/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-at-page-solutions': 'https://main--da-bacom--adobecom.aem.page/at/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-at-page-creativecloud': 'https://main--da-bacom--adobecom.aem.page/at/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-at': 'https://business.stage.adobe.com/at/?milolibs=stage&martech=off&langfirst=on'
+'de-at-products': 'https://business.stage.adobe.com/at/products?milolibs=stage&martech=off&langfirst=on'
+'de-at-solutions': 'https://business.stage.adobe.com/at/solutions?milolibs=stage&martech=off&langfirst=on'
+'de-at-creativecloud': 'https://business.stage.adobe.com/at/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # German Regional /ch_de (Switzerland German) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'de-ch_de': 'https://main--da-bacom--adobecom.aem.live/ch_de/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-products': 'https://main--da-bacom--adobecom.aem.live/ch_de/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-solutions': 'https://main--da-bacom--adobecom.aem.live/ch_de/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-creativecloud': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-analytics': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-marketo': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-commerce': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-workfront': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-firefly': 'https://main--da-bacom--adobecom.aem.live/ch_de/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-ch_de-personalization': 'https://main--da-bacom--adobecom.aem.live/ch_de/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-ch_de': 'https://business.stage.adobe.com/ch_de/?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-products': 'https://business.stage.adobe.com/ch_de/products?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-solutions': 'https://business.stage.adobe.com/ch_de/solutions?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-creativecloud': 'https://business.stage.adobe.com/ch_de/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-experience-cloud': 'https://business.stage.adobe.com/ch_de/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-analytics': 'https://business.stage.adobe.com/ch_de/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-marketo': 'https://business.stage.adobe.com/ch_de/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-commerce': 'https://business.stage.adobe.com/ch_de/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-workfront': 'https://business.stage.adobe.com/ch_de/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-firefly': 'https://business.stage.adobe.com/ch_de/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-personalization': 'https://business.stage.adobe.com/ch_de/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # French Base (/fr) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'fr': 'https://main--da-bacom--adobecom.aem.live/fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-products': 'https://main--da-bacom--adobecom.aem.live/fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-solutions': 'https://main--da-bacom--adobecom.aem.live/fr/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-creativecloud': 'https://main--da-bacom--adobecom.aem.live/fr/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/fr/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-analytics': 'https://main--da-bacom--adobecom.aem.live/fr/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-marketo': 'https://main--da-bacom--adobecom.aem.live/fr/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-commerce': 'https://main--da-bacom--adobecom.aem.live/fr/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-workfront': 'https://main--da-bacom--adobecom.aem.live/fr/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-firefly': 'https://main--da-bacom--adobecom.aem.live/fr/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-personalization': 'https://main--da-bacom--adobecom.aem.live/fr/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr': 'https://business.stage.adobe.com/fr/?milolibs=stage&martech=off&langfirst=on'
+'fr-products': 'https://business.stage.adobe.com/fr/products?milolibs=stage&martech=off&langfirst=on'
+'fr-solutions': 'https://business.stage.adobe.com/fr/solutions?milolibs=stage&martech=off&langfirst=on'
+'fr-creativecloud': 'https://business.stage.adobe.com/fr/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'fr-experience-cloud': 'https://business.stage.adobe.com/fr/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'fr-analytics': 'https://business.stage.adobe.com/fr/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'fr-marketo': 'https://business.stage.adobe.com/fr/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'fr-commerce': 'https://business.stage.adobe.com/fr/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'fr-workfront': 'https://business.stage.adobe.com/fr/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'fr-firefly': 'https://business.stage.adobe.com/fr/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'fr-personalization': 'https://business.stage.adobe.com/fr/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # French Regional /ca_fr (Canada French) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'fr-ca_fr': 'https://main--da-bacom--adobecom.aem.live/ca_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-products': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-solutions': 'https://main--da-bacom--adobecom.aem.live/ca_fr/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-creativecloud': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-analytics': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-marketo': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-commerce': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-workfront': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-firefly': 'https://main--da-bacom--adobecom.aem.live/ca_fr/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ca_fr-personalization': 'https://main--da-bacom--adobecom.aem.live/ca_fr/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ca_fr': 'https://business.stage.adobe.com/ca_fr/?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-products': 'https://business.stage.adobe.com/ca_fr/products?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-solutions': 'https://business.stage.adobe.com/ca_fr/solutions?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-creativecloud': 'https://business.stage.adobe.com/ca_fr/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-experience-cloud': 'https://business.stage.adobe.com/ca_fr/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-analytics': 'https://business.stage.adobe.com/ca_fr/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-marketo': 'https://business.stage.adobe.com/ca_fr/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-commerce': 'https://business.stage.adobe.com/ca_fr/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-workfront': 'https://business.stage.adobe.com/ca_fr/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-firefly': 'https://business.stage.adobe.com/ca_fr/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-personalization': 'https://business.stage.adobe.com/ca_fr/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Italian (/it) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'it': 'https://main--da-bacom--adobecom.aem.live/it/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-products': 'https://main--da-bacom--adobecom.aem.live/it/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-solutions': 'https://main--da-bacom--adobecom.aem.live/it/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-creativecloud': 'https://main--da-bacom--adobecom.aem.live/it/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/it/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-analytics': 'https://main--da-bacom--adobecom.aem.live/it/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-marketo': 'https://main--da-bacom--adobecom.aem.live/it/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-commerce': 'https://main--da-bacom--adobecom.aem.live/it/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-workfront': 'https://main--da-bacom--adobecom.aem.live/it/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-firefly': 'https://main--da-bacom--adobecom.aem.live/it/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-personalization': 'https://main--da-bacom--adobecom.aem.live/it/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it': 'https://business.stage.adobe.com/it/?milolibs=stage&martech=off&langfirst=on'
+'it-products': 'https://business.stage.adobe.com/it/products?milolibs=stage&martech=off&langfirst=on'
+'it-solutions': 'https://business.stage.adobe.com/it/solutions?milolibs=stage&martech=off&langfirst=on'
+'it-creativecloud': 'https://business.stage.adobe.com/it/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'it-experience-cloud': 'https://business.stage.adobe.com/it/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'it-analytics': 'https://business.stage.adobe.com/it/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'it-marketo': 'https://business.stage.adobe.com/it/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'it-commerce': 'https://business.stage.adobe.com/it/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'it-workfront': 'https://business.stage.adobe.com/it/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'it-firefly': 'https://business.stage.adobe.com/it/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'it-personalization': 'https://business.stage.adobe.com/it/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Portuguese (/pt) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'pt': 'https://main--da-bacom--adobecom.aem.live/pt/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-products': 'https://main--da-bacom--adobecom.aem.live/pt/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-solutions': 'https://main--da-bacom--adobecom.aem.live/pt/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-creativecloud': 'https://main--da-bacom--adobecom.aem.live/pt/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/pt/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-analytics': 'https://main--da-bacom--adobecom.aem.live/pt/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-marketo': 'https://main--da-bacom--adobecom.aem.live/pt/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-commerce': 'https://main--da-bacom--adobecom.aem.live/pt/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-workfront': 'https://main--da-bacom--adobecom.aem.live/pt/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-firefly': 'https://main--da-bacom--adobecom.aem.live/pt/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-personalization': 'https://main--da-bacom--adobecom.aem.live/pt/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt': 'https://business.stage.adobe.com/pt/?milolibs=stage&martech=off&langfirst=on'
+'pt-products': 'https://business.stage.adobe.com/pt/products?milolibs=stage&martech=off&langfirst=on'
+'pt-solutions': 'https://business.stage.adobe.com/pt/solutions?milolibs=stage&martech=off&langfirst=on'
+'pt-creativecloud': 'https://business.stage.adobe.com/pt/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'pt-experience-cloud': 'https://business.stage.adobe.com/pt/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'pt-analytics': 'https://business.stage.adobe.com/pt/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'pt-marketo': 'https://business.stage.adobe.com/pt/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'pt-commerce': 'https://business.stage.adobe.com/pt/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'pt-workfront': 'https://business.stage.adobe.com/pt/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'pt-firefly': 'https://business.stage.adobe.com/pt/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'pt-personalization': 'https://business.stage.adobe.com/pt/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Portuguese Regional /br (Brazil) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'pt-br': 'https://main--da-bacom--adobecom.aem.live/br/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-products': 'https://main--da-bacom--adobecom.aem.live/br/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-solutions': 'https://main--da-bacom--adobecom.aem.live/br/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-creativecloud': 'https://main--da-bacom--adobecom.aem.live/br/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/br/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-analytics': 'https://main--da-bacom--adobecom.aem.live/br/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-marketo': 'https://main--da-bacom--adobecom.aem.live/br/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-commerce': 'https://main--da-bacom--adobecom.aem.live/br/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-workfront': 'https://main--da-bacom--adobecom.aem.live/br/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-firefly': 'https://main--da-bacom--adobecom.aem.live/br/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'pt-br-personalization': 'https://main--da-bacom--adobecom.aem.live/br/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'pt-br': 'https://business.stage.adobe.com/br/?milolibs=stage&martech=off&langfirst=on'
+'pt-br-products': 'https://business.stage.adobe.com/br/products?milolibs=stage&martech=off&langfirst=on'
+'pt-br-solutions': 'https://business.stage.adobe.com/br/solutions?milolibs=stage&martech=off&langfirst=on'
+'pt-br-creativecloud': 'https://business.stage.adobe.com/br/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'pt-br-experience-cloud': 'https://business.stage.adobe.com/br/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'pt-br-analytics': 'https://business.stage.adobe.com/br/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'pt-br-marketo': 'https://business.stage.adobe.com/br/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'pt-br-commerce': 'https://business.stage.adobe.com/br/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'pt-br-workfront': 'https://business.stage.adobe.com/br/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'pt-br-firefly': 'https://business.stage.adobe.com/br/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'pt-br-personalization': 'https://business.stage.adobe.com/br/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Japanese (/jp) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'jp': 'https://main--da-bacom--adobecom.aem.live/jp/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-products': 'https://main--da-bacom--adobecom.aem.live/jp/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-solutions': 'https://main--da-bacom--adobecom.aem.live/jp/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-creativecloud': 'https://main--da-bacom--adobecom.aem.live/jp/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/jp/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-analytics': 'https://main--da-bacom--adobecom.aem.live/jp/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-marketo': 'https://main--da-bacom--adobecom.aem.live/jp/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-commerce': 'https://main--da-bacom--adobecom.aem.live/jp/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-workfront': 'https://main--da-bacom--adobecom.aem.live/jp/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-firefly': 'https://main--da-bacom--adobecom.aem.live/jp/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'jp-personalization': 'https://main--da-bacom--adobecom.aem.live/jp/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'jp': 'https://business.stage.adobe.com/jp/?milolibs=stage&martech=off&langfirst=on'
+'jp-products': 'https://business.stage.adobe.com/jp/products?milolibs=stage&martech=off&langfirst=on'
+'jp-solutions': 'https://business.stage.adobe.com/jp/solutions?milolibs=stage&martech=off&langfirst=on'
+'jp-creativecloud': 'https://business.stage.adobe.com/jp/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'jp-experience-cloud': 'https://business.stage.adobe.com/jp/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'jp-analytics': 'https://business.stage.adobe.com/jp/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'jp-marketo': 'https://business.stage.adobe.com/jp/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'jp-commerce': 'https://business.stage.adobe.com/jp/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'jp-workfront': 'https://business.stage.adobe.com/jp/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'jp-firefly': 'https://business.stage.adobe.com/jp/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'jp-personalization': 'https://business.stage.adobe.com/jp/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Korean (/kr) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'kr': 'https://main--da-bacom--adobecom.aem.live/kr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-products': 'https://main--da-bacom--adobecom.aem.live/kr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-solutions': 'https://main--da-bacom--adobecom.aem.live/kr/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-creativecloud': 'https://main--da-bacom--adobecom.aem.live/kr/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/kr/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-analytics': 'https://main--da-bacom--adobecom.aem.live/kr/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-marketo': 'https://main--da-bacom--adobecom.aem.live/kr/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-commerce': 'https://main--da-bacom--adobecom.aem.live/kr/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-workfront': 'https://main--da-bacom--adobecom.aem.live/kr/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-firefly': 'https://main--da-bacom--adobecom.aem.live/kr/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'kr-personalization': 'https://main--da-bacom--adobecom.aem.live/kr/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'kr': 'https://business.stage.adobe.com/kr/?milolibs=stage&martech=off&langfirst=on'
+'kr-products': 'https://business.stage.adobe.com/kr/products?milolibs=stage&martech=off&langfirst=on'
+'kr-solutions': 'https://business.stage.adobe.com/kr/solutions?milolibs=stage&martech=off&langfirst=on'
+'kr-creativecloud': 'https://business.stage.adobe.com/kr/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'kr-experience-cloud': 'https://business.stage.adobe.com/kr/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'kr-analytics': 'https://business.stage.adobe.com/kr/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'kr-marketo': 'https://business.stage.adobe.com/kr/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'kr-commerce': 'https://business.stage.adobe.com/kr/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'kr-workfront': 'https://business.stage.adobe.com/kr/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'kr-firefly': 'https://business.stage.adobe.com/kr/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'kr-personalization': 'https://business.stage.adobe.com/kr/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English UK (/uk) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-uk': 'https://main--da-bacom--adobecom.aem.live/uk/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-products': 'https://main--da-bacom--adobecom.aem.live/uk/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-solutions': 'https://main--da-bacom--adobecom.aem.live/uk/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-creativecloud': 'https://main--da-bacom--adobecom.aem.live/uk/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/uk/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-analytics': 'https://main--da-bacom--adobecom.aem.live/uk/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-marketo': 'https://main--da-bacom--adobecom.aem.live/uk/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-commerce': 'https://main--da-bacom--adobecom.aem.live/uk/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-workfront': 'https://main--da-bacom--adobecom.aem.live/uk/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-firefly': 'https://main--da-bacom--adobecom.aem.live/uk/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-uk-personalization': 'https://main--da-bacom--adobecom.aem.live/uk/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-uk': 'https://business.stage.adobe.com/uk/?milolibs=stage&martech=off&langfirst=on'
+'en-uk-products': 'https://business.stage.adobe.com/uk/products?milolibs=stage&martech=off&langfirst=on'
+'en-uk-solutions': 'https://business.stage.adobe.com/uk/solutions?milolibs=stage&martech=off&langfirst=on'
+'en-uk-creativecloud': 'https://business.stage.adobe.com/uk/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'en-uk-experience-cloud': 'https://business.stage.adobe.com/uk/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'en-uk-analytics': 'https://business.stage.adobe.com/uk/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'en-uk-marketo': 'https://business.stage.adobe.com/uk/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'en-uk-commerce': 'https://business.stage.adobe.com/uk/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'en-uk-workfront': 'https://business.stage.adobe.com/uk/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'en-uk-firefly': 'https://business.stage.adobe.com/uk/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'en-uk-personalization': 'https://business.stage.adobe.com/uk/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English AU (/au) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-au': 'https://main--da-bacom--adobecom.aem.live/au/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-products': 'https://main--da-bacom--adobecom.aem.live/au/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-solutions': 'https://main--da-bacom--adobecom.aem.live/au/solutions?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-creativecloud': 'https://main--da-bacom--adobecom.aem.live/au/products/creativecloud-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-experience-cloud': 'https://main--da-bacom--adobecom.aem.live/au/products/experience-cloud?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-analytics': 'https://main--da-bacom--adobecom.aem.live/au/products/adobe-analytics?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-marketo': 'https://main--da-bacom--adobecom.aem.live/au/products/marketo?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-commerce': 'https://main--da-bacom--adobecom.aem.live/au/products/commerce?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-workfront': 'https://main--da-bacom--adobecom.aem.live/au/products/workfront?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-firefly': 'https://main--da-bacom--adobecom.aem.live/au/products/firefly-business?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-au-personalization': 'https://main--da-bacom--adobecom.aem.live/au/solutions/personalization-at-scale?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-au': 'https://business.stage.adobe.com/au/?milolibs=stage&martech=off&langfirst=on'
+'en-au-products': 'https://business.stage.adobe.com/au/products?milolibs=stage&martech=off&langfirst=on'
+'en-au-solutions': 'https://business.stage.adobe.com/au/solutions?milolibs=stage&martech=off&langfirst=on'
+'en-au-creativecloud': 'https://business.stage.adobe.com/au/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'en-au-experience-cloud': 'https://business.stage.adobe.com/au/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
+'en-au-analytics': 'https://business.stage.adobe.com/au/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
+'en-au-marketo': 'https://business.stage.adobe.com/au/products/marketo?milolibs=stage&martech=off&langfirst=on'
+'en-au-commerce': 'https://business.stage.adobe.com/au/products/commerce?milolibs=stage&martech=off&langfirst=on'
+'en-au-workfront': 'https://business.stage.adobe.com/au/products/workfront?milolibs=stage&martech=off&langfirst=on'
+'en-au-firefly': 'https://business.stage.adobe.com/au/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
+'en-au-personalization': 'https://business.stage.adobe.com/au/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English NZ (/nz) - Regional
 # -----------------------------------------------------------------------------
-'en-nz': 'https://main--da-bacom--adobecom.aem.live/nz/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-nz-products': 'https://main--da-bacom--adobecom.aem.live/nz/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-nz': 'https://business.stage.adobe.com/nz/?milolibs=stage&martech=off&langfirst=on'
+'en-nz-products': 'https://business.stage.adobe.com/nz/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Canada (/ca) - Regional
 # -----------------------------------------------------------------------------
-'en-ca': 'https://main--da-bacom--adobecom.aem.live/ca/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ca-products': 'https://main--da-bacom--adobecom.aem.live/ca/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ca': 'https://business.stage.adobe.com/ca/?milolibs=stage&martech=off&langfirst=on'
+'en-ca-products': 'https://business.stage.adobe.com/ca/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Ireland (/ie) - Regional
 # -----------------------------------------------------------------------------
-'en-ie': 'https://main--da-bacom--adobecom.aem.live/ie/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ie-products': 'https://main--da-bacom--adobecom.aem.live/ie/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ie': 'https://business.stage.adobe.com/ie/?milolibs=stage&martech=off&langfirst=on'
+'en-ie-products': 'https://business.stage.adobe.com/ie/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Singapore (/sg) - Regional
 # -----------------------------------------------------------------------------
-'en-sg': 'https://main--da-bacom--adobecom.aem.live/sg/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-sg-products': 'https://main--da-bacom--adobecom.aem.live/sg/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-sg': 'https://business.stage.adobe.com/sg/?milolibs=stage&martech=off&langfirst=on'
+'en-sg-products': 'https://business.stage.adobe.com/sg/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Hong Kong (/hk_en) - Regional
 # -----------------------------------------------------------------------------
-'en-hk_en': 'https://main--da-bacom--adobecom.aem.live/hk_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-hk_en-products': 'https://main--da-bacom--adobecom.aem.live/hk_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-hk_en': 'https://business.stage.adobe.com/hk_en/?milolibs=stage&martech=off&langfirst=on'
+'en-hk_en-products': 'https://business.stage.adobe.com/hk_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English UAE (/ae_en) - Regional
 # -----------------------------------------------------------------------------
-'en-ae_en': 'https://main--da-bacom--adobecom.aem.live/ae_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ae_en-products': 'https://main--da-bacom--adobecom.aem.live/ae_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ae_en': 'https://business.stage.adobe.com/ae_en/?milolibs=stage&martech=off&langfirst=on'
+'en-ae_en-products': 'https://business.stage.adobe.com/ae_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Belgium (/be_en) - Regional
 # -----------------------------------------------------------------------------
-'en-be_en': 'https://main--da-bacom--adobecom.aem.live/be_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-be_en-products': 'https://main--da-bacom--adobecom.aem.live/be_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-be_en': 'https://business.stage.adobe.com/be_en/?milolibs=stage&martech=off&langfirst=on'
+'en-be_en-products': 'https://business.stage.adobe.com/be_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Netherlands (/nl) - Regional
 # -----------------------------------------------------------------------------
-'en-nl': 'https://main--da-bacom--adobecom.aem.live/nl/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-nl-products': 'https://main--da-bacom--adobecom.aem.live/nl/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-nl': 'https://business.stage.adobe.com/nl/?milolibs=stage&martech=off&langfirst=on'
+'en-nl-products': 'https://business.stage.adobe.com/nl/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Sweden (/se) - Regional
 # -----------------------------------------------------------------------------
-'en-se': 'https://main--da-bacom--adobecom.aem.live/se/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-se-products': 'https://main--da-bacom--adobecom.aem.live/se/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-se': 'https://business.stage.adobe.com/se/?milolibs=stage&martech=off&langfirst=on'
+'en-se-products': 'https://business.stage.adobe.com/se/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Denmark (/dk) - Regional
 # -----------------------------------------------------------------------------
-'en-dk': 'https://main--da-bacom--adobecom.aem.live/dk/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-dk-products': 'https://main--da-bacom--adobecom.aem.live/dk/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-dk': 'https://business.stage.adobe.com/dk/?milolibs=stage&martech=off&langfirst=on'
+'en-dk-products': 'https://business.stage.adobe.com/dk/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Norway (/no) - Regional
 # -----------------------------------------------------------------------------
-'en-no': 'https://main--da-bacom--adobecom.aem.live/no/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-no-products': 'https://main--da-bacom--adobecom.aem.live/no/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-no': 'https://business.stage.adobe.com/no/?milolibs=stage&martech=off&langfirst=on'
+'en-no-products': 'https://business.stage.adobe.com/no/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Finland (/fi) - Regional
 # -----------------------------------------------------------------------------
-'en-fi': 'https://main--da-bacom--adobecom.aem.live/fi/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-fi-products': 'https://main--da-bacom--adobecom.aem.live/fi/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-fi': 'https://business.stage.adobe.com/fi/?milolibs=stage&martech=off&langfirst=on'
+'en-fi-products': 'https://business.stage.adobe.com/fi/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Poland (/pl) - Regional
 # -----------------------------------------------------------------------------
-'en-pl': 'https://main--da-bacom--adobecom.aem.live/pl/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-pl-products': 'https://main--da-bacom--adobecom.aem.live/pl/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-pl': 'https://business.stage.adobe.com/pl/?milolibs=stage&martech=off&langfirst=on'
+'en-pl-products': 'https://business.stage.adobe.com/pl/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Czech Republic (/cz) - Regional
 # -----------------------------------------------------------------------------
-'en-cz': 'https://main--da-bacom--adobecom.aem.live/cz/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-cz-products': 'https://main--da-bacom--adobecom.aem.live/cz/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-cz': 'https://business.stage.adobe.com/cz/?milolibs=stage&martech=off&langfirst=on'
+'en-cz-products': 'https://business.stage.adobe.com/cz/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Romania (/ro) - Regional
 # -----------------------------------------------------------------------------
-'en-ro': 'https://main--da-bacom--adobecom.aem.live/ro/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ro-products': 'https://main--da-bacom--adobecom.aem.live/ro/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ro': 'https://business.stage.adobe.com/ro/?milolibs=stage&martech=off&langfirst=on'
+'en-ro-products': 'https://business.stage.adobe.com/ro/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Bulgaria (/bg) - Regional
 # -----------------------------------------------------------------------------
-'en-bg': 'https://main--da-bacom--adobecom.aem.live/bg/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-bg-products': 'https://main--da-bacom--adobecom.aem.live/bg/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-bg': 'https://business.stage.adobe.com/bg/?milolibs=stage&martech=off&langfirst=on'
+'en-bg-products': 'https://business.stage.adobe.com/bg/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Greece (/gr_en) - Regional
 # -----------------------------------------------------------------------------
-'en-gr_en': 'https://main--da-bacom--adobecom.aem.live/gr_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-gr_en-products': 'https://main--da-bacom--adobecom.aem.live/gr_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-gr_en': 'https://business.stage.adobe.com/gr_en/?milolibs=stage&martech=off&langfirst=on'
+'en-gr_en-products': 'https://business.stage.adobe.com/gr_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Turkey (/tr) - Regional
 # -----------------------------------------------------------------------------
-'en-tr': 'https://main--da-bacom--adobecom.aem.live/tr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-tr-products': 'https://main--da-bacom--adobecom.aem.live/tr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-tr': 'https://business.stage.adobe.com/tr/?milolibs=stage&martech=off&langfirst=on'
+'en-tr-products': 'https://business.stage.adobe.com/tr/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Israel (/il_en) - Regional
 # -----------------------------------------------------------------------------
-'en-il_en': 'https://main--da-bacom--adobecom.aem.live/il_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-il_en-products': 'https://main--da-bacom--adobecom.aem.live/il_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-il_en': 'https://business.stage.adobe.com/il_en/?milolibs=stage&martech=off&langfirst=on'
+'en-il_en-products': 'https://business.stage.adobe.com/il_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Saudi Arabia (/sa_en) - Regional
 # -----------------------------------------------------------------------------
-'en-sa_en': 'https://main--da-bacom--adobecom.aem.live/sa_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-sa_en-products': 'https://main--da-bacom--adobecom.aem.live/sa_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-sa_en': 'https://business.stage.adobe.com/sa_en/?milolibs=stage&martech=off&langfirst=on'
+'en-sa_en-products': 'https://business.stage.adobe.com/sa_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English MENA (/mena_en) - Regional
 # -----------------------------------------------------------------------------
-'en-mena_en': 'https://main--da-bacom--adobecom.aem.live/mena_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-mena_en-products': 'https://main--da-bacom--adobecom.aem.live/mena_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-mena_en': 'https://business.stage.adobe.com/mena_en/?milolibs=stage&martech=off&langfirst=on'
+'en-mena_en-products': 'https://business.stage.adobe.com/mena_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Africa (/africa) - Regional
 # -----------------------------------------------------------------------------
-'en-africa': 'https://main--da-bacom--adobecom.aem.live/africa/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-africa-products': 'https://main--da-bacom--adobecom.aem.live/africa/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-africa': 'https://business.stage.adobe.com/africa/?milolibs=stage&martech=off&langfirst=on'
+'en-africa-products': 'https://business.stage.adobe.com/africa/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Russia (/ru) - Regional
 # -----------------------------------------------------------------------------
-'en-ru': 'https://main--da-bacom--adobecom.aem.live/ru/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ru-products': 'https://main--da-bacom--adobecom.aem.live/ru/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ru': 'https://business.stage.adobe.com/ru/?milolibs=stage&martech=off&langfirst=on'
+'en-ru-products': 'https://business.stage.adobe.com/ru/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Ukraine (/ua) - Regional
 # -----------------------------------------------------------------------------
-'en-ua': 'https://main--da-bacom--adobecom.aem.live/ua/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ua-products': 'https://main--da-bacom--adobecom.aem.live/ua/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ua': 'https://business.stage.adobe.com/ua/?milolibs=stage&martech=off&langfirst=on'
+'en-ua-products': 'https://business.stage.adobe.com/ua/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Estonia (/ee) - Regional
 # -----------------------------------------------------------------------------
-'en-ee': 'https://main--da-bacom--adobecom.aem.live/ee/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ee-products': 'https://main--da-bacom--adobecom.aem.live/ee/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ee': 'https://business.stage.adobe.com/ee/?milolibs=stage&martech=off&langfirst=on'
+'en-ee-products': 'https://business.stage.adobe.com/ee/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Slovakia (/sk) - Regional
 # -----------------------------------------------------------------------------
-'en-sk': 'https://main--da-bacom--adobecom.aem.live/sk/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-sk-products': 'https://main--da-bacom--adobecom.aem.live/sk/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-sk': 'https://business.stage.adobe.com/sk/?milolibs=stage&martech=off&langfirst=on'
+'en-sk-products': 'https://business.stage.adobe.com/sk/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Slovenia (/si) - Regional
 # -----------------------------------------------------------------------------
-'en-si': 'https://main--da-bacom--adobecom.aem.live/si/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-si-products': 'https://main--da-bacom--adobecom.aem.live/si/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-si': 'https://business.stage.adobe.com/si/?milolibs=stage&martech=off&langfirst=on'
+'en-si-products': 'https://business.stage.adobe.com/si/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Luxembourg (/lu_en) - Regional
 # -----------------------------------------------------------------------------
-'en-lu_en': 'https://main--da-bacom--adobecom.aem.live/lu_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-lu_en-products': 'https://main--da-bacom--adobecom.aem.live/lu_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-lu_en': 'https://business.stage.adobe.com/lu_en/?milolibs=stage&martech=off&langfirst=on'
+'en-lu_en-products': 'https://business.stage.adobe.com/lu_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English China (/cn) - Regional
 # -----------------------------------------------------------------------------
-'en-cn': 'https://main--da-bacom--adobecom.aem.live/cn/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-cn-products': 'https://main--da-bacom--adobecom.aem.live/cn/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-cn': 'https://business.stage.adobe.com/cn/?milolibs=stage&martech=off&langfirst=on'
+'en-cn-products': 'https://business.stage.adobe.com/cn/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Taiwan (/tw) - Regional
 # -----------------------------------------------------------------------------
-'en-tw': 'https://main--da-bacom--adobecom.aem.live/tw/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-tw-products': 'https://main--da-bacom--adobecom.aem.live/tw/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-tw': 'https://business.stage.adobe.com/tw/?milolibs=stage&martech=off&langfirst=on'
+'en-tw-products': 'https://business.stage.adobe.com/tw/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Indonesia (/id_en) - Regional
 # -----------------------------------------------------------------------------
-'en-id_en': 'https://main--da-bacom--adobecom.aem.live/id_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-id_en-products': 'https://main--da-bacom--adobecom.aem.live/id_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-id_en': 'https://business.stage.adobe.com/id_en/?milolibs=stage&martech=off&langfirst=on'
+'en-id_en-products': 'https://business.stage.adobe.com/id_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Malaysia (/my_en) - Regional
 # -----------------------------------------------------------------------------
-'en-my_en': 'https://main--da-bacom--adobecom.aem.live/my_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-my_en-products': 'https://main--da-bacom--adobecom.aem.live/my_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-my_en': 'https://business.stage.adobe.com/my_en/?milolibs=stage&martech=off&langfirst=on'
+'en-my_en-products': 'https://business.stage.adobe.com/my_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Philippines (/ph_en) - Regional
 # -----------------------------------------------------------------------------
-'en-ph_en': 'https://main--da-bacom--adobecom.aem.live/ph_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-ph_en-products': 'https://main--da-bacom--adobecom.aem.live/ph_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-ph_en': 'https://business.stage.adobe.com/ph_en/?milolibs=stage&martech=off&langfirst=on'
+'en-ph_en-products': 'https://business.stage.adobe.com/ph_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Thailand (/th_en) - Regional
 # -----------------------------------------------------------------------------
-'en-th_en': 'https://main--da-bacom--adobecom.aem.live/th_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-th_en-products': 'https://main--da-bacom--adobecom.aem.live/th_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-th_en': 'https://business.stage.adobe.com/th_en/?milolibs=stage&martech=off&langfirst=on'
+'en-th_en-products': 'https://business.stage.adobe.com/th_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # English Vietnam (/vn_en) - Regional
 # -----------------------------------------------------------------------------
-'en-vn_en': 'https://main--da-bacom--adobecom.aem.live/vn_en/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'en-vn_en-products': 'https://main--da-bacom--adobecom.aem.live/vn_en/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'en-vn_en': 'https://business.stage.adobe.com/vn_en/?milolibs=stage&martech=off&langfirst=on'
+'en-vn_en-products': 'https://business.stage.adobe.com/vn_en/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # French Regional /be_fr (Belgium French) - Regional
 # -----------------------------------------------------------------------------
-'fr-be_fr': 'https://main--da-bacom--adobecom.aem.live/be_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-be_fr-products': 'https://main--da-bacom--adobecom.aem.live/be_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-be_fr': 'https://business.stage.adobe.com/be_fr/?milolibs=stage&martech=off&langfirst=on'
+'fr-be_fr-products': 'https://business.stage.adobe.com/be_fr/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # French Regional /ch_fr (Switzerland French) - Regional
 # -----------------------------------------------------------------------------
-'fr-ch_fr': 'https://main--da-bacom--adobecom.aem.live/ch_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-ch_fr-products': 'https://main--da-bacom--adobecom.aem.live/ch_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-ch_fr': 'https://business.stage.adobe.com/ch_fr/?milolibs=stage&martech=off&langfirst=on'
+'fr-ch_fr-products': 'https://business.stage.adobe.com/ch_fr/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # French Regional /lu_fr (Luxembourg French) - Regional
 # -----------------------------------------------------------------------------
-'fr-lu_fr': 'https://main--da-bacom--adobecom.aem.live/lu_fr/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'fr-lu_fr-products': 'https://main--da-bacom--adobecom.aem.live/lu_fr/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'fr-lu_fr': 'https://business.stage.adobe.com/lu_fr/?milolibs=stage&martech=off&langfirst=on'
+'fr-lu_fr-products': 'https://business.stage.adobe.com/lu_fr/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # German Regional /lu_de (Luxembourg German) - Regional
 # -----------------------------------------------------------------------------
-'de-lu_de': 'https://main--da-bacom--adobecom.aem.live/lu_de/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'de-lu_de-products': 'https://main--da-bacom--adobecom.aem.live/lu_de/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'de-lu_de': 'https://business.stage.adobe.com/lu_de/?milolibs=stage&martech=off&langfirst=on'
+'de-lu_de-products': 'https://business.stage.adobe.com/lu_de/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Italian Regional /ch_it (Switzerland Italian) - Regional
 # -----------------------------------------------------------------------------
-'it-ch_it': 'https://main--da-bacom--adobecom.aem.live/ch_it/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'it-ch_it-products': 'https://main--da-bacom--adobecom.aem.live/ch_it/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'it-ch_it': 'https://business.stage.adobe.com/ch_it/?milolibs=stage&martech=off&langfirst=on'
+'it-ch_it-products': 'https://business.stage.adobe.com/ch_it/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Spanish Regional /cl (Chile) - Regional
 # -----------------------------------------------------------------------------
-'es-cl': 'https://main--da-bacom--adobecom.aem.live/cl/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-cl-products': 'https://main--da-bacom--adobecom.aem.live/cl/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-cl': 'https://business.stage.adobe.com/cl/?milolibs=stage&martech=off&langfirst=on'
+'es-cl-products': 'https://business.stage.adobe.com/cl/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Spanish Regional /co (Colombia) - Regional
 # -----------------------------------------------------------------------------
-'es-co': 'https://main--da-bacom--adobecom.aem.live/co/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-co-products': 'https://main--da-bacom--adobecom.aem.live/co/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-co': 'https://business.stage.adobe.com/co/?milolibs=stage&martech=off&langfirst=on'
+'es-co-products': 'https://business.stage.adobe.com/co/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Spanish Regional /la (Latin America) - Regional
 # -----------------------------------------------------------------------------
-'es-la': 'https://main--da-bacom--adobecom.aem.live/la/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-la-products': 'https://main--da-bacom--adobecom.aem.live/la/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-la': 'https://business.stage.adobe.com/la/?milolibs=stage&martech=off&langfirst=on'
+'es-la-products': 'https://business.stage.adobe.com/la/products?milolibs=stage&martech=off&langfirst=on'
 
 # -----------------------------------------------------------------------------
 # Spanish Regional /pe (Peru) - Regional
 # -----------------------------------------------------------------------------
-'es-pe': 'https://main--da-bacom--adobecom.aem.live/pe/?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
-'es-pe-products': 'https://main--da-bacom--adobecom.aem.live/pe/products?milolibs=vhargrave-lingo-link-transformation-test&martech=off'
+'es-pe': 'https://business.stage.adobe.com/pe/?milolibs=stage&martech=off&langfirst=on'
+'es-pe-products': 'https://business.stage.adobe.com/pe/products?milolibs=stage&martech=off&langfirst=on'
+
+# =============================================================================
+# CAAS PAGES - Customer Success Stories & Resources (Heavy CaaS content)
+# These pages have dynamic card content for link transformation testing
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# English US - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'en-us-customer-stories': 'https://business.stage.adobe.com/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'en-us-resources': 'https://business.stage.adobe.com/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English UK - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'en-uk-customer-stories': 'https://business.stage.adobe.com/uk/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'en-uk-resources': 'https://business.stage.adobe.com/uk/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English AU - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'en-au-customer-stories': 'https://business.stage.adobe.com/au/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'en-au-resources': 'https://business.stage.adobe.com/au/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English IN - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'en-in-customer-stories': 'https://business.stage.adobe.com/in/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'en-in-resources': 'https://business.stage.adobe.com/in/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Japanese - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'jp-customer-stories': 'https://business.stage.adobe.com/jp/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'jp-resources': 'https://business.stage.adobe.com/jp/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Korean - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'kr-customer-stories': 'https://business.stage.adobe.com/kr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'kr-resources': 'https://business.stage.adobe.com/kr/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# German - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'de-customer-stories': 'https://business.stage.adobe.com/de/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'de-resources': 'https://business.stage.adobe.com/de/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# French - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'fr-customer-stories': 'https://business.stage.adobe.com/fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'fr-resources': 'https://business.stage.adobe.com/fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Spanish - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'es-customer-stories': 'https://business.stage.adobe.com/es/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'es-resources': 'https://business.stage.adobe.com/es/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Italian - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'it-customer-stories': 'https://business.stage.adobe.com/it/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'it-resources': 'https://business.stage.adobe.com/it/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Portuguese - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'pt-customer-stories': 'https://business.stage.adobe.com/pt/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'pt-resources': 'https://business.stage.adobe.com/pt/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Portuguese Brazil - Customer Stories & Resources
+# -----------------------------------------------------------------------------
+'pt-br-customer-stories': 'https://business.stage.adobe.com/br/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'pt-br-resources': 'https://business.stage.adobe.com/br/resources/main?milolibs=stage&martech=off&langfirst=on'
+'pt-br-jazmin-chebar': 'https://business.stage.adobe.com/br/customer-success-stories/jazmin-chebar-case-study.html?milolibs=stage&martech=off&langfirst=on'
+
+# =============================================================================
+# REGIONAL LOCALES - CaaS Pages (404 Fallback Testing)
+# These test link transformation WITH 404 fallback rules
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /ar (Argentina) → Falls back to /es
+# -----------------------------------------------------------------------------
+'es-ar-customer-stories': 'https://business.stage.adobe.com/ar/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'es-ar-resources': 'https://business.stage.adobe.com/ar/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /mx (Mexico) → Falls back to /es
+# -----------------------------------------------------------------------------
+'es-mx-customer-stories': 'https://business.stage.adobe.com/mx/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'es-mx-resources': 'https://business.stage.adobe.com/mx/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /cl (Chile) → Falls back to /es
+# -----------------------------------------------------------------------------
+'es-cl-customer-stories': 'https://business.stage.adobe.com/cl/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'es-cl-resources': 'https://business.stage.adobe.com/cl/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Spanish Regional /co (Colombia) → Falls back to /es
+# -----------------------------------------------------------------------------
+'es-co-customer-stories': 'https://business.stage.adobe.com/co/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'es-co-resources': 'https://business.stage.adobe.com/co/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# German Regional /at (Austria) → Falls back to /de
+# -----------------------------------------------------------------------------
+'de-at-customer-stories': 'https://business.stage.adobe.com/at/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'de-at-resources': 'https://business.stage.adobe.com/at/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# German Regional /ch_de (Switzerland German) → Falls back to /de
+# -----------------------------------------------------------------------------
+'de-ch_de-customer-stories': 'https://business.stage.adobe.com/ch_de/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-resources': 'https://business.stage.adobe.com/ch_de/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# French Regional /ca_fr (Canada French) → Falls back to /fr
+# -----------------------------------------------------------------------------
+'fr-ca_fr-customer-stories': 'https://business.stage.adobe.com/ca_fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-resources': 'https://business.stage.adobe.com/ca_fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# French Regional /ch_fr (Switzerland French) → Falls back to /fr
+# -----------------------------------------------------------------------------
+'fr-ch_fr-customer-stories': 'https://business.stage.adobe.com/ch_fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'fr-ch_fr-resources': 'https://business.stage.adobe.com/ch_fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# French Regional /be_fr (Belgium French) → Falls back to /fr
+# -----------------------------------------------------------------------------
+'fr-be_fr-customer-stories': 'https://business.stage.adobe.com/be_fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'fr-be_fr-resources': 'https://business.stage.adobe.com/be_fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Italian Regional /ch_it (Switzerland Italian) → Falls back to /it
+# -----------------------------------------------------------------------------
+'it-ch_it-customer-stories': 'https://business.stage.adobe.com/ch_it/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'it-ch_it-resources': 'https://business.stage.adobe.com/ch_it/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English Regional /nz (New Zealand) → Falls back to / (root)
+# -----------------------------------------------------------------------------
+'en-nz-customer-stories': 'https://business.stage.adobe.com/nz/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'en-nz-resources': 'https://business.stage.adobe.com/nz/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English Regional /ca (Canada) → Falls back to / (root)
+# -----------------------------------------------------------------------------
+'en-ca-customer-stories': 'https://business.stage.adobe.com/ca/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'en-ca-resources': 'https://business.stage.adobe.com/ca/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English Regional /sg (Singapore) → Falls back to / (root)
+# -----------------------------------------------------------------------------
+'en-sg-customer-stories': 'https://business.stage.adobe.com/sg/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
+'en-sg-resources': 'https://business.stage.adobe.com/sg/resources/main?milolibs=stage&martech=off&langfirst=on'
+
+# =============================================================================
+# BLOG PAGES - Testing link transformation on blog content
+# Source: data/bacom-blog/visual/sot.yml
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# English US Blog - Homepage + Categories
+# -----------------------------------------------------------------------------
+'blog-homepage': 'https://business.stage.adobe.com/blog/?milolibs=stage&martech=off&langfirst=on'
+'blog-trends': 'https://business.stage.adobe.com/blog/trends?milolibs=stage&martech=off&langfirst=on'
+'blog-news': 'https://business.stage.adobe.com/blog/news?milolibs=stage&martech=off&langfirst=on'
+'blog-the-latest-deliver': 'https://business.stage.adobe.com/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing?milolibs=stage&martech=off&langfirst=on'
+'blog-the-latest-harness': 'https://business.stage.adobe.com/blog/the-latest/harness-the-power-of-generative-ai-with-adobe-genstudio?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# German Blog (/de/blog)
+# -----------------------------------------------------------------------------
+'de-blog-homepage': 'https://business.stage.adobe.com/de/blog/?milolibs=stage&martech=off&langfirst=on'
+'de-blog-trends': 'https://business.stage.adobe.com/de/blog/trends?milolibs=stage&martech=off&langfirst=on'
+'de-blog-the-latest-deliver': 'https://business.stage.adobe.com/de/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# French Blog (/fr/blog)
+# -----------------------------------------------------------------------------
+'fr-blog-homepage': 'https://business.stage.adobe.com/fr/blog/?milolibs=stage&martech=off&langfirst=on'
+'fr-blog-trends': 'https://business.stage.adobe.com/fr/blog/trends?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English AU Blog (/au/blog)
+# -----------------------------------------------------------------------------
+'au-blog-homepage': 'https://business.stage.adobe.com/au/blog/?milolibs=stage&martech=off&langfirst=on'
+'au-blog-trends': 'https://business.stage.adobe.com/au/blog/trends?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# English UK Blog (/uk/blog)
+# -----------------------------------------------------------------------------
+'uk-blog-homepage': 'https://business.stage.adobe.com/uk/blog/?milolibs=stage&martech=off&langfirst=on'
+'uk-blog-trends': 'https://business.stage.adobe.com/uk/blog/trends?milolibs=stage&martech=off&langfirst=on'
+'uk-blog-the-latest-harness': 'https://business.stage.adobe.com/uk/blog/the-latest/harness-the-power-of-generative-ai-with-adobe-genstudio?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Japanese Blog (/jp/blog)
+# -----------------------------------------------------------------------------
+'jp-blog-homepage': 'https://business.stage.adobe.com/jp/blog/?milolibs=stage&martech=off&langfirst=on'
+'jp-blog-trends': 'https://business.stage.adobe.com/jp/blog/trends?milolibs=stage&martech=off&langfirst=on'
+'jp-blog-the-latest-deliver': 'https://business.stage.adobe.com/jp/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# Additional CaaS Pages for Link Transformation Testing
+# -----------------------------------------------------------------------------
+# FULL SITE - AU (Customer Journey Analytics page with CaaS)
+'en-au-cja': 'https://business.stage.adobe.com/au/products/adobe-analytics/customer-journey-analytics.html?milolibs=stage&martech=off&langfirst=on'
+
+# REGIONAL - BR (Resources SDK page with CaaS)
+'pt-br-personalization-financial-services': 'https://business.stage.adobe.com/br/resources/sdk/personalization-is-paying-off-for-financial-services.html?milolibs=stage&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# BR Customer Success Stories (REGIONAL - Portuguese Brazil)
+# -----------------------------------------------------------------------------
+'pt-br-cs-abcop': 'https://business.stage.adobe.com/br/customer-success-stories/abcop-case-study.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-telefonica': 'https://business.stage.adobe.com/br/customer-success-stories/telefonica-ecommerce-case-study.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-tsb': 'https://business.stage.adobe.com/br/customer-success-stories/tsb-case-study.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-sky': 'https://business.stage.adobe.com/br/customer-success-stories/sky-case-study.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-bmw': 'https://business.stage.adobe.com/br/customer-success-stories/bmw-case-study.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-united-healthcare': 'https://business.stage.adobe.com/br/customer-success-stories/united-healthcare-case-study.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-health-life-sciences': 'https://business.stage.adobe.com/br/customer-success-stories/health-case-life-sciences.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-adobe-stock': 'https://business.stage.adobe.com/br/customer-success-stories/adobe-stock.html?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# BR Recursos - Ebooks (REGIONAL - Portuguese Brazil)
+# -----------------------------------------------------------------------------
+'pt-br-ebook-be-target': 'https://business.stage.adobe.com/br/recursos/ebooks/be-target-guia-6.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-adobe-target': 'https://business.stage.adobe.com/br/recursos/ebooks/Adobe-Target-Ebook.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-experience-manager': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-experience-manager-for-fueling-experiences-everywhere.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-experience-manager-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-experience-manager-for-fueling-experiences-everywhere/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-journey-optimizer': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-journey-optimizer-oferta-personalizada-padrao-decisao.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-journey-optimizer-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-journey-optimizer-oferta-personalizada-padrao-decisao/you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-real-time-cdp': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-real-time-cdp-customer-profiles-audiences-actions.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-current-insights': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-current-insights.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-current-insights-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-current-insights/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-navegate-ecommerce': 'https://business.stage.adobe.com/br/recursos/ebooks/navegate-melhor-sou-ecommerce.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-navegate-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/navegate-melhor-sou-ecommerce/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-novapasso': 'https://business.stage.adobe.com/br/recursos/ebooks/novapasso-um-sitm-ecm-e-commerce-alimentado-pelo-conteudo.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-novapasso-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/novapasso-um-sitm-ecm-e-commerce-alimentado-pelo-conteudo/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-marketo-futuro': 'https://business.stage.adobe.com/br/recursos/ebooks/marketo-o-futuro-do-ecommerce.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-marketo-futuro-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/marketo-o-futuro-do-ecommerce/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-negocio-escala': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-em-escala-a-importancia-da-personalizacao-1-1.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-negocio-escala-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-em-escala-a-importancia-da-personalizacao-1-1/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-omnichannel': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-omnichannel-para-conexao-em-escala.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-omnichannel-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-omnichannel-para-conexao-em-escala/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-marketplace-b2b': 'https://business.stage.adobe.com/br/recursos/ebooks/novacao-aos-marketplaces-de-e-commerce-b2b.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-marketplace-b2b-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/novacao-aos-marketplaces-de-e-commerce-b2b/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-journey-optimizer-solves': 'https://business.stage.adobe.com/br/recursos/ebooks/journey-optimizer-solves-marketing-challenges.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-journey-optimizer-solves-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/journey-optimizer-solves-marketing-challenges/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-marketing-ia': 'https://business.stage.adobe.com/br/recursos/ebooks/marketing-mas-inteligente-com-ia.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-marketing-ia-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/marketing-mas-inteligente-com-ia/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-futuro-gerenciamento': 'https://business.stage.adobe.com/br/recursos/ebooks/o-futuro-do-gerenciamento-de-dados.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-futuro-gerenciamento-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/o-futuro-do-gerenciamento-de-dados/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-adobe-serial': 'https://business.stage.adobe.com/br/recursos/ebooks/one-page-adobe-serial-analytics.html?milolibs=stage&martech=off&langfirst=on'
+
+# -----------------------------------------------------------------------------
+# BR Recursos - Estudos de Sucesso (REGIONAL - Portuguese Brazil)
+# -----------------------------------------------------------------------------
+'pt-br-estudos-comunicay-agility': 'https://business.stage.adobe.com/br/recursos/estudos-de-sucesso-contivity/communication-agility.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-human-connection': 'https://business.stage.adobe.com/br/recursos/estudos-de-sucesso-contivity/human-connection.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-human-conversion': 'https://business.stage.adobe.com/br/recursos/estudos-de-sucesso-contivity/human-conversion.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-main-sites': 'https://business.stage.adobe.com/br/recursos/estudos/main-sites.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-main-sites-thank': 'https://business.stage.adobe.com/br/recursos/estudos/main-sites/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-ecommerce-thank': 'https://business.stage.adobe.com/br/recursos/estudos/ecommerce/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-supply-chain': 'https://business.stage.adobe.com/br/recursos/estudos/content-supply-chain-workfront.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-supply-chain-thank': 'https://business.stage.adobe.com/br/recursos/estudos/content-supply-chain-workfront/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-mop': 'https://business.stage.adobe.com/br/recursos/estudos/mop.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-mop-thank': 'https://business.stage.adobe.com/br/recursos/estudos/mop/thank-you.html?milolibs=stage&martech=off&langfirst=on'

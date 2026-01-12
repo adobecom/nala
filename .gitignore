@@ -149,3 +149,10 @@ playwright-browserstack-sdk.config.temp.json
 *lingo-test-results.jsonl
 *lingo-detailed-report.json
 .lingo-run-marker
+
+# Generated reports
+results/*.html
+results/*.md
+results/*.txt
+results/*.json
+results/.*

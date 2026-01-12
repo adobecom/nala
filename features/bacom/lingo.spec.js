@@ -45,7 +45,7 @@ module.exports = {
     },
 
     // =========================================================================
-    // ENGLISH - Regional Locales
+    // ENGLISH - Regional Locales (404 fallback to root /)
     // =========================================================================
     {
       tcid: '5',
@@ -294,7 +294,7 @@ module.exports = {
     },
 
     // =========================================================================
-    // SPANISH - Base and Regional
+    // SPANISH - Base and Regional (404 fallback to /es)
     // =========================================================================
     {
       tcid: '40',
@@ -305,55 +305,41 @@ module.exports = {
     },
     {
       tcid: '41',
-      name: '@BACOM-Lingo-Spanish-AR-Live',
-      path: 'es-ar-live',
-      tags: '@bacom @lingo @link-transform @spanish @ar @regional @live @regression',
+      name: '@BACOM-Lingo-Spanish-AR',
+      path: 'es-ar',
+      tags: '@bacom @lingo @link-transform @spanish @ar @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
       tcid: '42',
-      name: '@BACOM-Lingo-Spanish-AR-Page',
-      path: 'es-ar-page',
-      tags: '@bacom @lingo @link-transform @spanish @ar @regional @page @regression',
+      name: '@BACOM-Lingo-Spanish-MX',
+      path: 'es-mx',
+      tags: '@bacom @lingo @link-transform @spanish @mx @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
       tcid: '43',
-      name: '@BACOM-Lingo-Spanish-MX-Live',
-      path: 'es-mx-live',
-      tags: '@bacom @lingo @link-transform @spanish @mx @regional @live @regression',
-      data: 'data/bacom/gnav/lingo-urls.yml',
-    },
-    {
-      tcid: '44',
-      name: '@BACOM-Lingo-Spanish-MX-Page',
-      path: 'es-mx-page',
-      tags: '@bacom @lingo @link-transform @spanish @mx @regional @page @regression',
-      data: 'data/bacom/gnav/lingo-urls.yml',
-    },
-    {
-      tcid: '45',
       name: '@BACOM-Lingo-Spanish-CL',
       path: 'es-cl',
       tags: '@bacom @lingo @link-transform @spanish @cl @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '46',
+      tcid: '44',
       name: '@BACOM-Lingo-Spanish-CO',
       path: 'es-co',
       tags: '@bacom @lingo @link-transform @spanish @co @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '47',
+      tcid: '45',
       name: '@BACOM-Lingo-Spanish-LA',
       path: 'es-la',
       tags: '@bacom @lingo @link-transform @spanish @la @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '48',
+      tcid: '46',
       name: '@BACOM-Lingo-Spanish-PE',
       path: 'es-pe',
       tags: '@bacom @lingo @link-transform @spanish @pe @regional @regression',
@@ -361,38 +347,31 @@ module.exports = {
     },
 
     // =========================================================================
-    // GERMAN - Base and Regional
+    // GERMAN - Base and Regional (404 fallback to /de)
     // =========================================================================
     {
-      tcid: '49',
+      tcid: '47',
       name: '@BACOM-Lingo-German-DE-Base',
       path: 'de',
       tags: '@bacom @lingo @link-transform @german @de @base @smoke @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '50',
-      name: '@BACOM-Lingo-German-AT-Live',
-      path: 'de-at-live',
-      tags: '@bacom @lingo @link-transform @german @at @regional @live @regression',
+      tcid: '48',
+      name: '@BACOM-Lingo-German-AT',
+      path: 'de-at',
+      tags: '@bacom @lingo @link-transform @german @at @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '51',
-      name: '@BACOM-Lingo-German-AT-Page',
-      path: 'de-at-page',
-      tags: '@bacom @lingo @link-transform @german @at @regional @page @regression',
-      data: 'data/bacom/gnav/lingo-urls.yml',
-    },
-    {
-      tcid: '52',
+      tcid: '49',
       name: '@BACOM-Lingo-German-CH',
       path: 'de-ch_de',
       tags: '@bacom @lingo @link-transform @german @ch_de @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '53',
+      tcid: '50',
       name: '@BACOM-Lingo-German-LU',
       path: 'de-lu_de',
       tags: '@bacom @lingo @link-transform @german @lu_de @regional @regression',
@@ -400,38 +379,38 @@ module.exports = {
     },
 
     // =========================================================================
-    // FRENCH - Base and Regional
+    // FRENCH - Base and Regional (404 fallback to /fr)
     // =========================================================================
     {
-      tcid: '54',
+      tcid: '51',
       name: '@BACOM-Lingo-French-FR-Base',
       path: 'fr',
       tags: '@bacom @lingo @link-transform @french @fr @base @smoke @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '55',
+      tcid: '52',
       name: '@BACOM-Lingo-French-CA',
       path: 'fr-ca_fr',
       tags: '@bacom @lingo @link-transform @french @ca_fr @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '56',
+      tcid: '53',
       name: '@BACOM-Lingo-French-BE',
       path: 'fr-be_fr',
       tags: '@bacom @lingo @link-transform @french @be_fr @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '57',
+      tcid: '54',
       name: '@BACOM-Lingo-French-CH',
       path: 'fr-ch_fr',
       tags: '@bacom @lingo @link-transform @french @ch_fr @regional @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '58',
+      tcid: '55',
       name: '@BACOM-Lingo-French-LU',
       path: 'fr-lu_fr',
       tags: '@bacom @lingo @link-transform @french @lu_fr @regional @regression',
@@ -439,17 +418,17 @@ module.exports = {
     },
 
     // =========================================================================
-    // ITALIAN - Base and Regional
+    // ITALIAN - Base and Regional (404 fallback to /it)
     // =========================================================================
     {
-      tcid: '59',
+      tcid: '56',
       name: '@BACOM-Lingo-Italian-IT-Base',
       path: 'it',
       tags: '@bacom @lingo @link-transform @italian @it @base @smoke @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '60',
+      tcid: '57',
       name: '@BACOM-Lingo-Italian-CH',
       path: 'it-ch_it',
       tags: '@bacom @lingo @link-transform @italian @ch_it @regional @regression',
@@ -457,17 +436,17 @@ module.exports = {
     },
 
     // =========================================================================
-    // PORTUGUESE - Base and Regional
+    // PORTUGUESE - Base and Regional (404 fallback to /pt)
     // =========================================================================
     {
-      tcid: '61',
+      tcid: '58',
       name: '@BACOM-Lingo-Portuguese-PT-Base',
       path: 'pt',
       tags: '@bacom @lingo @link-transform @portuguese @pt @base @smoke @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
-      tcid: '62',
+      tcid: '59',
       name: '@BACOM-Lingo-Portuguese-BR',
       path: 'pt-br',
       tags: '@bacom @lingo @link-transform @portuguese @br @regional @regression',
@@ -478,7 +457,7 @@ module.exports = {
     // JAPANESE - Full Site
     // =========================================================================
     {
-      tcid: '63',
+      tcid: '60',
       name: '@BACOM-Lingo-Japanese-JP',
       path: 'jp',
       tags: '@bacom @lingo @link-transform @japanese @jp @fullsite @smoke @regression',
@@ -489,7 +468,7 @@ module.exports = {
     // KOREAN - Full Site
     // =========================================================================
     {
-      tcid: '64',
+      tcid: '61',
       name: '@BACOM-Lingo-Korean-KR',
       path: 'kr',
       tags: '@bacom @lingo @link-transform @korean @kr @fullsite @smoke @regression',

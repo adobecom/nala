@@ -11,16 +11,77 @@ const { WebUtil } = require('../../libs/webutil.js');
  * Link Transformation Rules:
  * 1. BASE LANGUAGE pages (/es, /fr, /de, /pt, /it): All links → base language
  * 2. REGIONAL pages (/ar, /mx, /at, /ch_de, /ca_fr, /br): Mixed links
- *    - .aem.live (query-index.json): Only published regional pages transform
- *    - .aem.page (preview-index.json): Draft/preview regional pages also transform
+ *    - Links point to regional locale if page exists
+ *    - Links fall back to base language if regional page doesn't exist (404 fallback)
  * 3. FULL SITE locales (/uk, /au, /jp, /kr, /in): All links → that locale
  * 4. US ROOT (/): Links have no locale prefix
+ *
+ * 404 Fallback Rules (from locale-404-fallback tests):
+ * - Regional locales that 404 will redirect to their base language
+ * - English regional → / (root)
+ * - Spanish regional (ar, cl, co, la, mx, pe) → /es
+ * - German regional (at, ch_de, lu_de) → /de
+ * - French regional (be_fr, ca_fr, ch_fr, lu_fr) → /fr
+ * - Italian regional (ch_it) → /it
+ * - Portuguese regional (br) → /pt
  */
 
 // Report file paths - using JSON Lines format for parallel-safe writes
 const RESULTS_DIR = path.join(process.cwd(), 'results');
 const REPORT_JSONL_PATH = path.join(RESULTS_DIR, 'lingo-test-results.jsonl');
 const REPORT_JSON_PATH = path.join(RESULTS_DIR, 'lingo-detailed-report.json');
+
+// ============================================================================
+// 404 FALLBACK RULES - Defines which regional locales fall back to which base
+// ============================================================================
+const FALLBACK_RULES = {
+  // English regional locales → fall back to root (/)
+  'en-root': {
+    fallbackTo: '/',
+    locales: [
+      'ae_en', 'africa', 'ca', 'be_en', 'bg', 'cn', 'cz', 'dk', 'ee', 'fi',
+      'gr_en', 'hk_en', 'id_en', 'ie', 'il_en', 'lu_en', 'mena_en', 'my_en',
+      'nl', 'no', 'ph_en', 'pl', 'ro', 'ru', 'sa_en', 'se', 'sg', 'si',
+      'nz', 'sk', 'th_en', 'tr', 'tw', 'ua', 'vn_en',
+    ],
+  },
+  // German regional locales → fall back to /de
+  de: {
+    fallbackTo: '/de',
+    locales: ['at', 'ch_de', 'lu_de'],
+  },
+  // Spanish regional locales → fall back to /es
+  es: {
+    fallbackTo: '/es',
+    locales: ['ar', 'cl', 'co', 'la', 'mx', 'pe'],
+  },
+  // French regional locales → fall back to /fr
+  fr: {
+    fallbackTo: '/fr',
+    locales: ['be_fr', 'ca_fr', 'ch_fr', 'lu_fr'],
+  },
+  // Italian regional locales → fall back to /it
+  it: {
+    fallbackTo: '/it',
+    locales: ['ch_it'],
+  },
+  // Portuguese regional locales → fall back to /pt
+  pt: {
+    fallbackTo: '/pt',
+    locales: ['br'],
+  },
+};
+
+// Get the fallback base for a regional locale
+function getFallbackBase(locale) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [base, rule] of Object.entries(FALLBACK_RULES)) {
+    if (rule.locales.includes(locale)) {
+      return { base, fallbackTo: rule.fallbackTo };
+    }
+  }
+  return null;
+}
 
 // Rules definition (shared)
 const LINGO_RULES = {
@@ -35,9 +96,9 @@ const LINGO_RULES = {
     expectation: 'All internal links should have the same base language prefix (e.g., /es/products for Spanish)',
   },
   REGIONAL: {
-    description: 'REGIONAL pages - Mixed links based on published/preview pages',
+    description: 'REGIONAL pages - Mixed links based on page existence',
     locales: ['/ar', '/mx', '/at', '/ch_de', '/ca_fr', '/br'],
-    expectation: '.aem.live uses query-index.json (published only), .aem.page uses preview-index.json (includes drafts)',
+    expectation: 'Links point to regional locale if page exists, otherwise fall back to base language (404 fallback)',
   },
   FULL_SITE: {
     description: 'FULL SITE locales - All links should point to that locale',
@@ -81,6 +142,11 @@ function aggregateReport() {
   let passedTests = 0;
   let failedTests = 0;
 
+  // CaaS statistics
+  let pagesWithCaaS = 0;
+  let totalCaaSCards = 0;
+  let totalLinks = 0;
+
   tests.forEach((t) => {
     if (t.results.passed > 0 && (t.results.failed || 0) === 0) {
       passedTests += 1;
@@ -94,6 +160,15 @@ function aggregateReport() {
         if (p.status === 'passed') passedPages += 1;
         else if (p.status === 'failed') failedPages += 1;
         else if (p.status === 'skipped') skippedPages += 1;
+
+        // Aggregate CaaS stats
+        if (p.hasCaaS) {
+          pagesWithCaaS += 1;
+          totalCaaSCards += p.cardCount || 0;
+        }
+        if (p.links && p.links.total) {
+          totalLinks += p.links.total;
+        }
       });
     }
   });
@@ -109,14 +184,20 @@ function aggregateReport() {
       passedPages,
       failedPages,
       skippedPages,
+      // CaaS summary
+      pagesWithCaaS,
+      totalCaaSCards,
+      totalLinksAnalyzed: totalLinks,
     },
     rules: LINGO_RULES,
+    fallbackRules: FALLBACK_RULES,
     tests,
   };
 
   fs.writeFileSync(REPORT_JSON_PATH, JSON.stringify(report, null, 2));
   console.info(`[LingoTest] Final report saved to: ${REPORT_JSON_PATH}`);
   console.info(`[LingoTest] Summary: ${tests.length} tests, ${passedTests} passed, ${failedTests} failed`);
+  console.info(`[LingoTest] CaaS: ${pagesWithCaaS} pages with CaaS, ${totalCaaSCards} total cards, ${totalLinks} links analyzed`);
 }
 
 // Track if this worker has already cleared results (to avoid race conditions with parallel workers)
@@ -162,10 +243,12 @@ async function analyzePageLinks(page, locale, isRoot = false) {
     const allLinks = Array.from(document.querySelectorAll('a[href]'));
     return allLinks.map((a) => {
       let location = 'body';
-      if (a.closest('header')) {
+      if (a.closest('header') || a.closest('nav.gnav')) {
         location = 'header';
       } else if (a.closest('footer')) {
         location = 'footer';
+      } else if (a.closest('.caas-preview') || a.closest('[aria-label="Card Collection"]') || a.closest('.caas')) {
+        location = 'caas';
       }
       return {
         href: a.href,
@@ -177,20 +260,52 @@ async function analyzePageLinks(page, locale, isRoot = false) {
 
   const internalLinks = links.filter((link) => link.href.startsWith(baseDomain));
 
+  // Detect bad/staging links (hlx.page, hlx.live, branch URLs)
+  const badLinks = [];
+  const stagingPatterns = [
+    { pattern: /\.hlx\.page/, issue: 'Points to hlx.page (staging/preview URL)' },
+    { pattern: /\.hlx\.live/, issue: 'Points to hlx.live (staging URL)' },
+    { pattern: /main--[a-z]+--adobecom\./, issue: 'Points to branch preview URL (main--*--adobecom)' },
+    { pattern: /--[a-z]+--adobecom\.hlx\./, issue: 'Points to branch preview URL (*--adobecom.hlx)' },
+  ];
+
+  links.forEach((link) => {
+    for (const { pattern, issue } of stagingPatterns) {
+      if (pattern.test(link.href)) {
+        badLinks.push({
+          ...link,
+          issue,
+          shouldBe: link.href
+            .replace(/https:\/\/main--bacom--adobecom\.hlx\.page/, 'https://business.stage.adobe.com')
+            .replace(/https:\/\/main--bacom--adobecom\.hlx\.live/, 'https://business.adobe.com')
+            .replace(/\.hlx\.page/, '.adobe.com')
+            .replace(/\.hlx\.live/, '.adobe.com'),
+        });
+        break;
+      }
+    }
+  });
+
+  if (badLinks.length > 0) {
+    console.warn(`[LingoTest] ⚠️ Found ${badLinks.length} bad/staging links on page!`);
+    badLinks.forEach((bl) => console.warn(`  - ${bl.href} (${bl.issue}) [${bl.location}]`));
+  }
+
   let matchesLocale = 0;
   let noLocaleLinks = 0;
   const otherLocales = {};
   const linksByLocale = { matched: [], noLocale: [], other: [] };
 
   internalLinks.forEach((link) => {
-    const match = link.href.match(/\.(live|page)\/([a-z]{2}(?:_[a-z]{2})?)(\/|$|\?)/);
+    // Updated regex to handle business.stage.adobe.com URLs
+    const match = link.href.match(/adobe\.com\/([a-z]{2}(?:_[a-z]{2})?)(\/|$|\?)/);
     if (match) {
-      if (match[2] === locale) {
+      if (match[1] === locale) {
         matchesLocale += 1;
-        linksByLocale.matched.push({ ...link, detectedLocale: match[2] });
+        linksByLocale.matched.push({ ...link, detectedLocale: match[1] });
       } else {
-        otherLocales[match[2]] = (otherLocales[match[2]] || 0) + 1;
-        linksByLocale.other.push({ ...link, detectedLocale: match[2] });
+        otherLocales[match[1]] = (otherLocales[match[1]] || 0) + 1;
+        linksByLocale.other.push({ ...link, detectedLocale: match[1] });
       }
     } else if (isRoot) {
       noLocaleLinks += 1;
@@ -208,6 +323,7 @@ async function analyzePageLinks(page, locale, isRoot = false) {
       : 0,
     linkDetails: linksByLocale,
     allLinks: internalLinks,
+    badLinks,
   };
 }
 
@@ -257,38 +373,385 @@ async function dismissPopups(page) {
   }
 }
 
-// Helper to load and verify page
-async function loadAndVerifyPage(page, url, pageName) {
+// Cache for query-index data to avoid fetching multiple times
+const queryIndexCache = new Map();
+
+/**
+ * Fetch the Query Index for a regional locale
+ * Query Index holds the list of pages that exist for that locale
+ * Path: /<locale>/assets/lingo/query-index.json
+ */
+async function fetchQueryIndex(baseDomain, locale) {
+  const cacheKey = `${baseDomain}/${locale}`;
+  if (queryIndexCache.has(cacheKey)) {
+    return queryIndexCache.get(cacheKey);
+  }
+
+  const indexUrl = `${baseDomain}/${locale}/assets/lingo/query-index.json`;
+  console.info(`[LingoTest] Fetching Query Index: ${indexUrl}`);
+
   try {
-    await page.goto(url, { timeout: 60000, waitUntil: 'domcontentloaded' });
+    const response = await fetch(indexUrl);
+    if (!response.ok) {
+      console.warn(`[LingoTest] Query Index not found: ${indexUrl} (${response.status})`);
+      queryIndexCache.set(cacheKey, { exists: false, pages: new Set(), total: 0 });
+      return queryIndexCache.get(cacheKey);
+    }
+
+    const data = await response.json();
+    // Extract paths from the index - handle both 'path' and 'Path' field names
+    const pages = new Set();
+    if (data.data && Array.isArray(data.data)) {
+      data.data.forEach((item) => {
+        const pagePath = item.path || item.Path;
+        if (pagePath) {
+          // Normalize path: remove locale prefix and .html extension
+          let normalized = pagePath;
+          // Remove locale prefix (e.g., /ar/products -> /products)
+          const localeMatch = normalized.match(/^\/[a-z]{2}(?:_[a-z]{2})?(\/.*)/);
+          if (localeMatch) {
+            normalized = localeMatch[1];
+          }
+          // Remove .html extension
+          normalized = normalized.replace(/\.html$/, '');
+          // Ensure path starts with /
+          if (!normalized.startsWith('/')) {
+            normalized = `/${normalized}`;
+          }
+          pages.add(normalized);
+        }
+      });
+    }
+
+    console.info(`[LingoTest] Query Index for /${locale}: ${pages.size} pages found`);
+    const result = { exists: true, pages, total: data.total || pages.size };
+    queryIndexCache.set(cacheKey, result);
+    return result;
+  } catch (error) {
+    console.warn(`[LingoTest] Failed to fetch Query Index: ${error.message}`);
+    queryIndexCache.set(cacheKey, { exists: false, pages: new Set(), total: 0, error: error.message });
+    return queryIndexCache.get(cacheKey);
+  }
+}
+
+/**
+ * Check if a page path exists in the Query Index
+ */
+function pageExistsInIndex(queryIndex, pagePath) {
+  if (!queryIndex.exists || queryIndex.pages.size === 0) {
+    return false;
+  }
+  // Normalize the path for comparison
+  let normalized = pagePath;
+  normalized = normalized.replace(/\.html$/, '');
+  if (!normalized.startsWith('/')) {
+    normalized = `/${normalized}`;
+  }
+  // Also try with trailing slash variations
+  return queryIndex.pages.has(normalized)
+    || queryIndex.pages.has(`${normalized}/`)
+    || queryIndex.pages.has(normalized.replace(/\/$/, ''));
+}
+
+/**
+ * Validate regional page links according to the rule:
+ * "If the regional page does not exist, links should point to the base site"
+ *
+ * Uses Query Index (/<locale>/assets/lingo/query-index.json) to check page existence
+ * This is how Link Transformation actually works - it checks the Query Index
+ */
+async function validateRegionalLinks(baseLocaleLinks, regionalLocale, baseLocale, baseDomain) {
+  const validationResults = {
+    correct: [],      // Links correctly pointing to base (regional not in index)
+    incorrect: [],    // Links incorrectly pointing to base (regional IS in index - BUG!)
+    unchecked: [],    // Links that couldn't be checked
+    queryIndexInfo: null,
+  };
+
+  // Fetch the Query Index for the regional locale
+  const queryIndex = await fetchQueryIndex(baseDomain, regionalLocale);
+  validationResults.queryIndexInfo = {
+    locale: regionalLocale,
+    indexUrl: `${baseDomain}/${regionalLocale}/assets/lingo/query-index.json`,
+    exists: queryIndex.exists,
+    totalPages: queryIndex.total,
+  };
+
+  if (!queryIndex.exists) {
+    console.warn(`[LingoTest] No Query Index for /${regionalLocale} - cannot validate links`);
+    baseLocaleLinks.forEach((link) => {
+      validationResults.unchecked.push({
+        linkHref: link.href,
+        reason: 'Query Index not available for validation',
+      });
+    });
+    return validationResults;
+  }
+
+  // Only check unique paths to avoid redundant checks
+  const uniquePaths = new Map();
+  baseLocaleLinks.forEach((link) => {
+    // Extract path from link href
+    // e.g., https://business.stage.adobe.com/es/products -> /products
+    const urlMatch = link.href.match(/adobe\.com\/[a-z]{2}(?:_[a-z]{2})?(\/[^?#]*)/);
+    if (urlMatch) {
+      let pagePath = urlMatch[1] || '/';
+      // Remove .html extension for comparison
+      pagePath = pagePath.replace(/\.html$/, '');
+      if (!uniquePaths.has(pagePath)) {
+        uniquePaths.set(pagePath, link);
+      }
+    }
+  });
+
+  console.info(`[LingoTest] Validating ${uniquePaths.size} unique base-locale links against Query Index...`);
+
+  // Check each unique path against the Query Index
+  for (const [pagePath, link] of uniquePaths) {
+    const existsInIndex = pageExistsInIndex(queryIndex, pagePath);
+    const regionalPath = `/${regionalLocale}${pagePath}`;
+
+    if (existsInIndex) {
+      // Regional page EXISTS in Query Index but link points to base - this is a BUG!
+      validationResults.incorrect.push({
+        linkHref: link.href,
+        linkText: link.text,
+        pagePath,
+        regionalPath,
+        issue: `Page exists in /${regionalLocale} Query Index but link points to base /${baseLocale}`,
+      });
+    } else {
+      // Regional page NOT in Query Index - link correctly points to base
+      validationResults.correct.push({
+        linkHref: link.href,
+        linkText: link.text,
+        pagePath,
+        regionalPath,
+        reason: `Page not in /${regionalLocale} Query Index, correctly falls back to /${baseLocale}`,
+      });
+    }
+  }
+
+  return validationResults;
+}
+
+// Helper to load and verify page - now handles 404 redirects for regional pages
+async function loadAndVerifyPage(page, url, pageName, expectedLocale = null) {
+  try {
+    const response = await page.goto(url, { timeout: 60000, waitUntil: 'domcontentloaded' });
+    const finalUrl = page.url();
+
+    // Check if we were redirected due to 404 fallback
+    const fallbackInfo = expectedLocale ? getFallbackBase(expectedLocale) : null;
+    const wasRedirected = response && response.url() !== url;
+
+    if (wasRedirected && fallbackInfo) {
+      console.info(`[LingoTest] ${pageName}: Redirected (404 fallback) from ${expectedLocale} to ${fallbackInfo.fallbackTo}`);
+    }
+
+    return {
+      loaded: true,
+      wasRedirected,
+      finalUrl,
+      fallbackInfo,
+    };
   } catch (error) {
     console.warn(`[LingoTest] FAILED: ${pageName} - ${error.message}`);
     return { loaded: false, reason: `Navigation failed: ${error.message}`, title: '', error: true };
   }
+}
 
-  // Wait a bit for any popups to appear, then dismiss them
+// Wait for page to be ready and dismiss popups
+async function waitForPageReady(page) {
   await page.waitForTimeout(2000);
   await dismissPopups(page);
 
   const pageTitle = await page.title();
   if (pageTitle.includes('404') || pageTitle === '') {
-    console.warn(`[LingoTest] SKIP: ${pageName} - 404 or empty page`);
-    return { loaded: false, reason: '404 or empty page', title: pageTitle };
+    return { ready: false, reason: '404 or empty page', title: pageTitle };
   }
 
   const header = page.locator('header');
   try {
     await expect(header).toBeVisible({ timeout: 10000 });
   } catch {
-    console.warn(`[LingoTest] SKIP: ${pageName} - No header found`);
-    return { loaded: false, reason: 'No header found', title: pageTitle };
+    return { ready: false, reason: 'No header found', title: pageTitle };
   }
 
-  return { loaded: true, title: pageTitle };
+  return { ready: true, title: pageTitle };
+}
+
+// Wait for CaaS/dynamic content to load (cards, carousels, etc.)
+async function waitForCaaSContent(page, pageName) {
+  // CaaS container selectors - these are common patterns for dynamically loaded content
+  const caasSelectors = [
+    '.caas-container',           // CaaS main container
+    '.consonant-CardsGrid',      // Consonant cards grid
+    '.card-collection',          // Card collection
+    '.consonant-Wrapper',        // Consonant wrapper
+    '[data-component="CardCollection"]', // Card collection component
+    '.merch-cards',              // Merch cards
+    '.fragment .cards',          // Cards within fragments
+    '.section .cards',           // Cards within sections
+    '.caas-preview',             // Lazy-loaded CaaS preview container
+  ];
+
+  // Lazy-loaded CaaS markers - these indicate CaaS content that needs to be scrolled into view
+  const lazyCaaSMarkers = [
+    '.caas.link-block',          // CaaS link-block (lazy-loaded marker)
+    'a.caas[data-block-status]', // CaaS anchor with block status
+  ];
+
+  let caasFound = false;
+  let caasSelector = '';
+  let hasLazyCaaS = false;
+
+  // First check for lazy-loaded CaaS markers (not yet rendered)
+  for (const selector of lazyCaaSMarkers) {
+    try {
+      const markers = page.locator(selector);
+      const count = await markers.count();
+      if (count > 0) {
+        hasLazyCaaS = true;
+        console.info(`[LingoTest] ${pageName}: Found ${count} lazy CaaS marker(s) (${selector}), scrolling to trigger load...`);
+
+        // Scroll through the page to trigger lazy loading of CaaS content
+        await page.evaluate(async () => {
+          const scrollStep = window.innerHeight * 0.8;
+          const maxScroll = document.documentElement.scrollHeight;
+          for (let pos = 0; pos < maxScroll; pos += scrollStep) {
+            window.scrollTo(0, pos);
+            await new Promise((r) => setTimeout(r, 300));
+          }
+          // Scroll back to top
+          window.scrollTo(0, 0);
+        });
+
+        // Wait for lazy content to render
+        await page.waitForTimeout(2000);
+        break;
+      }
+    } catch {
+      // Continue to next selector
+    }
+  }
+
+  // Check if any CaaS container exists on the page (including newly loaded ones)
+  for (const selector of caasSelectors) {
+    try {
+      const container = page.locator(selector).first();
+      if (await container.isVisible({ timeout: 2000 })) {
+        caasSelector = selector;
+        caasFound = true;
+        break;
+      }
+    } catch {
+      // Continue to next selector
+    }
+  }
+
+  // Also check for Card Collection sections (used by lazy-loaded CaaS)
+  if (!caasFound) {
+    try {
+      const cardCollections = page.locator('[aria-label="Card Collection"]');
+      const count = await cardCollections.count();
+      if (count > 0) {
+        caasSelector = '[aria-label="Card Collection"]';
+        caasFound = true;
+      }
+    } catch {
+      // Continue
+    }
+  }
+
+  if (!caasFound && !hasLazyCaaS) {
+    // No CaaS container found, page might not have dynamic content
+    console.info(`[LingoTest] ${pageName}: No CaaS container detected`);
+    return { hasCaaS: false, cardCount: 0 };
+  }
+
+  if (caasFound) {
+    console.info(`[LingoTest] ${pageName}: CaaS container found (${caasSelector}), waiting for cards...`);
+  }
+
+  // Wait for cards to render inside the container
+  const cardSelectors = [
+    '.consonant-Card',
+    '.card',
+    '[data-card]',
+    '.caas-card',
+    '.merch-card',
+    'article.card',
+    '.card-item',
+    '[aria-label="Card Collection"] li',  // Lazy-loaded CaaS card items
+    '.caas-preview li',                    // CaaS preview card items
+  ];
+
+  let cardCount = 0;
+  const maxWaitTime = 10000; // 10 seconds max wait
+  const startTime = Date.now();
+
+  // Poll for cards to appear
+  while (Date.now() - startTime < maxWaitTime) {
+    for (const cardSelector of cardSelectors) {
+      try {
+        const cards = page.locator(cardSelector);
+        const count = await cards.count();
+        if (count > cardCount) {
+          cardCount = count;
+        }
+      } catch {
+        // Continue
+      }
+    }
+
+    if (cardCount > 0) {
+      // Wait a bit more for all cards to finish loading
+      await page.waitForTimeout(1500);
+
+      // Re-count to get final number
+      for (const cardSelector of cardSelectors) {
+        try {
+          const cards = page.locator(cardSelector);
+          const count = await cards.count();
+          if (count > cardCount) {
+            cardCount = count;
+          }
+        } catch {
+          // Continue
+        }
+      }
+      break;
+    }
+
+    await page.waitForTimeout(500);
+  }
+
+  // If we had lazy CaaS markers but found no cards, still report CaaS was present
+  const hasCaaS = caasFound || hasLazyCaaS;
+  console.info(`[LingoTest] ${pageName}: Found ${cardCount} CaaS cards (hasCaaS: ${hasCaaS})`);
+  return { hasCaaS, cardCount };
+}
+
+// Combined wait for page ready and CaaS content
+async function waitForPageWithCaaS(page, pageName) {
+  const readyResult = await waitForPageReady(page);
+  if (!readyResult.ready) {
+    return readyResult;
+  }
+
+  // Wait for CaaS content if present
+  const caasResult = await waitForCaaSContent(page, pageName);
+  return {
+    ...readyResult,
+    hasCaaS: caasResult.hasCaaS,
+    cardCount: caasResult.cardCount,
+  };
 }
 
 /**
  * Test BASE LANGUAGE pages - All links should point to base language
+ * Now waits for CaaS dynamic content before analyzing links
  */
 async function testBaseLanguagePages(page, testData, pageKeys, locale, testName) {
   const results = { success: 0, skip: 0, failed: 0, pages: [] };
@@ -315,25 +778,40 @@ async function testBaseLanguagePages(page, testData, pageKeys, locale, testName)
         pageResult.reason = loadResult.reason;
         pageResult.title = loadResult.title;
       } else {
-        const analysis = await analyzePageLinks(page, locale);
-        const pct = parseFloat(analysis.localePercentage);
+        // Use CaaS-aware waiting for pages with dynamic content
+        const readyResult = await waitForPageWithCaaS(page, pageName);
+        if (!readyResult.ready) {
+          results.skip += 1;
+          pageResult.status = 'skipped';
+          pageResult.reason = readyResult.reason;
+          pageResult.title = readyResult.title;
+        } else {
+          const analysis = await analyzePageLinks(page, locale);
+          const pct = parseFloat(analysis.localePercentage);
 
-        console.info(`[LingoTest] ${pageName}: ${pct}% /${locale} (${analysis.matchesLocale}/${analysis.total})`);
-        if (Object.keys(analysis.otherLocales).length > 0) {
-          console.info(`  Other locales: ${JSON.stringify(analysis.otherLocales)}`);
+          console.info(`[LingoTest] ${pageName}: ${pct}% /${locale} (${analysis.matchesLocale}/${analysis.total})`);
+          if (readyResult.hasCaaS) {
+            console.info(`  CaaS detected: ${readyResult.cardCount} cards loaded`);
+          }
+          if (Object.keys(analysis.otherLocales).length > 0) {
+            console.info(`  Other locales: ${JSON.stringify(analysis.otherLocales)}`);
+          }
+
+          pageResult.status = 'passed';
+          pageResult.title = readyResult.title;
+          pageResult.hasCaaS = readyResult.hasCaaS || false;
+          pageResult.cardCount = readyResult.cardCount || 0;
+          pageResult.links = {
+            total: analysis.total,
+            matchedLocale: analysis.matchesLocale,
+            matchedPercentage: `${pct}%`,
+            otherLocales: analysis.otherLocales,
+            sampleMatchedLinks: analysis.linkDetails.matched.slice(0, 10),
+            sampleOtherLinks: analysis.linkDetails.other.slice(0, 10),
+            badLinks: analysis.badLinks,
+          };
+          results.success += 1;
         }
-
-        pageResult.status = 'passed';
-        pageResult.title = loadResult.title;
-        pageResult.links = {
-          total: analysis.total,
-          matchedLocale: analysis.matchesLocale,
-          matchedPercentage: `${pct}%`,
-          otherLocales: analysis.otherLocales,
-          sampleMatchedLinks: analysis.linkDetails.matched.slice(0, 10),
-          sampleOtherLinks: analysis.linkDetails.other.slice(0, 10),
-        };
-        results.success += 1;
       }
     }
     results.pages.push(pageResult);
@@ -357,12 +835,15 @@ async function testBaseLanguagePages(page, testData, pageKeys, locale, testName)
 }
 
 /**
- * Test REGIONAL pages - Compare .live vs .page link transformation
+ * Test REGIONAL pages - Compare regional vs base language links
+ * Now aware of 404 fallback rules
  */
-async function testRegionalPagesWithEnv(page, testData, pageKeys, regionalLocale, baseLocale, env, testName) {
+async function testRegionalPages(page, testData, pageKeys, regionalLocale, baseLocale, testName) {
   const results = {
     success: 0, skip: 0, failed: 0, regionalLinks: 0, baseLinks: 0, pages: [],
   };
+
+  const fallbackInfo = getFallbackBase(regionalLocale);
 
   for (let i = 0; i < pageKeys.length; i += 1) {
     const pageName = pageKeys[i];
@@ -374,7 +855,7 @@ async function testRegionalPagesWithEnv(page, testData, pageKeys, regionalLocale
       pageResult.status = 'skipped';
       pageResult.reason = 'No URL defined';
     } else {
-      const loadResult = await loadAndVerifyPage(page, url, pageName);
+      const loadResult = await loadAndVerifyPage(page, url, pageName, regionalLocale);
       if (!loadResult.loaded) {
         if (loadResult.error) {
           results.failed += 1;
@@ -386,31 +867,176 @@ async function testRegionalPagesWithEnv(page, testData, pageKeys, regionalLocale
         pageResult.reason = loadResult.reason;
         pageResult.title = loadResult.title;
       } else {
-        const analysis = await analyzePageLinks(page, regionalLocale);
-        const baseLinks = analysis.otherLocales[baseLocale] || 0;
+        const readyResult = await waitForPageWithCaaS(page, pageName);
+        if (!readyResult.ready) {
+          results.skip += 1;
+          pageResult.status = 'skipped';
+          pageResult.reason = readyResult.reason;
+          pageResult.title = readyResult.title;
+        } else {
+          const analysis = await analyzePageLinks(page, regionalLocale);
+          const baseLinks = analysis.otherLocales[baseLocale] || 0;
 
-        results.regionalLinks += analysis.matchesLocale;
-        results.baseLinks += baseLinks;
+          results.regionalLinks += analysis.matchesLocale;
+          results.baseLinks += baseLinks;
 
-        console.info(`[LingoTest] ${pageName} (${env}):`);
-        console.info(`  Regional /${regionalLocale}: ${analysis.matchesLocale} links`);
-        console.info(`  Base /${baseLocale}: ${baseLinks} links`);
+          console.info(`[LingoTest] ${pageName}:`);
+          console.info(`  Regional /${regionalLocale}: ${analysis.matchesLocale} links`);
+          console.info(`  Base /${baseLocale}: ${baseLinks} links (fallback)`);
+          if (readyResult.hasCaaS) {
+            console.info(`  CaaS detected: ${readyResult.cardCount} cards loaded`);
+          }
+          if (fallbackInfo) {
+            console.info(`  404 Fallback Rule: /${regionalLocale} → ${fallbackInfo.fallbackTo}`);
+          }
 
-        pageResult.status = 'passed';
-        pageResult.title = loadResult.title;
-        pageResult.links = {
-          total: analysis.total,
-          regionalLinks: analysis.matchesLocale,
-          baseLinks,
-          otherLocales: analysis.otherLocales,
-          sampleRegionalLinks: analysis.linkDetails.matched.slice(0, 10),
-          sampleBaseLinks: analysis.linkDetails.other.filter((l) => l.detectedLocale === baseLocale).slice(0, 10),
-        };
-        results.success += 1;
+          // VALIDATE: Check if links to base locale are correct
+          // Rule: If regional page doesn't exist, link should go to base
+          // If regional page DOES exist but link goes to base, that's a BUG
+          //
+          // IMPORTANT: If page was REDIRECTED to base site, skip validation!
+          // On base sites, NO link transformation happens - all links stay on base.
+          // This is correct behavior per the rule:
+          // "If the user is on the base-site, no link transformation based on IP will happen."
+          let validation = null;
+          let hasViolations = false;
+
+          if (loadResult.wasRedirected) {
+            // Page redirected to base site - all links pointing to base is CORRECT
+            console.info(`  ℹ️ Page redirected to base site - skipping link validation`);
+            console.info(`  ✅ All ${baseLinks} links correctly point to base (base site rule)`);
+            validation = {
+              rule: 'Page redirected to base site - no link transformation on base sites',
+              skipped: true,
+              reason: 'After 404 redirect, user is on base site where all links should point to base',
+              correct: [],
+              incorrect: [],
+              unchecked: [],
+              queryIndexInfo: null,
+            };
+          } else {
+            // Page loaded as regional - validate links against Query Index
+            const baseLocaleLinks = analysis.linkDetails.other.filter(
+              (l) => l.detectedLocale === baseLocale,
+            );
+
+            if (baseLocaleLinks.length > 0) {
+              // Extract base domain (e.g., https://business.stage.adobe.com)
+              const urlObj = new URL(url);
+              const baseDomain = `${urlObj.protocol}//${urlObj.host}`;
+              validation = await validateRegionalLinks(
+                baseLocaleLinks,
+                regionalLocale,
+                baseLocale,
+                baseDomain,
+              );
+
+              console.info(`  ✅ Correct fallbacks: ${validation.correct.length}`);
+              if (validation.incorrect.length > 0) {
+                console.warn(`  ❌ INCORRECT (regional exists but link to base): ${validation.incorrect.length}`);
+                validation.incorrect.forEach((v) => {
+                  console.warn(`     - ${v.pagePath}: ${v.issue}`);
+                });
+                hasViolations = true;
+              }
+              if (validation.unchecked.length > 0) {
+                console.info(`  ⚠️ Unchecked: ${validation.unchecked.length}`);
+              }
+            }
+
+            // Check for UNEXPECTED LOCALE links (not regional, not base)
+            // These are potential content issues - hardcoded links to wrong locale
+            const unexpectedLocales = Object.entries(analysis.otherLocales)
+              .filter(([locale]) => locale !== baseLocale && locale !== regionalLocale)
+              .map(([locale, count]) => ({ locale, count }));
+
+            if (unexpectedLocales.length > 0) {
+              const unexpectedLinks = analysis.linkDetails.other.filter(
+                (l) => l.detectedLocale !== baseLocale && l.detectedLocale !== regionalLocale,
+              );
+              console.warn(`  ⚠️ UNEXPECTED LOCALES (potential content issues):`);
+              unexpectedLocales.forEach(({ locale, count }) => {
+                console.warn(`     - /${locale}: ${count} links (should be /${regionalLocale} or /${baseLocale})`);
+              });
+
+              // Store unexpected locale info
+              validation = validation || { correct: [], incorrect: [], unchecked: [] };
+              validation.unexpectedLocales = {
+                locales: unexpectedLocales,
+                totalLinks: unexpectedLinks.length,
+                sampleLinks: unexpectedLinks.slice(0, 5).map((l) => ({
+                  href: l.href,
+                  text: l.text?.substring(0, 50),
+                  detectedLocale: l.detectedLocale,
+                })),
+                issue: `Links to unexpected locales found. On /${regionalLocale} page, links should be /${regionalLocale} (regional) or /${baseLocale} (base fallback)`,
+              };
+            }
+          }
+
+          pageResult.status = hasViolations ? 'warning' : 'passed';
+          pageResult.title = readyResult.title;
+          pageResult.wasRedirected = loadResult.wasRedirected;
+          pageResult.hasCaaS = readyResult.hasCaaS || false;
+          pageResult.cardCount = readyResult.cardCount || 0;
+          pageResult.links = {
+            total: analysis.total,
+            regionalLinks: analysis.matchesLocale,
+            baseLinks,
+            otherLocales: analysis.otherLocales,
+            fallbackRule: fallbackInfo,
+            sampleRegionalLinks: analysis.linkDetails.matched.slice(0, 10),
+            sampleBaseLinks: analysis.linkDetails.other.filter((l) => l.detectedLocale === baseLocale).slice(0, 10),
+            badLinks: analysis.badLinks,
+          };
+
+          // Add validation results to page result
+          if (validation) {
+            if (validation.skipped) {
+              // Page redirected to base - validation skipped
+              pageResult.linkValidation = {
+                rule: validation.rule,
+                skipped: true,
+                reason: validation.reason,
+                correctFallbacks: 0,
+                incorrectLinks: 0,
+                unchecked: 0,
+                violations: [],
+              };
+            } else {
+              pageResult.linkValidation = {
+                rule: 'If regional page does not exist (not in Query Index), link should point to base site',
+                queryIndex: validation.queryIndexInfo,
+                correctFallbacks: validation.correct.length,
+                incorrectLinks: validation.incorrect.length,
+                unchecked: validation.unchecked.length,
+                violations: validation.incorrect.slice(0, 10), // First 10 violations
+                correctExamples: validation.correct.slice(0, 5), // First 5 correct examples
+              };
+
+              // Add unexpected locales if found
+              if (validation.unexpectedLocales) {
+                pageResult.linkValidation.unexpectedLocales = validation.unexpectedLocales;
+              }
+            }
+          }
+
+          results.success += 1;
+        }
       }
     }
     results.pages.push(pageResult);
   }
+
+  // Calculate validation summary
+  let totalCorrectFallbacks = 0;
+  let totalViolations = 0;
+  results.pages.forEach((p) => {
+    if (p.linkValidation) {
+      totalCorrectFallbacks += p.linkValidation.correctFallbacks;
+      totalViolations += p.linkValidation.incorrectLinks;
+    }
+  });
 
   // Append to report file (parallel-safe)
   appendTestResult({
@@ -418,7 +1044,7 @@ async function testRegionalPagesWithEnv(page, testData, pageKeys, regionalLocale
     ruleType: 'REGIONAL',
     locale: `/${regionalLocale}`,
     baseLocale: `/${baseLocale}`,
-    environment: env,
+    fallbackRule: fallbackInfo,
     timestamp: new Date().toISOString(),
     results: {
       passed: results.success,
@@ -426,6 +1052,10 @@ async function testRegionalPagesWithEnv(page, testData, pageKeys, regionalLocale
       failed: results.failed,
       totalRegionalLinks: results.regionalLinks,
       totalBaseLinks: results.baseLinks,
+      // Validation summary
+      validationRule: 'If regional page does not exist, link should point to base site',
+      correctFallbacks: totalCorrectFallbacks,
+      violations: totalViolations,
     },
     pages: results.pages,
   });
@@ -461,22 +1091,36 @@ async function testFullSitePages(page, testData, pageKeys, locale, testName) {
         pageResult.reason = loadResult.reason;
         pageResult.title = loadResult.title;
       } else {
-        const analysis = await analyzePageLinks(page, locale);
-        const pct = parseFloat(analysis.localePercentage);
+        const readyResult = await waitForPageWithCaaS(page, pageName);
+        if (!readyResult.ready) {
+          results.skip += 1;
+          pageResult.status = 'skipped';
+          pageResult.reason = readyResult.reason;
+          pageResult.title = readyResult.title;
+        } else {
+          const analysis = await analyzePageLinks(page, locale);
+          const pct = parseFloat(analysis.localePercentage);
 
-        console.info(`[LingoTest] ${pageName}: ${pct}% /${locale} (${analysis.matchesLocale}/${analysis.total})`);
+          console.info(`[LingoTest] ${pageName}: ${pct}% /${locale} (${analysis.matchesLocale}/${analysis.total})`);
+          if (readyResult.hasCaaS) {
+            console.info(`  CaaS detected: ${readyResult.cardCount} cards loaded`);
+          }
 
-        pageResult.status = 'passed';
-        pageResult.title = loadResult.title;
-        pageResult.links = {
-          total: analysis.total,
-          matchedLocale: analysis.matchesLocale,
-          matchedPercentage: `${pct}%`,
-          otherLocales: analysis.otherLocales,
-          sampleMatchedLinks: analysis.linkDetails.matched.slice(0, 10),
-          sampleOtherLinks: analysis.linkDetails.other.slice(0, 10),
-        };
-        results.success += 1;
+          pageResult.status = 'passed';
+          pageResult.title = readyResult.title;
+          pageResult.hasCaaS = readyResult.hasCaaS || false;
+          pageResult.cardCount = readyResult.cardCount || 0;
+          pageResult.links = {
+            total: analysis.total,
+            matchedLocale: analysis.matchesLocale,
+            matchedPercentage: `${pct}%`,
+            otherLocales: analysis.otherLocales,
+            sampleMatchedLinks: analysis.linkDetails.matched.slice(0, 10),
+            sampleOtherLinks: analysis.linkDetails.other.slice(0, 10),
+            badLinks: analysis.badLinks,
+          };
+          results.success += 1;
+        }
       }
     }
     results.pages.push(pageResult);
@@ -527,22 +1171,36 @@ async function testRootPages(page, testData, pageKeys, testName) {
         pageResult.reason = loadResult.reason;
         pageResult.title = loadResult.title;
       } else {
-        const analysis = await analyzePageLinks(page, '', true);
+        const readyResult = await waitForPageWithCaaS(page, pageName);
+        if (!readyResult.ready) {
+          results.skip += 1;
+          pageResult.status = 'skipped';
+          pageResult.reason = readyResult.reason;
+          pageResult.title = readyResult.title;
+        } else {
+          const analysis = await analyzePageLinks(page, '', true);
 
-        console.info(`[LingoTest] ${pageName}:`);
-        console.info(`  No locale (root): ${analysis.noLocaleLinks} links`);
-        console.info(`  With locale: ${JSON.stringify(analysis.otherLocales)}`);
+          console.info(`[LingoTest] ${pageName}:`);
+          console.info(`  No locale (root): ${analysis.noLocaleLinks} links`);
+          if (readyResult.hasCaaS) {
+            console.info(`  CaaS detected: ${readyResult.cardCount} cards loaded`);
+          }
+          console.info(`  With locale: ${JSON.stringify(analysis.otherLocales)}`);
 
-        pageResult.status = 'passed';
-        pageResult.title = loadResult.title;
-        pageResult.links = {
-          total: analysis.total,
-          noLocaleLinks: analysis.noLocaleLinks,
-          linksWithLocale: analysis.otherLocales,
-          sampleNoLocaleLinks: analysis.linkDetails.noLocale.slice(0, 10),
-          sampleLocalizedLinks: analysis.linkDetails.other.slice(0, 10),
-        };
-        results.success += 1;
+          pageResult.status = 'passed';
+          pageResult.title = readyResult.title;
+          pageResult.hasCaaS = readyResult.hasCaaS || false;
+          pageResult.cardCount = readyResult.cardCount || 0;
+          pageResult.links = {
+            total: analysis.total,
+            noLocaleLinks: analysis.noLocaleLinks,
+            linksWithLocale: analysis.otherLocales,
+            sampleNoLocaleLinks: analysis.linkDetails.noLocale.slice(0, 10),
+            sampleLocalizedLinks: analysis.linkDetails.other.slice(0, 10),
+            badLinks: analysis.badLinks,
+          };
+          results.success += 1;
+        }
       }
     }
     results.pages.push(pageResult);
@@ -564,6 +1222,69 @@ async function testRootPages(page, testData, pageKeys, testName) {
 
   return results;
 }
+
+// ============================================================================
+// LOCALE CONFIGURATION MAP
+// Defines locale type, base language (for fallback), and URL locale code
+// ============================================================================
+const LOCALE_CONFIG = {
+  // English Regional (404 fallback to root /)
+  'en-nz': { locale: 'nz', base: null, type: 'regional-en' },
+  'en-ca': { locale: 'ca', base: null, type: 'regional-en' },
+  'en-ie': { locale: 'ie', base: null, type: 'regional-en' },
+  'en-sg': { locale: 'sg', base: null, type: 'regional-en' },
+  'en-hk_en': { locale: 'hk_en', base: null, type: 'regional-en' },
+  'en-ae_en': { locale: 'ae_en', base: null, type: 'regional-en' },
+  'en-be_en': { locale: 'be_en', base: null, type: 'regional-en' },
+  'en-nl': { locale: 'nl', base: null, type: 'regional-en' },
+  'en-se': { locale: 'se', base: null, type: 'regional-en' },
+  'en-dk': { locale: 'dk', base: null, type: 'regional-en' },
+  'en-no': { locale: 'no', base: null, type: 'regional-en' },
+  'en-fi': { locale: 'fi', base: null, type: 'regional-en' },
+  'en-pl': { locale: 'pl', base: null, type: 'regional-en' },
+  'en-cz': { locale: 'cz', base: null, type: 'regional-en' },
+  'en-ro': { locale: 'ro', base: null, type: 'regional-en' },
+  'en-bg': { locale: 'bg', base: null, type: 'regional-en' },
+  'en-gr_en': { locale: 'gr_en', base: null, type: 'regional-en' },
+  'en-tr': { locale: 'tr', base: null, type: 'regional-en' },
+  'en-il_en': { locale: 'il_en', base: null, type: 'regional-en' },
+  'en-sa_en': { locale: 'sa_en', base: null, type: 'regional-en' },
+  'en-mena_en': { locale: 'mena_en', base: null, type: 'regional-en' },
+  'en-africa': { locale: 'africa', base: null, type: 'regional-en' },
+  'en-ru': { locale: 'ru', base: null, type: 'regional-en' },
+  'en-ua': { locale: 'ua', base: null, type: 'regional-en' },
+  'en-ee': { locale: 'ee', base: null, type: 'regional-en' },
+  'en-sk': { locale: 'sk', base: null, type: 'regional-en' },
+  'en-si': { locale: 'si', base: null, type: 'regional-en' },
+  'en-lu_en': { locale: 'lu_en', base: null, type: 'regional-en' },
+  'en-cn': { locale: 'cn', base: null, type: 'regional-en' },
+  'en-tw': { locale: 'tw', base: null, type: 'regional-en' },
+  'en-id_en': { locale: 'id_en', base: null, type: 'regional-en' },
+  'en-my_en': { locale: 'my_en', base: null, type: 'regional-en' },
+  'en-ph_en': { locale: 'ph_en', base: null, type: 'regional-en' },
+  'en-th_en': { locale: 'th_en', base: null, type: 'regional-en' },
+  'en-vn_en': { locale: 'vn_en', base: null, type: 'regional-en' },
+  // Spanish Regional (404 fallback to /es)
+  'es-ar': { locale: 'ar', base: 'es', type: 'regional' },
+  'es-mx': { locale: 'mx', base: 'es', type: 'regional' },
+  'es-cl': { locale: 'cl', base: 'es', type: 'regional' },
+  'es-co': { locale: 'co', base: 'es', type: 'regional' },
+  'es-la': { locale: 'la', base: 'es', type: 'regional' },
+  'es-pe': { locale: 'pe', base: 'es', type: 'regional' },
+  // German Regional (404 fallback to /de)
+  'de-at': { locale: 'at', base: 'de', type: 'regional' },
+  'de-ch_de': { locale: 'ch_de', base: 'de', type: 'regional' },
+  'de-lu_de': { locale: 'lu_de', base: 'de', type: 'regional' },
+  // French Regional (404 fallback to /fr)
+  'fr-ca_fr': { locale: 'ca_fr', base: 'fr', type: 'regional' },
+  'fr-be_fr': { locale: 'be_fr', base: 'fr', type: 'regional' },
+  'fr-ch_fr': { locale: 'ch_fr', base: 'fr', type: 'regional' },
+  'fr-lu_fr': { locale: 'lu_fr', base: 'fr', type: 'regional' },
+  // Italian Regional (404 fallback to /it)
+  'it-ch_it': { locale: 'ch_it', base: 'it', type: 'regional' },
+  // Portuguese Regional (404 fallback to /pt)
+  'pt-br': { locale: 'br', base: 'pt', type: 'regional' },
+};
 
 test.describe('BACOM Language-First Site (Lingo) Link Transformation test suite', () => {
   test.setTimeout(15 * 60 * 1000);
@@ -620,11 +1341,8 @@ test.describe('BACOM Language-First Site (Lingo) Link Transformation test suite'
    */
   test(`${features[1].name}, ${features[1].tags}`, async ({ page }) => {
     const testData = await WebUtil.loadTestData(`${features[1].data}`);
-    const usPages = [
-      'en-us', 'en-us-products', 'en-us-solutions', 'en-us-creativecloud',
-      'en-us-experience-cloud', 'en-us-analytics', 'en-us-marketo',
-      'en-us-commerce', 'en-us-workfront', 'en-us-firefly', 'en-us-personalization',
-    ];
+    // Dynamically get all en-us pages
+    const usPages = Object.keys(testData).filter((key) => key.startsWith('en-us'));
 
     const results = await testRootPages(page, testData, usPages, features[1].name);
     console.info(`[LingoTest] ✓ English US /: ${results.success} passed, ${results.skip} skipped`);
@@ -637,11 +1355,8 @@ test.describe('BACOM Language-First Site (Lingo) Link Transformation test suite'
    */
   test(`${features[2].name}, ${features[2].tags}`, async ({ page }) => {
     const testData = await WebUtil.loadTestData(`${features[2].data}`);
-    const inPages = [
-      'en-in', 'en-in-products', 'en-in-solutions', 'en-in-creativecloud',
-      'en-in-experience-cloud', 'en-in-analytics', 'en-in-marketo',
-      'en-in-commerce', 'en-in-workfront', 'en-in-firefly', 'en-in-personalization',
-    ];
+    // Dynamically get all en-in pages
+    const inPages = Object.keys(testData).filter((key) => key.startsWith('en-in'));
 
     const results = await testFullSitePages(page, testData, inPages, 'in', features[2].name);
     console.info(`[LingoTest] ✓ English India /in: ${results.success} passed, ${results.skip} skipped`);
@@ -649,372 +1364,39 @@ test.describe('BACOM Language-First Site (Lingo) Link Transformation test suite'
   });
 
   /**
-   * Test 3: Spanish Base /es
-   * RULE: All links should point to /es
+   * Test 3: English UK /uk (Full Site)
    */
   test(`${features[3].name}, ${features[3].tags}`, async ({ page }) => {
     const testData = await WebUtil.loadTestData(`${features[3].data}`);
-    const esPages = [
-      'es', 'es-products', 'es-solutions', 'es-creativecloud',
-      'es-experience-cloud', 'es-analytics', 'es-marketo',
-      'es-commerce', 'es-workfront', 'es-firefly', 'es-personalization',
-    ];
+    // Dynamically get all en-uk pages
+    const ukPages = Object.keys(testData).filter((key) => key.startsWith('en-uk'));
 
-    const results = await testBaseLanguagePages(page, testData, esPages, 'es', features[3].name);
-    console.info(`[LingoTest] ✓ Spanish /es Base: ${results.success} passed, ${results.skip} skipped`);
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 4: Spanish Regional /ar - .aem.live (query-index.json)
-   * RULE: Mixed links based on published pages in query-index
-   * Expected: More /es fallback links (only published /ar pages transform)
-   */
-  test(`${features[4].name}, ${features[4].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[4].data}`);
-    const arLivePages = [
-      'es-ar-live', 'es-ar-live-products', 'es-ar-live-solutions',
-      'es-ar-live-creativecloud', 'es-ar-live-experience-cloud', 'es-ar-live-ai',
-    ];
-
-    const results = await testRegionalPagesWithEnv(page, testData, arLivePages, 'ar', 'es', '.live', features[4].name);
-
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-    console.info('[LingoTest] Spanish /ar Regional (.aem.live) Summary:');
-    console.info(`[LingoTest]   Total /ar links: ${results.regionalLinks}`);
-    console.info(`[LingoTest]   Total /es fallback links: ${results.baseLinks}`);
-    console.info('[LingoTest]   Uses: query-index.json (published pages only)');
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 5: Spanish Regional /ar - .aem.page (preview-index.json)
-   * RULE: Mixed links based on draft/preview pages in preview-index
-   * Expected: More /ar links (draft/preview pages also transform)
-   * NOTE: .aem.page may require authentication or pages may not exist
-   */
-  test(`${features[5].name}, ${features[5].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[5].data}`);
-    const arPagePages = [
-      'es-ar-page', 'es-ar-page-products', 'es-ar-page-solutions',
-      'es-ar-page-creativecloud', 'es-ar-page-experience-cloud', 'es-ar-page-ai',
-    ];
-
-    const results = await testRegionalPagesWithEnv(page, testData, arPagePages, 'ar', 'es', '.page', features[5].name);
-
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-    console.info('[LingoTest] Spanish /ar Regional (.aem.page) Summary:');
-    console.info(`[LingoTest]   Total /ar links: ${results.regionalLinks}`);
-    console.info(`[LingoTest]   Total /es fallback links: ${results.baseLinks}`);
-    console.info('[LingoTest]   Uses: preview-index.json (includes draft/preview)');
-    console.info(`[LingoTest]   Pages loaded: ${results.success}, Skipped: ${results.skip}`);
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-
-    // Skip assertion if no pages loaded (likely auth required or pages don't exist)
-    if (results.success === 0) {
-      console.warn('[LingoTest] WARNING: No .aem.page pages loaded - may require auth');
-      test.skip();
-    }
-  });
-
-  /**
-   * Test 6: Spanish Regional /mx - .aem.live (query-index.json)
-   */
-  test(`${features[6].name}, ${features[6].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[6].data}`);
-    const mxLivePages = [
-      'es-mx-live', 'es-mx-live-products', 'es-mx-live-solutions',
-      'es-mx-live-creativecloud', 'es-mx-live-ai',
-    ];
-
-    const results = await testRegionalPagesWithEnv(page, testData, mxLivePages, 'mx', 'es', '.live', features[6].name);
-
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-    console.info('[LingoTest] Spanish /mx Regional (.aem.live) Summary:');
-    console.info(`[LingoTest]   Total /mx links: ${results.regionalLinks}`);
-    console.info(`[LingoTest]   Total /es fallback links: ${results.baseLinks}`);
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 7: Spanish Regional /mx - .aem.page (preview-index.json)
-   * NOTE: .aem.page may require authentication or pages may not exist
-   */
-  test(`${features[7].name}, ${features[7].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[7].data}`);
-    const mxPagePages = [
-      'es-mx-page', 'es-mx-page-products', 'es-mx-page-solutions',
-      'es-mx-page-creativecloud', 'es-mx-page-ai',
-    ];
-
-    const results = await testRegionalPagesWithEnv(page, testData, mxPagePages, 'mx', 'es', '.page', features[7].name);
-
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-    console.info('[LingoTest] Spanish /mx Regional (.aem.page) Summary:');
-    console.info(`[LingoTest]   Total /mx links: ${results.regionalLinks}`);
-    console.info(`[LingoTest]   Total /es fallback links: ${results.baseLinks}`);
-    console.info(`[LingoTest]   Pages loaded: ${results.success}, Skipped: ${results.skip}`);
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-
-    // Skip assertion if no pages loaded (likely auth required or pages don't exist)
-    if (results.success === 0) {
-      console.warn('[LingoTest] WARNING: No .aem.page pages loaded - may require auth');
-      test.skip();
-    }
-  });
-
-  /**
-   * Test 8: German Base /de
-   * RULE: All links should point to /de
-   */
-  test(`${features[8].name}, ${features[8].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[8].data}`);
-    const dePages = [
-      'de', 'de-products', 'de-solutions', 'de-creativecloud',
-      'de-experience-cloud', 'de-analytics', 'de-marketo',
-      'de-commerce', 'de-workfront', 'de-firefly', 'de-personalization',
-    ];
-
-    const results = await testBaseLanguagePages(page, testData, dePages, 'de', features[8].name);
-    console.info(`[LingoTest] ✓ German /de Base: ${results.success} passed, ${results.skip} skipped`);
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 9: German Regional /at - .aem.live (query-index.json)
-   */
-  test(`${features[9].name}, ${features[9].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[9].data}`);
-    const atLivePages = [
-      'de-at-live', 'de-at-live-products', 'de-at-live-solutions', 'de-at-live-creativecloud',
-    ];
-
-    const results = await testRegionalPagesWithEnv(page, testData, atLivePages, 'at', 'de', '.live', features[9].name);
-
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-    console.info('[LingoTest] German /at Regional (.aem.live) Summary:');
-    console.info(`[LingoTest]   Total /at links: ${results.regionalLinks}`);
-    console.info(`[LingoTest]   Total /de fallback links: ${results.baseLinks}`);
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 10: German Regional /at - .aem.page (preview-index.json)
-   * NOTE: .aem.page may require authentication or pages may not exist
-   */
-  test(`${features[10].name}, ${features[10].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[10].data}`);
-    const atPagePages = [
-      'de-at-page', 'de-at-page-products', 'de-at-page-solutions', 'de-at-page-creativecloud',
-    ];
-
-    const results = await testRegionalPagesWithEnv(page, testData, atPagePages, 'at', 'de', '.page', features[10].name);
-
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-    console.info('[LingoTest] German /at Regional (.aem.page) Summary:');
-    console.info(`[LingoTest]   Total /at links: ${results.regionalLinks}`);
-    console.info(`[LingoTest]   Total /de fallback links: ${results.baseLinks}`);
-    console.info(`[LingoTest]   Pages loaded: ${results.success}, Skipped: ${results.skip}`);
-    console.info('[LingoTest] ═══════════════════════════════════════════');
-
-    // Skip assertion if no pages loaded (likely auth required or pages don't exist)
-    if (results.success === 0) {
-      console.warn('[LingoTest] WARNING: No .aem.page pages loaded - may require auth');
-      test.skip();
-    }
-  });
-
-  /**
-   * Test 11: French Base /fr
-   */
-  test(`${features[11].name}, ${features[11].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[11].data}`);
-    const frPages = [
-      'fr', 'fr-products', 'fr-solutions', 'fr-creativecloud',
-      'fr-experience-cloud', 'fr-analytics', 'fr-marketo',
-      'fr-commerce', 'fr-workfront', 'fr-firefly', 'fr-personalization',
-    ];
-
-    const results = await testBaseLanguagePages(page, testData, frPages, 'fr', features[11].name);
-    console.info(`[LingoTest] ✓ French /fr Base: ${results.success} passed, ${results.skip} skipped`);
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 12: Italian /it
-   */
-  test(`${features[12].name}, ${features[12].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[12].data}`);
-    const itPages = [
-      'it', 'it-products', 'it-solutions', 'it-creativecloud',
-      'it-experience-cloud', 'it-analytics', 'it-marketo',
-      'it-commerce', 'it-workfront', 'it-firefly', 'it-personalization',
-    ];
-
-    const results = await testBaseLanguagePages(page, testData, itPages, 'it', features[12].name);
-    console.info(`[LingoTest] ✓ Italian /it Base: ${results.success} passed, ${results.skip} skipped`);
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 13: Portuguese Base /pt
-   */
-  test(`${features[13].name}, ${features[13].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[13].data}`);
-    const ptPages = [
-      'pt', 'pt-products', 'pt-solutions', 'pt-creativecloud',
-      'pt-experience-cloud', 'pt-analytics', 'pt-marketo',
-      'pt-commerce', 'pt-workfront', 'pt-firefly', 'pt-personalization',
-    ];
-
-    const results = await testBaseLanguagePages(page, testData, ptPages, 'pt', features[13].name);
-    console.info(`[LingoTest] ✓ Portuguese /pt Base: ${results.success} passed, ${results.skip} skipped`);
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 14: Japanese /jp (Full Site)
-   */
-  test(`${features[14].name}, ${features[14].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[14].data}`);
-    const jpPages = [
-      'jp', 'jp-products', 'jp-solutions', 'jp-creativecloud',
-      'jp-experience-cloud', 'jp-analytics', 'jp-marketo',
-      'jp-commerce', 'jp-workfront', 'jp-firefly', 'jp-personalization',
-    ];
-
-    const results = await testFullSitePages(page, testData, jpPages, 'jp', features[14].name);
-    console.info(`[LingoTest] ✓ Japanese /jp: ${results.success} passed, ${results.skip} skipped`);
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 15: Korean /kr (Full Site)
-   */
-  test(`${features[15].name}, ${features[15].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[15].data}`);
-    const krPages = [
-      'kr', 'kr-products', 'kr-solutions', 'kr-creativecloud',
-      'kr-experience-cloud', 'kr-analytics', 'kr-marketo',
-      'kr-commerce', 'kr-workfront', 'kr-firefly', 'kr-personalization',
-    ];
-
-    const results = await testFullSitePages(page, testData, krPages, 'kr', features[15].name);
-    console.info(`[LingoTest] ✓ Korean /kr: ${results.success} passed, ${results.skip} skipped`);
-    expect(results.success).toBeGreaterThan(0);
-  });
-
-  /**
-   * Test 16: English UK /uk (Full Site)
-   */
-  test(`${features[16].name}, ${features[16].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[16].data}`);
-    const ukPages = [
-      'en-uk', 'en-uk-products', 'en-uk-solutions', 'en-uk-creativecloud',
-      'en-uk-experience-cloud', 'en-uk-analytics', 'en-uk-marketo',
-      'en-uk-commerce', 'en-uk-workfront', 'en-uk-firefly', 'en-uk-personalization',
-    ];
-
-    const results = await testFullSitePages(page, testData, ukPages, 'uk', features[16].name);
+    const results = await testFullSitePages(page, testData, ukPages, 'uk', features[3].name);
     console.info(`[LingoTest] ✓ English UK /uk: ${results.success} passed, ${results.skip} skipped`);
     expect(results.success).toBeGreaterThan(0);
   });
 
   /**
-   * Test 17: English Australia /au (Full Site)
+   * Test 4: English Australia /au (Full Site)
    */
-  test(`${features[17].name}, ${features[17].tags}`, async ({ page }) => {
-    const testData = await WebUtil.loadTestData(`${features[17].data}`);
-    const auPages = [
-      'en-au', 'en-au-products', 'en-au-solutions', 'en-au-creativecloud',
-      'en-au-experience-cloud', 'en-au-analytics', 'en-au-marketo',
-      'en-au-commerce', 'en-au-workfront', 'en-au-firefly', 'en-au-personalization',
-    ];
+  test(`${features[4].name}, ${features[4].tags}`, async ({ page }) => {
+    const testData = await WebUtil.loadTestData(`${features[4].data}`);
+    // Dynamically get all en-au pages
+    const auPages = Object.keys(testData).filter((key) => key.startsWith('en-au'));
 
-    const results = await testFullSitePages(page, testData, auPages, 'au', features[17].name);
+    const results = await testFullSitePages(page, testData, auPages, 'au', features[4].name);
     console.info(`[LingoTest] ✓ English AU /au: ${results.success} passed, ${results.skip} skipped`);
     expect(results.success).toBeGreaterThan(0);
   });
 
   // =========================================================================
-  // DYNAMIC TESTS FOR NEW LOCALES (18-64)
-  // These tests cover English Regional, Spanish Regional, German Regional,
-  // French Regional, Italian Regional, and Portuguese Regional locales
+  // DYNAMIC TESTS (features 5+)
+  // Covers all regional, base language, and full site locales
   // =========================================================================
 
-  // Locale configuration map
-  const LOCALE_CONFIG = {
-    // English Regional
-    'en-nz': { locale: 'nz', base: null, type: 'regional' },
-    'en-ca': { locale: 'ca', base: null, type: 'regional' },
-    'en-ie': { locale: 'ie', base: null, type: 'regional' },
-    'en-sg': { locale: 'sg', base: null, type: 'regional' },
-    'en-hk_en': { locale: 'hk_en', base: null, type: 'regional' },
-    'en-ae_en': { locale: 'ae_en', base: null, type: 'regional' },
-    'en-be_en': { locale: 'be_en', base: null, type: 'regional' },
-    'en-nl': { locale: 'nl', base: null, type: 'regional' },
-    'en-se': { locale: 'se', base: null, type: 'regional' },
-    'en-dk': { locale: 'dk', base: null, type: 'regional' },
-    'en-no': { locale: 'no', base: null, type: 'regional' },
-    'en-fi': { locale: 'fi', base: null, type: 'regional' },
-    'en-pl': { locale: 'pl', base: null, type: 'regional' },
-    'en-cz': { locale: 'cz', base: null, type: 'regional' },
-    'en-ro': { locale: 'ro', base: null, type: 'regional' },
-    'en-bg': { locale: 'bg', base: null, type: 'regional' },
-    'en-gr_en': { locale: 'gr_en', base: null, type: 'regional' },
-    'en-tr': { locale: 'tr', base: null, type: 'regional' },
-    'en-il_en': { locale: 'il_en', base: null, type: 'regional' },
-    'en-sa_en': { locale: 'sa_en', base: null, type: 'regional' },
-    'en-mena_en': { locale: 'mena_en', base: null, type: 'regional' },
-    'en-africa': { locale: 'africa', base: null, type: 'regional' },
-    'en-ru': { locale: 'ru', base: null, type: 'regional' },
-    'en-ua': { locale: 'ua', base: null, type: 'regional' },
-    'en-ee': { locale: 'ee', base: null, type: 'regional' },
-    'en-sk': { locale: 'sk', base: null, type: 'regional' },
-    'en-si': { locale: 'si', base: null, type: 'regional' },
-    'en-lu_en': { locale: 'lu_en', base: null, type: 'regional' },
-    'en-cn': { locale: 'cn', base: null, type: 'regional' },
-    'en-tw': { locale: 'tw', base: null, type: 'regional' },
-    'en-id_en': { locale: 'id_en', base: null, type: 'regional' },
-    'en-my_en': { locale: 'my_en', base: null, type: 'regional' },
-    'en-ph_en': { locale: 'ph_en', base: null, type: 'regional' },
-    'en-th_en': { locale: 'th_en', base: null, type: 'regional' },
-    'en-vn_en': { locale: 'vn_en', base: null, type: 'regional' },
-    // Spanish
-    'es-cl': { locale: 'cl', base: 'es', type: 'regional' },
-    'es-co': { locale: 'co', base: 'es', type: 'regional' },
-    'es-la': { locale: 'la', base: 'es', type: 'regional' },
-    'es-pe': { locale: 'pe', base: 'es', type: 'regional' },
-    // German
-    'de-ch_de': { locale: 'ch_de', base: 'de', type: 'regional' },
-    'de-lu_de': { locale: 'lu_de', base: 'de', type: 'regional' },
-    // French
-    'fr-ca_fr': { locale: 'ca_fr', base: 'fr', type: 'regional' },
-    'fr-be_fr': { locale: 'be_fr', base: 'fr', type: 'regional' },
-    'fr-ch_fr': { locale: 'ch_fr', base: 'fr', type: 'regional' },
-    'fr-lu_fr': { locale: 'lu_fr', base: 'fr', type: 'regional' },
-    // Italian
-    'it-ch_it': { locale: 'ch_it', base: 'it', type: 'regional' },
-    // Portuguese
-    'pt-br': { locale: 'br', base: 'pt', type: 'regional' },
-  };
-
-  // Create test function for each new locale (features 18+)
-  const createLocaleTest = (featureIndex) => {
+  const createDynamicTest = (featureIndex) => {
     const feature = features[featureIndex];
     if (!feature) return;
-
-    const localeInfo = LOCALE_CONFIG[feature.path];
-    if (!localeInfo) {
-      // Skip unknown locales silently - they may be handled by other tests
-      return;
-    }
 
     test(`${feature.name}, ${feature.tags}`, async ({ page }) => {
       const testData = await WebUtil.loadTestData(`${feature.data}`);
@@ -1028,27 +1410,77 @@ test.describe('BACOM Language-First Site (Lingo) Link Transformation test suite'
         return;
       }
 
-      const { locale, base, type } = localeInfo;
+      const localeInfo = LOCALE_CONFIG[feature.path];
       let results;
 
-      if (type === 'regional' && base) {
-        // Non-English regional (Spanish, German, French, Italian, Portuguese)
-        results = await testRegionalPagesWithEnv(page, testData, pageKeys, locale, base, '.live', feature.name);
-      } else if (type === 'regional') {
-        // English regional - test like full site (links should have the regional locale)
-        results = await testFullSitePages(page, testData, pageKeys, locale, feature.name);
+      if (localeInfo) {
+        // Regional locale
+        const { locale, base, type } = localeInfo;
+
+        if (type === 'regional' && base) {
+          // Non-English regional (Spanish, German, French, Italian, Portuguese)
+          results = await testRegionalPages(page, testData, pageKeys, locale, base, feature.name);
+          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+          console.info(`[LingoTest] Regional /${locale} Summary:`);
+          console.info(`[LingoTest]   Regional links: ${results.regionalLinks}`);
+          console.info(`[LingoTest]   Base /${base} fallback links: ${results.baseLinks}`);
+          console.info(`[LingoTest]   404 Fallback Rule: /${locale} → /${base}`);
+          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+        } else if (type === 'regional-en') {
+          // English regional - test like full site but log fallback info
+          results = await testFullSitePages(page, testData, pageKeys, locale, feature.name);
+          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+          console.info(`[LingoTest] English Regional /${locale} Summary:`);
+          console.info(`[LingoTest]   Pages loaded: ${results.success}`);
+          console.info(`[LingoTest]   404 Fallback Rule: /${locale} → / (root)`);
+          console.info(`[LingoTest] ═══════════════════════════════════════════`);
+        }
+      } else if (feature.path.startsWith('es') && feature.path === 'es') {
+        // Spanish base
+        const esPages = Object.keys(testData).filter((key) => key.startsWith('es') && !key.includes('-'));
+        results = await testBaseLanguagePages(page, testData, esPages.length > 0 ? esPages : pageKeys, 'es', feature.name);
+        console.info(`[LingoTest] ✓ Spanish /es Base: ${results.success} passed, ${results.skip} skipped`);
+      } else if (feature.path === 'de') {
+        // German base
+        const dePages = Object.keys(testData).filter((key) => key.startsWith('de') && !key.includes('-'));
+        results = await testBaseLanguagePages(page, testData, dePages.length > 0 ? dePages : pageKeys, 'de', feature.name);
+        console.info(`[LingoTest] ✓ German /de Base: ${results.success} passed, ${results.skip} skipped`);
+      } else if (feature.path === 'fr') {
+        // French base
+        const frPages = Object.keys(testData).filter((key) => key.startsWith('fr') && !key.includes('-'));
+        results = await testBaseLanguagePages(page, testData, frPages.length > 0 ? frPages : pageKeys, 'fr', feature.name);
+        console.info(`[LingoTest] ✓ French /fr Base: ${results.success} passed, ${results.skip} skipped`);
+      } else if (feature.path === 'it') {
+        // Italian base
+        const itPages = Object.keys(testData).filter((key) => key.startsWith('it') && !key.includes('-'));
+        results = await testBaseLanguagePages(page, testData, itPages.length > 0 ? itPages : pageKeys, 'it', feature.name);
+        console.info(`[LingoTest] ✓ Italian /it Base: ${results.success} passed, ${results.skip} skipped`);
+      } else if (feature.path === 'pt') {
+        // Portuguese base
+        const ptPages = Object.keys(testData).filter((key) => key.startsWith('pt') && !key.includes('-'));
+        results = await testBaseLanguagePages(page, testData, ptPages.length > 0 ? ptPages : pageKeys, 'pt', feature.name);
+        console.info(`[LingoTest] ✓ Portuguese /pt Base: ${results.success} passed, ${results.skip} skipped`);
+      } else if (feature.path === 'jp') {
+        // Japanese full site
+        results = await testFullSitePages(page, testData, pageKeys, 'jp', feature.name);
+        console.info(`[LingoTest] ✓ Japanese /jp: ${results.success} passed, ${results.skip} skipped`);
+      } else if (feature.path === 'kr') {
+        // Korean full site
+        results = await testFullSitePages(page, testData, pageKeys, 'kr', feature.name);
+        console.info(`[LingoTest] ✓ Korean /kr: ${results.success} passed, ${results.skip} skipped`);
       } else {
-        // Full site
-        results = await testFullSitePages(page, testData, pageKeys, locale, feature.name);
+        // Default: test as full site
+        const localePath = feature.path.replace('en-', '').replace(/^(es|de|fr|it|pt)-/, '');
+        results = await testFullSitePages(page, testData, pageKeys, localePath, feature.name);
+        console.info(`[LingoTest] ✓ ${feature.path}: ${results.success} passed, ${results.skip} skipped`);
       }
 
-      console.info(`[LingoTest] ✓ ${feature.name}: ${results.success} passed, ${results.skip} skipped`);
       expect(results.success).toBeGreaterThan(0);
     });
   };
 
-  // Generate tests for features 18-64
-  for (let i = 18; i < features.length; i += 1) {
-    createLocaleTest(i);
+  // Generate tests for features 5+
+  for (let i = 5; i < features.length; i += 1) {
+    createDynamicTest(i);
   }
 });
