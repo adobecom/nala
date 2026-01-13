@@ -65,7 +65,6 @@ export default class FedsFooter {
     this.footerAdobeBlogSecond = page.locator('.feds-navLink[href*="blog"]').nth(0);
     this.protectMyPersonalData = page.locator('.feds-footer-legalWrapper a:nth-of-type(1)').nth(0);
     this.termsOfUseLinkTwo = page.locator('a[href*="terms.html"]').nth(1);
-    this.termsOfUseLinkCA = page.locator('a[href*="terms.html"]');
     this.termsOfUseLinkPSCA = page.locator('a[href*="terms.html"]').nth(2);
     this.privacyLinkCA = page.locator('a[daa-ll="Privacy-1"]');
 

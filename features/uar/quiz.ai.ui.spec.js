@@ -4,7 +4,7 @@ module.exports = {
     {
       tcid: '0',
       name: '@uar-quiz-ai-basic',
-      path: '/drafts/bc-uar/bc-uar',
+      path: '/cc-shared/fragments/uar/brand-concierge/brand-concierge',
       tags: '@uar-quiz-ai-basic @uar-quiz-ai',
       data: 'data/uar/quiz/ai/quiz-ai-basic.yml',
     },

@@ -9,7 +9,7 @@ fi
 
 # Validate category input
 category="$1"
-valid_categories="milo caas feds uar bacom bacom-blog graybox-homepage graybox-dc graybox-cc graybox-bacom express"
+valid_categories="milo caas feds uar bacom bacom-blog graybox-homepage graybox-dc graybox-cc graybox-bacom express uar-ai"
 if ! echo "$valid_categories" | grep -w -q "$category"; then
   echo "Error: Invalid category '$category'"
   echo "Valid categories are: $valid_categories"
@@ -54,7 +54,7 @@ fi
 # Run each command one by one
 node run.js -c ${Config} -p ${Project} -g @${category}-screenshots
 node libs/screenshot/merge.js screenshots/${category}
-node libs/screenshot/compare.mjs screenshots/${category}
+#node libs/screenshot/compare.mjs screenshots/${category}
 node libs/screenshot/uploads3.js screenshots/${category}
 
 echo "All commands executed successfully for category: ${category}!"

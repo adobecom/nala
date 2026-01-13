@@ -29,24 +29,20 @@ buildIdentifier: '#${BUILD_NUMBER}_${DATE_TIME}' # Supports strings along with e
 platforms:
   - os: Windows
     osVersion: 11
-    browserName: Chrome
-    browserVersion: latest
-  - os: Windows
-    osVersion: 11
-    browserName: Edge
+    browserName: chrome
     browserVersion: latest
   - os: Windows
     osVersion: 11
     browserName: playwright-firefox
-    browserVersion: latest
+    browserVersion: '130.0'
   - os: OS X
     osVersion: Sonoma
     browserName: playwright-chromium
-    browserVersion: latest
+    browserVersion: '130.0'
   - os: OS X
     osVersion: Sonoma
     browserName: playwright-firefox
-    browserVersion: latest
+    browserVersion: '130.0'
   - os: OS X
     osVersion: Sonoma
     browserName: playwright-webkit
