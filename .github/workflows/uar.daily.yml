@@ -1,6 +1,8 @@
 name: UAR Nala Daily Run
 
 on:
+  schedule:
+   - cron: "0 15 * * *"
   workflow_dispatch:
     inputs:
       tags:
@@ -34,7 +36,7 @@ jobs:
           node-version: lts/*
         
       - name: Run Nala ${{ matrix.os }}
-        run: bash dailyrun.sh uar @uar-quiz-basic
+        run: bash dailyrun.sh uar @brand-concierge-health-simple
         env:
           IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
           IMS_PASS: ${{ secrets.IMS_PASS }}

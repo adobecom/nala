@@ -18,7 +18,7 @@ test.describe('Test Suite for Photoshop Page Components', () => {
       console.info(`[FEDSInfo] Checking Page: ${baseURL}${props.path}`);
 
       const pageURL = `${baseURL}${props.path}`;
-      await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
+      await page.goto(pageURL, { waitUntil: 'networkidle' });
       await expect(page).toHaveURL(pageURL);
       await photoshop.validatingcloseDialogModel(props.country);
 

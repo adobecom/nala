@@ -23,6 +23,8 @@ export default class FedsFooter {
     this.legalCopyright = page.locator('span.feds-footer-copyright');
     this.privacyLink = page.locator('a[href*="privacy.html"]').nth(1);
 
+    this.privacyLink = page.locator('a[href*="privacy.html"]').nth(1);
+
     this.termsOfUseLink = page.locator('a[href*="terms.html"]');
     this.cookiePreferencesLink = page.locator('a[href*="#openPrivacy"]');
     this.doNotSellInformationLink = page.locator('a[href*="rights"]');
@@ -72,6 +74,7 @@ export default class FedsFooter {
     // Featured Product Selectors:
     this.footerAdobeAcrobatReaderlogo = page.locator('a[href$="reader/"]');
     this.footerAdobeExpresslogo = page.locator('a[href$="Z2G1FSYV&mv=other"]:nth-of-type(1)').nth(1);
+    this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]').nth(2);
     this.footerPhotoshoplogo = page.locator('a[href$="photoshop/free-trial-download.html"]').nth(2);
     this.footerIllustratorlogo = page.locator('.feds-featuredProducts a[href$="illustrator/free-trial-download.html"]');
 
