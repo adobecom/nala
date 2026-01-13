@@ -32,7 +32,7 @@ export default class PhotoshopPageSanity {
     this.featuredProductsNN = page.locator('.tabs button').nth(1);
     this.onlineToolsCCNN = page.locator('.tabs button').nth(2);
     this.more = page.locator('.tabs button').nth(3);
-    this.viewAllProducts = page.locator('.feds-popup [href*="catalog.html"]')
+    this.viewAllProducts = page.locator('.feds-popup [href*="catalog.html"]');
     this.viewPlansAndPricingMobCTA = page.locator('.feds-cta feds-cta--primary');
 
     // Lnav Mobile elements
@@ -101,9 +101,9 @@ export default class PhotoshopPageSanity {
       { element: this.gnavPhotoshop, conditions: { defaultVisibility: true } },
       { element: this.gnavFeatures, conditions: { defaultVisibility: true } },
       { element: this.gnavComparePlans, conditions: { defaultVisibility: true } },
-      { element: this.gnavFreeTrialDetails, conditions: { defaultVisibility: true , excludeCountries : ['Korea'] } },
+      { element: this.gnavFreeTrialDetails, conditions: { defaultVisibility: true, excludeCountries: ['Korea'] } },
       { element: this.gnavMobile, conditions: { defaultVisibility: true } },
-      { element: this.goToPhotoshop, conditions: { defaultVisibility: true ,excludeCountries : ['Indonesia'] } },
+      { element: this.goToPhotoshop, conditions: { defaultVisibility: true, excludeCountries: ['Indonesia'] } },
     ];
 
     for (const { element, conditions } of elementsToCheck) {
@@ -141,9 +141,9 @@ export default class PhotoshopPageSanity {
 
       { element: this.removeBackground, conditions: { defaultVisibility: true, excludeCountries: ['Germany'] } },
       { element: this.genAiImages, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'India'] } },
-      { element: this.genAiVideos, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'India' ] } },
+      { element: this.genAiVideos, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'India'] } },
       { element: this.genAiArt, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'India'] } },
-      { element: this.editPhotosWithAi, conditions: { defaultVisibility: true, excludeCountries: ['Germany','India'] } },
+      { element: this.editPhotosWithAi, conditions: { defaultVisibility: true, excludeCountries: ['Germany', 'India'] } },
       { element: this.adobecom, conditions: { defaultVisibility: true } },
       { element: this.pdfAndESignatures, conditions: { defaultVisibility: true } },
       { element: this.marketingAndCommerce, conditions: { defaultVisibility: true } },
@@ -203,7 +203,7 @@ export default class PhotoshopPageSanity {
     }
   }
 
-// ==================== Mobile ==================== //
+  //= =================== Mobile ==================== //
   // U-Nav
   async validatingUnavMobile() {
     const elements = [this.hamburgerMenu, this.adobelogo, this.appSwitcher, this.signIn];

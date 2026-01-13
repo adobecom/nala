@@ -241,8 +241,10 @@ export default class CreativeCloudEnterpriseSanity {
       this.footer.footerIllustratorlogo, this.footer.changeRegionButton, this.footer.facebookIcon, this.footer.instagramIcon,
       this.footer.twitterIcon, this.footer.linkedInIcon, this.footer.legalCopyright, this.footer.privacyLink, this.footer.termsOfUseLink,
       this.footer.cookiePreferencesLink, this.footer.protectMyPersonalData, this.footer.adChoicesLink, this.footer.adChoicesLogo];
+    await Promise.all(elements.map(async (element) => {
+      await expect(element).toBeVisible();
+    }));
   }
-
   // Mobile Methods
 
   // U-Nav
@@ -533,5 +535,3 @@ export default class CreativeCloudEnterpriseSanity {
     await this.closeMegaMenu.click();
   }
 }
-//
-
