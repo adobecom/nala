@@ -1,4 +1,3 @@
-/* eslint-disable import/no-import-module-exports */
 export default class FedsFooter {
   constructor(page) {
     this.page = page;

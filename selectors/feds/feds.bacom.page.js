@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { expect } from '@playwright/test';
 import FedsFooter from './feds.footer.page.js';
 
@@ -334,9 +333,28 @@ export default class BusinessPageSanity {
       { element: this.howAdobeUsesAi, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.scaleContentCreation, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.howNFLUsesAi, conditions: { defaultVisibility: true, clickable: true } },
-      // eslint-disable-next-line max-len
-      { element: this.aiOverviewCTA, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Germany', 'Italy', 'United Kingdom', 'Australia', 'Spain', 'Japan', 'India', 'Korea', 'Canada French', 'Portugal', 'Mexico', 'AustraliaEnglish'] } },
-      { element: this.aiOverviewCTAregion, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['United States'] } },
+      {
+        element: this.aiOverviewCTA,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Germany', 'Italy', 'United Kingdom', 'Australia',
+            'Spain', 'Japan', 'India', 'Korea', 'Canada French',
+            'Portugal', 'Mexico', 'AustraliaEnglish',
+          ],
+        },
+      },
+
+      {
+        element: this.aiOverviewCTAregion,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: ['United States'],
+        },
+      },
+
     ];
 
     await Promise.all(headingElements.map(async ({ element, conditions }) => {
@@ -376,23 +394,97 @@ export default class BusinessPageSanity {
     const clickableElements = [
       { element: this.promo2, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.promoContent2, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.promoCTA2, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea', 'Canada French', 'Mexico', 'Portugal'] } },
-      { element: this.promoCTA2region, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['United States', 'United Kingdom'] } },
+      {
+        element: this.promoCTA2,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain',
+            'Japan', 'India', 'Korea', 'Canada French', 'Mexico',
+            'Portugal',
+          ],
+        },
+      },
+      {
+        element: this.promoCTA2region,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'United States', 'United Kingdom',
+          ],
+        },
+      },
 
       { element: this.financialServices, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.highTech, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.healthcareAndLife, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea', 'United Kingdom', 'Canada French', 'Mexico', 'Portugal'] } },
-      { element: this.government, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Canada French', 'Germany', 'Japan', 'Portugal'] } },
-      { element: this.retail, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.manufacturing, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea', 'United Kingdom', 'Canada French', 'Mexico', 'Portugal'] } },
-      { element: this.mediaAndEntertainment, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.Sports, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['Italy', 'Japan', 'India', 'Germany', 'France', 'Spain', 'Korea', 'AustraliaEnglish', 'Canada French', 'Mexico', 'Portugal'] } },
+      {
+        element: this.healthcareAndLife,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain',
+            'Japan', 'India', 'Korea', 'United Kingdom', 'Canada French',
+            'Mexico', 'Portugal',
+          ],
+        },
+      },
+      {
+        element: this.government,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Canada French', 'Germany', 'Japan', 'Portugal',
+          ],
+        },
+      },
 
+      { element: this.retail, conditions: { defaultVisibility: true, clickable: true } },
+      {
+        element: this.manufacturing,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain',
+            'Japan', 'India', 'Korea', 'United Kingdom', 'Canada French',
+            'Mexico', 'Portugal',
+          ],
+        },
+      },
+
+      { element: this.mediaAndEntertainment, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.seeAllIndustries, conditions: { defaultVisibility: true, clickable: true } },
+      {
+        element: this.Sports,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'Italy', 'Japan', 'India', 'Germany', 'France', 'Spain',
+            'Korea', 'AustraliaEnglish', 'Canada French', 'Mexico',
+            'Portugal',
+          ],
+        },
+      },
 
       { element: this.resourceCenter1, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.customerSuccessStories1, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.analystReports1, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea', 'United Kingdom', 'Canada French', 'Mexico', 'Portugal'] } },
+      {
+        element: this.analystReports1,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain',
+            'Japan', 'India', 'Korea', 'United Kingdom', 'Canada French',
+            'Mexico', 'Portugal',
+          ],
+        },
+      },
       { element: this.webinars1, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['Portugal'] } },
 
       { element: this.prudential, conditions: { defaultVisibility: true, clickable: true } },
@@ -455,8 +547,27 @@ export default class BusinessPageSanity {
       { element: this.roi, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.personalisation, conditions: { defaultVisibility: true, clickable: true } },
 
-      { element: this.viewAllResourcesCTA, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['Portugal'] } },
-      { element: this.viewAllResourcesCTAregion, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea', 'United Kingdom', 'Canada French', 'Mexico', 'United States'] } },
+      {
+        element: this.viewAllResourcesCTA,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: ['Portugal'],
+        },
+      },
+
+      {
+        element: this.viewAllResourcesCTAregion,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Germany', 'Italy', 'AustraliaEnglish',
+            'Spain', 'Japan', 'India', 'Korea',
+            'United Kingdom', 'Canada French', 'Mexico', 'United States',
+          ],
+        },
+      },
     ];
 
     await Promise.all(headingElements.map(async ({ element, conditions }) => {
@@ -498,9 +609,40 @@ export default class BusinessPageSanity {
       { element: this.promoCTA3, conditions: { defaultVisibility: true, clickable: true } },
 
       { element: this.custmerSuccessStories2, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.analystReports2, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Canada French', 'Mexico', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea', 'United Kingdom', 'Portugal'] } },
-      { element: this.adobeForBusinessBlogRegion, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['United Kingdom', 'United States'] } },
-      { element: this.adobeForBusinessBlog, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['Portugal', 'France', 'Canada French', 'Mexico', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea', 'Portugal'] } },
+      {
+        element: this.analystReports2,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Canada French', 'Mexico', 'Germany', 'Italy',
+            'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea',
+            'United Kingdom', 'Portugal',
+          ],
+        },
+      },
+      {
+        element: this.adobeForBusinessBlogRegion,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'United Kingdom', 'United States',
+          ],
+        },
+      },
+      {
+        element: this.adobeForBusinessBlog,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'Portugal', 'France', 'Canada French', 'Mexico', 'Germany',
+            'Italy', 'AustraliaEnglish', 'Spain', 'Japan', 'India', 'Korea',
+            'Portugal',
+          ],
+        },
+      },
       { element: this.webinars2, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['Portugal'] } },
       { element: this.resourceCenter2CTA, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['Portugal'] } },
 
@@ -509,9 +651,31 @@ export default class BusinessPageSanity {
       { element: this.allBusinessEvents, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['United Kingdom'] } },
 
       { element: this.aiAndDigitalTrends1, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.adobeConsumerInsights1, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'United Kingdom', 'Portugal'] } },
+      {
+        element: this.adobeConsumerInsights1,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish',
+            'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'United Kingdom',
+            'Portugal',
+          ],
+        },
+      },
       { element: this.personalizationAtScale1, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.expertInsights, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'United Kingdom', 'Portugal'] } },
+      {
+        element: this.expertInsights,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish',
+            'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'United Kingdom',
+            'Portugal',
+          ],
+        },
+      },
     ];
 
     await Promise.all(headingElements.map(async ({ element, conditions }) => {
@@ -674,9 +838,44 @@ export default class BusinessPageSanity {
       { element: this.feds.supplyChain, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.feds.trustCenter, conditions: { defaultVisibility: true, clickable: true } },
       { element: this.feds.adobeForAll, conditions: { defaultVisibility: true, clickable: true } },
-      { element: this.feds.adobeForBblogUK, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'United States', 'Portugal'] } },
-      { element: this.feds.resourceCenterPT, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'Portugal', 'United States', 'United Kingdom'] } },
-      { element: this.feds.eventsUK, conditions: { defaultVisibility: true, clickable: true, excludeCountries: ['France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'Portugal', 'United States'] } },
+      {
+        element: this.feds.adobeForBblogUK,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Canada French', 'Germany', 'Italy',
+            'AustraliaEnglish', 'Spain', 'Mexico', 'Japan',
+            'India', 'Korea', 'United States', 'Portugal',
+          ],
+        },
+      },
+
+      {
+        element: this.feds.resourceCenterPT,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Canada French', 'Germany', 'Italy',
+            'AustraliaEnglish', 'Spain', 'Mexico', 'Japan',
+            'India', 'Korea', 'Portugal', 'United States',
+            'United Kingdom',
+          ],
+        },
+      },
+
+      {
+        element: this.feds.eventsUK,
+        conditions: {
+          defaultVisibility: true,
+          clickable: true,
+          excludeCountries: [
+            'France', 'Canada French', 'Germany', 'Italy',
+            'AustraliaEnglish', 'Spain', 'Mexico', 'Japan',
+            'India', 'Korea', 'Portugal', 'United States'],
+        },
+      },
 
       // FEDs footer utilities
       { element: this.feds.regionpicker, conditions: { defaultVisibility: true, clickable: true } },
@@ -715,14 +914,18 @@ export default class BusinessPageSanity {
 
   // Cookie Preference
   async validatingCookiePreference(country) {
-    const includeCountries = ['France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish', 'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'Portugal', 'United States', 'United Kingdom', 'United States'];
+    const includeCountries = [
+      'France', 'Canada French', 'Germany', 'Italy', 'AustraliaEnglish',
+      'Spain', 'Mexico', 'Japan', 'India', 'Korea', 'Portugal',
+      'United States', 'United Kingdom', 'United States',
+    ];
 
     if (includeCountries.includes(country)) {
       await this.feds.cookies.click();
     }
-
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(8000);
     await expect(this.feds.cookieSettings).toBeVisible();
+
     await expect(this.feds.operate).toBeChecked();
     await expect(this.feds.measure).toBeChecked();
     await expect(this.feds.extend).toBeChecked();

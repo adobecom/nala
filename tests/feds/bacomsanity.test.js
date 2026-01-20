@@ -13,7 +13,7 @@ test.describe('Test Suite for Bacom Page Components', () => {
     const requestedURL = `${baseURL}${props.path}`;
     console.info(`[FEDSInfo] Navigating to: ${requestedURL}`);
 
-    await page.goto(requestedURL, { waitUntil: 'networkidle' });
+    await page.goto(requestedURL, { waitUntil: 'domcontentloaded' });
 
     const finalURL = page.url();
     console.info(`[FEDSInfo] Final URL after redirect: ${finalURL}`);
@@ -47,8 +47,8 @@ test.describe('Test Suite for Bacom Page Components', () => {
       await bacom.validatingSupportDropdownElements(props.expectedLocale || props.country);
       await bacom.validatingGetStartedCTAClick(props.expectedLocale, props.country, bacom);
       await bacom.validatingFooterElements(props.expectedLocale || props.country);
-      await bacom.validatingChangeRegion(props.expectedLocale || props.country);
       await bacom.validatingCookiePreference(props.expectedLocale || props.country);
+      await bacom.validatingChangeRegion(props.expectedLocale || props.country);
     });
   });
 });
