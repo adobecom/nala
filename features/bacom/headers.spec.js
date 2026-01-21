@@ -26,13 +26,7 @@ module.exports = {
         '/request-consultation/thankyou.html',
         '/uk/request-consultation/thankyou.html',
         '/de/request-consultation/thankyou.html',
-      ],
-      tags: '@headers @responseHeaders @bacom @bacomSmoke @regression @akamai',
-    },
-    {
-      tcid: '1',
-      name: 'Response headers test for AEM dx',
-      path: [
+
         // Event pages
         '/de/events/experience-makers-germany-2023-on-demand.html',
         '/ch_de/events/experience-makers-zurich-2023-on-demand.html',
@@ -41,7 +35,13 @@ module.exports = {
         '/se/events/experience-makers-stockholm-2023-on-demand.html',
         '/fr/events/experience-makers-paris-2023-on-demand.html',
         '/uk/events/experience-makers-london-2023-on-demand.html',
-
+      ],
+      tags: '@headers @responseHeaders @bacom @bacomSmoke @regression @akamai',
+    },
+    {
+      tcid: '1',
+      name: 'Response headers test for AEM dx',
+      path: [
         // Product Demo pages
         '/product-demos/assets-essentials/interactive-tour.html',
         '/de/product-demos/assets-essentials/interactive-tour.html',

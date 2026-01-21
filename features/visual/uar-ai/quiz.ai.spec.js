@@ -4,9 +4,9 @@ module.exports = {
     {
       tcid: '0',
       name: '@quiz-ai-visual',
-      path: '/drafts/bc-uar/bc-uar',
-      stable: '@milo_bc_uar',
-      beta: '@milo_bc_uar',
+      path: '/cc-shared/fragments/uar/brand-concierge/brand-concierge',
+      stable: '@adobe_prod',
+      beta: '@adobe_stage',
       tags: '@quiz-ai-visual @visual @uar-ai-screenshots',
       data: 'data/uar/quiz/ai/quiz-ai-basic.yml',
     },

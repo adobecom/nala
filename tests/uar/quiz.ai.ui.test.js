@@ -17,7 +17,7 @@ test.describe('Quiz flow test suite', () => {
       `${feature.name}, ${feature.tags}`,
       async ({ page }) => {
         const quiz = new Quiz(page);
-        const url = `https://bc-uar--milo--adobecom.hlx.page${feature.path}`;
+        const url = `https://www.stage.adobe.com${feature.path}`;
         console.info(url);
 
         // load test data from static files
