@@ -41,7 +41,7 @@
   "devDependencies": {
     "@babel/core": "7.21.3",
     "@babel/eslint-parser": "7.21.3",
-    "browserstack-node-sdk": "^1.31.24",
+    "browserstack-node-sdk": "^1.49.0",
     "eslint": "8.37.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",
