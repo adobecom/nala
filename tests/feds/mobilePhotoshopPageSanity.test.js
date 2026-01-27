@@ -24,7 +24,7 @@ test.describe('Test Suite for mobile Photoshop Page Components', () => {
       console.info(`[FEDSInfo] Checking Page: ${baseURL}${features[props.tcid].path}`);
 
       const pageURL = `${baseURL}${features[props.tcid].path}`;
-      await page.goto(pageURL, { waitUntil: 'networkidle' });
+      await page.goto(pageURL, { waitUntil: 'domcontentloaded' });
       await expect(page).toHaveURL(pageURL);
 
       // Verifying the visibility of U-NAV Elements
