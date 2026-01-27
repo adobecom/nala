@@ -1,0 +1,153 @@
+# =============================================================================
+# Summit 2026 Floodgate Migration - Test Configuration
+# =============================================================================
+# Target: Akamai EdgeWorker, AEP Audience, AEM (Milo/Dexter)
+# Version: 1.0
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Test Environments
+# -----------------------------------------------------------------------------
+environments:
+  stage:
+    baseUrl: 'https://business.stage.adobe.com'
+    configUrl: 'https://business.stage.adobe.com/.milo/pub/fg-edge-worker-config.json'
+    fgCookieName: 'fg_acom_stg'
+    expectedHeader: 'AEM-floodgate-pink-dx'
+  prod:
+    baseUrl: 'https://business.adobe.com'
+    configUrl: 'https://business.adobe.com/.milo/pub/fg-edge-worker-config.json'
+    fgCookieName: 'fg_acom'
+    expectedHeader: 'AEM-floodgate-pink-dx'
+
+# -----------------------------------------------------------------------------
+# Test Pages
+# Actual Summit 2026 test pages
+# -----------------------------------------------------------------------------
+testPages:
+  # Stage environment pages
+  stage:
+    # Summit sessions listing page
+    sessions:
+      path: '/summit/2026/sessions.html'
+      fullUrl: 'https://business.stage.adobe.com/summit/2026/sessions.html'
+      description: 'Summit 2026 Sessions listing page (Stage)'
+    # Summit session detail page
+    sessionDetail:
+      path: '/summit/2026/sessions/how-to-scale-and-transform-your-organization-s525.html'
+      fullUrl: 'https://business.stage.adobe.com/summit/2026/sessions/how-to-scale-and-transform-your-organization-s525.html'
+      description: 'Summit 2026 Session detail page (Stage)'
+  # Production environment pages
+  prod:
+    # Summit FAQ page
+    faq:
+      path: '/summit/2026/faq.html'
+      fullUrl: 'https://business.adobe.com/summit/2026/faq.html'
+      description: 'Summit 2026 FAQ page (Production)'
+  # Common paths (work for both environments)
+  common:
+    sessions:
+      path: '/summit/2026/sessions.html'
+      description: 'Sessions listing page'
+    sessionDetail:
+      path: '/summit/2026/sessions/how-to-scale-and-transform-your-organization-s525.html'
+      description: 'Session detail page'
+    faq:
+      path: '/summit/2026/faq.html'
+      description: 'FAQ page'
+  # Aliases for test phases (point to real pages)
+  # Note: The same pages are used; timing is controlled via config JSON
+  future:
+    path: '/summit/2026/sessions.html'
+    description: 'Use with event start time in FUTURE config'
+  active:
+    path: '/summit/2026/sessions.html'
+    description: 'Use with event start time PAST, end time FUTURE config'
+  past:
+    path: '/summit/2026/sessions.html'
+    description: 'Use with event end time PAST config'
+
+# -----------------------------------------------------------------------------
+# Test Users (Automated Login)
+# Note: Contact Adam Seghi to add users to FG Allowlist
+# Allowlists are environment-specific (Stage vs Prod)
+# -----------------------------------------------------------------------------
+testUsers:
+  allowlisted:
+    email: 'vevent+registered@adobetest.com'
+    password: 'AdobeTest1234!'
+    description: 'User in AEP Audience (allowlisted)'
+    inAudienceList: true
+  nonAllowlisted:
+    email: 'xiasun+nonAllowlisted@adobetest.com'
+    password: 'AdobeTest1234!'
+    description: 'User NOT in AEP Audience'
+    inAudienceList: false
+  anonymous:
+    email: null
+    password: null
+    description: 'Not logged in'
+    inAudienceList: false
+
+# -----------------------------------------------------------------------------
+# Verification Points
+# -----------------------------------------------------------------------------
+verification:
+  # Response header to check for Floodgate content
+  responseHeader: 'x-adobe-content'
+  floodgateValue: 'AEM-floodgate-pink-dx'
+  # Cookies
+  sessionCookie: 'aux_sid'
+  fgCookieStage: 'fg_acom_stg'
+  fgCookieProd: 'fg_acom'
+
+# -----------------------------------------------------------------------------
+# Performance Thresholds
+# -----------------------------------------------------------------------------
+performance:
+  # Time To First Byte thresholds
+  ttfb:
+    cacheHit: 200 # ms - for cached anonymous requests
+    aepOverhead: 600 # ms - total with AEP call
+    aepCallBudget: 400 # ms - AEP call budget
+  # Timeout thresholds
+  timeouts:
+    aepTimeout: 1000 # ms - AEP API timeout
+    pageLoad: 30000 # ms - page load timeout
+  # Load test configuration
+  loadTest:
+    rampUpDuration: '30s'
+    targetUsers: 500
+    p95Threshold: 800 # ms
+
+# -----------------------------------------------------------------------------
+# Localization Test Data
+# -----------------------------------------------------------------------------
+localization:
+  locales:
+    - path: '/jp/'
+      timezone: 'Asia/Tokyo'
+      description: 'Japan'
+    - path: '/de/'
+      timezone: 'Europe/Berlin'
+      description: 'Germany'
+    - path: '/uk/'
+      timezone: 'Europe/London'
+      description: 'UK'
+    - path: '/'
+      timezone: 'America/Los_Angeles'
+      description: 'US (default)'
+
+# -----------------------------------------------------------------------------
+# Test Scenario Tags
+# -----------------------------------------------------------------------------
+tags:
+  smoke: '@floodgate @smoke'
+  regression: '@floodgate @regression'
+  security: '@floodgate @security @p0'
+  performance: '@floodgate @performance'
+  cache: '@floodgate @cache @p0'
+  beforeEvent: '@floodgate @before-event @phase-a'
+  duringEvent: '@floodgate @during-event @phase-b'
+  afterEvent: '@floodgate @after-event @phase-c'
+  edgeCase: '@floodgate @edge-case @phase-d'

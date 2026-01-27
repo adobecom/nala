@@ -1,0 +1,142 @@
+# BACOM Stage URL Test Data
+# Base URL: https://business.stage.adobe.com
+# 5 URLs per category for AI bot testing
+
+urls:
+  # Homepage (1 URL)
+  - /
+
+  # AI Pages (5 URLs)
+  - /ai.html
+  - /ai/adobe-genai.html
+  - /ai/ai-assistant.html
+  - /ai/responsible-ai.html
+
+  # Blog - Main (5 URLs)
+  - /blog/
+  - /blog/2024-holiday-season-set-new-records-for-ecommerce
+  - /blog/5-ways-ai-will-change-black-friday
+  - /blog/71-percent-of-marketers-say-content-demand-to-increase-5x
+  - /blog/trends
+
+  # Blog - Authors (5 URLs)
+  - /blog/authors/charles-colletti
+  - /blog/authors/chitra-mittha
+  - /blog/authors/chloe-mcconnell
+
+  # Blog - The Latest (5 URLs)
+  - /blog/the-latest/adobe-genstudio-unites-and-accelerates-the-content-supply-chain-with-generative-ai
+  - /blog/the-latest/adobe-summit-2024-registration-is-now-open
+  - /blog/the-latest/ai-driven-innovations-in-customer-journey-analytics
+  - /blog/the-latest/generative-ai-innovations-in-adobe-marketo-engage-help-scale-marketer-productivity-and-customer-personalization
+  - /blog/the-latest/whats-new-at-adobe-summit-2024
+
+  # Customer Success Stories (5 URLs)
+  - /customer-success-stories.html
+  - /customer-success-stories/adobe-summit-2023-case-study.html
+  - /customer-success-stories/cisco-case-study.html
+  - /customer-success-stories/ibm-case-study.html
+  - /customer-success-stories/lenovo-case-study.html
+
+  # Customers - Consulting Services (5 URLs)
+  - /customers/consulting-services/contact-us.html
+  - /customers/consulting-services/customer-experience-strategy.html
+  - /customers/consulting-services/digital-acceleration.html
+  - /customers/consulting-services/main.html
+  - /customers/consulting-services/premier-support.html
+
+  # Events (2 URLs)
+  - /events/developers-live-code-of-conduct.html
+  - /events/government-forum.html
+
+  # Industries (5 URLs)
+  - /industries/adobe-industries.html
+  - /industries/financial-services.html
+  - /industries/government.html
+  - /industries/healthcare-life-sciences.html
+  - /industries/high-tech.html
+
+  # Products - Main (5 URLs)
+  - /products.html
+  - /products/adobe-analytics.html
+  - /products/commerce.html
+  - /products/marketo.html
+  - /products/workfront.html
+
+  # Products - Adobe Analytics (5 URLs)
+  - /products/adobe-analytics/customer-journey-analytics.html
+  - /products/adobe-analytics/digital-analytics.html
+  - /products/adobe-analytics/pricing.html
+  - /products/adobe-analytics/product-analytics.html
+  - /products/adobe-analytics/integrations.html
+
+  # Products - Experience Manager (5 URLs)
+  - /products/experience-manager/adobe-experience-manager.html
+  - /products/experience-manager/assets.html
+  - /products/experience-manager/sites/aem-sites.html
+  - /products/experience-manager/forms/aem-forms.html
+  - /products/experience-manager/guides/aem-guides.html
+
+  # Products - Journey Optimizer (5 URLs)
+  - /products/journey-optimizer.html
+  - /products/journey-optimizer/pricing.html
+  - /products/journey-optimizer/channels.html
+  - /products/journey-optimizer-b2b-edition.html
+  - /products/journey-optimizer/journey-orchestration.html
+
+  # Products - Real-time CDP (5 URLs)
+  - /products/real-time-customer-data-platform/rtcdp.html
+  - /products/real-time-customer-data-platform/pricing.html
+  - /products/real-time-customer-data-platform/collaboration.html
+  - /products/real-time-customer-data-platform/audience-management.html
+  - /products/real-time-customer-data-platform/data-governance-security-privacy.html
+
+  # Products - GenStudio (5 URLs)
+  - /products/genstudio-for-performance-marketing.html
+  - /products/genstudio-for-performance-marketing/activation.html
+  - /products/genstudio-for-performance-marketing/brand-compliance.html
+  - /products/genstudio-for-performance-marketing/creation.html
+  - /products/genstudio-for-performance-marketing/insights.html
+
+  # Products - Firefly Business (5 URLs)
+  - /products/firefly-business.html
+  - /products/firefly-business/custom-models.html
+  - /products/firefly-business/firefly-services.html
+  - /products/firefly-business/firefly-ai-approach.html
+  - /products/firefly-business/firefly-creative-production.html
+
+  # Request Consultation (2 URLs)
+  - /request-consultation.html
+  - /request-consultation/thankyou.html
+
+  # Resources (5 URLs)
+  - /resources/main.html
+  - /resources/digital-trends-report.html
+  - /resources/ai.html
+  - /resources/analytics.html
+  - /resources/commerce.html
+
+  # Solutions (5 URLs)
+  - /solutions/overview.html
+  - /solutions/b2b-marketing.html
+  - /solutions/content-supply-chain.html
+  - /solutions/personalization-at-scale.html
+  - /solutions/customer-data-platform.html
+
+  # Summit (5 URLs)
+  - /summit/adobe-summit.html
+  - /summit/2024/sessions.html
+  - /summit/2024/speakers.html
+  - /summit/2025/sessions.html
+  - /summit/2025/speakers.html
+
+  # Support (4 URLs)
+  - /support/main.html
+  - /support/adobe-partners.html
+  - /support/partners/amazon-web-services.html
+  - /support/partners/microsoft.html
+
+  # Why Adobe (3 URLs)
+  - /why-adobe/marketing-agility.html
+  - /why-adobe/roi/research.html
+  - /why-adobe/why-partner-with-us.html
