@@ -1,0 +1,209 @@
+---
+# =============================================================================
+# BACOM Lingo ROC (Region Only Content) Fragment Swapping Test URLs
+# Feature: MWPW-179495
+#
+# TEST SCOPE:
+# -----------
+# Language   | Base | All Regionals                    | Tested        | Skipped
+# -----------|------|----------------------------------|---------------|------------------
+# French     | /fr  | /be_fr, /ca_fr, /ch_fr, /lu_fr   | /ch_fr, /ca_fr| /be_fr, /lu_fr
+# German     | /de  | /at, /ch_de, /lu_de              | /at, /ch_de   | /lu_de
+# Spanish    | /es  | /ar, /cl, /co, /la, /mx, /pe     | /mx           | /ar, /cl, /co, /la, /pe
+# Italian    | /it  | /ch_it                           | /ch_it        | -
+# Portuguese | /pt  | /br                              | /br           | -
+#
+# FEATURE COVERAGE:
+# -----------------
+# FULL FEATURES (all mep-lingo blocks):
+#   - /ch_fr (Swiss French)
+#   - /mx (Mexico)
+#   Fragments: textmeplingoblock, swapblock, sectionreplacement, noroc (fallback)
+#
+# BASIC TEST (textmeplingoblock only):
+#   - /ca_fr (Canadian French)
+#   - /at (Austrian)
+#   - /ch_de (Swiss German)
+#   - /ch_it (Swiss Italian)
+#   - /br (Brazilian)
+#   Fragment: textmeplingoblock only
+#
+# =============================================================================
+
+# Base URL - Live environment (aem.page requires auth, use aem.live)
+baseUrl: 'https://stage--da-bacom--adobecom.aem.live'
+
+# Milo libs params for ROC testing
+miloLibs: '?milolibs=stage&langfirst=on&mepHighlight=true&mep='
+
+# =============================================================================
+# FRENCH - FULL FEATURE TEST (/ch_fr)
+# URL: https://stage--da-bacom--adobecom.aem.live/fr/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ch_fr
+# =============================================================================
+'fr-base':
+  pageUrl: '/fr/drafts/mepqa/fragments/base'
+  akamaiLocale: ''
+  testType: 'base'
+  description: 'French base page - no region spoof'
+
+'fr-ch-swap':
+  pageUrl: '/fr/drafts/mepqa/fragments/base'
+  akamaiLocale: 'ch_fr'
+  testType: 'full'
+  expectedFragments:
+    swapped:
+      - '/ch_fr/drafts/mepqa/fragments/textmeplingoblock'
+      - '/ch_fr/drafts/mepqa/fragments/swapblock'
+      - '/ch_fr/drafts/mepqa/fragments/sectionreplacement'
+    fallback:
+      - '/fr/drafts/mepqa/fragments/noroc'
+  description: 'French → Swiss French - FULL FEATURE TEST'
+
+# =============================================================================
+# FRENCH - BASIC TEST (/ca_fr) - textmeplingoblock only
+# URL: https://stage--da-bacom--adobecom.aem.live/fr/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ca_fr
+# =============================================================================
+'fr-ca-swap':
+  pageUrl: '/fr/drafts/mepqa/fragments/base'
+  akamaiLocale: 'ca_fr'
+  testType: 'basic'
+  expectedFragments:
+    swapped:
+      - '/ca_fr/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'French → Canadian French - textmeplingoblock only'
+
+# =============================================================================
+# SPANISH - FULL FEATURE TEST (/mx)
+# URL: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=mx
+# =============================================================================
+'es-base':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: ''
+  testType: 'base'
+  description: 'Spanish base page - no region spoof'
+
+'es-mx-swap':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'mx'
+  testType: 'full'
+  expectedFragments:
+    swapped:
+      - '/mx/drafts/mepqa/fragments/textmeplingoblock'
+      - '/mx/drafts/mepqa/fragments/swapblock'
+      - '/mx/drafts/mepqa/fragments/sectionreplacement'
+    fallback:
+      - '/es/drafts/mepqa/fragments/noroc'
+  description: 'Spanish → Mexico - FULL FEATURE TEST'
+
+# Negative test - wrong region
+'es-ar-negative':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'ar'
+  testType: 'negative'
+  expectedFragments:
+    notVisible:
+      - '/mx/drafts/mepqa/fragments/textmeplingoblock'
+      - '/mx/drafts/mepqa/fragments/swapblock'
+      - '/mx/drafts/mepqa/fragments/sectionreplacement'
+  description: 'Spanish with akamaiLocale=ar - should NOT see /mx fragments'
+
+# =============================================================================
+# GERMAN - BASIC TEST (/at, /ch_de) - textmeplingoblock only
+# =============================================================================
+'de-base':
+  pageUrl: '/de/drafts/mepqa/fragments/base'
+  akamaiLocale: ''
+  testType: 'base'
+  description: 'German base page - no region spoof'
+
+'de-at-swap':
+  pageUrl: '/de/drafts/mepqa/fragments/base'
+  akamaiLocale: 'at'
+  testType: 'basic'
+  expectedFragments:
+    swapped:
+      - '/at/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'German → Austria - textmeplingoblock only'
+
+'de-ch-swap':
+  pageUrl: '/de/drafts/mepqa/fragments/base'
+  akamaiLocale: 'ch_de'
+  testType: 'basic'
+  expectedFragments:
+    swapped:
+      - '/ch_de/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'German → Swiss German - textmeplingoblock only'
+
+# =============================================================================
+# ITALIAN - BASIC TEST (/ch_it) - textmeplingoblock only
+# =============================================================================
+'it-base':
+  pageUrl: '/it/drafts/mepqa/fragments/base'
+  akamaiLocale: ''
+  testType: 'base'
+  description: 'Italian base page - no region spoof'
+
+'it-ch-swap':
+  pageUrl: '/it/drafts/mepqa/fragments/base'
+  akamaiLocale: 'ch_it'
+  testType: 'basic'
+  expectedFragments:
+    swapped:
+      - '/ch_it/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'Italian → Swiss Italian - textmeplingoblock only'
+
+# =============================================================================
+# PORTUGUESE - BASIC TEST (/br) - textmeplingoblock only
+# =============================================================================
+'pt-base':
+  pageUrl: '/pt/drafts/mepqa/fragments/base'
+  akamaiLocale: ''
+  testType: 'base'
+  description: 'Portuguese base page - no region spoof'
+
+'pt-br-swap':
+  pageUrl: '/pt/drafts/mepqa/fragments/base'
+  akamaiLocale: 'br'
+  testType: 'basic'
+  expectedFragments:
+    swapped:
+      - '/br/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'Portuguese → Brazil - textmeplingoblock only'
+
+# =============================================================================
+# FRENCH - MULTIPLE FRAGMENTS TEST (base-all page)
+# TC-009: FR → CH_FR with multiple fragments
+# =============================================================================
+'fr-ch-multi':
+  pageUrl: '/fr/drafts/mepqa/fragments/base-all'
+  akamaiLocale: 'ch_fr'
+  testType: 'multi'
+  expectedFragments:
+    swapped:
+      - '/ch_fr/drafts/mepqa/fragments/sectionreplacement'
+  description: 'French → Swiss French - Multiple fragments (base-all page)'
+
+# =============================================================================
+# FULL TEST URLs
+# =============================================================================
+# FULL FEATURE TESTS (all mep-lingo blocks):
+#   French Swiss:   https://stage--da-bacom--adobecom.aem.live/fr/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ch_fr
+#   Spanish Mexico: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=mx
+#
+# BASIC TESTS (textmeplingoblock only):
+#   French Canada:  https://stage--da-bacom--adobecom.aem.live/fr/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ca_fr
+#   German Austria: https://stage--da-bacom--adobecom.aem.live/de/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=at
+#   German Swiss:   https://stage--da-bacom--adobecom.aem.live/de/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ch_de
+#   Italian Swiss:  https://stage--da-bacom--adobecom.aem.live/it/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ch_it
+#   Portuguese BR:  https://stage--da-bacom--adobecom.aem.live/pt/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=br
+#
+# NEGATIVE TEST:
+#   Spanish with AR (should NOT see /mx): https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ar
+
+# =============================================================================
+# BADGE SELECTORS
+# =============================================================================
+selectors:
+  greenBadge: '.mep-badge-green, [class*="mep-lingo"]:not([class*="fallback"])'
+  yellowBadge: '.mep-badge-yellow, [class*="fallback"]'
+  anyBadge: '[class*="mep-lingo"], [class*="mep-badge"]'
