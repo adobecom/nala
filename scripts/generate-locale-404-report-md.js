@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate Markdown report from locale-404-test-results.json
- * Usage: node scripts/generate-locale-404-report-md.js
+ * Usage: node scripts/generate-locale-404-report-md.js [--env=prod|stage]
  */
 
 const fs = require('fs');
@@ -10,6 +10,12 @@ const path = require('path');
 const RESULTS_DIR = path.join(__dirname, '..', 'results');
 const JSON_PATH = path.join(RESULTS_DIR, 'locale-404-test-results.json');
 const MD_PATH = path.join(RESULTS_DIR, 'locale-404-fallback-report.md');
+
+// Environment URLs
+const ENVIRONMENTS = {
+  stage: 'business.stage.adobe.com',
+  prod: 'business.adobe.com',
+};
 
 // Read JSON data
 let reportData;
@@ -20,6 +26,59 @@ try {
   console.error('✗ Failed to load JSON:', error.message);
   process.exit(1);
 }
+
+/**
+ * Detect environment from test results or CLI args
+ */
+function detectEnvironment() {
+  // Check CLI args first (e.g., --env=prod)
+  const envArg = process.argv.find((arg) => arg.startsWith('--env='));
+  if (envArg) {
+    const env = envArg.split('=')[1];
+    if (ENVIRONMENTS[env]) {
+      return ENVIRONMENTS[env];
+    }
+  }
+
+  // Try to detect from project name in results
+  const config = reportData.config || {};
+  const projects = config.projects || [];
+  const projectName = projects[0]?.name || '';
+
+  if (projectName.includes('prod')) {
+    return ENVIRONMENTS.prod;
+  }
+  if (projectName.includes('stage')) {
+    return ENVIRONMENTS.stage;
+  }
+
+  // Try to detect from test attachments or stdout
+  const suites = reportData.suites?.[0]?.suites || [];
+  for (const suite of suites) {
+    for (const spec of suite.specs || []) {
+      const test = spec.tests?.[0];
+      const result = test?.results?.[0];
+      const stdout = result?.stdout || [];
+
+      for (const output of stdout) {
+        if (typeof output === 'string') {
+          if (output.includes('business.adobe.com') && !output.includes('stage')) {
+            return ENVIRONMENTS.prod;
+          }
+          if (output.includes('business.stage.adobe.com')) {
+            return ENVIRONMENTS.stage;
+          }
+        }
+      }
+    }
+  }
+
+  // Default to stage
+  return ENVIRONMENTS.stage;
+}
+
+const environment = detectEnvironment();
+console.log(`✓ Environment: ${environment}`);
 
 // Parse test results
 const suites = reportData.suites?.[0]?.suites || [];
@@ -82,7 +141,7 @@ const avgDuration = totalTests > 0 ? (totalDuration / totalTests).toFixed(0) : 0
 let md = `# 🔄 Locale 404 Fallback Test Report
 
 > **Generated:** ${new Date().toLocaleString()}  
-> **Environment:** \`business.stage.adobe.com\`
+> **Environment:** \`${environment}\`
 
 ---
 

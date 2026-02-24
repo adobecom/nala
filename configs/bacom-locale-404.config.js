@@ -64,6 +64,13 @@ const config = {
         baseURL: envs['@bacom_stage'],
       },
     },
+    {
+      name: 'bacom-prod-locale-404',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: envs['@bacom_prod'],
+      },
+    },
   ],
 };
 module.exports = config;
