@@ -12,15 +12,21 @@ const { WebUtil } = require('../../libs/webutil.js');
  *
  * TEST SCOPE:
  * -----------
- * | Test Type    | Regions Tested                     | Fragments Tested |
- * |--------------|-----------------------------------|------------------|
- * | FULL FEATURE | /ch_fr, /mx                       | textmeplingoblock, swapblock, sectionreplacement, noroc |
- * | BASIC        | /ca_fr, /at, /ch_de, /ch_it, /br  | textmeplingoblock only |
- * | NEGATIVE     | /ar (no swap expected)            | Should NOT swap  |
+ * | Test Type    | Regions Tested                               | Fragments Tested |
+ * |--------------|---------------------------------------------|------------------|
+ * | FULL FEATURE | /ch_fr, /la                                 | textmeplingoblock, swapblock, sectionreplacement, noroc |
+ * | BASIC        | /ca_fr, /at, /ch_de, /ch_it, /br            | textmeplingoblock only |
+ * | NEGATIVE     | /es + akamaiLocale=us (no swap expected)     | Should NOT swap  |
+ * | LATAM MEPLNG | /es + all 16 LATAM GeoIPs → /la/ fragments  | textmeplingoblock (+ full for mx) |
+ *
+ * LATAM MEP-LINGO:
+ * When visiting /es/ with a LATAM GeoIP, mep-lingo should pull fragments from /la/.
+ * /la is the ONLY regional site for /es base.
+ * LATAM GeoIP codes: bo, cr, do, ec, gt, pa, pr, py, sv, uy, ve, ar, cl, co, mx, pe
  *
  * FULL FEATURE URLs (with mepHighlight & akamaiLocale params):
  * - French Swiss:   /fr/drafts/mepqa/fragments/base (akamaiLocale=ch_fr)
- * - Spanish Mexico: /es/drafts/mepqa/fragments/base (akamaiLocale=mx)
+ * - Spanish LATAM:  /es/drafts/mepqa/fragments/base (akamaiLocale=la)
  */
 
 // Report file paths
@@ -93,7 +99,7 @@ function aggregateReport() {
 
   const report = {
     timestamp: new Date().toISOString(),
-    feature: 'MWPW-179495 - ROC Fragment Swapping',
+    feature: 'MWPW-179495 - ROC Fragment Swapping (with LATAM mep-lingo consolidation)',
     summary: {
       totalTests: tests.length,
       passed: passedTests,
@@ -229,10 +235,11 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
     });
   });
 
-  // Test 1: Spanish → Mexico (FULL FEATURE)
+  // Test 1: Spanish → Latin America (FULL FEATURE)
+  // /la is the only regional site for /es base
   test(`${features[1].name}, ${features[1].tags}`, async ({ page }) => {
     const lingoROC = new LingoROC(page);
-    const config = testData['es-mx-swap'];
+    const config = testData['es-la-swap'];
     const url = buildTestUrl(testData.baseUrl, config.pageUrl, testData.miloLibs, config.akamaiLocale);
 
     const loadResult = await loadAndVerifyPage(page, url, lingoROC);
@@ -242,16 +249,16 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
       return;
     }
 
-    await test.step('Verify Spanish → Mexico full fragment swap', async () => {
+    await test.step('Verify Spanish → Latin America full fragment swap', async () => {
       // Close any remaining popups before verification
       await lingoROC.dismissAllPopups();
       await page.waitForTimeout(1000);
 
-      // Verify using data-path attribute: /mx = swapped, /es/ = fallback
-      const result = await lingoROC.verifyFragmentSwap('/mx', '/es/');
+      // Verify using data-path attribute: /la = swapped, /es/ = fallback
+      const result = await lingoROC.verifyFragmentSwap('/la', '/es/');
 
-      console.info(`[LingoROC] Spanish → Mexico (akamaiLocale=${config.akamaiLocale})`);
-      console.info(`[LingoROC] Swapped to /mx: ${result.swapped}`);
+      console.info(`[LingoROC] Spanish → Latin America (akamaiLocale=${config.akamaiLocale})`);
+      console.info(`[LingoROC] Swapped to /la: ${result.swapped}`);
       console.info(`[LingoROC] Fallback to /es/: ${result.fallback}`);
       console.info('[LingoROC] Expected swapped: textmeplingoblock, swapblock, sectionreplacement');
       console.info('[LingoROC] Expected fallback: noroc');
@@ -260,7 +267,7 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
       expect(result.swapped).toBeGreaterThan(0);
     });
 
-    const finalResult = await lingoROC.verifyFragmentSwap('/mx', '/es/');
+    const finalResult = await lingoROC.verifyFragmentSwap('/la', '/es/');
     appendTestResult({
       testName: features[1].name,
       status: 'passed',
@@ -459,13 +466,13 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
 
   // =========================================================================
   // NEGATIVE TEST (7)
-  // Verify wrong region does NOT trigger swap
+  // Verify non-LATAM region on /es/ does NOT trigger /la/ fragment swap
   // =========================================================================
 
-  // Test 7: Spanish → Argentina (NEGATIVE - should NOT see /mx fragments)
+  // Test 7: Spanish with akamaiLocale=us (NEGATIVE - should NOT see /la/ fragments)
   test(`${features[7].name}, ${features[7].tags}`, async ({ page }) => {
     const lingoROC = new LingoROC(page);
-    const config = testData['es-ar-negative'];
+    const config = testData['es-non-latam-negative'];
     const url = buildTestUrl(testData.baseUrl, config.pageUrl, testData.miloLibs, config.akamaiLocale);
 
     const loadResult = await loadAndVerifyPage(page, url, lingoROC);
@@ -475,20 +482,20 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
       return;
     }
 
-    await test.step('Verify Spanish with akamaiLocale=ar does NOT show /mx fragments', async () => {
+    await test.step('Verify Spanish with akamaiLocale=us does NOT show /la/ fragments', async () => {
       await lingoROC.dismissAllPopups();
       await page.waitForTimeout(1000);
 
-      // Verify using data-path: should NOT have /mx, should have /es/
-      const result = await lingoROC.verifyFragmentSwap('/mx', '/es/');
+      // Verify using data-path: should NOT have /la/, should have /es/
+      const result = await lingoROC.verifyFragmentSwap('/la', '/es/');
 
-      console.info('[LingoROC] Spanish with akamaiLocale=ar (NEGATIVE TEST)');
-      console.info(`[LingoROC] /mx fragments (should be 0): ${result.swapped}`);
+      console.info('[LingoROC] Spanish with akamaiLocale=us (NEGATIVE TEST)');
+      console.info(`[LingoROC] /la/ fragments (should be 0): ${result.swapped}`);
       console.info(`[LingoROC] /es/ fragments (fallback): ${result.fallback}`);
-      console.info('[LingoROC] Expected: Should NOT see /mx fragments');
-      console.info('[LingoROC] Should see fallback to /es base fragments');
+      console.info('[LingoROC] Expected: Should NOT see /la/ fragments');
+      console.info('[LingoROC] Should see fallback to /es/ base fragments');
 
-      // NEGATIVE: Should NOT have /mx swapped fragments
+      // NEGATIVE: Should NOT have /la/ swapped fragments
       expect(result.swapped).toBe(0);
     });
 
@@ -543,6 +550,118 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
       akamaiLocale: config.akamaiLocale,
       testType: 'multi',
       timestamp: new Date().toISOString(),
+    });
+  });
+
+  // =========================================================================
+  // LATAM MEP-LINGO TESTS (9-24)
+  // When visiting /es/ with a LATAM GeoIP, mep-lingo should pull /la/ fragments
+  // Tests all 16 LATAM GeoIP codes:
+  // mx, ar, cl, co, pe, bo, cr, do, ec, gt, pa, pr, py, sv, uy, ve
+  // =========================================================================
+
+  // Test 9: LATAM mep-lingo - Mexico (FULL - tests all fragments)
+  test(`${features[9].name}, ${features[9].tags}`, async ({ page }) => {
+    const lingoROC = new LingoROC(page);
+    const config = testData['es-latam-mx'];
+    const url = buildTestUrl(testData.baseUrl, config.pageUrl, testData.miloLibs, config.akamaiLocale);
+
+    const loadResult = await loadAndVerifyPage(page, url, lingoROC);
+    if (!loadResult.loaded) {
+      appendTestResult({ testName: features[9].name, status: 'skipped', reason: loadResult.error, timestamp: new Date().toISOString() });
+      test.skip();
+      return;
+    }
+
+    await test.step('Verify /es/ + GeoIP=mx pulls /la/ fragments (FULL)', async () => {
+      await lingoROC.dismissAllPopups();
+      await page.waitForTimeout(1000);
+
+      // Verify using data-path: /la = swapped, /es/ = fallback
+      const result = await lingoROC.verifyFragmentSwap('/la', '/es/');
+
+      console.info('[LingoROC] LATAM mep-lingo: /es/ + GeoIP=mx');
+      console.info(`[LingoROC] Swapped to /la/: ${result.swapped}`);
+      console.info(`[LingoROC] Fallback to /es/: ${result.fallback}`);
+      console.info('[LingoROC] Expected swapped: /la/ fragments (textmeplingoblock, swapblock, sectionreplacement)');
+      console.info('[LingoROC] Expected fallback: noroc → /es/');
+
+      // mep-lingo should pull /la/ fragments for GeoIP=mx
+      expect(result.swapped).toBeGreaterThan(0);
+    });
+
+    const finalResult = await lingoROC.verifyFragmentSwap('/la', '/es/');
+    appendTestResult({
+      testName: features[9].name,
+      status: 'passed',
+      url,
+      akamaiLocale: config.akamaiLocale,
+      testType: 'latam-meplingo-full',
+      swapped: finalResult.swapped,
+      fallback: finalResult.fallback,
+      timestamp: new Date().toISOString(),
+    });
+  });
+
+  // Tests 10-24: LATAM mep-lingo - Remaining GeoIP codes (BASIC - textmeplingoblock)
+  // Dynamic test generation for the remaining 15 LATAM regions
+  const latamFeatureStartIndex = 10; // features[10] through features[24]
+  const latamDataKeys = [
+    'es-latam-ar', 'es-latam-cl', 'es-latam-co', 'es-latam-pe',
+    'es-latam-bo', 'es-latam-cr', 'es-latam-do', 'es-latam-ec',
+    'es-latam-gt', 'es-latam-pa', 'es-latam-pr', 'es-latam-py',
+    'es-latam-sv', 'es-latam-uy', 'es-latam-ve',
+  ];
+
+  latamDataKeys.forEach((dataKey, index) => {
+    const featureIndex = latamFeatureStartIndex + index;
+    const feature = features[featureIndex];
+    if (!feature) return;
+
+    test(`${feature.name}, ${feature.tags}`, async ({ page }) => {
+      const lingoROC = new LingoROC(page);
+      const config = testData[dataKey];
+
+      if (!config) {
+        console.warn(`[LingoROC] No test data for key: ${dataKey}`);
+        appendTestResult({ testName: feature.name, status: 'skipped', reason: `No test data for ${dataKey}`, timestamp: new Date().toISOString() });
+        test.skip();
+        return;
+      }
+
+      const url = buildTestUrl(testData.baseUrl, config.pageUrl, testData.miloLibs, config.akamaiLocale);
+
+      const loadResult = await loadAndVerifyPage(page, url, lingoROC);
+      if (!loadResult.loaded) {
+        appendTestResult({ testName: feature.name, status: 'skipped', reason: loadResult.error, timestamp: new Date().toISOString() });
+        test.skip();
+        return;
+      }
+
+      await test.step(`Verify /es/ + GeoIP=${config.akamaiLocale} pulls /la/ fragments`, async () => {
+        await lingoROC.dismissAllPopups();
+        await page.waitForTimeout(1000);
+
+        // Verify using data-path: /la = swapped from mep-lingo
+        const result = await lingoROC.verifyFragmentSwap('/la', '/es/');
+
+        console.info(`[LingoROC] LATAM mep-lingo: /es/ + GeoIP=${config.akamaiLocale}`);
+        console.info(`[LingoROC] Swapped to /la/: ${result.swapped}`);
+        console.info(`[LingoROC] Fallback to /es/: ${result.fallback}`);
+        console.info(`[LingoROC] Expected: mep-lingo pulls /la/ fragments for GeoIP=${config.akamaiLocale}`);
+
+        // mep-lingo should pull /la/ fragments for this LATAM GeoIP
+        expect(result.swapped).toBeGreaterThan(0);
+      });
+
+      appendTestResult({
+        testName: feature.name,
+        status: 'passed',
+        url,
+        akamaiLocale: config.akamaiLocale,
+        testType: 'latam-meplingo',
+        timestamp: new Date().toISOString(),
+      });
     });
   });
 });

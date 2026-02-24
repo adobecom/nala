@@ -2,514 +2,499 @@
 # =============================================================================
 # BACOM & DA-BACOM Language-First Site (Lingo) Test URLs
 # Testing: Link transformation and regional page detection
-# Stage URL: ?milolibs=stage&martech=off&langfirst=on
+# Stage URL: .html
 # =============================================================================
 
 # -----------------------------------------------------------------------------
 # GNav Test URLs
 # -----------------------------------------------------------------------------
-'gnav-footer-modal': 'https://business.stage.adobe.com/?milolibs=stage&martech=off&langfirst=on'
+'gnav-footer-modal': 'https://business.adobe.com/'
 
 # -----------------------------------------------------------------------------
 # English US (/) - Root/Default Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-us': 'https://business.stage.adobe.com/?milolibs=stage&martech=off&langfirst=on'
-'en-us-products': 'https://business.stage.adobe.com/products?milolibs=stage&martech=off&langfirst=on'
-'en-us-solutions': 'https://business.stage.adobe.com/solutions?milolibs=stage&martech=off&langfirst=on'
-'en-us-creativecloud': 'https://business.stage.adobe.com/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'en-us-experience-cloud': 'https://business.stage.adobe.com/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'en-us-analytics': 'https://business.stage.adobe.com/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'en-us-marketo': 'https://business.stage.adobe.com/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'en-us-commerce': 'https://business.stage.adobe.com/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'en-us-workfront': 'https://business.stage.adobe.com/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'en-us-firefly': 'https://business.stage.adobe.com/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'en-us-personalization': 'https://business.stage.adobe.com/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'en-us': 'https://business.adobe.com/'
+'en-us-products': 'https://business.adobe.com/products.html'
+'en-us-solutions': 'https://business.adobe.com/solutions.html'
+'en-us-creativecloud': 'https://business.adobe.com/products/creativecloud-business.html'
+'en-us-analytics': 'https://business.adobe.com/products/adobe-analytics.html'
+'en-us-marketo': 'https://business.adobe.com/products/marketo.html'
+'en-us-commerce': 'https://business.adobe.com/products/commerce.html'
+'en-us-workfront': 'https://business.adobe.com/products/workfront.html'
+'en-us-firefly': 'https://business.adobe.com/products/firefly-business.html'
+'en-us-personalization': 'https://business.adobe.com/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # English India (/in) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-in': 'https://business.stage.adobe.com/in/?milolibs=stage&martech=off&langfirst=on'
-'en-in-products': 'https://business.stage.adobe.com/in/products?milolibs=stage&martech=off&langfirst=on'
-'en-in-solutions': 'https://business.stage.adobe.com/in/solutions?milolibs=stage&martech=off&langfirst=on'
-'en-in-creativecloud': 'https://business.stage.adobe.com/in/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'en-in-experience-cloud': 'https://business.stage.adobe.com/in/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'en-in-analytics': 'https://business.stage.adobe.com/in/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'en-in-marketo': 'https://business.stage.adobe.com/in/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'en-in-commerce': 'https://business.stage.adobe.com/in/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'en-in-workfront': 'https://business.stage.adobe.com/in/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'en-in-firefly': 'https://business.stage.adobe.com/in/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'en-in-personalization': 'https://business.stage.adobe.com/in/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'en-in': 'https://business.adobe.com/in/'
+'en-in-products': 'https://business.adobe.com/in/products.html'
+'en-in-solutions': 'https://business.adobe.com/in/solutions.html'
+'en-in-creativecloud': 'https://business.adobe.com/in/products/creativecloud-business.html'
+'en-in-analytics': 'https://business.adobe.com/in/products/adobe-analytics.html'
+'en-in-marketo': 'https://business.adobe.com/in/products/marketo.html'
+'en-in-commerce': 'https://business.adobe.com/in/products/commerce.html'
+'en-in-workfront': 'https://business.adobe.com/in/products/workfront.html'
+'en-in-firefly': 'https://business.adobe.com/in/products/firefly-business.html'
+'en-in-personalization': 'https://business.adobe.com/in/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # Spanish Base (/es) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'es': 'https://business.stage.adobe.com/es/?milolibs=stage&martech=off&langfirst=on'
-'es-products': 'https://business.stage.adobe.com/es/products?milolibs=stage&martech=off&langfirst=on'
-'es-solutions': 'https://business.stage.adobe.com/es/solutions?milolibs=stage&martech=off&langfirst=on'
-'es-creativecloud': 'https://business.stage.adobe.com/es/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'es-experience-cloud': 'https://business.stage.adobe.com/es/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'es-analytics': 'https://business.stage.adobe.com/es/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'es-marketo': 'https://business.stage.adobe.com/es/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'es-commerce': 'https://business.stage.adobe.com/es/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'es-workfront': 'https://business.stage.adobe.com/es/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'es-firefly': 'https://business.stage.adobe.com/es/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'es-personalization': 'https://business.stage.adobe.com/es/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'es': 'https://business.adobe.com/es/'
+'es-products': 'https://business.adobe.com/es/products.html'
+'es-solutions': 'https://business.adobe.com/es/solutions.html'
+'es-creativecloud': 'https://business.adobe.com/es/products/creativecloud-business.html'
+'es-analytics': 'https://business.adobe.com/es/products/adobe-analytics.html'
+'es-marketo': 'https://business.adobe.com/es/products/marketo.html'
+'es-commerce': 'https://business.adobe.com/es/products/commerce.html'
+'es-workfront': 'https://business.adobe.com/es/products/workfront.html'
+'es-firefly': 'https://business.adobe.com/es/products/firefly-business.html'
+'es-personalization': 'https://business.adobe.com/es/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /ar (Argentina)
+# Spanish Regional /ar (Argentina) - removed as regional site, should fallback to /es
 # -----------------------------------------------------------------------------
-'es-ar': 'https://business.stage.adobe.com/ar/?milolibs=stage&martech=off&langfirst=on'
-'es-ar-products': 'https://business.stage.adobe.com/ar/products?milolibs=stage&martech=off&langfirst=on'
-'es-ar-solutions': 'https://business.stage.adobe.com/ar/solutions?milolibs=stage&martech=off&langfirst=on'
-'es-ar-creativecloud': 'https://business.stage.adobe.com/ar/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'es-ar-experience-cloud': 'https://business.stage.adobe.com/ar/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'es-ar-ai': 'https://business.stage.adobe.com/ar/ai?milolibs=stage&martech=off&langfirst=on'
+'es-ar': 'https://business.adobe.com/ar/'
+'es-ar-products': 'https://business.adobe.com/ar/products.html'
+'es-ar-solutions': 'https://business.adobe.com/ar/solutions.html'
+'es-ar-creativecloud': 'https://business.adobe.com/ar/products/creativecloud-business.html'
+'es-ar-ai': 'https://business.adobe.com/ar/ai.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /mx (Mexico)
+# Spanish Regional /mx (Mexico) - removed as regional site, should fallback to /es
 # -----------------------------------------------------------------------------
-'es-mx': 'https://business.stage.adobe.com/mx/?milolibs=stage&martech=off&langfirst=on'
-'es-mx-products': 'https://business.stage.adobe.com/mx/products?milolibs=stage&martech=off&langfirst=on'
-'es-mx-solutions': 'https://business.stage.adobe.com/mx/solutions?milolibs=stage&martech=off&langfirst=on'
-'es-mx-creativecloud': 'https://business.stage.adobe.com/mx/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'es-mx-ai': 'https://business.stage.adobe.com/mx/ai?milolibs=stage&martech=off&langfirst=on'
+'es-mx': 'https://business.adobe.com/mx/'
+'es-mx-products': 'https://business.adobe.com/mx/products.html'
+'es-mx-solutions': 'https://business.adobe.com/mx/solutions.html'
+'es-mx-creativecloud': 'https://business.adobe.com/mx/products/creativecloud-business.html'
+'es-mx-ai': 'https://business.adobe.com/mx/ai.html'
 
 # -----------------------------------------------------------------------------
 # German Base (/de) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'de': 'https://business.stage.adobe.com/de/?milolibs=stage&martech=off&langfirst=on'
-'de-products': 'https://business.stage.adobe.com/de/products?milolibs=stage&martech=off&langfirst=on'
-'de-solutions': 'https://business.stage.adobe.com/de/solutions?milolibs=stage&martech=off&langfirst=on'
-'de-creativecloud': 'https://business.stage.adobe.com/de/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'de-experience-cloud': 'https://business.stage.adobe.com/de/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'de-analytics': 'https://business.stage.adobe.com/de/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'de-marketo': 'https://business.stage.adobe.com/de/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'de-commerce': 'https://business.stage.adobe.com/de/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'de-workfront': 'https://business.stage.adobe.com/de/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'de-firefly': 'https://business.stage.adobe.com/de/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'de-personalization': 'https://business.stage.adobe.com/de/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'de': 'https://business.adobe.com/de/'
+'de-products': 'https://business.adobe.com/de/products.html'
+'de-solutions': 'https://business.adobe.com/de/solutions.html'
+'de-creativecloud': 'https://business.adobe.com/de/products/creativecloud-business.html'
+'de-analytics': 'https://business.adobe.com/de/products/adobe-analytics.html'
+'de-marketo': 'https://business.adobe.com/de/products/marketo.html'
+'de-commerce': 'https://business.adobe.com/de/products/commerce.html'
+'de-workfront': 'https://business.adobe.com/de/products/workfront.html'
+'de-firefly': 'https://business.adobe.com/de/products/firefly-business.html'
+'de-personalization': 'https://business.adobe.com/de/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # German Regional /at (Austria)
 # -----------------------------------------------------------------------------
-'de-at': 'https://business.stage.adobe.com/at/?milolibs=stage&martech=off&langfirst=on'
-'de-at-products': 'https://business.stage.adobe.com/at/products?milolibs=stage&martech=off&langfirst=on'
-'de-at-solutions': 'https://business.stage.adobe.com/at/solutions?milolibs=stage&martech=off&langfirst=on'
-'de-at-creativecloud': 'https://business.stage.adobe.com/at/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
+'de-at': 'https://business.adobe.com/at/'
+'de-at-products': 'https://business.adobe.com/at/products.html'
+'de-at-solutions': 'https://business.adobe.com/at/solutions.html'
+'de-at-creativecloud': 'https://business.adobe.com/at/products/creativecloud-business.html'
 
 # -----------------------------------------------------------------------------
 # German Regional /ch_de (Switzerland German) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'de-ch_de': 'https://business.stage.adobe.com/ch_de/?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-products': 'https://business.stage.adobe.com/ch_de/products?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-solutions': 'https://business.stage.adobe.com/ch_de/solutions?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-creativecloud': 'https://business.stage.adobe.com/ch_de/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-experience-cloud': 'https://business.stage.adobe.com/ch_de/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-analytics': 'https://business.stage.adobe.com/ch_de/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-marketo': 'https://business.stage.adobe.com/ch_de/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-commerce': 'https://business.stage.adobe.com/ch_de/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-workfront': 'https://business.stage.adobe.com/ch_de/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-firefly': 'https://business.stage.adobe.com/ch_de/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-personalization': 'https://business.stage.adobe.com/ch_de/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de': 'https://business.adobe.com/ch_de/'
+'de-ch_de-products': 'https://business.adobe.com/ch_de/products.html'
+'de-ch_de-solutions': 'https://business.adobe.com/ch_de/solutions.html'
+'de-ch_de-creativecloud': 'https://business.adobe.com/ch_de/products/creativecloud-business.html'
+'de-ch_de-analytics': 'https://business.adobe.com/ch_de/products/adobe-analytics.html'
+'de-ch_de-marketo': 'https://business.adobe.com/ch_de/products/marketo.html'
+'de-ch_de-commerce': 'https://business.adobe.com/ch_de/products/commerce.html'
+'de-ch_de-workfront': 'https://business.adobe.com/ch_de/products/workfront.html'
+'de-ch_de-firefly': 'https://business.adobe.com/ch_de/products/firefly-business.html'
+'de-ch_de-personalization': 'https://business.adobe.com/ch_de/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # French Base (/fr) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'fr': 'https://business.stage.adobe.com/fr/?milolibs=stage&martech=off&langfirst=on'
-'fr-products': 'https://business.stage.adobe.com/fr/products?milolibs=stage&martech=off&langfirst=on'
-'fr-solutions': 'https://business.stage.adobe.com/fr/solutions?milolibs=stage&martech=off&langfirst=on'
-'fr-creativecloud': 'https://business.stage.adobe.com/fr/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'fr-experience-cloud': 'https://business.stage.adobe.com/fr/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'fr-analytics': 'https://business.stage.adobe.com/fr/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'fr-marketo': 'https://business.stage.adobe.com/fr/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'fr-commerce': 'https://business.stage.adobe.com/fr/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'fr-workfront': 'https://business.stage.adobe.com/fr/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'fr-firefly': 'https://business.stage.adobe.com/fr/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'fr-personalization': 'https://business.stage.adobe.com/fr/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'fr': 'https://business.adobe.com/fr/'
+'fr-products': 'https://business.adobe.com/fr/products.html'
+'fr-solutions': 'https://business.adobe.com/fr/solutions.html'
+'fr-creativecloud': 'https://business.adobe.com/fr/products/creativecloud-business.html'
+'fr-analytics': 'https://business.adobe.com/fr/products/adobe-analytics.html'
+'fr-marketo': 'https://business.adobe.com/fr/products/marketo.html'
+'fr-commerce': 'https://business.adobe.com/fr/products/commerce.html'
+'fr-workfront': 'https://business.adobe.com/fr/products/workfront.html'
+'fr-firefly': 'https://business.adobe.com/fr/products/firefly-business.html'
+'fr-personalization': 'https://business.adobe.com/fr/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # French Regional /ca_fr (Canada French) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'fr-ca_fr': 'https://business.stage.adobe.com/ca_fr/?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-products': 'https://business.stage.adobe.com/ca_fr/products?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-solutions': 'https://business.stage.adobe.com/ca_fr/solutions?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-creativecloud': 'https://business.stage.adobe.com/ca_fr/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-experience-cloud': 'https://business.stage.adobe.com/ca_fr/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-analytics': 'https://business.stage.adobe.com/ca_fr/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-marketo': 'https://business.stage.adobe.com/ca_fr/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-commerce': 'https://business.stage.adobe.com/ca_fr/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-workfront': 'https://business.stage.adobe.com/ca_fr/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-firefly': 'https://business.stage.adobe.com/ca_fr/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-personalization': 'https://business.stage.adobe.com/ca_fr/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr': 'https://business.adobe.com/ca_fr/'
+'fr-ca_fr-products': 'https://business.adobe.com/ca_fr/products.html'
+'fr-ca_fr-solutions': 'https://business.adobe.com/ca_fr/solutions.html'
+'fr-ca_fr-creativecloud': 'https://business.adobe.com/ca_fr/products/creativecloud-business.html'
+'fr-ca_fr-analytics': 'https://business.adobe.com/ca_fr/products/adobe-analytics.html'
+'fr-ca_fr-marketo': 'https://business.adobe.com/ca_fr/products/marketo.html'
+'fr-ca_fr-commerce': 'https://business.adobe.com/ca_fr/products/commerce.html'
+'fr-ca_fr-workfront': 'https://business.adobe.com/ca_fr/products/workfront.html'
+'fr-ca_fr-firefly': 'https://business.adobe.com/ca_fr/products/firefly-business.html'
+'fr-ca_fr-personalization': 'https://business.adobe.com/ca_fr/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # Italian (/it) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'it': 'https://business.stage.adobe.com/it/?milolibs=stage&martech=off&langfirst=on'
-'it-products': 'https://business.stage.adobe.com/it/products?milolibs=stage&martech=off&langfirst=on'
-'it-solutions': 'https://business.stage.adobe.com/it/solutions?milolibs=stage&martech=off&langfirst=on'
-'it-creativecloud': 'https://business.stage.adobe.com/it/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'it-experience-cloud': 'https://business.stage.adobe.com/it/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'it-analytics': 'https://business.stage.adobe.com/it/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'it-marketo': 'https://business.stage.adobe.com/it/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'it-commerce': 'https://business.stage.adobe.com/it/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'it-workfront': 'https://business.stage.adobe.com/it/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'it-firefly': 'https://business.stage.adobe.com/it/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'it-personalization': 'https://business.stage.adobe.com/it/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'it': 'https://business.adobe.com/it/'
+'it-products': 'https://business.adobe.com/it/products.html'
+'it-solutions': 'https://business.adobe.com/it/solutions.html'
+'it-creativecloud': 'https://business.adobe.com/it/products/creativecloud-business.html'
+'it-analytics': 'https://business.adobe.com/it/products/adobe-analytics.html'
+'it-marketo': 'https://business.adobe.com/it/products/marketo.html'
+'it-commerce': 'https://business.adobe.com/it/products/commerce.html'
+'it-workfront': 'https://business.adobe.com/it/products/workfront.html'
+'it-firefly': 'https://business.adobe.com/it/products/firefly-business.html'
+'it-personalization': 'https://business.adobe.com/it/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # Portuguese (/pt) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'pt': 'https://business.stage.adobe.com/pt/?milolibs=stage&martech=off&langfirst=on'
-'pt-products': 'https://business.stage.adobe.com/pt/products?milolibs=stage&martech=off&langfirst=on'
-'pt-solutions': 'https://business.stage.adobe.com/pt/solutions?milolibs=stage&martech=off&langfirst=on'
-'pt-creativecloud': 'https://business.stage.adobe.com/pt/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'pt-experience-cloud': 'https://business.stage.adobe.com/pt/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'pt-analytics': 'https://business.stage.adobe.com/pt/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'pt-marketo': 'https://business.stage.adobe.com/pt/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'pt-commerce': 'https://business.stage.adobe.com/pt/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'pt-workfront': 'https://business.stage.adobe.com/pt/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'pt-firefly': 'https://business.stage.adobe.com/pt/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'pt-personalization': 'https://business.stage.adobe.com/pt/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'pt': 'https://business.adobe.com/pt/'
+'pt-products': 'https://business.adobe.com/pt/products.html'
+'pt-solutions': 'https://business.adobe.com/pt/solutions.html'
+'pt-creativecloud': 'https://business.adobe.com/pt/products/creativecloud-business.html'
+'pt-analytics': 'https://business.adobe.com/pt/products/adobe-analytics.html'
+'pt-marketo': 'https://business.adobe.com/pt/products/marketo.html'
+'pt-commerce': 'https://business.adobe.com/pt/products/commerce.html'
+'pt-workfront': 'https://business.adobe.com/pt/products/workfront.html'
+'pt-firefly': 'https://business.adobe.com/pt/products/firefly-business.html'
+'pt-personalization': 'https://business.adobe.com/pt/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # Portuguese Regional /br (Brazil) - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'pt-br': 'https://business.stage.adobe.com/br/?milolibs=stage&martech=off&langfirst=on'
-'pt-br-products': 'https://business.stage.adobe.com/br/products?milolibs=stage&martech=off&langfirst=on'
-'pt-br-solutions': 'https://business.stage.adobe.com/br/solutions?milolibs=stage&martech=off&langfirst=on'
-'pt-br-creativecloud': 'https://business.stage.adobe.com/br/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'pt-br-experience-cloud': 'https://business.stage.adobe.com/br/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'pt-br-analytics': 'https://business.stage.adobe.com/br/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'pt-br-marketo': 'https://business.stage.adobe.com/br/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'pt-br-commerce': 'https://business.stage.adobe.com/br/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'pt-br-workfront': 'https://business.stage.adobe.com/br/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'pt-br-firefly': 'https://business.stage.adobe.com/br/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'pt-br-personalization': 'https://business.stage.adobe.com/br/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'pt-br': 'https://business.adobe.com/br/'
+'pt-br-products': 'https://business.adobe.com/br/products.html'
+'pt-br-solutions': 'https://business.adobe.com/br/solutions.html'
+'pt-br-creativecloud': 'https://business.adobe.com/br/products/creativecloud-business.html'
+'pt-br-analytics': 'https://business.adobe.com/br/products/adobe-analytics.html'
+'pt-br-marketo': 'https://business.adobe.com/br/products/marketo.html'
+'pt-br-commerce': 'https://business.adobe.com/br/products/commerce.html'
+'pt-br-workfront': 'https://business.adobe.com/br/products/workfront.html'
+'pt-br-firefly': 'https://business.adobe.com/br/products/firefly-business.html'
+'pt-br-personalization': 'https://business.adobe.com/br/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # Japanese (/jp) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'jp': 'https://business.stage.adobe.com/jp/?milolibs=stage&martech=off&langfirst=on'
-'jp-products': 'https://business.stage.adobe.com/jp/products?milolibs=stage&martech=off&langfirst=on'
-'jp-solutions': 'https://business.stage.adobe.com/jp/solutions?milolibs=stage&martech=off&langfirst=on'
-'jp-creativecloud': 'https://business.stage.adobe.com/jp/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'jp-experience-cloud': 'https://business.stage.adobe.com/jp/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'jp-analytics': 'https://business.stage.adobe.com/jp/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'jp-marketo': 'https://business.stage.adobe.com/jp/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'jp-commerce': 'https://business.stage.adobe.com/jp/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'jp-workfront': 'https://business.stage.adobe.com/jp/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'jp-firefly': 'https://business.stage.adobe.com/jp/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'jp-personalization': 'https://business.stage.adobe.com/jp/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'jp': 'https://business.adobe.com/jp/'
+'jp-products': 'https://business.adobe.com/jp/products.html'
+'jp-solutions': 'https://business.adobe.com/jp/solutions.html'
+'jp-creativecloud': 'https://business.adobe.com/jp/products/creativecloud-business.html'
+'jp-analytics': 'https://business.adobe.com/jp/products/adobe-analytics.html'
+'jp-marketo': 'https://business.adobe.com/jp/products/marketo.html'
+'jp-commerce': 'https://business.adobe.com/jp/products/commerce.html'
+'jp-workfront': 'https://business.adobe.com/jp/products/workfront.html'
+'jp-firefly': 'https://business.adobe.com/jp/products/firefly-business.html'
+'jp-personalization': 'https://business.adobe.com/jp/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # Korean (/kr) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'kr': 'https://business.stage.adobe.com/kr/?milolibs=stage&martech=off&langfirst=on'
-'kr-products': 'https://business.stage.adobe.com/kr/products?milolibs=stage&martech=off&langfirst=on'
-'kr-solutions': 'https://business.stage.adobe.com/kr/solutions?milolibs=stage&martech=off&langfirst=on'
-'kr-creativecloud': 'https://business.stage.adobe.com/kr/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'kr-experience-cloud': 'https://business.stage.adobe.com/kr/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'kr-analytics': 'https://business.stage.adobe.com/kr/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'kr-marketo': 'https://business.stage.adobe.com/kr/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'kr-commerce': 'https://business.stage.adobe.com/kr/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'kr-workfront': 'https://business.stage.adobe.com/kr/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'kr-firefly': 'https://business.stage.adobe.com/kr/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'kr-personalization': 'https://business.stage.adobe.com/kr/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'kr': 'https://business.adobe.com/kr/'
+'kr-products': 'https://business.adobe.com/kr/products.html'
+'kr-solutions': 'https://business.adobe.com/kr/solutions.html'
+'kr-creativecloud': 'https://business.adobe.com/kr/products/creativecloud-business.html'
+'kr-analytics': 'https://business.adobe.com/kr/products/adobe-analytics.html'
+'kr-marketo': 'https://business.adobe.com/kr/products/marketo.html'
+'kr-commerce': 'https://business.adobe.com/kr/products/commerce.html'
+'kr-workfront': 'https://business.adobe.com/kr/products/workfront.html'
+'kr-firefly': 'https://business.adobe.com/kr/products/firefly-business.html'
+'kr-personalization': 'https://business.adobe.com/kr/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # English UK (/uk) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-uk': 'https://business.stage.adobe.com/uk/?milolibs=stage&martech=off&langfirst=on'
-'en-uk-products': 'https://business.stage.adobe.com/uk/products?milolibs=stage&martech=off&langfirst=on'
-'en-uk-solutions': 'https://business.stage.adobe.com/uk/solutions?milolibs=stage&martech=off&langfirst=on'
-'en-uk-creativecloud': 'https://business.stage.adobe.com/uk/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'en-uk-experience-cloud': 'https://business.stage.adobe.com/uk/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'en-uk-analytics': 'https://business.stage.adobe.com/uk/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'en-uk-marketo': 'https://business.stage.adobe.com/uk/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'en-uk-commerce': 'https://business.stage.adobe.com/uk/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'en-uk-workfront': 'https://business.stage.adobe.com/uk/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'en-uk-firefly': 'https://business.stage.adobe.com/uk/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'en-uk-personalization': 'https://business.stage.adobe.com/uk/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'en-uk': 'https://business.adobe.com/uk/'
+'en-uk-products': 'https://business.adobe.com/uk/products.html'
+'en-uk-solutions': 'https://business.adobe.com/uk/solutions.html'
+'en-uk-creativecloud': 'https://business.adobe.com/uk/products/creativecloud-business.html'
+'en-uk-analytics': 'https://business.adobe.com/uk/products/adobe-analytics.html'
+'en-uk-marketo': 'https://business.adobe.com/uk/products/marketo.html'
+'en-uk-commerce': 'https://business.adobe.com/uk/products/commerce.html'
+'en-uk-workfront': 'https://business.adobe.com/uk/products/workfront.html'
+'en-uk-firefly': 'https://business.adobe.com/uk/products/firefly-business.html'
+'en-uk-personalization': 'https://business.adobe.com/uk/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # English AU (/au) - Full Site - Homepage + 10 Subpages
 # -----------------------------------------------------------------------------
-'en-au': 'https://business.stage.adobe.com/au/?milolibs=stage&martech=off&langfirst=on'
-'en-au-products': 'https://business.stage.adobe.com/au/products?milolibs=stage&martech=off&langfirst=on'
-'en-au-solutions': 'https://business.stage.adobe.com/au/solutions?milolibs=stage&martech=off&langfirst=on'
-'en-au-creativecloud': 'https://business.stage.adobe.com/au/products/creativecloud-business?milolibs=stage&martech=off&langfirst=on'
-'en-au-experience-cloud': 'https://business.stage.adobe.com/au/products/experience-cloud?milolibs=stage&martech=off&langfirst=on'
-'en-au-analytics': 'https://business.stage.adobe.com/au/products/adobe-analytics?milolibs=stage&martech=off&langfirst=on'
-'en-au-marketo': 'https://business.stage.adobe.com/au/products/marketo?milolibs=stage&martech=off&langfirst=on'
-'en-au-commerce': 'https://business.stage.adobe.com/au/products/commerce?milolibs=stage&martech=off&langfirst=on'
-'en-au-workfront': 'https://business.stage.adobe.com/au/products/workfront?milolibs=stage&martech=off&langfirst=on'
-'en-au-firefly': 'https://business.stage.adobe.com/au/products/firefly-business?milolibs=stage&martech=off&langfirst=on'
-'en-au-personalization': 'https://business.stage.adobe.com/au/solutions/personalization-at-scale?milolibs=stage&martech=off&langfirst=on'
+'en-au': 'https://business.adobe.com/au/'
+'en-au-products': 'https://business.adobe.com/au/products.html'
+'en-au-solutions': 'https://business.adobe.com/au/solutions.html'
+'en-au-creativecloud': 'https://business.adobe.com/au/products/creativecloud-business.html'
+'en-au-analytics': 'https://business.adobe.com/au/products/adobe-analytics.html'
+'en-au-marketo': 'https://business.adobe.com/au/products/marketo.html'
+'en-au-commerce': 'https://business.adobe.com/au/products/commerce.html'
+'en-au-workfront': 'https://business.adobe.com/au/products/workfront.html'
+'en-au-firefly': 'https://business.adobe.com/au/products/firefly-business.html'
+'en-au-personalization': 'https://business.adobe.com/au/solutions/personalization-at-scale.html'
 
 # -----------------------------------------------------------------------------
 # English NZ (/nz) - Regional
 # -----------------------------------------------------------------------------
-'en-nz': 'https://business.stage.adobe.com/nz/?milolibs=stage&martech=off&langfirst=on'
-'en-nz-products': 'https://business.stage.adobe.com/nz/products?milolibs=stage&martech=off&langfirst=on'
+'en-nz': 'https://business.adobe.com/nz/'
+'en-nz-products': 'https://business.adobe.com/nz/products.html'
 
 # -----------------------------------------------------------------------------
 # English Canada (/ca) - Regional
 # -----------------------------------------------------------------------------
-'en-ca': 'https://business.stage.adobe.com/ca/?milolibs=stage&martech=off&langfirst=on'
-'en-ca-products': 'https://business.stage.adobe.com/ca/products?milolibs=stage&martech=off&langfirst=on'
+'en-ca': 'https://business.adobe.com/ca/'
+'en-ca-products': 'https://business.adobe.com/ca/products.html'
 
 # -----------------------------------------------------------------------------
 # English Ireland (/ie) - Regional
 # -----------------------------------------------------------------------------
-'en-ie': 'https://business.stage.adobe.com/ie/?milolibs=stage&martech=off&langfirst=on'
-'en-ie-products': 'https://business.stage.adobe.com/ie/products?milolibs=stage&martech=off&langfirst=on'
+'en-ie': 'https://business.adobe.com/ie/'
+'en-ie-products': 'https://business.adobe.com/ie/products.html'
 
 # -----------------------------------------------------------------------------
 # English Singapore (/sg) - Regional
 # -----------------------------------------------------------------------------
-'en-sg': 'https://business.stage.adobe.com/sg/?milolibs=stage&martech=off&langfirst=on'
-'en-sg-products': 'https://business.stage.adobe.com/sg/products?milolibs=stage&martech=off&langfirst=on'
+'en-sg': 'https://business.adobe.com/sg/'
+'en-sg-products': 'https://business.adobe.com/sg/products.html'
 
 # -----------------------------------------------------------------------------
 # English Hong Kong (/hk_en) - Regional
 # -----------------------------------------------------------------------------
-'en-hk_en': 'https://business.stage.adobe.com/hk_en/?milolibs=stage&martech=off&langfirst=on'
-'en-hk_en-products': 'https://business.stage.adobe.com/hk_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-hk_en': 'https://business.adobe.com/hk_en/'
+'en-hk_en-products': 'https://business.adobe.com/hk_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English UAE (/ae_en) - Regional
 # -----------------------------------------------------------------------------
-'en-ae_en': 'https://business.stage.adobe.com/ae_en/?milolibs=stage&martech=off&langfirst=on'
-'en-ae_en-products': 'https://business.stage.adobe.com/ae_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-ae_en': 'https://business.adobe.com/ae_en/'
+'en-ae_en-products': 'https://business.adobe.com/ae_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Belgium (/be_en) - Regional
 # -----------------------------------------------------------------------------
-'en-be_en': 'https://business.stage.adobe.com/be_en/?milolibs=stage&martech=off&langfirst=on'
-'en-be_en-products': 'https://business.stage.adobe.com/be_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-be_en': 'https://business.adobe.com/be_en/'
+'en-be_en-products': 'https://business.adobe.com/be_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Netherlands (/nl) - Regional
 # -----------------------------------------------------------------------------
-'en-nl': 'https://business.stage.adobe.com/nl/?milolibs=stage&martech=off&langfirst=on'
-'en-nl-products': 'https://business.stage.adobe.com/nl/products?milolibs=stage&martech=off&langfirst=on'
+'en-nl': 'https://business.adobe.com/nl/'
+'en-nl-products': 'https://business.adobe.com/nl/products.html'
 
 # -----------------------------------------------------------------------------
 # English Sweden (/se) - Regional
 # -----------------------------------------------------------------------------
-'en-se': 'https://business.stage.adobe.com/se/?milolibs=stage&martech=off&langfirst=on'
-'en-se-products': 'https://business.stage.adobe.com/se/products?milolibs=stage&martech=off&langfirst=on'
+'en-se': 'https://business.adobe.com/se/'
+'en-se-products': 'https://business.adobe.com/se/products.html'
 
 # -----------------------------------------------------------------------------
 # English Denmark (/dk) - Regional
 # -----------------------------------------------------------------------------
-'en-dk': 'https://business.stage.adobe.com/dk/?milolibs=stage&martech=off&langfirst=on'
-'en-dk-products': 'https://business.stage.adobe.com/dk/products?milolibs=stage&martech=off&langfirst=on'
+'en-dk': 'https://business.adobe.com/dk/'
+'en-dk-products': 'https://business.adobe.com/dk/products.html'
 
 # -----------------------------------------------------------------------------
 # English Norway (/no) - Regional
 # -----------------------------------------------------------------------------
-'en-no': 'https://business.stage.adobe.com/no/?milolibs=stage&martech=off&langfirst=on'
-'en-no-products': 'https://business.stage.adobe.com/no/products?milolibs=stage&martech=off&langfirst=on'
+'en-no': 'https://business.adobe.com/no/'
+'en-no-products': 'https://business.adobe.com/no/products.html'
 
 # -----------------------------------------------------------------------------
 # English Finland (/fi) - Regional
 # -----------------------------------------------------------------------------
-'en-fi': 'https://business.stage.adobe.com/fi/?milolibs=stage&martech=off&langfirst=on'
-'en-fi-products': 'https://business.stage.adobe.com/fi/products?milolibs=stage&martech=off&langfirst=on'
+'en-fi': 'https://business.adobe.com/fi/'
+'en-fi-products': 'https://business.adobe.com/fi/products.html'
 
 # -----------------------------------------------------------------------------
 # English Poland (/pl) - Regional
 # -----------------------------------------------------------------------------
-'en-pl': 'https://business.stage.adobe.com/pl/?milolibs=stage&martech=off&langfirst=on'
-'en-pl-products': 'https://business.stage.adobe.com/pl/products?milolibs=stage&martech=off&langfirst=on'
+'en-pl': 'https://business.adobe.com/pl/'
+'en-pl-products': 'https://business.adobe.com/pl/products.html'
 
 # -----------------------------------------------------------------------------
 # English Czech Republic (/cz) - Regional
 # -----------------------------------------------------------------------------
-'en-cz': 'https://business.stage.adobe.com/cz/?milolibs=stage&martech=off&langfirst=on'
-'en-cz-products': 'https://business.stage.adobe.com/cz/products?milolibs=stage&martech=off&langfirst=on'
+'en-cz': 'https://business.adobe.com/cz/'
+'en-cz-products': 'https://business.adobe.com/cz/products.html'
 
 # -----------------------------------------------------------------------------
 # English Romania (/ro) - Regional
 # -----------------------------------------------------------------------------
-'en-ro': 'https://business.stage.adobe.com/ro/?milolibs=stage&martech=off&langfirst=on'
-'en-ro-products': 'https://business.stage.adobe.com/ro/products?milolibs=stage&martech=off&langfirst=on'
+'en-ro': 'https://business.adobe.com/ro/'
+'en-ro-products': 'https://business.adobe.com/ro/products.html'
 
 # -----------------------------------------------------------------------------
 # English Bulgaria (/bg) - Regional
 # -----------------------------------------------------------------------------
-'en-bg': 'https://business.stage.adobe.com/bg/?milolibs=stage&martech=off&langfirst=on'
-'en-bg-products': 'https://business.stage.adobe.com/bg/products?milolibs=stage&martech=off&langfirst=on'
+'en-bg': 'https://business.adobe.com/bg/'
+'en-bg-products': 'https://business.adobe.com/bg/products.html'
 
 # -----------------------------------------------------------------------------
 # English Greece (/gr_en) - Regional
 # -----------------------------------------------------------------------------
-'en-gr_en': 'https://business.stage.adobe.com/gr_en/?milolibs=stage&martech=off&langfirst=on'
-'en-gr_en-products': 'https://business.stage.adobe.com/gr_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-gr_en': 'https://business.adobe.com/gr_en/'
+'en-gr_en-products': 'https://business.adobe.com/gr_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Turkey (/tr) - Regional
 # -----------------------------------------------------------------------------
-'en-tr': 'https://business.stage.adobe.com/tr/?milolibs=stage&martech=off&langfirst=on'
-'en-tr-products': 'https://business.stage.adobe.com/tr/products?milolibs=stage&martech=off&langfirst=on'
+'en-tr': 'https://business.adobe.com/tr/'
+'en-tr-products': 'https://business.adobe.com/tr/products.html'
 
 # -----------------------------------------------------------------------------
 # English Israel (/il_en) - Regional
 # -----------------------------------------------------------------------------
-'en-il_en': 'https://business.stage.adobe.com/il_en/?milolibs=stage&martech=off&langfirst=on'
-'en-il_en-products': 'https://business.stage.adobe.com/il_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-il_en': 'https://business.adobe.com/il_en/'
+'en-il_en-products': 'https://business.adobe.com/il_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Saudi Arabia (/sa_en) - Regional
 # -----------------------------------------------------------------------------
-'en-sa_en': 'https://business.stage.adobe.com/sa_en/?milolibs=stage&martech=off&langfirst=on'
-'en-sa_en-products': 'https://business.stage.adobe.com/sa_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-sa_en': 'https://business.adobe.com/sa_en/'
+'en-sa_en-products': 'https://business.adobe.com/sa_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English MENA (/mena_en) - Regional
 # -----------------------------------------------------------------------------
-'en-mena_en': 'https://business.stage.adobe.com/mena_en/?milolibs=stage&martech=off&langfirst=on'
-'en-mena_en-products': 'https://business.stage.adobe.com/mena_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-mena_en': 'https://business.adobe.com/mena_en/'
+'en-mena_en-products': 'https://business.adobe.com/mena_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Africa (/africa) - Regional
 # -----------------------------------------------------------------------------
-'en-africa': 'https://business.stage.adobe.com/africa/?milolibs=stage&martech=off&langfirst=on'
-'en-africa-products': 'https://business.stage.adobe.com/africa/products?milolibs=stage&martech=off&langfirst=on'
+'en-africa': 'https://business.adobe.com/africa/'
+'en-africa-products': 'https://business.adobe.com/africa/products.html'
 
 # -----------------------------------------------------------------------------
 # English Russia (/ru) - Regional
 # -----------------------------------------------------------------------------
-'en-ru': 'https://business.stage.adobe.com/ru/?milolibs=stage&martech=off&langfirst=on'
-'en-ru-products': 'https://business.stage.adobe.com/ru/products?milolibs=stage&martech=off&langfirst=on'
+'en-ru': 'https://business.adobe.com/ru/'
+'en-ru-products': 'https://business.adobe.com/ru/products.html'
 
 # -----------------------------------------------------------------------------
 # English Ukraine (/ua) - Regional
 # -----------------------------------------------------------------------------
-'en-ua': 'https://business.stage.adobe.com/ua/?milolibs=stage&martech=off&langfirst=on'
-'en-ua-products': 'https://business.stage.adobe.com/ua/products?milolibs=stage&martech=off&langfirst=on'
+'en-ua': 'https://business.adobe.com/ua/'
+'en-ua-products': 'https://business.adobe.com/ua/products.html'
 
 # -----------------------------------------------------------------------------
 # English Estonia (/ee) - Regional
 # -----------------------------------------------------------------------------
-'en-ee': 'https://business.stage.adobe.com/ee/?milolibs=stage&martech=off&langfirst=on'
-'en-ee-products': 'https://business.stage.adobe.com/ee/products?milolibs=stage&martech=off&langfirst=on'
+'en-ee': 'https://business.adobe.com/ee/'
+'en-ee-products': 'https://business.adobe.com/ee/products.html'
 
 # -----------------------------------------------------------------------------
 # English Slovakia (/sk) - Regional
 # -----------------------------------------------------------------------------
-'en-sk': 'https://business.stage.adobe.com/sk/?milolibs=stage&martech=off&langfirst=on'
-'en-sk-products': 'https://business.stage.adobe.com/sk/products?milolibs=stage&martech=off&langfirst=on'
+'en-sk': 'https://business.adobe.com/sk/'
+'en-sk-products': 'https://business.adobe.com/sk/products.html'
 
 # -----------------------------------------------------------------------------
 # English Slovenia (/si) - Regional
 # -----------------------------------------------------------------------------
-'en-si': 'https://business.stage.adobe.com/si/?milolibs=stage&martech=off&langfirst=on'
-'en-si-products': 'https://business.stage.adobe.com/si/products?milolibs=stage&martech=off&langfirst=on'
+'en-si': 'https://business.adobe.com/si/'
+'en-si-products': 'https://business.adobe.com/si/products.html'
 
 # -----------------------------------------------------------------------------
 # English Luxembourg (/lu_en) - Regional
 # -----------------------------------------------------------------------------
-'en-lu_en': 'https://business.stage.adobe.com/lu_en/?milolibs=stage&martech=off&langfirst=on'
-'en-lu_en-products': 'https://business.stage.adobe.com/lu_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-lu_en': 'https://business.adobe.com/lu_en/'
+'en-lu_en-products': 'https://business.adobe.com/lu_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English China (/cn) - Regional
 # -----------------------------------------------------------------------------
-'en-cn': 'https://business.stage.adobe.com/cn/?milolibs=stage&martech=off&langfirst=on'
-'en-cn-products': 'https://business.stage.adobe.com/cn/products?milolibs=stage&martech=off&langfirst=on'
+'en-cn': 'https://business.adobe.com/cn/'
+'en-cn-products': 'https://business.adobe.com/cn/products.html'
 
 # -----------------------------------------------------------------------------
 # English Taiwan (/tw) - Regional
 # -----------------------------------------------------------------------------
-'en-tw': 'https://business.stage.adobe.com/tw/?milolibs=stage&martech=off&langfirst=on'
-'en-tw-products': 'https://business.stage.adobe.com/tw/products?milolibs=stage&martech=off&langfirst=on'
+'en-tw': 'https://business.adobe.com/tw/'
+'en-tw-products': 'https://business.adobe.com/tw/products.html'
 
 # -----------------------------------------------------------------------------
 # English Indonesia (/id_en) - Regional
 # -----------------------------------------------------------------------------
-'en-id_en': 'https://business.stage.adobe.com/id_en/?milolibs=stage&martech=off&langfirst=on'
-'en-id_en-products': 'https://business.stage.adobe.com/id_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-id_en': 'https://business.adobe.com/id_en/'
+'en-id_en-products': 'https://business.adobe.com/id_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Malaysia (/my_en) - Regional
 # -----------------------------------------------------------------------------
-'en-my_en': 'https://business.stage.adobe.com/my_en/?milolibs=stage&martech=off&langfirst=on'
-'en-my_en-products': 'https://business.stage.adobe.com/my_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-my_en': 'https://business.adobe.com/my_en/'
+'en-my_en-products': 'https://business.adobe.com/my_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Philippines (/ph_en) - Regional
 # -----------------------------------------------------------------------------
-'en-ph_en': 'https://business.stage.adobe.com/ph_en/?milolibs=stage&martech=off&langfirst=on'
-'en-ph_en-products': 'https://business.stage.adobe.com/ph_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-ph_en': 'https://business.adobe.com/ph_en/'
+'en-ph_en-products': 'https://business.adobe.com/ph_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Thailand (/th_en) - Regional
 # -----------------------------------------------------------------------------
-'en-th_en': 'https://business.stage.adobe.com/th_en/?milolibs=stage&martech=off&langfirst=on'
-'en-th_en-products': 'https://business.stage.adobe.com/th_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-th_en': 'https://business.adobe.com/th_en/'
+'en-th_en-products': 'https://business.adobe.com/th_en/products.html'
 
 # -----------------------------------------------------------------------------
 # English Vietnam (/vn_en) - Regional
 # -----------------------------------------------------------------------------
-'en-vn_en': 'https://business.stage.adobe.com/vn_en/?milolibs=stage&martech=off&langfirst=on'
-'en-vn_en-products': 'https://business.stage.adobe.com/vn_en/products?milolibs=stage&martech=off&langfirst=on'
+'en-vn_en': 'https://business.adobe.com/vn_en/'
+'en-vn_en-products': 'https://business.adobe.com/vn_en/products.html'
 
 # -----------------------------------------------------------------------------
 # French Regional /be_fr (Belgium French) - Regional
 # -----------------------------------------------------------------------------
-'fr-be_fr': 'https://business.stage.adobe.com/be_fr/?milolibs=stage&martech=off&langfirst=on'
-'fr-be_fr-products': 'https://business.stage.adobe.com/be_fr/products?milolibs=stage&martech=off&langfirst=on'
+'fr-be_fr': 'https://business.adobe.com/be_fr/'
+'fr-be_fr-products': 'https://business.adobe.com/be_fr/products.html'
 
 # -----------------------------------------------------------------------------
 # French Regional /ch_fr (Switzerland French) - Regional
 # -----------------------------------------------------------------------------
-'fr-ch_fr': 'https://business.stage.adobe.com/ch_fr/?milolibs=stage&martech=off&langfirst=on'
-'fr-ch_fr-products': 'https://business.stage.adobe.com/ch_fr/products?milolibs=stage&martech=off&langfirst=on'
+'fr-ch_fr': 'https://business.adobe.com/ch_fr/'
+'fr-ch_fr-products': 'https://business.adobe.com/ch_fr/products.html'
 
 # -----------------------------------------------------------------------------
 # French Regional /lu_fr (Luxembourg French) - Regional
 # -----------------------------------------------------------------------------
-'fr-lu_fr': 'https://business.stage.adobe.com/lu_fr/?milolibs=stage&martech=off&langfirst=on'
-'fr-lu_fr-products': 'https://business.stage.adobe.com/lu_fr/products?milolibs=stage&martech=off&langfirst=on'
+'fr-lu_fr': 'https://business.adobe.com/lu_fr/'
+'fr-lu_fr-products': 'https://business.adobe.com/lu_fr/products.html'
 
 # -----------------------------------------------------------------------------
 # German Regional /lu_de (Luxembourg German) - Regional
 # -----------------------------------------------------------------------------
-'de-lu_de': 'https://business.stage.adobe.com/lu_de/?milolibs=stage&martech=off&langfirst=on'
-'de-lu_de-products': 'https://business.stage.adobe.com/lu_de/products?milolibs=stage&martech=off&langfirst=on'
+'de-lu_de': 'https://business.adobe.com/lu_de/'
+'de-lu_de-products': 'https://business.adobe.com/lu_de/products.html'
 
 # -----------------------------------------------------------------------------
 # Italian Regional /ch_it (Switzerland Italian) - Regional
 # -----------------------------------------------------------------------------
-'it-ch_it': 'https://business.stage.adobe.com/ch_it/?milolibs=stage&martech=off&langfirst=on'
-'it-ch_it-products': 'https://business.stage.adobe.com/ch_it/products?milolibs=stage&martech=off&langfirst=on'
+'it-ch_it': 'https://business.adobe.com/ch_it/'
+'it-ch_it-products': 'https://business.adobe.com/ch_it/products.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /cl (Chile) - Regional
+# Spanish Regional /cl (Chile) - removed as regional site, should fallback to /es
 # -----------------------------------------------------------------------------
-'es-cl': 'https://business.stage.adobe.com/cl/?milolibs=stage&martech=off&langfirst=on'
-'es-cl-products': 'https://business.stage.adobe.com/cl/products?milolibs=stage&martech=off&langfirst=on'
+'es-cl': 'https://business.adobe.com/cl/'
+'es-cl-products': 'https://business.adobe.com/cl/products.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /co (Colombia) - Regional
+# Spanish Regional /co (Colombia) - removed as regional site, should fallback to /es
 # -----------------------------------------------------------------------------
-'es-co': 'https://business.stage.adobe.com/co/?milolibs=stage&martech=off&langfirst=on'
-'es-co-products': 'https://business.stage.adobe.com/co/products?milolibs=stage&martech=off&langfirst=on'
+'es-co': 'https://business.adobe.com/co/'
+'es-co-products': 'https://business.adobe.com/co/products.html'
 
 # -----------------------------------------------------------------------------
 # Spanish Regional /la (Latin America) - Regional
 # -----------------------------------------------------------------------------
-'es-la': 'https://business.stage.adobe.com/la/?milolibs=stage&martech=off&langfirst=on'
-'es-la-products': 'https://business.stage.adobe.com/la/products?milolibs=stage&martech=off&langfirst=on'
+'es-la': 'https://business.adobe.com/la/'
+'es-la-products': 'https://business.adobe.com/la/products.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /pe (Peru) - Regional
+# Spanish Regional /pe (Peru) - removed as regional site, should fallback to /es
 # -----------------------------------------------------------------------------
-'es-pe': 'https://business.stage.adobe.com/pe/?milolibs=stage&martech=off&langfirst=on'
-'es-pe-products': 'https://business.stage.adobe.com/pe/products?milolibs=stage&martech=off&langfirst=on'
+'es-pe': 'https://business.adobe.com/pe/'
+'es-pe-products': 'https://business.adobe.com/pe/products.html'
 
 # =============================================================================
 # CAAS PAGES - Customer Success Stories & Resources (Heavy CaaS content)
@@ -519,75 +504,75 @@
 # -----------------------------------------------------------------------------
 # English US - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'en-us-customer-stories': 'https://business.stage.adobe.com/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'en-us-resources': 'https://business.stage.adobe.com/resources/main?milolibs=stage&martech=off&langfirst=on'
+'en-us-customer-stories': 'https://business.adobe.com/customer-success-stories.html'
+'en-us-resources': 'https://business.adobe.com/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # English UK - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'en-uk-customer-stories': 'https://business.stage.adobe.com/uk/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'en-uk-resources': 'https://business.stage.adobe.com/uk/resources/main?milolibs=stage&martech=off&langfirst=on'
+'en-uk-customer-stories': 'https://business.adobe.com/uk/customer-success-stories.html'
+'en-uk-resources': 'https://business.adobe.com/uk/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # English AU - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'en-au-customer-stories': 'https://business.stage.adobe.com/au/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'en-au-resources': 'https://business.stage.adobe.com/au/resources/main?milolibs=stage&martech=off&langfirst=on'
+'en-au-customer-stories': 'https://business.adobe.com/au/customer-success-stories.html'
+'en-au-resources': 'https://business.adobe.com/au/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # English IN - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'en-in-customer-stories': 'https://business.stage.adobe.com/in/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'en-in-resources': 'https://business.stage.adobe.com/in/resources/main?milolibs=stage&martech=off&langfirst=on'
+'en-in-customer-stories': 'https://business.adobe.com/in/customer-success-stories.html'
+'en-in-resources': 'https://business.adobe.com/in/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # Japanese - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'jp-customer-stories': 'https://business.stage.adobe.com/jp/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'jp-resources': 'https://business.stage.adobe.com/jp/resources/main?milolibs=stage&martech=off&langfirst=on'
+'jp-customer-stories': 'https://business.adobe.com/jp/customer-success-stories.html'
+'jp-resources': 'https://business.adobe.com/jp/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # Korean - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'kr-customer-stories': 'https://business.stage.adobe.com/kr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'kr-resources': 'https://business.stage.adobe.com/kr/resources/main?milolibs=stage&martech=off&langfirst=on'
+'kr-customer-stories': 'https://business.adobe.com/kr/customer-success-stories.html'
+'kr-resources': 'https://business.adobe.com/kr/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # German - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'de-customer-stories': 'https://business.stage.adobe.com/de/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'de-resources': 'https://business.stage.adobe.com/de/resources/main?milolibs=stage&martech=off&langfirst=on'
+'de-customer-stories': 'https://business.adobe.com/de/customer-success-stories.html'
+'de-resources': 'https://business.adobe.com/de/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # French - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'fr-customer-stories': 'https://business.stage.adobe.com/fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'fr-resources': 'https://business.stage.adobe.com/fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+'fr-customer-stories': 'https://business.adobe.com/fr/customer-success-stories.html'
+'fr-resources': 'https://business.adobe.com/fr/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # Spanish - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'es-customer-stories': 'https://business.stage.adobe.com/es/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'es-resources': 'https://business.stage.adobe.com/es/resources/main?milolibs=stage&martech=off&langfirst=on'
+'es-customer-stories': 'https://business.adobe.com/es/customer-success-stories.html'
+'es-resources': 'https://business.adobe.com/es/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # Italian - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'it-customer-stories': 'https://business.stage.adobe.com/it/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'it-resources': 'https://business.stage.adobe.com/it/resources/main?milolibs=stage&martech=off&langfirst=on'
+'it-customer-stories': 'https://business.adobe.com/it/customer-success-stories.html'
+'it-resources': 'https://business.adobe.com/it/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # Portuguese - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'pt-customer-stories': 'https://business.stage.adobe.com/pt/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'pt-resources': 'https://business.stage.adobe.com/pt/resources/main?milolibs=stage&martech=off&langfirst=on'
+'pt-customer-stories': 'https://business.adobe.com/pt/customer-success-stories.html'
+'pt-resources': 'https://business.adobe.com/pt/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # Portuguese Brazil - Customer Stories & Resources
 # -----------------------------------------------------------------------------
-'pt-br-customer-stories': 'https://business.stage.adobe.com/br/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'pt-br-resources': 'https://business.stage.adobe.com/br/resources/main?milolibs=stage&martech=off&langfirst=on'
-'pt-br-jazmin-chebar': 'https://business.stage.adobe.com/br/customer-success-stories/jazmin-chebar-case-study.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-customer-stories': 'https://business.adobe.com/br/customer-success-stories.html'
+'pt-br-resources': 'https://business.adobe.com/br/resources/main.html'
+'pt-br-jazmin-chebar': 'https://business.adobe.com/br/customer-success-stories/jazmin-chebar-case-study.html'
 
 # =============================================================================
 # REGIONAL LOCALES - CaaS Pages (404 Fallback Testing)
@@ -595,82 +580,82 @@
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /ar (Argentina) → Falls back to /es
+# Spanish Regional /ar (Argentina) → Should fallback to /es
 # -----------------------------------------------------------------------------
-'es-ar-customer-stories': 'https://business.stage.adobe.com/ar/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'es-ar-resources': 'https://business.stage.adobe.com/ar/resources/main?milolibs=stage&martech=off&langfirst=on'
+'es-ar-customer-stories': 'https://business.adobe.com/ar/customer-success-stories.html'
+'es-ar-resources': 'https://business.adobe.com/ar/resources/main.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /mx (Mexico) → Falls back to /es
+# Spanish Regional /mx (Mexico) → Should fallback to /es
 # -----------------------------------------------------------------------------
-'es-mx-customer-stories': 'https://business.stage.adobe.com/mx/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'es-mx-resources': 'https://business.stage.adobe.com/mx/resources/main?milolibs=stage&martech=off&langfirst=on'
+'es-mx-customer-stories': 'https://business.adobe.com/mx/customer-success-stories.html'
+'es-mx-resources': 'https://business.adobe.com/mx/resources/main.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /cl (Chile) → Falls back to /es
+# Spanish Regional /cl (Chile) → Should fallback to /es
 # -----------------------------------------------------------------------------
-'es-cl-customer-stories': 'https://business.stage.adobe.com/cl/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'es-cl-resources': 'https://business.stage.adobe.com/cl/resources/main?milolibs=stage&martech=off&langfirst=on'
+'es-cl-customer-stories': 'https://business.adobe.com/cl/customer-success-stories.html'
+'es-cl-resources': 'https://business.adobe.com/cl/resources/main.html'
 
 # -----------------------------------------------------------------------------
-# Spanish Regional /co (Colombia) → Falls back to /es
+# Spanish Regional /co (Colombia) → Should fallback to /es
 # -----------------------------------------------------------------------------
-'es-co-customer-stories': 'https://business.stage.adobe.com/co/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'es-co-resources': 'https://business.stage.adobe.com/co/resources/main?milolibs=stage&martech=off&langfirst=on'
+'es-co-customer-stories': 'https://business.adobe.com/co/customer-success-stories.html'
+'es-co-resources': 'https://business.adobe.com/co/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # German Regional /at (Austria) → Falls back to /de
 # -----------------------------------------------------------------------------
-'de-at-customer-stories': 'https://business.stage.adobe.com/at/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'de-at-resources': 'https://business.stage.adobe.com/at/resources/main?milolibs=stage&martech=off&langfirst=on'
+'de-at-customer-stories': 'https://business.adobe.com/at/customer-success-stories.html'
+'de-at-resources': 'https://business.adobe.com/at/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # German Regional /ch_de (Switzerland German) → Falls back to /de
 # -----------------------------------------------------------------------------
-'de-ch_de-customer-stories': 'https://business.stage.adobe.com/ch_de/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'de-ch_de-resources': 'https://business.stage.adobe.com/ch_de/resources/main?milolibs=stage&martech=off&langfirst=on'
+'de-ch_de-customer-stories': 'https://business.adobe.com/ch_de/customer-success-stories.html'
+'de-ch_de-resources': 'https://business.adobe.com/ch_de/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # French Regional /ca_fr (Canada French) → Falls back to /fr
 # -----------------------------------------------------------------------------
-'fr-ca_fr-customer-stories': 'https://business.stage.adobe.com/ca_fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'fr-ca_fr-resources': 'https://business.stage.adobe.com/ca_fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+'fr-ca_fr-customer-stories': 'https://business.adobe.com/ca_fr/customer-success-stories.html'
+'fr-ca_fr-resources': 'https://business.adobe.com/ca_fr/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # French Regional /ch_fr (Switzerland French) → Falls back to /fr
 # -----------------------------------------------------------------------------
-'fr-ch_fr-customer-stories': 'https://business.stage.adobe.com/ch_fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'fr-ch_fr-resources': 'https://business.stage.adobe.com/ch_fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+'fr-ch_fr-customer-stories': 'https://business.adobe.com/ch_fr/customer-success-stories.html'
+'fr-ch_fr-resources': 'https://business.adobe.com/ch_fr/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # French Regional /be_fr (Belgium French) → Falls back to /fr
 # -----------------------------------------------------------------------------
-'fr-be_fr-customer-stories': 'https://business.stage.adobe.com/be_fr/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'fr-be_fr-resources': 'https://business.stage.adobe.com/be_fr/resources/main?milolibs=stage&martech=off&langfirst=on'
+'fr-be_fr-customer-stories': 'https://business.adobe.com/be_fr/customer-success-stories.html'
+'fr-be_fr-resources': 'https://business.adobe.com/be_fr/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # Italian Regional /ch_it (Switzerland Italian) → Falls back to /it
 # -----------------------------------------------------------------------------
-'it-ch_it-customer-stories': 'https://business.stage.adobe.com/ch_it/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'it-ch_it-resources': 'https://business.stage.adobe.com/ch_it/resources/main?milolibs=stage&martech=off&langfirst=on'
+'it-ch_it-customer-stories': 'https://business.adobe.com/ch_it/customer-success-stories.html'
+'it-ch_it-resources': 'https://business.adobe.com/ch_it/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # English Regional /nz (New Zealand) → Falls back to / (root)
 # -----------------------------------------------------------------------------
-'en-nz-customer-stories': 'https://business.stage.adobe.com/nz/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'en-nz-resources': 'https://business.stage.adobe.com/nz/resources/main?milolibs=stage&martech=off&langfirst=on'
+'en-nz-customer-stories': 'https://business.adobe.com/nz/customer-success-stories.html'
+'en-nz-resources': 'https://business.adobe.com/nz/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # English Regional /ca (Canada) → Falls back to / (root)
 # -----------------------------------------------------------------------------
-'en-ca-customer-stories': 'https://business.stage.adobe.com/ca/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'en-ca-resources': 'https://business.stage.adobe.com/ca/resources/main?milolibs=stage&martech=off&langfirst=on'
+'en-ca-customer-stories': 'https://business.adobe.com/ca/customer-success-stories.html'
+'en-ca-resources': 'https://business.adobe.com/ca/resources/main.html'
 
 # -----------------------------------------------------------------------------
 # English Regional /sg (Singapore) → Falls back to / (root)
 # -----------------------------------------------------------------------------
-'en-sg-customer-stories': 'https://business.stage.adobe.com/sg/customer-success-stories?milolibs=stage&martech=off&langfirst=on'
-'en-sg-resources': 'https://business.stage.adobe.com/sg/resources/main?milolibs=stage&martech=off&langfirst=on'
+'en-sg-customer-stories': 'https://business.adobe.com/sg/customer-success-stories.html'
+'en-sg-resources': 'https://business.adobe.com/sg/resources/main.html'
 
 # =============================================================================
 # BLOG PAGES - Testing link transformation on blog content
@@ -680,108 +665,108 @@
 # -----------------------------------------------------------------------------
 # English US Blog - Homepage + Categories
 # -----------------------------------------------------------------------------
-'blog-homepage': 'https://business.stage.adobe.com/blog/?milolibs=stage&martech=off&langfirst=on'
-'blog-trends': 'https://business.stage.adobe.com/blog/trends?milolibs=stage&martech=off&langfirst=on'
-'blog-news': 'https://business.stage.adobe.com/blog/news?milolibs=stage&martech=off&langfirst=on'
-'blog-the-latest-deliver': 'https://business.stage.adobe.com/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing?milolibs=stage&martech=off&langfirst=on'
-'blog-the-latest-harness': 'https://business.stage.adobe.com/blog/the-latest/harness-the-power-of-generative-ai-with-adobe-genstudio?milolibs=stage&martech=off&langfirst=on'
+'blog-homepage': 'https://business.adobe.com/blog/'
+'blog-trends': 'https://business.adobe.com/blog/trends.html'
+'blog-news': 'https://business.adobe.com/blog/news.html'
+'blog-the-latest-deliver': 'https://business.adobe.com/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing.html'
+'blog-the-latest-harness': 'https://business.adobe.com/blog/the-latest/harness-the-power-of-generative-ai-with-adobe-genstudio.html'
 
 # -----------------------------------------------------------------------------
 # German Blog (/de/blog)
 # -----------------------------------------------------------------------------
-'de-blog-homepage': 'https://business.stage.adobe.com/de/blog/?milolibs=stage&martech=off&langfirst=on'
-'de-blog-trends': 'https://business.stage.adobe.com/de/blog/trends?milolibs=stage&martech=off&langfirst=on'
-'de-blog-the-latest-deliver': 'https://business.stage.adobe.com/de/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing?milolibs=stage&martech=off&langfirst=on'
+'de-blog-homepage': 'https://business.adobe.com/de/blog/'
+'de-blog-trends': 'https://business.adobe.com/de/blog/trends.html'
+'de-blog-the-latest-deliver': 'https://business.adobe.com/de/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing.html'
 
 # -----------------------------------------------------------------------------
 # French Blog (/fr/blog)
 # -----------------------------------------------------------------------------
-'fr-blog-homepage': 'https://business.stage.adobe.com/fr/blog/?milolibs=stage&martech=off&langfirst=on'
-'fr-blog-trends': 'https://business.stage.adobe.com/fr/blog/trends?milolibs=stage&martech=off&langfirst=on'
+'fr-blog-homepage': 'https://business.adobe.com/fr/blog/'
+'fr-blog-trends': 'https://business.adobe.com/fr/blog/trends.html'
 
 # -----------------------------------------------------------------------------
 # English AU Blog (/au/blog)
 # -----------------------------------------------------------------------------
-'au-blog-homepage': 'https://business.stage.adobe.com/au/blog/?milolibs=stage&martech=off&langfirst=on'
-'au-blog-trends': 'https://business.stage.adobe.com/au/blog/trends?milolibs=stage&martech=off&langfirst=on'
+'au-blog-homepage': 'https://business.adobe.com/au/blog/'
+'au-blog-trends': 'https://business.adobe.com/au/blog/trends.html'
 
 # -----------------------------------------------------------------------------
 # English UK Blog (/uk/blog)
 # -----------------------------------------------------------------------------
-'uk-blog-homepage': 'https://business.stage.adobe.com/uk/blog/?milolibs=stage&martech=off&langfirst=on'
-'uk-blog-trends': 'https://business.stage.adobe.com/uk/blog/trends?milolibs=stage&martech=off&langfirst=on'
-'uk-blog-the-latest-harness': 'https://business.stage.adobe.com/uk/blog/the-latest/harness-the-power-of-generative-ai-with-adobe-genstudio?milolibs=stage&martech=off&langfirst=on'
+'uk-blog-homepage': 'https://business.adobe.com/uk/blog/'
+'uk-blog-trends': 'https://business.adobe.com/uk/blog/trends.html'
+'uk-blog-the-latest-harness': 'https://business.adobe.com/uk/blog/the-latest/harness-the-power-of-generative-ai-with-adobe-genstudio.html'
 
 # -----------------------------------------------------------------------------
 # Japanese Blog (/jp/blog)
 # -----------------------------------------------------------------------------
-'jp-blog-homepage': 'https://business.stage.adobe.com/jp/blog/?milolibs=stage&martech=off&langfirst=on'
-'jp-blog-trends': 'https://business.stage.adobe.com/jp/blog/trends?milolibs=stage&martech=off&langfirst=on'
-'jp-blog-the-latest-deliver': 'https://business.stage.adobe.com/jp/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing?milolibs=stage&martech=off&langfirst=on'
+'jp-blog-homepage': 'https://business.adobe.com/jp/blog/'
+'jp-blog-trends': 'https://business.adobe.com/jp/blog/trends.html'
+'jp-blog-the-latest-deliver': 'https://business.adobe.com/jp/blog/the-latest/deliver-winning-campaigns-at-speed-and-scale-with-adobe-genstudio-for-performance-marketing.html'
 
 # -----------------------------------------------------------------------------
 # Additional CaaS Pages for Link Transformation Testing
 # -----------------------------------------------------------------------------
 # FULL SITE - AU (Customer Journey Analytics page with CaaS)
-'en-au-cja': 'https://business.stage.adobe.com/au/products/adobe-analytics/customer-journey-analytics.html?milolibs=stage&martech=off&langfirst=on'
+'en-au-cja': 'https://business.adobe.com/au/products/adobe-analytics/customer-journey-analytics.html'
 
 # REGIONAL - BR (Resources SDK page with CaaS)
-'pt-br-personalization-financial-services': 'https://business.stage.adobe.com/br/resources/sdk/personalization-is-paying-off-for-financial-services.html?milolibs=stage&langfirst=on'
+'pt-br-personalization-financial-services': 'https://business.adobe.com/br/resources/sdk/personalization-is-paying-off-for-financial-services.html'
 
 # -----------------------------------------------------------------------------
 # BR Customer Success Stories (REGIONAL - Portuguese Brazil)
 # -----------------------------------------------------------------------------
-'pt-br-cs-abcop': 'https://business.stage.adobe.com/br/customer-success-stories/abcop-case-study.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-cs-telefonica': 'https://business.stage.adobe.com/br/customer-success-stories/telefonica-ecommerce-case-study.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-cs-tsb': 'https://business.stage.adobe.com/br/customer-success-stories/tsb-case-study.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-cs-sky': 'https://business.stage.adobe.com/br/customer-success-stories/sky-case-study.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-cs-bmw': 'https://business.stage.adobe.com/br/customer-success-stories/bmw-case-study.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-cs-united-healthcare': 'https://business.stage.adobe.com/br/customer-success-stories/united-healthcare-case-study.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-cs-health-life-sciences': 'https://business.stage.adobe.com/br/customer-success-stories/health-case-life-sciences.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-cs-adobe-stock': 'https://business.stage.adobe.com/br/customer-success-stories/adobe-stock.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-cs-abcop': 'https://business.adobe.com/br/customer-success-stories/abcop-case-study.html'
+'pt-br-cs-telefonica': 'https://business.adobe.com/br/customer-success-stories/telefonica-ecommerce-case-study.html'
+'pt-br-cs-tsb': 'https://business.adobe.com/br/customer-success-stories/tsb-case-study.html'
+'pt-br-cs-sky': 'https://business.adobe.com/br/customer-success-stories/sky-case-study.html'
+'pt-br-cs-bmw': 'https://business.adobe.com/br/customer-success-stories/bmw-case-study.html'
+'pt-br-cs-united-healthcare': 'https://business.adobe.com/br/customer-success-stories/united-healthcare-case-study.html'
+'pt-br-cs-health-life-sciences': 'https://business.adobe.com/br/customer-success-stories/health-case-life-sciences.html'
+'pt-br-cs-adobe-stock': 'https://business.adobe.com/br/customer-success-stories/adobe-stock.html'
 
 # -----------------------------------------------------------------------------
 # BR Recursos - Ebooks (REGIONAL - Portuguese Brazil)
 # -----------------------------------------------------------------------------
-'pt-br-ebook-be-target': 'https://business.stage.adobe.com/br/recursos/ebooks/be-target-guia-6.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-adobe-target': 'https://business.stage.adobe.com/br/recursos/ebooks/Adobe-Target-Ebook.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-experience-manager': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-experience-manager-for-fueling-experiences-everywhere.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-experience-manager-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-experience-manager-for-fueling-experiences-everywhere/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-journey-optimizer': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-journey-optimizer-oferta-personalizada-padrao-decisao.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-journey-optimizer-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-journey-optimizer-oferta-personalizada-padrao-decisao/you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-real-time-cdp': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-real-time-cdp-customer-profiles-audiences-actions.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-current-insights': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-current-insights.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-current-insights-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/adobe-current-insights/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-navegate-ecommerce': 'https://business.stage.adobe.com/br/recursos/ebooks/navegate-melhor-sou-ecommerce.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-navegate-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/navegate-melhor-sou-ecommerce/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-novapasso': 'https://business.stage.adobe.com/br/recursos/ebooks/novapasso-um-sitm-ecm-e-commerce-alimentado-pelo-conteudo.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-novapasso-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/novapasso-um-sitm-ecm-e-commerce-alimentado-pelo-conteudo/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-marketo-futuro': 'https://business.stage.adobe.com/br/recursos/ebooks/marketo-o-futuro-do-ecommerce.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-marketo-futuro-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/marketo-o-futuro-do-ecommerce/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-negocio-escala': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-em-escala-a-importancia-da-personalizacao-1-1.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-negocio-escala-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-em-escala-a-importancia-da-personalizacao-1-1/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-omnichannel': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-omnichannel-para-conexao-em-escala.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-omnichannel-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/negocio-omnichannel-para-conexao-em-escala/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-marketplace-b2b': 'https://business.stage.adobe.com/br/recursos/ebooks/novacao-aos-marketplaces-de-e-commerce-b2b.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-marketplace-b2b-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/novacao-aos-marketplaces-de-e-commerce-b2b/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-journey-optimizer-solves': 'https://business.stage.adobe.com/br/recursos/ebooks/journey-optimizer-solves-marketing-challenges.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-journey-optimizer-solves-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/journey-optimizer-solves-marketing-challenges/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-marketing-ia': 'https://business.stage.adobe.com/br/recursos/ebooks/marketing-mas-inteligente-com-ia.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-marketing-ia-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/marketing-mas-inteligente-com-ia/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-futuro-gerenciamento': 'https://business.stage.adobe.com/br/recursos/ebooks/o-futuro-do-gerenciamento-de-dados.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-futuro-gerenciamento-thank': 'https://business.stage.adobe.com/br/recursos/ebooks/o-futuro-do-gerenciamento-de-dados/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-ebook-adobe-serial': 'https://business.stage.adobe.com/br/recursos/ebooks/one-page-adobe-serial-analytics.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-ebook-be-target': 'https://business.adobe.com/br/recursos/ebooks/be-target-guia-6.html'
+'pt-br-ebook-adobe-target': 'https://business.adobe.com/br/recursos/ebooks/Adobe-Target-Ebook.html'
+'pt-br-ebook-experience-manager': 'https://business.adobe.com/br/recursos/ebooks/adobe-experience-manager-for-fueling-experiences-everywhere.html'
+'pt-br-ebook-experience-manager-thank': 'https://business.adobe.com/br/recursos/ebooks/adobe-experience-manager-for-fueling-experiences-everywhere/thank-you.html'
+'pt-br-ebook-journey-optimizer': 'https://business.adobe.com/br/recursos/ebooks/adobe-journey-optimizer-oferta-personalizada-padrao-decisao.html'
+'pt-br-ebook-journey-optimizer-thank': 'https://business.adobe.com/br/recursos/ebooks/adobe-journey-optimizer-oferta-personalizada-padrao-decisao/you.html'
+'pt-br-ebook-real-time-cdp': 'https://business.adobe.com/br/recursos/ebooks/adobe-real-time-cdp-customer-profiles-audiences-actions.html'
+'pt-br-ebook-current-insights': 'https://business.adobe.com/br/recursos/ebooks/adobe-current-insights.html'
+'pt-br-ebook-current-insights-thank': 'https://business.adobe.com/br/recursos/ebooks/adobe-current-insights/thank-you.html'
+'pt-br-ebook-navegate-ecommerce': 'https://business.adobe.com/br/recursos/ebooks/navegate-melhor-sou-ecommerce.html'
+'pt-br-ebook-navegate-thank': 'https://business.adobe.com/br/recursos/ebooks/navegate-melhor-sou-ecommerce/thank-you.html'
+'pt-br-ebook-novapasso': 'https://business.adobe.com/br/recursos/ebooks/novapasso-um-sitm-ecm-e-commerce-alimentado-pelo-conteudo.html'
+'pt-br-ebook-novapasso-thank': 'https://business.adobe.com/br/recursos/ebooks/novapasso-um-sitm-ecm-e-commerce-alimentado-pelo-conteudo/thank-you.html'
+'pt-br-ebook-marketo-futuro': 'https://business.adobe.com/br/recursos/ebooks/marketo-o-futuro-do-ecommerce.html'
+'pt-br-ebook-marketo-futuro-thank': 'https://business.adobe.com/br/recursos/ebooks/marketo-o-futuro-do-ecommerce/thank-you.html'
+'pt-br-ebook-negocio-escala': 'https://business.adobe.com/br/recursos/ebooks/negocio-em-escala-a-importancia-da-personalizacao-1-1.html'
+'pt-br-ebook-negocio-escala-thank': 'https://business.adobe.com/br/recursos/ebooks/negocio-em-escala-a-importancia-da-personalizacao-1-1/thank-you.html'
+'pt-br-ebook-omnichannel': 'https://business.adobe.com/br/recursos/ebooks/negocio-omnichannel-para-conexao-em-escala.html'
+'pt-br-ebook-omnichannel-thank': 'https://business.adobe.com/br/recursos/ebooks/negocio-omnichannel-para-conexao-em-escala/thank-you.html'
+'pt-br-ebook-marketplace-b2b': 'https://business.adobe.com/br/recursos/ebooks/novacao-aos-marketplaces-de-e-commerce-b2b.html'
+'pt-br-ebook-marketplace-b2b-thank': 'https://business.adobe.com/br/recursos/ebooks/novacao-aos-marketplaces-de-e-commerce-b2b/thank-you.html'
+'pt-br-ebook-journey-optimizer-solves': 'https://business.adobe.com/br/recursos/ebooks/journey-optimizer-solves-marketing-challenges.html'
+'pt-br-ebook-journey-optimizer-solves-thank': 'https://business.adobe.com/br/recursos/ebooks/journey-optimizer-solves-marketing-challenges/thank-you.html'
+'pt-br-ebook-marketing-ia': 'https://business.adobe.com/br/recursos/ebooks/marketing-mas-inteligente-com-ia.html'
+'pt-br-ebook-marketing-ia-thank': 'https://business.adobe.com/br/recursos/ebooks/marketing-mas-inteligente-com-ia/thank-you.html'
+'pt-br-ebook-futuro-gerenciamento': 'https://business.adobe.com/br/recursos/ebooks/o-futuro-do-gerenciamento-de-dados.html'
+'pt-br-ebook-futuro-gerenciamento-thank': 'https://business.adobe.com/br/recursos/ebooks/o-futuro-do-gerenciamento-de-dados/thank-you.html'
+'pt-br-ebook-adobe-serial': 'https://business.adobe.com/br/recursos/ebooks/one-page-adobe-serial-analytics.html'
 
 # -----------------------------------------------------------------------------
 # BR Recursos - Estudos de Sucesso (REGIONAL - Portuguese Brazil)
 # -----------------------------------------------------------------------------
-'pt-br-estudos-comunicay-agility': 'https://business.stage.adobe.com/br/recursos/estudos-de-sucesso-contivity/communication-agility.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-human-connection': 'https://business.stage.adobe.com/br/recursos/estudos-de-sucesso-contivity/human-connection.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-human-conversion': 'https://business.stage.adobe.com/br/recursos/estudos-de-sucesso-contivity/human-conversion.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-main-sites': 'https://business.stage.adobe.com/br/recursos/estudos/main-sites.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-main-sites-thank': 'https://business.stage.adobe.com/br/recursos/estudos/main-sites/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-ecommerce-thank': 'https://business.stage.adobe.com/br/recursos/estudos/ecommerce/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-supply-chain': 'https://business.stage.adobe.com/br/recursos/estudos/content-supply-chain-workfront.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-supply-chain-thank': 'https://business.stage.adobe.com/br/recursos/estudos/content-supply-chain-workfront/thank-you.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-mop': 'https://business.stage.adobe.com/br/recursos/estudos/mop.html?milolibs=stage&martech=off&langfirst=on'
-'pt-br-estudos-mop-thank': 'https://business.stage.adobe.com/br/recursos/estudos/mop/thank-you.html?milolibs=stage&martech=off&langfirst=on'
+'pt-br-estudos-comunicay-agility': 'https://business.adobe.com/br/recursos/estudos-de-sucesso-contivity/communication-agility.html'
+'pt-br-estudos-human-connection': 'https://business.adobe.com/br/recursos/estudos-de-sucesso-contivity/human-connection.html'
+'pt-br-estudos-human-conversion': 'https://business.adobe.com/br/recursos/estudos-de-sucesso-contivity/human-conversion.html'
+'pt-br-estudos-main-sites': 'https://business.adobe.com/br/recursos/estudos/main-sites.html'
+'pt-br-estudos-main-sites-thank': 'https://business.adobe.com/br/recursos/estudos/main-sites/thank-you.html'
+'pt-br-estudos-ecommerce-thank': 'https://business.adobe.com/br/recursos/estudos/ecommerce/thank-you.html'
+'pt-br-estudos-supply-chain': 'https://business.adobe.com/br/recursos/estudos/content-supply-chain-workfront.html'
+'pt-br-estudos-supply-chain-thank': 'https://business.adobe.com/br/recursos/estudos/content-supply-chain-workfront/thank-you.html'
+'pt-br-estudos-mop': 'https://business.adobe.com/br/recursos/estudos/mop.html'
+'pt-br-estudos-mop-thank': 'https://business.adobe.com/br/recursos/estudos/mop/thank-you.html'

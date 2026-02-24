@@ -20,6 +20,8 @@ const { WebUtil } = require('../../libs/webutil.js');
  * - Regional locales that 404 will redirect to their base language
  * - English regional → / (root)
  * - Spanish regional (ar, cl, co, la, mx, pe) → /es
+ *     NOTE: /ar, /cl, /co, /mx, /pe are no longer regional sites (removed).
+ *     /la is the only active regional site. The others should 404→fallback to /es.
  * - German regional (at, ch_de, lu_de) → /de
  * - French regional (be_fr, ca_fr, ch_fr, lu_fr) → /fr
  * - Italian regional (ch_it) → /it
@@ -51,6 +53,8 @@ const FALLBACK_RULES = {
     locales: ['at', 'ch_de', 'lu_de'],
   },
   // Spanish regional locales → fall back to /es
+  // /la is the only active regional site. /ar, /cl, /co, /mx, /pe are removed
+  // as regional sites but should still 404-fallback to /es.
   es: {
     fallbackTo: '/es',
     locales: ['ar', 'cl', 'co', 'la', 'mx', 'pe'],
@@ -97,8 +101,8 @@ const LINGO_RULES = {
   },
   REGIONAL: {
     description: 'REGIONAL pages - Mixed links based on page existence',
-    locales: ['/ar', '/mx', '/at', '/ch_de', '/ca_fr', '/br'],
-    expectation: 'Links point to regional locale if page exists, otherwise fall back to base language (404 fallback)',
+    locales: ['/la', '/ar', '/mx', '/at', '/ch_de', '/ca_fr', '/br'],
+    expectation: 'Links point to regional locale if page exists, otherwise fall back to base language (404 fallback). /ar, /cl, /co, /mx, /pe removed as regional → expected to 404-fallback to /es.',
   },
   FULL_SITE: {
     description: 'FULL SITE locales - All links should point to that locale',
@@ -1265,6 +1269,8 @@ const LOCALE_CONFIG = {
   'en-th_en': { locale: 'th_en', base: null, type: 'regional-en' },
   'en-vn_en': { locale: 'vn_en', base: null, type: 'regional-en' },
   // Spanish Regional (404 fallback to /es)
+  // /la is the only active regional site. /ar, /cl, /co, /mx, /pe are removed
+  // as regional sites — they should 404-fallback to /es base.
   'es-ar': { locale: 'ar', base: 'es', type: 'regional' },
   'es-mx': { locale: 'mx', base: 'es', type: 'regional' },
   'es-cl': { locale: 'cl', base: 'es', type: 'regional' },

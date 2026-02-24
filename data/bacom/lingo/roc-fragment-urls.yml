@@ -9,16 +9,25 @@
 # -----------|------|----------------------------------|---------------|------------------
 # French     | /fr  | /be_fr, /ca_fr, /ch_fr, /lu_fr   | /ch_fr, /ca_fr| /be_fr, /lu_fr
 # German     | /de  | /at, /ch_de, /lu_de              | /at, /ch_de   | /lu_de
-# Spanish    | /es  | /ar, /cl, /co, /la, /mx, /pe     | /mx           | /ar, /cl, /co, /la, /pe
+# Spanish    | /es  | /la (only regional)              | /la + all LATAM GeoIPs | -
 # Italian    | /it  | /ch_it                           | /ch_it        | -
 # Portuguese | /pt  | /br                              | /br           | -
+#
+# LATAM MEP-LINGO:
+# ----------------
+# /la is the only regional site for /es. When visiting /es/ with a LATAM GeoIP,
+# mep-lingo should pull fragment content from /la/fragments.
+# LATAM GeoIP codes: bo, cr, do, ec, gt, pa, pr, py, sv, uy, ve, ar, cl, co, mx, pe
 #
 # FEATURE COVERAGE:
 # -----------------
 # FULL FEATURES (all mep-lingo blocks):
 #   - /ch_fr (Swiss French)
-#   - /mx (Mexico)
+#   - /la (Latin America) - replaces /mx
 #   Fragments: textmeplingoblock, swapblock, sectionreplacement, noroc (fallback)
+#
+# LATAM MEP-LINGO (on /es/ base with LATAM GeoIP → /la/ fragments):
+#   - All 16 LATAM GeoIP codes tested
 #
 # BASIC TEST (textmeplingoblock only):
 #   - /ca_fr (Canadian French)
@@ -73,8 +82,9 @@ miloLibs: '?milolibs=stage&langfirst=on&mepHighlight=true&mep='
   description: 'French → Canadian French - textmeplingoblock only'
 
 # =============================================================================
-# SPANISH - FULL FEATURE TEST (/mx)
-# URL: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=mx
+# SPANISH - FULL FEATURE TEST (/la)
+# /la is the only regional site for /es
+# URL: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=la
 # =============================================================================
 'es-base':
   pageUrl: '/es/drafts/mepqa/fragments/base'
@@ -82,30 +92,157 @@ miloLibs: '?milolibs=stage&langfirst=on&mepHighlight=true&mep='
   testType: 'base'
   description: 'Spanish base page - no region spoof'
 
-'es-mx-swap':
+'es-la-swap':
   pageUrl: '/es/drafts/mepqa/fragments/base'
-  akamaiLocale: 'mx'
+  akamaiLocale: 'la'
   testType: 'full'
   expectedFragments:
     swapped:
-      - '/mx/drafts/mepqa/fragments/textmeplingoblock'
-      - '/mx/drafts/mepqa/fragments/swapblock'
-      - '/mx/drafts/mepqa/fragments/sectionreplacement'
+      - '/la/drafts/mepqa/fragments/textmeplingoblock'
+      - '/la/drafts/mepqa/fragments/swapblock'
+      - '/la/drafts/mepqa/fragments/sectionreplacement'
     fallback:
       - '/es/drafts/mepqa/fragments/noroc'
-  description: 'Spanish → Mexico - FULL FEATURE TEST'
+  description: 'Spanish → Latin America - FULL FEATURE TEST'
 
-# Negative test - wrong region
-'es-ar-negative':
+# =============================================================================
+# LATAM MEP-LINGO TESTS
+# When visiting /es/ with a LATAM GeoIP, mep-lingo should pull from /la/fragments
+# All 16 LATAM GeoIP codes: bo, cr, do, ec, gt, pa, pr, py, sv, uy, ve, ar, cl, co, mx, pe
+# =============================================================================
+
+# Representative LATAM test - Mexico (previously a separate regional site)
+'es-latam-mx':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'mx'
+  testType: 'latam-meplingo'
+  expectedFragments:
+    swapped:
+      - '/la/drafts/mepqa/fragments/textmeplingoblock'
+      - '/la/drafts/mepqa/fragments/swapblock'
+      - '/la/drafts/mepqa/fragments/sectionreplacement'
+    fallback:
+      - '/es/drafts/mepqa/fragments/noroc'
+  description: 'Spanish /es/ + GeoIP=mx → should pull /la/ fragments'
+
+# Representative LATAM test - Argentina (previously a separate regional site)
+'es-latam-ar':
   pageUrl: '/es/drafts/mepqa/fragments/base'
   akamaiLocale: 'ar'
+  testType: 'latam-meplingo'
+  expectedFragments:
+    swapped:
+      - '/la/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'Spanish /es/ + GeoIP=ar → should pull /la/ fragments'
+
+# Representative LATAM test - Chile (previously a separate regional site)
+'es-latam-cl':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'cl'
+  testType: 'latam-meplingo'
+  expectedFragments:
+    swapped:
+      - '/la/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'Spanish /es/ + GeoIP=cl → should pull /la/ fragments'
+
+# Representative LATAM test - Colombia (previously a separate regional site)
+'es-latam-co':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'co'
+  testType: 'latam-meplingo'
+  expectedFragments:
+    swapped:
+      - '/la/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'Spanish /es/ + GeoIP=co → should pull /la/ fragments'
+
+# Representative LATAM test - Peru (previously a separate regional site)
+'es-latam-pe':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'pe'
+  testType: 'latam-meplingo'
+  expectedFragments:
+    swapped:
+      - '/la/drafts/mepqa/fragments/textmeplingoblock'
+  description: 'Spanish /es/ + GeoIP=pe → should pull /la/ fragments'
+
+# LATAM GeoIP tests - Other LATAM countries
+'es-latam-bo':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'bo'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=bo → should pull /la/ fragments'
+
+'es-latam-cr':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'cr'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=cr → should pull /la/ fragments'
+
+'es-latam-do':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'do'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=do → should pull /la/ fragments'
+
+'es-latam-ec':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'ec'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=ec → should pull /la/ fragments'
+
+'es-latam-gt':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'gt'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=gt → should pull /la/ fragments'
+
+'es-latam-pa':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'pa'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=pa → should pull /la/ fragments'
+
+'es-latam-pr':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'pr'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=pr → should pull /la/ fragments'
+
+'es-latam-py':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'py'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=py → should pull /la/ fragments'
+
+'es-latam-sv':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'sv'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=sv → should pull /la/ fragments'
+
+'es-latam-uy':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'uy'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=uy → should pull /la/ fragments'
+
+'es-latam-ve':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 've'
+  testType: 'latam-meplingo'
+  description: 'Spanish /es/ + GeoIP=ve → should pull /la/ fragments'
+
+# Negative test - non-LATAM region on /es/ should NOT see /la/ fragments
+'es-non-latam-negative':
+  pageUrl: '/es/drafts/mepqa/fragments/base'
+  akamaiLocale: 'us'
   testType: 'negative'
   expectedFragments:
     notVisible:
-      - '/mx/drafts/mepqa/fragments/textmeplingoblock'
-      - '/mx/drafts/mepqa/fragments/swapblock'
-      - '/mx/drafts/mepqa/fragments/sectionreplacement'
-  description: 'Spanish with akamaiLocale=ar - should NOT see /mx fragments'
+      - '/la/drafts/mepqa/fragments/textmeplingoblock'
+      - '/la/drafts/mepqa/fragments/swapblock'
+      - '/la/drafts/mepqa/fragments/sectionreplacement'
+  description: 'Spanish with akamaiLocale=us (non-LATAM) - should NOT see /la/ fragments'
 
 # =============================================================================
 # GERMAN - BASIC TEST (/at, /ch_de) - textmeplingoblock only
@@ -188,7 +325,12 @@ miloLibs: '?milolibs=stage&langfirst=on&mepHighlight=true&mep='
 # =============================================================================
 # FULL FEATURE TESTS (all mep-lingo blocks):
 #   French Swiss:   https://stage--da-bacom--adobecom.aem.live/fr/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ch_fr
-#   Spanish Mexico: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=mx
+#   Spanish LATAM:  https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=la
+#
+# LATAM MEP-LINGO TESTS (/es/ base → /la/ fragments):
+#   GeoIP=mx: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=mx
+#   GeoIP=ar: https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ar
+#   ... (all 16 LATAM GeoIP codes: bo, cr, do, ec, gt, pa, pr, py, sv, uy, ve, ar, cl, co, mx, pe)
 #
 # BASIC TESTS (textmeplingoblock only):
 #   French Canada:  https://stage--da-bacom--adobecom.aem.live/fr/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ca_fr
@@ -198,7 +340,7 @@ miloLibs: '?milolibs=stage&langfirst=on&mepHighlight=true&mep='
 #   Portuguese BR:  https://stage--da-bacom--adobecom.aem.live/pt/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=br
 #
 # NEGATIVE TEST:
-#   Spanish with AR (should NOT see /mx): https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=ar
+#   Non-LATAM on /es/ (should NOT see /la/): https://stage--da-bacom--adobecom.aem.live/es/drafts/mepqa/fragments/base?milolibs=stage&langfirst=on&mepHighlight=true&mep=&akamaiLocale=us
 
 # =============================================================================
 # BADGE SELECTORS

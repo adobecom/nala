@@ -295,6 +295,9 @@ module.exports = {
 
     // =========================================================================
     // SPANISH - Base and Regional (404 fallback to /es)
+    // /la is the only active regional site.
+    // /ar, /cl, /co, /mx, /pe are removed as regional sites — they should
+    // 404-fallback to /es base. Tests verify the fallback behavior.
     // =========================================================================
     {
       tcid: '40',
@@ -305,44 +308,44 @@ module.exports = {
     },
     {
       tcid: '41',
-      name: '@BACOM-Lingo-Spanish-AR',
+      name: '@BACOM-Lingo-Spanish-AR-Fallback',
       path: 'es-ar',
-      tags: '@bacom @lingo @link-transform @spanish @ar @regional @regression',
+      tags: '@bacom @lingo @link-transform @spanish @ar @regional @fallback @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
       tcid: '42',
-      name: '@BACOM-Lingo-Spanish-MX',
+      name: '@BACOM-Lingo-Spanish-MX-Fallback',
       path: 'es-mx',
-      tags: '@bacom @lingo @link-transform @spanish @mx @regional @regression',
+      tags: '@bacom @lingo @link-transform @spanish @mx @regional @fallback @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
       tcid: '43',
-      name: '@BACOM-Lingo-Spanish-CL',
+      name: '@BACOM-Lingo-Spanish-CL-Fallback',
       path: 'es-cl',
-      tags: '@bacom @lingo @link-transform @spanish @cl @regional @regression',
+      tags: '@bacom @lingo @link-transform @spanish @cl @regional @fallback @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
       tcid: '44',
-      name: '@BACOM-Lingo-Spanish-CO',
+      name: '@BACOM-Lingo-Spanish-CO-Fallback',
       path: 'es-co',
-      tags: '@bacom @lingo @link-transform @spanish @co @regional @regression',
+      tags: '@bacom @lingo @link-transform @spanish @co @regional @fallback @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
       tcid: '45',
       name: '@BACOM-Lingo-Spanish-LA',
       path: 'es-la',
-      tags: '@bacom @lingo @link-transform @spanish @la @regional @regression',
+      tags: '@bacom @lingo @link-transform @spanish @la @regional @smoke @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
     {
       tcid: '46',
-      name: '@BACOM-Lingo-Spanish-PE',
+      name: '@BACOM-Lingo-Spanish-PE-Fallback',
       path: 'es-pe',
-      tags: '@bacom @lingo @link-transform @spanish @pe @regional @regression',
+      tags: '@bacom @lingo @link-transform @spanish @pe @regional @fallback @regression',
       data: 'data/bacom/gnav/lingo-urls.yml',
     },
 
