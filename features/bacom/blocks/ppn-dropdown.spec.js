@@ -82,9 +82,7 @@ module.exports = {
       tcid: '8',
       name: '@ppn-dropdown: Bug3 - Cannot add property without selecting valid value',
       path: '/drafts/nala/blocks/ppn-dropdown/basic',
-      data: {
-        property: 'primaryProductName',
-      },
+      data: { property: 'primaryProductName' },
       tags: '@tc8 @ppn-dropdown @bug-regression @bug3 @regression @bacom',
     },
     {
@@ -113,9 +111,7 @@ module.exports = {
       tcid: '11',
       name: '@ppn-dropdown: Verify governance - dropdown cannot be circumvented',
       path: '/drafts/nala/blocks/ppn-dropdown/basic',
-      data: {
-        property: 'primaryProductName',
-      },
+      data: { property: 'primaryProductName' },
       tags: '@tc11 @ppn-dropdown @non-functional @governance @regression @bacom',
     },
 

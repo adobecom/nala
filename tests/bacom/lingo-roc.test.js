@@ -624,7 +624,12 @@ test.describe('BACOM Lingo ROC Fragment Swapping Test Suite', () => {
 
       if (!config) {
         console.warn(`[LingoROC] No test data for key: ${dataKey}`);
-        appendTestResult({ testName: feature.name, status: 'skipped', reason: `No test data for ${dataKey}`, timestamp: new Date().toISOString() });
+        appendTestResult({
+          testName: feature.name,
+          status: 'skipped',
+          reason: `No test data for ${dataKey}`,
+          timestamp: new Date().toISOString(),
+        });
         test.skip();
         return;
       }

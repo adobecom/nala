@@ -102,7 +102,8 @@ const LINGO_RULES = {
   REGIONAL: {
     description: 'REGIONAL pages - Mixed links based on page existence',
     locales: ['/la', '/ar', '/mx', '/at', '/ch_de', '/ca_fr', '/br'],
-    expectation: 'Links point to regional locale if page exists, otherwise fall back to base language (404 fallback). /ar, /cl, /co, /mx, /pe removed as regional → expected to 404-fallback to /es.',
+    expectation: 'Links point to regional locale if page exists, otherwise fall back to base language '
+      + '(404 fallback). /ar, /cl, /co, /mx, /pe removed as regional → expected to 404-fallback to /es.',
   },
   FULL_SITE: {
     description: 'FULL SITE locales - All links should point to that locale',

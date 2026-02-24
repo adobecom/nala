@@ -121,7 +121,7 @@ export default class PPNDropdown {
     const libraryPanel = this.page.locator('[class*="da-library"]').first();
 
     // Scroll down multiple times to reach the bottom where "Metadata Builder" is
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i += 1) {
       await libraryPanel.press('End');
       await this.page.waitForTimeout(300);
     }
@@ -136,14 +136,12 @@ export default class PPNDropdown {
     console.log('Step 3: Clicking on Metadata Builder...');
 
     // The dialog indicator - "Select property" text appears in the dialog
-    const selectPropertyText = this.page.locator('text="Select property"');
-
     // The dialog has a "Close" button and "Metadata Builder" title - use these to detect dialog
     const dialogCloseButton = this.page.locator('button:has-text("Close")');
     const dialogTitle = this.page.locator('h1:has-text("Metadata Builder"), h2:has-text("Metadata Builder")');
 
     // Click multiple times due to known bug - dialog appears and disappears
-    for (let clickAttempt = 1; clickAttempt <= 5; clickAttempt++) {
+    for (let clickAttempt = 1; clickAttempt <= 5; clickAttempt += 1) {
       console.log(`Click attempt ${clickAttempt}...`);
       await metadataBuilderItem.click({ force: true });
       await this.page.waitForTimeout(1500);
