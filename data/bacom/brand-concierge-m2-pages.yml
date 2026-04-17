@@ -1,0 +1,42 @@
+# Brand Concierge M2 - BACOM Floating Banner pages
+#
+# Source: BC release tracking doc (BACOM Floating Banner ~30 pages).
+# Launch date: 20 Apr 2026 (IN PROGRESS).
+# Variant: floating (overlay on top of existing page content).
+# Test against: business.adobe.com (prod) and business.stage.adobe.com (stage).
+#
+# URLs listed as paths so they can be combined with either base URL at test time.
+
+pages:
+  - /products/express-business.html
+  - /ai.html
+  - /products/acrobat-business.html
+  - /
+  - /products/commerce.html
+  - /products/workfront.html
+  - /products/marketo.html
+  - /products/genstudio-for-performance-marketing.html
+  - /products/firefly-business.html
+  - /products/adobe-analytics.html
+  - /products/llm-optimizer.html
+  - /products.html
+  - /products/creativecloud-business.html
+  - /solutions/b2b-marketing.html
+  - /blog/
+  - /products/experience-manager/sites/aem-sites.html
+  - /products/experience-manager/assets.html
+  - /products/experience-platform/agent-orchestrator.html
+  - /products/experience-platform/adobe-experience-platform.html
+  - /solutions/content-supply-chain.html
+  - /products/real-time-customer-data-platform/rtcdp.html
+  - /products/journey-optimizer.html
+  - /solutions/unified-customer-experience.html
+  - /ai/adobe-genai.html
+  - /resources/main.html
+  - /products/sign-solutions.html
+  - /solutions/personalization-at-scale.html
+  - /products/adobe-analytics/customer-journey-analytics.html
+  - /products/adobe-analytics/customer-journey-analytics-b2b-edition.html
+  - /products/brand-concierge.html
+  - /products/frameio-business.html
+  - /products/journey-optimizer-b2b-edition.html

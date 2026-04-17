@@ -15,13 +15,7 @@ test.describe('Brand Concierge - BACOM live pages', () => {
     test(
       `[Test Id - ${feature.tcid}] ${feature.name}, ${feature.tags}`,
       async ({ page, baseURL }) => {
-        // If spec path is absolute (starts with http), use it directly.
-        // Otherwise prepend baseURL. This lets BACOM tests target the real
-        // production origin (business.adobe.com) regardless of which project
-        // config the runner chooses.
-        const testUrl = /^https?:\/\//.test(feature.path)
-          ? feature.path
-          : `${baseURL}${feature.path}`;
+        const testUrl = `${baseURL}${feature.path}`;
         const { data } = feature;
         console.info(`[Test Page]: ${testUrl}`);
 
@@ -30,13 +24,13 @@ test.describe('Brand Concierge - BACOM live pages', () => {
           await page.waitForLoadState('domcontentloaded');
         });
 
-        await test.step('step-2: Verify Brand Concierge block renders', async () => {
-          await expect(bc.block).toBeAttached({ timeout: BC_RENDER_TIMEOUT });
-          await bc.block.scrollIntoViewIfNeeded();
-          await expect(bc.block).toBeVisible({ timeout: BC_RENDER_TIMEOUT });
-        });
-
         if (data.variant === 'inline') {
+          await test.step('step-2: Inline block is attached, scrolled into view, visible', async () => {
+            await expect(bc.block).toBeAttached({ timeout: BC_RENDER_TIMEOUT });
+            await bc.block.scrollIntoViewIfNeeded();
+            await expect(bc.block).toBeVisible({ timeout: BC_RENDER_TIMEOUT });
+          });
+
           await test.step('step-3: Inline variant has input field and prompt buttons', async () => {
             await bc.inputField.first().waitFor({ state: 'attached', timeout: BC_RENDER_TIMEOUT });
             await expect(bc.inputField.first()).toBeVisible({ timeout: 10000 });
@@ -45,12 +39,12 @@ test.describe('Brand Concierge - BACOM live pages', () => {
         }
 
         if (data.variant === 'floating') {
-          await test.step('step-3: Floating button is attached', async () => {
+          await test.step('step-2: Floating button is attached to the page', async () => {
             await expect(bc.floatingButton).toBeAttached({ timeout: BC_RENDER_TIMEOUT });
           });
         }
 
-        await test.step('step-4: Verify BC web client script is injected', async () => {
+        await test.step('step-final: Verify BC web client script is injected', async () => {
           await expect(bc.webClientScript.first()).toBeAttached({ timeout: BC_RENDER_TIMEOUT });
         });
       },
