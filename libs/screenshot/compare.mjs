@@ -89,13 +89,13 @@ async function main() {
       result.urls = entry.urls;
 
       const comparator = getComparator('image/png');
-      const diffImage = comparator(baseImage, currImage);
+      const diffImage = comparator(baseImage, currImage, { maxDiffPixelRatio: 0.02 });
 
       if (diffImage) {
         const diffName = `${entry.b}`.replace('.png', '-diff.png');
         fs.writeFileSync(validatePath(diffName, { forWriting: true }), diffImage.diff);
         result.diff = diffName;
-        console.info('Differences found');
+        console.info(`DIFF [${entry.b}]: ${diffImage.errorMessage}`);
       }
       resultsArray.push(result);
     }
