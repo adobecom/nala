@@ -30,9 +30,9 @@ test.describe('BACOM SOT visual comparison test suite', () => {
         const result = await takeTwo(
           page,
           stableURL,
-          async () => { await visual.waitForEndOfPage(); },
+          async () => { await visual.scrollToBottom(); },
           betaURL,
-          async () => { await visual.waitForEndOfPage(); },
+          async () => { await visual.scrollToBottom(); },
           folderPath,
           name,
           { fullPage: true },
