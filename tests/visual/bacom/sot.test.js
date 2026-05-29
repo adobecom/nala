@@ -1,11 +1,10 @@
+import fs from 'fs';
 import { test } from '@playwright/test';
+import yaml from 'js-yaml';
 import { features } from '../../../features/visual/bacom/sot.spec.js';
 import { takeTwo } from '../../../libs/screenshot/take.js';
 import { writeResultsToFile } from '../../../libs/screenshot/utils.js';
 import Visual from '../../../selectors/visual/visual.page.js';
-
-const yaml = require('js-yaml');
-const fs = require('fs');
 
 const folderPath = 'screenshots/bacom';
 const results = {};
