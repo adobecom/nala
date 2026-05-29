@@ -170,16 +170,16 @@ class BaseReporter {
       url = this.config.baseURL;
     }
     // Get environment from baseURL
-    if (url.includes('prod')) {
+    if (url?.includes('prod')) {
       env = 'prod';
-    } else if (url.includes('stage')) {
+    } else if (url?.includes('stage')) {
       env = 'stage';
     }
     // Get branch and repo from baseURL
-    if (url.includes('localhost')) {
+    if (url?.includes('localhost')) {
       branch = 'local';
       repo = 'local';
-    } else {
+    } else if (url) {
       const urlParts = url.split('/');
       const branchAndRepo = urlParts[urlParts.length - 1];
       [branch, repo] = branchAndRepo.split('--');

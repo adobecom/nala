@@ -68,31 +68,33 @@ async function takeOne(page, url, callback, folderPath, fileName, options = {}) 
 async function takeTwo(page, urlStable, callbackStable, urlBeta, callbackBeta, folderPath, fileName, options = {}) {
   const urls = [];
   const result = {};
+  const { navigationTimeout, ...screenshotOptions } = options;
+  const gotoOptions = navigationTimeout ? { timeout: navigationTimeout } : {};
 
   console.info(`[Test Page]: ${urlStable}`);
-  await page.goto(urlStable);
+  await page.goto(urlStable, gotoOptions);
   urls.push(urlStable);
   if (typeof callbackStable === 'function') { await callbackStable(); }
   const nameStable = `${folderPath}/${fileName}-a.png`;
-  options.path = nameStable;
-  if (options.selector) {
-    await page.locator(options.selector).screenshot(options);
+  screenshotOptions.path = nameStable;
+  if (screenshotOptions.selector) {
+    await page.locator(screenshotOptions.selector).screenshot(screenshotOptions);
   } else {
-    await page.screenshot(options);
+    await page.screenshot(screenshotOptions);
   }
   result.order = 1;
   result.a = nameStable;
 
   console.info(`[Test Page]: ${urlBeta}`);
-  await page.goto(urlBeta);
+  await page.goto(urlBeta, gotoOptions);
   urls.push(urlBeta);
   if (typeof callbackBeta === 'function') { await callbackBeta(); }
   const nameBeta = `${folderPath}/${fileName}-b.png`;
-  options.path = nameBeta;
-  if (options.selector) {
-    await page.locator(options.selector).screenshot(options);
+  screenshotOptions.path = nameBeta;
+  if (screenshotOptions.selector) {
+    await page.locator(screenshotOptions.selector).screenshot(screenshotOptions);
   } else {
-    await page.screenshot(options);
+    await page.screenshot(screenshotOptions);
   }
 
   result.b = nameBeta;

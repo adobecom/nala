@@ -33,6 +33,7 @@ export default class Visual {
       lastHeight = height;
     }
 
-    await this.endOfPage.waitFor({ state: 'visible' });
+    await this.endOfPage.waitFor({ state: 'visible', timeout: 30000 }).catch(() => {});
+    await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
   }
 }
