@@ -1,4 +1,4 @@
-import { sendSlackMessage } from '../../libs/slack.js';
+const { sendSlackMessage } = require('../../libs/slack.js');
 
 // Playwright will include ANSI color characters and regex from below
 // https://github.com/microsoft/playwright/issues/13522
