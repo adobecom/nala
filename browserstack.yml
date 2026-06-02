@@ -34,15 +34,15 @@ platforms:
   - os: Windows
     osVersion: 11
     browserName: playwright-firefox
-    browserVersion: '130.0'
+    browserVersion: latest
   - os: OS X
     osVersion: Sonoma
     browserName: playwright-chromium
-    browserVersion: '130.0'
+    browserVersion: latest
   - os: OS X
     osVersion: Sonoma
     browserName: playwright-firefox
-    browserVersion: '130.0'
+    browserVersion: latest
   - os: OS X
     osVersion: Sonoma
     browserName: playwright-webkit
@@ -57,7 +57,7 @@ platforms:
 # Example 1 - If you have configured 3 platforms and set `parallelsPerPlatform` as 2, a total of 6 (2 * 3) parallel threads will be used on BrowserStack
 #
 # Example 2 - If you have configured 1 platform and set `parallelsPerPlatform` as 5, a total of 5 (1 * 5) parallel threads will be used on BrowserStack
-parallelsPerPlatform: 1
+parallelsPerPlatform: 4
 
 # ==========================================
 # BrowserStack Local
