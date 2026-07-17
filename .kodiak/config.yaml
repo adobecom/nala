@@ -13,7 +13,6 @@ notifications:
       fields:
         assignee:
           name: nateekar
-        customfield_11800: MWPW-164516 #epic link
         watchers:
           - casalino
         labels:
